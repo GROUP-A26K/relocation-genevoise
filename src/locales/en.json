@@ -1,0 +1,467 @@
+{
+  "HomePage": {
+    "Hero": {
+      "heading": "Home",
+      "subHeading": "Your Insurance Broker in ((Switzerland))",
+      "description": "Assurance Genevoise supports you throughout Switzerland with personalized insurance solutions and a trusted network of partners.",
+      "buttonText": "Call me",
+      "experience": "25 years of experience",
+      "customer": "2500+ satisfied clients"
+    },
+    "ServiceFeature": {
+      "heading": "Professionals & Individuals",
+      "subHeading": "Our ((services))",
+      "reasons": [
+        {
+          "reasonName": "For professionals",
+          "reasonItems": [
+            {
+              "title": "Corporate",
+              "description": "Our solutions to best protect your business.",
+              "icon": "Building"
+            },
+            {
+              "title": "International",
+              "description": "We got you covered, wherever you are in the world.",
+              "icon": "Earth"
+            },
+            {
+              "title": "Independent Practitioner",
+              "description": "Our tailor-made coverage tailored to your situation.",
+              "icon": "Scale"
+            }
+          ]
+        },
+        {
+          "reasonName": "For individuals",
+          "reasonItems": [
+            {
+              "title": "Insurance",
+              "description": "Our insurance solutions for all your everyday needs.",
+              "icon": "Building"
+            },
+            {
+              "title": "Cross-border worker",
+              "description": "Coverage tailored to your situation.",
+              "icon": "Scale"
+            },
+            {
+              "title": "Taxation",
+              "description": "Helping you manage your finances with precision.",
+              "icon": "Earth"
+            },
+            {
+              "title": "Health",
+              "description": "Protecting you in Switzerland and internationally.",
+              "icon": "Building"
+            },
+            {
+              "title": "Mortgage",
+              "description": "Accelerate your projects and access competitive rates.",
+              "icon": "Scale"
+            },
+            {
+              "title": "Life & disability insurance",
+              "description": "Secure your future with our dedicated insurance solutions.",
+              "icon": "Earth"
+            }
+          ]
+        }
+      ]
+    },
+
+    "Logos": {
+      "heading": "A network of trusted partners"
+    },
+
+    "StatsGrid": {
+      "heading": "Reliability & transparency",
+      "subHeading": "Your trusted partner in ((Switzerland))",
+      "description": "We guide you with clarity, speed, and know-how to provide the right solutions for you.",
+      "start1": {
+        "value": "25+",
+        "label": "Years of experience"
+      },
+      "start2": {
+        "value": "2500+",
+        "label": "Clients served"
+      },
+      "start3": {
+        "value": "3",
+        "label": "Languages spoken"
+      },
+      "start4": {
+        "value": "10+",
+        "label": "Nationalities trust our expertise"
+      }
+    },
+
+    "ContactFeature": {
+      "heading": "Simplicity & Efficiency",
+      "subHeading": "Smart and efficient solutions to reach your ((goals))",
+      "description": "We help you find the best insurance solutions in Switzerland and guide you every step of the way.",
+      "buttonText": "Call me",
+      "reasonItems": [
+        {
+          "title": "Contact an advisor",
+          "description": "We discuss together to understand your situation, identify your specific needs, and find the most suitable solutions.",
+          "icon": "MessagesSquare"
+        },
+        {
+          "title": "Get a quote in under 48 hours",
+          "description": "A first response within 24 hours, then a quote proposal within 48 hours after your initial contact.",
+          "icon": "Clock3"
+        },
+        {
+          "title": "Contract signing",
+          "description": "We formalize a brokerage mandate and share the best offers from our trusted partners."
+        }
+      ]
+    },
+
+    "ContentWithImg": {
+      "heading": "Why Assurance Genevoise ?",
+      "subHeading": "Your project, our ((expertise))",
+      "description": [
+        {
+          "paragraph": "Our brokerage firm supports you with high value-added expertise to secure your assets and optimize your insurance coverage."
+        }
+      ],
+      "buttonText": "Contact-us"
+    },
+
+    "BlogList": {
+      "heading": "Blog & News",
+      "subHeading": "Our latest ((articles))",
+      "description": "Find our latest news, articles, and expert advice to help you choose the best insurance solutions.",
+      "buttonText": "See more"
+    }
+  },
+
+  "Metadata": {
+    "Home": {
+      "title": "Assurance Genevoise - Your Insurance Broker in Switzerland",
+      "description": "Assurance Genevoise supports you throughout Switzerland with personalized insurance solutions and a network of trusted partners."
+    },
+    "Contact": {
+      "title": "Assurance Genevoise - Contact and Personalized Quote in Switzerland",
+      "description": "Contact us for an insurance offer tailored to your needs in Switzerland. Quick response and personalized support."
+    },
+    "RappelezMoi": {
+      "title": "Assurance Genevoise - A Consultant Will Call You Back",
+      "description": "One of our consultants will call you back during our business hours to answer all your insurance questions."
+    },
+    "Blog": {
+      "title": "Assurance Genevoise - Blog",
+      "description": "Discover our advice, news, and practical guides on insurance in French-speaking Switzerland. Stay informed with the Assurance Genevoise blog."
+    },
+    "MentionsLegales": {
+      "title": "Assurance Genevoise - Our legal notice",
+      "description": "Discover the tailored insurance solutions offered by Assurance Genevoise, with a reliable network of partners across Switzerland to meet your specific needs."
+    },
+    "DonnesPersonnelles": {
+      "title": "Assurance Genevoise - Your personal data",
+      "description": "Protect your personal data with Assurance Genevoise. Discover our commitments to privacy and security to ensure the protection of your information."
+    },
+    "Sitemap": {
+      "title": "Assurance Genevoise - Sitemap",
+      "description": "Discover the site map of Assurance Genevoise to easily navigate through our insurance services and useful information."
+    },
+    "Entreprise": {
+      "title": "Assurance Genevoise - Our Insurance Solutions for Businesses",
+      "description": "Protect your business with customized insurance solutions designed to secure your operations and prevent claims."
+    },
+    "Particulier": {
+      "title": "Assurance Genevoise - Our Insurance Solutions for Individuals",
+      "description": "We protect your future with our tailor-made insurance solutions. Benefit from our coverage for your assets, your loved ones, and your home."
+    },
+    "Assistance": {
+      "title": "Assurance Genevoise - Claims and Assistance",
+      "description": "In case of a claim or emergency, contact us immediately for prompt assistance."
+    },
+
+    "International": {
+      "title": "Assurance Genevoise – International",
+      "description": "Our insurance solutions to secure your activities and health abroad."
+    },
+    "ProfessionLiberale": {
+      "title": "Assurance Genevoise – Self-Employed Professionals",
+      "description": "Tailored insurance to secure the activity and income of self-employed professionals."
+    },
+    "AssuranceChosesEtPatrimoine": {
+      "title": "Assurance Genevoise - Property and Asset Insurance",
+      "description": "Preserve your assets and secure your future against unforeseen events with our coverage for real estate, equipment, and capital."
+    },
+    "RcProfessionnelle": {
+      "title": "Assurance Genevoise - Professional Liability Insurance",
+      "description": "Benefit from comprehensive coverage tailored to your business sector to protect your assets and ensure your company's growth."
+    },
+    "AssuranceRcMenage": {
+      "title": "Assurance Genevoise - Liability Insurance (RC)",
+      "description": "Protect your liability, your assets, and your daily life from property and bodily damage caused to third parties."
+    },
+    "AssuranceAnimaux": {
+      "title": "Assurance Genevoise - Pet Insurance",
+      "description": "Protect your pet’s health and cover the costs in case of illness, accident, or emergency."
+    },
+    "AssuranceAccidentLaa": {
+      "title": "Assurance Genevoise - Accident Insurance (LAA)",
+      "description": "Protects your employees in the event of occupational or non-occupational accidents, covering medical expenses, daily allowances, and rehabilitation."
+    },
+    "AssuranceVoyage": {
+      "title": "Assurance Genevoise - Travel Insurance",
+      "description": "Security, assistance, and peace of mind at every stage of your trips abroad with coverage tailored to your needs."
+    },
+    "AssurancePerteGain": {
+      "title": "Assurance Genevoise - Income Loss Insurance",
+      "description": "Essential coverage to ensure your employees' income continuity and secure your business against unforeseen events."
+    },
+    "PrevoyanceProfessionnelleLpp": {
+      "title": "Assurance Genevoise - Occupational Pension (LPP)",
+      "description": "The occupational pension (LPP) complements the AVS, ensuring your employees a secure retirement and protection in case of disability or death."
+    },
+    "CautionsGaranties": {
+      "title": "Assurance Genevoise - Surety and Guarantee Insurance",
+      "description": "Secure your projects and ensure the execution of your contracts with reliable guarantees compliant with your professional obligations."
+    },
+    "AssuranceVehicule": {
+      "title": "Assurance Genevoise - Motor Vehicle Insurance",
+      "description": "Essential coverage to protect your vehicle, your passengers, and cover damages caused to others."
+    },
+    "AssuranceProtectionJuridique": {
+      "title": "Assurance Genevoise - Legal Protection Insurance",
+      "description": "Legal assistance, support, and management of private disputes to assert your rights in any situation."
+    },
+    "ProtectionJuridique": {
+      "title": "Assurance Genevoise – Legal Protection Insurance",
+      "description": "Legal assistance, legal support, and management of professional disputes to uphold your rights in any situation."
+    },
+    "AssuranceEmployeMaison": {
+      "title": "Assurance Genevoise - Domestic Employee Insurance",
+      "description": "Protect your domestic employees, cover risks related to their work, and secure your liability in case of an incident."
+    },
+    "AssuranceHommeCle": {
+      "title": "Assurance Genevoise - Key Person Insurance",
+      "description": "Preserve your company's financial stability in the event of the loss or absence of a leader or strategic profile."
+    },
+    "AssurancePerteExploitation": {
+      "title": "Assurance Genevoise - Business Interruption Insurance",
+      "description": "Protect your business against financial losses related to a claim, business stoppage, or forced interruption."
+    },
+    "AssuranceCyber": {
+      "title": "Assurance Genevoise - Cybersecurity Insurance",
+      "description": "Comprehensive protection against cyber incidents to safeguard your systems and data."
+    },
+    "AssuranceRcImmeuble": {
+      "title": "Assurance Genevoise - Building and Property Liability Insurance",
+      "description": "Cover material or bodily damages caused to third parties by your building, its equipment, or installations."
+    },
+    "AssuranceFrontalier": {
+      "title": "Assurance Genevoise - Cross-border Worker Insurance",
+      "description": "Clear and tailored health coverage for cross-border workers employed in Switzerland and residing in France."
+    },
+    "AssuranceLibrePassage": {
+      "title": "Assurance Genevoise - Vested Benefits Insurance",
+      "description": "Maintain your pension rights and protect your LPP assets between jobs or during a professional transition."
+    },
+    "AssurancePrevoyance": {
+      "title": "Assurance Genevoise - Private Pension Insurance",
+      "description": "Secure your financial future, protect your loved ones, and ensure a peaceful retirement at every stage of life."
+    },
+    "AssuranceVie": {
+      "title": "Assurance Genevoise - Life Insurance",
+      "description": "Optimize the transfer of your assets with a flexible and tax-advantaged savings solution."
+    },
+    "AssuranceMaladieInternational": {
+      "title": "Assurance Genevoise – International Health Insurance",
+      "description": "Adapt your mandatory health coverage to your new country of residence: benefit from comprehensive protection that meets local requirements so you can travel and work abroad with complete peace of mind."
+    },
+    "CouverturesSpecifiques": {
+      "title": "Assurance Genevoise – International Specific Coverages",
+      "description": "Secure your activities worldwide with tailor-made insurance programs; protect your employees, assets and international projects, and grow your business with confidence."
+    },
+    "CouverturesDediees": {
+      "title": "Assurance Genevoise – Dedicated Coverages",
+      "description": "Insurance products designed for healthcare professionals, lawyers, fiduciaries and consultants: protect your income and professional liability with bespoke coverage."
+    },
+    "Hypotheque": {
+      "title": "Assurance Genevoise – Mortgage",
+      "description": "Assess the risks and opportunities of purchasing property in Switzerland: benefit from coverage tailored to your liquidity, your pension planning and the impact of your investment."
+    },
+    "Prevoyance": {
+      "title": "Assurance Genevoise – Pension Planning",
+      "description": "Prepare for retirement and ensure the security of your loved ones with comprehensive pension planning based on the three pillars of the Swiss system."
+    },
+    "Sante": {
+      "title": "Assurance Genevoise – Health",
+      "description": "Health-insurance solutions tailored to every need: LAMal, supplementary, prenatal or international, to protect your health wherever you are."
+    },
+    "TaxesEtFiscalite": {
+      "title": "Assurance Genevoise – Taxes and Taxation",
+      "description": "Control your taxes, anticipate your liabilities and secure your financial future thanks to our targeted expertise in tax optimisation."
+    },
+    "Error404": {
+      "title": "Assurance Genevoise - Page Not Found (404)"
+    },
+    "Error403": {
+      "title": "Assurance Genevoise - Access Denied (403)"
+    },
+    "Error500": {
+      "title": "Assurance Genevoise - Error 500"
+    }
+  },
+
+  "Navbar": {
+    "menu": [
+      {
+        "title": "Find accommodation"
+      },
+      {
+        "title": "Lease takeover"
+      },
+      {
+        "title": "Companies"
+      },
+      {
+        "title": "Services",
+        "items": [
+          {
+            "title": "Tuition",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          },
+          {
+            "title": "Concierge",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          },
+          {
+            "title": "Discover Geneva",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          }
+        ]
+      }
+    ],
+    "callButton": {
+      "text": "Call me"
+    },
+    "blogButton": {
+      "text": "Read more"
+    }
+  },
+
+  "Footer": {
+    "contact": {
+      "title": "Sign up for our newsletter",
+      "subTitle": "Get our latest news and stay informed at all times.",
+      "buttonText": "Subscribe",
+      "inputPlaceholder": "Email address"
+    },
+    "logo": {
+      "title": "Shadcnblocks.com"
+    },
+    "tagline": "Insurance broker in Switzerland, Assurance Genevoise provides tailored insurance solutions for individuals and professionals.",
+    "service": {
+      "title": "Professional",
+      "links": [
+        { "text": "Company" },
+        { "text": "International" },
+        { "text": "Liberal profession" }
+      ]
+    },
+    "company": {
+      "title": "Individual",
+      "links": [
+        { "text": "Insurance" },
+        { "text": "Cross-border worker" },
+        { "text": "Taxation" },
+        { "text": "Health" },
+        { "text": "Mortgage" },
+        { "text": "Life & disability insurance" }
+      ]
+    },
+    "support": {
+      "title": "Support",
+      "links": [
+        { "text": "Call me back" },
+        { "text": "Claims & Assistance" },
+        { "text": "My account" },
+        { "text": "Contact-us" },
+        { "text": "FAQ" },
+        { "text": "Blog" }
+      ]
+    },
+    "social": {
+      "title": "Social Medias",
+      "links": [{ "text": "LinkedIn" }]
+    },
+    "copyright": "©2025 AG Assurance Genevoise SA, insurance broker, FINMA registry number F01502264. All rights reserved.",
+    "bottomLinks": [
+      { "text": "Legal Notices" },
+      { "text": "Peronal Data" },
+      { "text": "Sitemap" }
+    ]
+  },
+
+  "Error": {
+    "404": {
+      "title": "Oops...page not found",
+      "description": "Sorry, the page you are looking for doesn't exist. Here are some helpful links"
+    },
+    "500": {
+      "title": "Something went wrong!",
+      "description": "Sorry, we’re experiencing technical difficulties. Please try again later"
+    },
+    "403": {
+      "title": "Access denied",
+      "description": "Sorry, you don’t have permission to view this page Here are some helpful links"
+    },
+    "buttonText": "Bring to home"
+  },
+
+  "Validation": {
+    "Contact": {
+      "roleRequired": "Please select your role",
+      "firstNameMinLength": "First name must have at least 2 characters.",
+      "firstNameMaxLength": "First name can have a maximum of 50 characters.",
+      "lastNameMinLength": "Last name must have at least 2 characters.",
+      "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "helpRequired": "Please select a help option.",
+      "acceptRequired": "You must accept to proceed."
+    },
+    "Booking": {
+      "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "acceptRequired": "You must accept to proceed."
+    },
+    "Subscribe": {
+      "emailInvalid": "Please enter a valid email address."
+    }
+  },
+
+  "ToastMessage": {
+    "Booking": {
+      "successTitle": "Success",
+      "errorTitle": "Error",
+      "success": "You have successfully submitted your information!",
+      "error": "Error submitting your information. Please try again later."
+    },
+    "Link": {
+      "successTitle": "Success",
+      "errorTitle": "Error",
+      "success": "Link copied to clipboard!",
+      "error": "Failed to copy link! Please try again."
+    },
+    "Contact": {
+      "successTitle": "Success",
+      "errorTitle": "Error",
+      "success": "Your contact has been submitted successfully!",
+      "error": "Your contact could not be submitted. Please try again later."
+    },
+    "Subscribe": {
+      "successTitle": "Success",
+      "errorTitle": "Error",
+      "success": "You have successfully subscribed to our newsletter!",
+      "error": "Error subscribing to the newsletter. Please try again later."
+    }
+  }
+}

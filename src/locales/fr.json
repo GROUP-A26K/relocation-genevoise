@@ -1,0 +1,457 @@
+{
+  "HomePage": {
+    "Hero": {
+      "heading": "Home",
+      "subHeading": "Votre Courtier en Assurance en ((Suisse))",
+      "description": "Assurance Genevoise vous accompagne dans toute la Suisse avec des solutions d’assurance personnalisées et un réseau de partenaires de confiance.",
+      "buttonText": "Me rappeler",
+      "experience": "25 années d’expériences",
+      "customer": "2500+ clients satisfaits "
+    },
+    "ServiceFeature": {
+      "heading": "Professionnels & Particuliers",
+      "subHeading": "((Nos services))",
+      "reasons": [
+        {
+          "reasonName": "Pour les professionnels",
+          "reasonItems": [
+            {
+              "title": "Entreprise",
+              "description": "Nos solutions pour protéger au mieux votre entreprise."
+            },
+            {
+              "title": "International",
+              "description": "Vous assurer, où que vous soyez dans le monde."
+            },
+            {
+              "title": "Profession libérale",
+              "description": "Nos couvertures sur mesure dédiées à votre activité."
+            }
+          ]
+        },
+        {
+          "reasonName": "Pour les particuliers",
+          "reasonItems": [
+            {
+              "title": "Assurances",
+              "description": "Nos solutions d’assurances pour tous les besoins du quotidien."
+            },
+            {
+              "title": "Frontalier",
+              "description": "Une couverture adaptées à votre situation."
+            },
+            {
+              "title": "Fiscalité",
+              "description": "Vous accompagner à gérer vos finances avec précision."
+            },
+            {
+              "title": "Santé",
+              "description": "Vous protéger au niveau Suisse et international."
+            },
+            {
+              "title": "Hypothèque",
+              "description": "Accélérer vos projets et accéder à des taux avantageux."
+            },
+            {
+              "title": "Prévoyance",
+              "description": "Assurer votre avenir avec nos solutions de prévoyance."
+            }
+          ]
+        }
+      ]
+    },
+    "Logos": {
+      "heading": "Un réseau de partenaires reconnus"
+    },
+    "StatsGrid": {
+      "heading": "Fiabilité & Transparence",
+      "subHeading": "Votre partenaire de confiance en ((Suisse))",
+      "description": "Nous vous accompagnons avec transparence, réactivité et expertise pour répondre à vos besoins.",
+      "start1": {
+        "value": "25+",
+        "label": "Années d’experiences"
+      },
+      "start2": {
+        "value": "2500+",
+        "label": "Clients accompagnés"
+      },
+      "start3": {
+        "value": "3",
+        "label": "Langues maîtrisées"
+      },
+      "start4": {
+        "value": "10+",
+        "label": "Nationalités font confiance à notre expertise"
+      }
+    },
+    "ContactFeature": {
+      "heading": "Simplicité & Rapidité",
+      "subHeading": "Des ((solutions)) simples et efficaces pour atteindre vos objectifs",
+      "description": "Nous vous aidons à trouver les meilleures assurances en Suisse et vous accompagnons tout au long de votre projet.",
+      "buttonText": "Appelez-moi",
+      "reasonItems": [
+        {
+          "title": "Contactez un conseiller",
+          "description": "Nous échangeons ensemble pour comprendre votre situation, identifier vos besoins spécifiques et trouver les solutions adaptées.",
+          "icon": "MessagesSquare"
+        },
+        {
+          "title": "Devis sous 48h maximum",
+          "description": "Un premier retour sous 24 heures puis une proposition de devis dans les 48 heures suivant votre premier contact.",
+          "icon": "Clock3"
+        },
+        {
+          "title": "Signature de contrat",
+          "description": "Nous signons un mandat de courtage et vous présentons les solutions de nos partenaires."
+        }
+      ]
+    },
+    "ContentWithImg": {
+      "heading": "Pourquoi Assurance Genevoise ?",
+      "subHeading": "Votre projet, notre savoir-faire",
+      "description": [
+        {
+          "paragraph": "Notre société de courtage vous accompagne avec une expertise à forte valeur ajoutée pour sécuriser vos actifs et optimiser votre couverture. "
+        }
+      ],
+      "buttonText": "Contactez-nous"
+    },
+    "BlogList": {
+      "heading": "Blog & Acualités",
+      "subHeading": "((Nos derniers articles))",
+      "description": "Découvrez nos dernières actualités et nos analyses pour vous guider dans vos choix d’assurances",
+      "buttonText": "En savoir plus"
+    }
+  },
+
+  "Metadata": {
+    "Home": {
+      "title": "Assurance Genevoise - Votre Courtier en Assurance en Suisse",
+      "description": "Assurance Genevoise vous accompagne dans toute la Suisse avec des solutions d’assurance personnalisées et un réseau de partenaires de confiance."
+    },
+    "Contact": {
+      "title": "Assurance Genevoise - Contact et devis personnalisé en Suisse",
+      "description": "Contactez-nous pour une offre d’assurance adaptée à vos besoins en Suisse. Réponse rapide et accompagnement personnalisé."
+    },
+    "RappelezMoi": {
+      "title": "Assurance Genevoise - Un conseiller vous rappelle",
+      "description": "L’un de nos conseillers vous rappelle pendant nos horaires d’ouverture pour répondre à toutes vos questions en assurance."
+    },
+    "Blog": {
+      "title": "Assurance Genevoise - Blog",
+      "description": "Découvrez nos conseils, actus et guides pratiques sur l’assurance en Suisse romande. Restez informé avec le blog d’Assurance Genevoise"
+    },
+    "MentionsLegales": {
+      "title": "Assurance Genevoise - Nos mentions légales",
+      "description": "Découvrez les solutions d'assurance sur mesure proposées par Assurance Genevoise, avec un réseau de partenaires fiables à travers toute la Suisse pour répondre à vos besoins spécifiques."
+    },
+    "DonnesPersonnelles": {
+      "title": "Assurance Genevoise - vos données personnelles",
+      "description": "Protéction de vos données personnelles avec Assurance Genevoise. Découvrez nos engagements en matière de confidentialité et de sécurité pour garantir la protection de vos informations."
+    },
+    "Sitemap": {
+      "title": "Assurance Genevoise - sitemap",
+      "description": "Découvrez la carte du site d'Assurance Genevoise pour naviguer facilement à travers nos services d'assurance et informations utiles."
+    },
+    "Entreprise": {
+      "title": "Assurance Genevoise - Nos assurances pour les entreprises",
+      "description": "Protégez votre entreprise avec des assurances sur mesure pour sécuriser votre activité et prévenir les sinistres."
+    },
+    "Particulier": {
+      "title": "Assurance Genevoise - Nos assurances pour les particuliers",
+      "description": "Nous protégeons votre avenir avec nos solutions d’assurances sur mesure. Bénéficiez de nos couvertures sur vos biens, votre proches et votre foyer."
+    },
+    "Assistance": {
+      "title": "Assurance Genevoise - Sinistre et assistance",
+      "description": "En cas de sinistre ou d’urgence, contactez-nous sans attendre pour une assistance immédiate."
+    },
+
+    "International": {
+      "title": "Assurance Genevoise – International",
+      "description": "Our insurance solutions to secure your activities and health abroad."
+    },
+    "ProfessionLiberale": {
+      "title": "Assurance Genevoise – Profession Libérale",
+      "description": "Tailored insurance to secure the activity and income of self-employed professionals."
+    },
+    "AssuranceChosesEtPatrimoine": {
+      "title": "Assurance Genevoise - Assurance de chose et de patrimoine",
+      "description": "Préservez vos actifs et sécurisez votre avenir face aux imprévus avec nos couvertures sur les immobiliers, le matériel et vos capitaux."
+    },
+    "RcProfessionnelle": {
+      "title": "Assurance Genevoise - Assurance RC professionnelle",
+      "description": "Bénéficiez d’une couverture complète et adaptée à votre secteur d’activité pour protéger vos biens et assurer la croissance de votre entreprise."
+    },
+    "AssuranceRcMenage": {
+      "title": "Assurance Genevoise - Assurance responsabilité civile (RC)",
+      "description": "Protégez votre responsabilité, vos biens et votre quotidien contre les dommages matériels et corporels causés à des tiers."
+    },
+    "AssuranceAnimaux": {
+      "title": "Assurance Genevoise - Assurance Animaux",
+      "description": "Protège la santé de votre compagnon et couvre vos frais en cas de maladie, d’accident ou d’urgence."
+    },
+    "AssuranceAccidentLaa": {
+      "title": "Assurance Genevoise - Assurance accident LAA",
+      "description": "Protège vos employés en cas d’accident professionnel ou non professionnel, couvrant frais médicaux, indemnités journalières et réadaptation."
+    },
+    "AssuranceVoyage": {
+      "title": "Assurance Genevoise - Assurance voyage",
+      "description": "Sécurité, assistance et sérénité à chaque étape de vos voyages à l’étranger avec une couverture adaptée à vos besoins."
+    },
+    "AssurancePerteGain": {
+      "title": "Assurance Genevoise - Assurance perte de gain",
+      "description": "Une couverture essentielle pour assurer la continuité de revenu de vos salariés et sécuriser votre activité face aux imprévus."
+    },
+    "PrevoyanceProfessionnelleLpp": {
+      "title": "Assurance Genevoise - Prévoyance LPP",
+      "description": "La prévoyance professionnelle LPP complète l’AVS, assurant à vos employés une retraite sereine et une protection en cas d’invalidité ou de décès."
+    },
+    "CautionsGaranties": {
+      "title": "Assurance Genevoise - Assurance cautions et garanties",
+      "description": "Sécurise vos projets et assure l’exécution de vos contrats avec des garanties fiables et conformes à vos obligations professionnelles."
+    },
+    "AssuranceVehicule": {
+      "title": "Assurance Genevoise - Assurance véhicule à moteur",
+      "description": "Des garanties essentielles pour protéger votre véhicule, vos passagers et couvrir les dommages causés à autrui."
+    },
+    "AssuranceProtectionJuridique": {
+      "title": "Assurance Genevoise - Assurance protection juridique",
+      "description": "Assistance légale, appui juridique et prise en charge des conflits de la vie privée pour faire valoir vos droits en toute situation."
+    },
+    "ProtectionJuridique": {
+      "title": "Assurance Genevoise – Assurance Protection Juridique",
+      "description": "Assistance légale, appui juridique et prise en charge des conflits professionnels pour faire valoir vos droits en toute situation."
+    },
+    "AssuranceEmployeMaison": {
+      "title": "Assurance Genevoise - Assurance employé de maison",
+      "description": "Protégez vos employés de maison, couvrez les risques liés à leur activité et sécurisez votre responsabilité en cas d’incident."
+    },
+    "AssuranceHommeCle": {
+      "title": "Assurance Genevoise - Assurance homme clé",
+      "description": "Préservez la stabilité financière de votre entreprise en cas de disparition ou d’absence d’un dirigeant ou d’un profil stratégique."
+    },
+    "AssurancePerteExploitation": {
+      "title": "Assurance Genevoise - Assurance perte d’exploitation",
+      "description": "Protégez votre entreprise contre les pertes financières liées à un sinistre, un arrêt d’activité ou une interruption forcée."
+    },
+    "AssuranceCyber": {
+      "title": "Assurance Genevoise - Assurance cybersécurité",
+      "description": "Une protection complète contre les incidents cyber pour préserver vos systèmes et vos données."
+    },
+    "AssuranceRcImmeuble": {
+      "title": "Assurance Genevoise - Assurance RC immeuble et bâtiment",
+      "description": "Couvrez les dommages matériels ou corporels causés à des tiers par votre bâtiment, ses équipements ou ses installations."
+    },
+    "AssuranceFrontalier": {
+      "title": "Assurance Genevoise - Assurance frontalier",
+      "description": "Une couverture santé claire et sur mesure pour les frontaliers travaillant en Suisse et résidant en France."
+    },
+    "AssuranceLibrePassage": {
+      "title": "Assurance Genevoise - Assurance libre passage",
+      "description": "Maintenez vos droits de prévoyance et protégez vos avoirs LPP entre deux emplois ou lors d’une période de transition professionnelle."
+    },
+    "AssurancePrevoyance": {
+      "title": "Assurance Genevoise - Assurance prévoyance privée",
+      "description": "Sécurise l’avenir financier, protège les proches et garantit une retraite sereine, à chaque étape de la vie."
+    },
+    "AssuranceVie": {
+      "title": "Assurance Genevoise - Assurance vie",
+      "description": "Optimisez la transmission de votre patrimoine avec une solution d’épargne flexible et fiscalement avantageuse."
+    },
+
+    "AssuranceMaladieInternational": {
+      "title": "Assurance Genevoise – Assurance Maladie Internationale",
+      "description": "Adaptez votre couverture maladie obligatoire à votre nouveau pays de résidence : bénéficiez d’une protection complète, conforme aux exigences locales, pour voyager et travailler à l’étranger en toute sérénité."
+    },
+    "CouverturesSpecifiques": {
+      "title": "Assurance Genevoise – Couvertures Spécifiques Internationales",
+      "description": "Sécurisez vos activités partout dans le monde grâce à des programmes d’assurance sur-mesure ; protégez vos collaborateurs, vos biens et vos projets internationaux et développez votre entreprise en toute confiance."
+    },
+    "CouverturesDediees": {
+      "title": "Assurance Genevoise – Couvertures dédiées",
+      "description": "Produits d’assurance conçus pour les professionnels de santé, avocats, fiduciaires et consultants : protégez vos revenus et votre responsabilité civile professionnelle avec une couverture sur-mesure."
+    },
+    "Hypotheque": {
+      "title": "Assurance Genevoise – Hypothèque",
+      "description": "Évaluez risques et opportunités d’un achat immobilier en Suisse : bénéficiez d’une couverture adaptée à vos liquidités, à votre prévoyance et à l’impact de votre investissement."
+    },
+    "Prevoyance": {
+      "title": "Assurance Genevoise – Prévoyance",
+      "description": "Préparez votre retraite et garantissez la sécurité de vos proches grâce à une prévoyance complète fondée sur les trois piliers du système suisse."
+    },
+    "Sante": {
+      "title": "Assurance Genevoise – Santé",
+      "description": "Des solutions d’assurance santé adaptées à chaque besoin : LAMal, complémentaires, prénatales ou internationales, pour protéger votre santé où que vous soyez."
+    },
+    "TaxesEtFiscalite": {
+      "title": "Assurance Genevoise – Taxes et Fiscalité",
+      "description": "Maîtrisez vos impôts, anticipez vos taxes et sécurisez votre avenir financier grâce à notre accompagnement ciblé en optimisation fiscale."
+    },
+
+    "Error404": {
+      "title": "Assurance Genevoise - Page non trouvée (404)"
+    },
+    "Error403": {
+      "title": "Assurance Genevoise - Accès interdit (403)"
+    },
+    "Error500": {
+      "title": "Assurance Genevoise - Erreur 500"
+    }
+  },
+
+  "Navbar": {
+    "menu": [
+      {
+        "title": "Trouver un logement"
+      },
+      {
+        "title": "Trouver un locataire"
+      },
+      {
+        "title": "Entreprises & Organisations"
+      },
+      {
+        "title": "Services",
+        "items": [
+          {
+            "title": "Tuition",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          },
+          {
+            "title": "Concierge",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          },
+          {
+            "title": "Discover Geneva",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          }
+        ]
+      }
+    ],
+    "callButton": {
+      "text": "Appelez-moi"
+    },
+    "blogButton": {
+      "text": "En savoir plus"
+    }
+  },
+
+  "Footer": {
+    "contact": {
+      "title": "Inscrivez-vous à notre newsletter",
+      "subTitle": "Nos conseils et actus pour rester toujours bien informé.",
+      "buttonText": "S’abonner",
+      "inputPlaceholder": "Adresse Email"
+    },
+    "logo": {
+      "title": "Shadcnblocks.com"
+    },
+    "tagline": "Courtier en assurance en Suisse, Assurance Genevoise propose des solutions personnalisées pour les particuliers et les professionnels.",
+    "service": {
+      "title": "Professionnel",
+      "links": [
+        { "text": "Enterprise" },
+        { "text": "International" },
+        { "text": "Profession libérale" }
+      ]
+    },
+    "company": {
+      "title": "Particulier",
+      "links": [
+        { "text": "Assurances" },
+        { "text": "Frontalier" },
+        { "text": "Fiscalité" },
+        { "text": "Santé" },
+        { "text": "Hypothèque" },
+        { "text": "Prévoyance" }
+      ]
+    },
+    "support": {
+      "title": "Support",
+      "links": [
+        { "text": "Se faire rappeler" },
+        { "text": "Sinistre et Assistance" },
+        { "text": "Mon compte client" },
+        { "text": "Contactez-nous" },
+        { "text": "FAQ" },
+        { "text": "Blog" }
+      ]
+    },
+    "social": {
+      "title": "Social Medias",
+      "links": [{ "text": "LinkedIn" }]
+    },
+    "copyright": "©2025 AG Assurance Genevoise SA, courtier en assurance, numéro de registre Finma F01502264. Tous droits réservés.",
+    "bottomLinks": [
+      { "text": "Mentions légales" },
+      { "text": "Politique de confidentialité" },
+      { "text": "Sitemap" }
+    ]
+  },
+
+  "Error": {
+    "404": {
+      "title": "Oops...page non trouvée",
+      "description": "Désolé, la page que vous recherchez n'existe pas ou n’existe plus."
+    },
+    "500": {
+      "title": "Quelque chose s'est mal passé !",
+      "description": "Désolé, nous rencontrons des difficultés techniques. Veuillez réessayer plus tard."
+    },
+    "403": {
+      "title": "Accès interdit",
+      "description": "Désolée, vous n’avez pas accès à cette page."
+    },
+
+    "buttonText": "Retourner à l’accueil"
+  },
+
+  "Validation": {
+    "Contact": {
+      "roleRequired": "Veuillez sélectionner votre rôle",
+      "firstNameMinLength": "Le prénom doit comporter au moins 2 caractères.",
+      "firstNameMaxLength": "Le prénom peut comporter un maximum de 50 caractères.",
+      "lastNameMinLength": "Le nom de famille doit comporter au moins 2 caractères.",
+      "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "helpRequired": "Veuillez sélectionner une option d'aide.",
+      "acceptRequired": "Vous devez accepter pour continuer."
+    },
+
+    "Booking": {
+      "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "acceptRequired": "Vous devez accepter pour continuer."
+    },
+
+    "Subscribe": {
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide."
+    }
+  },
+  "ToastMessage": {
+    "Booking": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Vous avez bien soumis vos informations !",
+      "error": "Une erreur s'est produite lors de l'envoi de vos informations. Veuillez réessayer plus tard."
+    },
+    "Link": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Lien copié dans le presse-papiers!",
+      "error": "Échec de la copie du lien!"
+    },
+    "Contact": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Votre contact a été soumis avec succès !",
+      "error": "Votre contact n'a pas pu être soumis. Veuillez réessayer plus tard."
+    },
+    "Subscribe": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Vous vous êtes abonné à notre newsletter avec succès !",
+      "error": "Erreur lors de l'abonnement à la newsletter. Veuillez réessayer plus tard."
+    }
+  }
+}
