@@ -1,12 +1,12 @@
 import Section from "@/components/customs/Section";
 import Image from "next/image";
-import AssociationLogo from "@/assets/img/logos/association-logo.png";
 import { Link } from "@/libs/i18nNavigation";
 import { FC } from "react";
 import { SubscribeForm } from "./SubscribeForm";
 import { getTranslations } from "next-intl/server";
 import AgLogo from "@/assets/img/logos/rg-logo.svg";
 import Linkedin from "@/assets/img/logos/social/linkedin.svg";
+import { GoogleRating } from "@/components/blocks/GoogleRating";
 interface MenuItem {
   title: string;
   links: {
@@ -166,21 +166,12 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
               </Link>
             </div>
             <p className="text-sm text-black-200 !leading-[130%]">{tagline}</p>
-            <Image
-              src={AssociationLogo}
-              alt="Association logo"
-              title="Association logo"
-              width={144}
-              height={60}
-            />
+            <GoogleRating point={4.9} />
           </div>
 
           <div className="grid lg:grid-cols-4 grid-cols-2 text-sm w-full lg:gap-0 gap-8">
             <div className="lg:grid lg:grid-cols-2 lg:col-span-2 lg:gap-0 flex flex-col w-full gap-8">
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {service.title}
-                </h3>
                 <ul role="list" className="space-y-3">
                   {service.links.map((link, linkIdx) => (
                     <li
@@ -200,9 +191,6 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
                 </ul>
               </div>
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {company.title}
-                </h3>
                 <ul role="list" className="space-y-3">
                   {company.links.map((link, linkIdx) => (
                     <li
@@ -224,9 +212,6 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
             </div>
             <div className="lg:grid lg:grid-cols-2 lg:col-span-2 lg:gap-0 flex flex-col w-full gap-8">
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {support.title}
-                </h3>
                 <ul role="list" className="space-y-3">
                   {support.links.map((link, linkIdx) => (
                     <li
@@ -246,9 +231,6 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
                 </ul>
               </div>
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {social.title}
-                </h3>
                 <ul
                   role="list"
                   className="lg:space-y-3 flex lg:flex-col flex-row lg:gap-0 gap-3"

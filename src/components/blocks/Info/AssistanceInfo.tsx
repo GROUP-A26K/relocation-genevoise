@@ -1,7 +1,7 @@
-import { FeatureColCard } from '@/components/customs/Card';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
-import { Mail, MessageCircle, Phone } from 'lucide-react';
-import { FC } from 'react';
+import { FeatureColCard } from "@/components/customs/Card";
+import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { Mail, MessageCircle, Phone } from "lucide-react";
+import { FC } from "react";
 
 interface Reason {
   title: string;
@@ -19,29 +19,29 @@ interface Props {
 
 export const AssistanceInfo: FC<Props> = ({
   heading,
-  subHeading = 'Need help? We are here for you!',
+  subHeading = "Need help? We are here for you!",
   description,
   reasonItems = [
     {
-      title: 'Phone support',
+      title: "Phone support",
       description:
-        'Our support team is at your disposal to answer all your questions and assist you.',
+        "Our support team is at your disposal to answer all your questions and assist you.",
       icon: Phone,
-      info: '022 715 17 45 (Free-call)',
+      info: "022 715 17 45 (Free-call)",
     },
     {
-      title: 'Email support',
+      title: "Email support",
       description:
-        'For a quick response in writing, send us an email. An advisor will answer you as soon as possible.',
+        "For a quick response in writing, send us an email. An advisor will answer you as soon as possible.",
       icon: Mail,
-      info: 'support@assuance-genevoise.ch',
+      info: "support@assuance-genevoise.ch",
     },
     {
-      title: 'Chat online',
+      title: "Chat online",
       description:
-        'Our team is available to answer all your questions and guide you to the most suitable solutions.',
+        "Our team is available to answer all your questions and guide you to the most suitable solutions.",
       icon: MessageCircle,
-      info: 'Online 24/7',
+      info: "Online 24/7",
     },
   ],
 }) => {
@@ -51,7 +51,7 @@ export const AssistanceInfo: FC<Props> = ({
         <div className="flex w-full justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl text-center">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+              <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
                 {heading}
               </p>
               <h1 className="text-5xl font-semibold !leading-[130%]">

@@ -1,6 +1,6 @@
-import { FormattedText } from '@/components/customs/Text';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
-import { FC } from 'react';
+import { FormattedText } from "@/components/customs/Text";
+import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FC } from "react";
 
 interface Props {
   heading?: string;
@@ -13,15 +13,15 @@ interface Props {
 }
 
 export const Content: FC<Props> = ({
-  heading = 'Trust and Transparency',
-  subHeading = 'Why take out property and property insurance?',
+  heading = "Trust and Transparency",
+  subHeading = "Why take out property and property insurance?",
   description,
 }) => {
   return (
     <div className="flex flex-col lg:gap-16 gap-14">
       <div className="flex flex-col lg:flex-row justify-between gap-6">
         <div className="w-full flex flex-col items-start gap-3 text-left justify-start">
-          <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+          <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
             {heading}
           </p>
           <h2 className="text-3xl font-semibold !leading-[130%]">

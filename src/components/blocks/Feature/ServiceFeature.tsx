@@ -1,5 +1,5 @@
-import { FeatureRowCard } from '@/components/customs/Card';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { FeatureRowCard } from "@/components/customs/Card";
+import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 
 interface Reason {
   title: string;
@@ -18,14 +18,14 @@ interface Props {
 }
 
 const ServiceFeature = ({
-  heading = 'Discover our offers',
-  subHeading = 'Our services',
+  heading = "Discover our offers",
+  subHeading = "Our services",
   reasons,
 }: Props) => {
   return (
     <div className="flex flex-col lg:gap-16 gap-12">
       <div className="flex flex-col gap-3">
-        <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+        <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
           {heading}
         </p>
         <h2 className="text-3xl font-semibold !leading-[130%]">

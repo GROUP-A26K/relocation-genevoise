@@ -1,11 +1,11 @@
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-} from '@headlessui/react';
-import { CircleMinus, CirclePlus } from 'lucide-react';
-import { FC } from 'react';
+} from "@headlessui/react";
+import { CircleMinus, CirclePlus } from "lucide-react";
+import { FC } from "react";
 
 interface FAQ {
   question: string;
@@ -19,37 +19,37 @@ interface Props {
   faqs?: FAQ[];
 }
 export const AssistanceFAQ: FC<Props> = ({
-  heading = 'FAQ',
-  subHeading = 'Do you have any questions? We have the answers!',
-  description = 'Everything you need to know about the product and billing.',
+  heading = "FAQ",
+  subHeading = "Do you have any questions? We have the answers!",
+  description = "Everything you need to know about the product and billing.",
   faqs = [
     {
-      question: 'Is there a free trial available?',
+      question: "Is there a free trial available?",
       answer:
-        'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.',
+        "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     },
     {
-      question: 'Can I change my plan later?',
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-    },
-    {
-      question: 'What is your cancellation policy?',
+      question: "Can I change my plan later?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: 'Can other info be added to an invoice?',
+      question: "What is your cancellation policy?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: 'How does billing work?',
+      question: "Can other info be added to an invoice?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: 'How do I change my account email?',
+      question: "How does billing work?",
+      answer:
+        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      question: "How do I change my account email?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
@@ -60,7 +60,7 @@ export const AssistanceFAQ: FC<Props> = ({
       <div className="flex w-full justify-start">
         <div className="flex flex-col lg:gap-6 gap-4 max-w-3xl text-left">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+            <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
               {heading}
             </p>
             <h2 className="text-3xl font-semibold !leading-[130%]">
