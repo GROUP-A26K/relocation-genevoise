@@ -1,0 +1,31 @@
+import { DesktopMenu } from './DesktopMenu';
+import { MobileMenu } from './MobileMenu';
+export interface MenuItem {
+  title: string;
+  url: string;
+  description?: string;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  items?: MenuItem[];
+}
+export interface NavbarProps {
+  menu: MenuItem[];
+  callButton?: {
+    text: string;
+    url: string;
+  };
+
+  locale?: string;
+}
+
+const NavbarContainer = ({ menu, callButton, locale }: NavbarProps) => {
+  return (
+    <header className="relative flex flex-col justify-center items-center">
+      <nav className="container 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md xl:px-[100px] px-[48px]">
+        <DesktopMenu menu={menu} callButton={callButton} locale={locale} />
+      </nav>
+      <MobileMenu menu={menu} callButton={callButton} />
+    </header>
+  );
+};
+
+export { NavbarContainer };
