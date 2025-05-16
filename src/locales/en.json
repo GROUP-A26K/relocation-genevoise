@@ -336,6 +336,14 @@
           {
             "title": "Discover Geneva",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          },
+          {
+            "title": "Trouver un locataire",
+            "description": "Un accompagnement fiable pour sécuriser et finaliser votre location"
+          },
+          {
+            "title": "Découvrir Genève",
+            "description": "Vous faire découvrir Genève et ses incontournables."
           }
         ]
       }

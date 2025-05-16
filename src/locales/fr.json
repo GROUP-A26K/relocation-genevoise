@@ -314,16 +314,24 @@
         "title": "Services",
         "items": [
           {
-            "title": "Tuition",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "title": "Trouver un logement",
+            "description": "Une recherche personnalisée pour un emménagement sans stress."
           },
           {
-            "title": "Concierge",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "title": "Scolarité",
+            "description": "Un conseil avisé pour choisir l’école adaptée à vos enfants"
           },
           {
-            "title": "Discover Geneva",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "title": "Conciergerie",
+            "description": "Un service dédié à la gestion de toutes vos demandes, même les plus spécifiques"
+          },
+          {
+            "title": "Trouver un locataire",
+            "description": "Un accompagnement fiable pour sécuriser et finaliser votre location"
+          },
+          {
+            "title": "Découvrir Genève",
+            "description": "Vous faire découvrir Genève et ses incontournables."
           }
         ]
       }
@@ -428,6 +436,7 @@
       "emailInvalid": "Veuillez entrer une adresse e-mail valide."
     }
   },
+
   "ToastMessage": {
     "Booking": {
       "successTitle": "Succès",

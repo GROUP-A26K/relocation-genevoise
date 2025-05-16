@@ -11,6 +11,7 @@ import { getAlternatePath } from "@/utils/Helpers";
 interface LanguageSelectorProps {
   className?: string;
 }
+const [english, french]: string[] = ["en", "fr"];
 const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -42,8 +43,12 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
         )}
       />
       <div className="flex divide-x-2 divide-grey-200">
-        <div className={cn(locale === "en" && "text-grey-500", "pr-2")}>FR</div>
-        <div className={cn(locale === "fr" && "text-grey-500", "pl-2")}>EN</div>
+        <div className={cn(locale === english && "text-grey-500", "pr-2")}>
+          FR
+        </div>
+        <div className={cn(locale === french && "text-grey-500", "pl-2")}>
+          EN
+        </div>
       </div>
     </Button>
   );

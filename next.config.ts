@@ -1,36 +1,41 @@
-import { AppConfig } from '@/utils/AppConfig';
-import { NextConfig } from 'next';
-import createNextIntlPlugin from 'next-intl/plugin';
+import { AppConfig } from "@/utils/AppConfig";
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
+const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
+
+type LocaleMap = Record<string, string>;
+
 function buildRewrites() {
-  const { defaultLocale, routes, locales } = AppConfig;
+  const { defaultLocale, locales, routes } = AppConfig;
 
-  return Object.values(routes).flatMap((localeMap: Record<string, string>) => {
-    const canonical = localeMap[defaultLocale as keyof typeof localeMap];
+  return Object.values(routes).flatMap((localeMap: LocaleMap) => {
+    const canonical = localeMap[defaultLocale];
 
-    return locales.map((locale) => {
-      const source = `/${locale}${localeMap[locale]}`;
-      const destination = `/${locale}${canonical}`;
-      return { source, destination };
-    });
+    return locales.map((locale) => ({
+      source: `/${locale}${localeMap[locale]}`,
+      destination: `/${locale}${canonical}`,
+    }));
   });
 }
 
 function buildRedirects() {
   const { defaultLocale, routes } = AppConfig;
+  const en = "en";
 
-  return Object.values(routes).flatMap((localeMap: Record<string, string>) => {
-    const canonical = localeMap[defaultLocale as keyof typeof localeMap];
-    const source = `/${'en'}${canonical}`;
-    const destination = `/${'en'}${localeMap['en']}`;
-    return { source, destination, permanent: true };
+  return Object.values(routes).map((localeMap: LocaleMap) => {
+    const canonical = localeMap[defaultLocale];
+    return {
+      source: `/${en}${canonical}`,
+      destination: `/${en}${localeMap[en]}`,
+      permanent: true,
+    };
   });
 }
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'cdn.sanity.io'],
+    domains: ["images.unsplash.com", "cdn.sanity.io"],
   },
 
   async rewrites() {

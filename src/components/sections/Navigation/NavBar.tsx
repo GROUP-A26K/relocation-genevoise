@@ -1,12 +1,4 @@
-import {
-  Building,
-  Earth,
-  Scale,
-  ShieldHalf,
-  Heart,
-  House,
-  LifeBuoy,
-} from "lucide-react";
+import { Building, Earth, Scale, ShieldHalf, Heart } from "lucide-react";
 import { FC } from "react";
 import { NavbarContainer, NavbarProps } from "./NavbarContainer";
 import { getTranslations } from "next-intl/server";
@@ -51,6 +43,18 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
             description: tNav("menu.3.items.2.description"),
             icon: ShieldHalf,
             url: "/professionnel/profession-liberale",
+          },
+          {
+            title: tNav("menu.3.items.3.title"),
+            description: tNav("menu.3.items.3.description"),
+            icon: Scale,
+            url: "/professionnel/entreprise",
+          },
+          {
+            title: tNav("menu.3.items.4.title"),
+            description: tNav("menu.3.items.4.description"),
+            icon: Heart,
+            url: "/professionnel/entreprise",
           },
         ],
       },
