@@ -91,8 +91,8 @@ const Button: FC<Props> = ({
   const STYLE_OUTLINE: Record<string, string> = {
     primary: cn(
       "bg-white border border-indigo-600 border-primary-500 text-primary-500",
-      "hover:bg-primary-50 hover:border-primary-400 hover:text-primary-400",
-      "active:bg-primary-50 active:border-primary-500 active:text-primary-500 active:text-primary-500"
+      "hover:bg-grey-100 hover:border-primary-400 hover:text-primary-400",
+      "active:bg-grey-200 active:border-primary-500 active:text-primary-500 active:text-primary-500"
     ),
     secondary: cn(
       "bg-white border border-indigo-600 border-secondary-500 text-secondary-500",

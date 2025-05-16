@@ -1,12 +1,11 @@
 {
   "HomePage": {
     "Hero": {
-      "heading": "Home",
-      "subHeading": "Votre Courtier en Assurance en ((Suisse))",
-      "description": "Assurance Genevoise vous accompagne dans toute la Suisse avec des solutions d’assurance personnalisées et un réseau de partenaires de confiance.",
-      "buttonText": "Me rappeler",
-      "experience": "25 années d’expériences",
-      "customer": "2500+ clients satisfaits "
+      "heading": "Accueil",
+      "subHeading": "Agence de ((Relocation à Genève))",
+      "description": "Votre partenaire de confiance à Genève pour une installation réussie : relocation, recherche de logement et de locataire, services aux entreprises et accompagnement personnalisé à chaque étape de votre projet.",
+      "buttonText": "Nous contacter",
+      "buttonText2": "Trouver un logement"
     },
     "ServiceFeature": {
       "heading": "Professionnels & Particuliers",
@@ -103,6 +102,10 @@
         {
           "title": "Signature de contrat",
           "description": "Nous signons un mandat de courtage et vous présentons les solutions de nos partenaires."
+        },
+        {
+          "title": "Rapport de dossier",
+          "description": "Nous vous accompagnons tout au long de votre projet et vous accompagnons tout au long de votre projet."
         }
       ]
     },
@@ -389,9 +392,9 @@
       "title": "Social Medias",
       "links": [{ "text": "LinkedIn" }]
     },
-    "copyright": "©2025 AG Assurance Genevoise SA, courtier en assurance, numéro de registre Finma F01502264. Tous droits réservés.",
+    "copyright": "©2025 RG Relocation Genevoise. Tous droits réservés.",
     "bottomLinks": [
-      { "text": "Mentions légales" },
+      { "text": "CGU" },
       { "text": "Politique de confidentialité" },
       { "text": "Sitemap" }
     ]

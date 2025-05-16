@@ -3,7 +3,6 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu-custom";
 import { renderMenuItem } from "@/components/blocks/MenuItem";
-import { PhoneCall } from "lucide-react";
 import { Link } from "@/libs/i18nNavigation";
 import { NavbarProps } from "./NavbarContainer";
 import Image from "next/image";
@@ -36,13 +35,8 @@ const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
             href={callButton?.url ?? "/rappelez-moi"}
             className="flex items-center"
           >
-            <Button
-              as="solid"
-              variant="md"
-              type="primary"
-              iconStart={PhoneCall}
-            >
-              {callButton?.text}
+            <Button as="solid" variant="md" type="primary">
+              +41 22 715 17 48
             </Button>
           </Link>
         </div>

@@ -1,8 +1,6 @@
-import Button from "@/components/customs/Button";
-import { FeatureColCard } from "@/components/customs/Card";
+import { FeatureColCard2 } from "@/components/customs/Card";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import { Clock3, CloudUpload, MessagesSquare } from "lucide-react";
-import Link from "next/link";
 import { FC } from "react";
 
 interface Reason {
@@ -20,7 +18,7 @@ interface Props {
   buttonUrl?: string;
 }
 
-const ContactFeature: FC<Props> = ({
+const Feature: FC<Props> = ({
   heading = "Simplicity & Speed",
   subHeading = "We’re an ambitious and smart teamwith a shared mission",
   description = "Our shared values keep us connected and guide us as one team.",
@@ -50,8 +48,6 @@ const ContactFeature: FC<Props> = ({
       icon: CloudUpload,
     },
   ],
-  buttonText = "Call me",
-  buttonUrl = "/rappelez-moi",
 }) => {
   return (
     <div className="flex flex-col lg:gap-16 gap-12">
@@ -71,31 +67,16 @@ const ContactFeature: FC<Props> = ({
         </div>
       </div>
       <div className="flex flex-col lg:gap-8 gap-6">
-        <ul role="list" className="grid gap-4 lg:grid-cols-2 lg:gap-8">
+        <ul role="list" className="grid gap-4 lg:grid-cols-4 lg:gap-8">
           {reasonItems.map((reasonItem) => (
             <li key={reasonItem.title} className="h-full">
-              <FeatureColCard {...reasonItem} />
+              <FeatureColCard2 {...reasonItem} />
             </li>
           ))}
         </ul>
-        <div className="flex items-center justify-center">
-          <Link
-            href={buttonUrl}
-            className="w-full flex items-center justify-center"
-          >
-            <Button
-              as="solid"
-              type="primary"
-              variant="md"
-              className="lg:w-fit w-full"
-            >
-              {buttonText}
-            </Button>
-          </Link>
-        </div>
       </div>
     </div>
   );
 };
 
-export { ContactFeature };
+export { Feature };
