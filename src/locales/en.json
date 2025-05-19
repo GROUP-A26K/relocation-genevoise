@@ -4,66 +4,58 @@
       "heading": "Home",
       "subHeading": "Your Insurance Broker in ((Switzerland))",
       "description": "Assurance Genevoise supports you throughout Switzerland with personalized insurance solutions and a trusted network of partners.",
-      "buttonText": "Call me",
       "experience": "25 years of experience",
-      "customer": "2500+ satisfied clients"
+      "customer": "2500+ satisfied clients",
+      "buttonText": "Call me",
+      "buttonText2": "Trouver un logement"
     },
     "ServiceFeature": {
       "heading": "Professionals & Individuals",
       "subHeading": "Our ((services))",
       "reasons": [
         {
-          "reasonName": "For professionals",
+          "reasonName": "Pour les professionnels",
           "reasonItems": [
             {
-              "title": "Corporate",
-              "description": "Our solutions to best protect your business.",
-              "icon": "Building"
+              "title": "Entreprise",
+              "description": "Nos solutions pour protéger au mieux votre entreprise."
             },
             {
               "title": "International",
-              "description": "We got you covered, wherever you are in the world.",
-              "icon": "Earth"
+              "description": "Vous assurer, où que vous soyez dans le monde."
             },
             {
-              "title": "Independent Practitioner",
-              "description": "Our tailor-made coverage tailored to your situation.",
-              "icon": "Scale"
+              "title": "Profession libérale",
+              "description": "Nos couvertures sur mesure dédiées à votre activité."
             }
           ]
         },
         {
-          "reasonName": "For individuals",
+          "reasonName": "Pour les particuliers",
           "reasonItems": [
             {
-              "title": "Insurance",
-              "description": "Our insurance solutions for all your everyday needs.",
-              "icon": "Building"
+              "title": "Assurances",
+              "description": "Nos solutions d’assurances pour tous les besoins du quotidien."
             },
             {
-              "title": "Cross-border worker",
-              "description": "Coverage tailored to your situation.",
-              "icon": "Scale"
+              "title": "Frontalier",
+              "description": "Une couverture adaptées à votre situation."
             },
             {
-              "title": "Taxation",
-              "description": "Helping you manage your finances with precision.",
-              "icon": "Earth"
+              "title": "Fiscalité",
+              "description": "Vous accompagner à gérer vos finances avec précision."
             },
             {
-              "title": "Health",
-              "description": "Protecting you in Switzerland and internationally.",
-              "icon": "Building"
+              "title": "Santé",
+              "description": "Vous protéger au niveau Suisse et international."
             },
             {
-              "title": "Mortgage",
-              "description": "Accelerate your projects and access competitive rates.",
-              "icon": "Scale"
+              "title": "Hypothèque",
+              "description": "Accélérer vos projets et accéder à des taux avantageux."
             },
             {
-              "title": "Life & disability insurance",
-              "description": "Secure your future with our dedicated insurance solutions.",
-              "icon": "Earth"
+              "title": "Prévoyance",
+              "description": "Assurer votre avenir avec nos solutions de prévoyance."
             }
           ]
         }
@@ -115,6 +107,10 @@
         {
           "title": "Contract signing",
           "description": "We formalize a brokerage mandate and share the best offers from our trusted partners."
+        },
+        {
+          "title": "Contract ",
+          "description": "We formalize a brokerage mandate and share the best offers from our trusted partners."
         }
       ]
     },
@@ -135,6 +131,108 @@
       "subHeading": "Our latest ((articles))",
       "description": "Find our latest news, articles, and expert advice to help you choose the best insurance solutions.",
       "buttonText": "See more"
+    }
+  },
+
+  "RemindMe": {
+    "Consultation": {
+      "heading": "Call me back",
+      "subHeading": "Find the ((insurance)) that fits your needs",
+      "description": "One of our advisors will call you back during our opening hours and answer all your questions.",
+      "cardContent": {
+        "title": "Book your call now !",
+        "statusTitle": "Open now",
+        "callTitle": "Free recall ",
+        "calendarTitle": "Monday to Friday 9:00 am – 6:00 pm ",
+        "buttonText": "Call me back",
+        "buttonPlaceholder": "Phone number",
+        "noteTitle": "We take care of",
+        "checkboxTitle": "By checking this box, I agree that the information entered will be used as part of the contact.",
+        "policyTitle": "protecting your data."
+      }
+    },
+    "ContactInfo": {
+      "reasonItems": [
+        {
+          "title": "Email",
+          "description": "Our friendly team is here to help.",
+          "info": "contact@assurance-genevoise.ch"
+        },
+        {
+          "title": "Office",
+          "description": "Come say hello at our office HQ.",
+          "info": "Rue des Alpes 5, 1201 Genève"
+        },
+        {
+          "title": "Telephone",
+          "description": "Monday to Friday 9am | 6pm - Free Call",
+          "info": "+41 (022) 715 17 45"
+        }
+      ]
+    }
+  },
+
+  "Contact": {
+    "ContactInfo": {
+      "heading": "Contact us",
+      "subHeading": "Tell us more about your ((project))",
+      "description": "Our team is here to discuss and meet your needs.",
+      "reasonItems": [
+        {
+          "title": "Email",
+          "description": "Our friendly team is here to help.",
+          "info": "contact@assurance-genevoise.ch"
+        },
+        {
+          "title": "Office",
+          "description": "Come say hello at our office HQ.",
+          "info": "Rue des Alpes 5, 1201 Genève"
+        },
+        {
+          "title": "Telephone",
+          "description": "Monday to Friday 9am | 6pm - Free Call",
+          "info": "+41 (022) 715 17 45"
+        }
+      ]
+    },
+    "ContactContainer": {
+      "title": "Contact form",
+      "subTitle": "An advisor will call you back shortly"
+    },
+    "ContactForm": {
+      "role": {
+        "label": "I am",
+        "placeholder": "Choose from the list ",
+        "options": [
+          { "label": "I am a professional" },
+          { "label": "I am an individual" }
+        ]
+      },
+      "first_name": { "label": "First name", "placeholder": "Lucas" },
+      "last_name": { "label": "Last name", "placeholder": "Zimmer" },
+      "email": { "label": "Email", "placeholder": "you@email.com" },
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "+41"
+      },
+      "company": { "label": "Company", "placeholder": "My society" },
+      "subject": {
+        "name": "help",
+        "label": "How we can help you ?",
+        "placeholder": "Choose from the list",
+        "options": [
+          { "label": "Need personalized advice" },
+          { "label": "Request to be called back" },
+          { "label": "Request for an appointment" },
+          { "label": "Others" }
+        ]
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Your message..."
+      },
+      "accept": "By checking this box, I agree that the information entered may be used to process my request and contact me.",
+      "send": "Send"
     }
   },
 

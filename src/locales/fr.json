@@ -127,6 +127,114 @@
     }
   },
 
+  "RemindMe": {
+    "Consultation": {
+      "heading": "Rappelez-moi",
+      "subHeading": "Trouvons l’((assurance)) qui vous convient",
+      "description": "L’un de nos conseillers vous rappelle pendant nos heures d’ouverture et répond à vos questions.",
+      "cardContent": {
+        "title": "Réservez votre appel dès maintenant !",
+        "statusTitle": "Actuellement ouvert ",
+        "callTitle": "Appel gratuit",
+        "calendarTitle": "Lundi au Vendredi 09:00h - 18:00h",
+        "buttonText": "Me rappeler ",
+        "buttonPlaceholder": "Numéro de téléphone",
+        "noteTitle": "Nous veillons à la",
+        "checkboxTitle": "En cochant cette case, j'accepte que les informations saisies soient utilisées dans le cadre de la mise en relation avec un membre de notre équipe.",
+        "policyTitle": "protection de vos données."
+      }
+    },
+    "ContactInfo": {
+      "reasonItems": [
+        {
+          "title": "Email",
+          "description": "Nous traitons vos demandes sous 24h",
+          "info": "contact@assurance-genevoise.ch"
+        },
+        {
+          "title": "Accueil Client",
+          "description": "Venez nous rendre vitsite dans nos bureaux ",
+          "info": "Rue des Alpes 5, 1201 Genève"
+        },
+        {
+          "title": "Téléphone",
+          "description": "Lundi au Vendredi 09h|18h - Appel Gratuit",
+          "info": "+41 (022) 715 17 45"
+        }
+      ]
+    }
+  },
+
+  "Contact": {
+    "ContactInfo": {
+      "heading": "Contactez-nous",
+      "subHeading": "Parlez-nous de votre ((projet))",
+      "description": "Notre équipe est à votre disposition pour échanger et répondre à vos besoins.",
+      "reasonItems": [
+        {
+          "title": "Email",
+          "description": "Nous traitons vos demandes sous 24h",
+          "info": "contact@assurance-genevoise.ch"
+        },
+        {
+          "title": "Accueil Client",
+          "description": "Venez nous rendre vitsite dans nos bureaux",
+          "info": "Rue des Alpes 5, 1201 Genève"
+        },
+        {
+          "title": "Téléphone",
+          "description": "Lundi au Vendredi 09h|18h - Appel Gratuit",
+          "info": "+41 (022) 715 17 45"
+        }
+      ]
+    },
+    "ContactContainer": {
+      "title": "Formulaire de contact",
+      "subTitle": "Un conseiller vous rappelle dans la journée"
+    },
+    "ContactForm": {
+      "Contact": {
+        "title": "Contact us",
+        "subTitle": "An advisor will answer you during the day.",
+        "buttonText": "Contact us now",
+        "inputLabel": "Your email address",
+        "inputPlaceholder": "Enter your email address"
+      },
+      "role": {
+        "label": "Je suis",
+        "placeholder": "Choisissez dans la liste",
+        "options": [
+          { "label": "Je suis un professionnel" },
+          { "label": "Je suis un particulier" }
+        ]
+      },
+      "first_name": { "label": "Prénom", "placeholder": "Lucas" },
+      "last_name": { "label": "Nom", "placeholder": "Zimmer" },
+      "email": { "label": "Email", "placeholder": "lucas@email.com" },
+      "phone": {
+        "label": "Numéro de téléphone",
+        "placeholder": "+41"
+      },
+      "company": { "label": "Société", "placeholder": "Ma société" },
+      "subject": {
+        "label": "Comment pouvons nous vous aider ?",
+        "placeholder": "Choisissez dans la liste ",
+        "options": [
+          { "label": "Besoin de conseils personnalisés" },
+          { "label": "Demander à être rappelé" },
+          { "label": "Demande de rendez-vous" },
+          { "label": "Autres" }
+        ]
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Laissez nous un message"
+      },
+      "accept": "En cochant cette case, j'accepte que les informations saisies soient utilisées dans le cadre du contact.",
+      "send": "Envoyer"
+    }
+  },
+
   "Metadata": {
     "Home": {
       "title": "Assurance Genevoise - Votre Courtier en Assurance en Suisse",

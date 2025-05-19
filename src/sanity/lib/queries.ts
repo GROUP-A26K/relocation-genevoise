@@ -1,4 +1,4 @@
-import { defineQuery } from 'next-sanity';
+import { defineQuery } from "next-sanity";
 
 export const BLOGS_QUERY = defineQuery(`
     {
@@ -146,4 +146,6 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 }
 `);
 
-export const POST_CATEGORIES_QUERY = defineQuery(`*[_type == "blogCategory"]`);
+export const POST_CATEGORIES_QUERY = defineQuery(
+  `*[_type == "blogCategory" && count(*[_type == "blogPost" && !(_id in path("drafts.**")) && language == $locale && references(^._id)]) > 1]`
+);

@@ -83,7 +83,7 @@ export type BlogCategory = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string;
   color?: string;
 };
 
