@@ -235,6 +235,93 @@
     }
   },
 
+  "MentionsLegales": {
+    "heading": "Legal",
+    "subHeading": "Mentions légales",
+    "sections": [
+      {
+        "title": "1. Informations sur l'entreprise",
+        "content": [
+          {
+            "paragraph": "**Raison sociale:** AG Assurance Genevoise SA \n **Forme juridique:** Société anonyme (SA) \n **Siège social:** Rue des Alpes 5, 1201 Genève, Suisse \n **Numéro IDE:** CHE-403.737.582 \n **Numéro de registre FINMA:** F01502264 \n **Capital social:** CHF 100'000 \n **Téléphone:** +41 22 715 17 45 \n **Adresse e-mail:** contact@assurance-genevoise.ch \n **Hébergeur:** o2switch ([[https://www.o2switch.fr/|https://www.o2switch.fr/]]) \n Ces informations sont fournies de manière claire et complète."
+          }
+        ]
+      },
+      {
+        "title": "2. Responsabilité",
+        "content": [
+          {
+            "paragraph": "AG Assurance Genevoise SA s'efforce de fournir des informations exactes et à jour sur ce site. Toutefois, elle ne garantit pas l'exactitude, la fiabilité ou l'exhaustivité des informations fournies. Elle se réserve le droit de modifier le contenu du site à tout moment sans préavis."
+          },
+          {
+            "paragraph": "AG Assurance Genevoise SA décline toute responsabilité pour les dommages directs ou indirects résultant de l'accès ou de l'utilisation de ce site, y compris les dommages causés par des virus ou des erreurs techniques."
+          }
+        ]
+      },
+      {
+        "title": "3. Liens externes",
+        "content": [
+          {
+            "paragraph": "Ce site peut contenir des liens vers d'autres sites web. AG Assurance Genevoise SA n'est pas responsable du contenu de ces sites externes et décline toute responsabilité quant aux informations, produits ou services qu'ils proposent."
+          }
+        ]
+      },
+      {
+        "title": "4. Droits d'auteur",
+        "content": [
+          {
+            "paragraph": "Tous les contenus présents sur ce site (textes, images, logos, etc.) sont protégés par le droit d'auteur. Toute reproduction, distribution ou utilisation sans autorisation écrite préalable est interdite."
+          }
+        ]
+      },
+      {
+        "title": "5. Protection des données",
+        "content": [
+          {
+            "title": "Collecte et traitement des données",
+            "paragraph": "Nous collectons et traitons des données personnelles conformément à la nLPD. Les données collectées peuvent inclure, sans s'y limiter, le nom, l'adresse, l'adresse e-mail et le numéro de téléphone. Ces données sont utilisées pour fournir nos services, répondre aux demandes et améliorer l'expérience utilisateur."
+          },
+          {
+            "title": "Utilisation de Google Analytics",
+            "paragraph": "Ce site utilise Google Analytics, un service d'analyse de site internet fourni par Google Inc. Google Analytics utilise des cookies pour aider à analyser l'utilisation du site. Les informations générées par les cookies concernant votre utilisation du site seront transmises et stockées par Google."
+          },
+          {
+            "title": "Droits des utilisateurs",
+            "paragraph": "Conformément à la nLPD, vous avez le droit d'accéder à vos données personnelles, de les rectifier, de demander leur suppression ou de vous opposer à leur traitement. Pour exercer ces droits, veuillez nous contacter à l'adresse e-mail mentionnée ci-dessus."
+          },
+          {
+            "title": "Sécurité des données",
+            "paragraph": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, perte ou destruction."
+          }
+        ]
+      },
+      {
+        "title": "6. Cookies",
+        "content": [
+          {
+            "paragraph": "Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies ou être averti lorsqu'un cookie est envoyé. Toutefois, certaines fonctionnalités du site peuvent ne pas fonctionner correctement sans l'utilisation de cookies."
+          }
+        ]
+      },
+      {
+        "title": "7. Droit applicable et juridiction compétente",
+        "content": [
+          {
+            "paragraph": "Les présentes mentions légales sont régies par le droit suisse. En cas de litige, les tribunaux du canton de Genève seront seuls compétents."
+          }
+        ]
+      },
+      {
+        "title": "8. Modifications des mentions légales",
+        "content": [
+          {
+            "paragraph": "AG Assurance Genevoise SA se réserve le droit de modifier ces mentions légales à tout moment. Les modifications prendront effet dès leur publication sur le site."
+          }
+        ]
+      }
+    ]
+  },
+
   "Metadata": {
     "Home": {
       "title": "Assurance Genevoise - Votre Courtier en Assurance en Suisse",
