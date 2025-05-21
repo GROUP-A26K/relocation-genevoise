@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion-changelog-custom";
 import { useScrollspy } from "@/hooks/useScrollspy";
-import { debounce } from "lodash";
+import debounce from "lodash.debounce";
 import { cn } from "@/libs/utils";
 
 interface ContentProps {
