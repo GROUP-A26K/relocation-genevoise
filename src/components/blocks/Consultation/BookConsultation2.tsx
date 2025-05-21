@@ -22,7 +22,7 @@ export const BookConsultation2: FC<Props> = ({
   buttonText2 = "Contact me",
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12 py-12 rounded-xl">
+    <div className="flex flex-col lg:gap-16 gap-12 py-12 rounded-xl bg-gray-50">
       <div className="flex w-full items-center justify-center">
         <div className="flex flex-col lg:gap-8 gap-4 w-full lg:items-center text-left">
           <div className="flex flex-col gap-3">

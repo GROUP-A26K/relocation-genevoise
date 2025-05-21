@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC } from "react";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export const PageContainer: FC<Props> = ({ children }) => {
+export const ContentContainer: FC<Props> = ({ children }) => {
   return (
     <section className="relative flex flex-col justify-center items-center text-black-500">
       <div

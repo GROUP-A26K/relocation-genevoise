@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from "react";
 
 // Helpers
 const clamp = (value: number) => Math.max(0, value);
@@ -43,19 +43,19 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
             setActiveId(sortedPositions[sortedPositions.length - 1].id);
           }
         } else {
-          setActiveId('');
+          setActiveId("");
         }
       }
     };
 
     listener();
 
-    window.addEventListener('resize', listener);
-    window.addEventListener('scroll', listener);
+    window.addEventListener("resize", listener);
+    window.addEventListener("scroll", listener);
 
     return () => {
-      window.removeEventListener('resize', listener);
-      window.removeEventListener('scroll', listener);
+      window.removeEventListener("resize", listener);
+      window.removeEventListener("scroll", listener);
     };
   }, [ids, offset, isManualUpdate]);
 

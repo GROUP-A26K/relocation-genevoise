@@ -1,1 +1,1 @@
-export * from './PageView';
+export * from './ContentView';

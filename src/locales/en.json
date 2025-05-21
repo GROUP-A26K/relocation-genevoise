@@ -620,7 +620,7 @@
       "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
-      "helpRequired": "Please select a help option.",
+      "subjectRequired": "Please select a help option.",
       "acceptRequired": "You must accept to proceed."
     },
     "Booking": {

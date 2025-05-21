@@ -10,21 +10,31 @@ import { NextResponse } from 'next/server';
 const senderEmail = Env.RESEND_EMAIL;
 
 const createSubscribe = async (data: SubscribeFormInput) => {
-  return prisma.subscribe.create({
+  const existing = await prisma.subscribe.findUnique({
+    where: { email: data.email },
+  });
+
+  if (existing) {
+    return { alreadyExists: true, email: existing.email };
+  }
+
+  const newSubscribe = await prisma.subscribe.create({
     data: {
       email: data.email,
       created_at: new Date(),
     },
   });
+
+  return { alreadyExists: false, email: newSubscribe.email };
 };
 
-const sendEmail = async (email: string) => {
+const sendEmail = async (email: string, subject: string) => {
   try {
     await resend.emails.send({
       from: senderEmail,
       to: email,
       subject: 'Welcome to our service!',
-      html: '<p>Congrats on subscribing!</p>',
+      html: `<p>${subject}</p>`,
     });
   } catch (error) {
     console.error('Error sending email:', error);
@@ -53,10 +63,15 @@ export async function POST(request: Request) {
       );
     }
 
-    const newSubscribe = await createSubscribe(parsedData.data);
-    await sendEmail(parsedData.data.email);
+    const result = await createSubscribe(parsedData.data);
 
-    return NextResponse.json(newSubscribe, { status: 201 });
+    if (result.alreadyExists) {
+      await sendEmail(result.email, 'Your email is already subscribed.');
+    } else {
+      await sendEmail(result.email, 'Congrats on sending your information!');
+    }
+
+    return NextResponse.json(result, { status: 201 });
   } catch (error) {
     console.error('Error creating contact:', error);
     return NextResponse.json(

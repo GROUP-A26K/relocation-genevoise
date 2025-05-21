@@ -621,7 +621,7 @@
       "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
-      "helpRequired": "Veuillez sélectionner une option d'aide.",
+      "subjectRequired": "Veuillez sélectionner une option d'aide.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
 

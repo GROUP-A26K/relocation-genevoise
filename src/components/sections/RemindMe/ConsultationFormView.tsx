@@ -151,7 +151,7 @@ export const ConsultationFormView: FC<Props> = ({
 
   return (
     <div className="bg-white lg:pb-[300px] pb-[490px]">
-      <div className="bg-green-50 lg:pb-12 pb-8">
+      <div className="bg-yellow-50 lg:pb-12 pb-8">
         <div className="relative flex flex-col justify-center items-center">
           <div className="container flex flex-col lg:pt-16 pt-14 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4 gap-8">
             <div className="w-full">
@@ -227,7 +227,7 @@ export const ConsultationFormView: FC<Props> = ({
                             <Button
                               as="solid"
                               variant="md"
-                              type="primary"
+                              type="secondary"
                               className="lg:w-fit w-full"
                               disabled={loading || submitted}
                             >

@@ -147,5 +147,5 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 `);
 
 export const POST_CATEGORIES_QUERY = defineQuery(
-  `*[_type == "blogCategory" && count(*[_type == "blogPost" && !(_id in path("drafts.**")) && language == $locale && references(^._id)]) > 1]`
+  `*[_type == "blogCategory" && count(*[_type == "blogPost" && !(_id in path("drafts.**")) && references(^._id)]) > 1]`
 );
