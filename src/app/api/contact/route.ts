@@ -13,8 +13,9 @@ const createContact = async (data: ContactFormInput) => {
     data: {
       first_name: data.first_name,
       last_name: data.last_name,
+      role: data.role,
       email: data.email,
-      help: data.help,
+      subject: data.subject,
       message: data.message,
       accept: data.accept,
       phone: data.phone,

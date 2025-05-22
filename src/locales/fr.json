@@ -127,6 +127,201 @@
     }
   },
 
+  "RemindMe": {
+    "Consultation": {
+      "heading": "Rappelez-moi",
+      "subHeading": "Trouvons l’((assurance)) qui vous convient",
+      "description": "L’un de nos conseillers vous rappelle pendant nos heures d’ouverture et répond à vos questions.",
+      "cardContent": {
+        "title": "Réservez votre appel dès maintenant !",
+        "statusTitle": "Actuellement ouvert ",
+        "callTitle": "Appel gratuit",
+        "calendarTitle": "Lundi au Vendredi 09:00h - 18:00h",
+        "buttonText": "Me rappeler ",
+        "buttonPlaceholder": "Numéro de téléphone",
+        "noteTitle": "Nous veillons à la",
+        "checkboxTitle": "En cochant cette case, j'accepte que les informations saisies soient utilisées dans le cadre de la mise en relation avec un membre de notre équipe.",
+        "policyTitle": "protection de vos données."
+      }
+    },
+    "ContactInfo": {
+      "reasonItems": [
+        {
+          "title": "Email",
+          "description": "Nous traitons vos demandes sous 24h",
+          "info": "contact@assurance-genevoise.ch"
+        },
+        {
+          "title": "Accueil Client",
+          "description": "Venez nous rendre vitsite dans nos bureaux ",
+          "info": "Rue des Alpes 5, 1201 Genève"
+        },
+        {
+          "title": "Téléphone",
+          "description": "Lundi au Vendredi 09h|18h - Appel Gratuit",
+          "info": "+41 (022) 715 17 45"
+        }
+      ]
+    }
+  },
+
+  "Contact": {
+    "ContactInfo": {
+      "heading": "Contactez-nous",
+      "subHeading": "Parlez-nous de votre ((projet))",
+      "description": "Notre équipe est à votre disposition pour échanger et répondre à vos besoins.",
+      "reasonItems": [
+        {
+          "title": "Email",
+          "description": "Nous traitons vos demandes sous 24h",
+          "info": "contact@assurance-genevoise.ch"
+        },
+        {
+          "title": "Accueil Client",
+          "description": "Venez nous rendre vitsite dans nos bureaux",
+          "info": "Rue des Alpes 5, 1201 Genève"
+        },
+        {
+          "title": "Téléphone",
+          "description": "Lundi au Vendredi 09h|18h - Appel Gratuit",
+          "info": "+41 (022) 715 17 45"
+        }
+      ]
+    },
+    "ContactContainer": {
+      "title": "Formulaire de contact",
+      "subTitle": "Un conseiller vous rappelle dans la journée"
+    },
+    "ContactForm": {
+      "Contact": {
+        "title": "Contact us",
+        "subTitle": "An advisor will answer you during the day.",
+        "buttonText": "Contact us now",
+        "inputLabel": "Your email address",
+        "inputPlaceholder": "Enter your email address"
+      },
+      "role": {
+        "label": "Je suis",
+        "placeholder": "Choisissez dans la liste",
+        "options": [
+          { "label": "Je suis un professionnel" },
+          { "label": "Je suis un particulier" }
+        ]
+      },
+      "first_name": { "label": "Prénom", "placeholder": "Lucas" },
+      "last_name": { "label": "Nom", "placeholder": "Zimmer" },
+      "email": { "label": "Email", "placeholder": "lucas@email.com" },
+      "phone": {
+        "label": "Numéro de téléphone",
+        "placeholder": "+41"
+      },
+      "company": { "label": "Société", "placeholder": "Ma société" },
+      "subject": {
+        "label": "Comment pouvons nous vous aider ?",
+        "placeholder": "Choisissez dans la liste ",
+        "options": [
+          { "label": "Besoin de conseils personnalisés" },
+          { "label": "Demander à être rappelé" },
+          { "label": "Demande de rendez-vous" },
+          { "label": "Autres" }
+        ]
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Laissez nous un message"
+      },
+      "accept": "En cochant cette case, j'accepte que les informations saisies soient utilisées dans le cadre du contact.",
+      "send": "Envoyer"
+    }
+  },
+
+  "MentionsLegales": {
+    "heading": "Legal",
+    "subHeading": "Mentions légales",
+    "sections": [
+      {
+        "title": "1. Informations sur l'entreprise",
+        "content": [
+          {
+            "paragraph": "**Raison sociale:** AG Assurance Genevoise SA \n **Forme juridique:** Société anonyme (SA) \n **Siège social:** Rue des Alpes 5, 1201 Genève, Suisse \n **Numéro IDE:** CHE-403.737.582 \n **Numéro de registre FINMA:** F01502264 \n **Capital social:** CHF 100'000 \n **Téléphone:** +41 22 715 17 45 \n **Adresse e-mail:** contact@assurance-genevoise.ch \n **Hébergeur:** o2switch ([[https://www.o2switch.fr/|https://www.o2switch.fr/]]) \n Ces informations sont fournies de manière claire et complète."
+          }
+        ]
+      },
+      {
+        "title": "2. Responsabilité",
+        "content": [
+          {
+            "paragraph": "AG Assurance Genevoise SA s'efforce de fournir des informations exactes et à jour sur ce site. Toutefois, elle ne garantit pas l'exactitude, la fiabilité ou l'exhaustivité des informations fournies. Elle se réserve le droit de modifier le contenu du site à tout moment sans préavis."
+          },
+          {
+            "paragraph": "AG Assurance Genevoise SA décline toute responsabilité pour les dommages directs ou indirects résultant de l'accès ou de l'utilisation de ce site, y compris les dommages causés par des virus ou des erreurs techniques."
+          }
+        ]
+      },
+      {
+        "title": "3. Liens externes",
+        "content": [
+          {
+            "paragraph": "Ce site peut contenir des liens vers d'autres sites web. AG Assurance Genevoise SA n'est pas responsable du contenu de ces sites externes et décline toute responsabilité quant aux informations, produits ou services qu'ils proposent."
+          }
+        ]
+      },
+      {
+        "title": "4. Droits d'auteur",
+        "content": [
+          {
+            "paragraph": "Tous les contenus présents sur ce site (textes, images, logos, etc.) sont protégés par le droit d'auteur. Toute reproduction, distribution ou utilisation sans autorisation écrite préalable est interdite."
+          }
+        ]
+      },
+      {
+        "title": "5. Protection des données",
+        "content": [
+          {
+            "title": "Collecte et traitement des données",
+            "paragraph": "Nous collectons et traitons des données personnelles conformément à la nLPD. Les données collectées peuvent inclure, sans s'y limiter, le nom, l'adresse, l'adresse e-mail et le numéro de téléphone. Ces données sont utilisées pour fournir nos services, répondre aux demandes et améliorer l'expérience utilisateur."
+          },
+          {
+            "title": "Utilisation de Google Analytics",
+            "paragraph": "Ce site utilise Google Analytics, un service d'analyse de site internet fourni par Google Inc. Google Analytics utilise des cookies pour aider à analyser l'utilisation du site. Les informations générées par les cookies concernant votre utilisation du site seront transmises et stockées par Google."
+          },
+          {
+            "title": "Droits des utilisateurs",
+            "paragraph": "Conformément à la nLPD, vous avez le droit d'accéder à vos données personnelles, de les rectifier, de demander leur suppression ou de vous opposer à leur traitement. Pour exercer ces droits, veuillez nous contacter à l'adresse e-mail mentionnée ci-dessus."
+          },
+          {
+            "title": "Sécurité des données",
+            "paragraph": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, perte ou destruction."
+          }
+        ]
+      },
+      {
+        "title": "6. Cookies",
+        "content": [
+          {
+            "paragraph": "Ce site utilise des cookies pour améliorer l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies ou être averti lorsqu'un cookie est envoyé. Toutefois, certaines fonctionnalités du site peuvent ne pas fonctionner correctement sans l'utilisation de cookies."
+          }
+        ]
+      },
+      {
+        "title": "7. Droit applicable et juridiction compétente",
+        "content": [
+          {
+            "paragraph": "Les présentes mentions légales sont régies par le droit suisse. En cas de litige, les tribunaux du canton de Genève seront seuls compétents."
+          }
+        ]
+      },
+      {
+        "title": "8. Modifications des mentions légales",
+        "content": [
+          {
+            "paragraph": "AG Assurance Genevoise SA se réserve le droit de modifier ces mentions légales à tout moment. Les modifications prendront effet dès leur publication sur le site."
+          }
+        ]
+      }
+    ]
+  },
+
   "Metadata": {
     "Home": {
       "title": "Assurance Genevoise - Votre Courtier en Assurance en Suisse",
@@ -426,7 +621,7 @@
       "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
-      "helpRequired": "Veuillez sélectionner une option d'aide.",
+      "subjectRequired": "Veuillez sélectionner une option d'aide.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
 

@@ -12,7 +12,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
     menu: [
       {
         title: tNav("menu.0.title"),
-        url: "/blog",
+        url: "/trouver-un-logement",
       },
       {
         title: tNav("menu.1.title"),

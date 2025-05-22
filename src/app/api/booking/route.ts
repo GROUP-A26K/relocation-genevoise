@@ -5,7 +5,7 @@ import {
 } from '@/validations/booking.validation';
 import { NextResponse } from 'next/server';
 
-const createContact = async (data: BookingFormInput) => {
+const createBooking = async (data: BookingFormInput) => {
   return prisma.booking.create({
     data: {
       accept: data.accept,
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const newBooking = await createContact(parsedData.data);
+    const newBooking = await createBooking(parsedData.data);
 
     return NextResponse.json(newBooking, { status: 201 });
   } catch (error) {

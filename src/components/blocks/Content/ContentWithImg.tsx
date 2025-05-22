@@ -1,7 +1,7 @@
 import Button from "@/components/customs/Button";
 import Image from "next/image";
 import { FC } from "react";
-import ContentWithImgBG from "@/assets/img/bg/assurance-genevoise-geneve-courtage.webp";
+import ContentWithImgBG from "@/assets/img/bg/relocation-genevoise-geneve-courtage.webp";
 import Link from "next/link";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 interface Props {
