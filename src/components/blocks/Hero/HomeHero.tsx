@@ -12,7 +12,7 @@ interface Props {
   heading?: string;
   subHeading?: string;
   description?: string;
-  button: {
+  button?: {
     text?: string;
     url?: string;
   };
