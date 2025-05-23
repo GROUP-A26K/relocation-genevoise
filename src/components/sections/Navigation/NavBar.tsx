@@ -42,7 +42,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
             title: tNav("menu.3.items.2.title"),
             description: tNav("menu.3.items.2.description"),
             icon: ShieldHalf,
-            url: "/services/discover-geneva",
+            url: "/services/education",
           },
           {
             title: tNav("menu.3.items.3.title"),
@@ -54,7 +54,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
             title: tNav("menu.3.items.4.title"),
             description: tNav("menu.3.items.4.description"),
             icon: Heart,
-            url: "/services/education",
+            url: "/services/discover-geneva",
           },
         ],
       },

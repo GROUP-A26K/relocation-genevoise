@@ -30,19 +30,38 @@ export default async function Page(props: Props) {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: "HomePage",
+    namespace: "ConciergeService",
   });
 
   return (
     <>
       <Section className="relative">
         <HomeHero
-          heading={t("Hero.heading")}
-          subHeading={t("Hero.subHeading")}
-          description={t("Hero.description")}
+          heading={t("heading")}
+          subHeading={t("subHeading")}
+          description={t("description")}
         />
       </Section>
-      <ContentView />
+      <ContentView
+        section={[
+          {
+            paragraphType: "introductory",
+            content: [
+              {
+                paragraph: t("sections.0.content.0.paragraph"),
+              },
+            ],
+          },
+          {
+            paragraphType: "introductory",
+            content: [
+              {
+                paragraph: t("sections.1.content.0.paragraph"),
+              },
+            ],
+          },
+        ]}
+      />
       <Section>
         <BookConsultation2 />
       </Section>

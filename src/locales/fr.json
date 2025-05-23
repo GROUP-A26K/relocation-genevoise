@@ -322,6 +322,194 @@
     ]
   },
 
+  "DonnesPersonnelles": {
+    "heading": "Legal",
+    "subHeading": "Politique de confidentialité",
+    "sections": [
+      {
+        "content": [
+          {
+            "paragraph": "Chez **AG Assurance Genevoise SA ** nous apportons une attention particulière au respect de votre vie privée. Nous vous remercions d’utiliser nos services et notre site web. Nous prenons le respect de votre vie privée au sérieux. Cette charte de confidentialité concerne toute personne physique partageant ses données personnelles directement ou indirectement avec AG Assurance Genevoise SA en visitant ce site web."
+          },
+          {
+            "paragraph": "**AG Assurance Genevoise SA ** est une société anonyme établie en Suisse et enregistrée au Rue des Alpes 5, 1201 Genève. En tant que tel, nous adhérons à la nLPD (nouvelle Loi sur la Protection des Données). Notre siège social est situé au Rue des Alpes 5, 1201 Genève. Vous pouvez nous faire part de vos questions en matière de protection des données à l’adresse suivante : [[ contact@assurance-genevoise.ch ]] Cette charte de confidentialité détaille les types de données personnelles qui sont susceptibles d’être traitées et dans leur finalité."
+          }
+        ]
+      },
+      {
+        "title": "Perimetre de la charte de confidentialite ",
+        "content": [
+          {
+            "paragraph": "Veuillez noter que cette charte de confidentialité concerne le traitement des données personnelles dont AG Assurance Genevoise SA est le responsable de traitement. Cette Charte de confidentialité ne concerne aucun traitement de données personnelles que AG Assurance Genevoise SA peut effectuer en tant que sous-traitant découlant de votre utilisation de nos services. Pour obtenir plus d’informations sur la façon dont nos services peuvent être utilisés pour faciliter vos traitements de données personnelles, et sur les responsabilités et les engagements de AG Assurance Genevoise SA en relation avec ceux-ci, veuillez-vous référer aux conditions applicables. Nous appliquons la nLPD (nouvelle Loi sur la Protection des Données) pour l’ensemble de nos procédures."
+          }
+        ]
+      },
+      {
+        "title": "Donnees personnelles traitees",
+        "content": [
+          {
+            "paragraph": "Les données personnelles désignent les données qui vous identifient en tant que personne physique. Nous pouvons être amenés à traiter les types de données personnelles suivants vous concernant : Vos coordonnées peuvent inclure votre nom, l’adresse courriel et le numéro de téléphone. Informations utilisateur, par exemple, si vous vous connectez à notre service ou visitez nos sites internet. Ces informations peuvent comprendre le numéro IP, le type de périphérique et le navigateur, fuseau horaire, situation géographique, ainsi que vos intérêts et préférences, des informations sur la façon dont vous interagissez avec nos services, par exemple sur les fonctionnalités utilisées et les boutons cliqués."
+          }
+        ]
+      },
+      {
+        "title": "Finalites du traitement des donnnees",
+        "content": [
+          {
+            "paragraph": "Nous pouvons être amener à traiter vos données personnelles pour les finalités suivantes :\n • Fournir nos services conformément aux conditions applicables;\n • Administrer la relation d’affaires avec vous et le client de AG Assurance Genevoise SA que vous représentez; \n • Développer et améliorer nos services;\n Afin de fournir des informations et des offres aux clients de AG Assurance Genevoise SA actuels ou potentiels sur notre solution par des parties tierces sélectionnées. Tout matériel de marketing distribué à l’aide de vos données personnelles vous est envoyé en tant que personne morale représentant un client actuel ou potentiel de AG Assurance Genevoise SA et non à vous en tant que personne privée."
+          }
+        ]
+      },
+      {
+        "title": "Patage avec des tiers et transfert vers les pays tiers",
+        "content": [
+          {
+            "paragraph": "• Google Analytics : Permet d’analyser le trafic sur le site web [[https://assurance-genevoise.ch/|https://assurance-genevoise.ch/]] \n • Google Tag Manager: Gestionnaire de balises qui permet aux responsables marketing d’ajouter facilement des balises (Analytics, de remarketing, etc.) sur leur site Web."
+          }
+        ]
+      },
+      {
+        "title": "Vos droits",
+        "content": [
+          {
+            "paragraph": "Nous avons pour obligation de traiter des éléments personnels précis, pertinents et nécessaires tout en tenant compte de nos finalités légitimes. Vous avez le droit de contrôler ce droit."
+          },
+          {
+            "paragraph": "Pour mettre à jour les données personnelles que nous traitons vous concernant, veuillez nous contacter sur [[contact@assurance-genevoise.ch]]."
+          },
+          {
+            "paragraph": "Pour recevoir gratuitement un extrait de données personnelles que nous traitons vous concernant, vous pouvez nous envoyer une lettre recommandée à l’adresse suivante: AG Assurance Genevoise SA, Rue des Alpes 5, 1201 Genève, Suisse."
+          }
+        ]
+      }
+    ]
+  },
+
+  "Education": {
+    "heading": "Legal",
+    "subHeading": "((Personal Data))",
+    "description": "S’installer en Suisse avec des enfants implique des choix importants en matière d’éducation. Nous vous guidons à chaque étape : compréhension du système éducatif, choix des établissements et démarches administratives. Notre approche s’adapte à votre budget, la localisation, la qualité d’enseignement et à vos préférences spécifiques.",
+
+    "sections": [
+      {
+        "content": [
+          {
+            "paragraph": "S’installer en Suisse avec des enfants implique des choix importants en matière d’éducation. Nous vous guidons à chaque étape : compréhension du système éducatif, choix des établissements et démarches administratives. Notre approche s’adapte à votre budget, la localisation, la qualité d’enseignement et à vos préférences spécifiques."
+          }
+        ]
+      },
+
+      {
+        "content": [
+          {
+            "title": "Présentation de diverses options éducatives",
+            "paragraph": "Nous vous guidons à travers les différentes possibilités scolaires en Suisse - crèches, écoles publiques et privées, écoles suisses ou internationales, ainsi que des alternatives moins conventionnelles - vous séléctionnez les meilleures opportunités pour votre projet familial."
+          },
+          {
+            "title": "Pré-inscription et formalités initiales",
+            "paragraph": "Notre service comprend une assistance pour les démarches administratives de pré-inscription, en veillant à ce que toutes les formalités requises soient correctement remplies vous, parents."
+          },
+          {
+            "title": "Organisation de réunions",
+            "paragraph": "Nous organisons des rencontres personnalisées avec les responsables d’école, par téléphone ou en personne, ce qui vous permet d'avoir des échanges directs pour poser des questions et mieux évaluer les options disponibles."
+          },
+          {
+            "title": "Bilan avec la famille",
+            "paragraph": "Nous proposons une séance de débriefing au cours de laquelle les enfants et les parents peuvent discuter de leurs impressions et affiner leurs choix sur la base de critères objectifs et personnels."
+          },
+          {
+            "title": "Aide à l'inscription finale",
+            "paragraph": "Une fois votre choix effectué, nous vous accompagnons dans la procédure d'inscription finale, en veillant à ce que toutes les étapes administratives se déroulent de manière fluide et efficace."
+          },
+          {
+            "title": "Soutien lors des visites d’écoles",
+            "paragraph": "Si besoin, nous vous assistons lors des visites scolaires pour examiner tous les aspects essentiels, de l'atmosphère de l'école à ses installations, et faciliter les échanges avec les équipes pédagogiques."
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "paragraph": "Si besoin, nous vous assistons lors des visites scolaires pour examiner tous les aspects essentiels, de l'atmosphère de l'école à ses installations, et faciliter les échanges avec les équipes pédagogiques."
+          }
+        ]
+      }
+    ]
+  },
+
+  "DiscoverGeneva": {
+    "heading": "Nos services",
+    "subHeading": "Découvrir Genève",
+    "description": "Une solution unique et personnalisée pour vous aider à prendre vos repères, découvrir les quartiers, comprendre la culture locale et vous sentir chez vous dès les premiers jours.",
+
+    "sections": [
+      {
+        "content": [
+          {
+            "paragraph": "S’installer dans une nouvelle ville est un moment important. Nous facilitons votre découverte de Genève pour que vous puissiez vous approprier les lieux en toute confiance et sérénité."
+          }
+        ]
+      },
+
+      {
+        "content": [
+          {
+            "paragraph": "Découvrir Genève, c’est aussi trouver le quartier qui vous ressemble. Nous vous guidons dans cette démarche avec un service personnalisé, adapté à votre mode de vie et à vos attentes."
+          }
+        ]
+      },
+
+      {
+        "content": [
+          {
+            "title": "Visite personnalisée",
+            "paragraph": "En fonction de vos critères de recherche et de votre lifestyle (proximité du centre-ville, accès aux transports publics, lieux de travail, etc.), notre agent planifie un itinéraire sur mesure qui vous permet de visiter plusieurs quartiers représentatifs de Genève et de mieux visualiser votre futur cadre de vie."
+          },
+          {
+            "title": "Présentation des infrastructures et des commerces locaux",
+            "paragraph": "Nous vous présentons les commerces de proximité, les parcs, les écoles, les centres sportifs et les autres infrastructures clés pour que vous puissiez rapidement prendre vos marques et organiser votre quotidien en toute autonomie."
+          },
+          {
+            "title": "Recommandations personnalisées selon votre profil",
+            "paragraph": "En fonction de votre situation — famille, travailleur expatrié, étudiant, retraité — nous vous proposons des quartiers et repères pratiques en adéquation avec votre quotidien et vos priorités."
+          },
+          {
+            "title": "Découverte de la vie culturelle et sociale",
+            "paragraph": "Nous vous guidons à travers les lieux culturels, événements locaux et espaces de loisirs pour vous aider à créer rapidement des repères et profiter pleinement de la richesse genevoise."
+          },
+          {
+            "title": "Bilan de la visite",
+            "paragraph": "À l’issue de la visite, nous faisons le point avec vous pour affiner vos préférences et sélectionner les quartiers qui répondent le mieux à vos besoins et envies."
+          }
+        ]
+      }
+    ]
+  },
+
+  "ConciergeService": {
+    "heading": "Nos services",
+    "subHeading": "Service de Conciergerie",
+    "description": "De l’ordinaire à l’extraordinaire, un service de conciergerie pensé pour répondre à toutes vos attentes, en vous offrant une assistance personnalisée pour chaque moment de votre quotidien.",
+
+    "sections": [
+      {
+        "content": [
+          {
+            "paragraph": "Notre service de conciergerie facilite votre quotidien en répondant à toutes vos demandes, même les plus pointues. Besoin urgent, projet particulier ou souhait sur mesure ? Nous mobilisons notre expertise et un réseau de partenaires fiables pour vous proposer des solutions rapides et efficaces."
+          }
+        ]
+      },
+
+      {
+        "content": [
+          {
+            "paragraph": "Destiné aux particuliers comme aux professionnels, notre service coordonne l’intervention de prestataires qualifiés : électriciens, jardiniers, agents d’entretien ou prestataires de services spécifiques. Grâce à notre approche personnalisée et réactive, chaque demande est prise en charge avec rigueur, discrétion et professionnalisme."
+          }
+        ]
+      }
+    ]
+  },
+
   "Metadata": {
     "Home": {
       "title": "Assurance Genevoise - Votre Courtier en Assurance en Suisse",
