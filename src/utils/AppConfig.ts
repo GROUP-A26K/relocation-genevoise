@@ -12,5 +12,10 @@ export const AppConfig = {
     personalData: { fr: "/donnes-personnelles", en: "/personal-data" },
     legalNotice: { fr: "/mentions-legales", en: "/legal-notice" },
     callMe: { fr: "/rappelez-moi", en: "/call-me" },
+    personalInsurance: {
+      fr: "/particulier/assurance",
+      en: "/personal/insurance",
+      priority: 0.9,
+    },
   },
 };

@@ -1,10 +1,10 @@
-export const dynamic = "force-dynamic";
-import { HomeHero } from "@/components/blocks/Hero";
+import { Hero } from "@/components/blocks/Hero";
 import Section from "@/components/customs/Section";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { BookConsultation2 } from "@/components/blocks/Consultation";
 import { ContentView } from "@/components/sections/ServiceDetail";
+import HeroImage from "@/assets/img/hero/service/service-de-conciergerie-hero-image.webp";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -36,7 +36,12 @@ export default async function Page(props: Props) {
   return (
     <>
       <Section className="relative">
-        <HomeHero
+        <Hero
+          heroImage={{
+            src: HeroImage.src,
+            alt: t("heading"),
+            title: t("heading"),
+          }}
           heading={t("heading")}
           subHeading={t("subHeading")}
           description={t("description")}
@@ -63,7 +68,13 @@ export default async function Page(props: Props) {
         ]}
       />
       <Section>
-        <BookConsultation2 />
+        <BookConsultation2
+          heading={t("BookConsultation.heading")}
+          subHeading={t("BookConsultation.subHeading")}
+          description={t("BookConsultation.description")}
+          buttonText1={t("BookConsultation.buttonText1")}
+          buttonText2={t("BookConsultation.buttonText2")}
+        />
       </Section>
     </>
   );

@@ -7,3 +7,4 @@ export * from "./FeatureColCard2";
 export * from "./BlogCard";
 export * from "./BlogBGCard";
 export * from "./BusinessCard";
+export * from "./CompanyCard";

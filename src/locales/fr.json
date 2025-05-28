@@ -386,10 +386,9 @@
   },
 
   "Education": {
-    "heading": "Legal",
-    "subHeading": "((Personal Data))",
-    "description": "S’installer en Suisse avec des enfants implique des choix importants en matière d’éducation. Nous vous guidons à chaque étape : compréhension du système éducatif, choix des établissements et démarches administratives. Notre approche s’adapte à votre budget, la localisation, la qualité d’enseignement et à vos préférences spécifiques.",
-
+    "heading": "Nos services",
+    "subHeading": "Scolarité",
+    "description": "Une solution éducative sur mesure pour vous guider vers l’établissement idéal qui facilite un parcours scolaire propice à l’épanouissement et à la réussite de vos enfants.",
     "sections": [
       {
         "content": [
@@ -434,14 +433,20 @@
           }
         ]
       }
-    ]
+    ],
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
+    }
   },
 
   "DiscoverGeneva": {
     "heading": "Nos services",
     "subHeading": "Découvrir Genève",
     "description": "Une solution unique et personnalisée pour vous aider à prendre vos repères, découvrir les quartiers, comprendre la culture locale et vous sentir chez vous dès les premiers jours.",
-
     "sections": [
       {
         "content": [
@@ -483,14 +488,20 @@
           }
         ]
       }
-    ]
+    ],
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez découvrir Genève avec notre équipe ?",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
+    }
   },
 
   "ConciergeService": {
     "heading": "Nos services",
     "subHeading": "Service de Conciergerie",
     "description": "De l’ordinaire à l’extraordinaire, un service de conciergerie pensé pour répondre à toutes vos attentes, en vous offrant une assistance personnalisée pour chaque moment de votre quotidien.",
-
     "sections": [
       {
         "content": [
@@ -507,7 +518,75 @@
           }
         ]
       }
-    ]
+    ],
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez bénéficier de conciergerie sur mesure ? ",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
+    }
+  },
+
+  "Particular": {
+    "Assurance": {
+      "BusinessInfo": {
+        "heading": "Particulier",
+        "subHeading": "Nos ((Assurances)) Particuliers",
+        "description": "Nous protégeons votre avenir avec nos solutions d’assurances sur mesure. Bénéficiez de nos couvertures sur vos biens, votre proches et votre foyer.",
+        "linkText": "Découvrir nos offres",
+        "items": [
+          {
+            "title": "Assurance de Choses et de Patrimoine",
+            "description": "Une protection complète pour sécuriser vos biens et préserver votre patrimoine."
+          },
+          {
+            "title": "Assurance RC Ménage",
+            "description": "Protégez votre logement et votre responsabilité civile avec une couverture complète adaptée à votre quotidien."
+          },
+          {
+            "title": "Assurance Animaux",
+            "description": "Nos solutions adaptées aux besoins et au bien-être de vos compagnons ."
+          },
+          {
+            "title": "Assurance Véhicule à Moteur",
+            "description": "Nos solutions pour prendre la route en toute sérénité."
+          },
+          {
+            "title": "Assurance Protection Juridique",
+            "description": "Un accompagnement et un soutien légal en cas de litige."
+          },
+          {
+            "title": "Assurance Employé de Maison",
+            "description": "Protégez vos employés de maison lorsqu’ils sont à votre domicile."
+          },
+          {
+            "title": "Assurance Voyage",
+            "description": "Bénéficiez d’une couverture complète pour voyager en toute tranquillité partout dans le monde."
+          },
+          {
+            "title": "Assurance RC Immeuble et Bâtiment",
+            "description": "Protègez votre bien immobilier contre les risques imprévus et les dommages aux tiers."
+          },
+          {
+            "title": "Assurance Frontalier",
+            "description": "Une solution adaptée pour votre assurance maladie en tant que travailleur frontalier."
+          },
+          {
+            "title": "Assurance Prévoyance Privée",
+            "description": "Complétez votre protection sociale et préparez au mieux votre retraite."
+          },
+          {
+            "title": "Assurance Vie",
+            "description": "Assurez l'avenir de vos proches avec un capital garanti en cas de décès ou d’incapacité."
+          },
+          {
+            "title": "Assurance Libre Passage",
+            "description": "Préservez vos avoirs de prévoyance lors d’un changement d’emploi ou d’un départ à l’étranger."
+          }
+        ]
+      }
+    }
   },
 
   "Metadata": {
