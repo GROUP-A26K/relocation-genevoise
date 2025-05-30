@@ -7,123 +7,172 @@
       "buttonText": "Nous contacter",
       "buttonText2": "Trouver un logement"
     },
-    "ServiceFeature": {
-      "heading": "Professionnels & Particuliers",
-      "subHeading": "((Nos services))",
-      "reasons": [
+    "ContactFeature": {
+      "heading": "Nos offres",
+      "subHeading": "Nos services de Relocation",
+      "description": "Une expérience client irréprochable et un accompagnement clé-en-main afin de trouver votre nouveau logement, faciliter votre installation et vous aider à vous sentir rapidement chez vous.",
+      "buttonText": "Contactez-nous",
+      "reasonItems": [
         {
-          "reasonName": "Pour les professionnels",
-          "reasonItems": [
-            {
-              "title": "Entreprise",
-              "description": "Nos solutions pour protéger au mieux votre entreprise."
-            },
-            {
-              "title": "International",
-              "description": "Vous assurer, où que vous soyez dans le monde."
-            },
-            {
-              "title": "Profession libérale",
-              "description": "Nos couvertures sur mesure dédiées à votre activité."
-            }
-          ]
+          "title": "Recherche de propriétés",
+          "description": "À la suite d’un premier rendez-vous de découverte, nous prenons le temps de sélectionner avec soins des propriétés parfaitement adaptées à votre besoins, vos souhaits et vos critères.",
+          "icon": "Search"
         },
         {
-          "reasonName": "Pour les particuliers",
-          "reasonItems": [
-            {
-              "title": "Assurances",
-              "description": "Nos solutions d’assurances pour tous les besoins du quotidien."
-            },
-            {
-              "title": "Frontalier",
-              "description": "Une couverture adaptées à votre situation."
-            },
-            {
-              "title": "Fiscalité",
-              "description": "Vous accompagner à gérer vos finances avec précision."
-            },
-            {
-              "title": "Santé",
-              "description": "Vous protéger au niveau Suisse et international."
-            },
-            {
-              "title": "Hypothèque",
-              "description": "Accélérer vos projets et accéder à des taux avantageux."
-            },
-            {
-              "title": "Prévoyance",
-              "description": "Assurer votre avenir avec nos solutions de prévoyance."
-            }
-          ]
+          "title": "Visites accompagnées et visites à distance",
+          "description": "Nous organisons vos visites et vous accompagnons pour vous apporter un regard professionnel. Si vous êtes à distance, nous réalisons également des visites virtuelles détaillées.",
+          "icon": "House"
+        },
+        {
+          "title": "Support administratif et suivi",
+          "description": "Nous assurons avec vous la préparation de votre dossier de candidature afin de maximiser vos chances, et restons à vos côtés jusqu’à la signature définitive du bail.",
+          "icon": "Users"
+        },
+        {
+          "title": "Services de conciergerie",
+          "description": "Ouverture de compte bancaire, assurance habitation, garantie de loyer ou toute autre demande spécifique : notre conciergerie vous accompagne pour simplifier vos démarches et alléger votre quotidien.",
+          "icon": "Grid"
         }
       ]
     },
+
     "Logos": {
       "heading": "Un réseau de partenaires reconnus"
     },
     "StatsGrid": {
-      "heading": "Fiabilité & Transparence",
-      "subHeading": "Votre partenaire de confiance en ((Suisse))",
-      "description": "Nous vous accompagnons avec transparence, réactivité et expertise pour répondre à vos besoins.",
+      "heading": "Disponibilité & Transparence",
+      "subHeading": "Une agence à vos côtés pour toutes les étapes de ((votre installation.))",
+      "description": "Relocation Genevoise est à votre disposition pour rendre votre emménagement simple et serein, avec des conseils clairs, un véritable engagement, et des services personnalisés pour garantir une installation réussie.",
       "start1": {
-        "value": "25+",
-        "label": "Années d’experiences"
+        "value": "20+",
+        "label": "Années d’expérience"
       },
       "start2": {
-        "value": "2500+",
-        "label": "Clients accompagnés"
+        "value": "250+",
+        "label": "De clients satisfaits"
       },
       "start3": {
         "value": "3",
-        "label": "Langues maîtrisées"
+        "label": "Langues parlées"
       },
       "start4": {
-        "value": "10+",
-        "label": "Nationalités font confiance à notre expertise"
+        "value": "4",
+        "label": "NÉtablissements en Suisse"
       }
     },
-    "ContactFeature": {
-      "heading": "Simplicité & Rapidité",
-      "subHeading": "Des ((solutions)) simples et efficaces pour atteindre vos objectifs",
-      "description": "Nous vous aidons à trouver les meilleures assurances en Suisse et vous accompagnons tout au long de votre projet.",
-      "buttonText": "Appelez-moi",
+    "EngagementFeature": {
+      "heading": "Nos engagements",
+      "subHeading": "Vous guider vers votre nouveau chez-vous avec soin et expertise.",
+      "description": "Notre équipe s’engage à vous accompagner avec excellence et intégrité afin de réussir votre installation en Suisse dans les meilleures conditions.",
       "reasonItems": [
         {
-          "title": "Contactez un conseiller",
-          "description": "Nous échangeons ensemble pour comprendre votre situation, identifier vos besoins spécifiques et trouver les solutions adaptées.",
-          "icon": "MessagesSquare"
+          "title": "Engagement",
+          "description": "Un accompagnement dédié et une volonté de satisfaire vos besoins à chaque étape.",
+          "icon": "Handshake"
         },
         {
-          "title": "Devis sous 48h maximum",
-          "description": "Un premier retour sous 24 heures puis une proposition de devis dans les 48 heures suivant votre premier contact.",
-          "icon": "Clock3"
+          "title": "Expertise",
+          "description": "Des conseils adaptés et des solutions précises, pour une installation réussie.",
+          "icon": "Lightbulb"
         },
         {
-          "title": "Signature de contrat",
-          "description": "Nous signons un mandat de courtage et vous présentons les solutions de nos partenaires."
+          "title": "Transparence",
+          "description": "Des relations de confiance avec nos clients et partenaires.",
+          "icon": "Target"
         },
         {
-          "title": "Rapport de dossier",
-          "description": "Nous vous accompagnons tout au long de votre projet et vous accompagnons tout au long de votre projet."
+          "title": "Excellence",
+          "description": "Des services personnalisés et un suivi constant pour vous garantir un excellent résultat.",
+          "icon": "Award"
         }
       ]
     },
+
     "ContentWithImg": {
-      "heading": "Pourquoi Assurance Genevoise ?",
-      "subHeading": "Votre projet, notre savoir-faire",
+      "heading": "Un partenaire de confiance",
+      "subHeading": "Choisissez le leader de la Relocation à Genève.",
       "description": [
         {
-          "paragraph": "Notre société de courtage vous accompagne avec une expertise à forte valeur ajoutée pour sécuriser vos actifs et optimiser votre couverture. "
+          "paragraph": "Relocation Genevoise accompagne ses clients dans toutes les démarches directes et indirectes liées à la relocation dans la région genevoise. Notre expertise en immobilier et notre maîtrise du marché nous permet d’offrir un accompagnement complet et un service de haute qualité. "
         }
       ],
-      "buttonText": "Contactez-nous"
+      "buttonText": "Contactez notre équipe"
     },
-    "BlogList": {
-      "heading": "Blog & Acualités",
-      "subHeading": "((Nos derniers articles))",
-      "description": "Découvrez nos dernières actualités et nos analyses pour vous guider dans vos choix d’assurances",
-      "buttonText": "En savoir plus"
+
+    "ServiceFeature": {
+      "heading": "Votre installation à Genève",
+      "subHeading": "Trouvez facilement et rapidement votre ((nouveau chez-vous à Genève.))",
+      "description": "Simplifiez la recherche de votre logement idéal en Suisse grâce à nos services spécialisés et à un large choix d’offres adaptées à vos besoins.",
+      "reasons": [
+        {
+          "reasonItems": [
+            {
+              "title": "Trouver un logement"
+            },
+            {
+              "title": "Trouver un locataire"
+            },
+            {
+              "title": "Entreprises et Organisations"
+            }
+          ]
+        }
+      ]
+    },
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
+    }
+  },
+
+  "FindAccommodation": {
+    "Hero": {
+      "heading": "Votre projet d’installation",
+      "subHeading": "Trouver un logement",
+      "description": "Une solution complète et sur mesure pour trouver votre logement idéal à Genève, gérer vos démarches avec simplicité et réussir votre installation en toute sérénité."
+    },
+    "Content": {
+      "items": [
+        {
+          "title": "Entretien de découverte",
+          "description": "Un premier échange pour comprendre vos besoins, vos critères et votre situation personnelle, afin de définir ensemble la stratégie de recherche la plus pertinente et vous proposer un accompagnement sur mesure."
+        },
+        {
+          "title": "Constitution de votre dossier",
+          "description": "Nous constituons pour vous un dossier solide et attractif, conforme aux attentes des propriétaires, afin de maximiser vos chances d'obtenir rapidement un logement."
+        },
+        {
+          "title": "Analyse du marché",
+          "description": "Grâce à nos outils et à notre réseau, nous analysons en temps réel les offres disponibles selon vos critères, en tenant compte de la dynamique locale et des opportunités correspondant à votre profil et à vos priorités."
+        },
+        {
+          "title": "Propositions de biens",
+          "description": "Nous vous envoyons une sélection de logements qui répondent à vos attentes, afin d’orienter vos visites vers les biens les plus adaptés à votre projet."
+        },
+        {
+          "title": "Organisation des visites",
+          "description": "Nous planifions les visites selon vos disponibilités, en assurant la coordination entre vous, les propriétaires et les régies pour vous simplifier la démarche."
+        },
+        {
+          "title": "Envoi et suivi de votre dossier",
+          "description": "Nous soumettons votre dossier aux régies ou bailleurs et assurons un suivi rigoureux, en relançant et en intervenant si nécessaire pour accélérer le processus."
+        },
+        {
+          "title": "Formalités administratives",
+          "description": "Nous vous accompagnons dans toutes les démarches administratives telles que la lecture et signature du bail, la mise en place des contrats d’assurances et de garantie, et autres formalités essentielles."
+        },
+        {
+          "title": "Aide à l’emménagement",
+          "description": "Nous vous aidons dans l’organisation pratique de votre installation : emménagement, souscription aux services essentiels (internet, électricité) et recommandations personnalisées pour faciliter votre prise de repères."
+        },
+        {
+          "title": "Support après l’installation",
+          "description": "Notre accompagnement continue après votre emménagement : conseils, gestion des premiers besoins, aide en cas de problème ou pour toute adaptation nécessaire à votre nouvelle vie en Suisse."
+        }
+      ]
     }
   },
 
@@ -773,15 +822,11 @@
         "title": "Trouver un locataire"
       },
       {
-        "title": "Entreprises & Organisations"
+        "title": "Companies"
       },
       {
         "title": "Services",
         "items": [
-          {
-            "title": "Trouver un logement",
-            "description": "Une recherche personnalisée pour un emménagement sans stress."
-          },
           {
             "title": "Scolarité",
             "description": "Un conseil avisé pour choisir l’école adaptée à vos enfants"
@@ -790,10 +835,7 @@
             "title": "Conciergerie",
             "description": "Un service dédié à la gestion de toutes vos demandes, même les plus spécifiques"
           },
-          {
-            "title": "Trouver un locataire",
-            "description": "Un accompagnement fiable pour sécuriser et finaliser votre location"
-          },
+
           {
             "title": "Découvrir Genève",
             "description": "Vous faire découvrir Genève et ses incontournables."

@@ -1,4 +1,4 @@
-import { Building, Earth, Scale, ShieldHalf, Heart } from "lucide-react";
+import { Backpack, School, UserRoundSearch } from "lucide-react";
 import { FC } from "react";
 import { NavbarContainer, NavbarProps } from "./NavbarContainer";
 import { getTranslations } from "next-intl/server";
@@ -12,7 +12,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
     menu: [
       {
         title: tNav("menu.0.title"),
-        url: "/trouver-un-logement",
+        url: "/find-accommodation",
       },
       {
         title: tNav("menu.1.title"),
@@ -29,31 +29,19 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
           {
             title: tNav("menu.3.items.0.title"),
             description: tNav("menu.3.items.0.description"),
-            icon: Building,
-            url: "/professionnel/entreprise",
+            icon: School,
+            url: "/services/education",
           },
           {
             title: tNav("menu.3.items.1.title"),
             description: tNav("menu.3.items.1.description"),
-            icon: Earth,
-            url: "/services/education",
+            icon: UserRoundSearch,
+            url: "/services/concierge-service",
           },
           {
             title: tNav("menu.3.items.2.title"),
             description: tNav("menu.3.items.2.description"),
-            icon: ShieldHalf,
-            url: "/services/concierge-service",
-          },
-          {
-            title: tNav("menu.3.items.3.title"),
-            description: tNav("menu.3.items.3.description"),
-            icon: Scale,
-            url: "/professionnel/entreprise",
-          },
-          {
-            title: tNav("menu.3.items.4.title"),
-            description: tNav("menu.3.items.4.description"),
-            icon: Heart,
+            icon: Backpack,
             url: "/services/discover-geneva",
           },
         ],

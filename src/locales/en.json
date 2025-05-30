@@ -9,55 +9,79 @@
       "buttonText": "Call me",
       "buttonText2": "Trouver un logement"
     },
-    "ServiceFeature": {
-      "heading": "Professionals & Individuals",
-      "subHeading": "Our ((services))",
-      "reasons": [
+
+    "FindAccommodation": {
+      "Hero": {
+        "heading": "Votre projet d’installation",
+        "subHeading": "Trouver un logement",
+        "description": "Une solution complète et sur mesure pour trouver votre logement idéal à Genève, gérer vos démarches avec simplicité et réussir votre installation en toute sérénité."
+      },
+      "Content": {
+        "items": [
+          {
+            "title": "Entretien de découverte",
+            "description": "Un premier échange pour comprendre vos besoins, vos critères et votre situation personnelle, afin de définir ensemble la stratégie de recherche la plus pertinente et vous proposer un accompagnement sur mesure."
+          },
+          {
+            "title": "Constitution de votre dossier",
+            "description": "Nous constituons pour vous un dossier solide et attractif, conforme aux attentes des propriétaires, afin de maximiser vos chances d'obtenir rapidement un logement."
+          },
+          {
+            "title": "Analyse du marché",
+            "description": "Grâce à nos outils et à notre réseau, nous analysons en temps réel les offres disponibles selon vos critères, en tenant compte de la dynamique locale et des opportunités correspondant à votre profil et à vos priorités."
+          },
+          {
+            "title": "Propositions de biens",
+            "description": "Nous vous envoyons une sélection de logements qui répondent à vos attentes, afin d’orienter vos visites vers les biens les plus adaptés à votre projet."
+          },
+          {
+            "title": "Organisation des visites",
+            "description": "Nous planifions les visites selon vos disponibilités, en assurant la coordination entre vous, les propriétaires et les régies pour vous simplifier la démarche."
+          },
+          {
+            "title": "Envoi et suivi de votre dossier",
+            "description": "Nous soumettons votre dossier aux régies ou bailleurs et assurons un suivi rigoureux, en relançant et en intervenant si nécessaire pour accélérer le processus."
+          },
+          {
+            "title": "Formalités administratives",
+            "description": "Nous vous accompagnons dans toutes les démarches administratives telles que la lecture et signature du bail, la mise en place des contrats d’assurances et de garantie, et autres formalités essentielles."
+          },
+          {
+            "title": "Aide à l’emménagement",
+            "description": "Nous vous aidons dans l’organisation pratique de votre installation : emménagement, souscription aux services essentiels (internet, électricité) et recommandations personnalisées pour faciliter votre prise de repères."
+          },
+          {
+            "title": "Support après l’installation",
+            "description": "Notre accompagnement continue après votre emménagement : conseils, gestion des premiers besoins, aide en cas de problème ou pour toute adaptation nécessaire à votre nouvelle vie en Suisse."
+          }
+        ]
+      }
+    },
+    "ContactFeature": {
+      "heading": "Nos offres",
+      "subHeading": "Nos services de Relocation",
+      "description": "Une expérience client irréprochable et un accompagnement clé-en-main afin de trouver votre nouveau logement, faciliter votre installation et vous aider à vous sentir rapidement chez vous.",
+      "buttonText": "Contactez-nous",
+      "reasonItems": [
         {
-          "reasonName": "Pour les professionnels",
-          "reasonItems": [
-            {
-              "title": "Entreprise",
-              "description": "Nos solutions pour protéger au mieux votre entreprise."
-            },
-            {
-              "title": "International",
-              "description": "Vous assurer, où que vous soyez dans le monde."
-            },
-            {
-              "title": "Profession libérale",
-              "description": "Nos couvertures sur mesure dédiées à votre activité."
-            }
-          ]
+          "title": "Recherche de propriétés",
+          "description": "À la suite d’un premier rendez-vous de découverte, nous prenons le temps de sélectionner avec soins des propriétés parfaitement adaptées à votre besoins, vos souhaits et vos critères.",
+          "icon": "Search"
         },
         {
-          "reasonName": "Pour les particuliers",
-          "reasonItems": [
-            {
-              "title": "Assurances",
-              "description": "Nos solutions d’assurances pour tous les besoins du quotidien."
-            },
-            {
-              "title": "Frontalier",
-              "description": "Une couverture adaptées à votre situation."
-            },
-            {
-              "title": "Fiscalité",
-              "description": "Vous accompagner à gérer vos finances avec précision."
-            },
-            {
-              "title": "Santé",
-              "description": "Vous protéger au niveau Suisse et international."
-            },
-            {
-              "title": "Hypothèque",
-              "description": "Accélérer vos projets et accéder à des taux avantageux."
-            },
-            {
-              "title": "Prévoyance",
-              "description": "Assurer votre avenir avec nos solutions de prévoyance."
-            }
-          ]
+          "title": "Visites accompagnées et visites à distance",
+          "description": "Nous organisons vos visites et vous accompagnons pour vous apporter un regard professionnel. Si vous êtes à distance, nous réalisons également des visites virtuelles détaillées.",
+          "icon": "House"
+        },
+        {
+          "title": "Support administratif et suivi",
+          "description": "Nous assurons avec vous la préparation de votre dossier de candidature afin de maximiser vos chances, et restons à vos côtés jusqu’à la signature définitive du bail.",
+          "icon": "Users"
+        },
+        {
+          "title": "Services de conciergerie",
+          "description": "Ouverture de compte bancaire, assurance habitation, garantie de loyer ou toute autre demande spécifique : notre conciergerie vous accompagne pour simplifier vos démarches et alléger votre quotidien.",
+          "icon": "Grid"
         }
       ]
     },
@@ -88,29 +112,30 @@
       }
     },
 
-    "ContactFeature": {
-      "heading": "Simplicity & Efficiency",
-      "subHeading": "Smart and efficient solutions to reach your ((goals))",
-      "description": "We help you find the best insurance solutions in Switzerland and guide you every step of the way.",
-      "buttonText": "Call me",
+    "EngagementFeature": {
+      "heading": "Vous guider vers votre nouveau chez-vous avec soin et expertise.",
+      "subHeading": "Nos engagements",
+      "description": "Notre équipe s’engage à vous accompagner avec excellence et intégrité afin de réussir votre installation en Suisse dans les meilleures conditions.",
       "reasonItems": [
         {
-          "title": "Contact an advisor",
-          "description": "We discuss together to understand your situation, identify your specific needs, and find the most suitable solutions.",
-          "icon": "MessagesSquare"
+          "title": "Engagement",
+          "description": "Un accompagnement dédié et une volonté de satisfaire vos besoins à chaque étape.",
+          "icon": "Handshake"
         },
         {
-          "title": "Get a quote in under 48 hours",
-          "description": "A first response within 24 hours, then a quote proposal within 48 hours after your initial contact.",
-          "icon": "Clock3"
+          "title": "Expertise",
+          "description": "Des conseils adaptés et des solutions précises, pour une installation réussie.",
+          "icon": "Lightbulb"
         },
         {
-          "title": "Contract signing",
-          "description": "We formalize a brokerage mandate and share the best offers from our trusted partners."
+          "title": "Transparence",
+          "description": "Des relations de confiance avec nos clients et partenaires.",
+          "icon": "Target"
         },
         {
-          "title": "Contract ",
-          "description": "We formalize a brokerage mandate and share the best offers from our trusted partners."
+          "title": "Excellence",
+          "description": "Des services personnalisés et un suivi constant pour vous garantir un excellent résultat.",
+          "icon": "Award"
         }
       ]
     },
@@ -126,11 +151,32 @@
       "buttonText": "Contact-us"
     },
 
-    "BlogList": {
-      "heading": "Blog & News",
-      "subHeading": "Our latest ((articles))",
-      "description": "Find our latest news, articles, and expert advice to help you choose the best insurance solutions.",
-      "buttonText": "See more"
+    "ServiceFeature": {
+      "heading": "Votre installation à Genève",
+      "subHeading": "Trouvez facilement et rapidement votre ((nouveau chez-vous à Genève.))",
+      "description": "Simplifiez la recherche de votre logement idéal en Suisse grâce à nos services spécialisés et à un large choix d’offres adaptées à vos besoins.",
+      "reasons": [
+        {
+          "reasonItems": [
+            {
+              "title": "Trouver un logement"
+            },
+            {
+              "title": "Trouver un locataire"
+            },
+            {
+              "title": "Entreprises et Organisations"
+            }
+          ]
+        }
+      ]
+    },
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
     }
   },
 
@@ -2138,16 +2184,8 @@
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           },
           {
-            "title": "Tuition",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          },
-          {
             "title": "Concierge service",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          },
-          {
-            "title": "Trouver un locataire",
-            "description": "Un accompagnement fiable pour sécuriser et finaliser votre location"
           },
           {
             "title": "Discover Geneva",

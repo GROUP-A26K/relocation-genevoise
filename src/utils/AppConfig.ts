@@ -8,10 +8,18 @@ export const AppConfig = {
   defaultLocale: "fr",
   localePrefix,
   routes: {
-    assistance: { fr: "/assistance", en: "/support" },
-    personalData: { fr: "/donnes-personnelles", en: "/personal-data" },
-    legalNotice: { fr: "/mentions-legales", en: "/legal-notice" },
-    callMe: { fr: "/rappelez-moi", en: "/call-me" },
+    assistance: { fr: "/assistance", en: "/support", priority: 0.9 },
+    personalData: {
+      fr: "/donnes-personnelles",
+      en: "/personal-data",
+      priority: 0.9,
+    },
+    legalNotice: {
+      fr: "/mentions-legales",
+      en: "/legal-notice",
+      priority: 0.9,
+    },
+    callMe: { fr: "/rappelez-moi", en: "/call-me", priority: 0.9 },
     personalInsurance: {
       fr: "/particulier/assurance",
       en: "/personal/insurance",

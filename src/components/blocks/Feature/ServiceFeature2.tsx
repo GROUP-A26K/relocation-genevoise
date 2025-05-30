@@ -1,7 +1,7 @@
 import { FeatureRowCard2 } from "@/components/customs/Card";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import Image from "next/image";
-import HeroImage from "@/assets/img/bg/agence-de-relocation a-geneve.webp";
+import HeroImage from "@/assets/img/bg/trouvez-facilement-votre-nouveau-chez-vous-geneve.webp";
 
 interface Feature {
   title: string;

@@ -4,7 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
 
-type LocaleMap = Record<string, string>;
+type LocaleMap = Record<string, string | number>;
 
 function buildRewrites() {
   const { defaultLocale, locales, routes } = AppConfig;

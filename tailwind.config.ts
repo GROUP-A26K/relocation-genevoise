@@ -220,6 +220,7 @@ export default {
       screens: {
         "2xl": "1440px",
         xl: "1240px",
+        nav: "1080px",
         lg: "1024px",
         md: "768px",
         sm: "640px",

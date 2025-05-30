@@ -58,7 +58,7 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
                   {item.title}
                 </p>
 
-                <div className="grid gap-y-3 gap-x-[48px] xl:grid-cols-3 grid-cols-3">
+                <div className="grid gap-y-3 gap-x-[48px] xl:grid-cols-2 grid-cols-3">
                   {item.items.map((subItem) => (
                     <NavigationMenuLink
                       asChild

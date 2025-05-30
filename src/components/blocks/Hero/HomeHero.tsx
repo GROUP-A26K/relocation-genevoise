@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FC } from "react";
 import Button from "@/components/customs/Button";
 import { Link } from "@/libs/i18nNavigation";
-import HeroImage from "@/assets/img/bg/agence-de-relocation a-geneve.webp";
+import HeroImage from "@/assets/img/bg/agence-de-relocation-a-geneve.webp";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import { ArrowRight } from "lucide-react";
 
@@ -53,25 +53,6 @@ export const HomeHero: FC<Props> = ({
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
               {description}
             </p>
-            {/* <ul
-              role="list"
-              className="flex flex-col lg:flex-row gap-3 lg:gap-6 w-full items-center justify-center"
-            >
-              {[experience, customer].map((text) => (
-                <li
-                  key={text}
-                  className="flex flex-row items-center gap-1 lg:w-[236px]"
-                >
-                  <CircleCheck
-                    aria-hidden="true"
-                    className="h-4 w-4 lg:h-6 lg:w-6 text-primary-500"
-                  />
-                  <span className="text-sm font-semibold text-black-500 leading-[130%]">
-                    {text}
-                  </span>
-                </li>
-              ))}
-            </ul> */}
           </div>
 
           <div className="flex flex-row gap-2 w-full items-center justify-center">

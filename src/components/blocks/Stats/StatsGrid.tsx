@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FC } from "react";
-import StatsBG from "@/assets/img/bg/assurance-genevoise-a-geneve.webp";
+import StatsBG from "@/assets/img/bg/relocation-genevoise-a-geneve.webp";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 interface Props {
   heading?: string;
