@@ -64,7 +64,7 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
                 <Button
                   as="ghost"
                   variant="md"
-                  type="primary"
+                  type="secondary"
                   className="w-full border-2 border-white pointer-events-auto whitespace-normal"
                   iconStart={PhoneCall}
                 >

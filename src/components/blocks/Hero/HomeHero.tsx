@@ -55,21 +55,27 @@ export const HomeHero: FC<Props> = ({
             </p>
           </div>
 
-          <div className="flex flex-row gap-2 w-full items-center justify-center">
+          <div className="flex lg:flex-row flex-col gap-2 w-full items-center justify-center">
             {button && (
-              <Link href={"/rappelez-moi"}>
-                <Button as="solid" variant="md" type="secondary">
+              <Link href={"/rappelez-moi"} className="lg:w-fit w-full">
+                <Button
+                  as="solid"
+                  variant="md"
+                  type="secondary"
+                  className="lg:w-fit w-full"
+                >
                   {button.text}
                 </Button>
               </Link>
             )}
             {button2 && (
-              <Link href={"/contact"}>
+              <Link href={"/contact"} className="lg:w-fit w-full">
                 <Button
                   as="outline"
                   variant="md"
                   type="primary"
                   iconEnd={ArrowRight}
+                  className="lg:w-fit w-full"
                 >
                   {button2.text}
                 </Button>

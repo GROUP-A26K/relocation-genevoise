@@ -9,6 +9,7 @@ import Image from "next/image";
 import Logo from "@/assets/img/logos/rg-logo.svg";
 import { LanguageSelector } from "./LanguageSelector";
 import Button from "@/components/customs/Button";
+import { Phone } from "lucide-react";
 
 const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
   return (
@@ -35,7 +36,7 @@ const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
             href={callButton?.url ?? "/rappelez-moi"}
             className="flex items-center"
           >
-            <Button as="solid" variant="md" type="primary">
+            <Button as="solid" variant="md" type="primary" iconStart={Phone}>
               +41 22 715 17 48
             </Button>
           </Link>

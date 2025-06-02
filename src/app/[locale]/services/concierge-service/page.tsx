@@ -65,9 +65,17 @@ export default async function Page(props: Props) {
               },
             ],
           },
+          {
+            paragraphType: "introductory",
+            content: [
+              {
+                paragraph: t("sections.2.content.0.paragraph"),
+              },
+            ],
+          },
         ]}
       />
-      <Section>
+      <Section className="lg:bg-white bg-gray-50">
         <BookConsultation2
           heading={t("BookConsultation.heading")}
           subHeading={t("BookConsultation.subHeading")}
