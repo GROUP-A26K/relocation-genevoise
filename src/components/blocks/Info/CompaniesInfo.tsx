@@ -58,7 +58,7 @@ export const CompaniesInfo: FC<Props> = ({
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl lg:items-center text-left">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-center text-primary-500 !leading-[130%]">
+              <p className="text-sm font-semibold text-center text-secondary-500 !leading-[130%]">
                 {heading}
               </p>
               <h1 className="text-3xl font-bold text-center !leading-[130%]">
@@ -71,21 +71,28 @@ export const CompaniesInfo: FC<Props> = ({
           </div>
         </div>
       )}
-      <div className="flex flex-col lg:gap-6 gap-8">
-        <div className="grid lg:grid-cols-3 lg:gap-8 gap-3 items-stretch">
-          {items.flatMap(
-            (item, i) =>
-              item.subItems &&
-              item.subItems.map((subItem, j) => (
-                <CompanyCard
-                  key={`${i}-${j}`}
-                  title={subItem.title}
-                  description={subItem.description}
-                  icon={subItem.icon}
-                />
-              ))
-          )}
-        </div>
+      <div className="flex flex-col lg:gap-8 gap-8">
+        {items.map((item, i) => (
+          <div key={i} className="flex flex-col lg:gap-8 gap-8">
+            <h3 className="flex lg:text-2xl text-xl font-semibold !leading-[130%] pl-4 border-l-4 border-secondary-500">
+              {item.title}
+            </h3>
+
+            <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
+              {item.subItems &&
+                item?.subItems.map((subItem, j) => (
+                  <li key={subItem.title} className="h-full">
+                    <CompanyCard
+                      key={`${i}-${j}`}
+                      title={subItem.title}
+                      description={subItem.description}
+                      icon={subItem.icon}
+                    />
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

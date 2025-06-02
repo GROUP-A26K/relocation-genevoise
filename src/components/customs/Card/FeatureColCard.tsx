@@ -18,7 +18,7 @@ export const FeatureColCard: React.FC<Props> = ({
   info,
 }) => {
   return (
-    <div className="flex p-6 h-full flex-col w-full lg:gap-6 gap-4 bg-grey-50 border border-grey-50 hover:bg-white hover:border-primary-500 rounded-2xl leading-none no-underline transition-colors outline-none select-none">
+    <div className="flex p-6 h-full flex-col w-full lg:gap-6 gap-4 bg-grey-50 border border-grey-50 hover:bg-white hover:border-secondary-500 rounded-2xl leading-none no-underline transition-colors outline-none select-none">
       <div className="lg:h-12 lg:w-12 w-10 h-10 rounded-xl bg-secondary-500 flex items-center justify-center">
         <div className="lg:p-3 p-2.5">
           {Icon && <Icon className="lg:h-6 lg:w-6 w-5 h-5 text-black-500" />}

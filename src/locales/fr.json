@@ -173,6 +173,56 @@
           "description": "Notre accompagnement continue après votre emménagement : conseils, gestion des premiers besoins, aide en cas de problème ou pour toute adaptation nécessaire à votre nouvelle vie en Suisse."
         }
       ]
+    },
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ? ",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
+    }
+  },
+
+  "FindATenant": {
+    "Hero": {
+      "heading": "Placement rapide",
+      "subHeading": "Trouver un locataire",
+      "description": "Nous vous aidons à trouver rapidement un locataire fiable grâce à un service complet : photos professionnelles, sélection rigoureuse des candidats et gestion de toutes les démarches administratives."
+    },
+    "Content": {
+      "items": [
+        {
+          "title": "Photos et vidéos professionnelles de votre bien",
+          "description": "Nous réalisons des photos et vidéos de qualité professionnelle pour mettre en valeur votre bien et attirer l’attention des locataires potentiels dès la première impression."
+        },
+        {
+          "title": "Diffusion des annonces",
+          "description": "Votre bien est mis en avant sur les principales plateformes et réseaux spécialisés, en Suisse et à l’international. Les annonces sont également envoyées à notre base de données et à nos nombreux clients en recherche active de logement."
+        },
+        {
+          "title": "Organisation des visites",
+          "description": "Nous organisons et assurons personnellement les visites de votre bien. Lors des visites, nous mettons en valeur les atouts de votre bien et répondons avec précision aux questions des candidats pour susciter leur intérêt et faciliter leur décision."
+        },
+        {
+          "title": "Gestion et réception des dossiers",
+          "description": "Nous collectons, analysons et vérifions chaque dossier pour vous proposer uniquement des candidats sérieux, solvables et motivés, dans le respect d’un processus rigoureux, transparent et aligné avec vos critères de sélection."
+        },
+        {
+          "title": "Suivi des candidatures",
+          "description": "Une fois les candidatures soumises à l'agence ou au propriétaire, nous assurons un suivi rigoureux, pour garantir une gestion fluide et efficace jusqu’à la signature du bail par le futur locataire."
+        },
+        {
+          "title": "Nouveau locataire !",
+          "description": "Une fois votre nouveau locataire sélectionné, nous vous accompagnons pour finaliser les démarches administratives et garantir une installation sereine et parfaitement organisée."
+        }
+      ]
+    },
+    "BookConsultation": {
+      "heading": "Vous accompagner",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ? ",
+      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
     }
   },
 
@@ -478,7 +528,7 @@
       {
         "content": [
           {
-            "paragraph": "Si besoin, nous vous assistons lors des visites scolaires pour examiner tous les aspects essentiels, de l'atmosphère de l'école à ses installations, et faciliter les échanges avec les équipes pédagogiques."
+            "paragraph": "Un service complet pour vous accompagner à chaque phase, du premier contact à l'intégration réussie de votre enfant, et ainsi assurer une tranquillité d'esprit pour toute la famille."
           }
         ]
       }
@@ -566,6 +616,14 @@
             "paragraph": "Destiné aux particuliers comme aux professionnels, notre service coordonne l’intervention de prestataires qualifiés : électriciens, jardiniers, agents d’entretien ou prestataires de services spécifiques. Grâce à notre approche personnalisée et réactive, chaque demande est prise en charge avec rigueur, discrétion et professionnalisme."
           }
         ]
+      },
+
+      {
+        "content": [
+          {
+            "paragraph": "Libérez-vous l’esprit et gagnez un temps précieux en confiant vos demandes à une équipe flexible, à l’écoute et toujours prête à s’adapter."
+          }
+        ]
       }
     ],
     "BookConsultation": {
@@ -577,64 +635,83 @@
     }
   },
 
-  "Particular": {
-    "Assurance": {
-      "BusinessInfo": {
-        "heading": "Particulier",
-        "subHeading": "Nos ((Assurances)) Particuliers",
-        "description": "Nous protégeons votre avenir avec nos solutions d’assurances sur mesure. Bénéficiez de nos couvertures sur vos biens, votre proches et votre foyer.",
-        "linkText": "Découvrir nos offres",
-        "items": [
-          {
-            "title": "Assurance de Choses et de Patrimoine",
-            "description": "Une protection complète pour sécuriser vos biens et préserver votre patrimoine."
-          },
-          {
-            "title": "Assurance RC Ménage",
-            "description": "Protégez votre logement et votre responsabilité civile avec une couverture complète adaptée à votre quotidien."
-          },
-          {
-            "title": "Assurance Animaux",
-            "description": "Nos solutions adaptées aux besoins et au bien-être de vos compagnons ."
-          },
-          {
-            "title": "Assurance Véhicule à Moteur",
-            "description": "Nos solutions pour prendre la route en toute sérénité."
-          },
-          {
-            "title": "Assurance Protection Juridique",
-            "description": "Un accompagnement et un soutien légal en cas de litige."
-          },
-          {
-            "title": "Assurance Employé de Maison",
-            "description": "Protégez vos employés de maison lorsqu’ils sont à votre domicile."
-          },
-          {
-            "title": "Assurance Voyage",
-            "description": "Bénéficiez d’une couverture complète pour voyager en toute tranquillité partout dans le monde."
-          },
-          {
-            "title": "Assurance RC Immeuble et Bâtiment",
-            "description": "Protègez votre bien immobilier contre les risques imprévus et les dommages aux tiers."
-          },
-          {
-            "title": "Assurance Frontalier",
-            "description": "Une solution adaptée pour votre assurance maladie en tant que travailleur frontalier."
-          },
-          {
-            "title": "Assurance Prévoyance Privée",
-            "description": "Complétez votre protection sociale et préparez au mieux votre retraite."
-          },
-          {
-            "title": "Assurance Vie",
-            "description": "Assurez l'avenir de vos proches avec un capital garanti en cas de décès ou d’incapacité."
-          },
-          {
-            "title": "Assurance Libre Passage",
-            "description": "Préservez vos avoirs de prévoyance lors d’un changement d’emploi ou d’un départ à l’étranger."
-          }
-        ]
-      }
+  "Companies": {
+    "BusinessInfo": {
+      "heading": "Professionnel",
+      "subHeading": "Entreprises",
+      "description": "Un service de relocation sur mesure à Genève pour les entreprises et organisations, conçu pour simplifier l'installation de vos collaborateurs. Nous proposons des solutions pratiques et adaptées pour faciliter leur intégration à la vie genevoise.",
+      "items": [
+        {
+          "title": "For you",
+          "subItems": [
+            {
+              "title": "Efficacité opérationnelle",
+              "description": "Vos employés gagnent en efficacité en se concentrant sur leur poste sans avoir à naviguer dans la complexité du marché immobilier genevois ni à gérer les démarches liées au logement."
+            },
+            {
+              "title": "Réduction des coûts",
+              "description": "En confiant la recherche de logement à un service de relocation, vos collaborateurs économisent des heures précieuses, qu'ils peuvent réinvestir dans des tâches à forte valeur ajoutée."
+            },
+            {
+              "title": "Rétention des talents",
+              "description": "Des services de qualité qui renforcent l'attractivité de votre entreprise et fidélisent vos collaborateurs sur le long terme."
+            }
+          ]
+        },
+        {
+          "title": "For your collaborator",
+          "subItems": [
+            {
+              "title": "Recherche de logement",
+              "description": "Après un premier échange de découverte, nous accompagnons vos collaborateurs dans la recherche de logements parfaitement adaptés à leurs critères et leurs besoins spécifiques."
+            },
+            {
+              "title": "Conseils personnalisés",
+              "description": "Des recommandations sur mesure pour répondre aux besoins spécifiques de votre entreprise et de vos collaborateurs."
+            },
+            {
+              "title": "Installation et intégration",
+              "description": "Aide à la mise en place de services tels que l'électricité, l'assurance, l'entretien ménager et des conseils pratiques pour s'adapter à la vie à Genève."
+            },
+            {
+              "title": "Mise en relation",
+              "description": "Nous mettons en relation vos collaborateurs avec nos partenaires de confiance pour différents services nécessaires à leur vie quotidienne (société de nettoyage etc.)"
+            },
+            {
+              "title": "Fitness",
+              "description": "Orientation vers les centres de fitness et aide à l'inscription pour favoriser le bien-être et l'équilibre de vos collaborateurs. Vos collaborateurs bénéficient de tarifs spéciaux dans nos clubs partenaires."
+            },
+            {
+              "title": "Conciergerie",
+              "description": "Un service à la demande pour libérer du temps à vos collaborateurs et simplifier leur quotidien professionnel ou personnel."
+            },
+            {
+              "title": "Dossiers de candidature",
+              "description": "Nous aidons vos collaborateurs à constituer des dossiers solides pour maximiser leurs chances d’obtenir un logement dans les meilleurs délais."
+            },
+            {
+              "title": "Visites accompagnées",
+              "description": "Accompagnement personnalisé lors des visites, avec pré-visites possibles et envoi de vidéos détaillées pour gagner du temps."
+            },
+            {
+              "title": "Service de post-location",
+              "description": "Assistance continue et soutien complet après la location : état des lieux, résiliation, transferts, ou gestion des éventuels litiges."
+            },
+            {
+              "title": "Ouverture d'un compte bancaire",
+              "description": "Accompagnement dans les démarches bancaires pour une installation rapide, fluide et conforme aux exigences suisses."
+            },
+            {
+              "title": "Assurances",
+              "description": "Conseil et assistance personnalisés pour choisir les assurances essentielles (santé, habitation, etc.) via notre bureau Assurance Genevoise."
+            },
+            {
+              "title": "Scolarité",
+              "description": "Recherche d'établissements scolaires, aide à l'inscription et conseils adaptés aux besoins familiaux."
+            }
+          ]
+        }
+      ]
     }
   },
 

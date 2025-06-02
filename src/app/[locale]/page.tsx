@@ -56,17 +56,17 @@ export default async function Page(props: Props) {
     {
       title: t("ServiceFeature.reasons.0.reasonItems.0.title"),
       icon: Building,
-      link: "/professionnel/entreprise",
+      link: "/find-accommodation",
     },
     {
       title: t("ServiceFeature.reasons.0.reasonItems.1.title"),
       icon: Globe,
-      link: "/professionnel/international",
+      link: "/find-a-tenant",
     },
     {
       title: t("ServiceFeature.reasons.0.reasonItems.2.title"),
       icon: Scale,
-      link: "/professionnel/profession-liberale",
+      link: "/companies",
     },
   ];
 
@@ -88,7 +88,7 @@ export default async function Page(props: Props) {
         />
       </Section>
 
-      <Section isDivider>
+      <Section>
         <ContactFeature
           heading={t("ContactFeature.heading")}
           subHeading={t("ContactFeature.subHeading")}
@@ -206,8 +206,7 @@ export default async function Page(props: Props) {
           description={t("BookConsultation.description")}
           buttonText1={t("BookConsultation.buttonText1")}
           buttonText2={t("BookConsultation.buttonText2")}
-          
-           />
+        />
       </Section>
     </>
   );

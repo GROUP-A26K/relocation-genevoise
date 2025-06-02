@@ -19,7 +19,7 @@ export const CompanyCard: React.FC<Props> = ({
         </div>
       </div>
       <div className="flex flex-col justify-between h-full">
-        <div className={cn("flex flex-col text-black-500 lg:gap-2 gap-1")}>
+        <div className={cn("flex flex-col text-black-500 lg:gap-3 gap-1")}>
           <h2 className="text-xl font-semibold !leading-[130%]">{title}</h2>
           {description && (
             <p

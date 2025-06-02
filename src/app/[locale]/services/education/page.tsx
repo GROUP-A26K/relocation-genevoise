@@ -98,7 +98,7 @@ export default async function Page(props: Props) {
           },
         ]}
       />
-      <Section>
+      <Section className="lg:bg-white bg-gray-50">
         <BookConsultation2
           heading={t("BookConsultation.heading")}
           subHeading={t("BookConsultation.subHeading")}

@@ -2,86 +2,35 @@
   "HomePage": {
     "Hero": {
       "heading": "Home",
-      "subHeading": "Your Insurance Broker in ((Switzerland))",
-      "description": "Assurance Genevoise supports you throughout Switzerland with personalized insurance solutions and a trusted network of partners.",
+      "subHeading": "Relocation Agency in Geneva",
+      "description": "Your trusted partner in Geneva for a smooth relocation : housing and tenant search, corporate services, and personalized support at every stage of your journey.",
       "experience": "25 years of experience",
       "customer": "2500+ satisfied clients",
-      "buttonText": "Call me",
-      "buttonText2": "Trouver un logement"
+      "buttonText": "Contact-us",
+      "buttonText2": "Find accommodation"
     },
 
-    "FindAccommodation": {
-      "Hero": {
-        "heading": "Votre projet d’installation",
-        "subHeading": "Trouver un logement",
-        "description": "Une solution complète et sur mesure pour trouver votre logement idéal à Genève, gérer vos démarches avec simplicité et réussir votre installation en toute sérénité."
-      },
-      "Content": {
-        "items": [
-          {
-            "title": "Entretien de découverte",
-            "description": "Un premier échange pour comprendre vos besoins, vos critères et votre situation personnelle, afin de définir ensemble la stratégie de recherche la plus pertinente et vous proposer un accompagnement sur mesure."
-          },
-          {
-            "title": "Constitution de votre dossier",
-            "description": "Nous constituons pour vous un dossier solide et attractif, conforme aux attentes des propriétaires, afin de maximiser vos chances d'obtenir rapidement un logement."
-          },
-          {
-            "title": "Analyse du marché",
-            "description": "Grâce à nos outils et à notre réseau, nous analysons en temps réel les offres disponibles selon vos critères, en tenant compte de la dynamique locale et des opportunités correspondant à votre profil et à vos priorités."
-          },
-          {
-            "title": "Propositions de biens",
-            "description": "Nous vous envoyons une sélection de logements qui répondent à vos attentes, afin d’orienter vos visites vers les biens les plus adaptés à votre projet."
-          },
-          {
-            "title": "Organisation des visites",
-            "description": "Nous planifions les visites selon vos disponibilités, en assurant la coordination entre vous, les propriétaires et les régies pour vous simplifier la démarche."
-          },
-          {
-            "title": "Envoi et suivi de votre dossier",
-            "description": "Nous soumettons votre dossier aux régies ou bailleurs et assurons un suivi rigoureux, en relançant et en intervenant si nécessaire pour accélérer le processus."
-          },
-          {
-            "title": "Formalités administratives",
-            "description": "Nous vous accompagnons dans toutes les démarches administratives telles que la lecture et signature du bail, la mise en place des contrats d’assurances et de garantie, et autres formalités essentielles."
-          },
-          {
-            "title": "Aide à l’emménagement",
-            "description": "Nous vous aidons dans l’organisation pratique de votre installation : emménagement, souscription aux services essentiels (internet, électricité) et recommandations personnalisées pour faciliter votre prise de repères."
-          },
-          {
-            "title": "Support après l’installation",
-            "description": "Notre accompagnement continue après votre emménagement : conseils, gestion des premiers besoins, aide en cas de problème ou pour toute adaptation nécessaire à votre nouvelle vie en Suisse."
-          }
-        ]
-      }
-    },
     "ContactFeature": {
-      "heading": "Nos offres",
-      "subHeading": "Nos services de Relocation",
-      "description": "Une expérience client irréprochable et un accompagnement clé-en-main afin de trouver votre nouveau logement, faciliter votre installation et vous aider à vous sentir rapidement chez vous.",
-      "buttonText": "Contactez-nous",
+      "heading": "Offers",
+      "subHeading": "Our Relocation Services",
+      "description": "A flawless client experience and turnkey support to help you find your new home, ease your move, and feel at home as quickly as possible.",
+      "buttonText": "Contact-us",
       "reasonItems": [
         {
-          "title": "Recherche de propriétés",
-          "description": "À la suite d’un premier rendez-vous de découverte, nous prenons le temps de sélectionner avec soins des propriétés parfaitement adaptées à votre besoins, vos souhaits et vos critères.",
-          "icon": "Search"
+          "title": "Property Search",
+          "description": "Following an initial discovery meeting, we take the time to carefully select properties that perfectly match your needs, preferences, and criteria."
         },
         {
-          "title": "Visites accompagnées et visites à distance",
-          "description": "Nous organisons vos visites et vous accompagnons pour vous apporter un regard professionnel. Si vous êtes à distance, nous réalisons également des visites virtuelles détaillées.",
-          "icon": "House"
+          "title": "Accompanied viewings and remote visits",
+          "description": "We organize your property visits and accompany you to provide a professional perspective. If you’re at a distance, we also offer detailed virtual tours."
         },
         {
-          "title": "Support administratif et suivi",
-          "description": "Nous assurons avec vous la préparation de votre dossier de candidature afin de maximiser vos chances, et restons à vos côtés jusqu’à la signature définitive du bail.",
-          "icon": "Users"
+          "title": "Administrative support and follow-up",
+          "description": "We work with you to prepare your application file to maximize your chances and stay by your side until the final lease is signed."
         },
         {
-          "title": "Services de conciergerie",
-          "description": "Ouverture de compte bancaire, assurance habitation, garantie de loyer ou toute autre demande spécifique : notre conciergerie vous accompagne pour simplifier vos démarches et alléger votre quotidien.",
-          "icon": "Grid"
+          "title": "Premium Concierge Services",
+          "description": "Bank account opening, home insurance, rent guarantee, or any other specific request, our concierge service is here to simplify your procedures and lighten your daily load."
         }
       ]
     },
@@ -91,92 +40,187 @@
     },
 
     "StatsGrid": {
-      "heading": "Reliability & transparency",
-      "subHeading": "Your trusted partner in ((Switzerland))",
-      "description": "We guide you with clarity, speed, and know-how to provide the right solutions for you.",
+      "heading": "Availability & Transparency",
+      "subHeading": "An agency by your side through every step of your relocation.",
+      "description": "Relocation Genevoise is at your service to make your move simple and stress-free, offering clear advice, genuine commitment, and personalized services to ensure a smooth and successful relocation.",
       "start1": {
-        "value": "25+",
+        "value": "20+",
         "label": "Years of experience"
       },
       "start2": {
-        "value": "2500+",
-        "label": "Clients served"
+        "value": "250+",
+        "label": "Satisfied clients"
       },
       "start3": {
         "value": "3",
         "label": "Languages spoken"
       },
       "start4": {
-        "value": "10+",
-        "label": "Nationalities trust our expertise"
+        "value": "4",
+        "label": "Facilities in Switzerland "
       }
     },
 
     "EngagementFeature": {
-      "heading": "Vous guider vers votre nouveau chez-vous avec soin et expertise.",
-      "subHeading": "Nos engagements",
-      "description": "Notre équipe s’engage à vous accompagner avec excellence et intégrité afin de réussir votre installation en Suisse dans les meilleures conditions.",
+      "heading": " Our Commitments",
+      "subHeading": "Guiding you to your new home with care and expertise.",
+      "description": "Our team is committed to supporting you with excellence and integrity to ensure a smooth and successful relocation to Switzerland.",
       "reasonItems": [
         {
-          "title": "Engagement",
-          "description": "Un accompagnement dédié et une volonté de satisfaire vos besoins à chaque étape.",
-          "icon": "Handshake"
+          "title": "Commitment",
+          "description": "Dedicated support and a commitment to meeting your needs at every stage."
         },
         {
           "title": "Expertise",
-          "description": "Des conseils adaptés et des solutions précises, pour une installation réussie.",
-          "icon": "Lightbulb"
+          "description": "Tailored advice and precise solutions for a successful relocation."
         },
         {
-          "title": "Transparence",
-          "description": "Des relations de confiance avec nos clients et partenaires.",
-          "icon": "Target"
+          "title": "Transparency",
+          "description": "Trust-based relationships with our clients and partners."
         },
         {
           "title": "Excellence",
-          "description": "Des services personnalisés et un suivi constant pour vous garantir un excellent résultat.",
-          "icon": "Award"
+          "description": "Personalized services and continuous support to ensure an excellent outcome."
         }
       ]
     },
 
     "ContentWithImg": {
-      "heading": "Why Assurance Genevoise ?",
-      "subHeading": "Your project, our ((expertise))",
+      "heading": "A trusted partner",
+      "subHeading": "Choose the leading relocation provider in Geneva.",
       "description": [
         {
-          "paragraph": "Our brokerage firm supports you with high value-added expertise to secure your assets and optimize your insurance coverage."
+          "paragraph": "Relocation Genevoise supports its clients with all direct and indirect aspects of the relocation process in the Geneva area. Our expertise in real estate and in-depth knowledge of the local market allow us to provide comprehensive support and high-quality service."
         }
       ],
-      "buttonText": "Contact-us"
+      "buttonText": "Contact our team"
     },
 
     "ServiceFeature": {
-      "heading": "Votre installation à Genève",
-      "subHeading": "Trouvez facilement et rapidement votre ((nouveau chez-vous à Genève.))",
-      "description": "Simplifiez la recherche de votre logement idéal en Suisse grâce à nos services spécialisés et à un large choix d’offres adaptées à vos besoins.",
+      "heading": "Your relocation to Geneva",
+      "subHeading": "Find your new home in Geneva easily and quickly.",
+      "description": "Simplify your search for the perfect home in Switzerland with our specialized services and a wide range of offers tailored to your needs.",
       "reasons": [
         {
           "reasonItems": [
             {
-              "title": "Trouver un logement"
+              "title": "Find accommodation"
             },
             {
-              "title": "Trouver un locataire"
+              "title": "Find a tenant"
             },
             {
-              "title": "Entreprises et Organisations"
+              "title": "Companies"
             }
           ]
         }
       ]
     },
+
     "BookConsultation": {
-      "heading": "Vous accompagner",
-      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
-      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
-      "buttonText1": "Contactez-nous",
-      "buttonText2": "Trouver un logement"
+      "heading": "We look forward to meeting you",
+      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
+      "buttonText1": "Contact-us",
+      "buttonText2": "Find accommodation"
+    }
+  },
+
+  "FindAccommodation": {
+    "Hero": {
+      "heading": "Your relocation project",
+      "subHeading": "Find accommodation",
+      "description": "A comprehensive, tailor-made solution to find your ideal home in Geneva, handle all your procedures with ease, and ensure a smooth, worry-free move."
+    },
+    "Content": {
+      "items": [
+        {
+          "title": "Discovery meeting",
+          "description": "An initial discussion to understand your needs, criteria, and personal situation, so we can jointly define the most relevant search strategy and offer you bespoke support."
+        },
+        {
+          "title": "Preparation of your application file",
+          "description": "We prepare a strong, attractive application file for you—aligned with landlords’ expectations—to maximize your chances of securing a home quickly."
+        },
+        {
+          "title": "Market analysis",
+          "description": "Using our tools and network, we analyze available listings in real time based on your criteria, taking into account local market dynamics and opportunities that match your profile and priorities."
+        },
+        {
+          "title": "Property proposals",
+          "description": "We send you a curated list of properties that meet your criteria, helping you focus your viewings on the homes best suited to your project."
+        },
+        {
+          "title": "Visit scheduling",
+          "description": "We schedule viewings around your availability, coordinating between you, landlords, and agencies to simplify the process."
+        },
+        {
+          "title": "Submission and tracking of your application",
+          "description": "We submit your application to agencies or landlords and maintain rigorous follow-up, including reminders and interventions as needed to expedite approval."
+        },
+        {
+          "title": "Administrative formalities",
+          "description": "We guide you through all necessary administrative steps, reviewing and signing your lease, setting up insurance and guarantees, and handling other essential procedures."
+        },
+        {
+          "title": "Move-in assistance",
+          "description": "We assist you with the practical organization of your move-in: coordinating the move, setting up essential services (internet, electricity), and providing personalized recommendations to help you settle in smoothly."
+        },
+        {
+          "title": "Post-move support",
+          "description": "Our support continues after your move: offering advice, managing initial needs, and assisting with any issues or adjustments needed for your new life in Switzerland."
+        }
+      ]
+    },
+    "BookConsultation": {
+      "heading": "Supporting You",
+      "subHeading": "Would you like to benefit from our expertise and services?",
+      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
+      "buttonText1": "Contact us",
+      "buttonText2": "Find accommodation"
+    }
+  },
+
+  "FindATenant": {
+    "Hero": {
+      "heading": "Quick Placement",
+      "subHeading": "Find a tenant",
+      "description": "We help you quickly find a reliable tenant through a comprehensive service: professional photos, rigorous candidate screening, and management of all administrative procedures."
+    },
+    "Content": {
+      "items": [
+        {
+          "title": "Professional photos and videos of your property",
+          "description": "We produce high-quality professional photos and videos to showcase your property and capture the attention of potential tenants from the very first impression."
+        },
+        {
+          "title": "Listing distribution",
+          "description": "Your property is promoted on major specialized platforms and networks, both in Switzerland and internationally. listings are also sent to our database and to many active clients searching for housing."
+        },
+        {
+          "title": "Visit coordination",
+          "description": "We personally organize and conduct visits to your property. during the visits, we highlight your property’s strengths and accurately answer candidates’ questions to spark their interest and help them make a decision."
+        },
+        {
+          "title": "Application management and review",
+          "description": "we collect, analyze, and verify each application to present you only with serious, financially reliable, and motivated candidates, following a rigorous, transparent process aligned with your selection criteria."
+        },
+        {
+          "title": "Application follow-up",
+          "description": "Once applications are submitted to the agency or landlord, we provide thorough follow-up to ensure a smooth and efficient process right up to the lease signing by the future tenant."
+        },
+        {
+          "title": "New tenant !",
+          "description": "Once your new tenant is selected, we assist you in finalizing the administrative procedures to ensure a smooth and well-organized move-in."
+        }
+      ]
+    },
+    "BookConsultation": {
+      "heading": "Supporting You",
+      "subHeading": "Would you like to benefit from our expertise and services?",
+      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
+      "buttonText1": "Contact us",
+      "buttonText2": "Find accommodation"
     }
   },
 
@@ -435,48 +479,48 @@
 
   "Education": {
     "heading": "Our service",
-    "subHeading": "Tuition",
-    "description": "A customized education solution designed to support your children's unique learning journey, ensuring the best opportunities for their growth and success.",
+    "subHeading": "Academic Services",
+    "description": " A tailor-made educational solution to guide you toward the ideal institution that supports your children’s growth, well-being, and academic success.",
     "sections": [
       {
         "content": [
           {
-            "paragraph": "Our school support service aims to simplify and optimize the search for suitable educational institutions for your children, taking into account their aspirations, educational needs, and potential, as well as your family and professional requirements. We guide you through every step of this essential process to ensure each child finds the school environment where they can thrive."
+            "paragraph": "Moving to Switzerland with children involves important decisions regarding education. We guide you every step of the way — from understanding the school system to choosing the right institutions and managing administrative procedures. Our approach is tailored to your budget, preferred location, education standards, and specific needs."
           }
         ]
       },
       {
         "content": [
           {
-            "title": "Presentation of diverse educational options",
-            "paragraph": "We provide an overview of existing possibilities – nurseries, public and private schools, Swiss or international schools, as well as less conventional alternatives – enabling you to select the best opportunities."
+            "title": "Overview of various educational options",
+            "paragraph": "We guide you through the different schooling options in Switzerland, from nurseries to public and private schools, Swiss or international institutions, as well as less conventional alternatives, helping you select the best opportunities for your family’s needs."
           },
           {
-            "title": "Pre-registration and initial formalities",
-            "paragraph": "Our services include support with the first steps of online pre-registration, ensuring all required formalities are properly completed by the parents."
+            "title": "Pre-enrollment and initial formalities",
+            "paragraph": "Our service includes assistance with pre-enrollment procedures, making sure all necessary formalities are correctly handled on your behalf, as parents."
           },
           {
-            "title": "Arrangement of meetings",
-            "paragraph": "We organize appointments, either by phone or in person, with school directors or admissions officers, allowing you to have direct exchanges to ask questions and better evaluate the available options."
+            "title": "Meeting organization",
+            "paragraph": "We organize personalized meetings with school representatives, either by phone or in person, giving you the opportunity to ask questions directly and better assess the available options."
           },
           {
-            "title": "Debriefing with the family",
-            "paragraph": "We offer a debriefing session where children and parents can discuss their impressions and refine their choice based on objective and personal criteria."
+            "title": "Family assessment",
+            "paragraph": "We offer a debriefing session during which children and parents can share their impressions and refine their choices based on both objective and personal criteria."
           },
           {
             "title": "Assistance with final enrollment",
-            "paragraph": "Once your choice is made, we assist you with the final enrollment procedure, ensuring all administrative steps are completed smoothly and effectively."
+            "paragraph": "Once your choice is made, we assist you with the final enrollment process, ensuring that all administrative steps are completed smoothly and efficiently."
           },
           {
             "title": "Support during school visits",
-            "paragraph": "If necessary, we accompany you during school visits to assist you throughout this crucial step. This ensures that all important aspects are reviewed, from the school’s atmosphere to its facilities."
+            "paragraph": "If needed, we assist you during school visits to review all essential aspects, from the school’s atmosphere to its facilities, and to facilitate communication with the teaching staff."
           }
         ]
       },
       {
         "content": [
           {
-            "paragraph": "With our expertise, we guarantee high-quality support, simplifying this sometimes complex process and ensuring peace of mind throughout this crucial step."
+            "paragraph": "A comprehensive service to support you at every stage, from the first contact to the successful integration of your child, ensuring peace of mind for the whole family."
           }
         ]
       }
@@ -492,13 +536,13 @@
 
   "DiscoverGeneva": {
     "heading": "Our service",
-    "subHeading": "Discover Geneva ",
-    "description": "A customized education solution designed to support your children's unique learning journey, ensuring the best opportunities for their growth and success.",
+    "subHeading": "Discover Geneva",
+    "description": "A unique and personalized solution to help you find your bearings, explore the neighborhoods, understand the local culture, and feel at home from day one.",
     "sections": [
       {
         "content": [
           {
-            "paragraph": "When settling into a new city, it is essential to get familiar with the various neighborhoods to find the one that best suits your lifestyle, needs, and preferences. We offer a tailor-made service to assist you in your search and discovery of Geneva."
+            "paragraph": "Settling into a new city is a significant step. We make it easier for you to discover Geneva so you can confidently and comfortably make it your own."
           }
         ]
       },
@@ -506,7 +550,7 @@
       {
         "content": [
           {
-            "paragraph": "Discovering Geneva also means finding the neighborhood that suits you. We guide you through this process with a personalized service, tailored to your lifestyle and expectations."
+            "paragraph": "Discovering Geneva also means finding the neighborhood that feels right for you. We guide you through this process with a personalized service tailored to your lifestyle and expectations."
           }
         ]
       },
@@ -514,24 +558,24 @@
       {
         "content": [
           {
-            "title": "Personalized tour",
-            "paragraph": "Based on your search criteria and lifestyle (proximity to downtown, access to public transport, workplaces, etc.), our agent plans a tailored itinerary that allows you to visit several representative neighborhoods in Geneva and better visualize your future living environment."
+            "title": "Personalized visit",
+            "paragraph": "Based on your search criteria and lifestyle (proximity to the city center, access to public transport, workplace location, etc.), our agent plans a tailored itinerary that allows you to visit several representative neighborhoods of Geneva and better visualize your future living environment."
           },
           {
-            "title": "Introduction to infrastructure and local businesses",
-            "paragraph": "We introduce you to nearby shops, parks, schools, sports centers, and other key infrastructures so you can quickly get your bearings and organize your daily life independently."
+            "title": "Introduction to local infrastructure and shops",
+            "paragraph": "We introduce you to local shops, parks, schools, sports centers, and other key facilities so you can quickly get your bearings and manage your daily life with ease and independence."
           },
           {
             "title": "Personalized recommendations based on your profile",
-            "paragraph": "Depending on your situation — family, expatriate worker, student, retiree — we suggest neighborhoods and practical reference points that align with your daily life and priorities."
+            "paragraph": "Depending on your situation — family, expatriate worker, student, or retiree — we suggest neighborhoods and practical reference points that align with your daily life and priorities."
           },
           {
-            "title": "Discovery of cultural and social life",
-            "paragraph": "We guide you through cultural sites, local events, and leisure spaces to help you quickly settle in and fully enjoy the richness Geneva has to offer."
+            "title": "Discovering cultural and social life",
+            "paragraph": "We guide you through cultural venues, local events, and leisure spaces to help you quickly find your bearings and fully enjoy all that Geneva has to offer."
           },
           {
-            "title": "Tour debriefing",
-            "paragraph": "At the end of the tour, we debrief with you to refine your preferences and select the neighborhoods that best meet your needs and desires."
+            "title": "Post-visit review",
+            "paragraph": "At the end of the visit, we review everything with you to refine your preferences and identify the neighborhoods that best match your needs and expectations."
           }
         ]
       }
@@ -544,22 +588,30 @@
       "buttonText2": "Find accommodation"
     }
   },
+
   "ConciergeService": {
     "heading": "Our service",
     "subHeading": "Concierge service",
-    "description": "Simplify your daily life with our concierge service.",
+    "description": "From the everyday to the extraordinary, our concierge service is designed to meet all your expectations, providing personalized assistance for every moment of your daily life.",
     "sections": [
       {
         "content": [
           {
-            "paragraph": "Our concierge service simplifies your daily life by responding to all your requests, even the most specific ones. Urgent need, special project, or custom request? We leverage our expertise and a network of reliable partners to offer you quick and effective solutions."
+            "paragraph": "Our concierge service simplifies your daily life by handling all your requests, even the most specific ones. Urgent need, special project, or a personalized request? We leverage our expertise and a trusted network of partners to provide fast and efficient solutions."
           }
         ]
       },
       {
         "content": [
           {
-            "paragraph": "Designed for both individuals and professionals, our service coordinates the intervention of qualified providers: electricians, gardeners, cleaning agents, or specialized service providers. Thanks to our personalized and responsive approach, each request is handled with thoroughness, discretion, and professionalism."
+            "paragraph": "Designed for both individuals and professionals, our service coordinates qualified providers, including electricians, gardeners, cleaners, or specialized contractors. With our personalized and responsive approach, every request is handled with precision, discretion, and professionalism."
+          }
+        ]
+      },
+      {
+        "content": [
+          {
+            "paragraph": "Free your mind and save valuable time by entrusting your requests to a flexible, attentive team that’s always ready to adapt to your needs."
           }
         ]
       }
@@ -573,1422 +625,83 @@
     }
   },
 
-  "Particular": {
-    "Assurance": {
-      "BusinessInfo": {
-        "heading": "Individual",
-        "subHeading": "Our ((Insurance))",
-        "description": "We protect your future with our tailored insurance solutions. Benefit from coverage for your property, your loved ones, and your home.",
-        "linkText": "Discover our offers",
-        "items": [
-          {
-            "title": "Property and Asset Insurance",
-            "description": "Comprehensive protection to secure your property and preserve your assets."
-          },
-          {
-            "title": "Household Liability Insurance",
-            "description": "Protect your home and your civil liability with comprehensive coverage tailored to your daily life."
-          },
-          {
-            "title": "Pet Insurance",
-            "description": "Insurance solutions designed for your pets’ health, safety, and happiness."
-          },
-          {
-            "title": "Motor Vehicle Insurance",
-            "description": "Our solutions to hit the road with complete peace of mind."
-          },
-          {
-            "title": "Legal Protection Insurance",
-            "description": "Legal support and guidance in the event of a dispute."
-          },
-          {
-            "title": "Domestic Worker Insurance",
-            "description": "Protect your domestic workers while they’re working in your home."
-          },
-          {
-            "title": "Travel Insurance",
-            "description": "Enjoy comprehensive coverage to travel with peace of mind anywhere in the world."
-          },
-          {
-            "title": "Building Liability Insurance",
-            "description": "Protect your property against unexpected risks and third-party damages."
-          },
-          {
-            "title": "Cross-Border Worker Insurance",
-            "description": "A tailored health insurance solution for cross-border workers."
-          },
-          {
-            "title": "Private Pension Insurance",
-            "description": "Enhance your social protection and prepare for retirement in the best possible way."
-          },
-          {
-            "title": "Life Insurance",
-            "description": "Secure your loved ones’ future with guaranteed capital in the event of death or disability."
-          },
-          {
-            "title": "Vested Benefits Insurance",
-            "description": "Preserve your pension assets when changing jobs or moving abroad."
-          }
-        ]
-      },
-      "AssuranceChosesEtPatrimoine": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "Property and ((Assets)) Insurance",
-          "buttonText": "Call me",
-          "description": [
+  "Companies": {
+    "BusinessInfo": {
+      "heading": "Features",
+      "subHeading": "Companies",
+      "description": "Providing a tailored relocation service in Geneva to facilitate the settlement of your employees and new arrivals. We are committed to making the transition to a new home simple, efficient, and stress-free by offering premium and personalized support, local expertise, and comprehensive administrative assistance to ensure a smooth and swift transition.",
+      "items": [
+        {
+          "title": "For you",
+          "subItems": [
             {
-              "paragraph": "Protect your assets and secure your future against life’s uncertainties with our comprehensive coverage for real estate, equipment, and capital."
+              "title": "Operational Efficiency",
+              "description": "Your employees can quickly focus on their new position without the burden of searching for housing on their own or navigating the complexity of Geneva's real estate market."
+            },
+            {
+              "title": "Cost Reduction",
+              "description": "Did you know that individuals spend an average of 50 hours searching for a home? By ensuring this task is a relocation service, this valuable time can be reinvested in high-value activities."
+            },
+            {
+              "title": "Housing Search",
+              "description": "After an initial discovery meeting, we select properties that match your employees’ needs and criteria, such as proximity to the workplace. Unlimited proposals are provided."
             }
           ]
         },
-        "Info": {
-          "reasonItems": [
+        {
+          "title": "For your collaborator",
+          "subItems": [
             {
-              "title": "Full protection",
-              "description": "Protect your physical assets and financial wealth from damage."
+              "title": "Personalized Advice",
+              "description": "Guidance on neighborhoods, schools, daycare centers, public transportation, and local services."
             },
             {
-              "title": "Financial guarantee",
-              "description": "Secure your financial future by protecting your assets."
+              "title": "Installation and Integration",
+              "description": "Assistance with setting up services such as electricity, insurance, housekeeping, and practical advice for adapting to life in Geneva."
             },
             {
-              "title": "Tailored insurance",
-              "description": "Request tailored coverage. Protect what truly matters to you."
+              "title": "Housekeeping",
+              "description": "Connection with a trusted partner for household tasks."
+            },
+            {
+              "title": "Fitness",
+              "description": "Guidance to fitness centers and support with registration."
+            },
+            {
+              "title": "Concierge Services",
+              "description": "We are attentive to meet the unique needs of your employees."
+            },
+            {
+              "title": "Administrative Setup",
+              "description": "Assistance in preparing application files to ensure maximum responsiveness in securing housing."
+            },
+            {
+              "title": "Accompanied Visits",
+              "description": "Organization and support during property visits. Pre-visits if necessary and delivery of detailed, professional video walkthroughs."
+            },
+            {
+              "title": "Post-Rental Service",
+              "description": "We remain available to address employees' needs even after their move, ensuring comprehensive and personalized support."
+            },
+            {
+              "title": "Bank Account Setup",
+              "description": "Assistance with opening bank accounts and handling administrative procedures."
+            },
+            {
+              "title": "Insurance",
+              "description": "Personalized advice and assistance with setting up essential insurance contracts (housing, health, etc.) through our Assurance Genevoise office."
+            },
+            {
+              "title": "Talent Retention",
+              "description": "A smooth transition and quality service contribute to employee well-being, increasing their satisfaction and loyalty."
+            },
+            {
+              "title": "Schooling",
+              "description": "Assistance with choosing and enrolling children in suitable educational institutions (public, private, or international schools)."
             }
           ]
-        },
-        "Content": {
-          "heading": "Financial Guarantee & Coverage",
-          "subHeading": "Why you need to take a property and ((wealth)) insurance?",
-          "description": [
-            {
-              "paragraph": "Property and wealth insurance safeguards your personal belongings and financial assets against potential damage."
-            },
-            {
-              "paragraph": "It provides strong legal protection and full private liability coverage in case of a dispute."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Everything you need to know about property and asset insurance: protecting your belongings, investments, and financial security.",
-          "faqs": [
-            {
-              "question": "What assets are covered by property and asset insurance?",
-              "answer": "It protects your real estate, personal belongings, and overall assets."
-            },
-            {
-              "question": "What types of incidents does this insurance cover?",
-              "answer": "Property and asset insurance covers you in the event of fire, theft, glass breakage, and water damage."
-            },
-            {
-              "question": "Can I insure valuable items with property insurance?",
-              "answer": "Yes, coverage can be arranged for high-value items such as jewelry, artwork, or collectibles."
-            },
-            {
-              "question": "What exactly does property and asset insurance cover?",
-              "answer": "In the event of a claim, the insurance covers the repair of damaged items and their replacement in case of total loss."
-            },
-            {
-              "question": "What additional coverages are included?",
-              "answer": "Private liability and legal protection can be included in your policy."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
         }
-      },
-      "AssuranceRcMenage": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "Household ((Liability)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Protect your responsibility, your property, and your daily life against material and bodily damage caused to third parties."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Essential Protection",
-              "description": "Cover accidental property and personal damage caused to third parties in your everyday life."
-            },
-            {
-              "title": "Financial Peace of Mind",
-              "description": "Opt for solutions that protect your wealth and assets."
-            },
-            {
-              "title": "Comprehensive Coverage",
-              "description": "Choose liability coverage to protect yourself from unexpected events and avoid high costs in case of a claim."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Health & Insurance",
-          "subHeading": "Why should take a household ((liability)) insurance?",
-          "description": [
-            {
-              "paragraph": "Although not mandatory in Switzerland, liability insurance (RC) is often required for tenants and highly recommended for homeowners and families."
-            },
-            {
-              "paragraph": "Our liability insurance solutions ensure your peace of mind and cover damage related to your home and personal belongings."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Protect yourself daily: what private liability insurance covers.",
-          "faqs": [
-            {
-              "question": "Who is covered by my liability insurance?",
-              "answer": "According to your liability insurance contract, you can also cover your family members as well as your pets."
-            },
-            {
-              "question": "What types of damages are covered by liability insurance?",
-              "answer": "Your insurance covers bodily, material, or immaterial damages caused to others."
-            },
-            {
-              "question": "Can I be covered abroad?",
-              "answer": "Yes, all liability insurance contracts include coverage abroad."
-            },
-            {
-              "question": "Does liability insurance cover damages to my own property?",
-              "answer": "No, it only covers damages caused to third parties, not to your own property."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceAnimaux": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Pet)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Protect your pet’s health and cover the costs in case of illness, accident, or emergency."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Health Guaranteed",
-              "description": "Ensure the well-being of your pet by covering their veterinary care, whether urgent or preventive."
-            },
-            {
-              "title": "Peace of Mind Assured",
-              "description": "Receive financial support to care for your pet without the stress or unexpected costs."
-            },
-            {
-              "title": "Tailored Insurance",
-              "description": "Insurance customized to your pet’s age, breed, and specific needs."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Health & Insurance",
-          "subHeading": "Why you need to take a ((pet)) insurance?",
-          "description": [
-            {
-              "paragraph": "Pet insurance covers veterinary expenses, accidents, surgery, and preventive care for your dog, cat, or any other pet. "
-            },
-            {
-              "paragraph": "It ensures your loyal companion is provided with the protection they need, based on their specific requirements and your budget."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Everything you need to know to protect and care for your loyal companion.",
-          "faqs": [
-            {
-              "question": "Does the insurance cover preventive care like vaccinations?",
-              "answer": "Yes, depending on your policy, your insurance includes preventive care such as vaccinations and parasite treatments."
-            },
-            {
-              "question": "Does the insurance cover accidents outside the home?",
-              "answer": "Yes, most policies cover all accidents, whether your pet is at home or elsewhere."
-            },
-            {
-              "question": "At what age can I insure my pet?",
-              "answer": "You can insure your pet at any age, but conditions and coverage may vary."
-            },
-            {
-              "question": "What should I do if my pet has an accident outside Switzerland?",
-              "answer": "Most policies cover veterinary care abroad, but it's important to check the terms and conditions."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceVehicule": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Motor Vehicle)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Provides essential protection for your vehicle, passengers, and third-party damages."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Mandatory Liability",
-              "description": "Covers bodily injury and property damage caused to third parties in the event of an accident."
-            },
-            {
-              "title": "Vehicle Protection",
-              "description": "Offers compensation in case of theft, fire, glass breakage, or unforeseen natural events."
-            },
-            {
-              "title": "Comprehensive Coverage",
-              "description": "Ensures prompt claims handling with included assistance, towing, and emergency services."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Engagement & Sécurité",
-          "subHeading": "Why Opt for ((Motor Vehicle)) Insurance?",
-          "description": [
-            {
-              "paragraph": "Mandatory in Switzerland, motor vehicle insurance covers damages caused to third parties and ensures compliance with legal obligations in case of an accident."
-            },
-            {
-              "paragraph": "It also protects your vehicle against theft or weather-related incidents, with swift assistance and compensation in case of a claim."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "The essentials of protecting your vehicle daily.",
-          "faqs": [
-            {
-              "question": "What insurance options are available for my vehicle?",
-              "answer": "Liability, partial casco, or full casco, depending on your needs, vehicle type, and value."
-            },
-            {
-              "question": "What guarantees are covered by liability insurance?",
-              "answer": "Liability insurance covers material and bodily damages you cause to others during an accident."
-            },
-            {
-              "question": "How is my car insurance premium calculated?",
-              "answer": "It depends on the vehicle, your age, driving history, place of residence, and chosen guarantees."
-            },
-            {
-              "question": "Am I covered in case of an accident abroad?",
-              "answer": "Yes, most motor vehicle insurance contracts cover you in case of an incident abroad."
-            },
-            {
-              "question": "What is the difference between liability, partial casco, and full casco?",
-              "answer": "Liability (mandatory): Covers damages caused to others.\nPartial casco: Covers non-accident-related damages (theft, fire, glass breakage, natural events).\nFull casco: Includes partial casco and also covers damages to your own vehicle in case of responsible accident."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-
-      "AssuranceProtectionJuridique": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Legal Protection)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Provides legal support, legal advice, and coverage for personal disputes to assert your rights in any situation."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Assistance in Case of Dispute",
-              "description": "Offers legal support and guaranteed protection in case of conflicts with a neighbor, employer, or service provider."
-            },
-            {
-              "title": "Covered Expenses",
-              "description": "Covers lawyer fees, procedural costs, and expert opinions in case of contractual disputes or tax litigation."
-            },
-            {
-              "title": "Defense of Your Rights",
-              "description": "Legal experts by your side to advise you and assert your rights and interests."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Protection & Assistance",
-          "subHeading": "Why Take ((Legal Protection)) Insurance?",
-          "description": [
-            {
-              "paragraph": "Legal protection insurance protects you and defends your rights in everyday disputes, without you having to bear the legal costs alone."
-            },
-            {
-              "paragraph": "It facilitates access to justice by covering costs related to advice, procedures, or mediations, whether in private or contractual conflicts."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Understand how legal protection insurance helps you resolve your conflicts.",
-          "faqs": [
-            {
-              "question": "In what cases can I use legal protection insurance?",
-              "answer": "In case of disputes related to consumption, neighborhood, work, contracts, or housing, legal protection intervenes."
-            },
-            {
-              "question": "Can I subscribe individually or must I cover my entire family?",
-              "answer": "You can subscribe individually, but some contracts also cover your partner and children."
-            },
-            {
-              "question": "Does legal protection insurance cover all legal fees?",
-              "answer": "Legal fees are reimbursed within the limits and conditions of the contract, depending on the covered amount and nature of the dispute."
-            },
-            {
-              "question": "Does legal protection insurance intervene before any trial?",
-              "answer": "Yes, it can also cover mediation or legal advice to avoid judicial proceedings."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceEmployeMaison": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Domestic Employee)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Protects your domestic employees, covers risks related to their activities, and secures your liability."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Mandatory Accident Insurance",
-              "description": "Covers workplace accidents and complies with your obligations as a domestic employer."
-            },
-            {
-              "title": "Liability Protection",
-              "description": "Safeguards you in case of damages caused by the employee during their work."
-            },
-            {
-              "title": "Employee Protection",
-              "description": "Ensures medical and financial support in case of work-related accidents or illnesses."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Protection & Assistance",
-          "subHeading": "Why Take ((Domestic Employee)) Insurance?",
-          "description": [
-            {
-              "paragraph": "Domestic employee insurance allows you to fulfill your legal obligations while protecting the employee in case of accidents, illness, or work incapacity."
-            },
-            {
-              "paragraph": "It covers medical care, daily allowances, and social security contributions for the employee. This enables you to limit financial risks in case of disputes or prolonged absences."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Everything you need to know about your rights and obligations as a private employer.",
-          "faqs": [
-            {
-              "question": "Mandatory Insurance",
-              "answer": "It states that certain insurances, including accident insurance under the LAA, are legally mandatory when hiring a domestic employee in Switzerland."
-            },
-            {
-              "question": "Health Insurance",
-              "answer": "Health insurance is optional but strongly recommended to ensure the employee receives income in case of illness."
-            },
-            {
-              "question": "Social Insurance Contributions",
-              "answer": "The employer is responsible for paying social insurance contributions such as AHV, AI, or LPP."
-            },
-            {
-              "question": "Voluntary Additional Coverage",
-              "answer": "Employers can subscribe to voluntary additional coverage, including coverage for non-professional accidents or legal protection."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceVoyage": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Travel)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Security, assistance, and peace of mind at every stage of your travels abroad."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Comprehensive Protection",
-              "description": "Covers medical expenses, cancellations, and incidents during your trip."
-            },
-            {
-              "title": "24/7 Assistance",
-              "description": "Immediate help and medical repatriation in case of an emergency or issue abroad."
-            },
-            {
-              "title": "Luggage Insurance",
-              "description": "Compensation in case of loss, theft, or damage to your personal belongings during the trip."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Protection & Assistance",
-          "subHeading": "Why opt for ((travel)) insurance?",
-          "description": [
-            {
-              "paragraph": "Taking out travel insurance helps you handle unexpected events while away from home, without compromising your budget or the peace of your trip."
-            },
-            {
-              "paragraph": "It offers essential coverage against legal, medical, or logistical incidents abroad, ensuring quick assistance in all critical situations."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Prepare and insure yourself well to avoid nasty surprises abroad.",
-          "faqs": [
-            {
-              "question": "Can I purchase travel insurance after departure?",
-              "answer": "Some companies allow it, but coverage may be limited or delayed. It’s advisable to subscribe before departure."
-            },
-            {
-              "question": "Does travel insurance cover last-minute cancellations?",
-              "answer": "Yes, if the cancellation is justified (illness, accident, serious unforeseen event), expenses may be partially or fully reimbursed."
-            },
-            {
-              "question": "What should I do in case of lost or stolen luggage?",
-              "answer": "The insurance compensates according to the contract terms, with assistance to report and manage the incident on-site."
-            },
-            {
-              "question": "Should I opt for per-trip or annual insurance?",
-              "answer": "For frequent travelers, annual insurance is often more economical and practical than individual coverage."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceRcImmeuble": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "Building ((Liability)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Covers damages caused to third parties by your building or its installations."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Covered Liability",
-              "description": "Covers bodily injury, property damage, or immaterial harm caused to third parties by the building."
-            },
-            {
-              "title": "Protection juridique",
-              "description": "Offre un soutien légal en cas de litige lié à un sinistre immobilier ou locatif."
-            },
-            {
-              "title": "Tranquillité assurée",
-              "description": "Vous préserve des conséquences financières en cas d’accident ou défaut d’entretien."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Protection & Assistance",
-          "subHeading": "Why Take Building and Property ((Liability)) Insurance?",
-          "description": [
-            {
-              "paragraph": "Building liability insurance financially protects the owner in case of damages caused to third parties by the building, even without personal fault."
-            },
-            {
-              "paragraph": "It ensures coverage for repairs and compensation in case of incidents involving common areas, technical installations, or defective external elements."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Understand your responsibilities and protections as a property owner.",
-          "faqs": [
-            {
-              "question": "Is building liability insurance mandatory for property owners?",
-              "answer": "It’s not always mandatory, but strongly recommended to protect against liability in case of incidents involving your property."
-            },
-            {
-              "question": "Does this insurance cover damages caused to tenants?",
-              "answer": "Yes, if the damage results from a defect in the building, such as a leak or structural collapse."
-            },
-            {
-              "question": "What happens if I don't have building liability insurance?",
-              "answer": "You must personally bear all costs related to repairs and compensation in case of an incident."
-            },
-            {
-              "question": "Which parts of the building are covered by this insurance?",
-              "answer": "Common areas, roofs, facades, fixed installations, and annexes are covered by building liability insurance."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-
-      "AssuranceFrontalier": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Cross-Border)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Provides health insurance solutions specifically designed for cross-border workers in Switzerland."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Right of Choice",
-              "description": "Allows you to choose between Swiss LAMal insurance or local insurance based on your personal and professional situation."
-            },
-            {
-              "title": "Adapted Coverage",
-              "description": "Offers health protection aligned with your actual needs, both in Switzerland and your country of residence."
-            },
-            {
-              "title": "Simplified Administration",
-              "description": "Features an insurance plan specially designed for cross-border workers, with streamlined and practical administrative procedures."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Protection & Assistance",
-          "subHeading": "Why Opt for ((Cross-Border)) Worker Insurance?",
-          "description": [
-            {
-              "paragraph": "Cross-border worker insurance enables you to benefit from essential health coverage and social protection between your country of residence and your workplace."
-            },
-            {
-              "paragraph": "Without this insurance, you risk incurring high costs in case of illness or accident and may not be covered according to current regulations."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "The essential points to be well-insured as a cross-border worker.",
-          "faqs": [
-            {
-              "question": "Is this insurance mandatory for all cross-border workers?",
-              "answer": "Yes, it’s mandatory for cross-border workers to ensure health coverage between their country of residence and their country of employment."
-            },
-            {
-              "question": "Does cross-border insurance cover all medical expenses?",
-              "answer": "It covers most medical expenses, but certain specific costs may not be covered, depending on the chosen coverage."
-            },
-            {
-              "question": "What are the deadlines for choosing cross-border insurance?",
-              "answer": "You generally have three months after starting your activity in Switzerland to make your insurance choice."
-            },
-            {
-              "question": "Can I change my cross-border insurance during the contract?",
-              "answer": "Yes, it’s possible to change your cross-border insurance under certain conditions, especially if you change your country of residence or professional situation."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssurancePrevoyance": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "Private ((Pension)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Secures your financial future, protects your loved ones, and ensures a peaceful retirement at every stage of life."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Essential Supplement",
-              "description": "Enhances the coverage of social insurance with a flexible solution tailored to individual needs."
-            },
-            {
-              "title": "Family Protection",
-              "description": "Provides a lump sum or annuity to maintain your family's financial stability in times of hardship."
-            },
-            {
-              "title": "Retirement Preparation",
-              "description": "Facilitates a serene retirement through secure and tax-advantaged savings."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Planification",
-          "subHeading": "Why take out private ((pension)) insurance?",
-          "description": [
-            {
-              "paragraph": "Private pension insurance helps to fill the gaps left by mandatory schemes in the event of death, disability, or unforeseen loss of income."
-            },
-            {
-              "paragraph": "It allows you to maintain your standard of living, protect your loved ones, and save for future projects with flexible solutions adapted to your situation."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Prepare for the future calmly to protect your loved ones and your standard of living.",
-          "faqs": [
-            {
-              "question": "What happens to my LPP assets with this insurance?",
-              "answer": "They are transferred to a vested benefits account or policy, secured until you resume work or retire."
-            },
-            {
-              "question": "What are the tax advantages of vested benefits?",
-              "answer": "The assets are exempt from wealth tax and generate returns according to the chosen contract.\nMoreover, your assets are protected under the contract terms, with a regulated minimum interest rate."
-            },
-            {
-              "question": "Can I freely withdraw funds from my vested benefits account or policy?",
-              "answer": "Withdrawals are regulated by law and are possible in specific cases such as purchasing a primary residence, starting a business as a self-employed individual, or permanently leaving Switzerland (subject to conditions)."
-            },
-            {
-              "question": "What happens to my assets if I find a new job?",
-              "answer": "They are automatically transferred to your new employer's pension fund."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceVie": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Life)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Optimizes wealth transfer with a flexible and tax-advantaged savings solution."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Evolving Savings",
-              "description": "Builds long-term capital with returns and flexibility aligned with your objectives."
-            },
-            {
-              "title": "Facilitated Transfer",
-              "description": "Allows for the transfer of assets outside of the estate, offering tax benefits to designated beneficiaries."
-            },
-            {
-              "title": "Financial Security",
-              "description": "Provides capital to loved ones in the event of the insured’s death, ensuring their economic stability."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Anticipate & Protect",
-          "subHeading": "Why take out ((life)) insurance?",
-          "description": [
-            {
-              "paragraph": "Life insurance is an effective solution to anticipate unforeseen events, financially protect your loved ones, and build long-term savings."
-            },
-            {
-              "paragraph": "With flexible management, life insurance adapts to your wealth objectives: facilitated transfer, tax optimization, or secure investment according to the subscriber’s profile."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Understand the functioning, issues, and benefits of life insurance.",
-          "faqs": [
-            {
-              "question": "What are the different investment options in a life insurance policy?",
-              "answer": "Investments can be made in euro, CHF, or dollar funds for more security, or in unit-linked accounts for higher return potential with greater risk."
-            },
-            {
-              "question": "What are the tax advantages of life insurance?",
-              "answer": "Life insurance offers tax benefits on gains, as well as on premiums paid, depending on the contract duration and invested amounts."
-            },
-            {
-              "question": "Who can benefit from a life insurance policy?",
-              "answer": "Anyone can subscribe to a life insurance policy, either for their own capital or to designate specific beneficiaries in case of death."
-            },
-            {
-              "question": "Can money be withdrawn from a life insurance policy?",
-              "answer": "Yes, you can withdraw money from your life insurance policy at any time, under certain conditions, with favorable taxation if you comply with the contract duration."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      },
-      "AssuranceLibrePassage": {
-        "InsurancesDetailHero": {
-          "heading": "Individual",
-          "subHeading": "((Vested Benefits)) Insurance",
-          "buttonText": "Call me",
-          "description": [
-            {
-              "paragraph": "Maintains your pension rights and preserves your LPP funds between two jobs."
-            }
-          ]
-        },
-        "Info": {
-          "reasonItems": [
-            {
-              "title": "Protected Capital",
-              "description": "Safeguards your pension assets securely during transitional periods."
-            },
-            {
-              "title": "Flexible Management",
-              "description": "Allows you to manage your assets freely until reemployment or retirement."
-            },
-            {
-              "title": "Vested Benefits Account",
-              "description": "Keeps your pension assets secure and ensures no loss of rights during periods without affiliation."
-            }
-          ]
-        },
-        "Content": {
-          "heading": "Protection & Assistance",
-          "subHeading": "Why Opt for ((Vested Benefits)) Insurance?",
-          "description": [
-            {
-              "paragraph": "When temporarily leaving the workforce, vested benefits insurance helps secure your pension assets and preserves your retirement rights."
-            },
-            {
-              "paragraph": "It guarantees your capital and coverage in case of unforeseen events until your return to employment or retirement."
-            }
-          ]
-        },
-        "ContactFeature": {
-          "heading": "Simplicity & Speed",
-          "subHeading": "Effective, straightforward ((solutions)) to help you achieve your goals.",
-          "description": "We assist you in finding insurance solutions tailored to your specific situation and support you throughout your project.",
-          "buttonText": "Call me",
-          "reasonItems": [
-            {
-              "title": "Contact an Advisor",
-              "description": "We engage in a collaborative discussion to understand your circumstances, identify your specific needs, and determine the most suitable solutions."
-            },
-            {
-              "title": "Quote Within 48 Hours",
-              "description": "You will receive an initial response within 24 hours, followed by a detailed quote proposal within 48 hours of your initial contact."
-            },
-            {
-              "title": "Contract Signing",
-              "description": "We formalize our collaboration with a brokerage mandate and present you with solutions from our trusted partners."
-            }
-          ]
-        },
-        "InsurancesFeature": {
-          "heading": "Assurance Genevoise",
-          "subHeading": "Why ((Choose)) Us",
-          "description": "Tailored solutions, exclusive benefits, and savings to protect what matters most and move forward with confidence.",
-          "reasonItems": [
-            {
-              "title": "Customized Insurance Solutions",
-              "description": "Every situation is unique. Our advisors analyze your needs to provide bespoke insurance solutions perfectly aligned with your profile. Whether you're a professional or an individual, we support you in all your projects."
-            },
-            {
-              "title": "Reliable Partners at Your Service",
-              "description": "Our experience enables us to collaborate with the most extensive network of partners in Switzerland. We compare the most appropriate and competitive solutions that match your situation.\n This ensures you receive optimal coverage at a fair price, without compromising on quality."
-            },
-            {
-              "title": "Comprehensive Support from A to Z",
-              "description": "From selecting to managing your contract, we guide you through every step with diligence and attention. Our priority is to simplify the process for you and provide precise answers to your insurance needs."
-            },
-            {
-              "title": "A Relationship Built on Trust and Transparency",
-              "description": "We prioritize a relationship with our clients that is trustworthy, long-lasting, and transparent. Our commitment is to offer clear advice and unwavering support."
-            }
-          ]
-        },
-        "FAQ": {
-          "heading": "FAQ",
-          "subHeading": "Questions? Here are our ((answers))",
-          "description": "Understand your coverage with vested benefits insurance in case of career interruption or transition.",
-          "faqs": [
-            {
-              "question": "How does private pension insurance complement AVS and LPP?",
-              "answer": "AVS and LPP cover approximately 60% of income in the event of retirement, death, or disability. Private pension insurance helps bridge this gap."
-            },
-            {
-              "question": "Can it be adapted in case of a change in situation?",
-              "answer": "Yes, contracts are adjustable in the event of marriage, birth, income change, or professional status change."
-            },
-            {
-              "question": "Can multiple pension contracts be combined?",
-              "answer": "Yes, it is possible to subscribe to multiple contracts to diversify coverage and spread risks."
-            },
-            {
-              "question": "Are there coverage limitations for private pension insurance?",
-              "answer": "Yes, some insurances impose age limits, medical exclusions, or waiting periods depending on the chosen coverage."
-            },
-            {
-              "question": "What happens to my assets if I find a new job?",
-              "answer": "They are automatically transferred to your new employer’s pension fund."
-            }
-          ]
-        },
-        "BookConsultation": {
-          "subHeading": "A question? Our ((advisors)) are here to guide you",
-          "description": "Benefit from personalized advice and support that meets your needs.",
-          "buttonText1": "Call me",
-          "buttonText2": "Contact"
-        }
-      }
+      ]
     }
   },
 
@@ -2171,7 +884,7 @@
         "title": "Find accommodation"
       },
       {
-        "title": "Lease takeover"
+        "title": "Find a tenant"
       },
       {
         "title": "Companies"

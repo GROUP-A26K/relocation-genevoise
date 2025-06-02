@@ -48,7 +48,7 @@ export const Content: FC<ContentProps> = ({ items }) => {
   }, [activeId, setActiveIdDebounced]);
 
   return (
-    <div className="top-0 flex flex-col items-center justify-center">
+    <div className="top-0 flex flex-col items-center justify-center md:ml-0 ml-14">
       <div className="mx-auto w-full 2xl:max-w-[672px] xl:max-w-[620px] max-w-[672px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col items-end">
         <div className="w-full max-w-[560px] flex">
           <div className="flex flex-col gap-16">
@@ -65,7 +65,7 @@ export const Content: FC<ContentProps> = ({ items }) => {
                       value={`item-${index}`}
                       className="relative border-b-0"
                     >
-                      <div className="absolute top-0 hidden h-full w-[3px] md:-left-12 md:block lg:-left-16">
+                      <div className="absolute top-0 h-full w-[3px] -left-10 md:block lg:-left-16">
                         <div className="h-full w-full rounded-full bg-muted">
                           <div
                             className={cn(
@@ -79,7 +79,7 @@ export const Content: FC<ContentProps> = ({ items }) => {
                       </div>
                       <span
                         className={cn(
-                          "absolute top-0 hidden size-12 -translate-x-1/2 place-items-center rounded-full border border-grey-100 bg-background md:-left-12 md:grid lg:-left-16",
+                          "absolute top-0 lg:size-12 size-10 -translate-x-1/2 rounded-full border border-grey-100 text-center items-center justify-center flex bg-background -left-10 md:grid lg:-left-16",
                           activeIndex.includes(`item-${index}`)
                             ? "bg-yellow-500 border-yellow-500"
                             : ""
@@ -89,10 +89,10 @@ export const Content: FC<ContentProps> = ({ items }) => {
                       </span>
 
                       <div className="flex flex-col max-w-fit gap-8 pb-8">
-                        <AccordionTrigger className="flex flex-col lg:gap-3 gap-4 max-w-[560px] text-left">
+                        <AccordionTrigger className="flex flex-col lg:gap-3 gap-4 text-left">
                           <div className="flex flex-col lg:gap-3 gap-4 max-w-[560px] text-left">
                             <div className="flex flex-col gap-3">
-                              <h2 className="text-xl font-semibold !leading-[130%]">
+                              <h2 className="lg:text-xl text-lg font-semibold !leading-[130%]">
                                 {item.title}
                               </h2>
                             </div>
@@ -101,13 +101,13 @@ export const Content: FC<ContentProps> = ({ items }) => {
                             </p>
                           </div>
                         </AccordionTrigger>
-                        <AccordionContent className="py-0 pt-2 max-w-[720px] text-sm text-black-200 !leading-[130%]">
+                        <AccordionContent className="py-0 pt-2 max-w-[720px] flex justify-center h-fit text-sm text-black-200 !leading-[130%]">
                           <Image
-                            src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80"
+                            src={item.image}
                             alt="placeholder"
-                            width={560}
-                            height={280}
-                            className="aspect-video rounded-md border border-border object-cover"
+                            width={326.4}
+                            height={240}
+                            className="aspect-video lg:min-h-[240px] min-h-[160px] w-fit rounded-md"
                           />
                         </AccordionContent>
                       </div>
