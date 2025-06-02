@@ -85,7 +85,7 @@ const ContactFeature: FC<Props> = ({
           >
             <Button
               as="solid"
-              type="primary"
+              type="secondary"
               variant="md"
               className="lg:w-fit w-full"
             >

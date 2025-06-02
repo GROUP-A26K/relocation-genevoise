@@ -11,7 +11,7 @@ import { useScrollspy } from "@/hooks/useScrollspy";
 import debounce from "lodash.debounce";
 import { cn } from "@/libs/utils";
 
-interface ContentProps {
+export interface ContentProps {
   position?: string;
   items: {
     title: string;

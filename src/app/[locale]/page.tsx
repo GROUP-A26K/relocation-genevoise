@@ -13,12 +13,17 @@ import {
   Clock3,
   CloudUpload,
   Globe,
+  Grid2x2Plus,
+  House,
   MessagesSquare,
   Scale,
+  Search,
+  UsersRound,
 } from "lucide-react";
 import { StatsGrid2 } from "@/components/blocks/Stats";
 import { ContentWithImg } from "@/components/blocks/Content";
 import { BookConsultation2 } from "@/components/blocks/Consultation";
+import { Logos } from "@/components/blocks/Logos";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -94,26 +99,28 @@ export default async function Page(props: Props) {
             {
               title: t("ContactFeature.reasonItems.0.title"),
               description: t("ContactFeature.reasonItems.0.description"),
-              icon: MessagesSquare,
+              icon: Search,
             },
             {
               title: t("ContactFeature.reasonItems.1.title"),
               description: t("ContactFeature.reasonItems.1.description"),
-              icon: Clock3,
+              icon: House,
             },
             {
               title: t("ContactFeature.reasonItems.2.title"),
               description: t("ContactFeature.reasonItems.2.description"),
-              icon: CloudUpload,
+              icon: UsersRound,
             },
             {
               title: t("ContactFeature.reasonItems.3.title"),
               description: t("ContactFeature.reasonItems.3.description"),
-              icon: CloudUpload,
+              icon: Grid2x2Plus,
             },
           ]}
         />
       </Section>
+
+      <Logos heading={t("Logos.heading")} />
 
       <Section>
         <StatsGrid2
@@ -141,28 +148,28 @@ export default async function Page(props: Props) {
 
       <Section className="bg-gray-50">
         <Feature
-          heading={t("ContactFeature.heading")}
-          subHeading={t("ContactFeature.subHeading")}
-          description={t("ContactFeature.description")}
+          heading={t("EngagementFeature.heading")}
+          subHeading={t("EngagementFeature.subHeading")}
+          description={t("EngagementFeature.description")}
           reasonItems={[
             {
-              title: t("ContactFeature.reasonItems.0.title"),
-              description: t("ContactFeature.reasonItems.0.description"),
+              title: t("EngagementFeature.reasonItems.0.title"),
+              description: t("EngagementFeature.reasonItems.0.description"),
               icon: MessagesSquare,
             },
             {
-              title: t("ContactFeature.reasonItems.1.title"),
-              description: t("ContactFeature.reasonItems.1.description"),
+              title: t("EngagementFeature.reasonItems.1.title"),
+              description: t("EngagementFeature.reasonItems.1.description"),
               icon: Clock3,
             },
             {
-              title: t("ContactFeature.reasonItems.2.title"),
-              description: t("ContactFeature.reasonItems.2.description"),
+              title: t("EngagementFeature.reasonItems.2.title"),
+              description: t("EngagementFeature.reasonItems.2.description"),
               icon: CloudUpload,
             },
             {
-              title: t("ContactFeature.reasonItems.3.title"),
-              description: t("ContactFeature.reasonItems.3.description"),
+              title: t("EngagementFeature.reasonItems.3.title"),
+              description: t("EngagementFeature.reasonItems.3.description"),
               icon: CloudUpload,
             },
           ]}
@@ -187,13 +194,20 @@ export default async function Page(props: Props) {
         <ServiceFeature2
           heading={t("ServiceFeature.heading")}
           subHeading={t("ServiceFeature.subHeading")}
-          description={t("ContactFeature.description")}
+          description={t("ServiceFeature.description")}
           features={features}
         />
       </Section>
 
       <Section className="bg-gray-50">
-        <BookConsultation2 />
+        <BookConsultation2
+          heading={t("BookConsultation.heading")}
+          subHeading={t("BookConsultation.subHeading")}
+          description={t("BookConsultation.description")}
+          buttonText1={t("BookConsultation.buttonText1")}
+          buttonText2={t("BookConsultation.buttonText2")}
+          
+           />
       </Section>
     </>
   );

@@ -22,7 +22,7 @@ import { LanguageSelector } from "./LanguageSelector";
 
 const MobileMenu = ({ menu, callButton }: NavbarProps) => {
   return (
-    <nav className="bg-white z-20 h-[72px] w-full md:px-4 px-4 lg:hidden">
+    <nav className="bg-white z-20 h-[72px] w-full md:px-4 px-4 nav:hidden">
       <div className="flex h-full w-full min-w-[205px] items-center justify-between relative">
         <Link
           href={"/"}

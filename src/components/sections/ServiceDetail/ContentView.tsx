@@ -2,10 +2,10 @@
 import { ContentContainer } from "./ContentContainer";
 import { Content, ContentProps } from "./Content";
 import { FC } from "react";
-export const ContentView: FC<ContentProps> = ({ items }) => {
+export const ContentView: FC<ContentProps> = ({ section }) => {
   return (
     <ContentContainer>
-      <Content items={items} />
+      <Content section={section} />
     </ContentContainer>
   );
 };

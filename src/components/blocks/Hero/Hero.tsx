@@ -1,9 +1,7 @@
-import BlocksBackground from "@/assets/img/bg/blocks-bg.svg";
 import Image from "next/image";
 import { FC } from "react";
 import Button from "@/components/customs/Button";
 import { Link } from "@/libs/i18nNavigation";
-import HeroImage from "@/assets/img/bg/agence-de-relocation-a-geneve.webp";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import { ArrowRight } from "lucide-react";
 
@@ -12,6 +10,11 @@ interface Props {
   heading?: string;
   subHeading?: string;
   description?: string;
+  heroImage: {
+    src: string;
+    alt: string;
+    title: string;
+  };
   button?: {
     text?: string;
     url?: string;
@@ -23,25 +26,15 @@ interface Props {
   buttonUrl?: string;
 }
 
-export const HomeHero: FC<Props> = ({
+export const Hero: FC<Props> = ({
   subHeading = "Your independent broker in Geneva",
   description = "We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.",
   button,
   button2,
+  heroImage,
 }) => {
   return (
     <div className="flex flex-col lg:gap-16 gap-12">
-      <div className="flex justify-center absolute size-full lg:top-0 top-0 inset-0 -z-10">
-        <Image
-          width={1240}
-          height={1226}
-          alt="Agence de Relocation à Genève"
-          title="Agence de Relocation à Genève"
-          src={BlocksBackground}
-          className="flex min-w-1240 min-h-1226 object-cover  stroke-gray-200 lg:[mask-image:radial-gradient(circle_at_50%_40%,white,transparent)] [mask-image:radial-gradient(circle_at_50%_5%,white,transparent)]"
-        />
-      </div>
-
       <div className="flex w-full items-center justify-center">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl w-full lg:items-center text-left">
@@ -84,7 +77,7 @@ export const HomeHero: FC<Props> = ({
           <Image
             alt="Agence de Relocation à Genève"
             title="Agence de Relocation à Genève"
-            src={HeroImage}
+            src={heroImage.src}
             width={1240}
             height={480}
             className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"

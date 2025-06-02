@@ -12,7 +12,7 @@ import Button from "@/components/customs/Button";
 
 const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
   return (
-    <nav className="hidden justify-between lg:flex">
+    <nav className="hidden justify-between nav:flex">
       <div className="flex items-center justify-between w-full">
         <Link href={"/"} className="flex items-center gap-2">
           <Image
@@ -24,7 +24,7 @@ const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
             className="min-h-[26.98px] min-w-[70px]"
           />
         </Link>
-        <NavigationMenu className="static lg:block">
+        <NavigationMenu className="static nav:block">
           <NavigationMenuList className="xl:gap-8 gap-2">
             {menu.map((item) => renderMenuItem(item, locale))}
           </NavigationMenuList>
