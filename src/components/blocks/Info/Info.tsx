@@ -1,7 +1,7 @@
-import { InfoCard } from '@/components/customs/Card';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
-import { Building } from 'lucide-react';
-import { FC } from 'react';
+import { InfoCard } from "@/components/customs/Card";
+import { FormattedText } from "@/components/customs/Text";
+import { Building } from "lucide-react";
+import { FC } from "react";
 
 interface Reason {
   title: string;
@@ -18,25 +18,25 @@ interface Props {
 
 export const Info: FC<Props> = ({
   heading,
-  subHeading = 'Need help? We are here for you!',
+  subHeading = "Need help? We are here for you!",
   description,
   reasonItems = [
     {
-      title: 'Guaranteed Protection',
+      title: "Guaranteed Protection",
       description:
-        'Ensure your valuable assets, property, and heritage are safeguarded for future generations.',
+        "Ensure your valuable assets, property, and heritage are safeguarded for future generations.",
       icon: Building,
     },
     {
-      title: 'Financial Stability',
+      title: "Financial Stability",
       description:
-        'Provide long-term financial security by ensuring a smooth transfer of wealth and assets',
+        "Provide long-term financial security by ensuring a smooth transfer of wealth and assets",
       icon: Building,
     },
     {
-      title: 'Legacy Preservation',
+      title: "Legacy Preservation",
       description:
-        'Secure your family’s inheritance and prevent legal disputes over wealth and property distribution.',
+        "Secure your family’s inheritance and prevent legal disputes over wealth and property distribution.",
       icon: Building,
     },
   ],
@@ -51,7 +51,7 @@ export const Info: FC<Props> = ({
                 {heading}
               </p>
               <h2 className="text-3xl font-semibold text-center !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h2>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">

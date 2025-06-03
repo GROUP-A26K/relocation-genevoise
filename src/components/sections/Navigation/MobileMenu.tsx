@@ -68,7 +68,7 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
                   className="w-full border-2 border-white pointer-events-auto whitespace-normal"
                   iconStart={PhoneCall}
                 >
-                  <div className="line-clamp-1">+41 22 715 17 48</div>
+                  <div className="line-clamp-1">41 22 715 17 48</div>
                 </Button>
               </SheetClose>
             </Link>

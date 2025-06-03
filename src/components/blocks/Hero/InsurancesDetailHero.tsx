@@ -1,8 +1,6 @@
 import Button from "@/components/customs/Button";
-import {
-  getText,
-  TextWithStrong,
-} from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
+import { getText } from "@/components/customs/Text/TextWithStrong";
 import { cn } from "@/libs/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,7 +35,7 @@ export const InsurancesDetailHero: FC<Props> = ({
                 {heading}
               </p>
               <h1 className="2xl:text-5xl xl:text-4xl text-4xl font-bold !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="lg:text-sm text-sm font-normal text-black-200 !leading-[130%] flex flex-col gap-4">

@@ -29,7 +29,6 @@ export const ContactForm: FC = () => {
   const form = useForm<ContactFormInput>({
     resolver: zodResolver(contactSchema(formT)),
     defaultValues: {
-      role: "",
       first_name: "",
       last_name: "",
       email: "",
@@ -55,7 +54,6 @@ export const ContactForm: FC = () => {
         accept: values.accept,
         phone: values.phone,
         company: values.company,
-        role: values.role,
       });
 
       if (response.status === 201) {
@@ -100,24 +98,6 @@ export const ContactForm: FC = () => {
         }}
         className="flex flex-col gap-6"
       >
-        <SelectField
-          name="role"
-          label={t("role.label")}
-          placeholder={t("role.placeholder")}
-          options={[
-            {
-              value: t("role.options.0.label"),
-              label: t("role.options.0.label"),
-            },
-            {
-              value: t("role.options.1.label"),
-              label: t("role.options.1.label"),
-            },
-          ]}
-          isRequired={true}
-          register={form.register}
-          error={form.formState.errors.role?.message}
-        />
         <div className="flex lg:flex-row flex-col gap-6">
           <InputField
             name="first_name"

@@ -24,6 +24,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
       },
       {
         title: tNav("menu.3.title"),
+        subtitle: tNav("menu.3.subtitle"),
         url: "#",
         items: [
           {

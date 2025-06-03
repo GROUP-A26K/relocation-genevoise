@@ -1,5 +1,5 @@
 import { FeatureColCard } from "@/components/customs/Card";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { FC } from "react";
 
@@ -55,7 +55,7 @@ export const AssistanceInfo: FC<Props> = ({
                 {heading}
               </p>
               <h1 className="text-5xl font-semibold !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="text-sm font-normal text-black-200 !leading-[130%]">
@@ -65,7 +65,9 @@ export const AssistanceInfo: FC<Props> = ({
         </div>
       )}
       <div className="flex flex-col lg:gap-6 gap-8">
-        <h2 className="sr-only">{TextWithStrong(subHeading)}</h2>
+        <h2 className="sr-only">
+          <FormattedText text={subHeading} />
+        </h2>
         <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
           {reasonItems.map((reasonItem) => (
             <li key={reasonItem.title} className="h-full">

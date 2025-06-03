@@ -21,12 +21,15 @@ export const ContactContainer: FC<Props> = (props) => {
           <div className="flex flex-col items-center xl:justify-center lg:justify-start w-full">
             <div className="flex flex-col items-start lg:gap-8 gap-12">
               <div className="flex flex-col gap-3">
-                <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+                <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
                   {t("title")}
                 </p>
                 <h2 className="text-3xl font-semibold !leading-[130%]">
                   {t("subTitle")}
                 </h2>
+                <p className="text-sm font-normal text-black-200 !leading-[130%]">
+                  {t("description")}
+                </p>
               </div>
               {props.children}
             </div>

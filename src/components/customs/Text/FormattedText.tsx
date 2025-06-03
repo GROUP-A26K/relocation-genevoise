@@ -1,8 +1,9 @@
-import React, { FC, ReactNode } from 'react';
-import { LinkText } from './LinkText';
+import React, { FC, ReactNode } from "react";
+import { LinkText } from "./LinkText";
 
 // So when you invent a new inline element, you only have to touch three tiny spots.
 // type Marker
+// ENTRY
 // const OPEN/CLOSE
 // switch
 
@@ -15,18 +16,20 @@ interface Props {
 /*  Recursive parser                                                  */
 /* ------------------------------------------------------------------ */
 
-type Marker = 'bold' | 'italic' | 'link';
+type Marker = "bold" | "italic" | "link" | "strong";
 
 const OPEN = {
-  bold: '**',
-  italic: '*',
-  link: '[[',
+  bold: "**",
+  italic: "*",
+  link: "[[",
+  strong: "((",
 } as const;
 
 const CLOSE = {
-  bold: '**',
-  italic: '*',
-  link: ']]',
+  bold: "**",
+  italic: "*",
+  link: "]]",
+  strong: "))",
 } as const;
 
 function findNextMarker(
@@ -36,16 +39,18 @@ function findNextMarker(
   // order: link → bold → italic (link has two-char opener, bold also two)
   const link = source.indexOf(OPEN.link, start);
   const bold = source.indexOf(OPEN.bold, start);
+  const strong = source.indexOf(OPEN.strong, start);
   // single * that is not part of **
   let italic = source.indexOf(OPEN.italic, start);
-  while (italic !== -1 && source.slice(italic, italic + 2) === '**') {
+  while (italic !== -1 && source.slice(italic, italic + 2) === "**") {
     italic = source.indexOf(OPEN.italic, italic + 2);
   }
 
   const entries: Array<[number, Marker]> = [
-    [link, 'link'],
-    [bold, 'bold'],
-    [italic, 'italic'],
+    [link, "link"],
+    [bold, "bold"],
+    [italic, "italic"],
+    [strong, "strong"],
   ].filter(([pos]) => pos !== -1) as Array<[number, Marker]>;
 
   if (!entries.length) return null;
@@ -93,23 +98,31 @@ function parseSegment(segment: string, keyPrefix: string): ReactNode[] {
     const children = parseSegment(inner, `${keyPrefix}-${key}`);
 
     switch (next.type) {
-      case 'bold':
+      case "bold":
         nodes.push(
           <strong key={`${keyPrefix}-${key++}`} className="font-semibold">
             {children}
           </strong>
         );
         break;
-      case 'italic':
+      case "italic":
         nodes.push(
           <em key={`${keyPrefix}-${key++}`} className="italic">
             {children}
           </em>
         );
         break;
-      case 'link':
-        if (inner.toString().includes('|')) {
-          const [text, url] = inner.toString().split('|');
+
+      case "strong":
+        nodes.push(
+          <strong key={`${keyPrefix}-${key++}`} className="font-inherit">
+            {children}
+          </strong>
+        );
+        break;
+      case "link":
+        if (inner.toString().includes("|")) {
+          const [text, url] = inner.toString().split("|");
           nodes.push(
             <LinkText link={url} key={`${keyPrefix}-${key++}`}>
               {text}
@@ -134,7 +147,7 @@ function parseSegment(segment: string, keyPrefix: string): ReactNode[] {
 /*  Component                                                         */
 /* ------------------------------------------------------------------ */
 
-export const FormattedText: FC<Props> = ({ text, className = '' }) => {
+export const FormattedText: FC<Props> = ({ text, className = "" }) => {
   const lines = text.split(/\n+/);
 
   return (

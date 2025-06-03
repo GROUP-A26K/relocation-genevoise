@@ -176,7 +176,7 @@
     },
     "BookConsultation": {
       "heading": "Vous accompagner",
-      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ? ",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
       "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
       "buttonText1": "Contactez-nous",
       "buttonText2": "Trouver un logement"
@@ -219,7 +219,7 @@
     },
     "BookConsultation": {
       "heading": "Vous accompagner",
-      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ? ",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
       "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
       "buttonText1": "Contactez-nous",
       "buttonText2": "Trouver un logement"
@@ -229,18 +229,18 @@
   "RemindMe": {
     "Consultation": {
       "heading": "Rappelez-moi",
-      "subHeading": "Trouvons l’((assurance)) qui vous convient",
-      "description": "L’un de nos conseillers vous rappelle pendant nos heures d’ouverture et répond à vos questions.",
+      "subHeading": "Trouvons le service qui répond à votre besoin !",
+      "description": "Un membre de notre équipe vous rappellera dans les meilleurs délais. ",
       "cardContent": {
         "title": "Réservez votre appel dès maintenant !",
-        "statusTitle": "Actuellement ouvert ",
-        "callTitle": "Appel gratuit",
-        "calendarTitle": "Lundi au Vendredi 09:00h - 18:00h",
-        "buttonText": "Me rappeler ",
+        "callTitle": "Appel gratuit et sans engagement",
+        "calendarTitle": "Lundi au Samedi 08:00h - 21:00h",
+        "openStatusTitle": "Actuellement ouvert",
+        "closeStatusTitle": "Actuellement fermé ",
+        "buttonText": "Me rappeler",
         "buttonPlaceholder": "Numéro de téléphone",
         "noteTitle": "Nous veillons à la",
-        "checkboxTitle": "En cochant cette case, j'accepte que les informations saisies soient utilisées dans le cadre de la mise en relation avec un membre de notre équipe.",
-        "policyTitle": "protection de vos données."
+        "policyTitle": "protection de vos données"
       }
     },
     "ContactInfo": {
@@ -267,46 +267,32 @@
   "Contact": {
     "ContactInfo": {
       "heading": "Contactez-nous",
-      "subHeading": "Parlez-nous de votre ((projet))",
-      "description": "Notre équipe est à votre disposition pour échanger et répondre à vos besoins.",
+      "subHeading": "Nous sommes à ((votre écoute))",
+      "description": "Pour toute demande d'information, n'hésitez pas à nous contacter.",
       "reasonItems": [
         {
           "title": "Email",
-          "description": "Nous traitons vos demandes sous 24h",
-          "info": "contact@assurance-genevoise.ch"
+          "description": "Notre équipe est là pour vous aider.",
+          "info": "contact@relocation-genevoise.ch"
         },
         {
-          "title": "Accueil Client",
-          "description": "Venez nous rendre vitsite dans nos bureaux",
+          "title": "Bureaux",
+          "description": "Nous vous accueillons dans nos bureaux.",
           "info": "Rue des Alpes 5, 1201 Genève"
         },
         {
           "title": "Téléphone",
-          "description": "Lundi au Vendredi 09h|18h - Appel Gratuit",
-          "info": "+41 (022) 715 17 45"
+          "description": "Lundi au Samedi 08h – 21h | Appel Gratuit",
+          "info": "(+41) 022 715 17 48"
         }
       ]
     },
     "ContactContainer": {
       "title": "Formulaire de contact",
-      "subTitle": "Un conseiller vous rappelle dans la journée"
+      "subTitle": "Nous vous rappelons dans la journée.",
+      "description": "Si vous souhaitez nous contacter ou si vous êtes intéressé par nos services, contactez-nous par téléphone ou via le formulaire de contact ci-dessous."
     },
     "ContactForm": {
-      "Contact": {
-        "title": "Contact us",
-        "subTitle": "An advisor will answer you during the day.",
-        "buttonText": "Contact us now",
-        "inputLabel": "Your email address",
-        "inputPlaceholder": "Enter your email address"
-      },
-      "role": {
-        "label": "Je suis",
-        "placeholder": "Choisissez dans la liste",
-        "options": [
-          { "label": "Je suis un professionnel" },
-          { "label": "Je suis un particulier" }
-        ]
-      },
       "first_name": { "label": "Prénom", "placeholder": "Lucas" },
       "last_name": { "label": "Nom", "placeholder": "Zimmer" },
       "email": { "label": "Email", "placeholder": "lucas@email.com" },
@@ -319,17 +305,17 @@
         "label": "Comment pouvons nous vous aider ?",
         "placeholder": "Choisissez dans la liste ",
         "options": [
-          { "label": "Besoin de conseils personnalisés" },
-          { "label": "Demander à être rappelé" },
-          { "label": "Demande de rendez-vous" },
-          { "label": "Autres" }
+          { "label": "Trouver un logement" },
+          { "label": "Trouver un locataire" },
+          { "label": "Entreprise" },
+          { "label": "Conciergerie" }
         ]
       },
       "message": {
         "label": "Message",
         "placeholder": "Laissez nous un message"
       },
-      "accept": "En cochant cette case, j'accepte que les informations saisies soient utilisées dans le cadre du contact.",
+      "accept": "En cochant cette case, j'accepte que les informations saisies soient utilisées afin de me recontacter.",
       "send": "Envoyer"
     }
   },
@@ -590,7 +576,7 @@
     ],
     "BookConsultation": {
       "heading": "Vous accompagner",
-      "subHeading": "Vous souhaitez découvrir Genève avec notre équipe ?",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
       "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
       "buttonText1": "Contactez-nous",
       "buttonText2": "Trouver un logement"
@@ -628,7 +614,7 @@
     ],
     "BookConsultation": {
       "heading": "Vous accompagner",
-      "subHeading": "Vous souhaitez bénéficier de conciergerie sur mesure ? ",
+      "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
       "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
       "buttonText1": "Contactez-nous",
       "buttonText2": "Trouver un logement"
@@ -712,6 +698,43 @@
           ]
         }
       ]
+    }
+  },
+
+  "FAQ": {
+    "heading": "FAQ",
+    "subHeading": "Des questions ?\n ((Voici nos réponses))",
+    "description": "Des réponses claires et pratiques pour vous accompagner tout au long de votre projet de relocation.",
+    "faqs": [
+      {
+        "question": "Qu’est ce qu’une agence de relocation ?",
+        "answer": "La relocation est un service d’accompagnement destiné aux particuliers, familles, et entreprises lors de leur installation dans une nouvelle région ou un nouveau pays. Elle propose une assistance complète en vous aidant à trouver un logement, gérer les démarches administratives et organiser votre emménagement."
+      },
+      {
+        "question": "Quels types de logements proposez-vous ?",
+        "answer": "Nous proposons une large sélection de logements, de l’appartement en centre-ville aux maisons plus spacieuses en périphérie, pour correspondre à vos critères de budget, localisation et style de vie."
+      },
+      {
+        "question": "Quelle est la durée moyenne du processus de relocation ?",
+        "answer": "La durée peut varier en fonction des besoins spécifiques et des contraintes du marché immobilier, mais nous travaillons à minimiser le temps nécessaire à votre installation. Chaque projet est unique et nous ajustons nos services en conséquence."
+      },
+      {
+        "question": "Quels services proposez-vous ?",
+        "answer": "Nous proposons une large gamme de services, incluant la recherche de logement, l’assistance administrative, l’accompagnement à l’installation, la recherche d’écoles, la découverte de la région et bien plus encore."
+      },
+      {
+        "question": "Offrez-vous des services pour les entreprises ?",
+        "answer": "Oui, nous aidons les entreprises en Suisse à faciliter l’installation de leurs employés, en organisant la recherche de logement, en offrant des solutions administratives pratiques et en garantissant une intégration réussie à la vie genevoise."
+      },
+      {
+        "question": "Comment puis-je commencer un projet avec vous ?",
+        "answer": "Contactez-nous via notre formulaire de contact, par mail ou par téléphone (022 715 17 48). Nous organiserons un premier rendez-vous pour comprendre vos besoins et vous proposer nos services les plus adaptés à votre projet."
+      }
+    ],
+    "BookConsultation": {
+      "subHeading": "Besoin d’un conseil ?\n Notre équipe est ((là pour vous guider))",
+      "description": "Bénéficiez de conseils et d'un support personnalisé qui répondent à vos besoins.",
+      "buttonText1": "Contactez-nous"
     }
   },
 
@@ -899,10 +922,11 @@
         "title": "Trouver un locataire"
       },
       {
-        "title": "Companies"
+        "title": "Entreprises"
       },
       {
         "title": "Services",
+        "subtitle": "NOS SERVICES",
         "items": [
           {
             "title": "Scolarité",
@@ -924,7 +948,7 @@
       "text": "Appelez-moi"
     },
     "blogButton": {
-      "text": "En savoir plus"
+      "text": "Savoir plus"
     }
   },
 
@@ -942,32 +966,22 @@
     "service": {
       "title": "Professionnel",
       "links": [
-        { "text": "Enterprise" },
-        { "text": "International" },
-        { "text": "Profession libérale" }
+        { "text": "Trouver un logement" },
+        { "text": "Trouver un locataire" },
+        { "text": "Entreprises & Organisations" }
       ]
     },
     "company": {
       "title": "Particulier",
       "links": [
-        { "text": "Assurances" },
-        { "text": "Frontalier" },
-        { "text": "Fiscalité" },
-        { "text": "Santé" },
-        { "text": "Hypothèque" },
-        { "text": "Prévoyance" }
+        { "text": "Scolarité" },
+        { "text": "Découvrir Genève" },
+        { "text": "Conciergerie" }
       ]
     },
     "support": {
       "title": "Support",
-      "links": [
-        { "text": "Se faire rappeler" },
-        { "text": "Sinistre et Assistance" },
-        { "text": "Mon compte client" },
-        { "text": "Contactez-nous" },
-        { "text": "FAQ" },
-        { "text": "Blog" }
-      ]
+      "links": [{ "text": "Contactez-nous" }, { "text": "FAQ" }]
     },
     "social": {
       "title": "Social Medias",

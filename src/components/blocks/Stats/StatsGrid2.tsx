@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import StatsBG from "@/assets/img/bg/relocation-genevoise-a-geneve.webp";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 interface Props {
   heading?: string;
   subHeading?: string;
@@ -51,13 +51,13 @@ const StatsGrid2: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col lg:gap-16 gap-14">
-      <div className="flex flex-col lg:gap-6 gap-4">
+      <div className="flex flex-col lg:gap-6 gap-4 max-w-[768px]">
         <div className="flex flex-col gap-3">
           <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
             {heading}
           </p>
           <h2 className="text-3xl font-semibold !leading-[130%]">
-            {TextWithStrong(subHeading)}
+            <FormattedText text={subHeading} />
           </h2>
         </div>
         <p className="text-sm font-normal text-black-200 !leading-[130%]">

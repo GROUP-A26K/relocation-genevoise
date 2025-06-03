@@ -1,5 +1,5 @@
 import { FeatureRowCard2 } from "@/components/customs/Card";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 import Image from "next/image";
 import HeroImage from "@/assets/img/bg/trouvez-facilement-votre-nouveau-chez-vous-geneve.webp";
 
@@ -31,7 +31,7 @@ const ServiceFeature2 = ({
               {heading}
             </p>
             <h2 className="text-3xl font-semibold lg:text-center text-center !leading-[130%] text-balance">
-              {TextWithStrong(subHeading)}
+              <FormattedText text={subHeading} />
             </h2>
           </div>
           <p className="text-sm font-normal lg:text-center text-center text-black-200 !leading-[130%] text-balance">

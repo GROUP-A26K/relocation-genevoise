@@ -17,8 +17,8 @@ import axios from "@/libs/axios";
 import { toast } from "sonner";
 import Alert from "@/components/customs/Alert";
 import { Env } from "@/libs/Env";
-import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { Link } from "@/libs/i18nNavigation";
+import { useLocale, useTranslations } from "next-intl";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 const TIME_OPEN = 9;
 const TIME_CLOSE = 18;
@@ -30,13 +30,13 @@ interface Props {
   description?: string;
   cardContent?: {
     title: string;
-    statusTitle: string;
+    openStatusTitle: string;
+    closeStatusTitle: string;
     callTitle: string;
     calendarTitle: string;
     buttonText: string;
     buttonPlaceholder: string;
     noteTitle: string;
-    checkboxTitle: string;
     policyTitle: string;
   };
 
@@ -52,14 +52,13 @@ export const ConsultationFormView: FC<Props> = ({
   description = "Our advisors will call you back during our opening hours and answer all your questions.",
   cardContent = {
     title: "Contact with an advisor",
-    statusTitle:
-      "We exchange together to understand your situation, identify your specific needs and find the right solutions.",
+    openStatusTitle: "We are available",
+    closeStatusTitle: "We are currently closed",
     callTitle: "Call us",
     calendarTitle: "Schedule an appointment",
     buttonText: "Contact us now",
     noteTitle: "Note: we are available Monday to Friday from 9 am to 6 pm.",
     policyTitle: "Privacy Policy",
-    checkboxTitle: "I have read and accept the",
     buttonPlaceholder: "Phone number",
   },
 }) => {
@@ -68,7 +67,7 @@ export const ConsultationFormView: FC<Props> = ({
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openTime, setOpenTime] = useState(false);
-
+  const locale = useLocale();
   const form = useForm<BookingFormInput>({
     resolver: zodResolver(bookingSchema(formT)),
     defaultValues: {
@@ -82,7 +81,7 @@ export const ConsultationFormView: FC<Props> = ({
     setLoading(true);
 
     try {
-      const response = await axios.post("api/booking", {
+      const response = await axios.post(`api/booking?locale=${locale}`, {
         accept: values.accept,
         phone: values.phone,
       });
@@ -151,14 +150,14 @@ export const ConsultationFormView: FC<Props> = ({
 
   return (
     <div className="bg-white lg:pb-[300px] pb-[490px]">
-      <div className="bg-yellow-50 lg:pb-12 pb-8">
+      <div className="bg-yellow-25 lg:pb-12 pb-8">
         <div className="relative flex flex-col justify-center items-center">
           <div className="container flex flex-col lg:pt-16 pt-14 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4 gap-8">
             <div className="w-full">
               <div className="flex w-full items-center justify-start">
                 <div className="flex flex-col lg:gap-6 gap-4 lg:text-left text-center">
                   <div className="flex flex-col gap-3">
-                    <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+                    <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
                       {heading}
                     </p>
                     <h1 className="text-3xl font-semibold !leading-[130%]">
@@ -203,7 +202,9 @@ export const ConsultationFormView: FC<Props> = ({
                           className={`rounded-full h-2 w-2 ${openTime ? "bg-green-500" : "bg-red-500"}`}
                         />
                         <h3 className="text-black-500 text-sm !leading-[130%]">
-                          {cardContent.statusTitle}
+                          {openTime
+                            ? cardContent.openStatusTitle
+                            : cardContent.closeStatusTitle}
                         </h3>
                       </div>
                       <Form {...form}>
