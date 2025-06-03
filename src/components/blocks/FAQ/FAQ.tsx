@@ -1,12 +1,11 @@
-import { FormattedText } from '@/components/customs/Text';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { FormattedText } from "@/components/customs/Text";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion-custom';
-import { FC } from 'react';
+} from "@/components/ui/accordion-custom";
+import { FC } from "react";
 
 interface FAQ {
   question: string;
@@ -20,37 +19,37 @@ interface Props {
   faqs?: FAQ[];
 }
 export const FAQ: FC<Props> = ({
-  heading = 'FAQ',
-  subHeading = 'Do you have any questions? We have the answers!',
-  description = 'Everything you need to know about the product and billing.',
+  heading = "FAQ",
+  subHeading = "Do you have any questions? We have the answers!",
+  description = "Everything you need to know about the product and billing.",
   faqs = [
     {
-      question: 'Is there a free trial available?',
+      question: "Is there a free trial available?",
       answer:
-        'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.',
+        "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
     },
     {
-      question: 'Can I change my plan later?',
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-    },
-    {
-      question: 'What is your cancellation policy?',
+      question: "Can I change my plan later?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: 'Can other info be added to an invoice?',
+      question: "What is your cancellation policy?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: 'How does billing work?',
+      question: "Can other info be added to an invoice?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: 'How do I change my account email?',
+      question: "How does billing work?",
+      answer:
+        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      question: "How do I change my account email?",
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
@@ -61,11 +60,11 @@ export const FAQ: FC<Props> = ({
       <div className="flex w-full items-center lg:justify-center justify-start">
         <div className="flex flex-col lg:gap-6 gap-4 max-w-3xl lg:items-center text-left">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold lg:text-center text-left text-primary-500 !leading-[130%]">
+            <p className="text-sm font-semibold lg:text-center text-left text-secondary-500 !leading-[130%]">
               {heading}
             </p>
-            <h2 className="text-3xl font-semibold lg:text-center text-left !leading-[130%]">
-              {TextWithStrong(subHeading)}
+            <h2 className="text-5xl font-semibold lg:text-center text-left !leading-[130%]">
+              <FormattedText text={subHeading} />
             </h2>
           </div>
           <p className="text-sm font-normal lg:text-center text-left text-black-200 !leading-[130%]">

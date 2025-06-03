@@ -1,7 +1,7 @@
-import { InfoContactCard } from '@/components/customs/Card';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
-import { Mail, MapPin, Phone } from 'lucide-react';
-import { FC } from 'react';
+import { InfoContactCard } from "@/components/customs/Card";
+import { FormattedText } from "@/components/customs/Text";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { FC } from "react";
 
 interface Reason {
   title: string;
@@ -19,24 +19,24 @@ interface Props {
 
 const ContactInfo: FC<Props> = ({
   heading,
-  subHeading = 'Need help? We are here for you!',
+  subHeading = "Need help? We are here for you!",
   description,
   reasonItems = [
     {
-      title: 'Email',
+      title: "Email",
       icon: Mail,
-      info: 'contact@assurance-genevoise.ch',
+      info: "contact@assurance-genevoise.ch",
     },
     {
-      title: 'Office',
+      title: "Office",
       icon: MapPin,
-      info: 'Rue des Alpes 5, 1201 Geneva',
+      info: "Rue des Alpes 5, 1201 Geneva",
     },
     {
-      title: 'Phone',
-      description: 'Mon-Fri from 8am to 5pm.',
+      title: "Phone",
+      description: "Mon-Fri from 8am to 5pm.",
       icon: Phone,
-      info: '+1 (555) 000-0000',
+      info: "+1 (555) 000-0000",
     },
   ],
 }) => {
@@ -50,7 +50,7 @@ const ContactInfo: FC<Props> = ({
                 {heading}
               </p>
               <h1 className="text-3xl font-semibold text-center !leading-[130%] text-balance">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">

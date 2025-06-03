@@ -1,8 +1,5 @@
 import { FormattedText } from "@/components/customs/Text";
-import {
-  getText,
-  TextWithStrong,
-} from "@/components/customs/Text/TextWithStrong";
+import { getText } from "@/components/customs/Text/TextWithStrong";
 import { cn } from "@/libs/utils";
 import Image from "next/image";
 import { FC } from "react";
@@ -57,7 +54,7 @@ export const InsurancesFeature: FC<Props> = ({
               {heading}
             </p>
             <h2 className="text-3xl font-semibold !leading-[130%]">
-              {TextWithStrong(subHeading)}
+              <FormattedText text={subHeading} />
             </h2>
           </div>
           <p className="text-sm font-normal text-black-200 !leading-[130%]">

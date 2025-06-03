@@ -173,10 +173,10 @@
       ]
     },
     "BookConsultation": {
-      "heading": "Supporting You",
-      "subHeading": "Would you like to benefit from our expertise and services?",
+      "heading": "We look forward to meeting you",
+      "subHeading": "Would you like to benefit from our expertise and services ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact us",
+      "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -216,10 +216,10 @@
       ]
     },
     "BookConsultation": {
-      "heading": "Supporting You",
-      "subHeading": "Would you like to benefit from our expertise and services?",
+      "heading": "We look forward to meeting you",
+      "subHeading": "Would you like to benefit from our expertise and services ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact us",
+      "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -227,17 +227,17 @@
   "RemindMe": {
     "Consultation": {
       "heading": "Call me back",
-      "subHeading": "Find the ((insurance)) that fits your needs",
-      "description": "One of our advisors will call you back during our opening hours and answer all your questions.",
+      "subHeading": "Let’s find the service that meets your needs !",
+      "description": "A member of our team will call you back as soon as possible.",
       "cardContent": {
         "title": "Book your call now !",
-        "statusTitle": "Open now",
-        "callTitle": "Free recall ",
-        "calendarTitle": "Monday to Friday 9:00 am – 6:00 pm ",
+        "callTitle": "Free call with no obligation",
+        "calendarTitle": "Monday to Saturday, 8:00 AM – 9:00 PM",
+        "openStatusTitle": "Open now",
+        "closeStatusTitle": "Currently closed",
         "buttonText": "Call me back",
         "buttonPlaceholder": "Phone number",
         "noteTitle": "We take care of",
-        "checkboxTitle": "By checking this box, I agree that the information entered will be used as part of the contact.",
         "policyTitle": "protecting your data."
       }
     },
@@ -265,39 +265,32 @@
   "Contact": {
     "ContactInfo": {
       "heading": "Contact us",
-      "subHeading": "Tell us more about your ((project))",
-      "description": "Our team is here to discuss and meet your needs.",
+      "subHeading": "We’re here for you",
+      "description": "For any inquiries, feel free to contact us.",
       "reasonItems": [
         {
           "title": "Email",
-          "description": "Our friendly team is here to help.",
-          "info": "contact@assurance-genevoise.ch"
+          "description": "Our team is here to help you.",
+          "info": "contact@relocation-genevoise.ch"
         },
         {
           "title": "Office",
-          "description": "Come say hello at our office HQ.",
+          "description": "We welcome you to our offices by appointment.",
           "info": "Rue des Alpes 5, 1201 Genève"
         },
         {
-          "title": "Telephone",
-          "description": "Monday to Friday 9am | 6pm - Free Call",
-          "info": "+41 (022) 715 17 45"
+          "title": "Phone",
+          "description": "Monday to Saturday, 8 AM – 9 PM | Free Call",
+          "info": "(+41) 022 715 17 48"
         }
       ]
     },
     "ContactContainer": {
       "title": "Contact form",
-      "subTitle": "An advisor will call you back shortly"
+      "subTitle": "We’ll call you back during the day.",
+      "description": "If you would like to contact us or are interested in our services, feel free to reach out by phone or via the contact form below."
     },
     "ContactForm": {
-      "role": {
-        "label": "I am",
-        "placeholder": "Choose from the list ",
-        "options": [
-          { "label": "I am a professional" },
-          { "label": "I am an individual" }
-        ]
-      },
       "first_name": { "label": "First name", "placeholder": "Lucas" },
       "last_name": { "label": "Last name", "placeholder": "Zimmer" },
       "email": { "label": "Email", "placeholder": "you@email.com" },
@@ -311,17 +304,17 @@
         "label": "How we can help you ?",
         "placeholder": "Choose from the list",
         "options": [
-          { "label": "Need personalized advice" },
-          { "label": "Request to be called back" },
-          { "label": "Request for an appointment" },
-          { "label": "Others" }
+          { "label": "Find accomodation" },
+          { "label": "Find a tenant" },
+          { "label": "Corporate services" },
+          { "label": "Concierge services" }
         ]
       },
       "message": {
         "label": "Message",
         "placeholder": "Your message..."
       },
-      "accept": "By checking this box, I agree that the information entered may be used to process my request and contact me.",
+      "accept": "By checking this box, I agree that the information provided may be used to contact me.",
       "send": "Send"
     }
   },
@@ -526,10 +519,10 @@
       }
     ],
     "BookConsultation": {
-      "heading": "Cooperate",
-      "subHeading": "Would you like to benefit from our expertise and services?",
-      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
-      "buttonText1": "Contact us",
+      "heading": "We look forward to meeting you",
+      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
+      "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -581,10 +574,10 @@
       }
     ],
     "BookConsultation": {
-      "heading": "Here to support you",
-      "subHeading": "Would you like to discover Geneva with our team?",
-      "description": "We are available to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact us",
+      "heading": "We look forward to meeting you",
+      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
+      "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -617,17 +610,17 @@
       }
     ],
     "BookConsultation": {
-      "heading": "Here to support you",
-      "subHeading": "Would you like to benefit from a personalized concierge service?",
-      "description": "We are available to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact us",
+      "heading": "We look forward to meeting you",
+      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
+      "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
     }
   },
 
   "Companies": {
     "BusinessInfo": {
-      "heading": "Features",
+      "heading": "Professional",
       "subHeading": "Companies",
       "description": "Providing a tailored relocation service in Geneva to facilitate the settlement of your employees and new arrivals. We are committed to making the transition to a new home simple, efficient, and stress-free by offering premium and personalized support, local expertise, and comprehensive administrative assistance to ensure a smooth and swift transition.",
       "items": [
@@ -702,6 +695,43 @@
           ]
         }
       ]
+    }
+  },
+
+  "FAQ": {
+    "heading": "FAQ",
+    "subHeading": "Any questions?\n ((Here are our answers))",
+    "description": "Clear and practical answers to support you throughout your relocation project.",
+    "faqs": [
+      {
+        "question": "What is a relocation agency?",
+        "answer": "Relocation is a support service designed for individuals, families, and companies moving to a new region or country. It provides comprehensive assistance by helping you find a home, handle administrative procedures, and organize your move."
+      },
+      {
+        "question": "What types of housing do you offer?",
+        "answer": "We offer a wide selection of properties, from city-center apartments to more spacious houses in suburban areas — tailored to your budget, location, and lifestyle preferences."
+      },
+      {
+        "question": "How long does the relocation process take?",
+        "answer": "The duration varies depending on your specific needs and the local real estate market. However, we aim to make your move as swift as possible. Every project is unique, and we adjust our services accordingly."
+      },
+      {
+        "question": "What services do you offer?",
+        "answer": "We provide a wide range of services, including housing search, administrative support, moving assistance, school search, local orientation, and more."
+      },
+      {
+        "question": "Do you offer services for businesses?",
+        "answer": "Yes, we support companies in Switzerland by helping their employees settle in. We organize housing searches, offer practical administrative solutions, and ensure successful integration into life in Geneva."
+      },
+      {
+        "question": "How can I start a project with you?",
+        "answer": "Contact us via our contact form, by email, or by phone (+41 22 715 17 48). We will schedule an initial meeting to understand your needs and recommend the services best suited to your relocation project."
+      }
+    ],
+    "BookConsultation": {
+      "subHeading": "Need advice ?\n Our team is here to guide you",
+      "description": "Benefit from personalized advice and support tailored to your needs.",
+      "buttonText1": "Contact-us"
     }
   },
 
@@ -891,18 +921,19 @@
       },
       {
         "title": "Services",
+        "subtitle": "OUR SERVICES",
         "items": [
           {
-            "title": "Tuition",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "title": "Academic Services",
+            "description": "Expert advice to help you choose the right school for your children"
           },
           {
-            "title": "Concierge service",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "title": "Concierge",
+            "description": "A service dedicated to handling all your requests, even the most specific ones"
           },
           {
             "title": "Discover Geneva",
-            "description": "Vous faire découvrir Genève et ses incontournables."
+            "description": "Let us show you Geneva and its must-see attractions."
           }
         ]
       }
@@ -929,38 +960,28 @@
     "service": {
       "title": "Professional",
       "links": [
-        { "text": "Company" },
-        { "text": "International" },
-        { "text": "Liberal profession" }
+        { "text": "Find accommodation" },
+        { "text": "Find a tenant" },
+        { "text": "Companies" }
       ]
     },
     "company": {
       "title": "Individual",
       "links": [
-        { "text": "Insurance" },
-        { "text": "Cross-border worker" },
-        { "text": "Taxation" },
-        { "text": "Health" },
-        { "text": "Mortgage" },
-        { "text": "Life & disability insurance" }
+        { "text": "Academic Services" },
+        { "text": "Discover Geneva" },
+        { "text": "Concierge" }
       ]
     },
     "support": {
       "title": "Support",
-      "links": [
-        { "text": "Call me back" },
-        { "text": "Claims & Assistance" },
-        { "text": "My account" },
-        { "text": "Contact-us" },
-        { "text": "FAQ" },
-        { "text": "Blog" }
-      ]
+      "links": [{ "text": "Contact-us" }, { "text": "FAQ" }]
     },
     "social": {
       "title": "Social Medias",
       "links": [{ "text": "LinkedIn" }]
     },
-    "copyright": "©2025 AG Assurance Genevoise SA, insurance broker, FINMA registry number F01502264. All rights reserved.",
+    "copyright": "©2025 RG Relocation Genevoise.  All rights reserved.",
     "bottomLinks": [
       { "text": "Legal Notices" },
       { "text": "Peronal Data" },

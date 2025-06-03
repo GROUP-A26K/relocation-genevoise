@@ -1,7 +1,7 @@
-import { BusinessCard } from '@/components/customs/Card';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
-import { Building } from 'lucide-react';
-import { FC } from 'react';
+import { BusinessCard } from "@/components/customs/Card";
+import { FormattedText } from "@/components/customs/Text";
+import { Building } from "lucide-react";
+import { FC } from "react";
 
 interface Item {
   title: string;
@@ -21,15 +21,15 @@ interface Props {
 
 export const BusinessInfo: FC<Props> = ({
   heading,
-  subHeading = 'Need help? We are here for you!',
+  subHeading = "Need help? We are here for you!",
   description,
   linkText,
   items = [
     {
-      title: 'Professional liability insurance',
-      description: 'Complete protection for your property and your future.',
+      title: "Professional liability insurance",
+      description: "Complete protection for your property and your future.",
       icon: Building,
-      link: '/particulier/assurance/assurance-animaux',
+      link: "/particulier/assurance/assurance-animaux",
     },
   ],
 }) => {
@@ -43,7 +43,7 @@ export const BusinessInfo: FC<Props> = ({
                 {heading}
               </p>
               <h1 className="text-3xl font-bold text-center !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">

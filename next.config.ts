@@ -7,10 +7,10 @@ const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
 type LocaleMap = Record<string, string | number>;
 
 function buildRewrites() {
-  const { defaultLocale, locales, routes } = AppConfig;
+  const { locales, routes } = AppConfig;
 
   return Object.values(routes).flatMap((localeMap: LocaleMap) => {
-    const canonical = localeMap[defaultLocale];
+    const canonical = localeMap["en"];
 
     return locales.map((locale) => ({
       source: `/${locale}${localeMap[locale]}`,

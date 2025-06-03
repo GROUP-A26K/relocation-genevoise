@@ -19,7 +19,7 @@ export const AppConfig = {
       en: "/legal-notice",
       priority: 0.9,
     },
-    callMe: { fr: "/rappelez-moi", en: "/call-me", priority: 0.9 },
+    callMe: { fr: "/rappelez-moi", en: "/call-me-back", priority: 0.9 },
     personalInsurance: {
       fr: "/particulier/assurance",
       en: "/personal/insurance",

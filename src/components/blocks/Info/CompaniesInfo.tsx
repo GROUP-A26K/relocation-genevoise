@@ -1,5 +1,5 @@
 import { CompanyCard } from "@/components/customs/Card";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 import { Building } from "lucide-react";
 import { FC } from "react";
 
@@ -62,7 +62,7 @@ export const CompaniesInfo: FC<Props> = ({
                 {heading}
               </p>
               <h1 className="text-3xl font-bold text-center !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">

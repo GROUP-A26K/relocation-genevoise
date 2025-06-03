@@ -1,11 +1,11 @@
-'use client';
-import { BlogBGCard } from '@/components/customs/Card';
-import Button from '@/components/customs/Button';
-import { FC } from 'react';
-import { Blog } from '@/models/BLog';
-import { ArrowDown } from 'lucide-react';
-import Link from 'next/link';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+"use client";
+import { BlogBGCard } from "@/components/customs/Card";
+import Button from "@/components/customs/Button";
+import { FC } from "react";
+import { Blog } from "@/models/BLog";
+import { ArrowDown } from "lucide-react";
+import Link from "next/link";
+import { FormattedText } from "@/components/customs/Text";
 
 interface Props {
   tagline?: string;
@@ -18,9 +18,9 @@ interface Props {
 }
 
 const BlogHero: FC<Props> = ({
-  heading = 'Blog',
-  subHeading = 'Our Latest News',
-  description = 'Lorem ipsum dolor sit amet consectetur. Sed massa turpis enim congue erat sit ultricies. Turpis tempor adipiscing.',
+  heading = "Blog",
+  subHeading = "Our Latest News",
+  description = "Lorem ipsum dolor sit amet consectetur. Sed massa turpis enim congue erat sit ultricies. Turpis tempor adipiscing.",
   post,
   buttonText,
 }) => {
@@ -33,7 +33,7 @@ const BlogHero: FC<Props> = ({
               {heading}
             </h1>
             <h2 className="text-3xl font-semibold text-center !leading-[130%]">
-              {TextWithStrong(subHeading)}
+              <FormattedText text={subHeading} />
             </h2>
           </div>
           <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">
@@ -47,7 +47,7 @@ const BlogHero: FC<Props> = ({
                 variant="md"
                 type="primary"
               >
-                {buttonText ?? 'Start now'}
+                {buttonText ?? "Start now"}
               </Button>
             </Link>
           </div>

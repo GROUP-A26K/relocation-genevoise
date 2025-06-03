@@ -13,6 +13,7 @@ import { fetchBlogs } from "@/services/blog.service";
 
 interface MenuItem {
   title: string;
+  subtitle?: string;
   url: string;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -55,7 +56,7 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
 
               <div className="w-full flex xl:p-6 xl:pl-0 p-6 pb-0 flex-col gap-3 pl-0">
                 <p className="text-[12px] font-medium uppercase px-[12px] !leading-[130%]">
-                  {item.title}
+                  {item.subtitle}
                 </p>
 
                 <div className="grid gap-y-3 gap-x-[48px] xl:grid-cols-2 grid-cols-3">

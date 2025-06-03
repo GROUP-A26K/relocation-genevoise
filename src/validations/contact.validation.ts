@@ -11,9 +11,6 @@ export function contactSchema(
   t?: (key: string, object?: TranslationValues) => string
 ) {
   return z.object({
-    role: z.string().refine((val) => val !== "", {
-      message: t?.("roleRequired") ?? "Please select your role",
-    }),
     first_name: z
       .string()
       .min(2, {

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 import Button from "@/components/customs/Button";
 import { Link } from "@/libs/i18nNavigation";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 import { ArrowRight } from "lucide-react";
 
 interface Props {
@@ -31,6 +31,7 @@ export const Hero: FC<Props> = ({
   description = "We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.",
   button,
   button2,
+  heading,
   heroImage,
 }) => {
   return (
@@ -39,8 +40,11 @@ export const Hero: FC<Props> = ({
         <div className="flex flex-col gap-6">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl w-full lg:items-center text-left">
             <div className="flex flex-col gap-3">
+              <p className="text-sm font-semibold lg:text-center text-left text-secondary-500 !leading-[130%]">
+                {heading}
+              </p>
               <h1 className="lg:text-5xl text-4xl font-bold text-center text-balance !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">

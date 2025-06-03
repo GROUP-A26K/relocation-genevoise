@@ -1,5 +1,4 @@
 import { FormattedText } from "@/components/customs/Text";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import { FC } from "react";
 
 interface Props {
@@ -25,7 +24,7 @@ export const Content: FC<Props> = ({
             {heading}
           </p>
           <h2 className="text-3xl font-semibold !leading-[130%]">
-            {TextWithStrong(subHeading)}
+            <FormattedText text={subHeading} />
           </h2>
         </div>
         <div className="max-w-[600px] flex flex-col items-start gap-6 text-left justify-start">

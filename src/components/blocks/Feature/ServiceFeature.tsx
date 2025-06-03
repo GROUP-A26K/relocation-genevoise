@@ -1,5 +1,5 @@
 import { FeatureRowCard } from "@/components/customs/Card";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 
 interface Reason {
   title: string;
@@ -29,7 +29,7 @@ const ServiceFeature = ({
           {heading}
         </p>
         <h2 className="text-3xl font-semibold !leading-[130%]">
-          {TextWithStrong(subHeading)}
+          <FormattedText text={subHeading} />
         </h2>
       </div>
       {reasons.map((reason, i) => (

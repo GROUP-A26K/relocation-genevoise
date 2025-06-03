@@ -3,7 +3,7 @@ import Button from "@/components/customs/Button";
 import { FC } from "react";
 import { Blog } from "@/models/BLog";
 import Link from "next/link";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { FormattedText } from "@/components/customs/Text";
 
 interface Props {
   tagline?: string;
@@ -32,7 +32,7 @@ const BlogList: FC<Props> = ({
               {heading}
             </p>
             <h2 className="text-3xl font-semibold !leading-[130%]">
-              {TextWithStrong(subHeading)}
+              <FormattedText text={subHeading} />
             </h2>
           </div>
           <p className="text-sm text-black-200 !leading-[130%]">

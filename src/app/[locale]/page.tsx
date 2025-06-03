@@ -146,7 +146,7 @@ export default async function Page(props: Props) {
         />
       </Section>
 
-      <Section className="bg-gray-50">
+      <Section className="bg-grey-50">
         <Feature
           heading={t("EngagementFeature.heading")}
           subHeading={t("EngagementFeature.subHeading")}
@@ -199,7 +199,7 @@ export default async function Page(props: Props) {
         />
       </Section>
 
-      <Section className="bg-gray-50">
+      <Section className="lg:bg-white bg-grey-50">
         <BookConsultation2
           heading={t("BookConsultation.heading")}
           subHeading={t("BookConsultation.subHeading")}

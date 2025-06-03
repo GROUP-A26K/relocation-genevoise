@@ -37,21 +37,21 @@ type Props = BaseProps & (GhostProps | SolidProps);
 const Alert: FC<Props> = ({ children, type, title, as, onClick }) => {
   const STYLE_GHOST: Record<IType, string> = {
     danger: cn("bg-red-50"),
-    success: cn("bg-secondary-50"),
+    success: cn("bg-green-50"),
     warning: cn("bg-yellow-50"),
     info: cn("bg-blue-50"),
   };
 
   const STYLE_SOLID: Record<IType, string> = {
     danger: cn("bg-red-500"),
-    success: cn("bg-secondary-500"),
+    success: cn("bg-green-500"),
     warning: cn("bg-yellow-500"),
     info: cn("bg-blue-500"),
   };
 
   const STYLE_ICON: Record<IType, string> = {
     danger: cn("text-red-500"),
-    success: cn("text-secondary-500"),
+    success: cn("text-green-500"),
     warning: cn("text-yellow-500"),
     info: cn("text-blue-500"),
   };

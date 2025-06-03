@@ -44,13 +44,13 @@ export default async function Page(props: Props) {
         description={t("Consultation.description")}
         cardContent={{
           title: t("Consultation.cardContent.title"),
-          statusTitle: t("Consultation.cardContent.statusTitle"),
+          openStatusTitle: t("Consultation.cardContent.openStatusTitle"),
+          closeStatusTitle: t("Consultation.cardContent.closeStatusTitle"),
           callTitle: t("Consultation.cardContent.callTitle"),
           calendarTitle: t("Consultation.cardContent.calendarTitle"),
           buttonText: t("Consultation.cardContent.buttonText"),
           buttonPlaceholder: t("Consultation.cardContent.buttonPlaceholder"),
           noteTitle: t("Consultation.cardContent.noteTitle"),
-          checkboxTitle: t("Consultation.cardContent.checkboxTitle"),
           policyTitle: t("Consultation.cardContent.policyTitle"),
         }}
       />

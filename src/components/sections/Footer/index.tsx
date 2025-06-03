@@ -6,6 +6,8 @@ import { SubscribeForm } from "./SubscribeForm";
 import { getTranslations } from "next-intl/server";
 import AgLogo from "@/assets/img/logos/rg-logo.svg";
 import Linkedin from "@/assets/img/logos/social/linkedin.svg";
+import Instagram from "@/assets/img/logos/social/instagram.svg";
+import Facebook from "@/assets/img/logos/social/facebook.svg";
 import { GoogleRating } from "@/components/blocks/GoogleRating";
 interface MenuItem {
   title: string;
@@ -64,53 +66,55 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
     service: {
       title: t("service.title"),
       links: [
-        { text: t("service.links.0.text"), url: "/professionnel/entreprise" },
+        { text: t("service.links.0.text"), url: "/find-accommodation" },
         {
           text: t("service.links.1.text"),
-          url: "/professionnel/international",
+          url: "/find-a-tenant",
         },
         {
           text: t("service.links.2.text"),
-          url: "/professionnel/profession-liberale",
+          url: "/companies",
         },
       ],
     },
     company: {
       title: t("company.title"),
       links: [
-        { text: t("company.links.0.text"), url: "/particulier/assurance" },
+        { text: t("company.links.0.text"), url: "/services/education" },
         {
           text: t("company.links.1.text"),
-          url: "/particulier/assurance/assurance-frontalier",
+          url: "/services/discover-geneva",
         },
         {
           text: t("company.links.2.text"),
-          url: "/particulier/taxes-et-fiscalite",
+          url: "/services/concierge-service",
         },
-        { text: t("company.links.3.text"), url: "/particulier/sante" },
-        { text: t("company.links.4.text"), url: "/particulier/hypotheque" },
-        { text: t("company.links.5.text"), url: "/particulier/prevoyance" },
       ],
     },
     support: {
       title: t("support.title"),
       links: [
-        { text: t("support.links.0.text"), url: "/rappelez-moi" },
-        { text: t("support.links.1.text"), url: "/assistance" },
-        { text: t("support.links.2.text"), url: "#" },
-        { text: t("support.links.3.text"), url: "/contact" },
-        { text: t("support.links.4.text"), url: "/assistance" },
-        { text: t("support.links.5.text"), url: "/blog" },
+        { text: t("support.links.0.text"), url: "/contact" },
+        { text: t("support.links.1.text"), url: "/faq" },
       ],
     },
-
     social: {
       title: t("social.title"),
       links: [
         {
+          icon: Facebook,
+          text: "Facebook",
+          url: "https://www.facebook.com/people/Relocation-Genevoise/61566756459931/",
+        },
+        {
           icon: Linkedin,
           text: t("social.links.0.text"),
-          url: "https://www.linkedin.com/company/assurance-genevoise",
+          url: "https://www.linkedin.com/company/relocation-genevoise",
+        },
+        {
+          icon: Instagram,
+          text: "Instagram",
+          url: "https://www.instagram.com/relocationgenevoise/",
         },
       ],
     },
@@ -233,12 +237,14 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
               <div>
                 <ul
                   role="list"
-                  className="lg:space-y-3 flex lg:flex-col flex-row lg:gap-0 gap-3"
+                  className="lg:space-y-3 flex lg:flex-col flex-col lg:gap-0 gap-3"
                 >
                   {social.links.map((link, linkIdx) => (
                     <li key={linkIdx}>
                       <Link
                         href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="font-medium hover:text-primary flex items-center gap-1.5 !leading-[130%]"
                       >
                         {link?.icon && (
