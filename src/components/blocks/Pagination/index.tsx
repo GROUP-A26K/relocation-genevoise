@@ -6,11 +6,11 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination-custom';
-import { cn } from '@/libs/utils';
-import { Meta } from '@/models/Meta';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { FC } from 'react';
+} from "@/components/ui/pagination-custom";
+import { cn } from "@/libs/utils";
+import { Meta } from "@/models/Meta";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { FC } from "react";
 
 interface Props {
   meta: Meta;
@@ -34,9 +34,9 @@ export const Pagination: FC<Props> = (props) => {
       >
         <PaginationLink
           className={cn(
-            'rounded-full',
+            "rounded-full",
             props.meta.pagination.page === 1 &&
-              'border-0 !text-primary-500 bg-primary-50 hover:bg-primary-50 active:bg-primary-50'
+              "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
           )}
           isActive={props.meta.pagination.page === 1}
         >
@@ -61,9 +61,9 @@ export const Pagination: FC<Props> = (props) => {
         >
           <PaginationLink
             className={cn(
-              'rounded-full',
+              "rounded-full",
               props.meta.pagination.page === i &&
-                'border-0 !text-primary-500 bg-primary-50 hover:bg-primary-50 active:bg-primary-50'
+                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
             )}
             isActive={props.meta.pagination.page === i}
           >
@@ -83,9 +83,9 @@ export const Pagination: FC<Props> = (props) => {
         >
           <PaginationLink
             className={cn(
-              'rounded-full',
+              "rounded-full",
               props.meta.pagination.page === max &&
-                'border-0 !text-primary-500 bg-primary-50 hover:bg-primary-50 active:bg-primary-50'
+                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
             )}
             isActive={props.meta.pagination.page === max}
           >
@@ -102,7 +102,7 @@ export const Pagination: FC<Props> = (props) => {
       <PaginationContent className="w-full flex-row justify-between lg:flex hidden">
         <PaginationItem>
           <PaginationPrevious
-            className={cn('cursor-pointer', currentPage === 1 && 'invisible')}
+            className={cn("cursor-pointer", currentPage === 1 && "invisible")}
             onClick={() => {
               if (currentPage > 1) {
                 handleTabClick(currentPage - 1);
@@ -119,9 +119,9 @@ export const Pagination: FC<Props> = (props) => {
         <PaginationItem>
           <PaginationNext
             className={cn(
-              'cursor-pointer',
-              currentPage === props.meta.pagination.pageCount && 'invisible',
-              props.meta.pagination.pageCount === 0 && 'invisible'
+              "cursor-pointer",
+              currentPage === props.meta.pagination.pageCount && "invisible",
+              props.meta.pagination.pageCount === 0 && "invisible"
             )}
             onClick={() => {
               if (currentPage < props.meta.pagination.pageCount) {

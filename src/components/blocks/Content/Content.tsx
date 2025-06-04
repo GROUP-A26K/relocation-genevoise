@@ -1,5 +1,5 @@
-import { FormattedText } from "@/components/customs/Text";
-import { FC } from "react";
+import { FormattedText } from '@/components/customs/Text';
+import { FC } from 'react';
 
 interface Props {
   heading?: string;
@@ -12,23 +12,23 @@ interface Props {
 }
 
 export const Content: FC<Props> = ({
-  heading = "Trust and Transparency",
-  subHeading = "Why take out property and property insurance?",
+  heading = 'Trust and Transparency',
+  subHeading = 'Why take out property and property insurance?',
   description,
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-14">
-      <div className="flex flex-col lg:flex-row justify-between gap-6">
-        <div className="w-full flex flex-col items-start gap-3 text-left justify-start">
-          <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
+    <div className='flex flex-col lg:gap-16 gap-14'>
+      <div className='flex flex-col lg:flex-row justify-between gap-6'>
+        <div className='w-full flex flex-col items-start gap-3 text-left justify-start'>
+          <p className='text-sm font-semibold text-secondary-600 !leading-[130%]'>
             {heading}
           </p>
-          <h2 className="text-3xl font-semibold !leading-[130%]">
+          <h2 className='text-3xl font-semibold !leading-[130%]'>
             <FormattedText text={subHeading} />
           </h2>
         </div>
-        <div className="max-w-[600px] flex flex-col items-start gap-6 text-left justify-start">
-          <p className="lg:text-sm text-sm font-normal text-black-200 !leading-[130%] flex flex-col gap-4">
+        <div className='max-w-[600px] flex flex-col items-start gap-6 text-left justify-start'>
+          <p className='lg:text-sm text-sm font-normal text-black-200 !leading-[130%] flex flex-col gap-4'>
             {description?.map((item, index) => (
               <FormattedText text={item.paragraph} key={index} />
             ))}

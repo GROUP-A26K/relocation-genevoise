@@ -7,6 +7,7 @@
       "buttonText": "Nous contacter",
       "buttonText2": "Trouver un logement"
     },
+
     "ContactFeature": {
       "heading": "Nos offres",
       "subHeading": "Nos services de Relocation",
@@ -39,6 +40,7 @@
     "Logos": {
       "heading": "Un réseau de partenaires reconnus"
     },
+
     "StatsGrid": {
       "heading": "Disponibilité & Transparence",
       "subHeading": "Une agence à vos côtés pour toutes les étapes de ((votre installation.))",
@@ -60,6 +62,7 @@
         "label": "NÉtablissements en Suisse"
       }
     },
+
     "EngagementFeature": {
       "heading": "Nos engagements",
       "subHeading": "Vous guider vers votre nouveau chez-vous avec soin et expertise.",
@@ -119,6 +122,7 @@
         }
       ]
     },
+
     "BookConsultation": {
       "heading": "Vous accompagner",
       "subHeading": "Vous souhaitez bénéficier de notre expertise et de nos services ?",
@@ -247,18 +251,18 @@
       "reasonItems": [
         {
           "title": "Email",
-          "description": "Nous traitons vos demandes sous 24h",
-          "info": "contact@assurance-genevoise.ch"
+          "description": "Notre équipe est là pour vous aider.",
+          "info": "contact@relocation-genevoise.ch"
         },
         {
-          "title": "Accueil Client",
-          "description": "Venez nous rendre vitsite dans nos bureaux ",
+          "title": "Bureaux",
+          "description": "Nous vous accueillons dans nos bureaux.",
           "info": "Rue des Alpes 5, 1201 Genève"
         },
         {
           "title": "Téléphone",
-          "description": "Lundi au Vendredi 09h|18h - Appel Gratuit",
-          "info": "+41 (022) 715 17 45"
+          "description": "Lundi au Samedi 08h – 21h | Appel Gratuit",
+          "info": "(+41) 022 715 17 48"
         }
       ]
     }
@@ -293,17 +297,17 @@
       "description": "Si vous souhaitez nous contacter ou si vous êtes intéressé par nos services, contactez-nous par téléphone ou via le formulaire de contact ci-dessous."
     },
     "ContactForm": {
-      "first_name": { "label": "Prénom", "placeholder": "Lucas" },
-      "last_name": { "label": "Nom", "placeholder": "Zimmer" },
-      "email": { "label": "Email", "placeholder": "lucas@email.com" },
+      "first_name": { "label": "Prénom", "placeholder": "Prénom" },
+      "last_name": { "label": "Nom", "placeholder": "Nom" },
+      "email": { "label": "Email", "placeholder": "Email" },
       "phone": {
-        "label": "Numéro de téléphone",
-        "placeholder": "+41"
+        "label": "Téléphone",
+        "placeholder": "Téléphone"
       },
-      "company": { "label": "Société", "placeholder": "Ma société" },
+      "company": { "label": "Entreprise", "placeholder": "Entreprise" },
       "subject": {
-        "label": "Comment pouvons nous vous aider ?",
-        "placeholder": "Choisissez dans la liste ",
+        "label": "Comment pouvons-nous vous aider ?",
+        "placeholder": "Choisir dans la liste",
         "options": [
           { "label": "Trouver un logement" },
           { "label": "Trouver un locataire" },
@@ -313,7 +317,7 @@
       },
       "message": {
         "label": "Message",
-        "placeholder": "Laissez nous un message"
+        "placeholder": "Décrire votre besoin..."
       },
       "accept": "En cochant cette case, j'accepte que les informations saisies soient utilisées afin de me recontacter.",
       "send": "Envoyer"
@@ -738,6 +742,24 @@
     }
   },
 
+  "Blog": {
+    "heading": "Blog",
+    "subHeading": "Nos dernières ((actualités))",
+    "description": "Plongez dans une sélection de contenus pensés pour vous informer, vous inspirer et vous accompagner dans vos réflexions.",
+    "buttonText": "Commencer"
+  },
+
+  "BlogDetail": {
+    "tableContent": "Sommaire",
+    "buttonCopy": "Copier le lien",
+    "BlogList": {
+      "heading": "Blog & Acualités",
+      "subHeading": "Nos derniers ((articles))",
+      "description": "Découvrez nos dernières actualités et nos analyses pour vous guider dans vos choix d’assurances",
+      "buttonText": "En savoir plus"
+    }
+  },
+
   "Metadata": {
     "Home": {
       "title": "Assurance Genevoise - Votre Courtier en Assurance en Suisse",
@@ -962,7 +984,7 @@
     "logo": {
       "title": "Shadcnblocks.com"
     },
-    "tagline": "Courtier en assurance en Suisse, Assurance Genevoise propose des solutions personnalisées pour les particuliers et les professionnels.",
+    "tagline": "Relocation Genevoise vous propose des solutions sur mesure, avec intégrité, professionnalisme et une approche centrée sur vos besoins.",
     "service": {
       "title": "Professionnel",
       "links": [

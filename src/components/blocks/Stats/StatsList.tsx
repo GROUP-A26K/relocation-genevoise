@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 
 export interface StatsBlock {
   firstStat?: StatDocument;
@@ -13,16 +13,16 @@ export interface StatDocument {
 
 const StatsList: FC<StatsBlock> = ({
   firstStat = {
-    value: '400+',
-    label: 'Projects completed',
+    value: "400+",
+    label: "Projects completed",
   },
   secondStat = {
-    value: '600%',
-    label: 'Return on investment',
+    value: "600%",
+    label: "Return on investment",
   },
   thirdStat = {
-    value: '10k',
-    label: 'Global downloads',
+    value: "10k",
+    label: "Global downloads",
   },
 }) => {
   return (
@@ -30,7 +30,7 @@ const StatsList: FC<StatsBlock> = ({
       <div className="flex flex-col gap-5">
         <div
           title={firstStat.value}
-          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-primary-500 text-center"
+          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-secondary-600 text-center"
         >
           {firstStat.value}
         </div>
@@ -45,7 +45,7 @@ const StatsList: FC<StatsBlock> = ({
       <div className="flex flex-col gap-5">
         <div
           title={secondStat.value}
-          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-primary-500 text-center"
+          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-secondary-600 text-center"
         >
           {secondStat.value}
         </div>
@@ -60,7 +60,7 @@ const StatsList: FC<StatsBlock> = ({
       <div className="flex flex-col gap-5">
         <div
           title={thirdStat.value}
-          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-primary-500 text-center"
+          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-secondary-600 text-center"
         >
           {thirdStat.value}
         </div>

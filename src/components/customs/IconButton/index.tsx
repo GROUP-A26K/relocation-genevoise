@@ -75,9 +75,9 @@ const IconButton: FC<Props> = ({
       'active:bg-primary-50 active:border-primary-500 active:text-primary-500 active:text-primary-500'
     ),
     secondary: cn(
-      'bg-white border border-indigo-600 border-secondary-500 text-secondary-500',
+      'bg-white border border-indigo-600 border-secondary-500 text-secondary-600',
       'hover:bg-secondary-50 hover:border-secondary-400 hover:text-secondary-400',
-      'active:bg-secondary-50 active:border-secondary-600 active:text-secondary-500 '
+      'active:bg-secondary-50 active:border-secondary-600 active:text-secondary-600 '
     ),
     disabled:
       type === 'primary'
@@ -92,7 +92,7 @@ const IconButton: FC<Props> = ({
       'active:bg-primary-100 active:text-primary-600'
     ),
     secondary: cn(
-      'bg-secondary-50 text-secondary-500',
+      'bg-secondary-50 text-secondary-600',
       'hover:bg-secondary-50 hover:text-secondary-400',
       'active:bg-secondary-100 active:text-secondary-600'
     ),
@@ -116,7 +116,7 @@ const IconButton: FC<Props> = ({
     case 'solid':
       return (
         <ShadcnButton
-          type="submit"
+          type='submit'
           className={cn(
             STYLE_BTN[variant],
             {
@@ -133,7 +133,7 @@ const IconButton: FC<Props> = ({
     case 'outline':
       return (
         <ShadcnButton
-          type="submit"
+          type='submit'
           className={cn(
             STYLE_BTN[variant],
             {
@@ -150,7 +150,7 @@ const IconButton: FC<Props> = ({
     case 'ghost':
       return (
         <ShadcnButton
-          type="submit"
+          type='submit'
           className={cn(
             STYLE_BTN[variant],
             {

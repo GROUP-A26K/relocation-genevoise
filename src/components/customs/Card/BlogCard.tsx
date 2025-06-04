@@ -35,7 +35,7 @@ export const BlogCard: React.FC<Blog> = ({
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="text-sm font-medium text-secondary-500 bg-secondary-40 hover:bg-secondary-40 shadow-none !leading-[130%]"
+                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none !leading-[130%]"
                 >
                   {cat.title}
                 </Badge>

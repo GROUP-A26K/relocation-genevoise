@@ -7,25 +7,25 @@ import {
   SheetPortal,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet-custom";
-import { PhoneCall, X } from "lucide-react";
-import MenuIcon from "@/assets/img/icons/menu-icon.webp";
-import { Accordion } from "@/components/ui/accordion-custom";
-import { renderMobileMenuItem } from "@/components/blocks/MenuItem/MobileMenuItem";
-import { NavbarProps } from "./NavbarContainer";
-import { Link } from "@/libs/i18nNavigation";
-import Image from "next/image";
-import Logo from "@/assets/img/logos/rg-logo.svg";
-import IconButton from "@/components/customs/IconButton";
-import Button from "@/components/customs/Button";
-import { LanguageSelector } from "./LanguageSelector";
+} from '@/components/ui/sheet-custom';
+import { PhoneCall, X } from 'lucide-react';
+import MenuIcon from '@/assets/img/icons/menu-icon.webp';
+import { Accordion } from '@/components/ui/accordion-custom';
+import { renderMobileMenuItem } from '@/components/blocks/MenuItem/MobileMenuItem';
+import { NavbarProps } from './NavbarContainer';
+import { Link } from '@/libs/i18nNavigation';
+import Image from 'next/image';
+import Logo from '@/assets/img/logos/rg-logo.svg';
+import IconButton from '@/components/customs/IconButton';
+import Button from '@/components/customs/Button';
+import { LanguageSelector } from './LanguageSelector';
 
 const MobileMenu = ({ menu, callButton }: NavbarProps) => {
   return (
     <nav className="bg-white z-20 h-[72px] w-full md:px-4 px-4 nav:hidden">
       <div className="flex h-full w-full min-w-[205px] items-center justify-between relative">
         <Link
-          href={"/"}
+          href={'/'}
           className="flex items-center gap-2 pointer-events-auto"
         >
           <Image
@@ -59,7 +59,11 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
           </SheetTrigger>
 
           <div className="flex flex-row gap-3">
-            <Link href={callButton?.url ?? "/rappelez-moi"}>
+            <Link
+              href={'tel:41 22 715 17 48'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <SheetClose asChild>
                 <Button
                   as="ghost"
@@ -104,7 +108,7 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
 
                 <div className="flex flex-col gap-3 p-3">
                   <Link
-                    href={callButton?.url ?? "/rappelez-moi"}
+                    href={callButton?.url ?? '/rappelez-moi'}
                     className="flex items-center"
                   >
                     <SheetClose asChild>
