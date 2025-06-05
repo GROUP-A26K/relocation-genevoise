@@ -7,7 +7,6 @@ export interface Blog {
   timeToRead: number;
   publishedDate: string;
   imageUrl: string;
-  date: string;
   time: string;
   category: {
     title: string;
@@ -43,7 +42,7 @@ export type Block =
   | object;
 
 export type WysiwygBlock = {
-  _type: 'wysiwygBlock';
+  _type: "wysiwygBlock";
   blockTitle?: {
     title?: string;
     isStyle?: boolean;
@@ -56,18 +55,18 @@ export type Content =
       children?: Array<{
         marks?: string[];
         text?: string;
-        _type: 'span';
+        _type: "span";
         _key: string;
       }>;
-      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-      listItem?: 'bullet' | 'number';
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
-        _type: 'link';
+        _type: "link";
         _key: string;
       }>;
       level?: number;
-      _type: 'block';
+      _type: "block";
       _key: string;
     }
   | {
@@ -77,23 +76,23 @@ export type Content =
           asset?: SanityImageAsset;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          _type: 'image';
+          _type: "image";
         };
         photoAlt?: string;
       };
-      _type: 'photoZone';
+      _type: "photoZone";
       _key: string;
     }
   | {
       content?: string;
       author?: string;
-      _type: 'quote';
+      _type: "quote";
       _key: string;
     };
 
 export type SanityImageAsset = {
   _id: string;
-  _type: 'sanity.imageAsset';
+  _type: "sanity.imageAsset";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -113,7 +112,7 @@ export type SanityImageAsset = {
 };
 
 export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot';
+  _type: "sanity.imageHotspot";
   x?: number;
   y?: number;
   height?: number;
@@ -121,7 +120,7 @@ export type SanityImageHotspot = {
 };
 
 export type SanityImageCrop = {
-  _type: 'sanity.imageCrop';
+  _type: "sanity.imageCrop";
   top?: number;
   bottom?: number;
   left?: number;
@@ -129,7 +128,7 @@ export type SanityImageCrop = {
 };
 
 export type StatsBlock = {
-  _type: 'statsBlock';
+  _type: "statsBlock";
   firstStat?: {
     value?: string;
     label?: string;

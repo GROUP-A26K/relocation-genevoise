@@ -1,11 +1,11 @@
-import BlocksBackground from "@/assets/img/bg/blocks-bg.svg";
-import Image from "next/image";
-import { FC } from "react";
-import Button from "@/components/customs/Button";
-import { Link } from "@/libs/i18nNavigation";
-import HeroImage from "@/assets/img/bg/agence-de-relocation-a-geneve.webp";
-import { FormattedText } from "@/components/customs/Text";
-import { ArrowRight } from "lucide-react";
+import BlocksBackground from '@/assets/img/bg/blocks-bg.svg';
+import Image from 'next/image';
+import { FC } from 'react';
+import Button from '@/components/customs/Button';
+import { Link } from '@/libs/i18nNavigation';
+import HeroImage from '@/assets/img/bg/agence-de-relocation-a-geneve.webp';
+import { FormattedText } from '@/components/customs/Text';
+import { ArrowRight } from 'lucide-react';
 
 interface Props {
   tagline?: string;
@@ -24,62 +24,62 @@ interface Props {
 }
 
 export const HomeHero: FC<Props> = ({
-  subHeading = "Your independent broker in Geneva",
-  description = "We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.",
+  subHeading = 'Your independent broker in Geneva',
+  description = 'We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.',
   button,
   heading,
   button2,
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12">
-      <div className="flex justify-center absolute size-full lg:top-0 top-0 inset-0 -z-10">
+    <div className='flex flex-col lg:gap-16 gap-12'>
+      <div className='flex justify-center absolute size-full lg:top-0 top-0 inset-0 -z-10'>
         <Image
           width={1240}
           height={1226}
-          alt="Agence de Relocation à Genève"
-          title="Agence de Relocation à Genève"
+          alt='Agence de Relocation à Genève'
+          title='Agence de Relocation à Genève'
           src={BlocksBackground}
-          className="flex min-w-1240 min-h-1226 object-cover  stroke-gray-200 lg:[mask-image:radial-gradient(circle_at_50%_40%,white,transparent)] [mask-image:radial-gradient(circle_at_50%_5%,white,transparent)]"
+          className='flex min-w-1240 min-h-1226 object-cover stroke-gray-200 lg:[mask-image:radial-gradient(circle_at_50%_40%,white,transparent)] [mask-image:radial-gradient(circle_at_50%_5%,white,transparent)]'
         />
       </div>
 
-      <div className="flex w-full items-center justify-center">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col lg:gap-6 gap-4 max-w-xl w-full lg:items-center text-left">
-            <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold lg:text-center text-left text-secondary-500 !leading-[130%]">
+      <div className='flex w-full items-center justify-center'>
+        <div className='flex flex-col gap-6'>
+          <div className='flex flex-col lg:gap-6 gap-4 max-w-xl w-full lg:items-center text-center'>
+            <div className='flex flex-col gap-3'>
+              <p className='text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]'>
                 {heading}
               </p>
-              <h1 className="lg:text-5xl text-4xl font-bold text-center text-balance !leading-[130%]">
+              <h1 className='lg:text-5xl text-4xl font-bold text-center text-balance !leading-[130%]'>
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
+            <p className='text-sm font-normal text-center text-black-200 !leading-[130%] text-balance'>
               {description}
             </p>
           </div>
 
-          <div className="flex lg:flex-row flex-col gap-2 w-full items-center justify-center">
+          <div className='flex lg:flex-row flex-col gap-2 w-full items-center justify-center'>
             {button && (
-              <Link href={"/rappelez-moi"} className="lg:w-fit w-full">
+              <Link href={'/rappelez-moi'} className='lg:w-fit w-full'>
                 <Button
-                  as="solid"
-                  variant="md"
-                  type="secondary"
-                  className="lg:w-fit w-full"
+                  as='solid'
+                  variant='md'
+                  type='secondary'
+                  className='lg:w-fit w-full'
                 >
                   {button.text}
                 </Button>
               </Link>
             )}
             {button2 && (
-              <Link href={"/contact"} className="lg:w-fit w-full">
+              <Link href={'/contact'} className='lg:w-fit w-full'>
                 <Button
-                  as="outline"
-                  variant="md"
-                  type="primary"
+                  as='outline'
+                  variant='md'
+                  type='primary'
                   iconEnd={ArrowRight}
-                  className="lg:w-fit w-full"
+                  className='lg:w-fit w-full'
                 >
                   {button2.text}
                 </Button>
@@ -89,15 +89,15 @@ export const HomeHero: FC<Props> = ({
         </div>
       </div>
 
-      <div className="flex flex-col relative items-start justify-between">
-        <div className="w-full">
+      <div className='flex flex-col relative items-start justify-between'>
+        <div className='w-full'>
           <Image
-            alt="Agence de Relocation à Genève"
-            title="Agence de Relocation à Genève"
+            alt='Agence de Relocation à Genève'
+            title='Agence de Relocation à Genève'
             src={HeroImage}
             width={1240}
             height={480}
-            className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            className='aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]'
           />
         </div>
       </div>

@@ -16,7 +16,7 @@ export const BlogContentMenu: FC<Props> = (props) => {
           {props.title && props.title}
         </div>
       )}
-      <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[180px] w-full">
+      <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[160px] w-full">
         {props.menuItems.map((item) => (
           <li key={`menu-item-${item.id}`} className="menu-item flex">
             <a
@@ -24,7 +24,7 @@ export const BlogContentMenu: FC<Props> = (props) => {
               title={item.title}
               onClick={() => props.setActiveId(item.id)}
               className={cn(
-                'menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-balance',
+                'menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap',
                 item.id === props.activeId && 'text-primary-500'
               )}
             >

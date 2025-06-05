@@ -3,7 +3,7 @@ import { defineQuery } from "next-sanity";
 export const BLOGS_QUERY = defineQuery(`
     {
     "blogs": *[
-      _type == "blogPost" &&
+      _type == "relocationBlogPost" &&
       !(_id in path("drafts.**")) &&
       language == $locale &&
       ($category == "" || $category in category[]->name)&&
@@ -49,7 +49,7 @@ export const BLOGS_QUERY = defineQuery(`
     },
     "total": count(
       *[
-        _type == "blogPost" &&
+        _type == "relocationBlogPost" &&
         language == $locale &&
         ($category == "" || $category in category[]->name)
       ]
@@ -59,7 +59,7 @@ export const BLOGS_QUERY = defineQuery(`
 
 export const BLOG_DETAIL_QUERY = defineQuery(`
  *[
-    _type == "blogPost" &&
+    _type == "relocationBlogPost" &&
     slug.current == $slug
   ][0] {
     _id,
@@ -124,7 +124,7 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
 export const BLOGS_SITEMAP_QUERY = defineQuery(`
   {
   "blogs": *[
-    _type == "blogPost" &&
+    _type == "relocationBlogPost" &&
     !(_id in path("drafts.**")) &&
     language == $locale &&
     ($category == "" || $category in category[]->name)&&
@@ -138,7 +138,7 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
   },
   "total": count(
     *[
-      _type == "blogPost" &&
+      _type == "relocationBlogPost" &&
       language == $locale &&
       ($category == "" || $category in category[]->name)
     ]
@@ -147,5 +147,5 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 `);
 
 export const POST_CATEGORIES_QUERY = defineQuery(
-  `*[_type == "blogCategory" && count(*[_type == "blogPost" && !(_id in path("drafts.**")) && references(^._id)]) > 1]`
+  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) > 1]`
 );

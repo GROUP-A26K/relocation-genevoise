@@ -246,17 +246,17 @@
         {
           "title": "Email",
           "description": "Our friendly team is here to help.",
-          "info": "contact@assurance-genevoise.ch"
+          "info": "contact@relocation-genevoise.ch"
         },
         {
           "title": "Office",
-          "description": "Come say hello at our office HQ.",
+          "description": "We welcome you to our offices by appointment.",
           "info": "Rue des Alpes 5, 1201 Genève"
         },
         {
-          "title": "Telephone",
-          "description": "Monday to Friday 9am | 6pm - Free Call",
-          "info": "+41 (022) 715 17 45"
+          "title": "Phone",
+          "description": "Monday to Saturday, 8 AM – 9 PM | Free Call",
+          "info": "(+41) 022 715 17 48"
         }
       ]
     }
@@ -291,20 +291,20 @@
       "description": "If you would like to contact us or are interested in our services, feel free to reach out by phone or via the contact form below."
     },
     "ContactForm": {
-      "first_name": { "label": "First name", "placeholder": "Lucas" },
-      "last_name": { "label": "Last name", "placeholder": "Zimmer" },
-      "email": { "label": "Email", "placeholder": "you@email.com" },
+      "first_name": { "label": "First name", "placeholder": "First name" },
+      "last_name": { "label": "Last name", "placeholder": "Last name" },
+      "email": { "label": "Email", "placeholder": "Email" },
       "phone": {
-        "label": "Phone number",
-        "placeholder": "+41"
+        "label": "Phone",
+        "placeholder": "Phone"
       },
-      "company": { "label": "Company", "placeholder": "My society" },
+      "company": { "label": "Company", "placeholder": "Company" },
       "subject": {
         "name": "help",
         "label": "How we can help you ?",
         "placeholder": "Choose from the list",
         "options": [
-          { "label": "Find accomodation" },
+          { "label": "Find accommodation" },
           { "label": "Find a tenant" },
           { "label": "Corporate services" },
           { "label": "Concierge services" }
@@ -312,7 +312,7 @@
       },
       "message": {
         "label": "Message",
-        "placeholder": "Your message..."
+        "placeholder": "Describe your need…"
       },
       "accept": "By checking this box, I agree that the information provided may be used to contact me.",
       "send": "Send"
@@ -735,6 +735,24 @@
     }
   },
 
+  "Blog": {
+    "heading": "Blog",
+    "subHeading": "((Our latest news))",
+    "description": "Dive into a curated selection of content designed to inform, inspire, and support you in your thinking process.",
+    "buttonText": "Start now"
+  },
+
+  "BlogDetail": {
+    "tableContent": "Table of contents",
+    "buttonCopy": "Copy link",
+    "BlogList": {
+      "heading": "Blog & News",
+      "subHeading": "((Our latest articles))",
+      "description": "Find our latest news, articles, and expert advice to help you choose the best insurance solutions.",
+      "buttonText": "See more"
+    }
+  },
+
   "Metadata": {
     "Home": {
       "title": "Assurance Genevoise - Your Insurance Broker in Switzerland",
@@ -956,7 +974,7 @@
     "logo": {
       "title": "Shadcnblocks.com"
     },
-    "tagline": "Insurance broker in Switzerland, Assurance Genevoise provides tailored insurance solutions for individuals and professionals.",
+    "tagline": "Relocation Genevoise provides customized solutions with integrity, professionalism, and a focus on your needs.",
     "service": {
       "title": "Professional",
       "links": [

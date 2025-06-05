@@ -21,9 +21,9 @@ const TabsMenu: FC<TabsMenuProps> = ({ activeValue, category, onClick }) => {
         variant="md"
         className={cn(
           activeValue !== "" &&
-            "bg-grey-50 shadow-none text-grey-500 hover:bg-grey-50 hover:text-grey-500 active:bg-secondary-50 active:text-primary-500",
+            "bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-black-400 active:text-white",
           activeValue === "" &&
-            "bg-secondary-50 text-primary-500 shadow-none active:bg-secondary-50 active:text-primary-500"
+            "bg-black-400 text-white shadow-none active:bg-black-400 active:text-white hover:bg-black-400 hover:text-white"
         )}
         onClick={() => handleTabClick("")}
       >
@@ -37,9 +37,9 @@ const TabsMenu: FC<TabsMenuProps> = ({ activeValue, category, onClick }) => {
           variant="md"
           className={cn(
             activeValue !== cat.title &&
-              "bg-grey-50 shadow-none text-grey-500 hover:bg-grey-50 hover:text-grey-500 active:bg-secondary-50 active:text-primary-500",
+              "bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-black-400 active:text-white",
             activeValue === cat.title &&
-              "bg-secondary-50 text-primary-500 shadow-none active:bg-secondary-50 active:text-primary-500"
+              "bg-black-400 text-white shadow-none active:bg-black-400 active:text-white hover:bg-black-400 hover:text-white"
           )}
           onClick={() => handleTabClick(cat.title)}
         >
