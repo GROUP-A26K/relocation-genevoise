@@ -319,7 +319,7 @@
     }
   },
 
-  "MentionsLegales": {
+  "LegalNotices": {
     "heading": "Legal",
     "subHeading": "((Legal Notice))",
 
@@ -407,25 +407,25 @@
     ]
   },
 
-  "DonnesPersonnelles": {
+  "LegalPersonal": {
     "heading": "Legal",
     "subHeading": "((Personal Data))",
     "sections": [
       {
         "content": [
           {
-            "paragraph": "At **AG Assurance Genevoise SA**, we pay particular attention to respecting your privacy. We thank you for using our services and website. We take privacy seriously. This privacy policy applies to any individual who shares personal data directly or indirectly with AG Assurance Genevoise SA by visiting this website."
+            "paragraph": "At **RG Relocation Genevoise SA**, we place great importance on respecting your privacy. We thank you for using our services and website. We take the protection of your privacy seriously. This privacy policy applies to any individual sharing their personal data directly or indirectly with RG Relocation Genevoise SA when visiting this website."
           },
           {
-            "paragraph": "**AG Assurance Genevoise SA** is a public limited company established in Switzerland and registered at Rue des Alpes 5, 1201 Geneva. As such, we comply with the nLPD (New Federal Data Protection Act). Our registered office is located at Rue des Alpes 5, 1201 Geneva. If you have any questions about data protection, you can contact us at the following address: [[contact@assurance-genevoise.ch]]. This privacy policy details the types of personal data that may be processed and their purposes."
+            "paragraph": "**RG Relocation Genevoise SA** is a corporation established in Switzerland and registered at Rue des Alpes 5, 1201 Geneva. As such, we comply with the nLPD (new Swiss Data Protection Act). Our head office is located at Rue des Alpes 5, 1201 Geneva. You can address your data protection inquiries to the following email: [[contact@relocation-genevoise.ch]]. This privacy policy outlines the types of personal data that may be processed and their intended purposes."
           }
         ]
       },
       {
-        "title": "Scope of the Privacy Policy",
+        "title": "Scope of the privacy policy",
         "content": [
           {
-            "paragraph": "Please note that this privacy policy concerns the processing of personal data for which AG Assurance Genevoise SA is the data controller. This privacy policy does not cover any processing of personal data that AG Assurance Genevoise SA may perform as a data processor due to your use of our services. For more information about how our services can be used to facilitate the processing of your personal data, and about AG Assurance Genevoise SA's responsibilities and commitments related to this, please refer to the applicable terms and conditions. We apply the nLPD (New Federal Data Protection Act) to all of our procedures."
+            "paragraph": "Please note that this privacy policy pertains to the processing of personal data for which RG Relocation Genevoise SA acts as the data controller. This privacy policy does not cover any personal data processing that RG Relocation Genevoise SA may perform as a data processor resulting from your use of our services.For more information on how our services can be used to facilitate your personal data processing and on RG Relocation Genevoise SA’s responsibilities and commitments in this context, please refer to the applicable terms and conditions. We adhere to the nLPD (new Swiss Data Protection Act) across all our procedures."
           }
         ]
       },
@@ -433,37 +433,37 @@
         "title": "Personal Data Processed",
         "content": [
           {
-            "paragraph": "Personal data refers to information that identifies you as an individual. We may process the following types of personal data concerning you: Your contact details may include your name, email address, and phone number. User information, for example, if you log into any service or visit our websites. This information may include your IP address, device type and browser, time zone, geographic location, as well as your interests and preferences, and information on how you interact with our services, such as features used and buttons clicked."
+            "paragraph": "Personal data refers to data that identifies you as an individual. We may process the following types of personal data about you: your contact details, which may include your name, email address, and phone number; user information, such as when you log in to our service or visit our websites, which may include your IP address, device type and browser, time zone, geographical location, as well as your interests and preferences; and interaction data, which includes information about how you interact with our services, such as the features used and the buttons clicked."
           }
         ]
       },
       {
-        "title": "Purposes of Data Processing",
+        "title": "Personal data processing",
         "content": [
           {
-            "paragraph": "We may process your personal data for the following purposes:\n • To provide our services in accordance with the applicable terms and conditions;\n • To manage the business relationship with you and the client of AG Assurance Genevoise SA that you represent;\n • To develop and improve our services;\n In order to provide information and offers to current or potential clients of AG Assurance Genevoise SA regarding our solution through selected third parties. Any marketing material sent using your personal data is directed to you as a legal entity representing a current or potential client of AG Assurance Genevoise SA, and not to you as a private individual."
+            "paragraph": "We may process your personal data for the following purposes: \n• To provide our services in accordance with the applicable terms;\n• To manage the business relationship with you and the client of RG Relocation Genevoise SA that you represent;\n• To develop and improve our services;\n and to provide information and offers to current or potential clients of RG Relocation Genevoise SA through selected third parties. Any marketing materials distributed using your personal data are sent to you as a representative of a current or potential corporate client of RG Relocation Genevoise SA and not as a private individual."
           }
         ]
       },
       {
-        "title": "Sharing with Third Parties and Transfers to Third Countries",
+        "title": "Sharing with third parties and transfer to third countries",
         "content": [
           {
-            "paragraph": "• Google Analytics: Helps analyze website traffic on [[https://assurance-genevoise.ch/|https://assurance-genevoise.ch]]\n • Google Tag Manager: A tag management system that allows marketing managers to easily add tags (Analytics, remarketing, etc.) to their website."
+            "paragraph": "• Google Analytics: Allows for the analysis of traffic on the website [[https://relocation-genevoise.ch/|https://relocation-genevoise.ch/]]\n • Google Tag Manager: A tag management system that enables marketers to easily add tags (Analytics, remarketing, etc.) to their website."
           }
         ]
       },
       {
-        "title": "Your Rights",
+        "title": "Your rights",
         "content": [
           {
-            "paragraph": "We are obligated to process specific, relevant, and necessary personal data while taking into account our legitimate purposes. You have the right to control this data."
+            "paragraph": "We are obligated to process personal data that is accurate, relevant, and necessary while considering our legitimate purposes. You have the right to oversee this."
           },
           {
-            "paragraph": "To update the personal data we process about you, please contact us at [[contact@assurance-genevoise.ch]]."
+            "paragraph": "To update the personal data we process about you, please contact us at [[contact@relocation-genevoise.ch]]."
           },
           {
-            "paragraph": "To receive a free extract of the personal data we process about you, you can send a registered letter to the following address: AG Assurance Genevoise SA, Rue des Alpes 5, 1201 Geneva, Switzerland."
+            "paragraph": "To receive a free extract of the personal data we process about you, you can send us a registered letter at the following address: RG Relocation Genevoise SA, Rue des Alpes 5, 1201 Geneva, Switzerland."
           }
         ]
       }

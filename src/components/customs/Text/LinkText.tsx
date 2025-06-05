@@ -7,7 +7,7 @@ interface Props {
 }
 export const LinkText: FC<Props> = ({ children, link }) => {
   return (
-    <span className="text-secondary-500 font-semibold !leading-[130%] p-0">
+    <span className="text-secondary-600 font-semibold !leading-[130%] p-0">
       <Link href={link ?? ''} target="_blank" rel="noopener noreferrer">
         {children}
       </Link>

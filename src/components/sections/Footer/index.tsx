@@ -96,6 +96,7 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
       links: [
         { text: t('support.links.0.text'), url: '/contact' },
         { text: t('support.links.1.text'), url: '/faq' },
+        { text: 'Blogs', url: '/blog' },
       ],
     },
     social: {
@@ -120,8 +121,8 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
     },
     copyright: t('copyright'),
     bottomLinks: [
-      { text: t('bottomLinks.0.text'), url: '/mentions-legales' },
-      { text: t('bottomLinks.1.text'), url: '/donnes-personnelles' },
+      { text: t('bottomLinks.0.text'), url: '/legal-notice' },
+      { text: t('bottomLinks.1.text'), url: '/personal-data' },
       { text: t('bottomLinks.2.text'), url: '/sitemap' },
     ],
   };
