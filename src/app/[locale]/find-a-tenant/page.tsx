@@ -11,6 +11,7 @@ import ContentImage3 from '@/assets/img/bg/find-a-tenant/service-tenant-3.svg';
 import ContentImage4 from '@/assets/img/bg/find-a-tenant/service-tenant-4.svg';
 import ContentImage5 from '@/assets/img/bg/find-a-tenant/service-tenant-5.svg';
 import ContentImage6 from '@/assets/img/bg/find-a-tenant/service-tenant-6.svg';
+import { AppConfig } from '@/utils/AppConfig';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -20,14 +21,19 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.Home',
+    namespace: 'Metadata.FindATenant',
   });
+
+  const { routes } = AppConfig;
+
+  const canonical =
+    routes['findATenant'][locale as keyof (typeof routes)['findATenant']];
 
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
     },
   };
 }
@@ -41,7 +47,7 @@ export default async function Page(props: Props) {
 
   return (
     <>
-      <Section className='relative'>
+      <Section className="relative">
         <Hero
           heroImage={{
             src: HeroImage.src,
@@ -89,7 +95,7 @@ export default async function Page(props: Props) {
         ]}
       />
 
-      <Section className='lg:bg-white bg-grey-50'>
+      <Section className="lg:bg-white bg-grey-50">
         <BookConsultation2
           heading={t('BookConsultation.heading')}
           subHeading={t('BookConsultation.subHeading')}

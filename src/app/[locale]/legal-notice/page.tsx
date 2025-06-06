@@ -11,13 +11,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.MentionsLegales',
+    namespace: 'Metadata.LegalNotices',
   });
 
   const { routes } = AppConfig;
 
   const canonical =
-    routes['legalNotice'][locale as keyof (typeof routes)['legalNotice']];
+    routes['LegalNotices'][locale as keyof (typeof routes)['LegalNotices']];
 
   return {
     title: t('title'),

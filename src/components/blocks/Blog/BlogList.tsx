@@ -2,9 +2,8 @@ import { BlogCard } from '@/components/customs/Card/BlogCard';
 import Button from '@/components/customs/Button';
 import { FC } from 'react';
 import { Blog } from '@/models/BLog';
-
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 import { Link } from '@/libs/i18nNavigation';
+import { FormattedText } from '@/components/customs/Text';
 
 interface Props {
   tagline?: string;
@@ -25,44 +24,44 @@ const BlogList: FC<Props> = ({
   blogs,
 }) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-12'>
-      <div className='flex flex-row items-end justify-between'>
-        <div className='flex flex-col lg:gap-6 gap-4 max-w-xl'>
-          <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold text-primary-500 !leading-[130%]'>
+    <div className="flex flex-col lg:gap-16 gap-12">
+      <div className="flex flex-row items-end justify-between">
+        <div className="flex flex-col lg:gap-6 gap-4 max-w-xl">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
               {heading}
             </p>
-            <h2 className='text-3xl font-semibold !leading-[130%]'>
-              {TextWithStrong(subHeading)}
+            <h2 className="text-3xl font-semibold !leading-[130%]">
+              <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm text-black-200 !leading-[130%]'>
+          <p className="text-sm text-black-200 !leading-[130%]">
             {description}
           </p>
         </div>
         <Link href={buttonUrl}>
           <Button
-            as='solid'
-            variant='md'
-            type='primary'
-            className='hidden lg:flex'
+            as="solid"
+            variant="md"
+            type="primary"
+            className="hidden lg:flex"
           >
             {buttonText}
           </Button>
         </Link>
       </div>
 
-      <div className='mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3'>
+      <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {blogs.map((post) => (
           <BlogCard key={post.id} {...post} />
         ))}
       </div>
-      <Link href={buttonUrl}>
+      <Link href={buttonUrl} className="lg:display-none">
         <Button
-          as='solid'
-          variant='md'
-          type='primary'
-          className='lg:hidden w-full'
+          as="solid"
+          variant="md"
+          type="primary"
+          className="lg:hidden w-full"
         >
           {buttonText}
         </Button>

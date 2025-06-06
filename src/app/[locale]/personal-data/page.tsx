@@ -11,7 +11,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.DonnesPersonnelles',
+    namespace: 'Metadata.PersonalData',
   });
   const { routes } = AppConfig;
 

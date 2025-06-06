@@ -2,7 +2,7 @@
 import { PageContainer } from './PageContainer';
 import { Content } from './Content';
 import { useTranslations } from 'next-intl';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { FormattedText } from '@/components/customs/Text';
 
 export const PageView = () => {
   const t = useTranslations('LegalPersonal');
@@ -14,8 +14,9 @@ export const PageView = () => {
           <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
             {t('heading')}
           </p>
-          <h1 className="text-5xl font-bold text-center !leading-[130%]">
-            {TextWithStrong(t('subHeading'))}
+          <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
+            
+            <FormattedText text={t('subHeading')} />
           </h1>
         </div>
       </div>

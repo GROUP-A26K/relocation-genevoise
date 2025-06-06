@@ -25,18 +25,18 @@ const BlogHero: FC<Props> = ({
   // buttonText,
 }) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-12'>
-      <div className='flex w-full items-center justify-center'>
-        <div className='flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-center max-w-3xl'>
-          <div className='flex flex-col gap-3'>
-            <h1 className='text-sm font-semibold text-center text-secondary-600 !leading-[130%] text-pretty'>
+    <div className="flex flex-col lg:gap-16 gap-12">
+      <div className="flex w-full items-center justify-center">
+        <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-center max-w-3xl">
+          <div className="flex flex-col gap-3">
+            <h1 className="text-sm font-semibold text-center text-secondary-600 !leading-[130%] text-pretty">
               {heading}
             </h1>
-            <h2 className='text-3xl font-semibold text-center !leading-[130%] text-pretty'>
+            <h2 className="lg:text-3xl text-3xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal text-center text-black-200 !leading-[130%]'>
+          <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">
             {description}
           </p>
           {/* <div className="flex flex-row gap-2 w-full items-center justify-center">

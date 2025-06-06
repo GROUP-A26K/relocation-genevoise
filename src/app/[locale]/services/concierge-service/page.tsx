@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { ContentView } from '@/components/sections/ServiceDetail';
 import HeroImage from '@/assets/img/hero/service/service-de-conciergerie-hero-image.webp';
+import { AppConfig } from '@/utils/AppConfig';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -14,14 +15,21 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.Home',
+    namespace: 'Metadata.ConciergeService',
   });
+
+  const { routes } = AppConfig;
+
+  const canonical =
+    routes['conciergeService'][
+      locale as keyof (typeof routes)['conciergeService']
+    ];
 
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
     },
   };
 }
@@ -35,7 +43,7 @@ export default async function Page(props: Props) {
 
   return (
     <>
-      <Section className='relative'>
+      <Section className="relative">
         <Hero
           heroImage={{
             src: HeroImage.src,
@@ -75,7 +83,7 @@ export default async function Page(props: Props) {
           },
         ]}
       />
-      <Section className='lg:bg-white bg-grey-50'>
+      <Section className="lg:bg-white bg-grey-50">
         <BookConsultation2
           heading={t('BookConsultation.heading')}
           subHeading={t('BookConsultation.subHeading')}

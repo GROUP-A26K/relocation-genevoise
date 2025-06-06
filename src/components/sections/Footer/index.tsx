@@ -80,7 +80,7 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
     company: {
       title: t('company.title'),
       links: [
-        { text: t('company.links.0.text'), url: '/services/education' },
+        { text: t('company.links.0.text'), url: '/services/academic' },
         {
           text: t('company.links.1.text'),
           url: '/services/discover-geneva',

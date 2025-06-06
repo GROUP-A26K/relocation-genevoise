@@ -1,7 +1,6 @@
 import { BookConsultation } from '@/components/blocks/Consultation';
 import { FAQ } from '@/components/blocks/FAQ';
 import Section from '@/components/customs/Section';
-import { AppConfig } from '@/utils/AppConfig';
 import GroupAvatar from '@/assets/img/avt/group-avt-1.webp';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -14,21 +13,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.Particulier',
+    namespace: 'Metadata.FAQ',
   });
-
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['personalInsurance'][
-      locale as keyof (typeof routes)['personalInsurance']
-    ];
 
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/faq`,
     },
   };
 }
