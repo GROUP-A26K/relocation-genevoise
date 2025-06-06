@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const BLOGS_QUERY = defineQuery(`
     {
@@ -123,15 +123,15 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
 
 export const BLOGS_SITEMAP_QUERY = defineQuery(`
   {
-  "blogs": *[
-    _type == "relocationBlogPost" &&
-    !(_id in path("drafts.**")) &&
-    language == $locale &&
-    ($category == "" || $category in category[]->name)&&
-    ($title == "" || title match $title)
-  ]| order(publishedDate desc) [$start...$end] {
+    "blogs": *[
+      _type == "relocationBlogPost" &&
+      language == $locale &&
+      ($category == "" || $category in category[]->name)&&
+      ($title == "" || title match $title)
+    ]| order(publishedDate desc) {
     _originalId,
     _id,
+    publishedDate,
     title,
     summary,
     slug,

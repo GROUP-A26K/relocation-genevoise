@@ -29,15 +29,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.Particulier',
+    namespace: 'Metadata.Companies',
   });
 
   const { routes } = AppConfig;
 
   const canonical =
-    routes['personalInsurance'][
-      locale as keyof (typeof routes)['personalInsurance']
-    ];
+    routes['companies'][locale as keyof (typeof routes)['companies']];
 
   return {
     title: t('title'),

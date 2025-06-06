@@ -25,6 +25,8 @@ import { StatsGrid2 } from '@/components/blocks/Stats';
 import { ContentWithImg } from '@/components/blocks/Content';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { Logos } from '@/components/blocks/Logos';
+import { fetchBlogs } from '@/services/blog.service';
+import { BlogList } from '@/components/blocks/Blog';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -71,6 +73,8 @@ export default async function Page(props: Props) {
     },
   ];
 
+  const { blogs } = await fetchBlogs({ page: 1, pageSize: 3, locale: locale });
+
   return (
     <>
       <Section isDivider className="relative">
@@ -95,7 +99,7 @@ export default async function Page(props: Props) {
           subHeading={t('ContactFeature.subHeading')}
           description={t('ContactFeature.description')}
           buttonText={t('ContactFeature.buttonText')}
-          buttonUrl={'/rappelez-moi'}
+          buttonUrl={'/contact'}
           reasonItems={[
             {
               title: t('ContactFeature.reasonItems.0.title'),
@@ -191,12 +195,23 @@ export default async function Page(props: Props) {
         />
       </Section>
 
-      <Section>
+      <Section isDivider>
         <ServiceFeature2
           heading={t('ServiceFeature.heading')}
           subHeading={t('ServiceFeature.subHeading')}
           description={t('ServiceFeature.description')}
           features={features}
+        />
+      </Section>
+
+      <Section isDivider>
+        <BlogList
+          blogs={blogs}
+          heading={t('BlogList.heading')}
+          subHeading={t('BlogList.subHeading')}
+          description={t('BlogList.description')}
+          buttonText={t('BlogList.buttonText')}
+          buttonUrl={'/blog'}
         />
       </Section>
 

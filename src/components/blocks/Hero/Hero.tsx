@@ -35,27 +35,27 @@ export const Hero: FC<Props> = ({
   heroImage,
 }) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-12'>
-      <div className='flex w-full items-center justify-center'>
-        <div className='flex flex-col gap-6'>
-          <div className='flex flex-col lg:gap-6 gap-4 max-w-3xl w-full lg:items-center text-center'>
-            <div className='flex flex-col gap-3'>
-              <p className='text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]'>
+    <div className="flex flex-col lg:gap-16 gap-12">
+      <div className="flex w-full items-center justify-center">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col lg:gap-6 gap-4 max-w-3xl w-full lg:items-center text-center">
+            <div className="flex flex-col gap-3">
+              <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]">
                 {heading}
               </p>
-              <h1 className='lg:text-5xl text-4xl font-bold text-center !leading-[130%] text-pretty'>
+              <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className='text-sm font-normal text-center text-black-200 !leading-[130%] text-pretty'>
+            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-pretty">
               {description}
             </p>
           </div>
 
-          <div className='flex flex-row gap-2 w-full items-center justify-center'>
+          <div className="flex flex-row gap-2 w-full items-center justify-center">
             {button && (
               <Link href={'/rappelez-moi'}>
-                <Button as='solid' variant='md' type='secondary'>
+                <Button as="solid" variant="md" type="secondary">
                   {button.text}
                 </Button>
               </Link>
@@ -63,9 +63,9 @@ export const Hero: FC<Props> = ({
             {button2 && (
               <Link href={'/contact'}>
                 <Button
-                  as='outline'
-                  variant='md'
-                  type='primary'
+                  as="outline"
+                  variant="md"
+                  type="primary"
                   iconEnd={ArrowRight}
                 >
                   {button2.text}
@@ -76,15 +76,15 @@ export const Hero: FC<Props> = ({
         </div>
       </div>
 
-      <div className='flex flex-col relative items-start justify-between'>
-        <div className='w-full'>
+      <div className="flex flex-col relative items-start justify-between">
+        <div className="w-full">
           <Image
-            alt='Agence de Relocation à Genève'
-            title='Agence de Relocation à Genève'
+            alt="Agence de Relocation à Genève"
+            title="Agence de Relocation à Genève"
             src={heroImage.src}
             width={1240}
             height={480}
-            className='aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]'
+            className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
           />
         </div>
       </div>

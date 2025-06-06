@@ -14,12 +14,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.RappelezMoi',
+    namespace: 'Metadata.CallMeBack',
   });
 
   const { routes } = AppConfig;
 
-  const canonical = routes['callMe'][locale as keyof (typeof routes)['callMe']];
+  const canonical =
+    routes['callMeBack'][locale as keyof (typeof routes)['callMeBack']];
 
   return {
     title: t('title'),

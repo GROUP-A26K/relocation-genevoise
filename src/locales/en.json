@@ -2,7 +2,7 @@
   "HomePage": {
     "Hero": {
       "heading": "Home",
-      "subHeading": "Relocation Agency in Geneva",
+      "subHeading": "Relocation Agency in ((Geneva))",
       "description": "Your trusted partner in Geneva for a smooth relocation : housing and tenant search, corporate services, and personalized support at every stage of your journey.",
       "experience": "25 years of experience",
       "customer": "2500+ satisfied clients",
@@ -12,7 +12,7 @@
 
     "ContactFeature": {
       "heading": "Offers",
-      "subHeading": "Our Relocation Services",
+      "subHeading": "((Our Relocation Services))",
       "description": "A flawless client experience and turnkey support to help you find your new home, ease your move, and feel at home as quickly as possible.",
       "buttonText": "Contact-us",
       "reasonItems": [
@@ -41,7 +41,7 @@
 
     "StatsGrid": {
       "heading": "Availability & Transparency",
-      "subHeading": "An agency by your side through every step of your relocation.",
+      "subHeading": "An agency by your side through every step of ((your relocation.))",
       "description": "Relocation Genevoise is at your service to make your move simple and stress-free, offering clear advice, genuine commitment, and personalized services to ensure a smooth and successful relocation.",
       "start1": {
         "value": "20+",
@@ -63,7 +63,7 @@
 
     "EngagementFeature": {
       "heading": " Our Commitments",
-      "subHeading": "Guiding you to your new home with care and expertise.",
+      "subHeading": "Guiding you to your new home with ((care and expertise.))",
       "description": "Our team is committed to supporting you with excellence and integrity to ensure a smooth and successful relocation to Switzerland.",
       "reasonItems": [
         {
@@ -87,7 +87,7 @@
 
     "ContentWithImg": {
       "heading": "A trusted partner",
-      "subHeading": "Choose the leading relocation provider in Geneva.",
+      "subHeading": "Choose the leading ((relocation provider in Geneva.))",
       "description": [
         {
           "paragraph": "Relocation Genevoise supports its clients with all direct and indirect aspects of the relocation process in the Geneva area. Our expertise in real estate and in-depth knowledge of the local market allow us to provide comprehensive support and high-quality service."
@@ -98,7 +98,7 @@
 
     "ServiceFeature": {
       "heading": "Your relocation to Geneva",
-      "subHeading": "Find your new home in Geneva easily and quickly.",
+      "subHeading": "Find your new home in Geneva ((easily and quickly.))",
       "description": "Simplify your search for the perfect home in Switzerland with our specialized services and a wide range of offers tailored to your needs.",
       "reasons": [
         {
@@ -117,9 +117,16 @@
       ]
     },
 
+    "BlogList": {
+      "heading": "Blog & News",
+      "subHeading": "((Our latest articles))",
+      "description": "Find our latest news, articles, and expert advice to help you choose the best insurance solutions.",
+      "buttonText": "See more"
+    },
+
     "BookConsultation": {
       "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
       "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
@@ -129,7 +136,7 @@
   "FindAccommodation": {
     "Hero": {
       "heading": "Your relocation project",
-      "subHeading": "Find accommodation",
+      "subHeading": "((Find accommodation))",
       "description": "A comprehensive, tailor-made solution to find your ideal home in Geneva, handle all your procedures with ease, and ensure a smooth, worry-free move."
     },
     "Content": {
@@ -174,7 +181,7 @@
     },
     "BookConsultation": {
       "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
       "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
@@ -184,7 +191,7 @@
   "FindATenant": {
     "Hero": {
       "heading": "Quick Placement",
-      "subHeading": "Find a tenant",
+      "subHeading": "((Find a tenant))",
       "description": "We help you quickly find a reliable tenant through a comprehensive service: professional photos, rigorous candidate screening, and management of all administrative procedures."
     },
     "Content": {
@@ -217,7 +224,7 @@
     },
     "BookConsultation": {
       "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "subHeading": "Would you like to benefit from our ((expertise and services ?))",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
       "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
@@ -227,7 +234,7 @@
   "RemindMe": {
     "Consultation": {
       "heading": "Call me back",
-      "subHeading": "Let’s find the service that meets your needs !",
+      "subHeading": "Let’s find ((the service)) that meets your needs !",
       "description": "A member of our team will call you back as soon as possible.",
       "cardContent": {
         "title": "Book your call now !",
@@ -265,7 +272,7 @@
   "Contact": {
     "ContactInfo": {
       "heading": "Contact us",
-      "subHeading": "We’re here for you",
+      "subHeading": "We’re here ((for you))",
       "description": "For any inquiries, feel free to contact us.",
       "reasonItems": [
         {
@@ -319,7 +326,7 @@
     }
   },
 
-  "MentionsLegales": {
+  "LegalNotices": {
     "heading": "Legal",
     "subHeading": "((Legal Notice))",
 
@@ -328,7 +335,7 @@
         "title": "1. Company Information",
         "content": [
           {
-            "paragraph": "**Company Name:** AG Assurance Genevoise SA \n **Legal Form:** Public Limited Company (SA) \n **Registered Office:** Rue des Alpes 5, 1201 Geneva, Switzerland \n **UID Number:** CHE-403.737.582 \n **FINMA Registry Number:** F01502264 \n **Share Capital:** CHF 100,000 \n **Phone:** +41 22 715 17 45 \n **Email:** contact@assurance-genevoise.ch \n **Hosting Provider:** o2switch ([[https://www.o2switch.fr/|https://www.o2switch.fr/]]) \n This information is provided clearly and completely."
+            "paragraph": "**Company Name:** RG Relocation Genevoise SA \n **Legal Form:** Public Limited Company (SA) \n **Registered Office:** Rue des Alpes 5, 1201 Geneva, Switzerland \n **UID Number:** CHE-403.737.582 \n **FINMA Registry Number:** F01502264 \n **Share Capital:** CHF 100,000 \n **Phone:** 022 715 17 45 \n **Email:** contact@relocation-genevoise.ch \n **Hosting Provider:** o2switch ([[https://www.o2switch.fr/|https://www.o2switch.fr/]]) \n This information is provided clearly and completely."
           }
         ]
       },
@@ -336,10 +343,10 @@
         "title": "2. Liability",
         "content": [
           {
-            "paragraph": "AG Assurance Genevoise SA strives to provide accurate and up-to-date information on this website. However, it does not guarantee the accuracy, reliability, or completeness of the information provided. The company reserves the right to modify the website content at any time without prior notice."
+            "paragraph": "RG Relocation Genevoise SA strives to provide accurate and up-to-date information on this website. However, it does not guarantee the accuracy, reliability, or completeness of the information provided. The company reserves the right to modify the website content at any time without prior notice."
           },
           {
-            "paragraph": "AG Assurance Genevoise SA disclaims all liability for direct or indirect damages resulting from access to or use of this website, including damages caused by viruses or technical errors."
+            "paragraph": "RG Relocation Genevoise SA disclaims all liability for direct or indirect damages resulting from access to or use of this website, including damages caused by viruses or technical errors."
           }
         ]
       },
@@ -347,7 +354,7 @@
         "title": "3. External Links",
         "content": [
           {
-            "paragraph": "This website may contain links to other websites. AG Assurance Genevoise SA is not responsible for the content of these external sites and disclaims all liability regarding the information, products, or services they offer."
+            "paragraph": "This website may contain links to other websites. RG Relocation Genevoise SA is not responsible for the content of these external sites and disclaims all liability regarding the information, products, or services they offer."
           }
         ]
       },
@@ -400,32 +407,32 @@
         "title": "8. Changes to the Legal Notice",
         "content": [
           {
-            "paragraph": "AG Assurance Genevoise SA reserves the right to modify this legal notice at any time. Changes will take effect upon publication on the website."
+            "paragraph": "RG Relocation Genevoise SA reserves the right to modify this legal notice at any time. Changes will take effect upon publication on the website."
           }
         ]
       }
     ]
   },
 
-  "DonnesPersonnelles": {
+  "LegalPersonal": {
     "heading": "Legal",
     "subHeading": "((Personal Data))",
     "sections": [
       {
         "content": [
           {
-            "paragraph": "At **AG Assurance Genevoise SA**, we pay particular attention to respecting your privacy. We thank you for using our services and website. We take privacy seriously. This privacy policy applies to any individual who shares personal data directly or indirectly with AG Assurance Genevoise SA by visiting this website."
+            "paragraph": "At **RG Relocation Genevoise SA**, we place great importance on respecting your privacy. We thank you for using our services and website. We take the protection of your privacy seriously. This privacy policy applies to any individual sharing their personal data directly or indirectly with RG Relocation Genevoise SA when visiting this website."
           },
           {
-            "paragraph": "**AG Assurance Genevoise SA** is a public limited company established in Switzerland and registered at Rue des Alpes 5, 1201 Geneva. As such, we comply with the nLPD (New Federal Data Protection Act). Our registered office is located at Rue des Alpes 5, 1201 Geneva. If you have any questions about data protection, you can contact us at the following address: [[contact@assurance-genevoise.ch]]. This privacy policy details the types of personal data that may be processed and their purposes."
+            "paragraph": "**RG Relocation Genevoise SA** is a corporation established in Switzerland and registered at Rue des Alpes 5, 1201 Geneva. As such, we comply with the nLPD (new Swiss Data Protection Act). Our head office is located at Rue des Alpes 5, 1201 Geneva. You can address your data protection inquiries to the following email: [[contact@relocation-genevoise.ch]]. This privacy policy outlines the types of personal data that may be processed and their intended purposes."
           }
         ]
       },
       {
-        "title": "Scope of the Privacy Policy",
+        "title": "Scope of the privacy policy",
         "content": [
           {
-            "paragraph": "Please note that this privacy policy concerns the processing of personal data for which AG Assurance Genevoise SA is the data controller. This privacy policy does not cover any processing of personal data that AG Assurance Genevoise SA may perform as a data processor due to your use of our services. For more information about how our services can be used to facilitate the processing of your personal data, and about AG Assurance Genevoise SA's responsibilities and commitments related to this, please refer to the applicable terms and conditions. We apply the nLPD (New Federal Data Protection Act) to all of our procedures."
+            "paragraph": "Please note that this privacy policy pertains to the processing of personal data for which RG Relocation Genevoise SA acts as the data controller. This privacy policy does not cover any personal data processing that RG Relocation Genevoise SA may perform as a data processor resulting from your use of our services.For more information on how our services can be used to facilitate your personal data processing and on RG Relocation Genevoise SA’s responsibilities and commitments in this context, please refer to the applicable terms and conditions. We adhere to the nLPD (new Swiss Data Protection Act) across all our procedures."
           }
         ]
       },
@@ -433,37 +440,37 @@
         "title": "Personal Data Processed",
         "content": [
           {
-            "paragraph": "Personal data refers to information that identifies you as an individual. We may process the following types of personal data concerning you: Your contact details may include your name, email address, and phone number. User information, for example, if you log into any service or visit our websites. This information may include your IP address, device type and browser, time zone, geographic location, as well as your interests and preferences, and information on how you interact with our services, such as features used and buttons clicked."
+            "paragraph": "Personal data refers to data that identifies you as an individual. We may process the following types of personal data about you: your contact details, which may include your name, email address, and phone number; user information, such as when you log in to our service or visit our websites, which may include your IP address, device type and browser, time zone, geographical location, as well as your interests and preferences; and interaction data, which includes information about how you interact with our services, such as the features used and the buttons clicked."
           }
         ]
       },
       {
-        "title": "Purposes of Data Processing",
+        "title": "Personal data processing",
         "content": [
           {
-            "paragraph": "We may process your personal data for the following purposes:\n • To provide our services in accordance with the applicable terms and conditions;\n • To manage the business relationship with you and the client of AG Assurance Genevoise SA that you represent;\n • To develop and improve our services;\n In order to provide information and offers to current or potential clients of AG Assurance Genevoise SA regarding our solution through selected third parties. Any marketing material sent using your personal data is directed to you as a legal entity representing a current or potential client of AG Assurance Genevoise SA, and not to you as a private individual."
+            "paragraph": "We may process your personal data for the following purposes: \n• To provide our services in accordance with the applicable terms;\n• To manage the business relationship with you and the client of RG Relocation Genevoise SA that you represent;\n• To develop and improve our services;\n and to provide information and offers to current or potential clients of RG Relocation Genevoise SA through selected third parties. Any marketing materials distributed using your personal data are sent to you as a representative of a current or potential corporate client of RG Relocation Genevoise SA and not as a private individual."
           }
         ]
       },
       {
-        "title": "Sharing with Third Parties and Transfers to Third Countries",
+        "title": "Sharing with third parties and transfer to third countries",
         "content": [
           {
-            "paragraph": "• Google Analytics: Helps analyze website traffic on [[https://assurance-genevoise.ch/|https://assurance-genevoise.ch]]\n • Google Tag Manager: A tag management system that allows marketing managers to easily add tags (Analytics, remarketing, etc.) to their website."
+            "paragraph": "• Google Analytics: Allows for the analysis of traffic on the website [[https://relocation-genevoise.ch/|https://relocation-genevoise.ch/]]\n • Google Tag Manager: A tag management system that enables marketers to easily add tags (Analytics, remarketing, etc.) to their website."
           }
         ]
       },
       {
-        "title": "Your Rights",
+        "title": "Your rights",
         "content": [
           {
-            "paragraph": "We are obligated to process specific, relevant, and necessary personal data while taking into account our legitimate purposes. You have the right to control this data."
+            "paragraph": "We are obligated to process personal data that is accurate, relevant, and necessary while considering our legitimate purposes. You have the right to oversee this."
           },
           {
-            "paragraph": "To update the personal data we process about you, please contact us at [[contact@assurance-genevoise.ch]]."
+            "paragraph": "To update the personal data we process about you, please contact us at [[contact@relocation-genevoise.ch]]."
           },
           {
-            "paragraph": "To receive a free extract of the personal data we process about you, you can send a registered letter to the following address: AG Assurance Genevoise SA, Rue des Alpes 5, 1201 Geneva, Switzerland."
+            "paragraph": "To receive a free extract of the personal data we process about you, you can send us a registered letter at the following address: RG Relocation Genevoise SA, Rue des Alpes 5, 1201 Geneva, Switzerland."
           }
         ]
       }
@@ -472,7 +479,7 @@
 
   "Education": {
     "heading": "Our service",
-    "subHeading": "Academic Services",
+    "subHeading": "((Academic Services))",
     "description": " A tailor-made educational solution to guide you toward the ideal institution that supports your children’s growth, well-being, and academic success.",
     "sections": [
       {
@@ -520,7 +527,7 @@
     ],
     "BookConsultation": {
       "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
       "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
@@ -529,7 +536,7 @@
 
   "DiscoverGeneva": {
     "heading": "Our service",
-    "subHeading": "Discover Geneva",
+    "subHeading": "((Discover Geneva))",
     "description": "A unique and personalized solution to help you find your bearings, explore the neighborhoods, understand the local culture, and feel at home from day one.",
     "sections": [
       {
@@ -575,7 +582,7 @@
     ],
     "BookConsultation": {
       "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
       "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
@@ -584,7 +591,7 @@
 
   "ConciergeService": {
     "heading": "Our service",
-    "subHeading": "Concierge service",
+    "subHeading": "((Concierge service))",
     "description": "From the everyday to the extraordinary, our concierge service is designed to meet all your expectations, providing personalized assistance for every moment of your daily life.",
     "sections": [
       {
@@ -611,7 +618,7 @@
     ],
     "BookConsultation": {
       "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our expertise and services ?",
+      "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
       "buttonText1": "Contact-us",
       "buttonText2": "Find accommodation"
@@ -621,7 +628,7 @@
   "Companies": {
     "BusinessInfo": {
       "heading": "Professional",
-      "subHeading": "Companies",
+      "subHeading": "((Companies))",
       "description": "Providing a tailored relocation service in Geneva to facilitate the settlement of your employees and new arrivals. We are committed to making the transition to a new home simple, efficient, and stress-free by offering premium and personalized support, local expertise, and comprehensive administrative assistance to ensure a smooth and swift transition.",
       "items": [
         {
@@ -682,7 +689,7 @@
             },
             {
               "title": "Insurance",
-              "description": "Personalized advice and assistance with setting up essential insurance contracts (housing, health, etc.) through our Assurance Genevoise office."
+              "description": "Personalized advice and assistance with setting up essential insurance contracts (housing, health, etc.) through our Relocation Genevoise office."
             },
             {
               "title": "Talent Retention",
@@ -729,7 +736,7 @@
       }
     ],
     "BookConsultation": {
-      "subHeading": "Need advice ?\n Our team is here to guide you",
+      "subHeading": "Need advice ?\n ((Our team is here to guide you))",
       "description": "Benefit from personalized advice and support tailored to your needs.",
       "buttonText1": "Contact-us"
     }
@@ -753,176 +760,127 @@
     }
   },
 
+  "SiteMap": {
+    "heading": "Link",
+    "subHeading": "((Sitemap))",
+    "sections": [
+      {
+        "title": "General",
+        "items": [
+          {
+            "title": "Home"
+          },
+          {
+            "title": "Contact"
+          },
+          {
+            "title": "Find accommodation"
+          },
+          {
+            "title": "Find a tenant"
+          },
+          {
+            "title": "Companies"
+          },
+          {
+            "title": "Call me back"
+          },
+          {
+            "title": "Blog"
+          },
+          {
+            "title": "FAQ"
+          },
+          {
+            "title": "Legal Notice"
+          },
+          {
+            "title": "Peronal Data"
+          }
+        ]
+      },
+      {
+        "title": "Services",
+        "items": [
+          {
+            "title": "Academic Services"
+          },
+          {
+            "title": "Concierge service"
+          },
+          {
+            "title": "Discover Geneva"
+          }
+        ]
+      }
+    ]
+  },
+
   "Metadata": {
     "Home": {
-      "title": "Assurance Genevoise - Your Insurance Broker in Switzerland",
-      "description": "Assurance Genevoise supports you throughout Switzerland with personalized insurance solutions and a network of trusted partners."
+      "title": "Relocation Genevoise - Your Insurance Broker in Switzerland",
+      "description": "Relocation Genevoise supports you throughout Switzerland with personalized insurance solutions and a network of trusted partners."
     },
     "Contact": {
-      "title": "Assurance Genevoise - Contact and Personalized Quote in Switzerland",
+      "title": "Relocation Genevoise - Contact and Personalized Quote in Switzerland",
       "description": "Contact us for an insurance offer tailored to your needs in Switzerland. Quick response and personalized support."
     },
-    "RappelezMoi": {
-      "title": "Assurance Genevoise - A Consultant Will Call You Back",
+    "CallMeBack": {
+      "title": "Relocation Genevoise - A Consultant Will Call You Back",
       "description": "One of our consultants will call you back during our business hours to answer all your insurance questions."
     },
     "Blog": {
-      "title": "Assurance Genevoise - Blog",
-      "description": "Discover our advice, news, and practical guides on insurance in French-speaking Switzerland. Stay informed with the Assurance Genevoise blog."
+      "title": "Relocation Genevoise - Blog",
+      "description": "Discover our advice, news, and practical guides on insurance in French-speaking Switzerland. Stay informed with the Relocation Genevoise blog."
     },
-    "MentionsLegales": {
-      "title": "Assurance Genevoise - Our legal notice",
-      "description": "Discover the tailored insurance solutions offered by Assurance Genevoise, with a reliable network of partners across Switzerland to meet your specific needs."
+    "LegalNotices": {
+      "title": "Relocation Genevoise - Our legal notice",
+      "description": "Discover the tailored insurance solutions offered by Relocation Genevoise, with a reliable network of partners across Switzerland to meet your specific needs."
     },
-    "DonnesPersonnelles": {
-      "title": "Assurance Genevoise - Your personal data",
-      "description": "Protect your personal data with Assurance Genevoise. Discover our commitments to privacy and security to ensure the protection of your information."
+    "PersonalData": {
+      "title": "Relocation Genevoise - Your personal data",
+      "description": "Protect your personal data with Relocation Genevoise. Discover our commitments to privacy and security to ensure the protection of your information."
     },
     "Sitemap": {
-      "title": "Assurance Genevoise - Sitemap",
-      "description": "Discover the site map of Assurance Genevoise to easily navigate through our insurance services and useful information."
+      "title": "Relocation Genevoise - Sitemap",
+      "description": "Discover the site map of Relocation Genevoise to easily navigate through our insurance services and useful information."
     },
-    "Entreprise": {
-      "title": "Assurance Genevoise - Our Insurance Solutions for Businesses",
+    "FAQ": {
+      "title": "Relocation Genevoise - Frequently Asked Questions (FAQ)",
+      "description": "Find answers to your questions about our insurance services in Switzerland. Relocation Genevoise is here to help you with personalized support."
+    },
+    "Companies": {
+      "title": "Relocation Genevoise - Our Insurance Solutions for Businesses",
       "description": "Protect your business with customized insurance solutions designed to secure your operations and prevent claims."
     },
-    "Particulier": {
-      "title": "Assurance Genevoise - Our Insurance Solutions for Individuals",
-      "description": "We protect your future with our tailor-made insurance solutions. Benefit from our coverage for your assets, your loved ones, and your home."
+    "FindAccommodation": {
+      "title": "Relocation Genevoise - Find Accommodation in Switzerland",
+      "description": "Find your ideal accommodation in Switzerland with Relocation Genevoise. Personalized support for a smooth transition."
     },
-    "Assistance": {
-      "title": "Assurance Genevoise - Claims and Assistance",
-      "description": "In case of a claim or emergency, contact us immediately for prompt assistance."
+    "FindATenant": {
+      "title": "Relocation Genevoise - Find a Tenant in Switzerland",
+      "description": "Quickly find a reliable tenant for your property in Switzerland with Relocation Genevoise. Professional support for a successful rental."
     },
-
-    "International": {
-      "title": "Assurance Genevoise – International",
-      "description": "Our insurance solutions to secure your activities and health abroad."
+    "AcademicService": {
+      "title": "Relocation Genevoise - Academic Services in Switzerland",
+      "description": "Discover our academic services to help your children thrive in the Swiss education system. Personalized support for a successful transition."
     },
-    "ProfessionLiberale": {
-      "title": "Assurance Genevoise – Self-Employed Professionals",
-      "description": "Tailored insurance to secure the activity and income of self-employed professionals."
+    "DiscoverGeneva": {
+      "title": "Relocation Genevoise - Discover Geneva",
+      "description": "Explore Geneva with Relocation Genevoise. Personalized tours to help you discover the city and its neighborhoods."
     },
-    "AssuranceChosesEtPatrimoine": {
-      "title": "Assurance Genevoise - Property and Asset Insurance",
-      "description": "Preserve your assets and secure your future against unforeseen events with our coverage for real estate, equipment, and capital."
-    },
-    "RcProfessionnelle": {
-      "title": "Assurance Genevoise - Professional Liability Insurance",
-      "description": "Benefit from comprehensive coverage tailored to your business sector to protect your assets and ensure your company's growth."
-    },
-    "AssuranceRcMenage": {
-      "title": "Assurance Genevoise - Liability Insurance (RC)",
-      "description": "Protect your liability, your assets, and your daily life from property and bodily damage caused to third parties."
-    },
-    "AssuranceAnimaux": {
-      "title": "Assurance Genevoise - Pet Insurance",
-      "description": "Protect your pet’s health and cover the costs in case of illness, accident, or emergency."
-    },
-    "AssuranceAccidentLaa": {
-      "title": "Assurance Genevoise - Accident Insurance (LAA)",
-      "description": "Protects your employees in the event of occupational or non-occupational accidents, covering medical expenses, daily allowances, and rehabilitation."
-    },
-    "AssuranceVoyage": {
-      "title": "Assurance Genevoise - Travel Insurance",
-      "description": "Security, assistance, and peace of mind at every stage of your trips abroad with coverage tailored to your needs."
-    },
-    "AssurancePerteGain": {
-      "title": "Assurance Genevoise - Income Loss Insurance",
-      "description": "Essential coverage to ensure your employees' income continuity and secure your business against unforeseen events."
-    },
-    "PrevoyanceProfessionnelleLpp": {
-      "title": "Assurance Genevoise - Occupational Pension (LPP)",
-      "description": "The occupational pension (LPP) complements the AVS, ensuring your employees a secure retirement and protection in case of disability or death."
-    },
-    "CautionsGaranties": {
-      "title": "Assurance Genevoise - Surety and Guarantee Insurance",
-      "description": "Secure your projects and ensure the execution of your contracts with reliable guarantees compliant with your professional obligations."
-    },
-    "AssuranceVehicule": {
-      "title": "Assurance Genevoise - Motor Vehicle Insurance",
-      "description": "Essential coverage to protect your vehicle, your passengers, and cover damages caused to others."
-    },
-    "AssuranceProtectionJuridique": {
-      "title": "Assurance Genevoise - Legal Protection Insurance",
-      "description": "Legal assistance, support, and management of private disputes to assert your rights in any situation."
-    },
-    "ProtectionJuridique": {
-      "title": "Assurance Genevoise – Legal Protection Insurance",
-      "description": "Legal assistance, legal support, and management of professional disputes to uphold your rights in any situation."
-    },
-    "AssuranceEmployeMaison": {
-      "title": "Assurance Genevoise - Domestic Employee Insurance",
-      "description": "Protect your domestic employees, cover risks related to their work, and secure your liability in case of an incident."
-    },
-    "AssuranceHommeCle": {
-      "title": "Assurance Genevoise - Key Person Insurance",
-      "description": "Preserve your company's financial stability in the event of the loss or absence of a leader or strategic profile."
-    },
-    "AssurancePerteExploitation": {
-      "title": "Assurance Genevoise - Business Interruption Insurance",
-      "description": "Protect your business against financial losses related to a claim, business stoppage, or forced interruption."
-    },
-    "AssuranceCyber": {
-      "title": "Assurance Genevoise - Cybersecurity Insurance",
-      "description": "Comprehensive protection against cyber incidents to safeguard your systems and data."
-    },
-    "AssuranceRcImmeuble": {
-      "title": "Assurance Genevoise - Building and Property Liability Insurance",
-      "description": "Cover material or bodily damages caused to third parties by your building, its equipment, or installations."
-    },
-    "AssuranceFrontalier": {
-      "title": "Assurance Genevoise - Cross-border Worker Insurance",
-      "description": "Clear and tailored health coverage for cross-border workers employed in Switzerland and residing in France."
-    },
-    "AssuranceLibrePassage": {
-      "title": "Assurance Genevoise - Vested Benefits Insurance",
-      "description": "Maintain your pension rights and protect your LPP assets between jobs or during a professional transition."
-    },
-    "AssurancePrevoyance": {
-      "title": "Assurance Genevoise - Private Pension Insurance",
-      "description": "Secure your financial future, protect your loved ones, and ensure a peaceful retirement at every stage of life."
-    },
-    "AssuranceVie": {
-      "title": "Assurance Genevoise - Life Insurance",
-      "description": "Optimize the transfer of your assets with a flexible and tax-advantaged savings solution."
-    },
-    "AssuranceMaladieInternational": {
-      "title": "Assurance Genevoise – International Health Insurance",
-      "description": "Adapt your mandatory health coverage to your new country of residence: benefit from comprehensive protection that meets local requirements so you can travel and work abroad with complete peace of mind."
-    },
-    "CouverturesSpecifiques": {
-      "title": "Assurance Genevoise – International Specific Coverages",
-      "description": "Secure your activities worldwide with tailor-made insurance programs; protect your employees, assets and international projects, and grow your business with confidence."
-    },
-    "CouverturesDediees": {
-      "title": "Assurance Genevoise – Dedicated Coverages",
-      "description": "Insurance products designed for healthcare professionals, lawyers, fiduciaries and consultants: protect your income and professional liability with bespoke coverage."
-    },
-    "Hypotheque": {
-      "title": "Assurance Genevoise – Mortgage",
-      "description": "Assess the risks and opportunities of purchasing property in Switzerland: benefit from coverage tailored to your liquidity, your pension planning and the impact of your investment."
-    },
-    "Prevoyance": {
-      "title": "Assurance Genevoise – Pension Planning",
-      "description": "Prepare for retirement and ensure the security of your loved ones with comprehensive pension planning based on the three pillars of the Swiss system."
-    },
-    "Sante": {
-      "title": "Assurance Genevoise – Health",
-      "description": "Health-insurance solutions tailored to every need: LAMal, supplementary, prenatal or international, to protect your health wherever you are."
-    },
-    "TaxesEtFiscalite": {
-      "title": "Assurance Genevoise – Taxes and Taxation",
-      "description": "Control your taxes, anticipate your liabilities and secure your financial future thanks to our targeted expertise in tax optimisation."
+    "ConciergeService": {
+      "title": "Relocation Genevoise - Concierge Service in Switzerland",
+      "description": "Simplify your daily life with our concierge service in Switzerland. Personalized assistance for all your needs."
     },
     "Error404": {
-      "title": "Assurance Genevoise - Page Not Found (404)"
+      "title": "Relocation Genevoise - Page Not Found (404)"
     },
     "Error403": {
-      "title": "Assurance Genevoise - Access Denied (403)"
+      "title": "Relocation Genevoise - Access Denied (403)"
     },
     "Error500": {
-      "title": "Assurance Genevoise - Error 500"
+      "title": "Relocation Genevoise - Error 500"
     }
   },
 

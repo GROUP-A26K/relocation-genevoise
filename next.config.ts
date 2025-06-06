@@ -1,41 +1,52 @@
-import { AppConfig } from "@/utils/AppConfig";
-import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
+import { AppConfig } from '@/utils/AppConfig';
+import { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
+const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
 
 type LocaleMap = Record<string, string | number>;
 
 function buildRewrites() {
   const { locales, routes } = AppConfig;
+  const en = 'en';
 
   return Object.values(routes).flatMap((localeMap: LocaleMap) => {
-    const canonical = localeMap["en"];
-
     return locales.map((locale) => ({
       source: `/${locale}${localeMap[locale]}`,
-      destination: `/${locale}${canonical}`,
+      destination: `/${locale}${localeMap[en]}`,
     }));
   });
 }
 
 function buildRedirects() {
-  const { defaultLocale, routes } = AppConfig;
-  const en = "en";
+  const { defaultLocale, routes, locales } = AppConfig;
+  const en = 'en';
 
-  return Object.values(routes).map((localeMap: LocaleMap) => {
-    const canonical = localeMap[defaultLocale];
-    return {
-      source: `/${en}${canonical}`,
-      destination: `/${en}${localeMap[en]}`,
-      permanent: true,
-    };
+  return Object.values(routes).flatMap((localeMap: LocaleMap) => {
+    if (localeMap[en] === localeMap[defaultLocale]) {
+      return [];
+    }
+
+    return locales.map((locale) => {
+      if (locale === defaultLocale) {
+        return {
+          source: `${localeMap[en]}`,
+          destination: `/${defaultLocale}${localeMap[defaultLocale]}`,
+          permanent: true,
+        };
+      }
+      return {
+        source: `/${en}${localeMap[defaultLocale]}`,
+        destination: `/${en}${localeMap[en]}`,
+        permanent: true,
+      };
+    });
   });
 }
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com", "cdn.sanity.io"],
+    domains: ['images.unsplash.com', 'cdn.sanity.io'],
   },
 
   async rewrites() {

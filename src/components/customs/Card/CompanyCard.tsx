@@ -1,4 +1,4 @@
-import { cn } from "@/libs/utils";
+import { cn } from '@/libs/utils';
 
 interface Props {
   title: string;
@@ -19,12 +19,12 @@ export const CompanyCard: React.FC<Props> = ({
         </div>
       </div>
       <div className="flex flex-col justify-between h-full">
-        <div className={cn("flex flex-col text-black-500 lg:gap-3 gap-1")}>
-          <h2 className="text-xl font-semibold !leading-[130%]">{title}</h2>
+        <div className={cn('flex flex-col text-black-500 lg:gap-3 gap-1')}>
+          <h3 className="text-xl font-semibold !leading-[130%]">{title}</h3>
           {description && (
             <p
               className={cn(
-                "lg:text-sm text-sm text-black-200 font-normal !leading-[130%]"
+                'lg:text-sm text-sm text-black-200 font-normal !leading-[130%]'
               )}
             >
               {description}
