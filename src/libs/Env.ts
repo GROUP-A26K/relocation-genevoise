@@ -6,7 +6,8 @@ export const Env = createEnv({
     SANITY_API_READ_TOKEN: z.string().min(1),
     DATABASE_URL: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
-    RESEND_EMAIL: z.string().min(1),
+    RESEND_EMAIL: z.string().email().min(1),
+    RESEND_RECEIVER_EMAIL: z.string().email().min(1),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().min(1),
@@ -21,6 +22,7 @@ export const Env = createEnv({
   },
   runtimeEnv: {
     RESEND_EMAIL: process.env.RESEND_EMAIL,
+    RESEND_RECEIVER_EMAIL: process.env.RESEND_RECEIVER_EMAIL,
     SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
     NEXT_PUBLIC_SANITY_STUDIO_URL: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,

@@ -1,13 +1,17 @@
-import { prisma } from "@/libs/prisma";
-import { resend } from "@/libs/resend";
+import { prisma } from '@/libs/prisma';
+import { resend } from '@/libs/resend';
 import {
   ContactFormInput,
   contactSchema,
-} from "@/validations/contact.validation";
-import { NextResponse } from "next/server";
-import { Env } from "@/libs/Env";
+} from '@/validations/contact.validation';
+import { NextResponse } from 'next/server';
+import { Env } from '@/libs/Env';
+import { Contact } from '@/templates/Email/Contact';
+import ContactCustomer from '@/templates/Email/ContactCustomer';
 
 const senderEmail = Env.RESEND_EMAIL;
+const senderReceiverEmail = Env.RESEND_RECEIVER_EMAIL;
+const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 const createContact = async (data: ContactFormInput) => {
   return prisma.contact.create({
     data: {
@@ -24,25 +28,49 @@ const createContact = async (data: ContactFormInput) => {
   });
 };
 
-const sendEmail = async (email: string) => {
+const sendEmail = async (
+  email: string,
+  userInfo: ContactFormInput,
+  locale: 'fr' | 'en'
+) => {
   try {
     await resend.emails.send({
       from: senderEmail,
       to: email,
-      subject: "Welcome to our service!",
-      html: "<p>Congrats on sending your information!</p>",
+      subject: 'Welcome to our service!',
+      react: Contact({
+        username: userInfo.first_name,
+        baseUrl,
+        locale,
+      }),
+    });
+
+    await resend.emails.send({
+      from: senderEmail,
+      to: senderReceiverEmail,
+      subject: 'Contact Form Submission Received',
+      react: ContactCustomer({
+        userInfo,
+        baseUrl,
+        locale,
+      }),
     });
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email");
+    console.error('Error sending email:', error);
+    throw new Error('Failed to send email');
   }
 };
 
 export async function POST(request: Request) {
   try {
-    if (!request.headers.get("Content-Type")?.includes("application/json")) {
+    const url = new URL(request.url);
+    const locale = (url.searchParams.get('locale') === 'en' ? 'en' : 'fr') as
+      | 'fr'
+      | 'en';
+
+    if (!request.headers.get('Content-Type')?.includes('application/json')) {
       return NextResponse.json(
-        { error: "Content-Type must be application/json" },
+        { error: 'Content-Type must be application/json' },
         { status: 400 }
       );
     }
@@ -61,13 +89,13 @@ export async function POST(request: Request) {
 
     const newContact = await createContact(parsedData.data);
 
-    await sendEmail(parsedData.data.email);
+    await sendEmail(parsedData.data.email, parsedData.data, locale);
 
     return NextResponse.json(newContact, { status: 201 });
   } catch (error) {
-    console.error("Error creating contact:", error);
+    console.error('Error creating contact:', error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
