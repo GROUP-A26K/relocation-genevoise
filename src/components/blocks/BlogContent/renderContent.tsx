@@ -123,18 +123,47 @@ export const renderQuoteArray = (
     text?: string;
     _type: 'span';
     _key: string;
+  }>,
+  markDefs?: Array<{
+    href?: string;
+    _type: 'link';
+    _key: string;
   }>
 ) => {
   return (
     <>
-      {spans.map((item, index) => (
-        <span
-          key={item._key || index}
-          className={cn(getMarkClasses(item.marks))}
-        >
-          &quot;{item.text}&quot;
-        </span>
-      ))}
+      &quot;
+      {spans.map((item, index) => {
+        const { linkDef, restMarks } = splitLinkMark(item.marks, markDefs);
+
+        const textNode = (
+          <span
+            key={`${item._key}-inner` || index}
+            className={cn(getMarkClasses(restMarks))}
+          >
+            {item.text}
+          </span>
+        );
+
+        // If the span has a link mark → wrap the text in <a>
+        if (linkDef?.href) {
+          return (
+            <LinkText key={item._key || index} link={linkDef.href}>
+              {textNode}
+            </LinkText>
+          );
+        }
+
+        return (
+          <span
+            key={item._key || index}
+            className={cn(getMarkClasses(restMarks))}
+          >
+            {item.text}
+          </span>
+        );
+      })}
+      &quot;
     </>
   );
 };
@@ -146,7 +175,9 @@ export const renderContent = (content: Content) => {
   switch (content._type) {
     case 'block':
       if (content.style === 'blockquote' && content.children) {
-        return <Quote title={renderQuoteArray(content.children)} />;
+        return (
+          <Quote title={renderQuoteArray(content.children, content.markDefs)} />
+        );
       }
 
       if (content.style?.includes('h')) {

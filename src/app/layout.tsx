@@ -23,10 +23,11 @@ export default async function RootLayout(props: Props) {
       <head>
         <link
           rel="icon"
-          href="/rg-logo.svg"
+          href="/apple-touch-icon.png"
           type="svg"
           sizes="120x120"
         />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
 
       <body>{props.children}</body>

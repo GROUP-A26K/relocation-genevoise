@@ -1,6 +1,7 @@
 import { Env } from '@/libs/Env';
 import { prisma } from '@/libs/prisma';
 import { resend } from '@/libs/resend';
+import { Subscribe } from '@/templates/Email/Subscribe';
 import {
   SubscribeFormInput,
   subscribeSchema,
@@ -8,6 +9,18 @@ import {
 import { NextResponse } from 'next/server';
 
 const senderEmail = Env.RESEND_EMAIL;
+const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
+
+const copy = {
+  en: {
+    exitEmail: 'Your email is already subscribed.',
+    successEmail: 'You’re Now Subscribed!',
+  },
+  fr: {
+    exitEmail: 'Votre e-mail est déjà inscrit!',
+    successEmail: 'Vous êtes à présent bien inscrit.',
+  },
+} as const;
 
 const createSubscribe = async (data: SubscribeFormInput) => {
   const existing = await prisma.subscribe.findUnique({
@@ -28,13 +41,21 @@ const createSubscribe = async (data: SubscribeFormInput) => {
   return { alreadyExists: false, email: newSubscribe.email };
 };
 
-const sendEmail = async (email: string, subject: string) => {
+const sendEmail = async (
+  email: string,
+  subject: string,
+  locale: 'fr' | 'en'
+) => {
   try {
     await resend.emails.send({
       from: senderEmail,
       to: email,
       subject: 'Welcome to our service!',
-      html: `<p>${subject}</p>`,
+      react: Subscribe({
+        subject: subject,
+        baseUrl,
+        locale,
+      }),
     });
   } catch (error) {
     console.error('Error sending email:', error);
@@ -44,6 +65,10 @@ const sendEmail = async (email: string, subject: string) => {
 
 export async function POST(request: Request) {
   try {
+    const url = new URL(request.url);
+    const locale = (url.searchParams.get('locale') === 'en' ? 'en' : 'fr') as
+      | 'fr'
+      | 'en';
     if (!request.headers.get('Content-Type')?.includes('application/json')) {
       return NextResponse.json(
         { error: 'Content-Type must be application/json' },
@@ -66,9 +91,9 @@ export async function POST(request: Request) {
     const result = await createSubscribe(parsedData.data);
 
     if (result.alreadyExists) {
-      await sendEmail(result.email, 'Your email is already subscribed.');
+      await sendEmail(result.email, copy[locale].exitEmail, locale);
     } else {
-      await sendEmail(result.email, 'Congrats on sending your information!');
+      await sendEmail(result.email, copy[locale].successEmail, locale);
     }
 
     return NextResponse.json(result, { status: 201 });
