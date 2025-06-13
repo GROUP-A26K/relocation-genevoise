@@ -56,7 +56,7 @@ const BlogList: FC<Props> = ({
           <BlogCard key={post.id} {...post} />
         ))}
       </div>
-      <Link href={buttonUrl} className="lg:display-none">
+      <Link href={buttonUrl} className="lg:hidden">
         <Button
           as="solid"
           variant="md"

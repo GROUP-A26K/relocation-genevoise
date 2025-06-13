@@ -27,7 +27,7 @@ export const AssistanceInfo: FC<Props> = ({
       description:
         'Our support team is at your disposal to answer all your questions and assist you.',
       icon: Phone,
-      info: '022 715 17 45 (Free-call)',
+      info: '022 715 17 48 (Free-call)',
     },
     {
       title: 'Email support',

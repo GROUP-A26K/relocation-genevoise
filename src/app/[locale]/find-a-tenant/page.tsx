@@ -5,12 +5,12 @@ import { Metadata } from 'next';
 import { ContentView } from '@/components/sections/AnimationContent';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import HeroImage from '@/assets/img/bg/relocation-genevoise-trouver-un-locataire.webp';
-import ContentImage1 from '@/assets/img/bg/find-a-tenant/service-tenant-1.svg';
-import ContentImage2 from '@/assets/img/bg/find-a-tenant/service-tenant-2.svg';
-import ContentImage3 from '@/assets/img/bg/find-a-tenant/service-tenant-3.svg';
-import ContentImage4 from '@/assets/img/bg/find-a-tenant/service-tenant-4.svg';
-import ContentImage5 from '@/assets/img/bg/find-a-tenant/service-tenant-5.svg';
-import ContentImage6 from '@/assets/img/bg/find-a-tenant/service-tenant-6.svg';
+import ContentImage1 from '@/assets/img/bg/trouver-un-locataire/photos-et-videos-professionnelles.svg';
+import ContentImage2 from '@/assets/img/bg/trouver-un-locataire/diffusion-des-annonces.svg';
+import ContentImage3 from '@/assets/img/bg/trouver-un-locataire/organisation-des-visites.svg';
+import ContentImage4 from '@/assets/img/bg/trouver-un-locataire/gestion-et-reception.svg';
+import ContentImage5 from '@/assets/img/bg/trouver-un-locataire/suivi-des-candidatures.svg';
+import ContentImage6 from '@/assets/img/bg/trouver-un-locataire/nouveau-locataire.svg';
 import { AppConfig } from '@/utils/AppConfig';
 
 type Props = {

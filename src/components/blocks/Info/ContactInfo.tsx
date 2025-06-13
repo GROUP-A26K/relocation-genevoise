@@ -26,7 +26,7 @@ const ContactInfo: FC<Props> = ({
     {
       title: 'Email',
       icon: Mail,
-      info: 'contact@assurance-genevoise.ch',
+      info: 'contact@relocation-genevoise.ch',
     },
     {
       title: 'Office',

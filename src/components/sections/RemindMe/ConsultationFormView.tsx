@@ -251,8 +251,10 @@ export const ConsultationFormView: FC<Props> = ({
 
                 <Image
                   src={ConsultationBG}
-                  alt={'Assurance Genevoise, courtier en assurance à Genève'}
-                  title={'Assurance Genevoise, courtier en assurance à Genève'}
+                  alt={'Relocation Genevoise, courtier en relocation à Genève'}
+                  title={
+                    'Relocation Genevoise, courtier en relocation à Genève'
+                  }
                   width={556}
                   height={284}
                   className="lg:max-h-[284px] 2xl:min-w-[556px] lg:min-w-[400px] max-h-[180px]  rounded-2xl object-cover"

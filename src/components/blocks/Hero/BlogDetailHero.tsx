@@ -34,8 +34,8 @@ const BlogDetailHero: FC<Blog> = (blog) => {
       <div className="flex flex-col relative items-start justify-between">
         <div className="w-full">
           <Image
-            alt="Blog Assurance Genevoise Image"
-            title="Blog Assurance Genevoise Image"
+            alt="Blog Relocation Genevoise Image"
+            title="Blog Relocation Genevoise Image"
             src={blog.imageUrl}
             width={1240}
             height={620}

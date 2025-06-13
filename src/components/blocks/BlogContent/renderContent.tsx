@@ -5,6 +5,8 @@ import { LinkText, List, ListItem, Paragraph } from '@/components/customs/Text';
 import { ImageTitle } from '@/components/customs/ImageTitle';
 import { Quote } from '@/components/customs/Quote';
 import { Content } from '@/models/BLog';
+import { VideoWithTitle } from '@/components/customs/Media';
+import { TableWithTitle } from '@/components/customs/Table';
 
 export const getMarkClasses = (marks?: string[]): string => {
   if (!marks || marks.length === 0) return '';
@@ -208,6 +210,37 @@ export const renderContent = (content: Content) => {
         <ImageTitle
           title={content.mainPhoto?.imageTitle || 'Photo'}
           imgUrl={content.mainPhoto?.photo?.asset?.url}
+        />
+      );
+
+    case 'videoZone':
+      return (
+        <VideoWithTitle
+          title={content.title || 'Video'}
+          videoUrl={
+            content.source == 'file'
+              ? content.videoFile?.asset?.url
+              : content.videoUrl
+          }
+        />
+      );
+
+    case 'tableZone':
+      return (
+        <TableWithTitle
+          title={content.tableTitle || 'Table'}
+          tableContent={
+            content.tableData
+              ? {
+                  ...content.tableData,
+                  rows: (content.tableData.rows || [])
+                    .filter((row) => row.cells)
+                    .map((row) => ({
+                      cells: row.cells || [],
+                    })),
+                }
+              : undefined
+          }
         />
       );
 
