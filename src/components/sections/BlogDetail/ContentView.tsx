@@ -27,7 +27,7 @@ export const ContentView = (props: Props) => {
     <ContentContainer>
       <div
         className={cn(
-          'lg:!sticky lg:!top-8 lg:!h-0 h-fit relative lg:!pb-0 pb-12 w-fit',
+          'lg:!sticky lg:!top-8 lg:!h-0 h-fit relative lg:!pb-0 pb-12 lg:w-fit w-full',
           listBlock.length > 1 &&
             activeId === listBlock[listBlock.length - 1]?._key &&
             'lg:!h-fit lg:!pb-20'
