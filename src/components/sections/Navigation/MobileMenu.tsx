@@ -30,8 +30,8 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
         >
           <Image
             src={Logo.src}
-            alt="Assurance Genevoise, courtier en assurance à Genève"
-            title="Assurance Genevoise, courtier en assurance à Genève"
+            alt="Relocation Genevoise, courtier en Relocation à Genève"
+            title="Relocation Genevoise, courtier en Relocation à Genève"
             width={57}
             height={21.97}
             className="min-w-[57px]"

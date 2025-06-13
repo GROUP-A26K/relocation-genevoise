@@ -5,15 +5,15 @@ import { Metadata } from 'next';
 import { ContentView } from '@/components/sections/AnimationContent';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import HeroImage from '@/assets/img/bg/relocation-genevoise-trouver-un-iogement.webp';
-import ContentImage1 from '@/assets/img/bg/find-accommodation/service-1.svg';
-import ContentImage2 from '@/assets/img/bg/find-accommodation/service-2.svg';
-import ContentImage3 from '@/assets/img/bg/find-accommodation/service-3.svg';
-import ContentImage4 from '@/assets/img/bg/find-accommodation/service-4.svg';
-import ContentImage5 from '@/assets/img/bg/find-accommodation/service-5.svg';
-import ContentImage6 from '@/assets/img/bg/find-accommodation/service-6.svg';
-import ContentImage7 from '@/assets/img/bg/find-accommodation/service-7.svg';
-import ContentImage8 from '@/assets/img/bg/find-accommodation/service-8.svg';
-import ContentImage9 from '@/assets/img/bg/find-accommodation/service-9.svg';
+import ContentImage1 from '@/assets/img/bg/trouver-un-logement/entretien-de-decouverte.svg';
+import ContentImage2 from '@/assets/img/bg/trouver-un-logement/constitution-de-votre-dossier.svg';
+import ContentImage3 from '@/assets/img/bg/trouver-un-logement/analyse-du-marche.svg';
+import ContentImage4 from '@/assets/img/bg/trouver-un-logement/propositions-de-biens.svg';
+import ContentImage5 from '@/assets/img/bg/trouver-un-logement/organisation-des-visites.svg';
+import ContentImage6 from '@/assets/img/bg/trouver-un-logement/envoi-et-suivi-de-votre-dossier.svg';
+import ContentImage7 from '@/assets/img/bg/trouver-un-logement/formalites-administratives.svg';
+import ContentImage8 from '@/assets/img/bg/trouver-un-logement/aide-a-lemmenagement.svg';
+import ContentImage9 from '@/assets/img/bg/trouver-un-logement/support-apres-linstallation.svg';
 import { AppConfig } from '@/utils/AppConfig';
 
 type Props = {

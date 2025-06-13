@@ -1,9 +1,9 @@
-"use client";
-import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
-import { Link } from "@/libs/i18nNavigation";
-import { Blog } from "@/models/BLog";
-import { useLocale } from "next-intl";
+'use client';
+import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
+import { Link } from '@/libs/i18nNavigation';
+import { Blog } from '@/models/BLog';
+import { useLocale } from 'next-intl';
 
 export const BlogCard: React.FC<Blog> = ({
   title,
@@ -21,8 +21,8 @@ export const BlogCard: React.FC<Blog> = ({
       <article className="flex flex-col items-start cursor-pointer h-full">
         <div className="w-full">
           <Image
-            alt="Assurance Genevoise Article"
-            title="Assurance Genevoise Article"
+            alt="Relocation Genevoise Article"
+            title="Relocation Genevoise Article"
             src={imageUrl}
             width={640}
             height={250}
@@ -77,8 +77,8 @@ export const BlogCard: React.FC<Blog> = ({
             </div>
 
             <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 !leading-[130%]">
-              {timeToRead}{" "}
-              {locale === "fr" ? "minutes de lecture" : "minutes read"}
+              {timeToRead}{' '}
+              {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>
           </div>
         </div>

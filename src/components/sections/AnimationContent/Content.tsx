@@ -23,23 +23,13 @@ export interface ContentProps {
 export const Content: FC<ContentProps> = ({ items }) => {
   const { activeId } = useScrollspy(
     [...items.map((item, index) => `item-${index}`)],
-    300
+    500
   );
-  const [activeIndex, setActiveIndex] = useState<string[]>([]);
+  const [activeIndex, setActiveIndex] = useState<string>(`item-0`);
+
   const setActiveIdDebounced = useCallback(
     debounce(() => {
-      setActiveIndex((prev: string[]) => {
-        const currentIndex = parseInt((activeId || 'item-0').split('-')[1], 10);
-
-        if (
-          prev.length === currentIndex + 1 &&
-          prev[currentIndex] === `item-${currentIndex}`
-        ) {
-          return prev;
-        }
-
-        return Array.from({ length: currentIndex + 1 }, (_, i) => `item-${i}`);
-      });
+      setActiveIndex(activeId);
     }, 1),
     [activeId]
   );
@@ -53,13 +43,9 @@ export const Content: FC<ContentProps> = ({ items }) => {
         <div className="w-full max-w-[560px] flex">
           <div className="flex flex-col gap-16">
             <div className="relative flex flex-col gap-8">
-              <Accordion
-                type="multiple"
-                value={activeIndex}
-                className="relative"
-              >
+              <Accordion type="single" value={activeIndex} className="relative">
                 {items?.map((item, index) => (
-                  <div key={index} id={`item-${index}`}>
+                  <div key={index}>
                     <AccordionItem
                       value={`item-${index}`}
                       className="relative border-b-0"
@@ -91,7 +77,10 @@ export const Content: FC<ContentProps> = ({ items }) => {
                         <AccordionTrigger className="flex flex-col lg:gap-3 gap-4 text-left">
                           <div className="flex flex-col lg:gap-3 gap-4 max-w-[560px] text-left">
                             <div className="flex flex-col gap-3">
-                              <h2 className="lg:text-xl text-lg font-semibold !leading-[130%]">
+                              <h2
+                                className="lg:text-xl text-lg font-semibold !leading-[130%]"
+                                id={`item-${index}`}
+                              >
                                 {item.title}
                               </h2>
                             </div>

@@ -11,6 +11,7 @@ export const Env = createEnv({
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().min(1),
+    NEXT_PUBLIC_GTM_ID: z.string().min(1),
     NEXT_PUBLIC_SANITY_STUDIO_URL: z.string().url(),
     NEXT_PUBLIC_SANITY_API_VERSION: z.string().min(1),
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
@@ -21,6 +22,7 @@ export const Env = createEnv({
     NODE_ENV: z.enum(['test', 'development', 'production']).optional(),
   },
   runtimeEnv: {
+    NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
     RESEND_EMAIL: process.env.RESEND_EMAIL,
     RESEND_RECEIVER_EMAIL: process.env.RESEND_RECEIVER_EMAIL,
     SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,

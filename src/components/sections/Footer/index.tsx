@@ -159,7 +159,7 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
 
       <Section>
         <div className="flex flex-col lg:flex-row lg:gap-16 gap-0">
-          <div className="flex flex-col max-w-[336px] mb-8 lg:mb-0 gap-6">
+          <div className="flex flex-col lg:max-w-[336px] w-full mb-8 lg:mb-0 gap-6">
             <div className="flex items-center lg:justify-start">
               <Link href={logo.url}>
                 <Image

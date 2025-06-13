@@ -68,8 +68,8 @@ const StatsGrid2: FC<Props> = ({
       <div className="flex flex-col lg:flex-row items-center justify-end lg:gap-16 gap-14">
         <Image
           src={StatsBG}
-          alt="Assurance Genevoise, votre partenaire de confiance en Suisse"
-          title="Assurance Genevoise, votre partenaire de confiance en Suisse"
+          alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
+          title="Relocation Genevoise, votre partenaire de confiance en Suisse"
           width={616}
           height={380}
           className="lg:max-h-[380px] xl:min-w-[616px] lg:min-w-[450px] max-h-[226px] rounded-2xl object-cover lg:order-1 order-2"

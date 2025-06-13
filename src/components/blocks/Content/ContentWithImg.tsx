@@ -24,8 +24,8 @@ export const ContentWithImg: FC<Props> = ({
       <div className='flex flex-col lg:flex-row items-center justify-end lg:gap-16 gap-12'>
         <Image
           src={ContentWithImgBG}
-          alt='Assurance Genevoise, votre partenaire de confiance en Suisse'
-          title='Assurance Genevoise, votre partenaire de confiance en Suisse'
+          alt='Relocation Genevoise, votre partenaire de confiance en Suisse'
+          title='Relocation Genevoise, votre partenaire de confiance en Suisse'
           width={588}
           height={440}
           className='lg:max-h-[440px] xl:min-w-[588px] max-h-[226px]  rounded-2xl object-cover order-2 lg:order-2'

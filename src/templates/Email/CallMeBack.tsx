@@ -62,7 +62,7 @@ export const CallMeBack = ({
 
                 <Column align="right">
                   <Row align="right">
-                    <Link href="https://assurance-genevoise.ch">
+                    <Link href="https://relocation-genevoise.ch">
                       <div style={{ display: 'flex' }}>
                         <Img
                           src={`${baseUrl}/globe-lucid.png`}
@@ -72,7 +72,7 @@ export const CallMeBack = ({
                           alt="Globe icon"
                         />
                         <Text className="text-[#7C6C06] text-xs font-semibold !leading-[100%] ml-1">
-                          https://assurance-genevoise/ch
+                          https://relocation-genevoise/ch
                         </Text>
                       </div>
                     </Link>

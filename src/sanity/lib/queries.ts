@@ -77,12 +77,24 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
       },
       photoAlt
     },
-     body[]{
+    body[]{
     ...,
-     blockTitle {
+      blockTitle {
       ...,
       "content": content[]{
         ...,
+           _type == "videoZone" => {
+          ...,
+          videoFile{
+                asset->{
+                _id,
+                url
+                }
+              
+            }
+          }
+        ,
+       
         _type == "photoZone" => {
           ...,
           mainPhoto{
@@ -95,7 +107,7 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
               }
             }
           }
-        }
+        },
       }
     },
     slug,
