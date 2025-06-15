@@ -84,15 +84,16 @@ export const Content: FC<ContentProps> = ({ items }) => {
                                 {item.title}
                               </h2>
                             </div>
-                            <p className="text-sm font-normal text-black-200 !leading-[130%]">
+                            <h3 className="text-sm font-normal text-black-200 !leading-[130%]">
                               {item.description}
-                            </p>
+                            </h3>
                           </div>
                         </AccordionTrigger>
                         <AccordionContent className="py-0 pt-10 max-w-[720px] flex justify-center h-fit text-sm text-black-200 !leading-[130%] duration-700">
                           <Image
                             src={item.image}
-                            alt="placeholder"
+                            alt={item.title}
+                            title={item.description}
                             width={326.4}
                             height={240}
                             className="aspect-video lg:min-h-[240px] min-h-[160px] w-fit rounded-md"

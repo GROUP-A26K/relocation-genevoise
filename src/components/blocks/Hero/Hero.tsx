@@ -4,6 +4,7 @@ import Button from '@/components/customs/Button';
 import { Link } from '@/libs/i18nNavigation';
 import { FormattedText } from '@/components/customs/Text';
 import { ArrowRight } from 'lucide-react';
+import { getText } from '@/components/customs/Text/TextWithStrong';
 
 interface Props {
   tagline?: string;
@@ -79,8 +80,8 @@ export const Hero: FC<Props> = ({
       <div className="flex flex-col relative items-start justify-between">
         <div className="w-full">
           <Image
-            alt="Agence de Relocation à Genève"
-            title="Agence de Relocation à Genève"
+            alt={getText(heroImage.alt || '')}
+            title={getText(heroImage.title || '')}
             src={heroImage.src}
             width={1240}
             height={480}

@@ -51,8 +51,8 @@ export default async function Page(props: Props) {
         <Hero
           heroImage={{
             src: HeroImage.src,
-            alt: t('Hero.heading'),
-            title: t('Hero.heading'),
+            alt: t('Hero.subHeading'),
+            title: t('Hero.subHeading'),
           }}
           heading={t('Hero.heading')}
           subHeading={t('Hero.subHeading')}
