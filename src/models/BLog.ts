@@ -98,12 +98,13 @@ export type Content =
   | {
       title?: string;
       _type: 'videoZone';
-      source?: 'file' | 'url';
+      source?: 'file' | 'url' | 'embed';
       videoFile?: {
         asset?: SanityFileAsset;
         _type: 'file';
       };
       videoUrl?: string;
+      embedUrl?: string;
       _key: string;
     };
 export type Table = {

@@ -917,6 +917,9 @@
     "callButton": {
       "text": "Call me"
     },
+    "contactButton": {
+      "text": "Contact us"
+    },
     "blogButton": {
       "text": "Read more"
     }
@@ -933,6 +936,10 @@
       "title": "Shadcnblocks.com"
     },
     "tagline": "Relocation Genevoise provides customized solutions with integrity, professionalism, and a focus on your needs.",
+    "googleRating": {
+      "title": "Google Rating",
+      "subTitle": "See all our reviews"
+    },
     "service": {
       "title": "Professional",
       "links": [

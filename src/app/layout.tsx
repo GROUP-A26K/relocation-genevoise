@@ -68,6 +68,7 @@ export default async function RootLayout(props: Props) {
         />
       </head>
       <GoogleTagManager gtmId={Env.NEXT_PUBLIC_GTM_ID} />
+
       <body>{props.children}</body>
     </html>
   );

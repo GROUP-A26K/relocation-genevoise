@@ -5,7 +5,10 @@ import { LinkText, List, ListItem, Paragraph } from '@/components/customs/Text';
 import { ImageTitle } from '@/components/customs/ImageTitle';
 import { Quote } from '@/components/customs/Quote';
 import { Content } from '@/models/BLog';
-import { VideoWithTitle } from '@/components/customs/Media';
+import {
+  EmbedVideoWithTitle,
+  VideoWithTitle,
+} from '@/components/customs/Media';
 import { TableWithTitle } from '@/components/customs/Table';
 
 export const getMarkClasses = (marks?: string[]): string => {
@@ -214,6 +217,14 @@ export const renderContent = (content: Content) => {
       );
 
     case 'videoZone':
+      if (content.source === 'embed') {
+        return (
+          <EmbedVideoWithTitle
+            videoUrl={content.embedUrl}
+            title={content.title}
+          />
+        );
+      }
       return (
         <VideoWithTitle
           title={content.title || 'Video'}

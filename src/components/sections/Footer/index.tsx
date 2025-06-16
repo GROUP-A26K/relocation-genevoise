@@ -31,7 +31,13 @@ interface Props {
     alt: string;
     title: string;
   };
+
   tagline: string;
+  googleRating: {
+    googleUrl: string;
+    title: string;
+    subTitle: string;
+  };
   service: MenuItem;
   company: MenuItem;
   support: MenuItem;
@@ -63,6 +69,11 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
       url: '/',
     },
     tagline: t('tagline'),
+    googleRating: {
+      googleUrl: 'https://g.co/kgs/2jZuSLz',
+      title: t('googleRating.title'),
+      subTitle: t('googleRating.subTitle'),
+    },
     service: {
       title: t('service.title'),
       links: [
@@ -130,6 +141,7 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
     contact,
     logo,
     tagline,
+    googleRating,
     service,
     company,
     support,
@@ -171,7 +183,12 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
               </Link>
             </div>
             <p className="text-sm text-black-200 !leading-[130%]">{tagline}</p>
-            <GoogleRating point={5} />
+            <GoogleRating
+              googleUrl={googleRating.googleUrl}
+              point={5}
+              title={googleRating.title}
+              subTitle={googleRating.subTitle}
+            />
           </div>
 
           <div className="grid lg:grid-cols-4 grid-cols-2 text-sm w-full lg:gap-0 gap-8">

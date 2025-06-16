@@ -10,6 +10,7 @@ import { SanityLive } from '@/sanity/lib/live';
 import { VisualEditing } from 'next-sanity';
 import { draftMode } from 'next/headers';
 import { Env } from '@/libs/Env';
+import { Whatsapp } from '@/components/blocks/Whatsapp';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -35,8 +36,12 @@ export default async function RootLayout(props: {
       messages={messages}
       timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
     >
+      {' '}
       <Navbar locale={locale} />
-      <main>{props.children}</main>
+      <main>
+        <Whatsapp phoneNumber={'41783371528'} />
+        {props.children}
+      </main>
       <SanityLive />
       {(await draftMode()).isEnabled && (
         <>

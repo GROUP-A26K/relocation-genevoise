@@ -48,6 +48,10 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
         ],
       },
     ],
+    contactButton: {
+      text: tNav('contactButton.text'),
+      url: '/contact',
+    },
     callButton: {
       text: tNav('callButton.text'),
       url: '/call-me-back',
@@ -58,6 +62,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
     <NavbarContainer
       menu={navLinks.menu}
       callButton={navLinks.callButton}
+      contactButton={navLinks.contactButton}
       locale={locale}
     />
   );
