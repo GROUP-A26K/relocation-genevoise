@@ -5,6 +5,7 @@ export default createMiddleware({
   locales: routing.locales,
   defaultLocale: routing.defaultLocale,
   localePrefix: 'as-needed',
+  localeDetection: routing.localeDetection,
 });
 
 export const config = {

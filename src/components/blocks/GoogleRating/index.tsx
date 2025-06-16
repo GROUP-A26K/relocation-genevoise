@@ -10,7 +10,13 @@ export const GoogleRating: FC<Props> = ({ point }) => {
   return (
     <div className="flex flex-row w-full gap-[11.33px] outline-none select-none">
       <div className="flex justify-center">
-        <Image src={GoogleLogo} alt="Google Logo" width={53} height={53} />
+        <Image
+          src={GoogleLogo}
+          alt="Google Logo"
+          title="Google Logo"
+          width={53}
+          height={53}
+        />
       </div>
       <div className={cn('flex flex-col text-black-500 gap-0.5')}>
         <div className="text-xs font-bold leading-[15.11px] text-grey-400">

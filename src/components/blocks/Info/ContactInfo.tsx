@@ -1,5 +1,6 @@
 import { InfoContactCard } from '@/components/customs/Card';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { FormattedText } from '@/components/customs/Text';
+import { Link } from '@/libs/i18nNavigation';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { FC } from 'react';
 
@@ -25,7 +26,7 @@ const ContactInfo: FC<Props> = ({
     {
       title: 'Email',
       icon: Mail,
-      info: 'contact@assurance-genevoise.ch',
+      info: 'contact@relocation-genevoise.ch',
     },
     {
       title: 'Office',
@@ -46,11 +47,11 @@ const ContactInfo: FC<Props> = ({
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl lg:items-center text-left">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-center text-primary-500 !leading-[130%]">
+              <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
                 {heading}
               </p>
               <h1 className="text-3xl font-semibold text-center !leading-[130%] text-balance">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">
@@ -61,9 +62,30 @@ const ContactInfo: FC<Props> = ({
       )}
       <div className="flex flex-col lg:gap-6 gap-8">
         <div className="grid gap-12 lg:grid-cols-3 lg:gap-8">
-          {reasonItems.map((reasonItem, i) => (
-            <InfoContactCard key={i} {...reasonItem} />
-          ))}
+          <Link
+            href={`mailto:${reasonItems[0].info}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+          >
+            <InfoContactCard {...reasonItems[0]} />
+          </Link>
+          <Link
+            href="https://www.google.com/maps/search/?api=1&query=Rue+des+Alpes+5,+1201+Genève"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+          >
+            <InfoContactCard {...reasonItems[1]} />
+          </Link>
+          <Link
+            href={`tel:${reasonItems[2].info}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+          >
+            <InfoContactCard {...reasonItems[2]} />
+          </Link>
         </div>
       </div>
     </div>

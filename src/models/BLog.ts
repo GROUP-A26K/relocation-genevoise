@@ -7,7 +7,6 @@ export interface Blog {
   timeToRead: number;
   publishedDate: string;
   imageUrl: string;
-  date: string;
   time: string;
   category: {
     title: string;
@@ -89,8 +88,31 @@ export type Content =
       author?: string;
       _type: 'quote';
       _key: string;
+    }
+  | {
+      tableTitle?: string;
+      tableData?: Table;
+      _type: 'tableZone';
+      _key: string;
+    }
+  | {
+      title?: string;
+      _type: 'videoZone';
+      source?: 'file' | 'url';
+      videoFile?: {
+        asset?: SanityFileAsset;
+        _type: 'file';
+      };
+      videoUrl?: string;
+      _key: string;
     };
-
+export type Table = {
+  _type: 'table';
+  rows?: Array<{
+    _key: string;
+    cells?: Array<string>;
+  }>;
+};
 export type SanityImageAsset = {
   _id: string;
   _type: 'sanity.imageAsset';
@@ -111,7 +133,26 @@ export type SanityImageAsset = {
   path?: string;
   url?: string;
 };
-
+export type SanityFileAsset = {
+  _id: string;
+  _type: 'sanity.fileAsset';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+};
 export type SanityImageHotspot = {
   _type: 'sanity.imageHotspot';
   x?: number;

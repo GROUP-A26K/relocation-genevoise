@@ -83,7 +83,7 @@ export type BlogCategory = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
+  name: string;
   color?: string;
 };
 
@@ -233,6 +233,28 @@ export type WysiwygBlock = {
           _type: 'quote';
           _key: string;
         }
+      | {
+          tableTitle?: string;
+          tableData?: Table;
+          _type: 'tableZone';
+          _key: string;
+        }
+      | {
+          title?: string;
+          source?: 'file' | 'url';
+          _type: 'videoZone';
+          videoFile?: {
+            asset?: {
+              _ref: string;
+              _type: 'reference';
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
+            };
+            _type: 'file';
+          };
+          videoUrl?: string;
+          _key: string;
+        }
     >;
   };
 };
@@ -339,7 +361,6 @@ export type RelocationBlogPost = {
       } & StatsBlock)
   >;
   slug?: Slug;
-  publishedAt?: string;
   publishedDate?: string;
   createdAt?: string;
   category?: Array<{
@@ -411,7 +432,6 @@ export type BlogPost = {
   >;
   timeToRead?: number;
   slug?: Slug;
-  publishedAt?: string;
   publishedDate?: string;
   createdAt?: string;
   category?: Array<{
@@ -527,6 +547,20 @@ export type Slug = {
   _type: 'slug';
   current?: string;
   source?: string;
+};
+
+export type Table = {
+  _type: 'table';
+  rows?: Array<
+    {
+      _key: string;
+    } & MyCustomRowType
+  >;
+};
+
+export type MyCustomRowType = {
+  _type: 'my-custom-row-type';
+  cells?: Array<string>;
 };
 
 export type AllSanitySchemaTypes =

@@ -1,6 +1,6 @@
-import { cn } from '@/libs/utils';
-import { ArrowRight } from 'lucide-react';
-import { Link } from '@/libs/i18nNavigation';
+import { cn } from "@/libs/utils";
+import { ArrowRight } from "lucide-react";
+import { Link } from "@/libs/i18nNavigation";
 
 interface Props {
   title: string;
@@ -18,19 +18,19 @@ export const FeatureColCard: React.FC<Props> = ({
   info,
 }) => {
   return (
-    <div className="flex p-6 h-full flex-col w-full lg:gap-6 gap-4 bg-grey-50 border border-grey-50 hover:bg-white hover:border-primary-500 rounded-2xl leading-none no-underline transition-colors outline-none select-none">
-      <div className="lg:h-12 lg:w-12 w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center">
+    <div className="flex p-6 h-full flex-col w-full lg:gap-6 gap-4 bg-grey-50 border border-grey-50 hover:bg-white hover:border-secondary-500 rounded-2xl leading-none no-underline transition-colors outline-none select-none">
+      <div className="lg:h-12 lg:w-12 w-10 h-10 rounded-xl bg-secondary-500 flex items-center justify-center">
         <div className="lg:p-3 p-2.5">
-          {Icon && <Icon className="lg:h-6 lg:w-6 w-5 h-5 text-white" />}
+          {Icon && <Icon className="lg:h-6 lg:w-6 w-5 h-5 text-black-500" />}
         </div>
       </div>
       <div className="flex flex-col justify-between h-full">
-        <div className={cn('flex flex-col text-black-500 lg:gap-2 gap-1')}>
+        <div className={cn("flex flex-col text-black-500 lg:gap-2 gap-1")}>
           <h3 className="text-xl font-semibold !leading-[130%]">{title}</h3>
           {description && (
             <p
               className={cn(
-                'lg:text-sm text-sm text-black-200 font-normal !leading-[130%]'
+                "lg:text-sm text-sm text-black-200 font-normal !leading-[130%]"
               )}
             >
               {description}
@@ -47,7 +47,7 @@ export const FeatureColCard: React.FC<Props> = ({
                 height={12}
                 width={12}
                 className={cn(
-                  'ml-1.5 transition-transform group-hover:translate-x-1'
+                  "ml-1.5 transition-transform group-hover:translate-x-1"
                 )}
               />
             </div>

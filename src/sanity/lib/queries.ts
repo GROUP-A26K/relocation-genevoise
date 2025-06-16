@@ -3,7 +3,7 @@ import { defineQuery } from 'next-sanity';
 export const BLOGS_QUERY = defineQuery(`
     {
     "blogs": *[
-      _type == "blogPost" &&
+      _type == "relocationBlogPost" &&
       !(_id in path("drafts.**")) &&
       language == $locale &&
       ($category == "" || $category in category[]->name)&&
@@ -49,7 +49,7 @@ export const BLOGS_QUERY = defineQuery(`
     },
     "total": count(
       *[
-        _type == "blogPost" &&
+        _type == "relocationBlogPost" &&
         language == $locale &&
         ($category == "" || $category in category[]->name)
       ]
@@ -59,7 +59,7 @@ export const BLOGS_QUERY = defineQuery(`
 
 export const BLOG_DETAIL_QUERY = defineQuery(`
  *[
-    _type == "blogPost" &&
+    _type == "relocationBlogPost" &&
     slug.current == $slug
   ][0] {
     _id,
@@ -77,12 +77,24 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
       },
       photoAlt
     },
-     body[]{
+    body[]{
     ...,
-     blockTitle {
+      blockTitle {
       ...,
       "content": content[]{
         ...,
+           _type == "videoZone" => {
+          ...,
+          videoFile{
+                asset->{
+                _id,
+                url
+                }
+              
+            }
+          }
+        ,
+       
         _type == "photoZone" => {
           ...,
           mainPhoto{
@@ -95,7 +107,7 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
               }
             }
           }
-        }
+        },
       }
     },
     slug,
@@ -123,22 +135,22 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
 
 export const BLOGS_SITEMAP_QUERY = defineQuery(`
   {
-  "blogs": *[
-    _type == "blogPost" &&
-    !(_id in path("drafts.**")) &&
-    language == $locale &&
-    ($category == "" || $category in category[]->name)&&
-    ($title == "" || title match $title)
-  ]| order(publishedDate desc) [$start...$end] {
+    "blogs": *[
+      _type == "relocationBlogPost" &&
+      language == $locale &&
+      ($category == "" || $category in category[]->name)&&
+      ($title == "" || title match $title)
+    ]| order(publishedDate desc) {
     _originalId,
     _id,
+    publishedDate,
     title,
     summary,
     slug,
   },
   "total": count(
     *[
-      _type == "blogPost" &&
+      _type == "relocationBlogPost" &&
       language == $locale &&
       ($category == "" || $category in category[]->name)
     ]
@@ -146,4 +158,6 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 }
 `);
 
-export const POST_CATEGORIES_QUERY = defineQuery(`*[_type == "blogCategory"]`);
+export const POST_CATEGORIES_QUERY = defineQuery(
+  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) > 1]`
+);

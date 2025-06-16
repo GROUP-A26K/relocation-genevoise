@@ -3,6 +3,7 @@ import { LinkText } from './LinkText';
 
 // So when you invent a new inline element, you only have to touch three tiny spots.
 // type Marker
+// ENTRY
 // const OPEN/CLOSE
 // switch
 
@@ -15,18 +16,20 @@ interface Props {
 /*  Recursive parser                                                  */
 /* ------------------------------------------------------------------ */
 
-type Marker = 'bold' | 'italic' | 'link';
+type Marker = 'bold' | 'italic' | 'link' | 'strong';
 
 const OPEN = {
   bold: '**',
   italic: '*',
   link: '[[',
+  strong: '((',
 } as const;
 
 const CLOSE = {
   bold: '**',
   italic: '*',
   link: ']]',
+  strong: '))',
 } as const;
 
 function findNextMarker(
@@ -36,6 +39,7 @@ function findNextMarker(
   // order: link → bold → italic (link has two-char opener, bold also two)
   const link = source.indexOf(OPEN.link, start);
   const bold = source.indexOf(OPEN.bold, start);
+  const strong = source.indexOf(OPEN.strong, start);
   // single * that is not part of **
   let italic = source.indexOf(OPEN.italic, start);
   while (italic !== -1 && source.slice(italic, italic + 2) === '**') {
@@ -46,6 +50,7 @@ function findNextMarker(
     [link, 'link'],
     [bold, 'bold'],
     [italic, 'italic'],
+    [strong, 'strong'],
   ].filter(([pos]) => pos !== -1) as Array<[number, Marker]>;
 
   if (!entries.length) return null;
@@ -105,6 +110,14 @@ function parseSegment(segment: string, keyPrefix: string): ReactNode[] {
           <em key={`${keyPrefix}-${key++}`} className="italic">
             {children}
           </em>
+        );
+        break;
+
+      case 'strong':
+        nodes.push(
+          <strong key={`${keyPrefix}-${key++}`} className="font-inherit">
+            {children}
+          </strong>
         );
         break;
       case 'link':

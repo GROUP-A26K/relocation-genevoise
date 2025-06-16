@@ -1,8 +1,5 @@
 import { FormattedText } from '@/components/customs/Text';
-import {
-  getText,
-  TextWithStrong,
-} from '@/components/customs/Text/TextWithStrong';
+import { getText } from '@/components/customs/Text/TextWithStrong';
 import { cn } from '@/libs/utils';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -49,39 +46,39 @@ export const InsurancesFeature: FC<Props> = ({
   imageSrc = 'https://www.shadcnblocks.com/images/block/placeholder-1.svg',
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12">
-      <div className="flex w-full justify-start">
-        <div className="flex flex-col lg:gap-4 gap-4 max-w-3xl text-left">
-          <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+    <div className='flex flex-col lg:gap-16 gap-12'>
+      <div className='flex w-full justify-start'>
+        <div className='flex flex-col lg:gap-4 gap-4 max-w-3xl text-left'>
+          <div className='flex flex-col gap-3'>
+            <p className='text-sm font-semibold text-secondary-600 !leading-[130%]'>
               {heading}
             </p>
-            <h2 className="text-3xl font-semibold !leading-[130%]">
-              {TextWithStrong(subHeading)}
+            <h2 className='text-3xl font-semibold !leading-[130%]'>
+              <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className="text-sm font-normal text-black-200 !leading-[130%]">
+          <p className='text-sm font-normal text-black-200 !leading-[130%]'>
             {description}
           </p>
         </div>
       </div>
-      <div className="flex xl:flex-row flex-col xl:gap-16 gap-12 xl:justify-between items-center">
-        <div className="flex flex-col justify-center">
+      <div className='flex xl:flex-row flex-col xl:gap-16 gap-12 xl:justify-between items-center'>
+        <div className='flex flex-col justify-center'>
           {reasonItems.map((reasonItem, i) => (
             <div
               key={i}
-              className="xl:max-w-[536px] w-full  lg:p-6 p-4 pl-6 !pr-0 flex flex-col text-black-500 border-l-4 border-gray-100 hover:border-primary-500 lg:gap-3 gap-1"
+              className='xl:max-w-[536px] w-full  lg:p-6 p-4 pl-6 !pr-0 flex flex-col text-black-500 border-l-4 border-gray-100 hover:border-primary-500 lg:gap-3 gap-1'
             >
-              <h3 className="text-xl font-semibold !leading-[130%]">
+              <h3 className='text-xl font-semibold !leading-[130%]'>
                 {reasonItem.title}
               </h3>
-              <p className="lg:text-sm text-sm text-black-200 font-normal !leading-[130%]">
+              <p className='lg:text-sm text-sm text-black-200 font-normal !leading-[130%]'>
                 <FormattedText text={reasonItem.description} />
               </p>
             </div>
           ))}
         </div>
-        <div className="flex items-center">
+        <div className='flex items-center'>
           <Image
             src={imageSrc}
             alt={`${heading}, ${getText(subHeading)}`}

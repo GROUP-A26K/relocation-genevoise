@@ -4,7 +4,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import { cn } from '@/libs/utils';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { Link } from '@/libs/i18nNavigation';
 
 interface BaseProps {
   title: string;
@@ -23,26 +23,26 @@ export const Card: FC<Props> = ({ title, summary, image, url, variant }) => {
   const t = useTranslations('Navbar.blogButton');
 
   return (
-    <div className="card">
+    <div className='card'>
       <Link
         href={url}
-        className="group flex xl:flex-col flex-row gap-[8px] xl:justify-between justify-start p-[12px]"
+        className='group flex xl:flex-col flex-row gap-[8px] xl:justify-between justify-start p-[12px]'
       >
         <div>
-          <div className="flex">
+          <div className='flex'>
             <Image
               src={image}
               alt={title}
               width={256}
               height={160}
-              className="xl:h-[160px] xl:w-[256px] h-[90px] w-[144px] object-cover object-center rounded-xl"
+              className='xl:h-[160px] xl:w-[256px] h-[90px] w-[144px] object-cover object-center rounded-xl'
             />
           </div>
         </div>
-        <div className="flex flex-col gap-[8px] w-[296px] justify-center">
+        <div className='flex flex-col gap-[8px] w-[296px] justify-center'>
           <div
             title={title}
-            className="line-clamp-1 break-words text-[14px] font-semibold !leading-[130%]"
+            className='line-clamp-1 break-words text-[14px] font-semibold !leading-[130%]'
           >
             {title}
           </div>
@@ -56,7 +56,7 @@ export const Card: FC<Props> = ({ title, summary, image, url, variant }) => {
           >
             {summary}
           </div>
-          <div className="flex items-center text-[14px] text-primary-500 font-semibold !leading-[130%]">
+          <div className='flex items-center text-[14px] text-primary-500 font-semibold !leading-[130%]'>
             {t('text')}
             <ArrowRight
               strokeWidth={3}

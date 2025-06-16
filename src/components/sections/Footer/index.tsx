@@ -1,12 +1,14 @@
-import Section from "@/components/customs/Section";
-import Image from "next/image";
-import AssociationLogo from "@/assets/img/logos/association-logo.png";
-import { Link } from "@/libs/i18nNavigation";
-import { FC } from "react";
-import { SubscribeForm } from "./SubscribeForm";
-import { getTranslations } from "next-intl/server";
-import AgLogo from "@/assets/img/logos/rg-logo.svg";
-import Linkedin from "@/assets/img/logos/social/linkedin.svg";
+import Section from '@/components/customs/Section';
+import Image from 'next/image';
+import { Link } from '@/libs/i18nNavigation';
+import { FC } from 'react';
+import { SubscribeForm } from './SubscribeForm';
+import { getTranslations } from 'next-intl/server';
+import AgLogo from '@/assets/img/logos/rg-logo.svg';
+import Linkedin from '@/assets/img/logos/social/linkedin.svg';
+import Instagram from '@/assets/img/logos/social/instagram.svg';
+import Facebook from '@/assets/img/logos/social/facebook.svg';
+import { GoogleRating } from '@/components/blocks/GoogleRating';
 interface MenuItem {
   title: string;
   links: {
@@ -44,81 +46,84 @@ interface Props {
 const Footer: FC<{ locale: string }> = async ({ locale }) => {
   const t = await getTranslations({
     locale,
-    namespace: "Footer",
+    namespace: 'Footer',
   });
 
   const footerData: Props = {
     contact: {
-      title: t("contact.title"),
-      subTitle: t("contact.subTitle"),
-      buttonText: t("contact.buttonText"),
-      inputPlaceholder: t("contact.inputPlaceholder"),
+      title: t('contact.title'),
+      subTitle: t('contact.subTitle'),
+      buttonText: t('contact.buttonText'),
+      inputPlaceholder: t('contact.inputPlaceholder'),
     },
     logo: {
-      title: t("logo.title"),
+      title: t('logo.title'),
       src: AgLogo,
-      alt: "blocks for shadcn/ui",
-      url: "/",
+      alt: 'blocks for shadcn/ui',
+      url: '/',
     },
-    tagline: t("tagline"),
+    tagline: t('tagline'),
     service: {
-      title: t("service.title"),
+      title: t('service.title'),
       links: [
-        { text: t("service.links.0.text"), url: "/professionnel/entreprise" },
+        { text: t('service.links.0.text'), url: '/find-accommodation' },
         {
-          text: t("service.links.1.text"),
-          url: "/professionnel/international",
+          text: t('service.links.1.text'),
+          url: '/find-a-tenant',
         },
         {
-          text: t("service.links.2.text"),
-          url: "/professionnel/profession-liberale",
+          text: t('service.links.2.text'),
+          url: '/companies',
         },
       ],
     },
     company: {
-      title: t("company.title"),
+      title: t('company.title'),
       links: [
-        { text: t("company.links.0.text"), url: "/particulier/assurance" },
+        { text: t('company.links.0.text'), url: '/services/academic' },
         {
-          text: t("company.links.1.text"),
-          url: "/particulier/assurance/assurance-frontalier",
+          text: t('company.links.1.text'),
+          url: '/services/discover-geneva',
         },
         {
-          text: t("company.links.2.text"),
-          url: "/particulier/taxes-et-fiscalite",
+          text: t('company.links.2.text'),
+          url: '/services/concierge-service',
         },
-        { text: t("company.links.3.text"), url: "/particulier/sante" },
-        { text: t("company.links.4.text"), url: "/particulier/hypotheque" },
-        { text: t("company.links.5.text"), url: "/particulier/prevoyance" },
       ],
     },
     support: {
-      title: t("support.title"),
+      title: t('support.title'),
       links: [
-        { text: t("support.links.0.text"), url: "/rappelez-moi" },
-        { text: t("support.links.1.text"), url: "/assistance" },
-        { text: t("support.links.2.text"), url: "#" },
-        { text: t("support.links.3.text"), url: "/contact" },
-        { text: t("support.links.4.text"), url: "/assistance" },
-        { text: t("support.links.5.text"), url: "/blog" },
+        { text: t('support.links.0.text'), url: '/contact' },
+        { text: t('support.links.1.text'), url: '/faq' },
+        { text: 'Blogs', url: '/blog' },
       ],
     },
-
     social: {
-      title: t("social.title"),
+      title: t('social.title'),
       links: [
         {
+          icon: Facebook,
+          text: 'Facebook',
+          url: 'https://www.facebook.com/people/Relocation-Genevoise/61566756459931/',
+        },
+        {
           icon: Linkedin,
-          text: t("social.links.0.text"),
-          url: "https://www.linkedin.com/company/assurance-genevoise",
+          text: t('social.links.0.text'),
+          url: 'https://www.linkedin.com/company/relocation-genevoise',
+        },
+        {
+          icon: Instagram,
+          text: 'Instagram',
+          url: 'https://www.instagram.com/relocationgenevoise/',
         },
       ],
     },
-    copyright: t("copyright"),
+    copyright: t('copyright'),
     bottomLinks: [
-      { text: t("bottomLinks.0.text"), url: "/mentions-legales" },
-      { text: t("bottomLinks.1.text"), url: "/donnes-personnelles" },
-      { text: t("bottomLinks.2.text"), url: "/sitemap" },
+      { text: t('bottomLinks.0.text'), url: '/legal-notice' },
+      { text: t('bottomLinks.1.text'), url: '/personal-data' },
+      { text: t('bottomLinks.2.text'), url: '/sitemap' },
     ],
   };
   const {
@@ -154,7 +159,7 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
 
       <Section>
         <div className="flex flex-col lg:flex-row lg:gap-16 gap-0">
-          <div className="flex flex-col max-w-[336px] mb-8 lg:mb-0 gap-6">
+          <div className="flex flex-col lg:max-w-[336px] w-full mb-8 lg:mb-0 gap-6">
             <div className="flex items-center lg:justify-start">
               <Link href={logo.url}>
                 <Image
@@ -166,21 +171,12 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
               </Link>
             </div>
             <p className="text-sm text-black-200 !leading-[130%]">{tagline}</p>
-            <Image
-              src={AssociationLogo}
-              alt="Association logo"
-              title="Association logo"
-              width={144}
-              height={60}
-            />
+            <GoogleRating point={5} />
           </div>
 
           <div className="grid lg:grid-cols-4 grid-cols-2 text-sm w-full lg:gap-0 gap-8">
             <div className="lg:grid lg:grid-cols-2 lg:col-span-2 lg:gap-0 flex flex-col w-full gap-8">
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {service.title}
-                </h3>
                 <ul role="list" className="space-y-3">
                   {service.links.map((link, linkIdx) => (
                     <li
@@ -200,9 +196,6 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
                 </ul>
               </div>
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {company.title}
-                </h3>
                 <ul role="list" className="space-y-3">
                   {company.links.map((link, linkIdx) => (
                     <li
@@ -224,9 +217,6 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
             </div>
             <div className="lg:grid lg:grid-cols-2 lg:col-span-2 lg:gap-0 flex flex-col w-full gap-8">
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {support.title}
-                </h3>
                 <ul role="list" className="space-y-3">
                   {support.links.map((link, linkIdx) => (
                     <li
@@ -246,23 +236,22 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
                 </ul>
               </div>
               <div>
-                <h3 className="mb-3 text-xs text-black-500 !leading-[130%]">
-                  {social.title}
-                </h3>
                 <ul
                   role="list"
-                  className="lg:space-y-3 flex lg:flex-col flex-row lg:gap-0 gap-3"
+                  className="lg:space-y-3 flex lg:flex-col flex-col lg:gap-0 gap-3"
                 >
                   {social.links.map((link, linkIdx) => (
                     <li key={linkIdx}>
                       <Link
                         href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="font-medium hover:text-primary flex items-center gap-1.5 !leading-[130%]"
                       >
                         {link?.icon && (
                           <Image
                             src={link.icon}
-                            alt={"Linkedin logo"}
+                            alt={'Linkedin logo'}
                             title="Linkedin logo"
                             width={12}
                             height={12}

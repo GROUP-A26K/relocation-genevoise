@@ -14,7 +14,7 @@ model contact {
   email      String   @db.VarChar(255)
   phone      String  @db.VarChar(15)
   company    String?  @db.VarChar(255)
-  help       String   @db.VarChar(255)
+  subject    String   @db.VarChar(255)
   message    String?  @db.LongText
   accept     Boolean
   created_at DateTime @db.DateTime(0)
@@ -29,6 +29,6 @@ model booking {
 
 model subscribe {
   id         Int      @id @default(autoincrement())
-  email      String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255) 
   created_at DateTime @db.DateTime(0)
 }

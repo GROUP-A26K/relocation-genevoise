@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { FC } from "react";
-import StatsBG from "@/assets/img/bg/assurance-genevoise-a-geneve.webp";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import Image from 'next/image';
+import { FC } from 'react';
+import StatsBG from '@/assets/img/bg/relocation-genevoise-a-geneve.webp';
+import { FormattedText } from '@/components/customs/Text';
 interface Props {
   heading?: string;
   subHeading?: string;
@@ -29,35 +29,35 @@ interface Props {
 }
 
 const StatsGrid: FC<Props> = ({
-  heading = "Reliability & transparency",
-  subHeading = "Your trusted partner in Switzerland",
-  description = "We are fully committed to our customers with transparency, responsiveness, and in-depth expertise.",
+  heading = 'Reliability & transparency',
+  subHeading = 'Your trusted partner in Switzerland',
+  description = 'We are fully committed to our customers with transparency, responsiveness, and in-depth expertise.',
   stats1 = {
-    value: "25+",
-    label: "Years experience",
+    value: '25+',
+    label: 'Years experience',
   },
   stats2 = {
-    value: "2500+",
-    label: "Accompanied clients",
+    value: '2500+',
+    label: 'Accompanied clients',
   },
   stats3 = {
-    value: "3",
-    label: "Mastered languages",
+    value: '3',
+    label: 'Mastered languages',
   },
   stats4 = {
-    value: "4",
-    label: "Establishments in Switzerland",
+    value: '4',
+    label: 'Establishments in Switzerland',
   },
 }) => {
   return (
     <div className="flex flex-col lg:gap-16 gap-14">
       <div className="flex flex-col lg:gap-6 gap-4">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+          <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
             {heading}
           </p>
           <h2 className="text-3xl font-semibold !leading-[130%]">
-            {TextWithStrong(subHeading)}
+            <FormattedText text={subHeading} />
           </h2>
         </div>
         <p className="text-sm font-normal text-black-200 !leading-[130%]">
@@ -110,8 +110,8 @@ const StatsGrid: FC<Props> = ({
         </div>
         <Image
           src={StatsBG}
-          alt="Assurance Genevoise, votre partenaire de confiance en Suisse"
-          title="Assurance Genevoise, votre partenaire de confiance en Suisse"
+          alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
+          title="Relocation Genevoise, votre partenaire de confiance en Suisse"
           width={616}
           height={380}
           className="lg:max-h-[380px] xl:min-w-[616px] lg:min-w-[450px]  max-h-[226px]  rounded-2xl object-cover"

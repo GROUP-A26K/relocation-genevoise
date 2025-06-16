@@ -1,6 +1,6 @@
 import Button from '@/components/customs/Button';
 import Input from '@/components/customs/Input';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { FormattedText } from '@/components/customs/Text';
 import { FC } from 'react';
 
 interface Props {
@@ -30,7 +30,7 @@ export const ContactUsNow: FC<Props> = ({
           {heading}
         </h2>
         <p className="text-sm font-normal !leading-[130%]">
-          {TextWithStrong(subHeading ?? '')}
+          <FormattedText text={subHeading ?? ''} />
         </p>
       </div>
 

@@ -1,7 +1,8 @@
-import { DesktopMenu } from './DesktopMenu';
-import { MobileMenu } from './MobileMenu';
+import { DesktopMenu } from "./DesktopMenu";
+import { MobileMenu } from "./MobileMenu";
 export interface MenuItem {
   title: string;
+  subtitle?: string;
   url: string;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;

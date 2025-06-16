@@ -6,7 +6,7 @@ import Content404 from '@/assets/img/illustrations/content-404.svg';
 import Content500 from '@/assets/img/illustrations/content-500.svg';
 import Button from '@/components/customs/Button';
 import { cn } from '@/libs/utils';
-import Link from 'next/link';
+import { Link } from '@/libs/i18nNavigation';
 import { useTranslations } from 'next-intl';
 
 interface ErrorPageProps {
@@ -58,7 +58,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ errorCode, message }) => {
             <h1 className="lg:text-[164px] text-[120px] text-grey-200 leading-[131.2px] font-semibold">
               {errorCode}
             </h1>
-            <h1 className="lg:text-[48px] text-3xl font-bold text-black-500 leading-[62.4px]">
+            <h1 className="lg:text-[48px] text-3xl font-bold text-black-500 lg:!leading-[130%]">
               {title}
             </h1>
             <p className="text-[14px] text-black-200 leading-[18.2px] font-normal">

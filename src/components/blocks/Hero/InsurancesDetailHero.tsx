@@ -1,11 +1,9 @@
 import Button from '@/components/customs/Button';
-import {
-  getText,
-  TextWithStrong,
-} from '@/components/customs/Text/TextWithStrong';
+import { FormattedText } from '@/components/customs/Text';
+import { getText } from '@/components/customs/Text/TextWithStrong';
 import { cn } from '@/libs/utils';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/libs/i18nNavigation';
 import { FC } from 'react';
 
 interface Props {
@@ -22,7 +20,7 @@ interface Props {
 
 export const InsurancesDetailHero: FC<Props> = ({
   heading = 'Insurance',
-  subHeading = 'Assurance of things and heritage',
+  subHeading = 'Relocation of things and heritage',
   description,
   buttonText = 'Call me',
   imgSrc = 'https://www.shadcnblocks.com/images/block/placeholder-1.svg',
@@ -33,11 +31,11 @@ export const InsurancesDetailHero: FC<Props> = ({
         <div className="flex flex-col items-start gap-6 lg:justify-center lg:text-left text-center">
           <div className="flex flex-col lg:gap-6 gap-4">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+              <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
                 {heading}
               </p>
               <h1 className="2xl:text-5xl xl:text-4xl text-4xl font-bold !leading-[130%]">
-                {TextWithStrong(subHeading)}
+                <FormattedText text={subHeading} />
               </h1>
             </div>
             <p className="lg:text-sm text-sm font-normal text-black-200 !leading-[130%] flex flex-col gap-4">
@@ -55,7 +53,7 @@ export const InsurancesDetailHero: FC<Props> = ({
 
         <Image
           src={imgSrc}
-          alt={`Assurance Genevoise,${heading} ${getText(subHeading)}`}
+          alt={`Relocation Genevoise,${heading} ${getText(subHeading)}`}
           title={`${getText(subHeading)}, ${description}`}
           width={588}
           height={560}

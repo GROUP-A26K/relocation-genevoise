@@ -1,0 +1,32 @@
+name: CI – build with Railway envs
+
+on:
+  pull_request:
+    branches: [develop, main]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    environment: ${{ github.base_ref == 'main' && 'production' || 'pre-production' }}
+    env:
+      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      RAILWAY_SERVICE_SLUG: ${{ vars.RAILWAY_SERVICE_SLUG }}
+      RAILWAY_PROJECT_ENV_ID: ${{ vars.RAILWAY_PROJECT_ENV_ID }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: npm
+
+      - run: npm ci
+      - run: npm i -g @railway/cli@latest
+
+      - name: Build with correct Railway vars
+        run: |
+          railway run \
+            --service "$RAILWAY_SERVICE_SLUG" \
+            --environment "$RAILWAY_PROJECT_ENV_ID" \
+            npm run build

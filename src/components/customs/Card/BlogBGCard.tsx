@@ -1,9 +1,9 @@
-"use client";
-import { Badge } from "@/components/ui/badge";
-import { Blog } from "@/models/BLog";
-import { useLocale } from "next-intl";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import { Badge } from '@/components/ui/badge';
+import { Blog } from '@/models/BLog';
+import { useLocale } from 'next-intl';
+import Image from 'next/image';
+import { Link } from '@/libs/i18nNavigation';
 
 export const BlogBGCard: React.FC<Blog> = ({
   title,
@@ -21,8 +21,8 @@ export const BlogBGCard: React.FC<Blog> = ({
       <article className="flex flex-col relative items-start justify-between">
         <div className="w-full">
           <Image
-            alt="Assurance Genevoise Article"
-            title="Assurance Genevoise Article"
+            alt="Relocation Genevoise Article"
+            title="Relocation Genevoise Article"
             src={imageUrl}
             width={1240}
             height={620}
@@ -35,7 +35,7 @@ export const BlogBGCard: React.FC<Blog> = ({
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="text-sm font-medium text-secondary-500 bg-secondary-40 hover:bg-secondary-40 shadow-none !leading-[130%]"
+                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none !leading-[130%]"
                 >
                   {cat.title}
                 </Badge>
@@ -77,8 +77,8 @@ export const BlogBGCard: React.FC<Blog> = ({
             </div>
 
             <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 !leading-[130%]">
-              {timeToRead}{" "}
-              {locale === "fr" ? "minutes de lecture" : "minutes read"}
+              {timeToRead}{' '}
+              {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>
           </div>
         </div>

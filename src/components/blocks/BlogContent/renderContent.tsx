@@ -1,10 +1,12 @@
 // renderHelpers.tsx
 import React from 'react';
 import { cn } from '@/libs/utils';
-import { List, ListItem, Paragraph } from '@/components/customs/Text';
+import { LinkText, List, ListItem, Paragraph } from '@/components/customs/Text';
 import { ImageTitle } from '@/components/customs/ImageTitle';
 import { Quote } from '@/components/customs/Quote';
 import { Content } from '@/models/BLog';
+import { VideoWithTitle } from '@/components/customs/Media';
+import { TableWithTitle } from '@/components/customs/Table';
 
 export const getMarkClasses = (marks?: string[]): string => {
   if (!marks || marks.length === 0) return '';
@@ -26,42 +28,183 @@ export const getMarkClasses = (marks?: string[]): string => {
     .join(' ');
 };
 
-// Renders an array of inline (span) content
+/* ------------------------------------------------------------------ *
+ *  INLINE RENDERERS
+ * ------------------------------------------------------------------ */
+
+/**
+ * Extracts the link definition (if any) for the span and returns:
+ *   – linkDef   … the link mark `{ _type:'link', href, _key }`
+ *   – restMarks … all other text-style marks (strong, em, …)
+ */
+const splitLinkMark = (
+  marks: string[] | undefined,
+  markDefs?:
+    | Array<{
+        href?: string;
+        _type: 'link';
+        _key: string;
+      }>
+    | undefined
+): {
+  linkDef?: { href?: string };
+  restMarks: string[];
+} => {
+  if (!marks || marks.length === 0) return { restMarks: [] };
+
+  let linkDef;
+  const restMarks: string[] = [];
+
+  marks.forEach((mark) => {
+    const def = markDefs?.find((d) => d._key === mark && d._type === 'link');
+    if (def) {
+      linkDef = def;
+    } else {
+      restMarks.push(mark);
+    }
+  });
+
+  return { linkDef, restMarks };
+};
+
+/**
+ * Renders an array of inline span nodes, including nested links.
+ */
 export const renderArray = (
   spans: Array<{
     marks?: string[];
     text?: string;
     _type: 'span';
     _key: string;
+  }>,
+  markDefs?: Array<{
+    href?: string;
+    _type: 'link';
+    _key: string;
   }>
 ) => {
   return (
     <>
-      {spans.map((item, index) => (
-        <span
-          key={item._key || index}
-          className={cn(getMarkClasses(item.marks))}
-        >
-          {item.text}
-        </span>
-      ))}
+      {spans.map((item, index) => {
+        const { linkDef, restMarks } = splitLinkMark(item.marks, markDefs);
+
+        const textNode = (
+          <span
+            key={`${item._key}-inner` || index}
+            className={cn(getMarkClasses(restMarks))}
+          >
+            {item.text}
+          </span>
+        );
+
+        // If the span has a link mark → wrap the text in <a>
+        if (linkDef?.href) {
+          return (
+            <LinkText key={item._key || index} link={linkDef.href}>
+              {textNode}
+            </LinkText>
+          );
+        }
+
+        return (
+          <span
+            key={item._key || index}
+            className={cn(getMarkClasses(restMarks))}
+          >
+            {item.text}
+          </span>
+        );
+      })}
     </>
   );
 };
 
-// Renders a single content block based on its _type
+export const renderQuoteArray = (
+  spans: Array<{
+    marks?: string[];
+    text?: string;
+    _type: 'span';
+    _key: string;
+  }>,
+  markDefs?: Array<{
+    href?: string;
+    _type: 'link';
+    _key: string;
+  }>
+) => {
+  return (
+    <>
+      &quot;
+      {spans.map((item, index) => {
+        const { linkDef, restMarks } = splitLinkMark(item.marks, markDefs);
+
+        const textNode = (
+          <span
+            key={`${item._key}-inner` || index}
+            className={cn(getMarkClasses(restMarks))}
+          >
+            {item.text}
+          </span>
+        );
+
+        // If the span has a link mark → wrap the text in <a>
+        if (linkDef?.href) {
+          return (
+            <LinkText key={item._key || index} link={linkDef.href}>
+              {textNode}
+            </LinkText>
+          );
+        }
+
+        return (
+          <span
+            key={item._key || index}
+            className={cn(getMarkClasses(restMarks))}
+          >
+            {item.text}
+          </span>
+        );
+      })}
+      &quot;
+    </>
+  );
+};
+/* ------------------------------------------------------------------ *
+ *  BLOCK-LEVEL RENDERERS
+ * ------------------------------------------------------------------ */
+
 export const renderContent = (content: Content) => {
   switch (content._type) {
     case 'block':
+      if (content.style === 'blockquote' && content.children) {
+        return (
+          <Quote title={renderQuoteArray(content.children, content.markDefs)} />
+        );
+      }
+
+      if (content.style?.includes('h')) {
+        return (
+          <Paragraph className="text-black-500 font-bold">
+            {content.children &&
+              renderArray(content.children, content.markDefs)}
+          </Paragraph>
+        );
+      }
+
       return (
         <Paragraph>
-          {content.children && renderArray(content.children)}
+          {content.children && renderArray(content.children, content.markDefs)}
         </Paragraph>
       );
+
     case 'quote':
       return (
-        <Quote author={content.author || ''} title={content.content || ''} />
+        <Quote
+          author={content.author || ''}
+          title={`"${content.content}"` || ''}
+        />
       );
+
     case 'photoZone':
       return (
         <ImageTitle
@@ -69,12 +212,47 @@ export const renderContent = (content: Content) => {
           imgUrl={content.mainPhoto?.photo?.asset?.url}
         />
       );
+
+    case 'videoZone':
+      return (
+        <VideoWithTitle
+          title={content.title || 'Video'}
+          videoUrl={
+            content.source == 'file'
+              ? content.videoFile?.asset?.url
+              : content.videoUrl
+          }
+        />
+      );
+
+    case 'tableZone':
+      return (
+        <TableWithTitle
+          title={content.tableTitle || 'Table'}
+          tableContent={
+            content.tableData
+              ? {
+                  ...content.tableData,
+                  rows: (content.tableData.rows || [])
+                    .filter((row) => row.cells)
+                    .map((row) => ({
+                      cells: row.cells || [],
+                    })),
+                }
+              : undefined
+          }
+        />
+      );
+
     default:
       return null;
   }
 };
 
-// Groups consecutive content blocks that have the same listItem type
+/* ------------------------------------------------------------------ *
+ *  LIST GROUPING HELPERS
+ * ------------------------------------------------------------------ */
+
 export const groupListBlocks = (
   blocks: Content[]
 ): Array<Content | { type: string; items: Content[] }> => {
@@ -86,9 +264,7 @@ export const groupListBlocks = (
       if (currentGroup && currentGroup.type === block.listItem) {
         currentGroup.items.push(block);
       } else {
-        if (currentGroup) {
-          groups.push(currentGroup);
-        }
+        if (currentGroup) groups.push(currentGroup);
         currentGroup = { type: block.listItem, items: [block] };
       }
     } else {
@@ -99,15 +275,14 @@ export const groupListBlocks = (
       groups.push(block);
     }
   });
-  if (currentGroup) {
-    groups.push(currentGroup);
-  }
+
+  if (currentGroup) groups.push(currentGroup);
   return groups;
 };
 
-// Renders content by grouping consecutive list blocks into a single List component
 export const renderGroupedContent = (contents: Content[]) => {
   const grouped = groupListBlocks(contents);
+
   return grouped.map((groupOrBlock, index) => {
     if ('items' in groupOrBlock) {
       const format = groupOrBlock.type === 'number' ? 'ordered' : 'unordered';
@@ -118,8 +293,8 @@ export const renderGroupedContent = (contents: Content[]) => {
           ))}
         </List>
       );
-    } else {
-      return <div key={index}>{renderContent(groupOrBlock)}</div>;
     }
+
+    return <div key={index}>{renderContent(groupOrBlock)}</div>;
   });
 };
