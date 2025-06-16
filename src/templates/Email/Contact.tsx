@@ -126,7 +126,7 @@ export const Contact = ({ username, baseUrl, locale = 'en' }: ContactProps) => {
             <Text className="text-black text-[14px] leading-[24px] px-8">
               {t.urgent}
               <strong className="text-[#D7BC12]">
-                +41 (022) 715 17 45
+                +41 (022) 715 17 48
               </strong>. {t.explore}
               <Link href="https://relocation-genevoise.ch/service">
                 <strong className="text-[#D7BC12]">
@@ -174,7 +174,7 @@ export const Contact = ({ username, baseUrl, locale = 'en' }: ContactProps) => {
                         alt="Phone"
                       />
                       <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
-                        +41 (022) 715 17 45
+                        +41 (022) 715 17 48
                       </Text>
                     </div>
                   </Link>
