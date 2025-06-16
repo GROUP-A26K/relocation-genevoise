@@ -33,8 +33,6 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-    title: 'Relocation Genevoise',
-    description: 'Agence de Relocation à Genève',
     images: [
       {
         url: `${Env.NEXT_PUBLIC_SITE_URL}/relocation-genevoise-preview.png`,
