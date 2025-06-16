@@ -1,5 +1,5 @@
-import { DesktopMenu } from "./DesktopMenu";
-import { MobileMenu } from "./MobileMenu";
+import { DesktopMenu } from './DesktopMenu';
+import { MobileMenu } from './MobileMenu';
 export interface MenuItem {
   title: string;
   subtitle?: string;
@@ -10,6 +10,10 @@ export interface MenuItem {
 }
 export interface NavbarProps {
   menu: MenuItem[];
+  contactButton?: {
+    text: string;
+    url: string;
+  };
   callButton?: {
     text: string;
     url: string;
@@ -18,13 +22,22 @@ export interface NavbarProps {
   locale?: string;
 }
 
-const NavbarContainer = ({ menu, callButton, locale }: NavbarProps) => {
+const NavbarContainer = ({
+  menu,
+  callButton,
+  locale,
+  contactButton,
+}: NavbarProps) => {
   return (
     <header className="relative flex flex-col justify-center items-center">
       <nav className="container 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md xl:px-[100px] px-[48px]">
         <DesktopMenu menu={menu} callButton={callButton} locale={locale} />
       </nav>
-      <MobileMenu menu={menu} callButton={callButton} />
+      <MobileMenu
+        menu={menu}
+        callButton={callButton}
+        contactButton={contactButton}
+      />
     </header>
   );
 };

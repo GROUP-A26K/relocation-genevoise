@@ -241,7 +241,7 @@ export type WysiwygBlock = {
         }
       | {
           title?: string;
-          source?: 'file' | 'url';
+          source?: 'file' | 'url' | 'embed';
           _type: 'videoZone';
           videoFile?: {
             asset?: {
@@ -253,6 +253,7 @@ export type WysiwygBlock = {
             _type: 'file';
           };
           videoUrl?: string;
+          embedUrl?: string;
           _key: string;
         }
     >;

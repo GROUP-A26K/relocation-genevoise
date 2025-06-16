@@ -20,7 +20,7 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
   if (!videoUrl) return null;
   return (
     <div className="w-full">
-      <div className="flex flex-col items-start justify-between gap-4 py-6 overflow-y-scroll w-full">
+      <div className="flex flex-col items-start justify-between gap-4 py-6 w-full">
         <VideoPlayer className="relative overflow-hidden rounded-2xl border w-full">
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,.31)_31%,rgba(0,0,0,.7)_70%,rgba(0,0,0,.7)_100%)]" />
 

@@ -87,7 +87,7 @@ export const PageView = ({
     <PageContainer>
       <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left py-16">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-center text-secondary-500 !leading-[130%]">
+          <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
             {t('heading')}
           </p>
           <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">

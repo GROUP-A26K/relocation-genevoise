@@ -28,7 +28,7 @@ const BlogList: FC<Props> = ({
       <div className="flex flex-row items-end justify-between">
         <div className="flex flex-col lg:gap-6 gap-4 max-w-xl">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-secondary-500 !leading-[130%]">
+            <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
               {heading}
             </p>
             <h2 className="text-3xl font-semibold !leading-[130%]">
