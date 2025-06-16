@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet-custom';
-import { PhoneCall, X } from 'lucide-react';
+import { Phone, PhoneCall, X } from 'lucide-react';
 import MenuIcon from '@/assets/img/icons/menu-icon.webp';
 import { Accordion } from '@/components/ui/accordion-custom';
 import { renderMobileMenuItem } from '@/components/blocks/MenuItem/MobileMenuItem';
@@ -20,7 +20,7 @@ import IconButton from '@/components/customs/IconButton';
 import Button from '@/components/customs/Button';
 import { LanguageSelector } from './LanguageSelector';
 
-const MobileMenu = ({ menu, callButton }: NavbarProps) => {
+const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
   return (
     <nav className="bg-white z-20 h-[72px] w-full md:px-4 px-4 nav:hidden">
       <div className="flex h-full w-full min-w-[205px] items-center justify-between relative">
@@ -91,7 +91,7 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
             <SheetOverlay />
             <SheetContent
               side="top"
-              className="absolute w-full p-0 pt-[72px] z-10 max-h-screen overflow-scroll lg:hidden"
+              className="absolute w-full p-0 pt-[72px] z-10 max-h-screen overflow-scroll nav:hidden"
             >
               <SheetHeader>
                 <SheetTitle></SheetTitle>
@@ -108,7 +108,7 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
 
                 <div className="flex flex-col gap-3 p-3">
                   <Link
-                    href={callButton?.url ?? '/rappelez-moi'}
+                    href={callButton?.url ?? '/contact'}
                     className="flex items-center"
                   >
                     <SheetClose asChild>
@@ -117,7 +117,22 @@ const MobileMenu = ({ menu, callButton }: NavbarProps) => {
                         variant="md"
                         type="primary"
                         className="w-full"
-                        iconStart={PhoneCall}
+                      >
+                        {contactButton?.text}
+                      </Button>
+                    </SheetClose>
+                  </Link>
+                  <Link
+                    href={callButton?.url ?? '/rappelez-moi'}
+                    className="flex items-center"
+                  >
+                    <SheetClose asChild>
+                      <Button
+                        as="outline"
+                        variant="md"
+                        type="primary"
+                        className="w-full"
+                        iconStart={Phone}
                       >
                         {callButton?.text}
                       </Button>
