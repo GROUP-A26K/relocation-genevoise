@@ -12,14 +12,14 @@ export const Whatsapp: FC<Props> = ({ phoneNumber }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="fixed z-40 lg:bottom-[100px] lg:right-[100px] bottom-8 right-4">
+      <div className="fixed z-40 lg:bottom-12 lg:right-8 bottom-4 right-4">
         <Image
           src={WhatsappIcon}
           alt="Whatsapp logo"
           title="Whatsapp logo"
           width={100}
           height={100}
-          className="lg:size-[100px] size-[60px]"
+          className="lg:size-[80px] size-[60px]"
         />
       </div>
     </Link>
