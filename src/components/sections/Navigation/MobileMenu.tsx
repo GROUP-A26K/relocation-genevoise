@@ -108,7 +108,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
 
                 <div className="flex flex-col gap-3 p-3">
                   <Link
-                    href={callButton?.url ?? '/contact'}
+                    href={contactButton?.url ?? '/contact'}
                     className="flex items-center"
                   >
                     <SheetClose asChild>

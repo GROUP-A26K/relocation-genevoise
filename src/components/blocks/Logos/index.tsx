@@ -99,12 +99,13 @@ const Logos: FC<Props> = ({
   ],
 }) => {
   return (
-    <section className="relative flex flex-col justify-center items-center overflow-hidden lg:py-16 py-14 text-black-500 bg-grey-50">
+    <section className="relative flex flex-col items-center overflow-hidden lg:py-16 py-14 text-black-500 bg-grey-50">
       <div className="container flex flex-col items-center text-center">
-        <h2 className="lg:text-xl text-base font-semibold text-pretty !leading-[130%]">
+        <h2 className="lg:text-xl text-base font-semibold !leading-[130%] text-pretty">
           {heading}
         </h2>
       </div>
+
       <div className="pt-8">
         <div className="relative mx-auto flex items-center justify-center pointer-events-none">
           <Carousel
@@ -117,28 +118,27 @@ const Logos: FC<Props> = ({
               }),
             ]}
           >
-            <CarouselContent className="ml-0 flex gap-3">
+            <CarouselContent className="flex lg:gap-6 gap-2 pl-0">
               {logos.map((logo) => (
                 <CarouselItem
                   key={logo.id}
-                  className="flex w-fit basis-1/3 justify-center pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
+                  className="flex-none lg:last:pr-6 last:pr-2"
                 >
-                  <div className="mx-2 w-fit flex shrink-0 items-center justify-center">
-                    <div>
-                      <Image
-                        src={logo.image}
-                        alt={logo.description}
-                        title={logo.description}
-                        className={logo.className}
-                      />
-                    </div>
+                  <div className="px-3 flex items-center justify-center">
+                    <Image
+                      src={logo.image}
+                      alt={logo.description}
+                      title={logo.description}
+                      className={`${logo.className ?? ''} h-10 w-auto lg:h-12 object-contain`}
+                    />
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
           </Carousel>
-          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent"></div>
-          <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent"></div>
+
+          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent" />
         </div>
       </div>
     </section>

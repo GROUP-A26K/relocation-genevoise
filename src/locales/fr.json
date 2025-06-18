@@ -3,7 +3,7 @@
     "Hero": {
       "heading": "Accueil",
       "subHeading": "Agence de ((Relocation à Genève))",
-      "description": "Votre partenaire de confiance à Genève pour une installation réussie : relocation, recherche de logement et de locataire, services aux entreprises et accompagnement personnalisé à chaque étape de votre projet.",
+      "description": "Votre partenaire de confiance à Genève pour une installation réussie.",
       "buttonText": "Nous contacter",
       "buttonText2": "Trouver un logement"
     },
@@ -59,7 +59,7 @@
       },
       "start4": {
         "value": "4",
-        "label": "NÉtablissements en Suisse"
+        "label": "Établissements en Suisse"
       }
     },
 
