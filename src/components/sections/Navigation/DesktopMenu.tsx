@@ -37,7 +37,7 @@ const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
             className="flex items-center"
           >
             <Button as="solid" variant="md" type="primary" iconStart={Phone}>
-              41 22 715 17 48
+              {callButton?.text}
             </Button>
           </Link>
         </div>

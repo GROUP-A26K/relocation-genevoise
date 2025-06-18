@@ -67,19 +67,13 @@ function parseSegment(segment: string, keyPrefix: string): ReactNode[] {
     const next = findNextMarker(segment, cursor);
 
     if (!next) {
-      nodes.push(
-        <span key={`${keyPrefix}-${key++}`}>{segment.slice(cursor)}</span>
-      );
+      nodes.push(<>{segment.slice(cursor)}</>);
       break;
     }
 
     // push plain text before marker
     if (next.pos > cursor) {
-      nodes.push(
-        <span key={`${keyPrefix}-${key++}`}>
-          {segment.slice(cursor, next.pos)}
-        </span>
-      );
+      nodes.push(<>{segment.slice(cursor, next.pos)}</>);
     }
 
     const open = OPEN[next.type];
@@ -89,7 +83,7 @@ function parseSegment(segment: string, keyPrefix: string): ReactNode[] {
 
     // if no closing tag → treat opener literally
     if (end === -1) {
-      nodes.push(<span key={`${keyPrefix}-${key++}`}>{open}</span>);
+      nodes.push(<>{open}</>);
       cursor = startInner;
       continue;
     }
@@ -147,17 +141,17 @@ function parseSegment(segment: string, keyPrefix: string): ReactNode[] {
 /*  Component                                                         */
 /* ------------------------------------------------------------------ */
 
-export const FormattedText: FC<Props> = ({ text, className = '' }) => {
+export const FormattedText: FC<Props> = ({ text }) => {
   const lines = text.split(/\n+/);
 
   return (
-    <span className={className}>
+    <>
       {lines.map((line, lineIdx) => (
         <React.Fragment key={`line-${lineIdx}`}>
           {parseSegment(line, `l${lineIdx}`)}
           {lineIdx < lines.length - 1 && <br />}
         </React.Fragment>
       ))}
-    </span>
+    </>
   );
 };
