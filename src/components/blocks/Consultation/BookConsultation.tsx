@@ -45,7 +45,7 @@ export const BookConsultation: FC<Props> = ({
           </div>
 
           <div className="flex flex-row gap-2 w-full items-center justify-center">
-            <Link href={'/rappelez-moi'}>
+            <Link href={'/contact'}>
               <Button as="solid" variant="md" type="primary" iconStart={Phone}>
                 {buttonText1}
               </Button>
