@@ -24,7 +24,7 @@ import {
 import { StatsGrid2 } from '@/components/blocks/Stats';
 import { ContentWithImg } from '@/components/blocks/Content';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
-import { Logos } from '@/components/blocks/Logos';
+// import { Logos } from '@/components/blocks/Logos';
 import { fetchBlogs } from '@/services/blog.service';
 import { BlogList } from '@/components/blocks/Blog';
 
@@ -125,7 +125,7 @@ export default async function Page(props: Props) {
         />
       </Section>
 
-      <Logos heading={t('Logos.heading')} />
+      {/* <Logos heading={t('Logos.heading')} /> */}
 
       <Section>
         <StatsGrid2
