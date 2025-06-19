@@ -33,9 +33,9 @@ export const GoogleRating: FC<Props> = ({
             {title}
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="text-base font-bold leading-[150%] text-yellow-910">
+            {/* <div className="text-base font-bold leading-[150%] text-yellow-910">
               {point}
-            </div>
+            </div> */}
             <div className="flex">
               {Array.from({ length: Math.round(point) }, (_, i) => (
                 <Image

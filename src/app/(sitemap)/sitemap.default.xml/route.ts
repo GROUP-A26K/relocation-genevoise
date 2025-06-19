@@ -1,66 +1,80 @@
 import { Env } from '@/libs/Env';
 import { AppConfig } from '@/utils/AppConfig';
 
-const domainURL = Env.NEXT_PUBLIC_SITE_URL;
+const { NEXT_PUBLIC_SITE_URL: DOMAIN_URL } = Env;
+const { routes, locales } = AppConfig;
 
-// Define your static routes with their URL patterns
-const staticRoutes = [
-  { url: `assistance` },
-  { url: `blog` },
-  { url: `contact` },
-  { url: `donnes-personnelles` },
-  { url: `mentions-legales` },
-  { url: `particulier` },
-  { url: `professionnel` },
-  { url: `rappelez-moi` },
-  { url: `sitemap` },
-];
+/* ------------------------------------------------------------------ */
+/* Types                                                              */
+/* ------------------------------------------------------------------ */
 
-export async function GET() {
-  try {
-    // Build the sitemap data with the homepage entry and your static routes
-    const localizedRoutes = AppConfig.locales.flatMap((locale) =>
-      staticRoutes.map((route) => ({
-        url: `${domainURL}/${locale}/${route.url}`,
-        lastModified: new Date().toISOString(),
+type ChangeFreq = 'weekly';
+
+interface SitemapEntry {
+  url: string;
+  lastModified: string;
+  changefreq: ChangeFreq;
+  priority: number;
+}
+
+/* ------------------------------------------------------------------ */
+/* Helpers                                                            */
+/* ------------------------------------------------------------------ */
+
+const buildEntries = (): SitemapEntry[] => {
+  const now = new Date().toISOString();
+
+  // Localised pages
+  const pages = Object.values(routes).flatMap(
+    (localeMap: Record<string, string | number>) =>
+      locales.map<SitemapEntry>((locale) => ({
+        url: `${DOMAIN_URL}/${locale}${localeMap[locale]}`,
+        lastModified: now,
         changefreq: 'weekly',
-        priority: 0.5,
+        priority: Number(localeMap.priority ?? 0.5), // default if absent
       }))
-    );
+  );
 
-    // You might also want to include a non-localized homepage entry if it exists
-    const sitemapData = [
-      {
-        url: `${domainURL}`,
-        lastModified: new Date().toISOString(),
-        changefreq: 'weekly',
-        priority: 1.0,
-      },
-      ...localizedRoutes,
-    ];
-    // Construct the XML sitemap string
-    const sitemapXML = `<?xml version="1.0" encoding="UTF-8"?>
+  // Homepage
+  pages.unshift({
+    url: DOMAIN_URL,
+    lastModified: now,
+    changefreq: 'weekly',
+    priority: 1.0,
+  });
+
+  return pages;
+};
+
+const toXml = (
+  entries: SitemapEntry[]
+): string => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${sitemapData
-    .map(
-      (item) => `
-  <url>
-    <loc>${item.url}</loc>
-    <lastmod>${item.lastModified}</lastmod>
-    <changefreq>${item.changefreq}</changefreq>
-    <priority>${item.priority}</priority>
+${entries
+  .map(
+    ({ url, lastModified, changefreq, priority }) => `  <url>
+    <loc>${url}</loc>
+    <lastmod>${lastModified}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
   </url>`
-    )
-    .join('')}
+  )
+  .join('\n')}
 </urlset>`;
 
-    return new Response(sitemapXML, {
-      headers: {
-        'Content-Type': 'application/xml',
-      },
+/* ------------------------------------------------------------------ */
+/* Route handler                                                      */
+/* ------------------------------------------------------------------ */
+
+export async function GET(): Promise<Response> {
+  try {
+    const xml = toXml(buildEntries());
+
+    return new Response(xml, {
+      headers: { 'Content-Type': 'application/xml' },
     });
-  } catch (error) {
-    console.error('Error generating sitemap:', error);
+  } catch (err) {
+    console.error('[sitemap] generation failed:', err);
     return new Response('Error generating sitemap', { status: 500 });
   }
 }
