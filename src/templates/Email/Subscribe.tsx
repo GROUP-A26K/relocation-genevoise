@@ -82,7 +82,7 @@ export const Subscribe = ({
   return (
     <Html>
       <Head />
-      <Preview>{t.preview}</Preview>
+      <Preview>{t.thanks}</Preview>
       <Tailwind>
         <Body className="bg-white my-auto mx-auto font-sans px-2">
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">

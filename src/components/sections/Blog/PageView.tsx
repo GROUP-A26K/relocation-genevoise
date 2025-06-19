@@ -27,7 +27,7 @@ const initialParams = {
   search: '',
 };
 
-export const ContentView: FC<Props> = (props) => {
+export const PageView: FC<Props> = (props) => {
   const t = useTranslations('Blog');
 
   const locale = useLocale();
@@ -92,8 +92,8 @@ export const ContentView: FC<Props> = (props) => {
       </Section>
 
       <ContentContainer>
-        <div className='flex lg:flex-row flex-col items-center justify-between gap-8'>
-          <div className='lg:w-fit w-full px-auto overflow-y-auto'>
+        <div className="flex lg:flex-row flex-col items-center justify-between gap-8">
+          <div className="lg:w-fit w-full px-auto overflow-y-auto">
             <TabsMenu
               category={props.category.map((cat) => {
                 return { title: cat.name || 'Unknown Category' };
@@ -103,9 +103,9 @@ export const ContentView: FC<Props> = (props) => {
             />
           </div>
           <Input
-            as='search'
-            type='search'
-            placeholder='Search'
+            as="search"
+            type="search"
+            placeholder="Search"
             value={searchParams.search}
             onChange={(e) => {
               setSearchParams({
@@ -113,14 +113,14 @@ export const ContentView: FC<Props> = (props) => {
                 search: (e.target as HTMLInputElement).value,
               });
             }}
-            className='text-base h-10 lg:max-w-[280px] w-full flex items-center'
+            className="text-base h-10 lg:max-w-[280px] w-full flex items-center"
           />
         </div>
         <>
           <AnimatePresence>
             {loading && (
               <motion.div
-                key='spinner'
+                key="spinner"
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -131,16 +131,16 @@ export const ContentView: FC<Props> = (props) => {
             )}
           </AnimatePresence>
 
-          <h2 className='sr-only'>Blog posts</h2>
+          <h2 className="sr-only">Blog posts</h2>
           <AnimatePresence>
             {!loading && (
               <motion.div
-                key='blogList'
+                key="blogList"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className='py-12 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 border-b border-grey-100'
+                className="py-12 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 border-b border-grey-100"
               >
                 {data.blogs.map((blog) => (
                   <BlogCard key={blog.id} {...blog} />

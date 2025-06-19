@@ -1,15 +1,24 @@
+import { NextResponse } from 'next/server';
+
 import { Env } from '@/libs/Env';
 import { prisma } from '@/libs/prisma';
 import { resend } from '@/libs/resend';
-import CallMeBack from '@/templates/Email/CallMeBack';
 import {
   BookingFormInput,
   bookingSchema,
 } from '@/validations/booking.validation';
-import { NextResponse } from 'next/server';
+import CallMeBack from '@/templates/Email/CallMeBack';
+
 const senderEmail = Env.RESEND_EMAIL;
 const senderReceiverEmail = Env.RESEND_RECEIVER_EMAIL;
+const senderName = Env.RESEND_SENDER_NAME;
 const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
+
+const subjectTitle = {
+  en: 'Call Me Back',
+  fr: 'Rappelez-moi',
+};
+
 const createBooking = async (data: BookingFormInput) => {
   return prisma.booking.create({
     data: {
@@ -23,9 +32,9 @@ const createBooking = async (data: BookingFormInput) => {
 const sendEmail = async (userInfo: BookingFormInput, locale: 'fr' | 'en') => {
   try {
     await resend.emails.send({
-      from: senderEmail,
+      from: `"${senderName}" <${senderEmail}>`,
       to: senderReceiverEmail,
-      subject: 'Call Me Back',
+      subject: subjectTitle[locale],
       react: CallMeBack({
         userInfo,
         baseUrl,
@@ -56,8 +65,6 @@ export async function POST(request: Request) {
 
     const parsedData = bookingSchema().safeParse(body);
     if (!parsedData.success) {
-      console.log(parsedData.error.format());
-
       return NextResponse.json(
         { error: parsedData.error.format() },
         { status: 400 }

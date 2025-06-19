@@ -23,7 +23,7 @@ interface ContactProps {
 
 const copy = {
   en: {
-    preview: 'Welcome to our service!',
+    preview: 'We Received Your Message',
     heading: 'We Received Your Message <br /> Thank You!',
     hi: 'Hi',
     thanks: 'Thank you for reaching out to us through our contact form.',
@@ -42,7 +42,7 @@ const copy = {
     unsubscribe: 'Unsubscribe',
   },
   fr: {
-    preview: 'Bienvenue dans notre service !',
+    preview: 'Nous avons bien reçu votre message',
     heading: 'Nous avons bien reçu votre message <br /> Merci !',
     hi: 'Bonjour',
     thanks: 'Merci de nous avoir contactés via notre formulaire.',

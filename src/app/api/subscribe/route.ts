@@ -9,6 +9,7 @@ import {
 import { NextResponse } from 'next/server';
 
 const senderEmail = Env.RESEND_EMAIL;
+const senderName = Env.RESEND_SENDER_NAME;
 const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 
 const copy = {
@@ -20,6 +21,11 @@ const copy = {
     exitEmail: 'Votre e-mail est déjà inscrit!',
     successEmail: 'Vous êtes à présent bien inscrit.',
   },
+} as const;
+
+const subjectTitle = {
+  en: 'Welcome to our service!',
+  fr: 'Bienvenue dans notre service!',
 } as const;
 
 const createSubscribe = async (data: SubscribeFormInput) => {
@@ -48,9 +54,9 @@ const sendEmail = async (
 ) => {
   try {
     await resend.emails.send({
-      from: senderEmail,
+      from: `"${senderName}" <${senderEmail}>`,
       to: email,
-      subject: 'Welcome to our service!',
+      subject: subjectTitle[locale],
       react: Subscribe({
         subject: subject,
         baseUrl,

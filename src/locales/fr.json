@@ -46,11 +46,11 @@
       "subHeading": "Une agence à vos côtés pour toutes les étapes de ((votre installation.))",
       "description": "Relocation Genevoise est à votre disposition pour rendre votre emménagement simple et serein, avec des conseils clairs, un véritable engagement, et des services personnalisés pour garantir une installation réussie.",
       "start1": {
-        "value": "20+",
+        "value": "10+",
         "label": "Années d’expérience"
       },
       "start2": {
-        "value": "250+",
+        "value": "1500+",
         "label": "De clients satisfaits"
       },
       "start3": {
@@ -339,7 +339,7 @@
         "title": "1. Informations sur l'entreprise",
         "content": [
           {
-            "paragraph": "**Raison sociale:** RG Relocation Genevoise SA \n **Forme juridique:** Société anonyme (SA) \n **Siège social:** Rue des Alpes 5, 1201 Genève, Suisse \n **Numéro IDE:** CHE-403.737.582 \n **Numéro de registre FINMA:** F01502264 \n **Capital social:** CHF 100'000 \n **Téléphone:** 022 715 17 48 \n **Adresse e-mail:** contact@relocation-genevoise.ch \n **Hébergeur:** o2switch ([[https://www.o2switch.fr/|https://www.o2switch.fr/]]) \n Ces informations sont fournies de manière claire et complète."
+            "paragraph": "**Raison sociale:** RG Relocation Genevoise SA \n **Forme juridique:** Société anonyme (SA) \n **Siège social:** Rue des Alpes 5, 1201 Genève, Suisse\n **Numéro d'enregistrement:** CH-660.0.905.025 \n **Capital social:** CHF 100'000 \n **Téléphone:** 022 715 17 48 \n **Adresse e-mail:** contact@relocation-genevoise.ch \n **Hébergeur:** o2switch ([[https://www.o2switch.fr/|https://www.o2switch.fr/]]) \n Ces informations sont fournies de manière claire et complète."
           }
         ]
       },
@@ -639,7 +639,7 @@
       "description": "Un service de relocation sur mesure à Genève pour les entreprises et organisations, conçu pour simplifier l'installation de vos collaborateurs. Nous proposons des solutions pratiques et adaptées pour faciliter leur intégration à la vie genevoise.",
       "items": [
         {
-          "title": "For you",
+          "title": "Pour vous",
           "subItems": [
             {
               "title": "Efficacité opérationnelle",
@@ -656,7 +656,7 @@
           ]
         },
         {
-          "title": "For your collaborator",
+          "title": "Pour vos collaborateurs ",
           "subItems": [
             {
               "title": "Recherche de logement",
