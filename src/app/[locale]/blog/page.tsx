@@ -1,4 +1,4 @@
-import { ContentView } from '@/components/sections/Blog';
+import { PageView } from '@/components/sections/Blog';
 import { fetchBlogs, fetchPostCategory } from '@/services/blog.service';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -33,9 +33,6 @@ export default async function Page(props: Props) {
   });
 
   return (
-    <ContentView
-      category={portCategory.posts}
-      newestBlog={newestBlog.blogs[0]}
-    />
+    <PageView category={portCategory.posts} newestBlog={newestBlog.blogs[0]} />
   );
 }

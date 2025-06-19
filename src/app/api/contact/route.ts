@@ -12,6 +12,17 @@ import ContactCustomer from '@/templates/Email/ContactCustomer';
 const senderEmail = Env.RESEND_EMAIL;
 const senderReceiverEmail = Env.RESEND_RECEIVER_EMAIL;
 const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
+const senderName = Env.RESEND_SENDER_NAME;
+
+const subjectTitle = {
+  en: 'Welcome to our service!',
+  fr: 'Bienvenue dans notre service!',
+} as const;
+
+const contactCustomerSubjectTitle = {
+  en: 'Contact Form Submission Received',
+  fr: 'Formulaire de contact soumis reçu',
+} as const;
 const createContact = async (data: ContactFormInput) => {
   return prisma.contact.create({
     data: {
@@ -35,9 +46,9 @@ const sendEmail = async (
 ) => {
   try {
     await resend.emails.send({
-      from: senderEmail,
+      from: `"${senderName}" <${senderEmail}>`,
       to: email,
-      subject: 'Welcome to our service!',
+      subject: subjectTitle[locale],
       react: Contact({
         username: userInfo.first_name,
         baseUrl,
@@ -46,9 +57,9 @@ const sendEmail = async (
     });
 
     await resend.emails.send({
-      from: senderEmail,
+      from: `"${senderName}" <${senderEmail}>`,
       to: senderReceiverEmail,
-      subject: 'Contact Form Submission Received',
+      subject: contactCustomerSubjectTitle[locale],
       react: ContactCustomer({
         userInfo,
         baseUrl,
