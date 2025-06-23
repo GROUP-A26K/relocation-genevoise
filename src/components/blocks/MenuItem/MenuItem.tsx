@@ -50,36 +50,36 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
             '!w-[100vw] !right-0 !justify-center !items-center !m-0'
           )}
         >
-          <div className='flex justify-center w-full m-0'>
-            <div className='!w-full flex xl:flex-row flex-col 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  md:w-[300px] lg:w-[400px]  xl:px-[100px] lg:px-[48px] px-[50px]'>
+          <div className="flex justify-center w-full m-0">
+            <div className="!w-full flex xl:flex-row flex-col 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  md:w-[300px] lg:w-[400px]  xl:px-[100px] lg:px-[48px] px-[50px]">
               {/* SubMenuLink */}
 
-              <div className='w-full flex xl:p-6 xl:pl-0 p-6 pb-0 flex-col gap-3 pl-0'>
-                <p className='text-[12px] font-medium uppercase px-[12px] !leading-[130%]'>
+              <div className="w-full flex xl:p-6 xl:pl-0 p-6 pb-0 flex-col gap-3 pl-0">
+                <p className="text-[12px] font-medium uppercase px-[12px] !leading-[130%]">
                   {item.subtitle}
                 </p>
 
-                <div className='grid gap-y-3 gap-x-[48px] xl:grid-cols-2 grid-cols-3'>
+                <div className="grid gap-y-3 gap-x-[48px] xl:grid-cols-2 grid-cols-3">
                   {item.items.map((subItem) => (
                     <Link href={subItem.url} key={subItem.title}>
-                      <NavigationMenuLink asChild className='flex'>
-                        <SubMenuLink {...subItem} variant='lg' />
+                      <NavigationMenuLink asChild className="flex">
+                        <SubMenuLink {...subItem} variant="lg" />
                       </NavigationMenuLink>
                     </Link>
                   ))}
                 </div>
               </div>
               {/* Blog */}
-              <div className='flex xl:p-6 xl:pr-0 p-6 pl-0 pr-0 flex-col gap-3 xl:border-l-[2px] xl:border-gray-50 border-0'>
-                <p className='text-[12px] px-[12px] font-medium uppercase'>
+              <div className="flex xl:p-6 xl:pr-0 p-6 pl-0 pr-0 flex-col gap-3 xl:border-l-[2px] xl:border-gray-50 border-0">
+                <p className="text-[12px] px-[12px] font-medium uppercase">
                   Blog
                 </p>
                 <Card
-                  title={blogs[0]?.title ?? "Blog Title'}"}
-                  variant='lg'
+                  title={blogs[0]?.title ?? 'Our Latest Blog'}
+                  variant="lg"
                   summary={
                     blogs[0]?.description ??
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                    'Discover the latest insights and updates from our blog.'
                   }
                   image={
                     blogs[0]?.imageUrl ??
