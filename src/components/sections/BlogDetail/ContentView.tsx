@@ -1,21 +1,37 @@
-'use client';
+"use client";
 
-import { BlogContentMenu } from '@/components/blocks/BlogContent';
-import { cn } from '@/libs/utils';
-import { ContentContainer } from './ContentContainer';
-import { Content } from './Content';
-import { useScrollspy } from '@/hooks/useScrollspy';
-import { Block, BlogDetail, WysiwygBlock } from '@/models/BLog';
+import {
+  Block,
+  BLOG_BODY_BLOCKS,
+  BlogDetail,
+  WysiwygBlock,
+} from "@/models/BLog";
+import { cn } from "@/libs/utils";
+import { useScrollspy } from "@/hooks/useScrollspy";
+import { BlogContentMenu } from "@/components/blocks/BlogContent";
 
+import { Content } from "./Content";
+import { ContentContainer } from "./ContentContainer";
 interface Props {
   tableOfContent?: string;
   blog: BlogDetail;
 }
 
-export const ContentView = (props: Props) => {
-  const listBlock = props.blog.body.filter(
-    (item: Block): item is Block & { _key: string } & WysiwygBlock =>
-      '_key' in item && '_type' in item && item._type === 'wysiwygBlock'
+export const ContentView = ({ blog, tableOfContent }: Props) => {
+  const allowedBlockTypes = [
+    BLOG_BODY_BLOCKS.WYSIWYG_BLOCK,
+    BLOG_BODY_BLOCKS.FAQ_BLOCK,
+    BLOG_BODY_BLOCKS.CTA_BLOCK,
+  ] as const;
+
+  const listBlock = blog.body.filter(
+    (item): item is Block & { _key: string } & WysiwygBlock =>
+      typeof item === "object" &&
+      "_key" in item &&
+      "_type" in item &&
+      allowedBlockTypes.includes(
+        item._type as (typeof allowedBlockTypes)[number]
+      )
   );
 
   const { activeId, setActiveId } = useScrollspy(
@@ -27,27 +43,28 @@ export const ContentView = (props: Props) => {
     <ContentContainer>
       <div
         className={cn(
-          'lg:!sticky lg:!top-8 lg:!h-0 h-fit relative lg:!pb-0 pb-12 lg:w-fit w-full',
+          "h-fit relative pb-12 w-full",
+          "lg:!sticky lg:!top-8 lg:!h-0 lg:!pb-0 lg:w-fit",
           listBlock.length > 1 &&
             activeId === listBlock[listBlock.length - 1]?._key &&
-            'lg:!h-fit lg:!pb-20'
+            "lg:!h-fit lg:!pb-20"
         )}
       >
         <BlogContentMenu
-          title={props.tableOfContent}
+          title={tableOfContent}
           setActiveId={setActiveId}
           activeId={activeId}
           isTableContent
           menuItems={[
             ...listBlock.map((item) => ({
               id: item._key,
-              title: item.blockTitle?.title ?? '',
+              title: item.blockTitle?.title ?? "",
             })),
           ]}
         />
       </div>
 
-      <Content {...props.blog} />
+      <Content {...blog} />
     </ContentContainer>
   );
 };
