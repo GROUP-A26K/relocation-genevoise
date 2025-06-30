@@ -48,7 +48,7 @@ export const AppConfig = {
       priority: 0.8,
     },
     findAccommodation: {
-      fr: '/trouver-un-iogement',
+      fr: '/trouver-un-logement',
       en: '/find-accommodation',
       priority: 0.8,
     },

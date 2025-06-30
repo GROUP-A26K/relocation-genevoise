@@ -1,58 +1,69 @@
 'use client';
 
-import { BlogContent } from '@/components/blocks/BlogContent/BlogContent';
-import { StatsList } from '@/components/blocks/Stats';
-import Button from '@/components/customs/Button';
-import { Copy } from 'lucide-react';
-import Image from 'next/image';
-import { Block, BlogDetail } from '@/models/BLog';
-import { cn } from '@/libs/utils';
-import { Env } from '@/libs/Env';
-import { usePathname } from 'next/navigation';
 import { toast } from 'sonner';
-import Alert from '@/components/customs/Alert';
+import Image from 'next/image';
 import { useState } from 'react';
+import { Copy } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+
+import { Env } from '@/libs/Env';
+import { cn } from '@/libs/utils';
+import Alert from '@/components/customs/Alert';
+import Button from '@/components/customs/Button';
+import CtaBlock from '@/components/customs/CtaBlock';
+import { StatsList } from '@/components/blocks/Stats';
+import { FAQBlog } from '@/components/blocks/FAQ/FAQBlog';
+import { Block, BLOG_BODY_BLOCKS, BlogDetail } from '@/models/BLog';
+import { BlogContent } from '@/components/blocks/BlogContent/BlogContent';
+
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
+
 function renderListBlocks(blocks: Block[]) {
   return blocks.map((block) => {
-    if (typeof block === 'object' && block !== null && '_type' in block) {
-      switch (block._type) {
-        case 'statsBlock':
-          return (
-            <StatsList
-              key={block._key}
-              firstStat={{
-                value: block.firstStat?.value,
-                label: block.firstStat?.label,
-              }}
-              secondStat={{
-                value: block.secondStat?.value,
-                label: block.secondStat?.label,
-              }}
-              thirdStat={{
-                value: block.thirdStat?.value,
-                label: block.thirdStat?.label,
-              }}
-            />
-          );
-        case 'wysiwygBlock':
-          return (
-            <BlogContent
-              key={block._key}
-              {...block}
-              className={cn(
-                block.blockTitle?.isStyle && 'p-8 bg-grey-50 rounded-xl'
-              )}
-            />
-          );
-        default:
-          return null;
-      }
+    if (!block || typeof block !== "object" || !("_type" in block)) return null;
+
+    const { _type, _key } = block;
+
+    switch (_type) {
+      case BLOG_BODY_BLOCKS.STATS_BLOCK:
+        return (
+          <StatsList
+            key={_key}
+            firstStat={block.firstStat}
+            secondStat={block.secondStat}
+            thirdStat={block.thirdStat}
+          />
+        );
+      case BLOG_BODY_BLOCKS.WYSIWYG_BLOCK:
+        return (
+          <BlogContent
+            key={_key}
+            {...block}
+            className={cn(
+              block.blockTitle?.isStyle && "p-8 bg-grey-50 rounded-xl"
+            )}
+          />
+        );
+      case BLOG_BODY_BLOCKS.FAQ_BLOCK:
+        return <FAQBlog key={_key} id={_key} faqs={block.faqs} />;
+
+      case BLOG_BODY_BLOCKS.CTA_BLOCK:
+        return (
+          <CtaBlock
+            key={_key}
+            id={_key}
+            title={block.blockTitle?.title || ""}
+            description={block.blockTitle?.description || ""}
+            buttonText={block.blockTitle?.buttonText || "Contact Us"}
+          />
+        );
+      default:
+        return null;
     }
-    return null;
   });
 }
+
 
 export const Content = (blog: BlogDetail) => {
   const t = useTranslations('BlogDetail');
