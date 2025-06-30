@@ -39,10 +39,16 @@ export type Block =
   | ({
       _key: string;
     } & StatsBlock)
+  | ({
+      _key: string;
+    } & FaqBlock)
+  | ({
+      _key: string;
+    } & CtaBlock)
   | object;
 
 export type WysiwygBlock = {
-  _type: 'wysiwygBlock';
+  _type: "wysiwygBlock";
   blockTitle?: {
     title?: string;
     isStyle?: boolean;
@@ -55,18 +61,18 @@ export type Content =
       children?: Array<{
         marks?: string[];
         text?: string;
-        _type: 'span';
+        _type: "span";
         _key: string;
       }>;
-      style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-      listItem?: 'bullet' | 'number';
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
-        _type: 'link';
+        _type: "link";
         _key: string;
       }>;
       level?: number;
-      _type: 'block';
+      _type: "block";
       _key: string;
     }
   | {
@@ -76,39 +82,85 @@ export type Content =
           asset?: SanityImageAsset;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
-          _type: 'image';
+          _type: "image";
         };
         photoAlt?: string;
       };
-      _type: 'photoZone';
+      _type: "photoZone";
       _key: string;
     }
   | {
       content?: string;
       author?: string;
-      _type: 'quote';
+      _type: "quote";
       _key: string;
     }
   | {
       tableTitle?: string;
       tableData?: Table;
-      _type: 'tableZone';
+      _type: "tableZone";
       _key: string;
     }
   | {
       title?: string;
-      _type: 'videoZone';
-      source?: 'file' | 'url' | 'embed';
+      _type: "videoZone";
+      source?: "file" | "url" | "embed";
       videoFile?: {
         asset?: SanityFileAsset;
-        _type: 'file';
+        _type: "file";
       };
       videoUrl?: string;
       embedUrl?: string;
       _key: string;
+    }
+  | {
+      photo?: {
+        asset: SanityImageAsset;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      author?: string;
+      authorInfo?: string;
+      content?: string;
+      _type: "quoteImageZone";
+      _key: string;
+    }
+  | {
+      sectionType?: "goodToKnow" | "information" | "error";
+      sectionTitle?: string;
+      sectionContent?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "normal"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      _type: "newSectionZone";
+      _key: string;
     };
+
 export type Table = {
-  _type: 'table';
+  _type: "table";
   rows?: Array<{
     _key: string;
     cells?: Array<string>;
@@ -116,7 +168,7 @@ export type Table = {
 };
 export type SanityImageAsset = {
   _id: string;
-  _type: 'sanity.imageAsset';
+  _type: "sanity.imageAsset";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -136,7 +188,7 @@ export type SanityImageAsset = {
 };
 export type SanityFileAsset = {
   _id: string;
-  _type: 'sanity.fileAsset';
+  _type: "sanity.fileAsset";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -155,7 +207,7 @@ export type SanityFileAsset = {
   url?: string;
 };
 export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot';
+  _type: "sanity.imageHotspot";
   x?: number;
   y?: number;
   height?: number;
@@ -163,7 +215,7 @@ export type SanityImageHotspot = {
 };
 
 export type SanityImageCrop = {
-  _type: 'sanity.imageCrop';
+  _type: "sanity.imageCrop";
   top?: number;
   bottom?: number;
   left?: number;
@@ -171,7 +223,7 @@ export type SanityImageCrop = {
 };
 
 export type StatsBlock = {
-  _type: 'statsBlock';
+  _type: "statsBlock";
   firstStat?: {
     value?: string;
     label?: string;
@@ -185,3 +237,29 @@ export type StatsBlock = {
     label?: string;
   };
 };
+
+export type FaqBlock = {
+  _type: "faqBlock";
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
+};
+
+export type CtaBlock = {
+  _type: "ctaBlock";
+  blockTitle?: {
+    title?: string;
+    buttonText?: string;
+    description?: string;
+  };
+};
+
+export const BLOG_BODY_BLOCKS = {
+  WYSIWYG_BLOCK: "wysiwygBlock",
+  STATS_BLOCK: "statsBlock",
+  FAQ_BLOCK: "faqBlock",
+  CTA_BLOCK: "ctaBlock",
+} as const;
+export type BlogBodyBlocks =
+  (typeof BLOG_BODY_BLOCKS)[keyof typeof BLOG_BODY_BLOCKS];

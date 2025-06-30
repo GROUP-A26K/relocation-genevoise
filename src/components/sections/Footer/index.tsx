@@ -1,14 +1,16 @@
-import Section from '@/components/customs/Section';
 import Image from 'next/image';
-import { Link } from '@/libs/i18nNavigation';
-import { FC } from 'react';
-import { SubscribeForm } from './SubscribeForm';
 import { getTranslations } from 'next-intl/server';
+
+import { Link } from '@/libs/i18nNavigation';
+import Section from '@/components/customs/Section';
 import AgLogo from '@/assets/img/logos/rg-logo.svg';
+import Facebook from '@/assets/img/logos/social/facebook.svg';
 import Linkedin from '@/assets/img/logos/social/linkedin.svg';
 import Instagram from '@/assets/img/logos/social/instagram.svg';
-import Facebook from '@/assets/img/logos/social/facebook.svg';
 import { GoogleRating } from '@/components/blocks/GoogleRating';
+
+import { SubscribeForm } from './SubscribeForm';
+
 interface MenuItem {
   title: string;
   links: {
@@ -49,7 +51,7 @@ interface Props {
   }[];
 }
 
-const Footer: FC<{ locale: string }> = async ({ locale }) => {
+const Footer: React.FC<{ locale: string }> = async ({ locale }) => {
   const t = await getTranslations({
     locale,
     namespace: 'Footer',
@@ -107,7 +109,7 @@ const Footer: FC<{ locale: string }> = async ({ locale }) => {
       links: [
         { text: t('support.links.0.text'), url: '/contact' },
         { text: t('support.links.1.text'), url: '/faq' },
-        { text: 'Blogs', url: '/blog' },
+        { text: 'Blog', url: '/blog' },
       ],
     },
     social: {
