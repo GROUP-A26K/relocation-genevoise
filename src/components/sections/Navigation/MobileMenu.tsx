@@ -60,7 +60,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
 
           <div className="flex flex-row gap-3">
             <Link
-              href={'tel:41 22 715 17 48'}
+              href={'tel:+41 22 715 17 48'}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -72,7 +72,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                   className="w-full border-2 border-white pointer-events-auto whitespace-normal"
                   iconStart={PhoneCall}
                 >
-                  <div className="line-clamp-1">41 22 715 17 48</div>
+                  <div className="line-clamp-1">+41 22 715 17 48</div>
                 </Button>
               </SheetClose>
             </Link>
