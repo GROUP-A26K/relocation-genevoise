@@ -5,15 +5,15 @@ import { Metadata } from 'next';
 import { ContentView } from '@/components/sections/AnimationContent';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import HeroImage from '@/assets/img/bg/relocation-genevoise-trouver-un-iogement.webp';
-import ContentImage1 from '@/assets/img/bg/trouver-un-logement/entretien-de-decouverte.svg';
-import ContentImage2 from '@/assets/img/bg/trouver-un-logement/constitution-de-votre-dossier.svg';
-import ContentImage3 from '@/assets/img/bg/trouver-un-logement/analyse-du-marche.svg';
-import ContentImage4 from '@/assets/img/bg/trouver-un-logement/propositions-de-biens.svg';
-import ContentImage5 from '@/assets/img/bg/trouver-un-logement/organisation-des-visites.svg';
-import ContentImage6 from '@/assets/img/bg/trouver-un-logement/envoi-et-suivi-de-votre-dossier.svg';
-import ContentImage7 from '@/assets/img/bg/trouver-un-logement/formalites-administratives.svg';
-import ContentImage8 from '@/assets/img/bg/trouver-un-logement/aide-a-lemmenagement.svg';
-import ContentImage9 from '@/assets/img/bg/trouver-un-logement/support-apres-linstallation.svg';
+import ContentImage1 from '@/assets/img/bg/trouver-un-logement/entretien-de-decouverte.webp';
+import ContentImage2 from '@/assets/img/bg/trouver-un-logement/constitution-de-votre-dossier.webp';
+import ContentImage3 from '@/assets/img/bg/trouver-un-logement/analyse-du-marche.webp';
+import ContentImage4 from '@/assets/img/bg/trouver-un-logement/propositions-de-biens.webp';
+import ContentImage5 from '@/assets/img/bg/trouver-un-logement/organisation-des-visites.webp';
+import ContentImage6 from '@/assets/img/bg/trouver-un-logement/envoi-et-suivi-de-votre-dossier.webp';
+import ContentImage7 from '@/assets/img/bg/trouver-un-logement/formalites-administratives.webp';
+import ContentImage8 from '@/assets/img/bg/trouver-un-logement/aide-a-lemmenagement.webp';
+import ContentImage9 from '@/assets/img/bg/trouver-un-logement/support-apres-linstallation.webp';
 import { AppConfig } from '@/utils/AppConfig';
 
 type Props = {
