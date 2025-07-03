@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-
-import { Env } from "@/libs/Env";
 import Section from "@/components/customs/Section";
 import { BlogList } from "@/components/blocks/Blog";
 import { BlogDetailHero } from "@/components/blocks/Hero";
@@ -61,8 +59,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   if (!blogDetail) return {};
 
-  const bloglUrl = `${Env.NEXT_PUBLIC_SITE_URL}/${locale === "fr" ? "" : locale}${blogDetail.href}`;
-
   return {
     title: blogDetail.title,
     description: blogDetail.description,
@@ -70,7 +66,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       type: "website",
       locale: "de-DE",
       siteName: "Relocation Genevoise",
-      url: bloglUrl,
+      url: blogDetail.imageUrl,
       images: [
         {
           url: blogDetail.imageUrl,
