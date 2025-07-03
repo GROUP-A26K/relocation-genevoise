@@ -94,9 +94,9 @@ export const Content: FC<ContentProps> = ({ items }) => {
                           src={item.image}
                           alt={item.title}
                           title={item.description}
-                          width={326.4}
-                          height={240}
-                          className="aspect-video lg:min-h-[240px] min-h-[160px] lg:h-[240px] h-[160px] w-fit rounded-md"
+                          width={560}
+                          height={280}
+                          className="aspect-video sm:h-[280px] sm:min-h-[280px] min-h-[200px] h-[200px] lg:w-full w-fit rounded-md"
                         />
                       </AccordionContent>
                     </div>

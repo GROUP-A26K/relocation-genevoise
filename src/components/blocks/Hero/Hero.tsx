@@ -86,6 +86,10 @@ export const Hero: FC<Props> = ({
             width={1240}
             height={480}
             className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            priority
+            loading="eager"
+            draggable={false}
+            fetchPriority="high"
           />
         </div>
       </div>
