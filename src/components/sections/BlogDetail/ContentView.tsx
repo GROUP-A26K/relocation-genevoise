@@ -21,7 +21,6 @@ export const ContentView = ({ blog, tableOfContent }: Props) => {
   const allowedBlockTypes = [
     BLOG_BODY_BLOCKS.WYSIWYG_BLOCK,
     BLOG_BODY_BLOCKS.FAQ_BLOCK,
-    BLOG_BODY_BLOCKS.CTA_BLOCK,
   ] as const;
 
   const listBlock = blog.body.filter(
