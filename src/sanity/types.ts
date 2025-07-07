@@ -331,6 +331,94 @@ export type InternationalizedArrayReferenceValue = {
       };
 };
 
+export type AssuranceJobPost = {
+  _id: string;
+  _type: 'assuranceJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: {
+    _ref: string;
+    _type: 'reference';
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: 'assuranceJobDepartment';
+  };
+  employmentType?:
+    | 'Full-time'
+    | 'Part-time'
+    | 'Contract'
+    | 'Internship'
+    | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: 'span';
+          _key: string;
+        }>;
+        style?:
+          | 'normal'
+          | 'h1'
+          | 'h2'
+          | 'h3'
+          | 'h4'
+          | 'h5'
+          | 'h6'
+          | 'blockquote';
+        listItem?: 'bullet' | 'number';
+        markDefs?: Array<{
+          href?: string;
+          _type: 'link';
+          _key: string;
+        }>;
+        level?: number;
+        _type: 'block';
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: 'reference';
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: 'image';
+        _key: string;
+      }
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type AssuranceJobDepartment = {
+  _id: string;
+  _type: 'assuranceJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type LocalizedString = {
+  _type: 'localizedString';
+  fr?: string;
+  en?: string;
+};
+
 export type RelocationBlogPost = {
   _id: string;
   _type: 'relocationBlogPost';
@@ -361,6 +449,7 @@ export type RelocationBlogPost = {
         _key: string;
       } & StatsBlock)
   >;
+  timeToRead?: number;
   slug?: Slug;
   publishedDate?: string;
   createdAt?: string;
@@ -572,7 +661,6 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | TargetWebsite
   | BlogCategory
-  | RelocationBlogCategory
   | Property
   | PropertyCategory
   | PropertyAgent
@@ -585,6 +673,9 @@ export type AllSanitySchemaTypes =
   | InternationalizedArrayString
   | TranslationMetadata
   | InternationalizedArrayReferenceValue
+  | AssuranceJobPost
+  | AssuranceJobDepartment
+  | LocalizedString
   | RelocationBlogPost
   | RelocationAuthor
   | BlogPost
@@ -596,5 +687,7 @@ export type AllSanitySchemaTypes =
   | SanityImageMetadata
   | InternationalizedArrayReference
   | MediaTag
-  | Slug;
+  | Slug
+  | Table
+  | MyCustomRowType;
 export declare const internalGroqTypeReferenceTo: unique symbol;

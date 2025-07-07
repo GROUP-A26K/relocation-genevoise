@@ -110,6 +110,7 @@ const Footer: React.FC<{ locale: string }> = async ({ locale }) => {
         { text: t('support.links.0.text'), url: '/contact' },
         { text: t('support.links.1.text'), url: '/faq' },
         { text: 'Blog', url: '/blog' },
+        { text: 'Career', url: '/career' },
       ],
     },
     social: {

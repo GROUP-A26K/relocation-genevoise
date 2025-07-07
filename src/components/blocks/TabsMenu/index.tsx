@@ -2,48 +2,67 @@ import Button from "@/components/customs/Button";
 import { cn } from "@/libs/utils";
 import { FC } from "react";
 
+export type IType = "primary" | "secondary";
+
 interface TabsMenuProps {
   activeValue?: string;
   category: { title: string }[];
   onClick: (filterBy: string) => void;
+  variant?: IType;
 }
 
-const TabsMenu: FC<TabsMenuProps> = ({ activeValue, category, onClick }) => {
-  const handleTabClick = (filterBy: string) => {
-    onClick(filterBy);
+const TabsMenu: FC<TabsMenuProps> = ({
+  activeValue = "",
+  category,
+  onClick,
+  variant = "primary",
+}) => {
+  const handleTabClick = (filterBy: string) => onClick(filterBy);
+
+  /** centralised class builder so we don’t repeat long strings inline */
+  const buildClasses = (isActive: boolean) => {
+    if (variant === "secondary") {
+      return cn(
+        isActive
+          ? "bg-yellow-400 text-black-500 shadow-none active:bg-yellow-400 active:text-black-500 hover:bg-yellow-400 hover:text-black-500"
+          : "bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-yellow-400 active:text-black-500"
+      );
+    }
+
+    return cn(
+      isActive
+        ? "bg-black-400 text-white shadow-none active:bg-black-400 active:text-white hover:bg-black-400 hover:text-white"
+        : "bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-black-400 active:text-white"
+    );
   };
 
+  /** pass the same Button `type` prop we expose via `variant` */
+  const buttonType: "primary" | "secondary" = variant;
+
   return (
-    <div className="flex p-1 bg-grey-50 w-fit rounded-full">
+    <div className="flex w-fit rounded-full bg-grey-50 p-1">
+      {/* “All / Selected” tab */}
       <Button
         as="ghost"
-        type="primary"
+        type={buttonType}
         variant="md"
-        className={cn(
-          activeValue !== "" &&
-            "bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-black-400 active:text-white",
-          activeValue === "" &&
-            "bg-black-400 text-white shadow-none active:bg-black-400 active:text-white hover:bg-black-400 hover:text-white"
-        )}
+        className={buildClasses(activeValue === "")}
         onClick={() => handleTabClick("")}
       >
-        {"Selected"}
+        Selected
       </Button>
-      {category.map((cat) => (
+
+      {/* dynamic tabs */}
+      {category.map(({ title }) => (
         <Button
-          key={cat.title}
+          key={title}
           as="ghost"
-          type="primary"
+          type={buttonType}
           variant="md"
-          className={cn(
-            activeValue !== cat.title &&
-              "bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-black-400 active:text-white",
-            activeValue === cat.title &&
-              "bg-black-400 text-white shadow-none active:bg-black-400 active:text-white hover:bg-black-400 hover:text-white"
-          )}
-          onClick={() => handleTabClick(cat.title)}
+          className={buildClasses(activeValue === title)}
+          onClick={() => handleTabClick(title)}
         >
-          {cat.title}
+          {title}
         </Button>
       ))}
     </div>

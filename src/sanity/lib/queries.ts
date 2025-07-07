@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const BLOGS_QUERY = defineQuery(`
     {
@@ -166,4 +166,104 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 
 export const POST_CATEGORIES_QUERY = defineQuery(
   `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) > 1]`
+);
+
+export const CAREERS_QUERY = defineQuery(`
+  {
+    "jobs": *[
+      _type == "assuranceJobPost" &&
+      isHidden == false &&
+      !(_id in path("drafts.**")) &&
+      ($department == "" || $department == department->title[$locale])&&
+      language == $locale
+    ]| order(publishedAt desc) [$start...$end] {
+      ...,
+      _originalId,
+      publishedAt,
+      "department": department->{
+          title
+        }
+    },
+    "total": count(
+      *[
+        _type == "assuranceJobPost" &&
+        ($department == "" || $department == department->title.fr)&&
+        language == $locale &&
+        isHidden == false
+      ]
+    )
+  }
+`);
+
+export const FEATURED_CAREER_QUERY = defineQuery(`
+  {
+    "jobs": *[
+      _type == "assuranceJobPost" &&
+      !(_id in path("drafts.**")) &&
+      slug.current != $slug &&
+      language == $locale &&
+      isHidden == false
+    ]
+    | order(
+        isFeatured desc,
+        (department->title[$locale] == $department) desc,
+        publishedAt desc
+    )[0...5] {
+      ...,
+      _originalId,
+      publishedAt,
+      "department": department->{
+        title
+      }
+    },
+ }
+`);
+
+export const CAREER_DETAIL_QUERY = defineQuery(`
+   *[
+    _type == "assuranceJobPost" &&
+    slug.current == $slug
+  ][0] {
+  ...,
+  body[]{
+    ...,
+      blockTitle {
+      ...,
+      "content": content[]{
+        ...,
+           _type == "videoZone" => {
+          ...,
+          videoFile{
+                asset->{
+                _id,
+                url
+                }
+              
+            }
+          }
+        ,
+       
+        _type == "photoZone" => {
+          ...,
+          mainPhoto{
+            imageTitle,
+              photo{
+                asset->{
+                _id,
+                url
+                }
+              }
+            }
+          }
+        },
+      }
+    },
+  "department": department->{
+          title
+        }
+  }
+`);
+
+export const DEPARTMENT_QUERY = defineQuery(
+  `*[_type == "assuranceJobDepartment" && count(*[_type == "assuranceJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`
 );

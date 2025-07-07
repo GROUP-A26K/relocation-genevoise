@@ -1,13 +1,14 @@
-'use client';
-import React, { FC } from 'react';
+"use client";
+import React from "react";
+import { Controller, UseFormRegister } from "react-hook-form";
+
 import {
   FormControl,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Controller, UseFormRegister } from 'react-hook-form';
-import { Checkbox } from '@/components/ui/checkbox-custom';
+} from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type CheckboxFieldProps = {
   label: string;
@@ -17,7 +18,7 @@ type CheckboxFieldProps = {
   error?: string;
 };
 
-export const CheckboxField: FC<CheckboxFieldProps> = ({
+export const CheckboxField: React.FC<CheckboxFieldProps> = ({
   label,
   name,
   error,
@@ -31,7 +32,7 @@ export const CheckboxField: FC<CheckboxFieldProps> = ({
             render={({ field }) => (
               <Checkbox
                 id={name}
-                className="rounded-full border border-blue-500 data-[state=checked]:bg-white data-[state=unchecked]:bg-white"
+                className="border border-black-50"
                 {...field}
                 onCheckedChange={field.onChange}
                 value={field.value}
