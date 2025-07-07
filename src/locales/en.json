@@ -760,6 +760,57 @@
     }
   },
 
+  "Career": {
+    "heading": "Careers",
+    "subHeading": "We’re looking for ((talented people))",
+    "description": "We’re a 100% remote team spread all across the world. Join us!"
+  },
+
+  "Application": {
+    "ApplyForm": {
+      "formTitle": "Application form",
+      "first_name": { "label": "First name", "placeholder": "Lucas" },
+      "last_name": { "label": "Last name", "placeholder": "Zimmer" },
+      "email": { "label": "Email", "placeholder": "you@email.com" },
+      "phone": {
+        "label": "Phone number",
+        "placeholder": "+41"
+      },
+
+      "experienceYears": {
+        "label": "Experience in years",
+        "placeholder": "Choose your experience",
+        "options": [
+          { "label": "0-1 year" },
+          { "label": "2-3 years" },
+          { "label": "4-5 years" },
+          { "label": "6+ years" },
+          { "label": "Other" }
+        ]
+      },
+
+      "expected": {
+        "label": "Expected annual CTC",
+        "placeholder": "Enter your expected"
+      },
+
+      "resume": {
+        "label": "Your resume",
+        "placeholder": "Upload your resume",
+        "fileType": "DOCX, PDF (max. 500MB)"
+      },
+
+      "accept": "By checking this box, I agree that the information entered will be used as part of the contact.",
+      "send": "Send"
+    }
+  },
+
+  "CareerDetail": {
+    "FeaturedJob": {
+      "title": "Other jobs"
+    }
+  },
+
   "SiteMap": {
     "heading": "Link",
     "subHeading": "((Sitemap))",
@@ -832,6 +883,10 @@
     "Blog": {
       "title": "Relocation Genevoise – Articles and news",
       "description": "Stay up to date with the Geneva area : mobility, housing, jobs, and practical tips to help you settle in the region."
+    },
+    "Career": {
+      "title": "Assurance Genevoise - Career",
+      "description": "Join Assurance Genevoise and build a rewarding career in the insurance industry. Discover our job offers and opportunities for professional development."
     },
     "LegalNotices": {
       "title": "Relocation Genevoise - Our legal notice",
@@ -1000,6 +1055,21 @@
       "subjectRequired": "Please select a help option.",
       "acceptRequired": "You must accept to proceed."
     },
+    "Application": {
+      "firstNameMinLength": "First name must have at least 2 characters.",
+      "firstNameMaxLength": "First name can have a maximum of 50 characters.",
+      "lastNameMinLength": "Last name must have at least 2 characters.",
+      "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "experienceYearsRequired": "Please select your experience in years.",
+      "expectedSalaryInvalid": "Expected salary must be a number.",
+      "expectedCtcRequired": "Expected CTC must be a valid number.",
+      "resumeInvalidType": "Invalid file type! Please upload a PDF, DOC, or DOCX file.",
+      "resumeTooLarge": "File size exceeds the limit of 5MB. Please upload a smaller file.",
+      "resumeRequired": "Please upload your resume.",
+      "acceptRequired": "You must accept to proceed."
+    },
     "Booking": {
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
       "acceptRequired": "You must accept to proceed."
@@ -1015,6 +1085,12 @@
       "errorTitle": "Error",
       "success": "You have successfully submitted your information!",
       "error": "Error submitting your information. Please try again later."
+    },
+    "Application": {
+      "successTitle": "Success",
+      "errorTitle": "Error",
+      "success": "Your application has been submitted successfully!",
+      "error": "Your application could not be submitted. Please try again later."
     },
     "Link": {
       "successTitle": "Success",
@@ -1033,6 +1109,15 @@
       "errorTitle": "Error",
       "success": "You have successfully subscribed to our newsletter!",
       "error": "Error subscribing to the newsletter. Please try again later."
+    }
+  },
+
+  "Button&Text": {
+    "applyNow": "Apply now",
+    "share": "Share",
+    "UploadFile": {
+      "title": "Click to upload",
+      "description": "or drag & drop"
     }
   }
 }
