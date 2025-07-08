@@ -51,11 +51,11 @@ export const JobCard: React.FC<Props> = ({
 
               <Badge
                 className={cn(
-                  'truncate text-sm font-medium text-black-500 bg-grey-50 border border-grey-200 hover:bg-green-40 shadow-none',
+                  'truncate text-sm font-medium text-black-500 bg-grey-50 border border-grey-200 hover:bg-grey-50 shadow-none',
                   job.employmentType === 'Internship' &&
-                    'bg-cyan-50 text-cyan-600 border-cyan-50',
+                    'bg-cyan-50 text-cyan-600 border-cyan-50 hover:bg-cyan-50',
                   job.employmentType === 'Full-time' &&
-                    'text-blue-500 bg-blue-50 border-blue-50'
+                    'text-blue-500 bg-blue-50 border-blue-50 hover:bg-blue-50'
                 )}
               >
                 {job.employmentType}
