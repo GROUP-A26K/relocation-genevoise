@@ -1,4 +1,4 @@
-import { defineQuery } from 'next-sanity';
+import { defineQuery } from "next-sanity";
 
 export const BLOGS_QUERY = defineQuery(`
     {
@@ -165,7 +165,7 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 `);
 
 export const POST_CATEGORIES_QUERY = defineQuery(
-  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) > 1]`
+  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`
 );
 
 export const CAREERS_QUERY = defineQuery(`

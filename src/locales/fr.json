@@ -768,7 +768,7 @@
   },
 
   "Career": {
-    "heading": "Carrières",
+    "heading": "Carrière",
     "subHeading": "Nous recherchons des personnes ((talentueuses))",
     "description": "Nous sommes une équipe 100 % en télétravail répartie dans le monde entier. Rejoignez-nous !"
   },
@@ -1019,7 +1019,11 @@
     },
     "support": {
       "title": "Support",
-      "links": [{ "text": "Contactez-nous" }, { "text": "FAQ" }]
+      "links": [
+        { "text": "Contactez-nous" },
+        { "text": "FAQ" },
+        { "text": "Carrière" }
+      ]
     },
     "social": {
       "title": "Social Medias",
