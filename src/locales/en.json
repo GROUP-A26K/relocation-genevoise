@@ -1013,7 +1013,11 @@
     },
     "support": {
       "title": "Support",
-      "links": [{ "text": "Contact-us" }, { "text": "FAQ" }]
+      "links": [
+        { "text": "Contact-us" },
+        { "text": "FAQ" },
+        { "text": "Career" }
+      ]
     },
     "social": {
       "title": "Social Medias",
