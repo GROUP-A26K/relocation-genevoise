@@ -8,3 +8,4 @@ export * from "./BlogCard";
 export * from "./BlogBGCard";
 export * from "./BusinessCard";
 export * from "./CompanyCard";
+export * from "./JobCard";

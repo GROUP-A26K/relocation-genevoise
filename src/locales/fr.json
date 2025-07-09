@@ -767,6 +767,55 @@
     }
   },
 
+  "Career": {
+    "heading": "Carrière",
+    "subHeading": "Nous recherchons des personnes ((talentueuses))",
+    "description": "Nous sommes une équipe 100 % en télétravail répartie dans le monde entier. Rejoignez-nous !"
+  },
+
+  "Application": {
+    "ApplyForm": {
+      "formTitle": "Formulaire de candidature",
+      "first_name": { "label": "Prénom", "placeholder": "Lucas" },
+      "last_name": { "label": "Nom", "placeholder": "Zimmer" },
+      "email": { "label": "Email", "placeholder": "lucas@email.com" },
+      "phone": {
+        "label": "Numéro de téléphone",
+        "placeholder": "+41"
+      },
+      "experienceYears": {
+        "label": "Expérience en années",
+        "placeholder": "Sélectionnez votre expérience",
+        "options": [
+          { "label": "0-1 an" },
+          { "label": "2-3 ans" },
+          { "label": "4-5 ans" },
+          { "label": "6+ ans" },
+          { "label": "Autres" }
+        ]
+      },
+
+      "expected": {
+        "label": "Rémunération annuelle souhaitée",
+        "placeholder": "Indiquez vos attentes salariales"
+      },
+
+      "resume": {
+        "label": "Votre CV",
+        "placeholder": "Téléversez votre CV",
+        "fileType": "DOCX, PDF (max. 500 Mo)"
+      },
+      "accept": "En cochant cette case, j’accepte que les informations saisies soient utilisées dans le cadre du contact.",
+      "send": "Send"
+    }
+  },
+
+  "CareerDetail": {
+    "FeaturedJob": {
+      "title": "Autres postes"
+    }
+  },
+
   "SiteMap": {
     "heading": "Liens",
     "subHeading": "((Sitemap))",
@@ -839,6 +888,10 @@
     "Blog": {
       "title": "Relocation Genevoise – Articles et actualités",
       "description": "Suivez toute l’actualité du bassin genevois : mobilité, logement, emploi et conseils pratiques pour bien s’installer dans la région."
+    },
+    "Career": {
+      "title": "Assurance Genevoise - Carrières",
+      "description": "Rejoignez Assurance Genevoise et faites partie d'une équipe dynamique dédiée à la protection de nos clients en Suisse. Consultez nos offres d'emploi."
     },
     "LegalNotices": {
       "title": "Relocation Genevoise - Our legal notice",
@@ -966,7 +1019,11 @@
     },
     "support": {
       "title": "Support",
-      "links": [{ "text": "Contactez-nous" }, { "text": "FAQ" }]
+      "links": [
+        { "text": "Contactez-nous" },
+        { "text": "FAQ" },
+        { "text": "Carrière" }
+      ]
     },
     "social": {
       "title": "Social Medias",
@@ -1010,6 +1067,22 @@
       "acceptRequired": "Vous devez accepter pour continuer."
     },
 
+    "Application": {
+      "firstNameMinLength": "Le prénom doit comporter au moins 2 caractères.",
+      "firstNameMaxLength": "Le prénom peut comporter un maximum de 50 caractères.",
+      "lastNameMinLength": "Le nom de famille doit comporter au moins 2 caractères.",
+      "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "experienceYearsRequired": "Veuillez indiquer vos années d'expérience.",
+      "expectedSalaryInvalid": "Veuillez indiquer un salaire attendu valide.",
+      "expectedCtcRequired": "La rémunération prévue doit être un nombre valide.",
+      "resumeInvalidType": "Veuillez uploader un fichier PDF ou DOCX.",
+      "resumeRequired": "Veuillez uploader votre CV.",
+      "resumeTooLarge": " Le fichier est trop volumineux. Veuillez uploader un fichier de moins de 5 Mo.",
+      "acceptRequired": "Vous devez accepter pour continuer."
+    },
+
     "Booking": {
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
       "acceptRequired": "Vous devez accepter pour continuer."
@@ -1026,6 +1099,12 @@
       "errorTitle": "Erreur",
       "success": "Vous avez bien soumis vos informations !",
       "error": "Une erreur s'est produite lors de l'envoi de vos informations. Veuillez réessayer plus tard."
+    },
+    "Application": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Votre candidature a été soumise avec succès !",
+      "error": "Une erreur s'est produite lors de l'envoi de votre candidature. Veuillez réessayer plus tard."
     },
     "Link": {
       "successTitle": "Succès",
@@ -1044,6 +1123,15 @@
       "errorTitle": "Erreur",
       "success": "Vous vous êtes abonné à notre newsletter avec succès !",
       "error": "Erreur lors de l'abonnement à la newsletter. Veuillez réessayer plus tard."
+    }
+  },
+
+  "Button&Text": {
+    "applyNow": "Postuler maintenant",
+    "share": "Partager",
+    "UploadFile": {
+      "title": "Cliquez pour téléverser",
+      "description": "ou faites glisser et déposez"
     }
   }
 }
