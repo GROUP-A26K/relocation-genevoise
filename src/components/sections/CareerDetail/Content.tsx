@@ -108,10 +108,10 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
       });
   };
   return (
-    <div className="top-0 flex flex-col items-center justify-center w-full">
+    <div className="top-0 flex flex-col items-start justify-center w-full">
       <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] lg:max-w-[570px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
         <div className="inline-flex flex-col justify-start items-start">
-          <div className="pb-8 bg-white flex flex-col justify-start items-start gap-6">
+          <div className="pb-8 bg-white flex flex-col justify-start items-start gap-6 w-full">
             <div className="w-full flex flex-col justify-start items-start gap-6">
               <div className="self-stretch flex flex-col justify-start items-start gap-3">
                 <div
@@ -130,7 +130,7 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
                   {jobDetail.title}
                 </h1>
               </div>
-              <div className="self-stretch inline-flex justify-start items-center gap-3">
+              <div className="self-stretch inline-flex justify-start items-center gap-3 flex-wrap">
                 <div className="flex justify-start items-center gap-1.5">
                   <Clock className="size-4 text-black-50" />
                   <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
@@ -155,8 +155,16 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
               </div>
             </div>
             <div className="inline-flex justify-start items-center gap-2">
-              <Link href={`/${locale}/application/${jobDetail.slug}`}>
-                <Button as="solid" variant="md" type="primary">
+              <Link
+                href={`/${locale}/application/${jobDetail.slug}`}
+                className="sm:w-fit w-full"
+              >
+                <Button
+                  as="solid"
+                  variant="md"
+                  type="primary"
+                  className="sm:w-fit w-full"
+                >
                   {buttonT("applyNow")}
                 </Button>
               </Link>
@@ -167,6 +175,7 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
                 type="primary"
                 disabled={copied}
                 iconStart={Share2}
+                className="sm:w-fit w-full"
               >
                 {buttonT("share")}
               </Button>
