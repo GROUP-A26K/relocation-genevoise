@@ -171,7 +171,7 @@ export const POST_CATEGORIES_QUERY = defineQuery(
 export const CAREERS_QUERY = defineQuery(`
   {
     "jobs": *[
-      _type == "assuranceJobPost" &&
+      _type == "relocationJobPost" &&
       isHidden == false &&
       !(_id in path("drafts.**")) &&
       ($department == "" || $department == department->title[$locale])&&
@@ -186,7 +186,7 @@ export const CAREERS_QUERY = defineQuery(`
     },
     "total": count(
       *[
-        _type == "assuranceJobPost" &&
+        _type == "relocationJobPost" &&
         ($department == "" || $department == department->title.fr)&&
         language == $locale &&
         isHidden == false
@@ -198,7 +198,7 @@ export const CAREERS_QUERY = defineQuery(`
 export const FEATURED_CAREER_QUERY = defineQuery(`
   {
     "jobs": *[
-      _type == "assuranceJobPost" &&
+      _type == "relocationJobPost" &&
       !(_id in path("drafts.**")) &&
       slug.current != $slug &&
       language == $locale &&
@@ -221,7 +221,8 @@ export const FEATURED_CAREER_QUERY = defineQuery(`
 
 export const CAREER_DETAIL_QUERY = defineQuery(`
    *[
-    _type == "assuranceJobPost" &&
+    _type == "relocationJobPost" &&
+    isHidden == false &&
     slug.current == $slug
   ][0] {
   ...,
@@ -265,5 +266,5 @@ export const CAREER_DETAIL_QUERY = defineQuery(`
 `);
 
 export const DEPARTMENT_QUERY = defineQuery(
-  `*[_type == "assuranceJobDepartment" && count(*[_type == "assuranceJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`
+  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`
 );

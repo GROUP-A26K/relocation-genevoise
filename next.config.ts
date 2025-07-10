@@ -1,14 +1,14 @@
-import { AppConfig } from '@/utils/AppConfig';
-import { NextConfig } from 'next';
-import createNextIntlPlugin from 'next-intl/plugin';
+import { AppConfig } from "@/utils/AppConfig";
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
+const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
 
 type LocaleMap = Record<string, string | number>;
 
 function buildRewrites() {
   const { locales, routes } = AppConfig;
-  const en = 'en';
+  const en = "en";
 
   return Object.values(routes).flatMap((localeMap: LocaleMap) => {
     return locales.map((locale) => ({
@@ -20,7 +20,7 @@ function buildRewrites() {
 
 function buildRedirects() {
   const { defaultLocale, routes, locales } = AppConfig;
-  const en = 'en';
+  const en = "en";
 
   return Object.values(routes).flatMap((localeMap: LocaleMap) => {
     if (localeMap[en] === localeMap[defaultLocale]) {
@@ -46,15 +46,33 @@ function buildRedirects() {
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'cdn.sanity.io'],
+    domains: ["images.unsplash.com", "cdn.sanity.io"],
   },
 
   async rewrites() {
-    return buildRewrites();
+    return [
+      {
+        source: "/fr/carriere/:slug*",
+        destination: "/fr/career/:slug*",
+      },
+      ...buildRewrites(),
+    ];
   },
 
   async redirects() {
-    return buildRedirects();
+    return [
+      {
+        source: "/en/carriere/:slug*",
+        destination: "/en/career/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/career/:slug*",
+        destination: "/carriere/:slug*",
+        permanent: true,
+      },
+      ...buildRedirects(),
+    ];
   },
 };
 

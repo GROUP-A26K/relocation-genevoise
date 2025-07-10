@@ -768,9 +768,11 @@
   },
 
   "Career": {
+    "emptyTitle": "Nous ne recrutons pas actuellement, mais restons à l'écoute",
+    "emptyDescription": "Même si aucun poste n’est ouvert pour le moment, nous sommes toujours ravis d’échanger avec des personnes passionnées qui partagent nos valeurs.",
     "heading": "Carrière",
-    "subHeading": "Nous recherchons des personnes ((talentueuses))",
-    "description": "Nous sommes une équipe 100 % en télétravail répartie dans le monde entier. Rejoignez-nous !"
+    "subHeading": "((Rejoignez-nous))",
+    "description": "Faites partie d’une équipe dynamique engagée pour accompagner les particuliers et entreprises en Suisse."
   },
 
   "Application": {

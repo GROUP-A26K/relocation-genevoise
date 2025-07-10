@@ -761,9 +761,11 @@
   },
 
   "Career": {
-    "heading": "Careers",
-    "subHeading": "We’re looking for ((talented people))",
-    "description": "We’re a 100% remote team spread all across the world. Join us!"
+    "emptyTitle": "We're Not Hiring Today, But We're Always Listening",
+    "emptyDescription": "While we don't have open positions right now, we’re always looking to connect with passionate individuals who share our values.",
+    "heading": "Career",
+    "subHeading": "((Join Us))",
+    "description": "Be part of a dynamic team committed to supporting individuals and businesses in Switzerland."
   },
 
   "Application": {
