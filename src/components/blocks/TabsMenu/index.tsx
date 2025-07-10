@@ -1,5 +1,6 @@
 import Button from "@/components/customs/Button";
 import { cn } from "@/libs/utils";
+import { useLocale } from "next-intl";
 import { FC } from "react";
 
 export type IType = "primary" | "secondary";
@@ -17,6 +18,8 @@ const TabsMenu: FC<TabsMenuProps> = ({
   onClick,
   variant = "primary",
 }) => {
+  const locale = useLocale();
+
   const handleTabClick = (filterBy: string) => onClick(filterBy);
 
   /** centralised class builder so we don’t repeat long strings inline */
@@ -49,7 +52,7 @@ const TabsMenu: FC<TabsMenuProps> = ({
         className={buildClasses(activeValue === "")}
         onClick={() => handleTabClick("")}
       >
-        Selected
+        {locale === "fr" ? "Tous" : "View all"}
       </Button>
 
       {/* dynamic tabs */}
