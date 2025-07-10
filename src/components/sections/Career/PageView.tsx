@@ -14,6 +14,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
 import { fetchJobPosts } from "@/services/career/career.service";
+import JobEmpty from "./JobEmpty";
 interface Props {
   departments: AssuranceJobDepartment[];
 }
@@ -133,7 +134,22 @@ export const PageView: FC<Props> = (props) => {
 
             <h2 className="sr-only">Job posts</h2>
             <AnimatePresence>
-              {!loading && (
+              {!loading && data.jobs.length === 0 && (
+                <motion.div
+                  key="blogList"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
+                >
+                  <JobEmpty
+                    title={t("emptyTitle")}
+                    description={t("emptyDescription")}
+                  />
+                </motion.div>
+              )}
+              {!loading && data.jobs.length > 0 && (
                 <motion.div
                   key="blogList"
                   initial={{ opacity: 0 }}
@@ -155,10 +171,12 @@ export const PageView: FC<Props> = (props) => {
           </div>
         </div>
 
-        <Pagination
-          meta={data.meta}
-          onClick={(page: number) => setPage({ page })}
-        />
+        {!loading && data.jobs.length > 0 && (
+          <Pagination
+            meta={data.meta}
+            onClick={(page: number) => setPage({ page })}
+          />
+        )}
       </ContentContainer>
     </>
   );

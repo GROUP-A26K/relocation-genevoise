@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { ContentContainer } from './ContentContainer';
-import { Content } from './Content';
-import { RelatedItemsPanel } from './RelatedItemsPanel';
-import { Job, JobDetail } from '@/models/Job';
+import { ContentContainer } from "./ContentContainer";
+import { Content } from "./Content";
+import { RelatedItemsPanel } from "./RelatedItemsPanel";
+import { Job, JobDetail } from "@/models/Job";
 
 interface Props {
   jobDetail: JobDetail;
@@ -14,7 +14,7 @@ export const PageView: React.FC<Props> = ({ jobDetail, featuredJobs }) => {
     <ContentContainer>
       <div className="flex lg:flex-row flex-col gap-16 justify-start items-start">
         <Content jobDetail={jobDetail} />
-        <RelatedItemsPanel jobs={featuredJobs} />
+        {featuredJobs.length > 0 && <RelatedItemsPanel jobs={featuredJobs} />}
       </div>
     </ContentContainer>
   );
