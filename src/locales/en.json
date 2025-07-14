@@ -746,7 +746,11 @@
     "heading": "Blog",
     "subHeading": "((Our latest news))",
     "description": "Dive into a curated selection of content designed to inform, inspire, and support you in your thinking process.",
-    "buttonText": "Start now"
+    "buttonText": "Start now",
+    "emptyData": {
+      "title": "No blog found!",
+      "description": "We couldn't find any blog"
+    }
   },
 
   "BlogDetail": {
@@ -887,8 +891,8 @@
       "description": "Stay up to date with the Geneva area : mobility, housing, jobs, and practical tips to help you settle in the region."
     },
     "Career": {
-      "title": "Assurance Genevoise - Career",
-      "description": "Join Assurance Genevoise and build a rewarding career in the insurance industry. Discover our job offers and opportunities for professional development."
+      "title": "Relocation Genevoise - Career",
+      "description": "Join Relocation Genevoise and build a rewarding career in the insurance industry. Discover our job offers and opportunities for professional development."
     },
     "LegalNotices": {
       "title": "Relocation Genevoise - Our legal notice",
