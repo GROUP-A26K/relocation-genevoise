@@ -17,7 +17,7 @@ const CtaBlock: React.FC<CtaBlockProps> = ({
   buttonText = "Contact Us",
 }) => {
   return (
-    <div className={cn("py-4", "lg:py-6")}>
+    <div className={cn("py-4 w-full", "lg:py-6")}>
       <div
         id={id}
         className={cn(

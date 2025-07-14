@@ -1,8 +1,10 @@
+import { Metadata } from "next";
+import { Suspense } from "react";
+import { getTranslations } from "next-intl/server";
+
+import { AppConfig } from "@/utils/AppConfig";
 import { PageView } from "@/components/sections/Career";
 import { fetchDepartments } from "@/services/career/career.service";
-import { AppConfig } from "@/utils/AppConfig";
-import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 type Props = {
   params: Promise<{ locale: string }>;
 };
@@ -28,5 +30,9 @@ export default async function Page(props: Props) {
 
   const { departments } = await fetchDepartments({ locale });
 
-  return <PageView departments={departments} />;
+  return (
+    <Suspense fallback={null}>
+      <PageView departments={departments} />;
+    </Suspense>
+  );
 }

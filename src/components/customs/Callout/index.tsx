@@ -36,7 +36,7 @@ const Callout: React.FC<CalloutProps> = ({ sectionType, content, title }) => {
   }[sectionType];
 
   return (
-    <div className={cn("py-4", "lg:py-6")}>
+    <div className={cn("py-4 w-full", "lg:py-6")}>
       <div
         className={cn(
           "p-4 rounded-2xl flex flex-col items-start justify-start gap-2 border border-solid",

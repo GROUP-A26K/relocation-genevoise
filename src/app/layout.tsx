@@ -1,8 +1,10 @@
-import { Metadata } from 'next';
-import { ReactNode } from 'react';
-import { Env } from '@/libs/Env';
-import { GoogleTagManager } from '@next/third-parties/google';
-import Script from 'next/script';
+import { Metadata } from "next";
+import Script from "next/script";
+import { ReactNode } from "react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { GoogleTagManager } from "@next/third-parties/google";
+
+import { Env } from "@/libs/Env";
 
 type Props = {
   children: ReactNode;
@@ -11,23 +13,23 @@ type Props = {
 export const metadata: Metadata = {
   metadataBase: new URL(Env.NEXT_PUBLIC_SITE_URL),
   alternates: {
-    canonical: '/',
+    canonical: "/",
     languages: {
-      'en-US': '/en-US',
-      'de-DE': '/de-DE',
+      "en-US": "/en-US",
+      "de-DE": "/de-DE",
     },
   },
   openGraph: {
-    type: 'website',
-    locale: 'de-DE',
+    type: "website",
+    locale: "de-DE",
     url: Env.NEXT_PUBLIC_SITE_URL,
-    siteName: 'Relocation Genevoise',
+    siteName: "Relocation Genevoise",
     images: [
       {
         url: `${Env.NEXT_PUBLIC_SITE_URL}/relocation-genevoise-preview.png`,
         width: 1200,
         height: 630,
-        alt: 'Relocation Genevoise',
+        alt: "Relocation Genevoise",
       },
     ],
   },
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
         url: `${Env.NEXT_PUBLIC_SITE_URL}/relocation-genevoise-preview.png`,
         width: 1200,
         height: 630,
-        alt: 'Relocation Genevoise',
+        alt: "Relocation Genevoise",
       },
     ],
   },
@@ -69,7 +71,7 @@ export default async function RootLayout(props: Props) {
       </head>
       <GoogleTagManager gtmId={Env.NEXT_PUBLIC_GTM_ID} />
 
-      <body>{props.children}</body>
+      <body>{<NuqsAdapter>{props.children}</NuqsAdapter>}</body>
     </html>
   );
 }

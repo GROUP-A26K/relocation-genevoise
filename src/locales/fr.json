@@ -753,7 +753,11 @@
     "heading": "Blog",
     "subHeading": "Nos dernières ((actualités))",
     "description": "Plongez dans une sélection de contenus pensés pour vous informer, vous inspirer et vous accompagner dans vos réflexions.",
-    "buttonText": "Commencer"
+    "buttonText": "Commencer",
+    "emptyData": {
+      "title": "Aucun blog trouvé!",
+      "description": "Nous n'avons trouvé aucun blog"
+    }
   },
 
   "BlogDetail": {
@@ -892,8 +896,8 @@
       "description": "Suivez toute l’actualité du bassin genevois : mobilité, logement, emploi et conseils pratiques pour bien s’installer dans la région."
     },
     "Career": {
-      "title": "Assurance Genevoise - Carrières",
-      "description": "Rejoignez Assurance Genevoise et faites partie d'une équipe dynamique dédiée à la protection de nos clients en Suisse. Consultez nos offres d'emploi."
+      "title": "Relocation Genevoise - Carrières",
+      "description": "Rejoignez Relocation Genevoise et faites partie d'une équipe dynamique dédiée à la protection de nos clients en Suisse. Consultez nos offres d'emploi."
     },
     "LegalNotices": {
       "title": "Relocation Genevoise - Our legal notice",
