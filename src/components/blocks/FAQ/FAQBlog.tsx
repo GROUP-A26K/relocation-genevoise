@@ -57,7 +57,7 @@ export const FAQBlog: React.FC<Props> = ({
   ],
 }) => {
   return (
-    <div id={id} className={cn("flex flex-col gap-4 items-start")}>
+    <div id={id} className={cn("flex flex-col w-full gap-4 items-start")}>
       <h2 className="text-2xl font-semibold text-left text-primary-500 !leading-[130%]">
         {heading}
       </h2>
