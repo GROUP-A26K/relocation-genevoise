@@ -1,20 +1,25 @@
-"use client";
-import { Pagination } from "@/components/blocks/Pagination";
-import TabsMenu from "@/components/blocks/TabsMenu";
-import { JobCard } from "@/components/customs/Card";
-import { FC, useCallback, useEffect, useState } from "react";
-import { ContentContainer } from "./ContentContainer";
-import { ParamsProps } from "@/services/blog.service";
-import { AssuranceJobDepartment } from "@/sanity/types";
-import Section from "@/components/customs/Section";
-import { Job } from "@/models/Job";
-import { Meta } from "@/models/Meta";
-import { Spinner } from "@/components/customs/Spinner/Spinner";
-import { AnimatePresence, motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
-import { fetchJobPosts } from "@/services/career/career.service";
-import JobEmpty from "./JobEmpty";
+'use client';
+
+import { useLocale, useTranslations } from 'next-intl';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
+
+import { Job } from '@/models/Job';
+import { Meta } from '@/models/Meta';
+import Section from '@/components/customs/Section';
+import TabsMenu from '@/components/blocks/TabsMenu';
+import { JobCard } from '@/components/customs/Card';
+import { ParamsProps } from '@/services/blog.service';
+import EmptyData from '@/components/customs/EmptyData';
+import { AssuranceJobDepartment } from '@/sanity/types';
+import { Pagination } from '@/components/blocks/Pagination';
+import { Spinner } from '@/components/customs/Spinner/Spinner';
+import { fetchJobPosts } from '@/services/career/career.service';
+import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+
+import { ContentContainer } from './ContentContainer';
+
 interface Props {
   departments: AssuranceJobDepartment[];
 }
@@ -22,15 +27,23 @@ interface Props {
 const initialParams = {
   page: 1,
   pageSize: 5,
-  filterBy: "",
-  locale: "en",
-  search: "",
+  filterBy: '',
+  locale: 'en',
+  search: '',
 };
 
 export const PageView: FC<Props> = (props) => {
-  const t = useTranslations("Career");
-
+  const t = useTranslations('Career');
   const locale = useLocale();
+
+  const [queryParams, setQueryParams] = useQueryStates(
+    {
+      page: parseAsInteger.withDefault(initialParams.page),
+      filterBy: parseAsString.withDefault(initialParams.filterBy),
+      search: parseAsString.withDefault(initialParams.search),
+    },
+    { shallow: false, scroll: false }
+  );
 
   const [data, setData] = useState<{ jobs: Job[]; meta: Meta }>({
     jobs: [],
@@ -44,40 +57,25 @@ export const PageView: FC<Props> = (props) => {
     },
   });
 
-  const [searchParams, setSearchParams] = useState<ParamsProps>({
-    ...initialParams,
-    locale: locale,
-  });
-
-  const setPage = (props: { page?: number; filterBy?: string }) => {
-    setSearchParams((prev) => ({
-      ...prev,
-      ...props,
-    }));
-  };
-
   const [loading, setLoading] = useState(false);
 
-  const loadNewsPost = useCallback(
-    async (params: ParamsProps) => {
-      setLoading(true);
+  const searchParams: ParamsProps = {
+    ...initialParams,
+    locale,
+    page: queryParams.page,
+    filterBy: queryParams.filterBy,
+  };
 
-      const { jobs, meta } = await fetchJobPosts(params);
-
-      const newData = {
-        jobs,
-        meta,
-      };
-      setData(newData);
-      setLoading(false);
-    },
-
-    [data]
-  );
+  const loadJobs = useCallback(async (params: ParamsProps) => {
+    setLoading(true);
+    const { jobs, meta } = await fetchJobPosts(params);
+    setData({ jobs, meta });
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
-    loadNewsPost({ ...searchParams });
-  }, [searchParams]);
+    loadJobs(searchParams);
+  }, [queryParams.page, queryParams.filterBy, loadJobs]);
 
   return (
     <>
@@ -85,15 +83,15 @@ export const PageView: FC<Props> = (props) => {
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left max-w-4xl">
             <div className="flex flex-col gap-3">
-              <div className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
-                {t("heading")}
+              <div className="text-sm font-semibold text-center text-secondary-500 !leading-[130%]">
+                {t('heading')}
               </div>
               <h1 className="text-5xl font-bold text-center !leading-[130%]">
-                {TextWithStrong(t("subHeading"))}
+                {TextWithStrong(t('subHeading'))}
               </h1>
             </div>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
-              {t("description")}
+              {t('description')}
             </p>
           </div>
         </div>
@@ -103,15 +101,14 @@ export const PageView: FC<Props> = (props) => {
         <div className="flex lg:flex-row flex-col items-center justify-center gap-8">
           <div className="lg:w-fit w-full px-auto overflow-y-auto">
             <TabsMenu
-              category={props.departments.map((dept) => {
-                return {
-                  title:
-                    dept.title?.[locale as "fr" | "en"] || "Unknown Department",
-                };
-              })}
-              variant="secondary"
-              activeValue={searchParams.filterBy}
-              onClick={(filterBy: string) => setPage({ filterBy, page: 1 })}
+              category={props.departments.map((dept) => ({
+                title:
+                  dept.title?.[locale as 'fr' | 'en'] || 'Unknown Department',
+              }))}
+              activeValue={queryParams.filterBy}
+              onClick={(filterBy: string) =>
+                setQueryParams({ filterBy, page: 1 })
+              }
             />
           </div>
         </div>
@@ -136,22 +133,22 @@ export const PageView: FC<Props> = (props) => {
             <AnimatePresence>
               {!loading && data.jobs.length === 0 && (
                 <motion.div
-                  key="blogList"
+                  key="empty"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
                   className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
                 >
-                  <JobEmpty
-                    title={t("emptyTitle")}
-                    description={t("emptyDescription")}
+                  <EmptyData
+                    title={t('emptyTitle')}
+                    description={t('emptyDescription')}
                   />
                 </motion.div>
               )}
               {!loading && data.jobs.length > 0 && (
                 <motion.div
-                  key="blogList"
+                  key="jobList"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -174,7 +171,7 @@ export const PageView: FC<Props> = (props) => {
         {!loading && data.jobs.length > 0 && (
           <Pagination
             meta={data.meta}
-            onClick={(page: number) => setPage({ page })}
+            onClick={(page: number) => setQueryParams({ page })}
           />
         )}
       </ContentContainer>
