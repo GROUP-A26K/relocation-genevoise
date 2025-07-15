@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import EmptyJobImage from '@/assets/img/career/empty-job-image.svg';
+import EmptyJobImage from "@/assets/img/career/empty-job-image.svg";
 
 type EmptyDataProps = {
   title?: string;
@@ -12,7 +12,7 @@ const EmptyData: React.FC<EmptyDataProps> = ({
   description = "While we don't have open positions right now, we’re always looking to connect with passionate individuals who share our values.",
 }) => {
   return (
-    <div className="w-full flex flex-col justify-center items-center lg:gap-y-12 gap-y-8">
+    <div className="w-full flex flex-col justify-center items-center lg:gap-y-12 gap-y-8 py-12">
       <Image
         src={EmptyJobImage}
         alt="No job offers available"
