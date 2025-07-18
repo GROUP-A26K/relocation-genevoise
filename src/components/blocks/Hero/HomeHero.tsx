@@ -1,11 +1,13 @@
-import BlocksBackground from '@/assets/img/bg/blocks-bg.svg';
-import Image from 'next/image';
-import { FC } from 'react';
-import Button from '@/components/customs/Button';
-import { Link } from '@/libs/i18nNavigation';
-import HeroImage from '@/assets/img/bg/agence-de-relocation-a-geneve.webp';
-import { FormattedText } from '@/components/customs/Text';
-import { ArrowRight } from 'lucide-react';
+import cn from "classnames";
+import { FC } from "react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+
+import { Link } from "@/libs/i18nNavigation";
+import Button from "@/components/customs/Button";
+import { FormattedText } from "@/components/customs/Text";
+import HeroImage from "@/assets/img/bg/agence-de-relocation-a-geneve.webp";
+import { AnimatedGridPattern } from "@/components/ui/magicui/animated-grid-pattern";
 
 interface Props {
   tagline?: string;
@@ -24,8 +26,8 @@ interface Props {
 }
 
 export const HomeHero: FC<Props> = ({
-  subHeading = 'Your independent broker in Geneva',
-  description = 'We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.',
+  subHeading = "Your independent broker in Geneva",
+  description = "We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.",
   button,
   heading,
   button2,
@@ -33,13 +35,18 @@ export const HomeHero: FC<Props> = ({
   return (
     <div className="flex flex-col lg:gap-16 gap-12">
       <div className="flex justify-center absolute size-full lg:top-0 top-0 inset-0 -z-10">
-        <Image
-          width={1240}
-          height={1226}
-          alt="Agence de Relocation à Genève"
-          title="Agence de Relocation à Genève"
-          src={BlocksBackground}
-          className="flex min-w-1240 min-h-1226 object-cover stroke-gray-200 lg:[mask-image:radial-gradient(circle_at_50%_40%,white,transparent)] [mask-image:radial-gradient(circle_at_50%_5%,white,transparent)]"
+        <AnimatedGridPattern
+          numSquares={30}
+          maxOpacity={1}
+          duration={1.5}
+          height={80}
+          width={80}
+          className={cn(
+            "min-h-1226",
+            "[mask-image:radial-gradient(450px_circle_at_center,white,transparent)]",
+            "md:[mask-image:radial-gradient(380px_circle_at_center,white,transparent)]",
+            "lg:[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
+          )}
         />
       </div>
 
@@ -61,7 +68,7 @@ export const HomeHero: FC<Props> = ({
 
           <div className="flex lg:flex-row flex-col gap-2 w-full items-center justify-center">
             {button && (
-              <Link href={'/contact'} className="lg:w-fit w-full">
+              <Link href={"/contact"} className="lg:w-fit w-full">
                 <Button
                   as="solid"
                   variant="md"
@@ -73,7 +80,7 @@ export const HomeHero: FC<Props> = ({
               </Link>
             )}
             {button2 && (
-              <Link href={'/find-accommodation'} className="lg:w-fit w-full">
+              <Link href={"/find-accommodation"} className="lg:w-fit w-full">
                 <Button
                   as="outline"
                   variant="md"

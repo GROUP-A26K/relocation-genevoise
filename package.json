@@ -41,6 +41,7 @@
     "lucide-react": "^0.475.0",
     "media-chrome": "^4.11.1",
     "minio": "^8.0.5",
+    "motion": "^12.23.6",
     "next": "^15.3.2",
     "next-intl": "^3.26.3",
     "next-sanity": "^9.8.59",
