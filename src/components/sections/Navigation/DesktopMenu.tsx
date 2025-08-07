@@ -1,21 +1,21 @@
 import {
   NavigationMenu,
   NavigationMenuList,
-} from '@/components/ui/navigation-menu-custom';
-import { renderMenuItem } from '@/components/blocks/MenuItem';
-import { Link } from '@/libs/i18nNavigation';
-import { NavbarProps } from './NavbarContainer';
-import Image from 'next/image';
-import Logo from '@/assets/img/logos/rg-logo.svg';
-import { LanguageSelector } from './LanguageSelector';
-import Button from '@/components/customs/Button';
-import { Phone } from 'lucide-react';
+} from "@/components/ui/navigation-menu-custom";
+import { renderMenuItem } from "@/components/blocks/MenuItem";
+import { Link } from "@/libs/i18nNavigation";
+import { NavbarProps } from "./NavbarContainer";
+import Image from "next/image";
+import Logo from "@/assets/img/logos/rg-logo.svg";
+import { LanguageSelector } from "./LanguageSelector";
+import Button from "@/components/customs/Button";
+import { Phone } from "lucide-react";
 
 const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
   return (
     <nav className="hidden justify-between nav:flex">
       <div className="flex items-center justify-between w-full">
-        <Link href={'/'} className="flex items-center gap-2">
+        <Link href={"/"} className="flex items-center gap-2">
           <Image
             src={Logo.src}
             alt="Relocation Genevoise, courtier en relocation à Genève"
@@ -31,9 +31,24 @@ const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
           </NavigationMenuList>
         </NavigationMenu>
         <div className="flex items-center gap-2">
+          <Link
+            href="tel:+41227151748"
+            className="flex items-center no-underline"
+          >
+            <Button
+              as="link"
+              href="tel:+41227151748"
+              variant="md"
+              type="primary"
+              iconStart={Phone}
+              className="no-underline text-black-500 hover:text-black-500"
+            >
+              +41 22 715 17 48
+            </Button>
+          </Link>
           <LanguageSelector />
           <Link
-            href={callButton?.url ?? '/rappelez-moi'}
+            href={callButton?.url ?? "/rappelez-moi"}
             className="flex items-center"
           >
             <Button as="solid" variant="md" type="primary" iconStart={Phone}>
