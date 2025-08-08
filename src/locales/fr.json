@@ -958,13 +958,15 @@
       {
         "title": "Trouver un locataire"
       },
-      {
-        "title": "Entreprises"
-      },
+
       {
         "title": "Services",
         "subtitle": "NOS SERVICES",
         "items": [
+          {
+            "title": "Entreprises",
+            "description": "Des solutions de relocation sur mesure pour les entreprises et leurs collaborateurs"
+          },
           {
             "title": "Scolarité",
             "description": "Un conseil avisé pour choisir l’école adaptée à vos enfants"
@@ -973,10 +975,9 @@
             "title": "Conciergerie",
             "description": "Un service dédié à la gestion de toutes vos demandes, même les plus spécifiques"
           },
-
           {
             "title": "Découvrir Genève",
-            "description": "Vous faire découvrir Genève et ses incontournables."
+            "description": "Vous faire découvrir Genève et ses incontournables"
           }
         ]
       }
