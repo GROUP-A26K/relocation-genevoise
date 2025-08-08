@@ -73,7 +73,7 @@ const ContactFeature: FC<Props> = ({
       <div className='flex flex-col lg:gap-8 gap-6'>
         <ul role='list' className='grid gap-4 lg:grid-cols-2 lg:gap-8'>
           {reasonItems.map((reasonItem) => (
-            <li key={reasonItem.title} className='h-full'>
+            <li key={reasonItem.title}>
               <FeatureColCard {...reasonItem} />
             </li>
           ))}

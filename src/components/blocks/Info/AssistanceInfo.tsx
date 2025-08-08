@@ -70,7 +70,7 @@ export const AssistanceInfo: FC<Props> = ({
         </h2>
         <ul role='list' className='grid gap-4 lg:grid-cols-3 lg:gap-8'>
           {reasonItems.map((reasonItem) => (
-            <li key={reasonItem.title} className='h-full'>
+            <li key={reasonItem.title}>
               <FeatureColCard {...reasonItem} />
             </li>
           ))}

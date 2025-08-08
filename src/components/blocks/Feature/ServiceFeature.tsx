@@ -40,7 +40,7 @@ const ServiceFeature = ({
 
           <ul role='list' className='grid gap-4 lg:grid-cols-3 lg:gap-8'>
             {reason.reasonItems.map((reasonItem) => (
-              <li key={reasonItem.title} className='h-full'>
+              <li key={reasonItem.title}>
                 <FeatureRowCard {...reasonItem} />
               </li>
             ))}
