@@ -1,7 +1,7 @@
 import cn from "classnames";
-import Link from "next/link";
 
 import Button from "@/components/customs/Button";
+import { Link } from "@/libs/i18nNavigation";
 
 type CtaBlockProps = {
   id: string;

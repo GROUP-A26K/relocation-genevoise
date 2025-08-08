@@ -51,11 +51,8 @@ interface Props {
   }[];
 }
 
-const Footer: React.FC<{ locale: string }> = async ({ locale }) => {
-  const t = await getTranslations({
-    locale,
-    namespace: "Footer",
-  });
+const Footer = async () => {
+  const t = await getTranslations("Footer");
 
   const footerData: Props = {
     contact: {

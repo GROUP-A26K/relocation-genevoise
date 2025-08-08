@@ -41,7 +41,7 @@ const ServiceFeature2 = ({
       </div>
       <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
         {features.map((feature) => (
-          <li key={feature.title} className="h-full">
+          <li key={feature.title}>
             <FeatureRowCard2 {...feature} />
           </li>
         ))}
