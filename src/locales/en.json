@@ -954,12 +954,13 @@
         "title": "Find a tenant"
       },
       {
-        "title": "Companies"
-      },
-      {
         "title": "Services",
         "subtitle": "OUR SERVICES",
         "items": [
+          {
+            "title": "Companies",
+            "description": "Relocation solutions tailored for businesses and their employees"
+          },
           {
             "title": "Academic Services",
             "description": "Expert advice to help you choose the right school for your children"
@@ -970,7 +971,7 @@
           },
           {
             "title": "Discover Geneva",
-            "description": "Let us show you Geneva and its must-see attractions."
+            "description": "Let us show you Geneva and its must-see attractions"
           }
         ]
       }
