@@ -7,9 +7,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion-changelog-custom';
-import { useScrollspy } from '@/hooks/useScrollspy';
 import debounce from 'lodash.debounce';
 import { cn } from '@/libs/utils';
+import { useScroll } from '@/hooks/useScroll';
 
 export interface ContentProps {
   position?: string;
@@ -21,7 +21,7 @@ export interface ContentProps {
 }
 
 export const Content: FC<ContentProps> = ({ items }) => {
-  const { activeId } = useScrollspy(
+  const { activeId } = useScroll(
     [...items.map((item, index) => `item-${index}`)],
     500
   );
