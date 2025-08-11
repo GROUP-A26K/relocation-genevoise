@@ -15,21 +15,23 @@ const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
   return (
     <nav className="hidden justify-between nav:flex">
       <div className="flex items-center justify-between w-full">
-        <Link href={"/"} className="flex items-center gap-2">
-          <Image
-            src={Logo.src}
-            alt="Relocation Genevoise, courtier en relocation à Genève"
-            title="Relocation Genevoise, courtier en relocation à Genève"
-            width={70}
-            height={26.98}
-            className="min-h-[26.98px] min-w-[70px]"
-          />
-        </Link>
-        <NavigationMenu className="static nav:block">
-          <NavigationMenuList className="xl:gap-8 gap-2">
-            {menu.map((item) => renderMenuItem(item, locale))}
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="flex items-center gap-6">
+          <Link href={"/"} className="flex items-center gap-2">
+            <Image
+              src={Logo.src}
+              alt="Relocation Genevoise, courtier en relocation à Genève"
+              title="Relocation Genevoise, courtier en relocation à Genève"
+              width={70}
+              height={26.98}
+              className="min-h-[26.98px] min-w-[70px]"
+            />
+          </Link>
+          <NavigationMenu className="static nav:block">
+            <NavigationMenuList className="xl:gap-8 gap-2">
+              {menu.map((item) => renderMenuItem(item, locale))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
         <div className="flex items-center gap-2">
           <Link
             href="tel:+41227151748"
