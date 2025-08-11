@@ -81,7 +81,7 @@ export const CompaniesInfo: FC<Props> = ({
             <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
               {item.subItems &&
                 item?.subItems.map((subItem, j) => (
-                  <li key={subItem.title} className="h-full">
+                  <li key={subItem.title}>
                     <CompanyCard
                       key={`${i}-${j}`}
                       title={subItem.title}

@@ -23,7 +23,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 export default async function Page(props: Props) {
   const { locale } = await props.params;
-  // Fetch data if needed
   const posts = await fetchSitemapBlogs({
     locale: locale,
   });
