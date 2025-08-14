@@ -1,11 +1,11 @@
-import { cn } from '@/libs/utils';
-import { FC } from 'react';
+import { cn } from "@/libs/utils";
+import { FC } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from "@/components/ui/accordion";
 
 interface Props {
   title?: string;
@@ -17,22 +17,28 @@ interface Props {
 
 const DesktopMenu: FC<Props> = (props) => {
   return (
-    <div className="lg:flex flex-col gap-4 w-fit hidden">
+    <div className="lg:flex flex-col gap-8 w-fit hidden">
       {props?.isTableContent && (
-        <div className="flex lg:text-xl text-base text-black-500 font-semibold !leading-[130%]">
+        <div className="lg:text-xl text-base text-black-500 font-semibold !leading-[130%]">
           {props.title && props.title}
         </div>
       )}
-      <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[160px] w-full">
+      <ul className="flex flex-col gap-1 xl:max-w-[263px] lg:max-w-[160px] w-full border-l-2 border-solid border-grey-100">
         {props.menuItems.map((item) => (
-          <li key={`menu-item-${item.id}`} className="menu-item flex">
+          <li
+            key={`menu-item-${item.id}`}
+            className={cn("px-4 py-3 transition-all duration-200 ease-in-out", {
+              "ml-[-2px] border-l-2 border-solid border-secondary-500 bg-secondary-25":
+                item.id === props.activeId,
+            })}
+          >
             <a
               href={`#${item.id}`}
               title={item.title}
               onClick={() => props.setActiveId(item.id)}
               className={cn(
-                'menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap',
-                item.id === props.activeId && 'text-primary-500'
+                "text-base text-black-200 font-normal !leading-[130%] line-clamp-4 text-wrap transition-colors duration-200 ease-in-out",
+                { "text-primary-500 font-semibold": item.id === props.activeId }
               )}
             >
               {item.title}
@@ -66,7 +72,7 @@ const MobileMenu: FC<Props> = (props) => {
             )}
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-4 text-balance px-4 pb-3">
-            <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[160px] w-full border-t-2 border-grey-100 pt-3">
+            <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[160px] w-full border-t-2 border-grey-200 pt-3">
               {props.menuItems.map((item) => (
                 <li key={`menu-item-${item.id}`} className="menu-item flex">
                   <a
@@ -74,9 +80,9 @@ const MobileMenu: FC<Props> = (props) => {
                     title={item.title}
                     onClick={() => props.setActiveId(item.id)}
                     className={cn(
-                      'menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap',
+                      "menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap",
                       item.id === props.activeId &&
-                        'text-black-500 pl-4 border-l-4 border-primary-500'
+                        "text-black-500 pl-4 border-l-4 border-primary-500"
                     )}
                   >
                     {item.title}

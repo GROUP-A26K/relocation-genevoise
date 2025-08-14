@@ -42,7 +42,7 @@ export const ContentView = ({ blog, tableOfContent }: Props) => {
     <ContentContainer>
       <div
         className={cn(
-          "lg:!sticky lg:!top-8 h-fit relative lg:!pb-0 pb-12 lg:w-fit w-full"
+          "lg:!sticky lg:!top-8 h-fit relative lg:w-fit w-full"
         )}
       >
         <BlogContentMenu
