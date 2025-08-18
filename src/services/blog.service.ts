@@ -3,6 +3,7 @@ import {
   BLOGS_QUERY,
   BLOG_DETAIL_QUERY,
   BLOGS_SITEMAP_QUERY,
+  BLOG_SLUG_QUERY,
 } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import {
@@ -223,3 +224,29 @@ export async function fetchPostCategory() {
     posts,
   };
 }
+
+export const fetchBlogSlugBySlug = async (slug: string) => {
+  try {
+    const response = await client.fetch<{
+      targetSlug: {
+        language: string;
+        slug: {
+          current: string;
+        };
+      }[];
+    } | null>(BLOG_SLUG_QUERY, { slug });
+
+    if (!response?.targetSlug) {
+      return [];
+    }
+
+    return response.targetSlug.map((item) => ({
+      locale: item.language,
+      slug: item.slug.current,
+      href: `/blog/${item.slug.current.replace(/^[a-z]{2}-/i, "")}`,
+    }));
+  } catch (error) {
+    console.error("Error fetching blog slug:", error);
+    return [];
+  }
+};
