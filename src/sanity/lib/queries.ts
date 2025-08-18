@@ -139,6 +139,22 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
       }
 `);
 
+export const BLOG_SLUG_QUERY = defineQuery(`
+  *[
+    _type == "relocationBlogPost" &&
+    slug.current == $slug
+  ][0] {
+    "targetSlug": *[
+      _type == "translation.metadata"&& 
+      references(^._id)
+    ][0].translations[].value->
+    {
+      language,
+      slug
+    }
+  }
+`);
+
 export const BLOGS_SITEMAP_QUERY = defineQuery(`
   {
     "blogs": *[
@@ -262,6 +278,22 @@ export const CAREER_DETAIL_QUERY = defineQuery(`
   "department": department->{
           title
         }
+  }
+`);
+
+export const CAREER_SLUG_QUERY = defineQuery(`
+  *[
+    _type == "relocationJobDepartment" &&
+    slug.current == $slug
+  ][0] {
+    "targetSlug": *[
+      _type == "translation.metadata"&& 
+      references(^._id)
+    ][0].translations[].value->
+    {
+      language,
+      slug
+    }
   }
 `);
 
