@@ -1,11 +1,95 @@
 import { defineQuery } from "next-sanity";
 
+export const BLOG_LASTEST_QUERY = defineQuery(`
+  *[
+    _type == "relocationBlogPost" &&
+    !(_id in path("drafts.**")) &&
+    language == $locale
+  ]
+  | order(publishedDate desc)[0] {
+    _id,
+    title,
+    summary,
+    language,
+    mainPhoto {
+      photo {
+        asset->{
+          _id,
+          url
+        },
+        hotspot,
+        crop
+      },
+      photoAlt
+    },
+    body[]{
+      ...,
+      blockTitle {
+        ...,
+        "content": content[]{
+          ...,
+          _type == "videoZone" => {
+            ...,
+            videoFile {
+              asset->{
+                _id,
+                url
+              }
+            }
+          },
+          _type == "quoteImageZone" => {
+            ...,
+            photo {
+              asset->{
+                _id,
+                url
+              }
+            }
+          },
+          _type == "photoZone" => {
+            ...,
+            mainPhoto {
+              imageTitle,
+              photo {
+                asset->{
+                  _id,
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    slug,
+    publishedDate,
+    timeToRead,
+    createdAt,
+    "category": category[]->{
+      _id,
+      name
+    },
+    "author": author->{
+      _id,
+      name,
+      email,
+      authorAvatar {
+        asset->{
+          _id,
+          url
+        }
+      }
+    }
+  }
+`);
+
 export const BLOGS_QUERY = defineQuery(`
     {
     "blogs": *[
       _type == "relocationBlogPost" &&
       !(_id in path("drafts.**")) &&
       language == $locale &&
+      slug.current != $slug &&
       ($category == "" || $category in category[]->name)&&
       ($title == "" || title match $title)
     ]| order(publishedDate desc) [$start...$end] {
@@ -51,6 +135,7 @@ export const BLOGS_QUERY = defineQuery(`
       *[
         _type == "relocationBlogPost" &&
         language == $locale &&
+        slug.current != $slug &&
         ($category == "" || $category in category[]->name)
       ]
     )

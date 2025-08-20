@@ -1,36 +1,36 @@
 // renderHelpers.tsx
-import React from 'react';
-import { cn } from '@/libs/utils';
-import { LinkText, List, ListItem, Paragraph } from '@/components/customs/Text';
-import { ImageTitle } from '@/components/customs/ImageTitle';
-import { Quote } from '@/components/customs/Quote';
-import { TableWithTitle } from '@/components/customs/Table';
+import React from "react";
+import { cn } from "@/libs/utils";
+import { LinkText, List, ListItem, Paragraph } from "@/components/customs/Text";
+import { ImageTitle } from "@/components/customs/ImageTitle";
+import { Quote } from "@/components/customs/Quote";
+import { TableWithTitle } from "@/components/customs/Table";
 import {
   EmbedVideoWithTitle,
   VideoWithTitle,
-} from '@/components/customs/Media';
-import { Content } from '@/models/Block';
-import QuoteImage from '@/components/customs/QuoteImage';
-import Callout from '@/components/customs/Callout';
+} from "@/components/customs/Media";
+import { Content } from "@/models/Block";
+import QuoteImage from "@/components/customs/QuoteImage";
+import Callout from "@/components/customs/Callout";
 
 export const getMarkClasses = (marks?: string[]): string => {
-  if (!marks || marks.length === 0) return '';
+  if (!marks || marks.length === 0) return "";
   return marks
     .map((mark) => {
       switch (mark) {
-        case 'strong':
-          return 'font-bold';
-        case 'em':
-          return 'italic';
-        case 'underline':
-          return 'underline';
-        case 'strike-through':
-          return 'line-through';
+        case "strong":
+          return "font-bold";
+        case "em":
+          return "italic";
+        case "underline":
+          return "underline";
+        case "strike-through":
+          return "line-through";
         default:
-          return '';
+          return "";
       }
     })
-    .join(' ');
+    .join(" ");
 };
 
 /* ------------------------------------------------------------------ *
@@ -47,7 +47,7 @@ const splitLinkMark = (
   markDefs?:
     | Array<{
         href?: string;
-        _type: 'link';
+        _type: "link";
         _key: string;
       }>
     | undefined
@@ -61,7 +61,7 @@ const splitLinkMark = (
   const restMarks: string[] = [];
 
   marks.forEach((mark) => {
-    const def = markDefs?.find((d) => d._key === mark && d._type === 'link');
+    const def = markDefs?.find((d) => d._key === mark && d._type === "link");
     if (def) {
       linkDef = def;
     } else {
@@ -79,12 +79,12 @@ export const renderArray = (
   spans: Array<{
     marks?: string[];
     text?: string;
-    _type: 'span';
+    _type: "span";
     _key: string;
   }>,
   markDefs?: Array<{
     href?: string;
-    _type: 'link';
+    _type: "link";
     _key: string;
   }>
 ) => {
@@ -128,12 +128,12 @@ export const renderQuoteArray = (
   spans: Array<{
     marks?: string[];
     text?: string;
-    _type: 'span';
+    _type: "span";
     _key: string;
   }>,
   markDefs?: Array<{
     href?: string;
-    _type: 'link';
+    _type: "link";
     _key: string;
   }>
 ) => {
@@ -180,16 +180,16 @@ export const renderQuoteArray = (
 
 export const renderContent = (content: Content) => {
   switch (content._type) {
-    case 'block':
-      if (content.style === 'blockquote' && content.children) {
+    case "block":
+      if (content.style === "blockquote" && content.children) {
         return (
           <Quote title={renderQuoteArray(content.children, content.markDefs)} />
         );
       }
 
-      if (content.style?.includes('h')) {
+      if (content.style?.includes("h")) {
         return (
-          <Paragraph className="text-black-500 font-bold">
+          <Paragraph style={content.style} className="text-black-500 font-bold">
             {content.children &&
               renderArray(content.children, content.markDefs)}
           </Paragraph>
@@ -202,15 +202,15 @@ export const renderContent = (content: Content) => {
         </Paragraph>
       );
 
-    case 'quote':
+    case "quote":
       return (
         <Quote
-          author={content.author || ''}
-          title={`"${content.content}"` || ''}
+          author={content.author || ""}
+          title={`"${content.content}"` || ""}
         />
       );
 
-    case 'quoteImageZone':
+    case "quoteImageZone":
       return (
         <QuoteImage
           author={content.author}
@@ -220,16 +220,16 @@ export const renderContent = (content: Content) => {
         />
       );
 
-    case 'photoZone':
+    case "photoZone":
       return (
         <ImageTitle
-          title={content.mainPhoto?.imageTitle || 'Photo'}
+          title={content.mainPhoto?.imageTitle || "Photo"}
           imgUrl={content.mainPhoto?.photo?.asset?.url}
         />
       );
 
-    case 'videoZone':
-      if (content.source === 'embed') {
+    case "videoZone":
+      if (content.source === "embed") {
         return (
           <EmbedVideoWithTitle
             videoUrl={content.embedUrl}
@@ -239,19 +239,19 @@ export const renderContent = (content: Content) => {
       }
       return (
         <VideoWithTitle
-          title={content.title || 'Video'}
+          title={content.title || "Video"}
           videoUrl={
-            content.source == 'file'
+            content.source == "file"
               ? content.videoFile?.asset?.url
               : content.videoUrl
           }
         />
       );
 
-    case 'tableZone':
+    case "tableZone":
       return (
         <TableWithTitle
-          title={content.tableTitle || 'Table'}
+          title={content.tableTitle || "Table"}
           tableContent={
             content.tableData
               ? {
@@ -267,12 +267,12 @@ export const renderContent = (content: Content) => {
         />
       );
 
-    case 'newSectionZone':
+    case "newSectionZone":
       return (
         <Callout
           content={renderGroupedContent(content.sectionContent || [])}
-          title={content.sectionTitle || 'Section'}
-          sectionType={content.sectionType || ('information' as const)}
+          title={content.sectionTitle || "Section"}
+          sectionType={content.sectionType || ("information" as const)}
         />
       );
     default:
@@ -291,7 +291,7 @@ export const groupListBlocks = (
   let currentGroup: { type: string; items: Content[] } | null = null;
 
   blocks.forEach((block) => {
-    if ('listItem' in block && block.listItem) {
+    if ("listItem" in block && block.listItem) {
       if (currentGroup && currentGroup.type === block.listItem) {
         currentGroup.items.push(block);
       } else {
@@ -315,8 +315,8 @@ export const renderGroupedContent = (contents: Content[]) => {
   const grouped = groupListBlocks(contents);
 
   return grouped.map((groupOrBlock, index) => {
-    if ('items' in groupOrBlock) {
-      const format = groupOrBlock.type === 'number' ? 'ordered' : 'unordered';
+    if ("items" in groupOrBlock) {
+      const format = groupOrBlock.type === "number" ? "ordered" : "unordered";
       return (
         <List key={index} format={format}>
           {groupOrBlock.items.map((item, idx) => (
