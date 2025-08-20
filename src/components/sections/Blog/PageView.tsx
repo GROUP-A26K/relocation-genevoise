@@ -102,7 +102,7 @@ export const PageView: FC<Props> = (props) => {
             subHeading={t("subHeading")}
             description={t("description")}
             buttonText={t("buttonText")}
-            post={props.newestBlog}
+            blog={props.newestBlog}
           />
         )}
       </Section>

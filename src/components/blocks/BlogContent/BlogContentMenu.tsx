@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Props {
   title?: string;
@@ -51,6 +52,8 @@ const DesktopMenu: FC<Props> = (props) => {
 };
 
 const MobileMenu: FC<Props> = (props) => {
+  const isMobile = useMediaQuery("(max-width: 1024px)");
+  if (!isMobile) return null;
   return (
     <div className="w-full lg:hidden">
       <Accordion
