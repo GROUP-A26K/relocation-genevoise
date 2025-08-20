@@ -23,7 +23,7 @@ import { ContentContainer } from "./ContentContainer";
 
 interface Props {
   category: BlogCategory[];
-  newestBlog: Blog;
+  newestBlog: Blog | null;
 }
 
 const initialParams = {
@@ -84,14 +84,23 @@ export const PageView: FC<Props> = (props) => {
 
   const loadNewsPost = useCallback(async (params: ParamsProps) => {
     setLoading(true);
-    const { blogs, meta } = await fetchBlogs(params);
+    const { blogs, meta } = await fetchBlogs({
+      ...params,
+      exceptSlug: props.newestBlog?.slug,
+    });
     setData({ blogs, meta });
     setLoading(false);
   }, []);
 
   useEffect(() => {
     loadNewsPost(searchParams);
-  }, [queryParams.page, queryParams.filterBy, debouncedSearch, loadNewsPost]);
+  }, [
+    queryParams.page,
+    queryParams.filterBy,
+    debouncedSearch,
+    props.newestBlog,
+    loadNewsPost,
+  ]);
 
   return (
     <>

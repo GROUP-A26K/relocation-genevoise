@@ -4,6 +4,7 @@ import {
   BLOG_DETAIL_QUERY,
   BLOGS_SITEMAP_QUERY,
   BLOG_SLUG_QUERY,
+  BLOG_LASTEST_QUERY,
 } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import {
@@ -47,6 +48,7 @@ export interface ParamsProps {
   locale?: string;
   start?: number;
   limit?: number;
+  exceptSlug?: string;
 }
 
 export const fetchBlogs = async (
@@ -67,6 +69,7 @@ export const fetchBlogs = async (
         locale: params?.locale ?? "en",
         category: params?.filterBy ?? "",
         title: params?.search ? `*${params?.search}*` : "",
+        slug: params?.exceptSlug ?? "",
       },
       { next: { tags: ["blogs"] } }
     );
@@ -213,10 +216,59 @@ export const fetchSitemapBlogs = async (
   };
 };
 
-export async function fetchPostCategory() {
+export const fetchLatestBlog = async (
+  locale: string = "fr"
+): Promise<BlogDetail | null> => {
+  try {
+    const response = await client.fetch<BlogPostProps>(
+      BLOG_LASTEST_QUERY,
+      {
+        locale,
+      },
+      { next: { tags: ["blog"] } }
+    );
+    if (!response) {
+      return null;
+    }
+    return {
+      id: response._id,
+      title: response.title || "Untitled Post",
+      href: `/blog/${(response?.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
+      description: response?.summary || "No summary available",
+      slug: response?.slug?.current || "",
+      timeToRead: response?.timeToRead || 0,
+      publishedDate: response?.publishedDate || "Unknown Date",
+      imageUrl:
+        response.mainPhoto?.photo?.asset?.url ||
+        "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80",
+      time: "3",
+      body: response?.body || [],
+      category:
+        response?.category?.map((cat) => ({
+          title: cat?.name || "Unknown Category",
+          href: `/blog/category/${cat?.name || ""}`,
+        })) || [],
+      author: {
+        name: response.author?.name || "Unknown Author",
+        role: "Author",
+        href: `/blog/author/${response?.author?.name || ""}`,
+        email: response.author?.email || "Unknown Email",
+        imageUrl:
+          response.author?.authorAvatar?.asset?.url ||
+          "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80",
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching blog detail:", error);
+  }
+
+  return null;
+};
+
+export async function fetchPostCategory(params?: ParamsProps) {
   const posts = await client.fetch<BlogCategory[]>(
     POST_CATEGORIES_QUERY,
-    {},
+    { locale: params?.locale ?? "en" },
     { next: { tags: ["categories"] } }
   );
 
