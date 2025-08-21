@@ -1,9 +1,11 @@
 'use client';
-import { Badge } from '@/components/ui/badge';
-import { Blog } from '@/models/BLog';
-import { useLocale } from 'next-intl';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
+
+import { cn } from '@/libs/utils';
+import { Blog } from '@/models/BLog';
 import { Link } from '@/libs/i18nNavigation';
+import { Badge } from '@/components/ui/badge';
 
 export const BlogBGCard: React.FC<Blog> = ({
   title,
@@ -18,20 +20,20 @@ export const BlogBGCard: React.FC<Blog> = ({
   const locale = useLocale();
   return (
     <Link href={href}>
-      <article className="flex flex-col relative items-start justify-between">
-        <div className="w-full">
-          <Image
-            alt="Relocation Genevoise Article"
-            title="Relocation Genevoise Article"
-            src={imageUrl}
-            width={1240}
-            height={620}
-            className="aspect-video lg:h-[620px] lg:max-h-[620px] max-h-[226px] rounded-3xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-          />
-        </div>
-        <div className="lg:p-6 lg:absolute lg:bottom-0 lg:bg-opacity-90 w-full p-5 px-0 flex flex-col gap-6 bg-white relative">
+      <article
+        className={cn(
+          'flex flex-col-reverse items-start gap-5 rounded-2xl',
+          'md:flex-row md:gap-8 md:bg-grey-50'
+        )}
+      >
+        <div
+          className={cn(
+            'flex self-stretch flex-col gap-6 justify-between w-full',
+            'md:p-8 max-w-[340px] lg:max-w-[432px]'
+          )}
+        >
           <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap gap-2 text-xs">
+            <div className="flex flex-wrap gap-2">
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
@@ -42,15 +44,15 @@ export const BlogBGCard: React.FC<Blog> = ({
               ))}
             </div>
             <div className="flex flex-col gap-2">
-              <h3
+              <h2
                 title={title}
-                className="line-clamp-1 lg:text-2xl text-xl font-semibold text-gray-900 group-hover:text-gray-600 !leading-[130%]"
+                className="lg:text-3xl text-xl font-semibold text-black-500 group-hover:text-black-600 !leading-[130%]"
               >
                 {title}
-              </h3>
+              </h2>
               <p
                 title={description}
-                className="line-clamp-2 lg:text-base font-normal text-sm !leading-[130%] text-gray-600 max-w-3xl cursor-pointer"
+                className="lg:text-base font-normal text-sm !leading-[130%] text-black-200"
               >
                 {description}
               </p>
@@ -66,21 +68,39 @@ export const BlogBGCard: React.FC<Blog> = ({
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
-              <div className="text-base !leading-[130%] gap-[2px]">
-                <p className="font-semibold text-gray-700 !leading-[130%]">
+              <div className="flex flex-col gap-[2px]">
+                <p className="text-base font-semibold text-grey-700 !leading-[130%]">
                   {author.name}
                 </p>
-                <p className="text-sm font-normal text-gray-700 !leading-[130%]">
+                <p className="text-sm font-normal text-grey-700 !leading-[130%]">
                   {publishedDate}
                 </p>
               </div>
             </div>
-
             <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 !leading-[130%]">
               {timeToRead}{' '}
               {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>
           </div>
+        </div>
+
+        <div className={cn('w-full self-stretch', 'lg:w-[776px]')}>
+          <Image
+            alt="Assurance Genevoise Article"
+            title="Assurance Genevoise Article"
+            src={imageUrl}
+            width={0}
+            height={0}
+            priority
+            sizes="100vw"
+            loading="eager"
+            className={cn(
+              'aspect-video',
+              'lg:h-[495px] lg:max-h-[495px] sm:h-[280px] md:h-full max-xs:max-h-[226px]',
+              'rounded-2xl w-full bg-gray-100 object-cover',
+              'sm:aspect-[2/1] lg:aspect-[3/2]'
+            )}
+          />
         </div>
       </article>
     </Link>

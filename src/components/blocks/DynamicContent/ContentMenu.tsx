@@ -1,11 +1,12 @@
-import { cn } from '@/libs/utils';
-import { FC } from 'react';
+import { cn } from "@/libs/utils";
+import { FC } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from "@/components/ui/accordion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Props {
   title?: string;
@@ -31,8 +32,8 @@ const DesktopMenu: FC<Props> = (props) => {
               title={item.title}
               onClick={() => props.setActiveId(item.id)}
               className={cn(
-                'menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap',
-                item.id === props.activeId && 'text-primary-500'
+                "menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap",
+                item.id === props.activeId && "text-primary-500"
               )}
             >
               {item.title}
@@ -45,6 +46,8 @@ const DesktopMenu: FC<Props> = (props) => {
 };
 
 const MobileMenu: FC<Props> = (props) => {
+  const isMobile = useMediaQuery("(max-width: 1024px)");
+  if (!isMobile) return null;
   return (
     <div className="w-full lg:hidden">
       <Accordion
@@ -74,9 +77,9 @@ const MobileMenu: FC<Props> = (props) => {
                     title={item.title}
                     onClick={() => props.setActiveId(item.id)}
                     className={cn(
-                      'menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap',
+                      "menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap",
                       item.id === props.activeId &&
-                        'text-black-500 pl-4 border-l-4 border-primary-500'
+                        "text-black-500 pl-4 border-l-4 border-primary-500"
                     )}
                   >
                     {item.title}

@@ -20,7 +20,7 @@ export const DynamicContent: FC<ContentProps> = ({
       {blockTitle?.title && (
         <h2
           className={cn(
-            'blog-title lg:text-2xl text-xl font-semibold !leading-[130%]',
+             'blog-title text-3xl font-semibold !leading-[130%]',
             titleClassName
           )}
         >
