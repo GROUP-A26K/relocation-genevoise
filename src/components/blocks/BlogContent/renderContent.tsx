@@ -190,7 +190,7 @@ export const renderContent = (content: Content) => {
 
       if (content.style?.includes("h")) {
         return (
-          <Paragraph className="text-black-500 font-bold">
+          <Paragraph style={content.style} className="text-black-500 font-bold">
             {content.children &&
               renderArray(content.children, content.markDefs)}
           </Paragraph>
