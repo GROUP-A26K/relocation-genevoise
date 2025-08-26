@@ -46,9 +46,9 @@ const Input: FC<Props> = ({
           <ShadcnInput
             type="search"
             className={cn(
-              'h-10 shadow-none text-[14px] placeholder:text-grey-400 text-grey-400 rounded-[1.5rem] border-gray-200 pl-8 !leading-[130%]',
-              'hover:border-grey-400 hover:text-back-100',
-              'focus-visible:text-grey-400 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-50',
+              'h-10 shadow-none text-sm placeholder:text-grey-400 text-black-400 rounded-[1.5rem] border-gray-200 pl-8 !leading-[130%]',
+              'hover:border-grey-400',
+              'focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-50',
               disabled &&
                 'placeholder:text-gray-100 placeholder:font-medium text-gray-50 pointer-events-none select-none',
               error && 'border-red-500 hover:border-red-500',

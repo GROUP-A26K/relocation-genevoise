@@ -82,25 +82,23 @@ export const PageView: FC<Props> = (props) => {
     search: debouncedSearch,
   };
 
-  const loadNewsPost = useCallback(async (params: ParamsProps) => {
-    setLoading(true);
-    const { blogs, meta } = await fetchBlogs({
-      ...params,
-      exceptSlug: props.newestBlog?.slug,
-    });
-    setData({ blogs, meta });
-    setLoading(false);
-  }, []);
+  const loadNewsPost = useCallback(
+    async (params: ParamsProps) => {
+      setLoading(true);
+      const { blogs, meta } = await fetchBlogs({
+        ...params,
+        exceptSlug: props.newestBlog?.slug,
+      });
+      setData({ blogs, meta });
+      setLoading(false);
+    },
+    [props.newestBlog?.slug]
+  );
 
   useEffect(() => {
     loadNewsPost(searchParams);
-  }, [
-    queryParams.page,
-    queryParams.filterBy,
-    debouncedSearch,
-    props.newestBlog,
-    loadNewsPost,
-  ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParams.page, queryParams.filterBy, debouncedSearch]);
 
   return (
     <>
