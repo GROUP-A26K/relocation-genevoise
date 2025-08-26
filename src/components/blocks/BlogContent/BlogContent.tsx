@@ -16,7 +16,7 @@ export const BlogContent: FC<BlogContentProps> = ({
   return (
     <div id={_key} className={cn('flex flex-col gap-4', className)}>
       {blockTitle?.title && (
-        <h2 className="blog-title lg:text-2xl text-xl font-semibold !leading-[130%]">
+        <h2 className="blog-title text-black-500 text-3xl font-bold !leading-[130%]">
           {blockTitle.title}
         </h2>
       )}

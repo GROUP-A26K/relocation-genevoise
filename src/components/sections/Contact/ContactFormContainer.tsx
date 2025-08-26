@@ -43,7 +43,7 @@ export const ContactContainer: FC<Props> = (props) => {
             className="lg:max-h-[984px] 2xl:min-w-[736px] min-w-[600px] rounded-3xl object-cover xl:flex hidden"
           />
         </div>
-        <div className={`lg:pt-16 pt-14 border-b border-grey-100`} />
+        <div className={`lg:pt-16 pt-12 border-b border-grey-100`} />
       </div>
     </section>
   );
