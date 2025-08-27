@@ -20,7 +20,10 @@ const TabsMenu: FC<TabsMenuProps> = ({
 }) => {
   const locale = useLocale();
 
-  const handleTabClick = (filterBy: string) => onClick(filterBy);
+  const handleTabClick = (filterBy: string) => {
+    if (filterBy === activeValue) return;
+    onClick(filterBy);
+  };
 
   /** centralised class builder so we don’t repeat long strings inline */
   const buildClasses = (isActive: boolean) => {
