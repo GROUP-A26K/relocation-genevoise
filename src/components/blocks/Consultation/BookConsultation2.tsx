@@ -30,7 +30,7 @@ export const BookConsultation2: FC<Props> = ({
             <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]">
               {heading}
             </p>
-            <h2 className="text-2xl font-semibold text-center !leading-[130%] text-balance">
+            <h2 className="text-3xl font-semibold text-center !leading-[130%] text-balance">
               <FormattedText text={subHeading} />
             </h2>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
