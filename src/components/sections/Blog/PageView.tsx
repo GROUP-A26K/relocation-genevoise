@@ -37,7 +37,7 @@ const initialParams = {
 export const PageView: FC<Props> = (props) => {
   const t = useTranslations("Blog");
   const locale = useLocale();
-
+  const searchPlaceholder = locale === 'fr' ? 'Rechercher' : 'Search';
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(initialParams.page),
@@ -130,7 +130,7 @@ export const PageView: FC<Props> = (props) => {
           <Input
             as="search"
             type="search"
-            placeholder="Search"
+            placeholder={searchPlaceholder}
             value={search}
             onChange={(e) =>
               handleSearchChange((e.target as HTMLInputElement).value)
