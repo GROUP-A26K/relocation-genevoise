@@ -1,5 +1,5 @@
-import { createEnv } from '@t3-oss/env-nextjs';
-import { z } from 'zod';
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const Env = createEnv({
   server: {
@@ -14,6 +14,8 @@ export const Env = createEnv({
     MINIO_BUCKET: z.string().min(1),
     RESEND_SENDER_NAME: z.string().min(1),
     RESEND_RECEIVER_EMAIL: z.string().min(1),
+    SUPABASE_DATABASE_URL: z.string().min(1),
+    SUPABASE_DIRECT_URL: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().min(1),
@@ -25,9 +27,11 @@ export const Env = createEnv({
     NEXT_PUBLIC_SERVER_TIMEZONE: z.string().min(1),
   },
   shared: {
-    NODE_ENV: z.enum(['test', 'development', 'production']).optional(),
+    NODE_ENV: z.enum(["test", "development", "production"]).optional(),
   },
   runtimeEnv: {
+    SUPABASE_DATABASE_URL: process.env.SUPABASE_DATABASE_URL,
+    SUPABASE_DIRECT_URL: process.env.SUPABASE_DIRECT_URL,
     MINIO_BUCKET: process.env.MINIO_BUCKET,
     MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
     MINIO_PORT: process.env.MINIO_PORT,

@@ -1,12 +1,12 @@
-import { Env } from '@/libs/Env';
-import { prisma } from '@/libs/prisma';
-import { resend } from '@/libs/resend';
-import { Subscribe } from '@/templates/Email/Subscribe';
+import { Env } from "@/libs/Env";
+import { executeWithReplication, prisma } from "@/libs/prisma";
+import { resend } from "@/libs/resend";
+import { Subscribe } from "@/templates/Email/Subscribe";
 import {
   SubscribeFormInput,
   subscribeSchema,
-} from '@/validations/subscribe.validation';
-import { NextResponse } from 'next/server';
+} from "@/validations/subscribe.validation";
+import { NextResponse } from "next/server";
 
 const senderEmail = Env.RESEND_EMAIL;
 const senderName = Env.RESEND_SENDER_NAME;
@@ -14,18 +14,18 @@ const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 
 const copy = {
   en: {
-    exitEmail: 'Your email is already subscribed.',
-    successEmail: 'You’re Now Subscribed!',
+    exitEmail: "Your email is already subscribed.",
+    successEmail: "You’re Now Subscribed!",
   },
   fr: {
-    exitEmail: 'Votre e-mail est déjà inscrit!',
-    successEmail: 'Vous êtes à présent bien inscrit.',
+    exitEmail: "Votre e-mail est déjà inscrit!",
+    successEmail: "Vous êtes à présent bien inscrit.",
   },
 } as const;
 
 const subjectTitle = {
-  en: 'Welcome to our service!',
-  fr: 'Bienvenue dans notre service!',
+  en: "Welcome to our service!",
+  fr: "Bienvenue dans notre service!",
 } as const;
 
 const createSubscribe = async (data: SubscribeFormInput) => {
@@ -37,20 +37,33 @@ const createSubscribe = async (data: SubscribeFormInput) => {
     return { alreadyExists: true, email: existing.email };
   }
 
-  const newSubscribe = await prisma.subscribe.create({
-    data: {
-      email: data.email,
-      created_at: new Date(),
-    },
-  });
+  const subscribeData = {
+    email: data.email,
+    created_at: new Date(),
+  };
 
-  return { alreadyExists: false, email: newSubscribe.email };
+  const { mysql } = await executeWithReplication(
+    (client) => client.subscribe.create({ data: subscribeData }),
+    (client) =>
+      client.subscribe.upsert({
+        where: { email: subscribeData.email },
+        update: { created_at: subscribeData.created_at },
+        create: subscribeData,
+      }),
+    {
+      rollback: async (client, mysqlResult) => {
+        await client.subscribe.delete({ where: { id: mysqlResult.id } });
+      },
+    }
+  );
+
+  return { alreadyExists: false, email: mysql.email };
 };
 
 const sendEmail = async (
   email: string,
   subject: string,
-  locale: 'fr' | 'en'
+  locale: "fr" | "en"
 ) => {
   try {
     await resend.emails.send({
@@ -64,20 +77,20 @@ const sendEmail = async (
       }),
     });
   } catch (error) {
-    console.error('Error sending email:', error);
-    throw new Error('Failed to send email');
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email");
   }
 };
 
 export async function POST(request: Request) {
   try {
     const url = new URL(request.url);
-    const locale = (url.searchParams.get('locale') === 'en' ? 'en' : 'fr') as
-      | 'fr'
-      | 'en';
-    if (!request.headers.get('Content-Type')?.includes('application/json')) {
+    const locale = (url.searchParams.get("locale") === "en" ? "en" : "fr") as
+      | "fr"
+      | "en";
+    if (!request.headers.get("Content-Type")?.includes("application/json")) {
       return NextResponse.json(
-        { error: 'Content-Type must be application/json' },
+        { error: "Content-Type must be application/json" },
         { status: 400 }
       );
     }
@@ -104,9 +117,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(result, { status: 201 });
   } catch (error) {
-    console.error('Error creating contact:', error);
+    console.error("Error creating contact:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

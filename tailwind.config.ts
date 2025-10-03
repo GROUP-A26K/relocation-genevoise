@@ -227,6 +227,7 @@ export default {
         md: "768px",
         sm: "640px",
         xs: "450px",
+        xxs: "340px",
       },
       keyframes: {
         "accordion-down": {

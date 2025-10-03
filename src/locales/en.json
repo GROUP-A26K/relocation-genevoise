@@ -245,7 +245,9 @@
         "buttonText": "Call me back",
         "buttonPlaceholder": "Phone number",
         "noteTitle": "We take care of",
-        "policyTitle": "protecting your data."
+        "policyTitle": "protecting your data.",
+        "telephoneLabel": "Phone",
+        "whatsappLabel": "Whatsapp"
       }
     },
     "ContactInfo": {
