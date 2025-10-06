@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Body,
   Column,
@@ -13,30 +13,32 @@ import {
   Section,
   Tailwind,
   Text,
-} from '@react-email/components';
-import { BookingFormInput } from '@/validations/booking.validation';
+} from "@react-email/components";
+import { BookingFormInput } from "@/validations/booking.validation";
 
 interface ContactProps {
   userInfo: BookingFormInput;
   baseUrl: string;
-  locale: 'en' | 'fr';
+  locale: "en" | "fr";
 }
 
 const copy = {
   en: {
-    heading: 'Booking information',
-    phone: 'Phone',
+    heading: "Booking information",
+    phone: "Phone",
+    contactVia: "Contact via",
   },
   fr: {
-    heading: 'Informations de rendez-vous',
-    phone: 'Téléphone',
+    heading: "Informations de rendez-vous",
+    phone: "Téléphone",
+    contactVia: "Contact par",
   },
 } as const;
 
 export const CallMeBack = ({
   userInfo,
   baseUrl,
-  locale = 'en',
+  locale = "en",
 }: ContactProps) => {
   const t = copy[locale];
 
@@ -63,7 +65,7 @@ export const CallMeBack = ({
                 <Column align="right">
                   <Row align="right">
                     <Link href="https://relocation-genevoise.ch">
-                      <div style={{ display: 'flex' }}>
+                      <div style={{ display: "flex" }}>
                         <Img
                           src={`${baseUrl}/globe-lucid.png`}
                           width="13"
@@ -91,6 +93,14 @@ export const CallMeBack = ({
               {t.phone}: <strong>{userInfo.phone}</strong>,
             </Text>
 
+            <Text className="text-black text-[14px] leading-[24px] px-8 mb-8">
+              {t.contactVia}:{" "}
+              <strong>
+                {userInfo.contactVia === "telephone" ? t.phone : "Whatsapp"}
+              </strong>
+              .
+            </Text>
+
             {/* ---------- Footer ---------- */}
           </Container>
         </Body>
@@ -101,9 +111,9 @@ export const CallMeBack = ({
 
 CallMeBack.PreviewProps = {
   userInfo: {
-    phone: '000-000-0000',
+    phone: "000-000-0000",
   },
-  baseUrl: 'http://localhost:3000/',
-  locale: 'fr',
+  baseUrl: "http://localhost:3000/",
+  locale: "fr",
 } as ContactProps;
 export default CallMeBack;

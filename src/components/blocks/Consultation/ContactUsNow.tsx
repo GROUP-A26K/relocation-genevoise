@@ -1,7 +1,7 @@
-import Button from '@/components/customs/Button';
-import Input from '@/components/customs/Input';
-import { FormattedText } from '@/components/customs/Text';
-import { FC } from 'react';
+import Button from "@/components/customs/Button";
+import Input from "@/components/customs/Input";
+import { FormattedText } from "@/components/customs/Text";
+import { FC } from "react";
 
 interface Props {
   heading?: string;
@@ -30,7 +30,7 @@ export const ContactUsNow: FC<Props> = ({
           {heading}
         </h2>
         <p className="text-sm font-normal !leading-[130%]">
-          <FormattedText text={subHeading ?? ''} />
+          <FormattedText text={subHeading ?? ""} />
         </p>
       </div>
 
@@ -57,7 +57,7 @@ export const ContactUsNow: FC<Props> = ({
           </Button>
         </div>
         <p className="text-sm font-normal text-white !leading-[130%]">
-          We care about your data in our{' '}
+          We care about your data in our{" "}
           <span className="text-sm font-semibold !leading-[130%] cursor-pointer">
             Privacy Policy
           </span>
