@@ -10,6 +10,7 @@ import {
   SelectField,
   InputField,
   TextareaField,
+  PhoneInputField,
 } from "@/components/customs/Form";
 import Button from "@/components/customs/Button";
 import Alert from "@/components/customs/Alert";
@@ -126,13 +127,16 @@ export const ContactForm: FC = () => {
             register={form.register}
             error={form.formState.errors.email?.message}
           />
-          <InputField
+
+          <PhoneInputField
             name="phone"
             label={t("phone.label")}
             placeholder={t("phone.placeholder")}
-            isRequired={true}
-            register={form.register}
+            control={form.control}
             error={form.formState.errors.phone?.message}
+            className="w-full text-base mt-0"
+            inputClassName="bg-white"
+            countrySelectClassName="bg-white"
           />
         </div>
         <InputField

@@ -12,6 +12,7 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegister<any>;
   isRequired?: boolean;
   error?: string;
+  inputClassName?: string;
 }
 
 export const InputField: FC<InputFieldProps> = ({
@@ -21,6 +22,7 @@ export const InputField: FC<InputFieldProps> = ({
   isRequired,
   register,
   error,
+  inputClassName = "",
   className,
   ...props
 }) => {
@@ -37,7 +39,8 @@ export const InputField: FC<InputFieldProps> = ({
           "shadow-none placeholder:text-black-50 text-black-50 rounded-[1.5rem] border-gray-200",
           "hover:border-black-50 hover:text-back-100",
           "focus-visible:text-black-50 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-50",
-          error && "border-red-500 hover:border-red-500"
+          error && "border-red-500 hover:border-red-500",
+          inputClassName
         )}
         placeholder={placeholder}
         {...register(name)}

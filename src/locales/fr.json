@@ -251,7 +251,9 @@
         "buttonText": "Me rappeler",
         "buttonPlaceholder": "Numéro de téléphone",
         "noteTitle": "Nous veillons à la",
-        "policyTitle": "protection de vos données"
+        "policyTitle": "protection de vos données",
+        "telephoneLabel": "Téléphone",
+        "whatsappLabel": "Whatsapp"
       }
     },
     "ContactInfo": {
