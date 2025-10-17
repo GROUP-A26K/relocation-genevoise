@@ -10,6 +10,7 @@ import Instagram from "@/assets/img/logos/social/instagram.svg";
 import { GoogleRating } from "@/components/blocks/GoogleRating";
 
 import { SubscribeForm } from "./SubscribeForm";
+import GGLogo from "@/components/icons/GGLogo";
 
 interface MenuItem {
   title: string;
@@ -289,8 +290,16 @@ const Footer = async () => {
 
       <section className="relative flex flex-col justify-center items-center bg-grey-50 text-black-500">
         <div
-          className={`container lg:py-8 py-14 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4`}
+          className={`container py-8 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4`}
         >
+          <Link
+            href="https://groupe-genevoise.ch/"
+            target="_blank"
+            className="flex items-center w-fit"
+          >
+            <GGLogo className="mb-4" />
+          </Link>
+
           <div className="flex w-full flex-col justify-between gap-4 text-xs font-normal !leading-[130%] text-black-300 md:flex-row md:items-center">
             <p>{copyright}</p>
             <ul className="flex gap-4">
