@@ -1102,6 +1102,31 @@
     }
   },
 
+  "PropertiesDetails": {
+    "priceUnit": "/mois",
+    "sections": {
+      "facilities": "Équipements",
+      "description": "Description",
+      "surrounding": "Informations sur les environs",
+      "whereYouBe": "Où vous serez",
+      "contactAgent": "Contacter l'agent"
+    },
+    "imagePreview": {
+      "viewAllButton": "Voir toutes les photos"
+    },
+    "map": {
+      "viewOnMap": "Voir sur la carte"
+    },
+    "agent": {
+      "title": "Détails de l'agent",
+      "contactButton": "Contacter l'agent"
+    },
+    "description": {
+      "readMore": "Voir plus",
+      "readLess": "Voir moins"
+    }
+  },
+
   "ToastMessage": {
     "Booking": {
       "successTitle": "Succès",

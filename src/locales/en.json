@@ -1092,6 +1092,31 @@
     }
   },
 
+  "PropertiesDetails": {
+    "priceUnit": "/month",
+    "sections": {
+      "facilities": "Facilities",
+      "description": "Description",
+      "surrounding": "Surrounding information",
+      "whereYouBe": "Where you'll be",
+      "contactAgent": "Contact the agent"
+    },
+    "imagePreview": {
+      "viewAllButton": "View all photos"
+    },
+    "map": {
+      "viewOnMap": "View on map"
+    },
+    "agent": {
+      "title": "Agent Details",
+      "contactButton": "Contact agent"
+    },
+    "description": {
+      "readMore": "Read more",
+      "readLess": "Read less"
+    }
+  },
+
   "ToastMessage": {
     "Booking": {
       "successTitle": "Success",

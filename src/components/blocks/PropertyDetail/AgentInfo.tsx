@@ -1,0 +1,59 @@
+import Image from "next/image";
+import { Phone } from "lucide-react";
+import BackgroundSVG from "@/assets/img/bg/agent-background.svg";
+import Button from "@/components/customs/Button";
+import { useTranslations } from "next-intl";
+
+type AgentDetailsProps = {
+  name: string;
+  phone: string;
+  avatar: string;
+};
+
+export function PropertyAgentDetails({ name, phone, avatar }: AgentDetailsProps) {
+  const t = useTranslations("PropertiesDetails");
+
+  return (
+    <div className="relative rounded-3xl border border-yellow-100 overflow-hidden bg-[#f5f2e8] p-6">
+      <Image
+        src={BackgroundSVG}
+        alt="Agent background"
+        fill
+        className="absolute inset-0 object-cover pointer-events-none"
+        priority
+      />
+
+      <div className="relative flex flex-col gap-4 lg:gap-6">
+        <h2 className="text-xl lg:text-2xl font-semibold text-black-500">
+          {t("agent.title")}
+        </h2>
+
+        <div className="flex items-center gap-6">
+          <Image
+            src={avatar}
+            alt={name}
+            width={80}
+            height={80}
+              className="w-[60px] h-[60px] lg:w-20 lg:h-20 rounded-full object-cover"
+          />
+
+          <div className="flex flex-col gap-2 lg:gap-3 min-w-0">
+            <h3 className="text-lg font-semibold text-black-500">{name}</h3>
+            <p className="text-xl text-blue-500 font-semibold">{phone}</p>
+          </div>
+        </div>
+
+        {/* button */}
+        <Button
+          as="solid"
+          variant="md"
+          type="secondary"
+          iconStart={Phone}
+          className="w-full py-3 px-4"
+        >
+          {t("agent.contactButton")}
+        </Button>
+      </div>
+    </div>
+  );
+}
