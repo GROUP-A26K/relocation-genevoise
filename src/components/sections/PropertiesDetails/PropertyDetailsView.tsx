@@ -113,23 +113,23 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <span className="h-3 w-3 rounded-full bg-green-500 border-[3px] border-green-200"></span>
-              <span>Available now</span>
+              <span>{property.status}</span>
               <Badge 
                 className="bg-blue-50 hover:bg-blue-50 text-blue-500 shadow-none text-xs !leading-[130%] font-normal"
               >
-                Apartment
+                {property.type}
               </Badge>
             </div>
             <h2 className="font-semibold text-3xl !leading-[130%] tracking-normal text-primary-500">
-              Apartment – Spacious & Elegant Urban Living For Rent
+              {property.title}
             </h2>
             <div className="flex gap-1.5 font-normal text-black-200 !leading-[130%] text-sm">
               <MapPin className="w-4 h-4" />
-              <p>Chem. des Sports 16, 1203 Genève, Switzerland</p>
+              <p>{property.location.city}, {property.location.city}</p>
             </div>
           </div>
           <div className="items-baseline">
-            <span className="font-bold text-blue-500 text-5xl !leading-[130%] py-0">$1200</span>
+            <span className="font-bold text-blue-500 text-5xl !leading-[130%] py-0">${property.price}</span>
             <span className="font-semibold text-black-200 !leading-[130%] text-lg relative">{t("priceUnit")}</span>
           </div>
         </div>
