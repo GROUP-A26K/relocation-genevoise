@@ -1,5 +1,7 @@
+import { Env } from "@/libs/Env";
+
 export async function getPropertyDetail(id: string, locale: string = "en") {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const baseUrl = Env.NEXT_PUBLIC_SITE_URL || "";
   const res = await fetch(`${baseUrl}/api/properties/${id}`, {
     headers: { "Accept-Language": locale },
     cache: "no-store"

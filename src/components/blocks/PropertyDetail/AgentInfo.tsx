@@ -10,8 +10,9 @@ interface IAgentDetailsProps {
   avatar: string;
 };
 
-export function PropertyAgentDetails({ name, phone, avatar }: IAgentDetailsProps) {
+export function PropertyAgentDetails(props: IAgentDetailsProps) {
   const t = useTranslations("PropertiesDetails");
+  const { name, phone, avatar } = props;
 
   return (
     <div className="relative rounded-3xl border border-yellow-100 overflow-hidden bg-yellow-25 p-6">

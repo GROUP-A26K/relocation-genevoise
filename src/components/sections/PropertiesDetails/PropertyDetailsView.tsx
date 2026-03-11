@@ -8,8 +8,6 @@ import { PropertyDetailTable } from "@/components/blocks/PropertyDetail/Table";
 import { PropertyDescription } from "@/components/blocks/PropertyDetail/Description";
 import { PropertyMap } from "@/components/blocks/PropertyDetail/Map";
 import { PropertyAgentDetails } from "@/components/blocks/PropertyDetail/AgentInfo";
-import { MapPin } from "lucide-react";
-
 import {
   SquareDashed,
   DoorOpen,
@@ -18,7 +16,9 @@ import {
   Trees,
   Sofa,
   Building2,
+  MapPin
 } from "lucide-react";
+import { Property } from "@/types";
 
 const iconMap: Record<string, React.ComponentType> = {
   "Area": SquareDashed,
@@ -28,46 +28,6 @@ const iconMap: Record<string, React.ComponentType> = {
   "Outdoor space": Trees,
   "Furnished": Sofa,
   "Floor": Building2,
-};
-
-type Property = {
-  id: string;
-  title: string;
-  type: string;
-  status: string;
-  price: number;
-  location: {
-    street: string;
-    city: string;
-    country: string;
-    full: string;
-    lat: number;
-    lng: number;
-  };
-  gallery: {
-    id: string;
-    url: string;
-    isPrimary?: boolean;
-  }[];
-  facilities: {
-    type: string;
-    value: string | number | boolean;
-    unit?: string;
-  }[];
-  description: string;
-  surroundings: {
-    type: string;
-    distance: number;
-    unit: string;
-  }[];
-  agent: {
-    id: string;
-    name: string;
-    phone: string;
-    avatar: string;
-  };
-  createdAt: string;
-  updatedAt: string;
 };
 
 interface IPropertyDetailViewProps {
@@ -168,11 +128,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
         <PropertyDetailSection
           title={t("sections.contactAgent")}
           content={
-            <PropertyAgentDetails 
-              name={property.agent.name}
-              phone={property.agent.phone}
-              avatar={property.agent.avatar}
-            />
+            <PropertyAgentDetails {...property.agent}/>
           }
         />
       </div>

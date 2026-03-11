@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { Env } from "@/libs/Env";
 
 interface IPropertyMapProps {
   country: string;
@@ -19,18 +20,15 @@ export function PropertyMap({ country, address }: IPropertyMapProps) {
 
   return (
     <div className="overflow-hidden rounded-2xl bg-gray-100">
-      {/* Map */}
       <div className="w-full h-[240px]">
         <GoogleMapsEmbed
-          apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
+          apiKey={Env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
           height={240}
           width="100%"
           mode="place"
           q={place}
         />
       </div>
-
-      {/* Info section */}
       <div className="flex flex-col lg:flex-row lg:items-center items-start justify-between p-6 gap-4">
         <div className="flex-1 min-w-0 w-full">
           <h3 className="text-lg font-semibold text-black-500 !leading-[130%]">{country}</h3>
