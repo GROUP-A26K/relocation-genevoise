@@ -1,16 +1,17 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useTranslations } from "next-intl";
+import { useBoolean } from "usehooks-ts";
 
-interface DescriptionProps {
+interface IDescriptionProps {
   content: string;
 }
 
-export const PropertyDescription = ({ content }: DescriptionProps) => {
+export const PropertyDescription = ({ content }: IDescriptionProps) => {
   const t = useTranslations("PropertiesDetails");
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [showReadMore, setShowReadMore] = useState(false);
+  const isExpanded = useBoolean(false);
+  const showReadMore = useBoolean(false);
   const textRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -20,27 +21,27 @@ export const PropertyDescription = ({ content }: DescriptionProps) => {
       const lines = height / lineHeight;
       
       if (lines > 4) {
-        setShowReadMore(true);
+        showReadMore.setTrue();
       }
     }
-  }, [content]);
+  }, [content, showReadMore]);
 
   return (
     <div className="flex flex-col gap-3">
       <p
         ref={textRef}
         className={`text-sm !leading-[130%] text-black-200 ${
-          !isExpanded && showReadMore ? 'line-clamp-4' : ''
+          !isExpanded.value && showReadMore.value ? 'line-clamp-4' : ''
         }`}
       >
         {content}
       </p>
-      {showReadMore && (
+      {showReadMore.value && (
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={isExpanded.toggle}
           className="text-black-500 font-semibold text-base self-start hover:underline"
         >
-          {isExpanded ? t("description.readLess") : t("description.readMore")}
+          {isExpanded.value ? t("description.readLess") : t("description.readMore")}
         </button>
       )}
     </div>

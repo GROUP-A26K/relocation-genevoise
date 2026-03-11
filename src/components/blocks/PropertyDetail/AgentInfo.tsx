@@ -4,17 +4,17 @@ import BackgroundSVG from "@/assets/img/bg/agent-background.svg";
 import Button from "@/components/customs/Button";
 import { useTranslations } from "next-intl";
 
-type AgentDetailsProps = {
+interface IAgentDetailsProps {
   name: string;
   phone: string;
   avatar: string;
 };
 
-export function PropertyAgentDetails({ name, phone, avatar }: AgentDetailsProps) {
+export function PropertyAgentDetails({ name, phone, avatar }: IAgentDetailsProps) {
   const t = useTranslations("PropertiesDetails");
 
   return (
-    <div className="relative rounded-3xl border border-yellow-100 overflow-hidden bg-[#f5f2e8] p-6">
+    <div className="relative rounded-3xl border border-yellow-100 overflow-hidden bg-yellow-25 p-6">
       <Image
         src={BackgroundSVG}
         alt="Agent background"
@@ -49,7 +49,7 @@ export function PropertyAgentDetails({ name, phone, avatar }: AgentDetailsProps)
           variant="md"
           type="secondary"
           iconStart={Phone}
-          className="w-full py-3 px-4"
+          className="w-full py-3 px-4 !leading-[130%] !h-auto"
         >
           {t("agent.contactButton")}
         </Button>

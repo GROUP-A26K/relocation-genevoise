@@ -1,39 +1,62 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image'
 import { Image as ImageIcon } from 'lucide-react';
 import Button from '@/components/customs/Button';
+import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 
-interface IimagePreviewProps {
-  images: string[]
+type ImageObj = {
+  id: string;
+  url: string;
+  isPrimary?: boolean;
 }
+interface IimagePreviewProps {
+  images: ImageObj[];
+}
+
 
 export const ImagePreview = ({ images }: IimagePreviewProps) => {
   const t = useTranslations("PropertiesDetails");
-  const [mainImage, ...restImages] = images;
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+
+  const mainImageObj = images.find(img => img.isPrimary) || images[0];
+  const restImages = images.filter(img => img !== mainImageObj);
   const gridImages = restImages.slice(0, 4);
   const remainingCount = images.length - 5;
+
+  const handleImageLoad = (imageId: string) => {
+    setLoadedImages(prev => new Set(prev).add(imageId));
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative">
       <div className="relative aspect-[1/0.68] w-full h-full">
+        {!loadedImages.has(mainImageObj?.id || '') && (
+          <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
+        )}
         <Image
-          src={mainImage}
+          src={mainImageObj?.url}
           alt="Preview image 0"
           fill
           sizes="100vw"
           className="object-cover rounded-2xl lg:rounded-none"
+          onLoad={() => handleImageLoad(mainImageObj?.id || '')}
         />
       </div>
       <div className="grid grid-cols-4 lg:grid-cols-2 grid-rows-1 lg:grid-rows-2 gap-2">
         {gridImages.map((img, i) => (
-          <div key={i} className="relative aspect-[1/0.68] w-full h-full">
+          <div key={img.id} className="relative aspect-[1/0.68] w-full h-full">
+            {!loadedImages.has(img.id) && (
+              <Skeleton className="absolute inset-0 rounded-lg lg:rounded-none" />
+            )}
             <Image
-              src={img}
+              src={img.url}
               alt={`Preview image ${i + 1}`}
               fill
               sizes="25vw, 25vw"
               className="object-cover rounded-lg lg:rounded-none"
+              onLoad={() => handleImageLoad(img.id)}
             />
             {i === 3 && remainingCount > 0 && (
               <div className="absolute inset-0 bg-[#000000]/50 rounded-lg lg:hidden flex items-center justify-center">

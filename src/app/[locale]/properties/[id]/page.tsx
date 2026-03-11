@@ -1,6 +1,7 @@
 import Section from "@/components/customs/Section";
 import { ImagePreview } from "@/components/sections/PropertiesDetails/ImagePreview";
 import { PropertyDetailView } from "@/components/sections/PropertiesDetails/PropertyDetailsView";
+import { getPropertyDetail } from "@/services/properties.service";
 
 type Props = {
   params: Promise<{ locale: string; id: string }>;
@@ -8,24 +9,14 @@ type Props = {
 
 export default async function PropertyDetailPage({ params }: Props) {
   const { locale, id } = await params;
-
-  const images = [
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-    "https://placehold.co/1808x765.png",
-  ]
+  const property = await getPropertyDetail(id, locale);
 
   return (
     <>
       <Section isDivider={false}>
-        <ImagePreview images={images}/>
+        <ImagePreview images={property.gallery}/>
       </Section>
-      <PropertyDetailView/>
+      <PropertyDetailView property={property}/>
     </>
   );
 }

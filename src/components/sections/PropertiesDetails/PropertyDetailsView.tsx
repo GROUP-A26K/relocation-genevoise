@@ -4,12 +4,10 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { PropertyDetailContainer } from "./PropertyDetailContainer";
 import { PropertyDetailSection } from "./PropertiesDetailSection";
-import { 
-  PropertyDetailTable, 
-  PropertyDescription, 
-  PropertyMap,
-  PropertyAgentDetails,
-} from "@/components/blocks/PropertyDetail";
+import { PropertyDetailTable } from "@/components/blocks/PropertyDetail/Table";
+import { PropertyDescription } from "@/components/blocks/PropertyDetail/Description";
+import { PropertyMap } from "@/components/blocks/PropertyDetail/Map";
+import { PropertyAgentDetails } from "@/components/blocks/PropertyDetail/AgentInfo";
 import { MapPin } from "lucide-react";
 
 import {
@@ -32,7 +30,52 @@ const iconMap: Record<string, React.ComponentType> = {
   "Floor": Building2,
 };
 
-export const PropertyDetailView = () => {
+type Property = {
+  id: string;
+  title: string;
+  type: string;
+  status: string;
+  price: number;
+  location: {
+    street: string;
+    city: string;
+    country: string;
+    full: string;
+    lat: number;
+    lng: number;
+  };
+  gallery: {
+    id: string;
+    url: string;
+    isPrimary?: boolean;
+  }[];
+  facilities: {
+    type: string;
+    value: string | number | boolean;
+    unit?: string;
+  }[];
+  description: string;
+  surroundings: {
+    type: string;
+    distance: number;
+    unit: string;
+  }[];
+  agent: {
+    id: string;
+    name: string;
+    phone: string;
+    avatar: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+interface IPropertyDetailViewProps {
+  property: Property;
+}
+
+
+export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
   const t = useTranslations("PropertiesDetails");
   const [tableColumns, setTableColumns] = useState({ facilities: 3, surrounding: 2 });
 
@@ -49,60 +92,19 @@ export const PropertyDetailView = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const items = [
-    {
-      label: "Area",
-      value: "200",
-      unit: "m²",
-    },
-    {
-      label: "Room",
-      value: "5",
-
-    },
-    {
-      label: "Bedroom",
-      value: "2",
-    },
-    {
-      label: "Bathroom",
-      value: "2",
-    },
-    {
-      label: "Outdoor space",
-      value: "",
-    },
-    {
-      label: "Furnished",
-      value: "Full",
-    },
-    {
-      label: "Floor",
-      value: "2",
-    },
-  ].map(item => ({
-    ...item,
-    icon: item.label,
+  const facilityItems = property.facilities.map(item => ({
+    label: item.type,
+    value: typeof item.value === "boolean" ? (item.value ? "Yes" : "No") : item.value,
+    unit: item.unit,
+    icon: item.type,
   }));
 
-  const description = `lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-    mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-    mollit anim id est laborum.lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-    mollit anim id est laborum.`;
-
-
+  const surroundingItems = property.surroundings.map(item => ({
+    label: item.type,
+    value: item.distance,
+    unit: item.unit,
+    icon: item.type,
+  }));
 
   return (
     <PropertyDetailContainer>
@@ -135,7 +137,7 @@ export const PropertyDetailView = () => {
           <PropertyDetailSection
             title={t("sections.facilities")}
             content={
-              <PropertyDetailTable items={items} iconMap={iconMap} columns={tableColumns.facilities}/>
+              <PropertyDetailTable items={facilityItems} iconMap={iconMap} columns={tableColumns.facilities}/>
             }
           />
         </div>
@@ -143,7 +145,7 @@ export const PropertyDetailView = () => {
           <PropertyDetailSection
             title={t("sections.description")}
             content={
-              <PropertyDescription content={description}/>
+              <PropertyDescription content={property.description}/>
             }
           />
         </div>
@@ -151,7 +153,7 @@ export const PropertyDetailView = () => {
           <PropertyDetailSection
             title={t("sections.surrounding")}
             content={
-              <PropertyDetailTable items={items} iconMap={iconMap} columns={tableColumns.surrounding}/>
+              <PropertyDetailTable items={surroundingItems} iconMap={iconMap} columns={tableColumns.surrounding}/>
             }
           />
         </div>
@@ -160,16 +162,16 @@ export const PropertyDetailView = () => {
         <PropertyDetailSection
           title={t("sections.whereYouBe")}
           content={
-            <PropertyMap country = "Gevene, Switzerland" address = "Chem. des Sports 16, 1203 Genève, Switzerland"/>
+            <PropertyMap country={property.location.country} address={property.location.full}/>
           }
         />
         <PropertyDetailSection
           title={t("sections.contactAgent")}
           content={
             <PropertyAgentDetails 
-              name="John Doe" 
-              phone="+41791234567" 
-              avatar="https://randomuser.me/api/portraits/men/75.jpg"
+              name={property.agent.name}
+              phone={property.agent.phone}
+              avatar={property.agent.avatar}
             />
           }
         />

@@ -1,14 +1,15 @@
+import { cn } from "@/libs/utils";
 import { useMemo } from "react";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-type PropertyMapProps = {
+interface IPropertyMapProps {
   country: string;
   address: string;
 };
 
-export function PropertyMap({ country, address }: PropertyMapProps) {
+export function PropertyMap({ country, address }: IPropertyMapProps) {
   const t = useTranslations("PropertiesDetails");
   const place = useMemo(() => `${address}, ${country}`, [address, country]);
   const mapLink = useMemo(
@@ -40,7 +41,12 @@ export function PropertyMap({ country, address }: PropertyMapProps) {
           href={mapLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full lg:w-auto px-4 py-3 rounded-full whitespace-nowrap bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-600 font-semibold text-base !leading-[130%] text-black-500 flex items-center justify-center gap-2 transition-colors"
+          className={cn(
+            "w-full lg:w-auto px-4 py-3 rounded-full whitespace-nowrap",
+            "bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-600",
+            "font-semibold text-base !leading-[130%] text-black-500",
+            "inline-flex items-center justify-center gap-2 transition-colors"
+          )}
         >
           {t("map.viewOnMap")}
         </Link>
