@@ -42,3 +42,16 @@ export type Property = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type ImageObj = {
+  id: string;
+  url: string;
+  isPrimary?: boolean;
+};
+
+export type GalleryMap = {
+  [key: string]: {
+    images: ImageObj[];
+    description: string;
+  };
+};
