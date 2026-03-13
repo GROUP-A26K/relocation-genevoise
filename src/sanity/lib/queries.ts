@@ -382,6 +382,74 @@ export const CAREER_SLUG_QUERY = defineQuery(`
   }
 `);
 
+// ==================== PROPERTIES ====================
+
+const PROPERTIES_FILTER = `
+      _type == "property" &&
+      !(_id in path("drafts.**")) &&
+      language == $locale &&
+      ($category == "" || category->categoryName == $category) &&
+      ($location == "" || mapLocation.name match $location) &&
+      ($minPrice == 0 || price >= $minPrice) &&
+      ($maxPrice == 0 || price <= $maxPrice)
+`;
+
+const PROPERTIES_PROJECTION = `{
+      _id,
+      title,
+      slug,
+      price,
+      priceUnit,
+      rentPeriod,
+      language,
+      availability,
+      description,
+      mapLocation {
+        name,
+        coordinates
+      },
+      "category": category->categoryName,
+      "facilities": facilities[] {
+        icon,
+        name,
+        valueType,
+        numberValue,
+        textValue
+      },
+      "imageUrl": areas[0].mainImage.asset->url
+    }`;
+
+export const buildPropertiesQuery = (sort: string) => {
+  const orderClause =
+    sort === "price_asc"
+      ? "price asc"
+      : sort === "price_desc"
+        ? "price desc"
+        : "_createdAt desc";
+
+  return `{
+    "properties": *[${PROPERTIES_FILTER}] | order(${orderClause}) [$start...$end] ${PROPERTIES_PROJECTION},
+    "total": count(*[${PROPERTIES_FILTER}])
+  }`;
+};
+
+export const PROPERTY_CATEGORIES_QUERY = defineQuery(
+  `*[
+    _type == "propertyCategory" &&
+    count(
+      *[
+        _type == "property" &&
+        !(_id in path("drafts.**")) &&
+        language == $locale &&
+        references(^._id)
+      ]
+    ) > 0
+  ] | order(categoryName asc) {
+    _id,
+    categoryName
+  }`
+);
+
 export const DEPARTMENT_QUERY = defineQuery(
   `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`
 );

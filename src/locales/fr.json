@@ -897,6 +897,10 @@
       "title": "Relocation Genevoise – Articles et actualités",
       "description": "Suivez toute l’actualité du bassin genevois : mobilité, logement, emploi et conseils pratiques pour bien s’installer dans la région."
     },
+    "Properties": {
+      "title": "Relocation Genevoise – Propriétés à louer",
+      "description": "Découvrez des propriétés exceptionnelles à louer à Genève : appartements, maisons et résidences de luxe adaptés à votre style de vie."
+    },
     "Career": {
       "title": "Relocation Genevoise - Carrières",
       "description": "Rejoignez Relocation Genevoise et faites partie d'une équipe dynamique dédiée à la protection de nos clients en Suisse. Consultez nos offres d'emploi."
@@ -1099,6 +1103,54 @@
 
     "Subscribe": {
       "emailInvalid": "Veuillez entrer une adresse e-mail valide."
+    }
+  },
+
+  "Properties": {
+    "hero": {
+      "tagline": "Propriétés",
+      "title": "Trouvez votre bien immobilier idéal",
+      "description": "Découvrez des propriétés exceptionnelles adaptées à votre style de vie, offrant confort, élégance et emplacements privilégiés. Que vous recherchiez un appartement moderne, une maison de charme ou une résidence de luxe, trouvez le logement parfait."
+    },
+    "filters": {
+      "location": "Localisation",
+      "locationPlaceholder": "Entrer la localisation",
+      "price": "Prix",
+      "choosePriceRange": "Choisir une tranche de prix",
+      "minPrice": "Prix min",
+      "maxPrice": "Prix max",
+      "propertyType": "Type de bien",
+      "chooseType": "Choisir le type",
+      "searchButton": "Rechercher"
+    },
+    "results": {
+      "showing": "Affichage",
+      "ofTotal": "sur un total de",
+      "results": "résultats",
+      "sortBy": "Trier par"
+    },
+    "sort": {
+      "newest": "Plus populaires",
+      "priceAsc": "Prix : croissant",
+      "priceDesc": "Prix : décroissant"
+    },
+    "emptyData": {
+      "title": "Aucune propriété trouvée",
+      "description": "Essayez d'ajuster vos filtres de recherche pour trouver ce que vous cherchez."
+    },
+    "cooperate": {
+      "tagline": "Coopérer",
+      "title": "Souhaitez-vous bénéficier de notre expertise et de nos services ?",
+      "description": "Nous sommes à votre disposition pour répondre à vos questions et vous accompagner dans l'intégration de nos solutions adaptées à vos activités.",
+      "contactButton": "Contactez-nous",
+      "findButton": "Trouver un logement"
+    },
+    "BookConsultation": {
+      "heading": "Trouver votre bien",
+      "subHeading": "Besoin d'aide pour ((acheter ou louer le bon logement)) ?",
+      "description": "Expliquez-nous votre recherche et notre équipe vous aidera à cibler les bons biens, comprendre les prix et avancer plus sereinement.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
     }
   },
 

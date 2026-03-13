@@ -99,7 +99,7 @@ const Logos: FC<Props> = ({
   ],
 }) => {
   return (
-    <section className="relative flex flex-col items-center overflow-hidden lg:py-16 py-14 text-black-500 bg-grey-50">
+    <section className="relative flex flex-col items-center overflow-hidden lg:py-16 py-12 text-black-500 bg-grey-50">
       <div className="container flex flex-col items-center text-center">
         <h2 className="lg:text-xl text-base font-semibold !leading-[130%] text-pretty">
           {heading}
