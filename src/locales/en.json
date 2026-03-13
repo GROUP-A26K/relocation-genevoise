@@ -1094,6 +1094,10 @@
 
   "PropertiesDetails": {
     "priceUnit": "/month",
+    "status": {
+      "available": "Available Now",
+      "notAvailable": "Not Available"
+    },
     "sections": {
       "facilities": "Facilities",
       "description": "Description",

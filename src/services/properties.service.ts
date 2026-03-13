@@ -1,30 +1,30 @@
-import { Env } from "@/libs/Env";
-import { IPropertyPhotoTour } from "@/models/Property";
+import { IPropertyAreaPhotoTour, PropertyDetail } from "@/models/Property";
 import { client } from "@/sanity/lib/client";
-import { PROPERTY_PHOTO_TOUR_QUERY } from "@/sanity/lib/queries";
+import { PROPERTY_DETAIL_QUERY, PROPERTY_PHOTO_TOUR_QUERY } from "@/sanity/lib/queries";
 
-export async function getPropertyDetail(id: string, locale: string = "en") {
-  const baseUrl = Env.NEXT_PUBLIC_SITE_URL || "";
-  const res = await fetch(`${baseUrl}/api/properties/${id}`, {
-    headers: { "Accept-Language": locale },
-    cache: "no-store"
-  });
+export async function getPropertyDetail(slug: string, locale: string = "en") {
+  try {
+    const response = await client.fetch<PropertyDetail>(
+      PROPERTY_DETAIL_QUERY,
+      { slug: `${locale}-${slug}` }
+    );
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch property detail");
+    if (!response) {
+      return null;
+    }
+    return response;
+  } catch (error) {
+    console.error("Error fetching property detail:", error);
+    return null;
   }
-
-  const { data } = await res.json();
-  console.log(data);
-  return data;
 }
 
 
-export async function getPropertyPhotoTour(id: string, locale: string = "en") {
+export async function getPropertyPhotoTour(slug: string, locale: string = "en") {
   try {
-    const response = await client.fetch<IPropertyPhotoTour>(
+    const response = await client.fetch<IPropertyAreaPhotoTour>(
       PROPERTY_PHOTO_TOUR_QUERY,
-      { id, locale }
+      { slug: `${locale}-${slug}` }
     );
     return response;
   } catch (error) {

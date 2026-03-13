@@ -8,30 +8,14 @@ import { PropertyDetailTable } from "@/components/blocks/PropertyDetail/Table";
 import { PropertyDescription } from "@/components/blocks/PropertyDetail/Description";
 import { PropertyMap } from "@/components/blocks/PropertyDetail/Map";
 import { PropertyAgentDetails } from "@/components/blocks/PropertyDetail/AgentInfo";
-import {
-  SquareDashed,
-  DoorOpen,
-  Bed,
-  Bath,
-  Trees,
-  Sofa,
-  Building2,
-  MapPin
-} from "lucide-react";
-import { Property } from "@/types";
 
-const iconMap: Record<string, React.ComponentType> = {
-  "Area": SquareDashed,
-  "Room": DoorOpen,
-  "Bedroom": Bed,
-  "Bathroom": Bath,
-  "Outdoor space": Trees,
-  "Furnished": Sofa,
-  "Floor": Building2,
-};
+import { PropertyDetail } from "@/models/Property";
+import { FacilityIconMap, SurroundingPlaceIconMap } from "./PropertiesDetailIcon";
+import { MapPin } from "lucide-react";
+
 
 interface IPropertyDetailViewProps {
-  property: Property;
+  property: PropertyDetail;
 }
 
 
@@ -53,17 +37,16 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
   }, []);
 
   const facilityItems = property.facilities.map(item => ({
-    label: item.type,
-    value: typeof item.value === "boolean" ? (item.value ? "Yes" : "No") : item.value,
-    unit: item.unit,
-    icon: item.type,
+    label: item.name,
+    value: item.numberValue,
+    unit: item.textValue,
+    icon: item.icon,
   }));
 
-  const surroundingItems = property.surroundings.map(item => ({
-    label: item.type,
+  const surroundingItems = property.surroundingPlaces.map(item => ({
+    label: item.name,
     value: item.distance,
-    unit: item.unit,
-    icon: item.type,
+    icon: item.icon,
   }));
 
   return (
@@ -73,11 +56,11 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <span className="h-3 w-3 rounded-full bg-green-500 border-[3px] border-green-200"></span>
-              <span>{property.status}</span>
+              <span>{property.availability ? t("status.available") : t("status.notAvailable")}</span>
               <Badge 
                 className="bg-blue-50 hover:bg-blue-50 text-blue-500 shadow-none text-xs !leading-[130%] font-normal"
               >
-                {property.type}
+                {property.category.categoryName}
               </Badge>
             </div>
             <h2 className="font-semibold text-3xl !leading-[130%] tracking-normal text-primary-500">
@@ -85,7 +68,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
             </h2>
             <div className="flex gap-1.5 font-normal text-black-200 !leading-[130%] text-sm">
               <MapPin className="w-4 h-4" />
-              <p>{property.location.city}, {property.location.city}</p>
+              <p>{property.mapLocation.name}</p>
             </div>
           </div>
           <div className="items-baseline">
@@ -97,7 +80,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           <PropertyDetailSection
             title={t("sections.facilities")}
             content={
-              <PropertyDetailTable items={facilityItems} iconMap={iconMap} columns={tableColumns.facilities}/>
+              <PropertyDetailTable items={facilityItems} iconMap={FacilityIconMap} columns={tableColumns.facilities}/>
             }
           />
         </div>
@@ -113,7 +96,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           <PropertyDetailSection
             title={t("sections.surrounding")}
             content={
-              <PropertyDetailTable items={surroundingItems} iconMap={iconMap} columns={tableColumns.surrounding}/>
+              <PropertyDetailTable items={surroundingItems} iconMap={SurroundingPlaceIconMap} columns={tableColumns.surrounding}/>
             }
           />
         </div>
@@ -122,13 +105,13 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
         <PropertyDetailSection
           title={t("sections.whereYouBe")}
           content={
-            <PropertyMap country={property.location.country} address={property.location.full}/>
+            <PropertyMap country={property.mapLocation.name} address={property.mapLocation.name}/>
           }
         />
         <PropertyDetailSection
           title={t("sections.contactAgent")}
           content={
-            <PropertyAgentDetails {...property.agent}/>
+            <PropertyAgentDetails agent={property.agent}/>
           }
         />
       </div>

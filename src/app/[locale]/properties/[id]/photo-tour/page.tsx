@@ -15,8 +15,8 @@ export default async function GalleryPage({ params }: Props) {
 
   return (
     <Section isDivider={true}>
-      <PropertySectionHeader rooms={property?.rooms || []}/>
-      <PhotoTourView rooms={property?.rooms || []} />
+      <PropertySectionHeader areas={property?.areas || []}/>
+      <PhotoTourView areas={property?.areas || []} />
     </Section>
   );
 }

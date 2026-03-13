@@ -3,16 +3,16 @@ import { Phone } from "lucide-react";
 import BackgroundSVG from "@/assets/img/bg/agent-background.svg";
 import Button from "@/components/customs/Button";
 import { useTranslations } from "next-intl";
+import { PropertyAgent } from "@/models/Property";
+
 
 interface IAgentDetailsProps {
-  name: string;
-  phone: string;
-  avatar: string;
+  agent: PropertyAgent;
 };
 
 export function PropertyAgentDetails(props: IAgentDetailsProps) {
   const t = useTranslations("PropertiesDetails");
-  const { name, phone, avatar } = props;
+  const { agentName, agentPhone, photoUrl } = props.agent;
 
   return (
     <div className="relative rounded-3xl border border-yellow-100 overflow-hidden bg-yellow-25 p-6">
@@ -31,16 +31,16 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
 
         <div className="flex items-center gap-6">
           <Image
-            src={avatar}
-            alt={name}
+            src={photoUrl}
+            alt={"Agent photo"}
             width={80}
             height={80}
               className="w-[60px] h-[60px] lg:w-20 lg:h-20 rounded-full object-cover"
           />
 
           <div className="flex flex-col gap-2 lg:gap-3 min-w-0">
-            <h3 className="text-lg font-semibold text-black-500">{name}</h3>
-            <p className="text-xl text-blue-500 font-semibold">{phone}</p>
+            <h3 className="text-lg font-semibold text-black-500">{agentName}</h3>
+            <p className="text-xl text-blue-500 font-semibold">{agentPhone}</p>
           </div>
         </div>
 

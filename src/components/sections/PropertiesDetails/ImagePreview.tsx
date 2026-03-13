@@ -4,42 +4,54 @@ import Image from "next/image";
 import { Image as ImageIcon } from "lucide-react";
 import Button from "@/components/customs/Button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { PropertyDetail } from "@/models/Property";
 
 type ImageObj = {
-  id: string;
   url: string;
-  isPrimary?: boolean;
 };
-interface IimagePreviewProps {
-  images: ImageObj[];
-  propertyId: string;
+interface IImagePreviewProps {
+  property: PropertyDetail;
+  propertySlug: string;
 }
 
-export const ImagePreview = ({ images, propertyId }: IimagePreviewProps) => {
+export const ImagePreview = ({
+  property,
+  propertySlug,
+}: IImagePreviewProps) => {
   const t = useTranslations("PropertiesDetails");
   const router = useRouter();
+  const locale = useLocale();
+
+  const images: ImageObj[] = property.areas.map((area) => ({
+    url: area.mainImageUrl,
+  }));
+
+  const galleryImages: ImageObj[] = property.areas
+    .map((area) => area.galleryImages?.map((img) => ({ url: img.url })) || [])
+    .flat();
+
+  const allImages = images.concat(galleryImages);
 
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
-  const mainImageObj = images.find((img) => img.isPrimary) || images[0];
-  const restImages = images.filter((img) => img !== mainImageObj);
-  const gridImages = restImages.slice(0, 4);
-  const remainingCount = images.length - 5;
+  const mainImageObj = allImages[0];
+  const gridImages = allImages.slice(1, 5);
+  const remainingCount = allImages.length - 5;
 
   const handleImageLoad = (imageId: string) => {
     setLoadedImages((prev) => new Set(prev).add(imageId));
   };
 
   const handleNavigateToPhotoTour = () => {
-    router.push(`/properties/${propertyId}/photo-tour`);
+    router.push(`/${locale}/properties/${propertySlug}/photo-tour`);
   };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative">
       <div className="relative aspect-[1/0.68] w-full h-full">
-        {!loadedImages.has(mainImageObj?.id || "") && (
+        {!loadedImages.has(mainImageObj?.url || "") && (
           <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
         )}
         <Image
@@ -48,13 +60,13 @@ export const ImagePreview = ({ images, propertyId }: IimagePreviewProps) => {
           fill
           sizes="100vw"
           className="object-cover rounded-2xl lg:rounded-none"
-          onLoad={() => handleImageLoad(mainImageObj?.id || "")}
+          onLoad={() => handleImageLoad(mainImageObj?.url || "")}
         />
       </div>
       <div className="grid grid-cols-4 lg:grid-cols-2 grid-rows-1 lg:grid-rows-2 gap-2">
         {gridImages.map((img, i) => (
-          <div key={img.id} className="relative aspect-[1/0.68] w-full h-full">
-            {!loadedImages.has(img.id) && (
+          <div key={i} className="relative aspect-[1/0.68] w-full h-full">
+            {!loadedImages.has(img.url) && (
               <Skeleton className="absolute inset-0 rounded-lg lg:rounded-none" />
             )}
             <Image
@@ -63,7 +75,7 @@ export const ImagePreview = ({ images, propertyId }: IimagePreviewProps) => {
               fill
               sizes="25vw, 25vw"
               className="object-cover rounded-lg lg:rounded-none"
-              onLoad={() => handleImageLoad(img.id)}
+              onLoad={() => handleImageLoad(img.url)}
             />
             {i === 3 && remainingCount > 0 && (
               <div className="absolute inset-0 bg-[#000000]/50 rounded-lg lg:hidden flex items-center justify-center">
