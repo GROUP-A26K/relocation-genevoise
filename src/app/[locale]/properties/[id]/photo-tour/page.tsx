@@ -1,18 +1,22 @@
 import Section from "@/components/customs/Section";
-import { PropertySectionHeader } from "@/components/blocks/PropertyDetail/SectionHeader"; 
-import { useTranslations } from "next-intl";
+import { PropertySectionHeader } from "@/components/blocks/PropertyDetail/SectionHeader";
 import { PhotoTourView } from "@/components/sections/PhotoTour/PhotoTourView";
-import { GalleryMap } from "@/types";
+import { getPropertyPhotoTour } from "@/services/properties.service";
 
-interface Props {
-  gallery: GalleryMap;
-}
+export const dynamic = "force-dynamic";
 
-export default function GalleryPage({ images }: Props) {
+type Props = {
+  params: Promise<{ locale: string; id: string }>;
+};
+
+export default async function GalleryPage({ params }: Props) {
+  const { locale, id } = await params;
+  const property = await getPropertyPhotoTour(id, locale);
+
   return (
     <Section isDivider={true}>
-      <PropertySectionHeader heading="Photo Tour" subheading="Photo"/>
-      <PhotoTourView />
+      <PropertySectionHeader rooms={property?.rooms || []}/>
+      <PhotoTourView rooms={property?.rooms || []} />
     </Section>
   );
 }

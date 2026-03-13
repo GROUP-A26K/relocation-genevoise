@@ -46,7 +46,7 @@ function buildRedirects() {
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com", "cdn.sanity.io"],
+    domains: ["images.unsplash.com", "cdn.sanity.io", "randomuser.me"],
   },
 
   async rewrites() {

@@ -14,7 +14,7 @@ export default async function PropertyDetailPage({ params }: Props) {
   return (
     <>
       <Section isDivider={false}>
-        <ImagePreview images={property.gallery}/>
+        <ImagePreview images={property.gallery} propertyId={id}/>
       </Section>
       <PropertyDetailView property={property}/>
     </>

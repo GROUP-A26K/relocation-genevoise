@@ -385,3 +385,13 @@ export const CAREER_SLUG_QUERY = defineQuery(`
 export const DEPARTMENT_QUERY = defineQuery(
   `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`
 );
+
+
+export const PROPERTY_PHOTO_TOUR_QUERY = defineQuery(`
+  *[
+    _type == "relocationProperty" &&
+    slug.current == $id
+  ][0] {
+    ...,
+  }
+`);

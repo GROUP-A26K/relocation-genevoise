@@ -1117,6 +1117,11 @@
     }
   },
 
+  "PhotoTour": {
+    "title": "Photo",
+    "subheading": "Photo tour"
+  },
+
   "ToastMessage": {
     "Booking": {
       "successTitle": "Success",
