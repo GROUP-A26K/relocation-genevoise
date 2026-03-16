@@ -1,10 +1,9 @@
-import { FC } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import PropertyListingImg from "@/assets/img/bg/properties-listing-bg.webp";
 
-const PropertiesHero: FC = () => {
+export default function PropertiesHero() {
   const t = useTranslations("Properties");
 
   return (
@@ -38,6 +37,4 @@ const PropertiesHero: FC = () => {
       </div>
     </section>
   );
-};
-
-export { PropertiesHero };
+}

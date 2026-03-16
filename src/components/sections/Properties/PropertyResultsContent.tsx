@@ -1,6 +1,5 @@
 "use client";
 
-import { FC } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
@@ -12,17 +11,17 @@ import { usePropertyFilters } from "@/hooks/usePropertyFilters";
 import { Meta } from "@/models/Meta";
 import { PropertyListing } from "@/models/Property";
 
-interface Props {
+interface IPropertiesProps {
   properties: PropertyListing[];
   meta: Meta;
   loading: boolean;
 }
 
-export const PropertyResultsContent: FC<Props> = ({
+export default function PropertyResultsContent({
   properties,
   meta,
   loading,
-}) => {
+}: IPropertiesProps) {
   const t = useTranslations("Properties");
   const { handlePageChange } = usePropertyFilters();
 
@@ -90,4 +89,4 @@ export const PropertyResultsContent: FC<Props> = ({
       )}
     </>
   );
-};
+}

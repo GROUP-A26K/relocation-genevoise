@@ -978,6 +978,10 @@
           {
             "title": "Discover Geneva",
             "description": "Let us show you Geneva and its must-see attractions"
+          },
+          {
+            "title": "Listing Properties",
+            "description": "Browse our available properties in Geneva and find your ideal home"
           }
         ]
       }
@@ -1109,6 +1113,9 @@
       "choosePriceRange": "Choose price range",
       "minPrice": "Min price",
       "maxPrice": "Max price",
+      "currency": "Currency",
+      "priceInvalid": "Enter a valid number",
+      "minMaxInvalid": "Min must be less than max",
       "propertyType": "Property type",
       "chooseType": "Choose type",
       "searchButton": "Search Property"
@@ -1123,6 +1130,14 @@
       "newest": "Most popular",
       "priceAsc": "Price: Low to High",
       "priceDesc": "Price: High to Low"
+    },
+    "card": {
+      "bedroom": "Bed",
+      "bathroom": "Bath",
+      "rentPeriod": {
+        "month": "month",
+        "year": "year"
+      }
     },
     "emptyData": {
       "title": "No properties found",

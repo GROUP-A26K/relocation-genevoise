@@ -3,116 +3,130 @@ import {
   PROPERTY_CATEGORIES_QUERY,
 } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
+import { LOCALE, type TLocale } from "@/constants/locale";
 import {
   PropertyCategory,
   PropertyFacility,
   PropertyListing,
-  PropertyPriceUnit,
-  PropertyRentPeriod,
 } from "@/models/Property";
-import { Meta } from "@/models/Meta";
+import {
+  IPropertiesResponse,
+  IPropertyCategoryDocument,
+  IPropertyCategoryParams,
+  IPropertyParams,
+  ISanityPropertyResponse,
+} from "@/types";
 
-export interface PropertyParamsProps {
-  page?: number;
-  pageSize?: number;
-  locale?: string;
-  category?: string;
-  location?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  sort?: string;
-}
+const DEFAULT_PROPERTY_PAGE = 1;
+const DEFAULT_PROPERTY_PAGE_SIZE = 15;
+const DEFAULT_PROPERTY_LOCALE = LOCALE.fr;
+const DEFAULT_PROPERTY_SORT = "newest";
+const EMPTY_PROPERTIES_RESPONSE: IPropertiesResponse = {
+  properties: [],
+  meta: {
+    pagination: {
+      total: 0,
+      page: 0,
+      pageSize: 0,
+      pageCount: 0,
+    },
+  },
+};
 
-interface PropertyCategoryParams {
-  locale?: string;
-}
+const toPriceUnitFilter = (currency?: string): string => {
+  if (!currency) {
+    return "";
+  }
 
-interface SanityPropertyResponse {
-  _id: string;
-  title?: string;
-  slug?: { current?: string };
-  price?: number;
-  priceUnit?: PropertyPriceUnit;
-  rentPeriod?: PropertyRentPeriod;
-  language?: string;
-  availability?: boolean;
-  description?: string;
-  mapLocation?: {
-    name?: string;
-    coordinates?: { lat?: number; lng?: number };
-  };
-  category?: string;
-  facilities?: {
-    icon?: string;
-    name?: string;
-    valueType?: "number" | "text" | "none";
-    numberValue?: number;
-    textValue?: string;
-  }[];
-  imageUrl?: string;
-}
+  if (currency === "USD") {
+    return "$";
+  }
+
+  return currency;
+};
+
+const getLocale = (locale?: string): TLocale => {
+  return locale === LOCALE.en ? LOCALE.en : DEFAULT_PROPERTY_LOCALE;
+};
+
+const getPaginationRange = (page: number, pageSize: number) => {
+  const end = page * pageSize;
+  const start = end - pageSize;
+
+  return { start, end };
+};
+
+const mapProperty = (property: ISanityPropertyResponse): PropertyListing => ({
+  id: property._id,
+  title: property.title || "Untitled Property",
+  slug: property.slug?.current || "",
+  href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
+  price: property.price || 0,
+  priceUnit: property.priceUnit || "$",
+  rentPeriod: property.rentPeriod || "month",
+  location: {
+    name: property.mapLocation?.name || "",
+    lat: property.mapLocation?.coordinates?.lat,
+    lng: property.mapLocation?.coordinates?.lng,
+  },
+  category: property.category || "",
+  facilities: (property.facilities || []).map(
+    (facility): PropertyFacility => ({
+      icon: facility.icon || "",
+      name: facility.name || "",
+      valueType: facility.valueType || "none",
+      numberValue: facility.numberValue,
+      textValue: facility.textValue,
+    }),
+  ),
+  description: property.description || "",
+  imageUrl: property.imageUrl || "",
+  availability: property.availability ?? true,
+});
+
+const mapPropertyCategory = (
+  category: IPropertyCategoryDocument,
+): PropertyCategory => ({
+  id: category._id,
+  categoryName: category.categoryName || "",
+});
 
 export const fetchProperties = async (
-  params?: PropertyParamsProps
-): Promise<{ properties: PropertyListing[]; meta: Meta }> => {
+  params?: IPropertyParams,
+): Promise<IPropertiesResponse> => {
   try {
-    const end = (params?.page || 1) * (params?.pageSize || 15);
-    const start = end - (params?.pageSize || 15);
-
-    const sort = params?.sort ?? "newest";
-    const query = buildPropertiesQuery(sort);
+    const page = params?.page ?? DEFAULT_PROPERTY_PAGE;
+    const pageSize = params?.pageSize ?? DEFAULT_PROPERTY_PAGE_SIZE;
+    const locale = getLocale(params?.locale);
+    const sort = params?.sort ?? DEFAULT_PROPERTY_SORT;
+    const { start, end } = getPaginationRange(page, pageSize);
 
     const response = await client.fetch<{
-      properties: SanityPropertyResponse[];
+      properties: ISanityPropertyResponse[];
       total: number;
     }>(
-      query,
+      buildPropertiesQuery(sort),
       {
         start,
         end,
-        locale: params?.locale ?? "fr",
+        locale,
         category: params?.category ?? "",
         location: params?.location || "",
         minPrice: params?.minPrice ?? 0,
         maxPrice: params?.maxPrice ?? 0,
+        currency: toPriceUnitFilter(params?.currency),
       },
-      { next: { tags: ["properties"] } }
+      { next: { tags: ["properties"] } },
     );
 
     return {
-      properties: response.properties.map((property) => ({
-        id: property._id,
-        title: property.title || "Untitled Property",
-        slug: property.slug?.current || "",
-        href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
-        price: property.price || 0,
-        priceUnit: property.priceUnit || "$",
-        rentPeriod: property.rentPeriod || "month",
-        location: {
-          name: property.mapLocation?.name || "",
-          lat: property.mapLocation?.coordinates?.lat,
-          lng: property.mapLocation?.coordinates?.lng,
-        },
-        category: property.category || "",
-        facilities: (property.facilities || []).map(
-          (f): PropertyFacility => ({
-            icon: f.icon || "",
-            name: f.name || "",
-            valueType: f.valueType || "none",
-            numberValue: f.numberValue,
-            textValue: f.textValue,
-          })
-        ),
-        description: property.description || "",
-        imageUrl: property.imageUrl || "",
-        availability: property.availability ?? true,
-      })),
+      properties: response.properties.map(mapProperty),
       meta: {
         pagination: {
           total: response.total,
-          page: params?.page || 1,
-          pageSize: params?.pageSize || 15,
-          pageCount: Math.ceil(response.total / (params?.pageSize || 15)),
+          page,
+          pageSize,
+          pageCount: Math.ceil(response.total / pageSize),
         },
       },
     };
@@ -120,28 +134,22 @@ export const fetchProperties = async (
     console.error("Error fetching properties:", error);
   }
 
-  return {
-    properties: [],
-    meta: { pagination: { total: 0, page: 0, pageSize: 0, pageCount: 0 } },
-  };
+  return EMPTY_PROPERTIES_RESPONSE;
 };
 
 export const fetchPropertyCategories = async (
-  params?: PropertyCategoryParams
+  params?: IPropertyCategoryParams,
 ): Promise<PropertyCategory[]> => {
   try {
-    const response = await client.fetch<{ _id: string; categoryName?: string }[]>(
+    const response = await client.fetch<IPropertyCategoryDocument[]>(
       PROPERTY_CATEGORIES_QUERY,
       {
-        locale: params?.locale ?? "fr",
+        locale: getLocale(params?.locale),
       },
-      { next: { tags: ["property-categories"] } }
+      { next: { tags: ["property-categories"] } },
     );
 
-    return response.map((cat) => ({
-      id: cat._id,
-      categoryName: cat.categoryName || "",
-    }));
+    return response.map(mapPropertyCategory);
   } catch (error) {
     console.error("Error fetching property categories:", error);
     return [];

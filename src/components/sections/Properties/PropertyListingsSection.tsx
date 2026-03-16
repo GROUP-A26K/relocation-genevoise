@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { useBoolean } from "usehooks-ts";
 
@@ -10,13 +10,11 @@ import {
 } from "@/hooks/usePropertyFilters";
 import { Meta } from "@/models/Meta";
 import { PropertyListing } from "@/models/Property";
-import {
-  PropertyParamsProps,
-  fetchProperties,
-} from "@/services/property.service";
+import { fetchProperties } from "@/services/property.service";
+import type { IPropertyParams } from "@/types";
 
-import { PropertyResultsContent } from "./PropertyResultsContent";
-import { PropertyResultsHeader } from "./PropertyResultsHeader";
+import PropertyResultsContent from "./PropertyResultsContent";
+import PropertyResultsHeader from "./PropertyResultsHeader";
 
 const INITIAL_DATA: { properties: PropertyListing[]; meta: Meta } = {
   properties: [],
@@ -30,7 +28,7 @@ const INITIAL_DATA: { properties: PropertyListing[]; meta: Meta } = {
   },
 };
 
-export const PropertyListingsSection: FC = () => {
+export default function PropertyListingsSection() {
   const locale = useLocale();
   const { filterParams } = usePropertyFilters();
 
@@ -44,7 +42,7 @@ export const PropertyListingsSection: FC = () => {
   useEffect(() => {
     let isActive = true;
 
-    const loadProperties = async (params: PropertyParamsProps) => {
+    const loadProperties = async (params: IPropertyParams) => {
       setLoadingTrue();
 
       try {
@@ -82,4 +80,4 @@ export const PropertyListingsSection: FC = () => {
       </div>
     </section>
   );
-};
+}

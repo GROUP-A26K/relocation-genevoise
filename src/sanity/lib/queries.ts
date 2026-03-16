@@ -391,7 +391,8 @@ const PROPERTIES_FILTER = `
       ($category == "" || category->categoryName == $category) &&
       ($location == "" || mapLocation.name match $location) &&
       ($minPrice == 0 || price >= $minPrice) &&
-      ($maxPrice == 0 || price <= $maxPrice)
+      ($maxPrice == 0 || price <= $maxPrice) &&
+      ($currency == "" || priceUnit == $currency)
 `;
 
 const PROPERTIES_PROJECTION = `{

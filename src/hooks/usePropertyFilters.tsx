@@ -1,14 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
 
-export interface PropertyFilterQueryParams {
+export interface IPropertyFilterQueryParams {
   page: number;
   category: string;
   location: string;
   minPrice: number;
   maxPrice: number;
+  currency: string;
   sort: string;
 }
 
@@ -17,14 +18,24 @@ type PropertyAppliedFilters = {
   location: string;
   minPrice: string | number;
   maxPrice: string | number;
+  currency: string;
 };
 
-const INITIAL_PARAMS: PropertyFilterQueryParams = {
+export type PropertyFilterFormValues = {
+  category: string;
+  location: string;
+  minPrice: string;
+  maxPrice: string;
+  currency: string;
+};
+
+const INITIAL_PARAMS: IPropertyFilterQueryParams = {
   page: 1,
   category: "",
   location: "",
   minPrice: 0,
   maxPrice: 0,
+  currency: "",
   sort: "newest",
 };
 
@@ -52,40 +63,33 @@ export const usePropertyFilters = () => {
       location: parseAsString.withDefault(INITIAL_PARAMS.location),
       minPrice: parseAsInteger.withDefault(INITIAL_PARAMS.minPrice),
       maxPrice: parseAsInteger.withDefault(INITIAL_PARAMS.maxPrice),
+      currency: parseAsString.withDefault(INITIAL_PARAMS.currency),
       sort: parseAsString.withDefault(INITIAL_PARAMS.sort),
     },
-    { shallow: false, scroll: false }
+    { shallow: false, scroll: false },
   );
 
-  const [filterLocation, setFilterLocation] = useState(queryParams.location);
-  const [filterCategory, setFilterCategory] = useState(queryParams.category);
-  const [filterMinPrice, setFilterMinPrice] = useState(
-    toPriceInputValue(queryParams.minPrice)
+  const formValues = useMemo<PropertyFilterFormValues>(
+    () => ({
+      location: queryParams.location,
+      category: queryParams.category,
+      minPrice: toPriceInputValue(queryParams.minPrice),
+      maxPrice: toPriceInputValue(queryParams.maxPrice),
+      currency: queryParams.currency,
+    }),
+    [
+      queryParams.category,
+      queryParams.currency,
+      queryParams.location,
+      queryParams.maxPrice,
+      queryParams.minPrice,
+    ],
   );
-  const [filterMaxPrice, setFilterMaxPrice] = useState(
-    toPriceInputValue(queryParams.maxPrice)
-  );
-
-  useEffect(() => {
-    setFilterLocation(queryParams.location);
-  }, [queryParams.location]);
-
-  useEffect(() => {
-    setFilterCategory(queryParams.category);
-  }, [queryParams.category]);
-
-  useEffect(() => {
-    setFilterMinPrice(toPriceInputValue(queryParams.minPrice));
-  }, [queryParams.minPrice]);
-
-  useEffect(() => {
-    setFilterMaxPrice(toPriceInputValue(queryParams.maxPrice));
-  }, [queryParams.maxPrice]);
 
   const handleFilterChange = useCallback(
     (
-      key: keyof Omit<PropertyFilterQueryParams, "page" | "sort">,
-      value: string | number
+      key: keyof Omit<IPropertyFilterQueryParams, "page" | "sort">,
+      value: string | number,
     ) => {
       const normalizedValue =
         key === "minPrice" || key === "maxPrice" ? toPriceParam(value) : value;
@@ -93,38 +97,54 @@ export const usePropertyFilters = () => {
       void setQueryParams({
         [key]: normalizedValue,
         page: 1,
-      } as Partial<PropertyFilterQueryParams>);
+      } as Partial<IPropertyFilterQueryParams>);
     },
-    [setQueryParams]
+    [setQueryParams],
   );
 
-  const applyFilters = useCallback((filters?: Partial<PropertyAppliedFilters>) => {
-    const nextLocation = (filters?.location ?? filterLocation).trim();
-    const nextCategory = filters?.category ?? filterCategory;
-    const nextMinPrice = toPriceParam(filters?.minPrice ?? filterMinPrice);
-    const nextMaxPrice = toPriceParam(filters?.maxPrice ?? filterMaxPrice);
+  const applyFilters = useCallback(
+    (filters: Partial<PropertyAppliedFilters> = {}) => {
+      const nextLocation = (filters.location ?? queryParams.location).trim();
+      const nextCategory = filters.category ?? queryParams.category;
+      const nextMinPrice = toPriceParam(
+        filters.minPrice ?? queryParams.minPrice,
+      );
+      const nextMaxPrice = toPriceParam(
+        filters.maxPrice ?? queryParams.maxPrice,
+      );
+      const nextCurrency = filters.currency ?? queryParams.currency;
 
-    void setQueryParams({
-      page: 1,
-      location: nextLocation,
-      category: nextCategory,
-      minPrice: nextMinPrice,
-      maxPrice: nextMaxPrice,
-    });
-  }, [filterCategory, filterLocation, filterMaxPrice, filterMinPrice, setQueryParams]);
+      void setQueryParams({
+        page: 1,
+        location: nextLocation,
+        category: nextCategory,
+        minPrice: nextMinPrice,
+        maxPrice: nextMaxPrice,
+        currency: nextCurrency,
+      });
+    },
+    [
+      queryParams.category,
+      queryParams.currency,
+      queryParams.location,
+      queryParams.maxPrice,
+      queryParams.minPrice,
+      setQueryParams,
+    ],
+  );
 
   const handlePageChange = useCallback(
     (page: number) => {
       void setQueryParams({ page });
     },
-    [setQueryParams]
+    [setQueryParams],
   );
 
   const handleSortChange = useCallback(
     (sort: string) => {
       void setQueryParams({ sort, page: 1 });
     },
-    [setQueryParams]
+    [setQueryParams],
   );
 
   const filterParams = useMemo(
@@ -135,29 +155,24 @@ export const usePropertyFilters = () => {
       location: queryParams.location ? `*${queryParams.location}*` : "",
       minPrice: queryParams.minPrice,
       maxPrice: queryParams.maxPrice,
+      currency: queryParams.currency,
       sort: queryParams.sort,
     }),
     [
       queryParams.category,
+      queryParams.currency,
       queryParams.location,
       queryParams.maxPrice,
       queryParams.minPrice,
       queryParams.page,
       queryParams.sort,
-    ]
+    ],
   );
 
   return {
     queryParams,
-    filterLocation,
-    filterCategory,
-    filterMinPrice,
-    filterMaxPrice,
+    formValues,
     setQueryParams,
-    setFilterLocation,
-    setFilterCategory,
-    setFilterMinPrice,
-    setFilterMaxPrice,
     handleFilterChange,
     handlePageChange,
     handleSortChange,

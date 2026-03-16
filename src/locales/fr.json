@@ -984,6 +984,10 @@
           {
             "title": "Découvrir Genève",
             "description": "Vous faire découvrir Genève et ses incontournables"
+          },
+          {
+            "title": "Annonces immobilières",
+            "description": "Parcourez nos biens disponibles à Genève et trouvez votre logement idéal"
           }
         ]
       }
@@ -1119,6 +1123,9 @@
       "choosePriceRange": "Choisir une tranche de prix",
       "minPrice": "Prix min",
       "maxPrice": "Prix max",
+      "currency": "Devise",
+      "priceInvalid": "Entrez un nombre valide",
+      "minMaxInvalid": "Le min doit être inférieur au max",
       "propertyType": "Type de bien",
       "chooseType": "Choisir le type",
       "searchButton": "Rechercher"
@@ -1133,6 +1140,14 @@
       "newest": "Plus populaires",
       "priceAsc": "Prix : croissant",
       "priceDesc": "Prix : décroissant"
+    },
+    "card": {
+      "bedroom": "Ch",
+      "bathroom": "SdB",
+      "rentPeriod": {
+        "month": "mois",
+        "year": "an"
+      }
     },
     "emptyData": {
       "title": "Aucune propriété trouvée",

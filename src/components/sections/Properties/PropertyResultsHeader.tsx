@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -15,11 +15,11 @@ interface IPropertyResultsHeaderProps {
   pageSize: number;
 }
 
-export const PropertyResultsHeader: FC<IPropertyResultsHeaderProps> = ({
+export default function PropertyResultsHeader({
   total,
   page,
   pageSize,
-}) => {
+}: IPropertyResultsHeaderProps) {
   const t = useTranslations("Properties");
   const { queryParams, handleSortChange } = usePropertyFilters();
   const [sortOpen, setSortOpen] = useState(false);
@@ -79,4 +79,4 @@ export const PropertyResultsHeader: FC<IPropertyResultsHeaderProps> = ({
       </div>
     </div>
   );
-};
+}
