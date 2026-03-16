@@ -13,11 +13,9 @@ import { PropertyDetail } from "@/models/Property";
 import { FacilityIconMap, SurroundingPlaceIconMap } from "./PropertiesDetailIcon";
 import { MapPin } from "lucide-react";
 
-
 interface IPropertyDetailViewProps {
   property: PropertyDetail;
 }
-
 
 export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
   const t = useTranslations("PropertiesDetails");
@@ -51,7 +49,6 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
 
   return (
     <PropertyDetailContainer>
-
       <div className="lg:col-span-6 flex flex-col gap-8">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
