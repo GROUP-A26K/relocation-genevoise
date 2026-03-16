@@ -19,18 +19,35 @@ const ImagePreviewSkeleton = () => {
   );
 };
 
-const TableSkeleton = () => {
-  const skeletonCount = 6;
-  const gridCols = "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3";
+type TableSkeletonProps = {
+  columns: number;
+  rows: number;
+};
+
+const TableSkeleton = ({ columns, rows }: TableSkeletonProps) => {
+  const skeletonCount = columns * rows;
+  const smCols = Math.min(columns, 2);
+  const xlCols = columns;
+  const smGridColsClass = smCols === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2";
+  const xlGridColsClass =
+    xlCols === 1 ? "xl:grid-cols-1" : xlCols === 2 ? "xl:grid-cols-2" : "xl:grid-cols-3";
+  const gridCols = `grid-cols-1 ${smGridColsClass} ${xlGridColsClass}`;
 
   return (
     <div className="border border-gray-100 rounded-2xl overflow-hidden">
       <ul className={`grid ${gridCols}`}>
         {Array.from({ length: skeletonCount }).map((_, idx) => {
-          const isLastColSm = (idx % 2) === 1;
-          const isLastRowSm = idx >= 4;
-          const isLastColXl = (idx % 3) === 2;
-          const isLastRowXl = idx >= 3;
+          const smRowCount = Math.ceil(skeletonCount / smCols);
+          const smColIndex = idx % smCols;
+          const smRowIndex = Math.floor(idx / smCols);
+          const isLastColSm = smColIndex === smCols - 1;
+          const isLastRowSm = smRowIndex === smRowCount - 1;
+
+          const xlRowCount = Math.ceil(skeletonCount / xlCols);
+          const xlColIndex = idx % xlCols;
+          const xlRowIndex = Math.floor(idx / xlCols);
+          const isLastColXl = xlColIndex === xlCols - 1;
+          const isLastRowXl = xlRowIndex === xlRowCount - 1;
 
           return (
             <li

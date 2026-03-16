@@ -1,9 +1,9 @@
-import Button from '@/components/customs/Button';
+import Button from "@/components/customs/Button";
 
-import { FC } from 'react';
-import { Link } from '@/libs/i18nNavigation';
-import { FormattedText } from '@/components/customs/Text';
-import { ArrowRight } from 'lucide-react';
+import { FC } from "react";
+import { Link } from "@/libs/i18nNavigation";
+import { FormattedText } from "@/components/customs/Text";
+import { ArrowRight } from "lucide-react";
 
 interface Props {
   tagline?: string;
@@ -16,14 +16,14 @@ interface Props {
 }
 
 export const BookConsultation2: FC<Props> = ({
-  heading = 'Book a consultation',
-  subHeading = 'A question ? Our advisors are here to guide you',
-  description = 'Benefit from personalized advice and support that meets your needs.',
-  buttonText1 = 'Call me',
-  buttonText2 = 'Contact me',
+  heading = "Book a consultation",
+  subHeading = "A question ? Our advisors are here to guide you",
+  description = "Benefit from personalized advice and support that meets your needs.",
+  buttonText1 = "Call me",
+  buttonText2 = "Contact me",
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12 py-12 rounded-xl bg-grey-50">
+    <div className="flex flex-col lg:gap-16 lg:py-16 gap-12 py-12 rounded-xl bg-grey-50">
       <div className="flex w-full items-center justify-center">
         <div className="flex flex-col lg:gap-8 gap-4 w-full lg:items-center text-left">
           <div className="flex flex-col gap-3 max-w-[720px]">
@@ -38,8 +38,8 @@ export const BookConsultation2: FC<Props> = ({
             </p>
           </div>
 
-          <div className="flex lg:flex-row flex-col gap-2 w-full items-center justify-center">
-            <Link href={'/contact'} className="lg:w-fit w-full">
+          <div className="flex lg:flex-row flex-col gap-2 lg:gap-4 w-full items-center justify-center">
+            <Link href={"/contact"} className="lg:w-fit w-full">
               <Button
                 as="solid"
                 variant="md"
@@ -49,7 +49,7 @@ export const BookConsultation2: FC<Props> = ({
                 {buttonText1}
               </Button>
             </Link>
-            <Link href={'/find-accommodation'} className="lg:w-fit w-full">
+            <Link href={"/find-accommodation"} className="lg:w-fit w-full">
               <Button
                 as="outline"
                 variant="md"
