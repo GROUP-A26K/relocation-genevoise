@@ -1,4 +1,3 @@
-"use client";
 import { PhotoTourSection } from "@/components/blocks/PhotoTour/PhotoTourSection";
 import { IAreaPhotoTour } from "@/models/Property";
 

@@ -1,25 +1,18 @@
-"use client";
-
-import { useTranslations } from "next-intl";
-
 import { Button } from "@/components/ui/button-custom";
-import { useRouter } from "next/navigation";
 import { PropertyListing } from "@/models/Property";
 import { PropertyCard } from "@/components/customs/Card";
+import { getLocale, getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 interface IPropertyDetailSimilarProps {
   relatedProperties: PropertyListing[];
 }
 
-export const PropertyDetailSimilar = ({
+export async function PropertyDetailSimilar({
   relatedProperties,
-}: IPropertyDetailSimilarProps) => {
-  const router = useRouter();
-  const t = useTranslations("PropertiesDetails");
-
-  const handleViewAll = () => {
-    router.push("/properties");
-  };
+}: IPropertyDetailSimilarProps) {
+  const t = await getTranslations("PropertiesDetails");
+  const locale = await getLocale();
 
   return (
     <div className="flex flex-col gap-16 py-12 lg:py-16 px-4 2xl:px-[100px] xl:px-[60px] lg:px-[48px]">
@@ -39,9 +32,9 @@ export const PropertyDetailSimilar = ({
           </p>
         </div>
 
-        <Button className="rounded-full" onClick={handleViewAll}>
-          {t("similar.viewAllButton")}
-        </Button>
+        <Link href={`/${locale}/properties`}>
+          <Button className="rounded-full">{t("similar.viewAllButton")}</Button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -51,4 +44,4 @@ export const PropertyDetailSimilar = ({
       </div>
     </div>
   );
-};
+}
