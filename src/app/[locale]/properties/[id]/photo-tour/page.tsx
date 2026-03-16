@@ -11,12 +11,12 @@ type Props = {
 
 export default async function GalleryPage({ params }: Props) {
   const { locale, id } = await params;
-  const property = await getPropertyPhotoTour(id, locale);
+  const areas = await getPropertyPhotoTour(id, locale);
 
   return (
-    <Section isDivider={true}>
-      <PropertySectionHeader areas={property?.areas || []}/>
-      <PhotoTourView areas={property?.areas || []} />
+    <Section isDivider>
+      <PropertySectionHeader areas={areas}/>
+      <PhotoTourView areas={areas} />
     </Section>
   );
 }

@@ -509,19 +509,13 @@ export const PROPERTY_DETAIL_QUERY = defineQuery(`
 `);
 
 export const PROPERTY_PHOTO_TOUR_QUERY = defineQuery(`
-*[_type == "property" && slug.current == $slug][0] {
-_id,
-_createdAt,
-_updatedAt,
-slug,
-areas[] {
+*[_type == "property" && slug.current == $slug][0].areas[] {
   title,
   description,
   "mainImageUrl": mainImage.asset->url,
   "galleryImages": galleryImages[] {
     "url": asset->url
   }
-}
 }
 `);
 

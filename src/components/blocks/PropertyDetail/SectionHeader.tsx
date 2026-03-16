@@ -1,19 +1,13 @@
-'use client'
 import { IAreaPhotoTour } from "@/models/Property";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-
-export interface PropertySectionHeaderProps {
-  heading?: string;
-  subheading?: string;
-}
 
 interface IPropertySectionHeaderProps {
   areas: IAreaPhotoTour[];
 }
 
-export function PropertySectionHeader({ areas }: IPropertySectionHeaderProps) {
-  const t = useTranslations("PhotoTour");
+export async function PropertySectionHeader({ areas }: IPropertySectionHeaderProps) {
+  const t = await getTranslations("PhotoTour");
   const title = t("title");
   const subheading = t("subheading");
 

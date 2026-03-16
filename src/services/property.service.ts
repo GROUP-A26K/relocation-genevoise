@@ -15,7 +15,7 @@ import {
   type TPropertyCurrency,
 } from "@/constants/property";
 import {
-  IPropertyAreaPhotoTour,
+  IAreaPhotoTour,
   PropertyCategory,
   PropertyDetail,
   PropertyFacility,
@@ -165,7 +165,10 @@ export const fetchPropertyCategories = async (
   }
 };
 
-export async function getPropertyDetail(slug: string, locale: string = "en") {
+export async function getPropertyDetail(
+  slug: string,
+  locale: string = "en",
+): Promise<PropertyDetail | null> {
   try {
     const response = await client.fetch<PropertyDetail>(PROPERTY_DETAIL_QUERY, {
       slug: `${locale}-${slug}`,
@@ -184,16 +187,16 @@ export async function getPropertyDetail(slug: string, locale: string = "en") {
 export async function getPropertyPhotoTour(
   slug: string,
   locale: string = "en",
-) {
+): Promise<IAreaPhotoTour[]> {
   try {
-    const response = await client.fetch<IPropertyAreaPhotoTour>(
+    const response = await client.fetch<IAreaPhotoTour[]>(
       PROPERTY_PHOTO_TOUR_QUERY,
       { slug: `${locale}-${slug}` },
     );
     return response;
   } catch (error) {
     console.error("Error fetching property photo tour:", error);
-    return null;
+    return [];
   }
 }
 
@@ -220,4 +223,3 @@ export const fetchPropertySlugBySlug = async (slug: string) => {
     return [];
   }
 };
-

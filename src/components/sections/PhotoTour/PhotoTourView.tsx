@@ -2,11 +2,11 @@
 import { PhotoTourSection } from "@/components/blocks/PhotoTour/PhotoTourSection";
 import { IAreaPhotoTour } from "@/models/Property";
 
-interface PhotoTourViewProps {
+interface IPhotoTourViewProps {
   areas: IAreaPhotoTour[];
 }
 
-export const PhotoTourView = ({ areas }: PhotoTourViewProps) => {
+export const PhotoTourView = ({ areas }: IPhotoTourViewProps) => {
   return (
     <div className="flex flex-col gap-16">
       {areas.map((area, index) => (

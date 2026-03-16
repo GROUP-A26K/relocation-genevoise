@@ -102,8 +102,8 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                 thumbRefs.current[index] = node;
               }}
               onClick={() => selectImage(index)}
-              className={`relative flex-shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-[168/120] rounded-xl overflow-hidden transition
-              ${activeIndex === index ? "ring-2 ring-black" : "ring-1 ring-transparent"}`}
+              className={`relative flex-shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-[168/120] rounded-xl overflow-hidden ring-2
+              ${activeIndex === index ? "ring-black" : "ring-transparent"}`}
             >
               <Image
                 src={img.url}
