@@ -8,15 +8,14 @@ import {
   PROPERTY_PAGE_SIZE,
   usePropertyFilters,
 } from "@/hooks/usePropertyFilters";
-import { Meta } from "@/models/Meta";
-import { PropertyListing } from "@/models/Property";
+import { PropertyPagination } from "@/models/Property";
 import { fetchProperties } from "@/services/property.service";
 import type { IPropertyParams } from "@/types";
 
 import PropertyResultsContent from "./PropertyResultsContent";
 import PropertyResultsHeader from "./PropertyResultsHeader";
 
-const INITIAL_DATA: { properties: PropertyListing[]; meta: Meta } = {
+const INITIAL_DATA: PropertyPagination = {
   properties: [],
   meta: {
     pagination: {

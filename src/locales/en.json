@@ -1161,6 +1161,10 @@
 
   "PropertiesDetails": {
     "priceUnit": "/month",
+    "status": {
+      "available": "Available Now",
+      "notAvailable": "Not Available"
+    },
     "sections": {
       "facilities": "Facilities",
       "description": "Description",
@@ -1181,7 +1185,18 @@
     "description": {
       "readMore": "Read more",
       "readLess": "Read less"
+    },
+    "similar": {
+      "title": "Property",
+      "subheading": "Discover similar properties",
+      "description": "Whether you’re looking for a modern apartment in the city or a peaceful home in the suburbs, our listings offer something for everyone.",
+      "viewAllButton": "See all property"
     }
+  },
+
+  "PhotoTour": {
+    "title": "Photo",
+    "subheading": "Photo tour"
   },
 
   "ToastMessage": {

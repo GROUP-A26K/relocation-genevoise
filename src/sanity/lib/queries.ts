@@ -266,7 +266,7 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 `);
 
 export const POST_CATEGORIES_QUERY = defineQuery(
-  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`
+  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`,
 );
 
 export const CAREERS_QUERY = defineQuery(`
@@ -452,5 +452,86 @@ export const PROPERTY_CATEGORIES_QUERY = defineQuery(
 );
 
 export const DEPARTMENT_QUERY = defineQuery(
-  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`
+  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`,
 );
+
+export const PROPERTY_DETAIL_QUERY = defineQuery(`
+*[_type == "property" && slug.current == $slug][0] {
+  _id,
+  _createdAt,
+  _updatedAt,
+  language,
+  title,
+  slug,
+  listingType,
+  price,
+  priceUnit,
+  rentPeriod,
+  description,
+  availability,
+  mapLocation {
+    name,
+    coordinates {
+      lat,
+      lng
+    }
+  },
+  facilities[] {
+    icon,
+    name,
+    valueType,
+    numberValue,
+    textValue
+  },
+  agent-> {
+    _id,
+    agentName,
+    agentPhone,
+    "photoUrl": photo.asset->url
+  },
+  category-> {
+    _id,
+    categoryName
+  },
+  areas[] {
+    title,
+    "mainImageUrl": mainImage.asset->url,
+    "galleryImages": galleryImages[] {
+      "url": asset->url
+    }
+  },
+  surroundingPlaces[] {
+    icon,
+    name,
+    distance
+  }
+}
+`);
+
+export const PROPERTY_PHOTO_TOUR_QUERY = defineQuery(`
+*[_type == "property" && slug.current == $slug][0].areas[] {
+  title,
+  description,
+  "mainImageUrl": mainImage.asset->url,
+  "galleryImages": galleryImages[] {
+    "url": asset->url
+  }
+}
+`);
+
+
+export const PROPERTY_SLUG_QUERY = defineQuery(`
+  *[
+    _type == "property" &&
+    slug.current == $slug
+  ][0] {
+    "targetSlug": *[
+      _type == "translation.metadata"&& 
+      references(^._id)
+    ][0].translations[].value->
+    {
+      language,
+      "slug": slug.current
+    }
+  }
+`);
