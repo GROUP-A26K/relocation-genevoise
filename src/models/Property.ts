@@ -69,14 +69,6 @@ export interface PropertyDetail {
   surroundingPlaces: SurroundingPlace[];
 }
 
-export interface PropertyFacility {
-  icon: string;
-  name: string;
-  valueType: string;
-  numberValue: number;
-  textValue: string;
-}
-
 export interface PropertyAgent {
   _id: string;
   agentName: string;
