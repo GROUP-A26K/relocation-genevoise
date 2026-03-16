@@ -892,6 +892,10 @@
       "title": "Relocation Genevoise – Articles and news",
       "description": "Stay up to date with the Geneva area : mobility, housing, jobs, and practical tips to help you settle in the region."
     },
+    "Properties": {
+      "title": "Relocation Genevoise – Properties for rent",
+      "description": "Discover exceptional properties for rent in Geneva: apartments, houses, and luxury residences tailored to your lifestyle."
+    },
     "Career": {
       "title": "Relocation Genevoise - Career",
       "description": "Join Relocation Genevoise and build a rewarding career in the insurance industry. Discover our job offers and opportunities for professional development."
@@ -974,6 +978,10 @@
           {
             "title": "Discover Geneva",
             "description": "Let us show you Geneva and its must-see attractions"
+          },
+          {
+            "title": "Listing Properties",
+            "description": "Browse our available properties in Geneva and find your ideal home"
           }
         ]
       }
@@ -1089,6 +1097,65 @@
     },
     "Subscribe": {
       "emailInvalid": "Please enter a valid email address."
+    }
+  },
+
+  "Properties": {
+    "hero": {
+      "tagline": "Property",
+      "title": "Find your perfect investment properties",
+      "description": "Discover exceptional properties tailored to your lifestyle, offering comfort, elegance, and prime locations. Whether you're searching for a modern apartment, a charming house, or a luxury residence, find the perfect home to match your needs."
+    },
+    "filters": {
+      "location": "Location",
+      "locationPlaceholder": "Enter location",
+      "price": "Price",
+      "choosePriceRange": "Choose price range",
+      "minPrice": "Min price",
+      "maxPrice": "Max price",
+      "currency": "Currency",
+      "priceInvalid": "Enter a valid number",
+      "minMaxInvalid": "Min must be less than max",
+      "propertyType": "Property type",
+      "chooseType": "Choose type",
+      "searchButton": "Search Property"
+    },
+    "results": {
+      "showing": "Show",
+      "ofTotal": "of total",
+      "results": "results",
+      "sortBy": "Sort by"
+    },
+    "sort": {
+      "newest": "Most popular",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low"
+    },
+    "card": {
+      "bedroom": "Bed",
+      "bathroom": "Bath",
+      "rentPeriod": {
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "emptyData": {
+      "title": "No properties found",
+      "description": "Try adjusting your search filters to find what you're looking for."
+    },
+    "cooperate": {
+      "tagline": "Cooperate",
+      "title": "Would you like to benefit from our expertise and services?",
+      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
+      "contactButton": "Contact us",
+      "findButton": "Find accommodation"
+    },
+    "BookConsultation": {
+      "heading": "Cooperate",
+      "subHeading": "Would you like to benefit from our expertise and services?",
+      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
+      "buttonText1": "Contact us",
+      "buttonText2": "Find accommodation"
     }
   },
 
