@@ -84,11 +84,6 @@ export interface PropertyAgent {
   photoUrl: string;
 }
 
-export interface PropertyCategory {
-  _id: string;
-  categoryName: string;
-}
-
 export interface PropertySimilar {
   _id: string;
   _createdAt: string;

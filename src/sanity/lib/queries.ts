@@ -541,26 +541,3 @@ export const PROPERTY_SLUG_QUERY = defineQuery(`
     }
   }
 `);
-
-export const PROPERTY_SIMILAR_QUERY = defineQuery(`
-  *[_type == "property" && slug.current == $slug][0] {
-    "similar": *[
-      _type == "property" &&
-      category->_id == ^.category->_id &&
-      _id != ^._id
-    ][0...3] {
-      _id,
-      _createdAt,
-      _updatedAt,
-      slug,
-      title,
-      description,
-      mainImage {
-        asset -> {
-          _id,
-          url
-        }
-      }
-    }
-  }
-`);

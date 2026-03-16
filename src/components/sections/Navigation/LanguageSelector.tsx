@@ -10,7 +10,7 @@ import { cn } from "@/libs/utils";
 import { getAlternatePath } from "@/utils/Helpers";
 import { fetchCareerSlugBySlug } from "@/services/career/career.service";
 import { fetchBlogSlugBySlug } from "@/services/blog.service";
-import { fetchPropertySlugBySlug } from "@/services/properties.service";
+import { fetchPropertySlugBySlug } from "@/services/property.service";
 interface LanguageSelectorProps {
   className?: string;
 }

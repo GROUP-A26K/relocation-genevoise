@@ -1,11 +1,16 @@
 import {
   buildPropertiesQuery,
   PROPERTY_CATEGORIES_QUERY,
+  PROPERTY_DETAIL_QUERY,
+  PROPERTY_PHOTO_TOUR_QUERY,
+  PROPERTY_SLUG_QUERY,
 } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { LOCALE, type TLocale } from "@/constants/locale";
 import {
+  IPropertyAreaPhotoTour,
   PropertyCategory,
+  PropertyDetail,
   PropertyFacility,
   PropertyListing,
 } from "@/models/Property";
@@ -155,3 +160,60 @@ export const fetchPropertyCategories = async (
     return [];
   }
 };
+
+export async function getPropertyDetail(slug: string, locale: string = "en") {
+  try {
+    const response = await client.fetch<PropertyDetail>(PROPERTY_DETAIL_QUERY, {
+      slug: `${locale}-${slug}`,
+    });
+
+    if (!response) {
+      return null;
+    }
+    return response;
+  } catch (error) {
+    console.error("Error fetching property detail:", error);
+    return null;
+  }
+}
+
+export async function getPropertyPhotoTour(
+  slug: string,
+  locale: string = "en",
+) {
+  try {
+    const response = await client.fetch<IPropertyAreaPhotoTour>(
+      PROPERTY_PHOTO_TOUR_QUERY,
+      { slug: `${locale}-${slug}` },
+    );
+    return response;
+  } catch (error) {
+    console.error("Error fetching property photo tour:", error);
+    return null;
+  }
+}
+
+export const fetchPropertySlugBySlug = async (slug: string) => {
+  try {
+    const response = await client.fetch<{
+      targetSlug: {
+        language: string;
+        slug: string;
+      }[];
+    } | null>(PROPERTY_SLUG_QUERY, { slug });
+
+    if (!response?.targetSlug) {
+      return [];
+    }
+
+    return response.targetSlug.map((item) => ({
+      locale: item.language,
+      slug: item.slug,
+      href: `/properties/${item.slug.replace(/^[a-z]{2}-/i, "")}`,
+    }));
+  } catch (error) {
+    console.error("Error fetching property slug:", error);
+    return [];
+  }
+};
+

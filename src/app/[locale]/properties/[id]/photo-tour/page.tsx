@@ -1,7 +1,7 @@
 import Section from "@/components/customs/Section";
 import { PropertySectionHeader } from "@/components/blocks/PropertyDetail/SectionHeader";
 import { PhotoTourView } from "@/components/sections/PhotoTour/PhotoTourView";
-import { getPropertyPhotoTour } from "@/services/properties.service";
+import { getPropertyPhotoTour } from "@/services/property.service";
 
 export const dynamic = "force-dynamic";
 
