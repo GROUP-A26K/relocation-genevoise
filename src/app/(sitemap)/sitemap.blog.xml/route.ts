@@ -36,15 +36,15 @@ interface SitemapEntry {
 
 const now = new Date().toISOString();
 
-const buildBlogEntries = (blogs: Blog[]): SitemapEntry[] =>
-  AppConfig.locales.flatMap((locale) =>
-    blogs.map(({ slug }) => ({
-      url: `${SITE_URL}/${locale}/blog/${slug.replace(/^[a-z]{2}-/i, '')}`,
-      lastModified: now,
-      changefreq: CHANGE_FREQ,
-      priority: 0.7,
-    }))
-  );
+const normalizeSlug = (slug: string): string => slug.replace(/^[a-z]{2}-/i, '');
+
+const buildBlogEntries = (blogs: Blog[], locale: string): SitemapEntry[] =>
+  blogs.map(({ slug }) => ({
+    url: `${SITE_URL}/${locale}/blog/${normalizeSlug(slug)}`,
+    lastModified: now,
+    changefreq: CHANGE_FREQ,
+    priority: 0.7,
+  }));
 
 const buildXml = (
   entries: SitemapEntry[]
@@ -68,14 +68,21 @@ ${entries
 
 export async function GET(): Promise<Response> {
   try {
-    /* ---- Fetch blogs once ---------------------------------------- */
-    const { blogs } = await fetchBlogs({
-      page: PAGE_NUMBER,
-      pageSize: PAGE_SIZE,
-      filterBy: '',
-      locale: 'fr',
-      search: '',
-    });
+    /* ---- Fetch blogs per locale ---------------------------------- */
+    const localizedEntries = await Promise.all(
+      AppConfig.locales.map(async (locale) => {
+        const { blogs } = await fetchBlogs({
+          page: PAGE_NUMBER,
+          pageSize: PAGE_SIZE,
+          filterBy: '',
+          locale,
+          search: '',
+        });
+
+        return buildBlogEntries(blogs, locale);
+      })
+    );
+    const blogEntries = localizedEntries.flat();
 
     /* ---- Build sitemap entries ----------------------------------- */
     const entries: SitemapEntry[] = [
@@ -85,7 +92,7 @@ export async function GET(): Promise<Response> {
         changefreq: CHANGE_FREQ,
         priority: 0.8,
       },
-      ...buildBlogEntries(blogs),
+      ...blogEntries,
     ];
 
     /* ---- Send response ------------------------------------------- */

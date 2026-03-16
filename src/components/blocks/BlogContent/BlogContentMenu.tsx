@@ -1,5 +1,7 @@
+"use client";
+
 import { cn } from "@/libs/utils";
-import { FC } from "react";
+import { FC, useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -17,6 +19,34 @@ interface Props {
 }
 
 const DesktopMenu: FC<Props> = (props) => {
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (!props.activeId) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
+
+    const listElement = listRef.current;
+    if (!listElement || listElement.offsetParent === null) return;
+
+    const activeItemElement = document.getElementById(
+      `toc-item-${props.activeId}`,
+    );
+    if (!activeItemElement || !listElement.contains(activeItemElement)) return;
+
+    const listRect = listElement.getBoundingClientRect();
+    const itemRect = activeItemElement.getBoundingClientRect();
+    const isOutsideListViewport =
+      itemRect.top < listRect.top || itemRect.bottom > listRect.bottom;
+
+    if (!isOutsideListViewport) return;
+
+    activeItemElement.scrollIntoView({
+      block: "nearest",
+      inline: "nearest",
+      behavior: "smooth",
+    });
+  }, [props.activeId]);
+
   return (
     <div className="lg:flex flex-col gap-8 w-fit hidden">
       {props?.isTableContent && (
@@ -24,29 +54,48 @@ const DesktopMenu: FC<Props> = (props) => {
           {props.title && props.title}
         </div>
       )}
-      <ul className="flex flex-col gap-1 xl:max-w-[263px] lg:max-w-[160px] w-full border-l-2 border-solid border-grey-100">
-        {props.menuItems.map((item) => (
-          <li
-            key={`menu-item-${item.id}`}
-            className={cn("px-4 py-3 transition-all duration-200 ease-in-out", {
-              "ml-[-2px] border-l-2 border-solid border-secondary-500 bg-secondary-25":
-                item.id === props.activeId,
-            })}
-          >
-            <a
-              href={`#${item.id}`}
-              title={item.title}
-              onClick={() => props.setActiveId(item.id)}
+      <div
+        className={cn(
+          "relative",
+          "before:absolute before:left-0 before:inset-y-0 before:w-0.5 before:bg-grey-50 before:content-['']",
+          "before:z-[-1]",
+        )}
+      >
+        <ul
+          ref={listRef}
+          className="flex flex-col gap-1 xl:max-w-[263px] lg:max-w-[160px] w-full max-h-[calc(100dvh-6rem)] overflow-y-auto scrollbar-hide"
+        >
+          {props.menuItems.map((item) => (
+            <li
+              id={`toc-item-${item.id}`}
+              key={`menu-item-${item.id}`}
               className={cn(
-                "text-base text-black-200 font-normal !leading-[130%] line-clamp-4 text-wrap transition-colors duration-200 ease-in-out",
-                { "text-primary-500 font-semibold": item.id === props.activeId }
+                "px-4 py-3 transition-all duration-200 ease-in-out",
+                "border-l-2 border-solid border-transparent",
+                {
+                  "border-secondary-500 bg-secondary-25":
+                    item.id === props.activeId,
+                },
               )}
             >
-              {item.title}
-            </a>
-          </li>
-        ))}
-      </ul>
+              <a
+                href={`#${item.id}`}
+                title={item.title}
+                onClick={() => props.setActiveId(item.id)}
+                className={cn(
+                  "text-base text-black-200 font-normal !leading-[130%] line-clamp-4 text-wrap transition-colors duration-200 ease-in-out",
+                  {
+                    "text-primary-500 font-semibold":
+                      item.id === props.activeId,
+                  },
+                )}
+              >
+                {item.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
