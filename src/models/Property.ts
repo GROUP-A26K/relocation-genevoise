@@ -1,3 +1,5 @@
+import { Meta } from "./Meta";
+
 export type PropertyPriceUnit = "$" | "CHF" | "EUR";
 
 export type PropertyRentPeriod = "month" | "year";
@@ -21,6 +23,8 @@ export interface PropertyListing {
   imageUrl: string;
   availability: boolean;
 }
+
+export interface PropertyPagination { properties: PropertyListing[]; meta: Meta }
 
 export interface PropertyFacility {
   icon: string;
@@ -83,6 +87,16 @@ export interface PropertyAgent {
 export interface PropertyCategory {
   _id: string;
   categoryName: string;
+}
+
+export interface PropertySimilar {
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  slug: { _type: string; current: string };
+  title: string;
+  description: string;
+  mainImage?: { asset?: { _id: string; url: string } };
 }
 
 export interface PropertyArea {

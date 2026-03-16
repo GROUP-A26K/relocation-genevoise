@@ -51,6 +51,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
 
   return (
     <PropertyDetailContainer>
+
       <div className="lg:col-span-6 flex flex-col gap-8">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
@@ -58,7 +59,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
               <span className="h-3 w-3 rounded-full bg-green-500 border-[3px] border-green-200"></span>
               <span>{property.availability ? t("status.available") : t("status.notAvailable")}</span>
               <Badge 
-                className="bg-blue-50 hover:bg-blue-50 text-blue-500 shadow-none text-xs !leading-[130%] font-normal"
+                className="bg-blue-50 text-blue-500 shadow-none text-xs !leading-[130%] font-normal"
               >
                 {property.category.categoryName}
               </Badge>

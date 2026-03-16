@@ -18,9 +18,9 @@ export function PropertySectionHeader({ areas }: IPropertySectionHeaderProps) {
   const subheading = t("subheading");
 
   return (
-    <div className="flex flex-col gap-8 pb-16">
+    <div className="flex flex-col gap-8 lg:pb-16">
       <div className="flex flex-col items-start gap-3">
-        <h1 className="text-yellow-600 text-sm !leading[130%]">{title}</h1>
+        <h1 className="text-yellow-600 text-sm font-semibold !leading[130%]">{title}</h1>
         <h2 className="font-semibold text-3xl !leading[130%] text-black-500">
           {subheading}
         </h2>

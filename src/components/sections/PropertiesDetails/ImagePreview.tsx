@@ -49,7 +49,7 @@ export const ImagePreview = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative w-full">
       <div className="relative aspect-[1/0.68] w-full h-full">
         {!loadedImages.has(mainImageObj?.url || "") && (
           <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
@@ -79,7 +79,7 @@ export const ImagePreview = ({
             />
             {i === 3 && remainingCount > 0 && (
               <div className="absolute inset-0 bg-[#000000]/50 rounded-lg lg:hidden flex items-center justify-center">
-                <span className="text-white font-semibold text-base leading-[130%]">
+                <span className="text-white font-semibold text-base leading-[130%]" onClick={handleNavigateToPhotoTour}>
                   +{remainingCount}
                 </span>
               </div>

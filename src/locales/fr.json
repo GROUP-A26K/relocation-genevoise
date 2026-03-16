@@ -1195,6 +1195,12 @@
     "description": {
       "readMore": "Voir plus",
       "readLess": "Voir moins"
+    },
+    "similar": {
+      "title": "Propriété",
+      "subheading": "Découvrez des propriétés similaires",
+      "description": "Que vous cherchiez un appartement moderne dans la ville ou une maison paisible dans les banlieues, nos annonces offrent quelque chose pour tout le monde.",
+      "viewAllButton": "Voir toutes les propriétés"
     }
   },
 
