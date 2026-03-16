@@ -16,7 +16,7 @@ export async function PropertyDetailSimilar({
 
   return (
     <div className="flex flex-col gap-16 py-12 lg:py-16 px-4 2xl:px-[100px] xl:px-[60px] lg:px-[48px]">
-      <div className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-end">
+      <div className="flex flex-col w-full max-w-[1240px] gap-6 lg:flex-row lg:justify-between lg:items-end">
         <div className="flex flex-col gap-6 max-w-3xl">
           <div className="flex flex-col items-start gap-3">
             <p className="text-yellow-600 font-semibold text-sm !leading[130%]">

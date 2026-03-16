@@ -1,8 +1,10 @@
-
 import { ImagePreview } from "@/components/sections/PropertiesDetails/ImagePreview";
 import { PropertyDetailSimilar } from "@/components/sections/PropertiesDetails/PropertyDetailSimilar";
 import { PropertyDetailView } from "@/components/sections/PropertiesDetails/PropertyDetailsView";
-import { fetchProperties, getPropertyDetail } from "@/services/property.service";
+import {
+  fetchProperties,
+  getPropertyDetail,
+} from "@/services/property.service";
 
 type Props = {
   params: Promise<{ locale: string; id: string }>;
@@ -21,10 +23,11 @@ export default async function PropertyDetailPage({ params }: Props) {
 
   return (
     <>
-      <section className="flex flex-col items-center py-12 lg:py-16 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4 gap-12 lg:gap-16">
-        <ImagePreview property={property!} propertySlug={id} />
-
-        <PropertyDetailView property={property!} />
+      <section className="py-12 lg:py-16 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4 ">
+        <div className="flex flex-col items-center w-full max-w-[1240px] gap-12 lg:gap-16">
+          <ImagePreview property={property!} propertySlug={id} />
+          <PropertyDetailView property={property!} />
+        </div>
       </section>
       <PropertyDetailSimilar
         relatedProperties={listRelatedProperty.properties}
