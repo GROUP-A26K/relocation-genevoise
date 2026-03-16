@@ -1,7 +1,8 @@
 import { AppConfig } from "@/utils/AppConfig";
 import { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-
+import { withSentryConfig } from "@sentry/nextjs";
+import sentryWebpackPluginOptions from "./sentry.config";
 const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
 
 type LocaleMap = Record<string, string | number>;
@@ -48,7 +49,11 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com", "cdn.sanity.io", "randomuser.me"],
   },
-
+  productionBrowserSourceMaps: true,
+  sentry: {
+    hideSourceMaps: true,
+    widenClientFileUpload: true,
+  },
   async rewrites() {
     return [
       {
@@ -76,4 +81,7 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withSentryConfig(
+  withNextIntl(nextConfig),
+  sentryWebpackPluginOptions
+);
