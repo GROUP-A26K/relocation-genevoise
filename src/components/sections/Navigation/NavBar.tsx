@@ -1,4 +1,4 @@
-import { Backpack, Building, School, UserRoundSearch } from "lucide-react";
+import { Backpack, Building, School, UserRoundSearch, Warehouse } from "lucide-react";
 import { FC } from "react";
 import { NavbarContainer, NavbarProps } from "./NavbarContainer";
 import { getTranslations } from "next-intl/server";
@@ -46,6 +46,12 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
             description: tNav("menu.2.items.3.description"),
             icon: Backpack,
             url: "/services/discover-geneva",
+          },
+          {
+            title: tNav("menu.2.items.4.title"),
+            description: tNav("menu.2.items.4.description"),
+            icon: Warehouse,
+            url: "/properties",
           },
         ],
       },

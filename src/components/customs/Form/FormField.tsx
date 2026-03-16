@@ -13,6 +13,7 @@ type FormFieldProps = {
   children: React.ReactNode;
   message?: string;
   className?: string;
+  labelClassName?: string;
 };
 
 export const FormField: FC<FormFieldProps> = ({
@@ -21,11 +22,14 @@ export const FormField: FC<FormFieldProps> = ({
   isRequired,
   message,
   className,
+  labelClassName,
 }) => {
   return (
     <FormItem className={cn('w-full flex flex-col gap-1.5', className)}>
       {label && (
-        <FormLabel className="text-sm !leading-[130%] flex gap-0.5">
+        <FormLabel
+          className={cn('text-sm !leading-[130%] flex gap-0.5', labelClassName)}
+        >
           {label}
           {isRequired && <div className="text-red-500">*</div>}
         </FormLabel>

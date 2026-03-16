@@ -10,6 +10,7 @@ import { cn } from "@/libs/utils";
 import { getAlternatePath } from "@/utils/Helpers";
 import { fetchCareerSlugBySlug } from "@/services/career/career.service";
 import { fetchBlogSlugBySlug } from "@/services/blog.service";
+import { fetchPropertySlugBySlug } from "@/services/property.service";
 interface LanguageSelectorProps {
   className?: string;
 }
@@ -88,9 +89,24 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
       }
     }
 
+    if (pathname?.startsWith("/properties/")) {
+      const translatedUrl = await handleContentTranslation(
+        pathname,
+        locale,
+        targetLocale,
+        fetchPropertySlugBySlug
+      );
+
+      if (translatedUrl) {
+        router.push(translatedUrl);
+        router.refresh();
+        return;
+      }
+    }
+
     router.push(getAlternatePath(`/${locale}${pathname}`));
     router.refresh();
-  };
+  };  
 
   useEffect(() => {
     setIsRotated((prev) => !prev);

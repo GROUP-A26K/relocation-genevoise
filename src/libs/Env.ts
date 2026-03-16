@@ -25,6 +25,7 @@ export const Env = createEnv({
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
     NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
     NEXT_PUBLIC_SERVER_TIMEZONE: z.string().min(1),
+    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
   },
   shared: {
     NODE_ENV: z.enum(["test", "development", "production"]).optional(),
@@ -51,5 +52,6 @@ export const Env = createEnv({
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
   },
 });

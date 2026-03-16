@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 // is required, even if it's just passing children through.
 export default async function RootLayout(props: Props) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="scroll-smooth">
       <head>
         <link
           rel="icon"

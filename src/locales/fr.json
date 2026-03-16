@@ -897,6 +897,10 @@
       "title": "Relocation Genevoise – Articles et actualités",
       "description": "Suivez toute l’actualité du bassin genevois : mobilité, logement, emploi et conseils pratiques pour bien s’installer dans la région."
     },
+    "Properties": {
+      "title": "Relocation Genevoise – Propriétés à louer",
+      "description": "Découvrez des propriétés exceptionnelles à louer à Genève : appartements, maisons et résidences de luxe adaptés à votre style de vie."
+    },
     "Career": {
       "title": "Relocation Genevoise - Carrières",
       "description": "Rejoignez Relocation Genevoise et faites partie d'une équipe dynamique dédiée à la protection de nos clients en Suisse. Consultez nos offres d'emploi."
@@ -980,6 +984,10 @@
           {
             "title": "Découvrir Genève",
             "description": "Vous faire découvrir Genève et ses incontournables"
+          },
+          {
+            "title": "Annonces immobilières",
+            "description": "Parcourez nos biens disponibles à Genève et trouvez votre logement idéal"
           }
         ]
       }
@@ -1100,6 +1108,105 @@
     "Subscribe": {
       "emailInvalid": "Veuillez entrer une adresse e-mail valide."
     }
+  },
+
+  "Properties": {
+    "hero": {
+      "tagline": "Propriétés",
+      "title": "Trouvez votre bien immobilier idéal",
+      "description": "Découvrez des propriétés exceptionnelles adaptées à votre style de vie, offrant confort, élégance et emplacements privilégiés. Que vous recherchiez un appartement moderne, une maison de charme ou une résidence de luxe, trouvez le logement parfait."
+    },
+    "filters": {
+      "location": "Localisation",
+      "locationPlaceholder": "Entrer la localisation",
+      "price": "Prix",
+      "choosePriceRange": "Choisir une tranche de prix",
+      "minPrice": "Prix min",
+      "maxPrice": "Prix max",
+      "currency": "Devise",
+      "priceInvalid": "Entrez un nombre valide",
+      "minMaxInvalid": "Le min doit être inférieur au max",
+      "propertyType": "Type de bien",
+      "chooseType": "Choisir le type",
+      "searchButton": "Rechercher"
+    },
+    "results": {
+      "showing": "Affichage",
+      "ofTotal": "sur un total de",
+      "results": "résultats",
+      "sortBy": "Trier par"
+    },
+    "sort": {
+      "newest": "Plus populaires",
+      "priceAsc": "Prix : croissant",
+      "priceDesc": "Prix : décroissant"
+    },
+    "card": {
+      "bedroom": "Ch",
+      "bathroom": "SdB",
+      "rentPeriod": {
+        "month": "mois",
+        "year": "an"
+      }
+    },
+    "emptyData": {
+      "title": "Aucune propriété trouvée",
+      "description": "Essayez d'ajuster vos filtres de recherche pour trouver ce que vous cherchez."
+    },
+    "cooperate": {
+      "tagline": "Coopérer",
+      "title": "Souhaitez-vous bénéficier de notre expertise et de nos services ?",
+      "description": "Nous sommes à votre disposition pour répondre à vos questions et vous accompagner dans l'intégration de nos solutions adaptées à vos activités.",
+      "contactButton": "Contactez-nous",
+      "findButton": "Trouver un logement"
+    },
+    "BookConsultation": {
+      "heading": "Trouver votre bien",
+      "subHeading": "Besoin d'aide pour ((acheter ou louer le bon logement)) ?",
+      "description": "Expliquez-nous votre recherche et notre équipe vous aidera à cibler les bons biens, comprendre les prix et avancer plus sereinement.",
+      "buttonText1": "Contactez-nous",
+      "buttonText2": "Trouver un logement"
+    }
+  },
+
+  "PropertiesDetails": {
+    "priceUnit": "/mois",
+    "status": {
+      "available": "Disponible maintenant",
+      "notAvailable": "Non disponible"
+    },
+    "sections": {
+      "facilities": "Équipements",
+      "description": "Description",
+      "surrounding": "Informations sur les environs",
+      "whereYouBe": "Où vous serez",
+      "contactAgent": "Contacter l'agent"
+    },
+    "imagePreview": {
+      "viewAllButton": "Voir toutes les photos"
+    },
+    "map": {
+      "viewOnMap": "Voir sur la carte"
+    },
+    "agent": {
+      "title": "Détails de l'agent",
+      "contactButton": "Contacter l'agent"
+    },
+    "description": {
+      "readMore": "Voir plus",
+      "readLess": "Voir moins"
+    },
+    "similar": {
+      "title": "Propriété",
+      "subheading": "Découvrez des propriétés similaires",
+      "description": "Que vous cherchiez un appartement moderne dans la ville ou une maison paisible dans les banlieues, nos annonces offrent quelque chose pour tout le monde.",
+      "viewAllButton": "Voir toutes les propriétés"
+    }
+  },
+
+  "PhotoTour": {
+    "title": "Photo",
+    "subheading": "Visite photo"
   },
 
   "ToastMessage": {
