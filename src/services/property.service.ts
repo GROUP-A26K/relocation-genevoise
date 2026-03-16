@@ -5,6 +5,13 @@ import {
 import { client } from "@/sanity/lib/client";
 import { LOCALE, type TLocale } from "@/constants/locale";
 import {
+  PROPERTY_CURRENCY_TO_PRICE_UNIT,
+  PROPERTY_DEFAULT_PRICE_UNIT,
+  PROPERTY_DEFAULT_RENT_PERIOD,
+  PROPERTY_DEFAULT_SORT,
+  type TPropertyCurrency,
+} from "@/constants/property";
+import {
   PropertyCategory,
   PropertyFacility,
   PropertyListing,
@@ -20,7 +27,6 @@ import {
 const DEFAULT_PROPERTY_PAGE = 1;
 const DEFAULT_PROPERTY_PAGE_SIZE = 15;
 const DEFAULT_PROPERTY_LOCALE = LOCALE.fr;
-const DEFAULT_PROPERTY_SORT = "newest";
 const EMPTY_PROPERTIES_RESPONSE: IPropertiesResponse = {
   properties: [],
   meta: {
@@ -38,11 +44,9 @@ const toPriceUnitFilter = (currency?: string): string => {
     return "";
   }
 
-  if (currency === "USD") {
-    return "$";
-  }
-
-  return currency;
+  return (
+    PROPERTY_CURRENCY_TO_PRICE_UNIT[currency as TPropertyCurrency] ?? currency
+  );
 };
 
 const getLocale = (locale?: string): TLocale => {
@@ -62,8 +66,8 @@ const mapProperty = (property: ISanityPropertyResponse): PropertyListing => ({
   slug: property.slug?.current || "",
   href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
   price: property.price || 0,
-  priceUnit: property.priceUnit || "$",
-  rentPeriod: property.rentPeriod || "month",
+  priceUnit: property.priceUnit || PROPERTY_DEFAULT_PRICE_UNIT,
+  rentPeriod: property.rentPeriod || PROPERTY_DEFAULT_RENT_PERIOD,
   location: {
     name: property.mapLocation?.name || "",
     lat: property.mapLocation?.coordinates?.lat,
@@ -98,7 +102,7 @@ export const fetchProperties = async (
     const page = params?.page ?? DEFAULT_PROPERTY_PAGE;
     const pageSize = params?.pageSize ?? DEFAULT_PROPERTY_PAGE_SIZE;
     const locale = getLocale(params?.locale);
-    const sort = params?.sort ?? DEFAULT_PROPERTY_SORT;
+    const sort = params?.sort ?? PROPERTY_DEFAULT_SORT;
     const { start, end } = getPaginationRange(page, pageSize);
 
     const response = await client.fetch<{
