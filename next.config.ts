@@ -60,6 +60,10 @@ const nextConfig: NextConfig = {
         source: "/fr/carriere/:slug*",
         destination: "/fr/career/:slug*",
       },
+      {
+        source: "/fr/proprietes/:slug*",
+        destination: "/fr/properties/:slug*",
+      },
       ...buildRewrites(),
     ];
   },
@@ -74,6 +78,16 @@ const nextConfig: NextConfig = {
       {
         source: "/career/:slug*",
         destination: "/carriere/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/en/proprietes/:slug*",
+        destination: "/en/properties/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/properties/:slug*",
+        destination: "/proprietes/:slug*",
         permanent: true,
       },
       ...buildRedirects(),

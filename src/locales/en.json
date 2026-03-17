@@ -851,6 +851,9 @@
             "title": "FAQ"
           },
           {
+            "title": "Listing Properties"
+          },
+          {
             "title": "Legal Notice"
           },
           {
@@ -1025,7 +1028,8 @@
       "links": [
         { "text": "Academic Services" },
         { "text": "Discover Geneva" },
-        { "text": "Concierge" }
+        { "text": "Concierge" },
+        { "text": "Listing Properties" }
       ]
     },
     "support": {

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IAreaPhotoTour } from "@/models/Property";
+import { cn } from "@/libs/utils";
 
 interface IPhotoTourSectionProps {
   area: IAreaPhotoTour;
@@ -22,6 +23,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
     ],
     [area.mainImageUrl, area.galleryImages],
   );
+  const hasMultipleImages = allImages.length > 1;
   const [activeIndex, setActiveIndex] = useState(0);
   const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const thumbContainerRef = useRef<HTMLDivElement | null>(null);
@@ -75,46 +77,58 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
         <div className="relative aspect-[784/480] w-full rounded-3xl overflow-hidden">
           <Image
             src={allImages[activeIndex].url}
-            alt="Bedroom"
+            alt={`${area.title} - ${activeIndex + 1}`}
+            title={`${area.title} - ${activeIndex + 1}`}
             fill
             className="object-cover"
             sizes="(max-width: 784px) 100vw, 784px"
             priority
           />
-          <button
-            onClick={prevImage}
-            className="absolute left-[25px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black-500/40 text-white hover:bg-black/60 transition"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-[25px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black-500/40 text-white hover:bg-black/60 transition"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+          {hasMultipleImages && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-[25px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black-500/40 text-white hover:bg-black/60 transition"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-[25px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black-500/40 text-white hover:bg-black/60 transition"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
         </div>
-        <div ref={thumbContainerRef} className="flex gap-4 overflow-x-auto scrollbar-hide">
-          {allImages.map((img, index) => (
-            <button
-              key={index}
-              ref={(node) => {
-                thumbRefs.current[index] = node;
-              }}
-              onClick={() => selectImage(index)}
-              className={`relative flex-shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-[168/120] rounded-xl overflow-hidden ring-2
-              ${activeIndex === index ? "ring-black" : "ring-transparent"}`}
-            >
-              <Image
-                src={img.url}
-                alt={`Thumbnail ${index}`}
-                fill
-                sizes="(max-width:640px) 120px, (max-width:1024px) 140px, 168px"
-                className="object-cover"
-              />
-            </button>
-          ))}
-        </div>
+        {hasMultipleImages && (
+          <div ref={thumbContainerRef} className="flex gap-4 overflow-x-auto scrollbar-hide">
+            {allImages.map((img, index) => (
+              <button
+                key={index}
+                data-selected={activeIndex === index}
+                ref={(node) => {
+                  thumbRefs.current[index] = node;
+                }}
+                onClick={() => selectImage(index)}
+                className={cn(
+                  "relative flex-shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-[168/120] rounded-xl overflow-hidden",
+                  'before:content-[""] before:absolute before:inset-0 before:z-10 before:rounded-xl before:border-2 before:border-transparent before:pointer-events-none',
+                  "data-[selected=true]:before:border-blue-400",
+                )}
+              >
+                <Image
+                  src={img.url}
+                  alt={`${area.title} thumbnail ${index + 1}`}
+                  title={`${area.title} thumbnail ${index + 1}`}
+                  fill
+                  sizes="(max-width:640px) 120px, (max-width:1024px) 140px, 168px"
+                  className="object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

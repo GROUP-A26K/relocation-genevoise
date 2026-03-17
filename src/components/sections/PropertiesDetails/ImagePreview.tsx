@@ -10,6 +10,7 @@ import { PropertyDetail } from "@/models/Property";
 
 type ImageObj = {
   url: string;
+  title: string;
 };
 interface IImagePreviewProps {
   property: PropertyDetail;
@@ -26,10 +27,17 @@ export const ImagePreview = ({
 
   const images: ImageObj[] = property.areas.map((area) => ({
     url: area.mainImageUrl,
+    title: `${property.title} - ${area.title}`,
   }));
 
   const galleryImages: ImageObj[] = property.areas
-    .map((area) => area.galleryImages?.map((img) => ({ url: img.url })) || [])
+    .map(
+      (area) =>
+        area.galleryImages?.map((img, index) => ({
+          url: img.url,
+          title: `${property.title} - ${area.title} ${index + 1}`,
+        })) || [],
+    )
     .flat();
 
   const allImages = images.concat(galleryImages);
@@ -56,7 +64,8 @@ export const ImagePreview = ({
         )}
         <Image
           src={mainImageObj?.url}
-          alt="Preview image 0"
+          alt={mainImageObj?.title || property.title}
+          title={mainImageObj?.title || property.title}
           fill
           sizes="100vw"
           className="object-cover rounded-2xl lg:rounded-none"
@@ -71,7 +80,8 @@ export const ImagePreview = ({
             )}
             <Image
               src={img.url}
-              alt={`Preview image ${i + 1}`}
+              alt={img.title}
+              title={img.title}
               fill
               sizes="25vw, 25vw"
               className="object-cover rounded-lg lg:rounded-none"

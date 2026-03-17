@@ -25,9 +25,9 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
       />
 
       <div className="relative flex flex-col gap-4 lg:gap-6">
-        <h2 className="text-xl lg:text-2xl font-semibold text-black-500">
+        <p className="text-xl lg:text-2xl font-semibold text-black-500">
           {t("agent.title")}
-        </h2>
+        </p>
 
         <div className="flex items-center gap-6">
           <Image
@@ -39,7 +39,7 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
           />
 
           <div className="flex flex-col gap-2 lg:gap-3 min-w-0">
-            <h3 className="text-lg font-semibold text-black-500">{agentName}</h3>
+            <p className="text-lg font-semibold text-black-500">{agentName}</p>
             <p className="text-xl text-blue-500 font-semibold">{agentPhone}</p>
           </div>
         </div>

@@ -89,7 +89,10 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
       }
     }
 
-    if (pathname?.startsWith("/properties/")) {
+    if (
+      pathname?.startsWith("/properties/") ||
+      pathname?.startsWith("/proprietes/")
+    ) {
       const translatedUrl = await handleContentTranslation(
         pathname,
         locale,
@@ -98,7 +101,11 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
       );
 
       if (translatedUrl) {
-        router.push(translatedUrl);
+        const targetUrl = pathname?.endsWith("/photo-tour")
+          ? `${translatedUrl}/photo-tour`
+          : translatedUrl;
+
+        router.push(targetUrl);
         router.refresh();
         return;
       }

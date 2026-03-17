@@ -31,7 +31,7 @@ export function PropertyMap({ country, address }: IPropertyMapProps) {
       </div>
       <div className="flex flex-col lg:flex-row lg:items-center items-start justify-between p-6 gap-4">
         <div className="flex-1 min-w-0 w-full">
-          <h3 className="text-lg font-semibold text-black-500 !leading-[130%]">{country}</h3>
+          <p className="text-lg font-semibold text-black-500 !leading-[130%]">{country}</p>
           <p className="text-black-200 text-sm font-normal">{address}</p>
         </div>
 

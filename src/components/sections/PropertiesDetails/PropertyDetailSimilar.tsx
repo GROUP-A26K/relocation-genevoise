@@ -15,7 +15,7 @@ export async function PropertyDetailSimilar({
   const locale = await getLocale();
 
   return (
-    <div className="flex flex-col gap-16 py-12 lg:py-16 px-4 2xl:px-[100px] xl:px-[60px] lg:px-[48px]">
+    <div className="flex flex-col gap-16 py-12 lg:py-16 px-4 2xl:px-[100px] xl:px-[60px] lg:px-[48px] max-w-screen-2xl">
       <div className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-end">
         <div className="flex flex-col gap-6 max-w-3xl">
           <div className="flex flex-col items-start gap-3">
