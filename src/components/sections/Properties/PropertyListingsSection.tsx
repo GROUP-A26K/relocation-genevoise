@@ -8,14 +8,16 @@ import {
   PROPERTY_PAGE_SIZE,
   usePropertyFilters,
 } from "@/hooks/usePropertyFilters";
-import { PropertyPagination } from "@/models/Property";
+import { useExchangeRates } from "@/context/ExchangeRatesContext";
+import { Meta } from "@/models/Meta";
+import { IPropertyListing } from "@/models/Property";
 import { fetchProperties } from "@/services/property.service";
 import type { IPropertyParams } from "@/types";
 
 import PropertyResultsContent from "./PropertyResultsContent";
 import PropertyResultsHeader from "./PropertyResultsHeader";
 
-const INITIAL_DATA: PropertyPagination = {
+const INITIAL_DATA: { properties: IPropertyListing[]; meta: Meta } = {
   properties: [],
   meta: {
     pagination: {
@@ -29,7 +31,8 @@ const INITIAL_DATA: PropertyPagination = {
 
 export default function PropertyListingsSection() {
   const locale = useLocale();
-  const { filterParams } = usePropertyFilters();
+  const { convertToCHF } = useExchangeRates();
+  const { filterParams } = usePropertyFilters(convertToCHF);
 
   const [data, setData] = useState(INITIAL_DATA);
   const {

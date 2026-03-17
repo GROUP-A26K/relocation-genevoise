@@ -135,7 +135,7 @@ export const Pagination: FC<Props> = (props) => {
       </PaginationContent>
 
       {/* Mobile */}
-      <PaginationContent className="w-full flex flex-row justify-between lg:hidden ">
+      <PaginationContent className="w-full flex flex-row justify-between lg:hidden pt-8 border-t border-t-grey-100">
         <PaginationItem>
           <div
             className="flex h-10 w-10 p-2 lg:p-3 rounded-xl border items-center justify-center cursor-pointer"

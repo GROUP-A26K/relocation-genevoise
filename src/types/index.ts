@@ -1,6 +1,6 @@
 import { Meta } from "@/models/Meta";
-import {
-  PropertyListing,
+import type {
+  IPropertyListing,
   PropertyPriceUnit,
   PropertyRentPeriod,
 } from "@/models/Property";
@@ -14,7 +14,7 @@ export interface IPropertyParams {
   page?: number;
   pageSize?: number;
   locale?: string;
-  category?: string;
+  category?: string[];
   location?: string;
   minPrice?: number;
   maxPrice?: number;
@@ -59,7 +59,7 @@ export interface IPropertyCategoryDocument {
 }
 
 export interface IPropertiesResponse {
-  properties: PropertyListing[];
+  properties: IPropertyListing[];
   meta: Meta;
 }
 

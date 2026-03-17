@@ -3,39 +3,41 @@
 import { useCallback, useMemo } from "react";
 import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
 
+import {
+  PROPERTY_DEFAULT_CURRENCY,
+  getPriceRangeByValue,
+  toCHF as toCHFStatic,
+} from "@/constants/property";
+
 export interface IPropertyFilterQueryParams {
   page: number;
-  category: string;
+  categories: string;
   location: string;
-  minPrice: number;
-  maxPrice: number;
+  priceRange: string;
   currency: string;
   sort: string;
 }
 
 type PropertyAppliedFilters = {
-  category: string;
+  categories: string[];
   location: string;
-  minPrice: string | number;
-  maxPrice: string | number;
+  priceRange: string;
   currency: string;
 };
 
 export type PropertyFilterFormValues = {
-  category: string;
+  categories: string[];
   location: string;
-  minPrice: string;
-  maxPrice: string;
+  priceRange: string;
   currency: string;
 };
 
 const INITIAL_PARAMS: IPropertyFilterQueryParams = {
   page: 1,
-  category: "",
+  categories: "",
   location: "",
-  minPrice: 0,
-  maxPrice: 0,
-  currency: "",
+  priceRange: "",
+  currency: PROPERTY_DEFAULT_CURRENCY,
   sort: "newest",
 };
 
@@ -47,22 +49,21 @@ export const PROPERTY_SORT_OPTIONS = [
   { value: "price_desc", labelKey: "sort.priceDesc" },
 ] as const;
 
-const toPriceInputValue = (value: number) => (value > 0 ? String(value) : "");
+const categoriesToParam = (categories: string[]): string =>
+  categories.filter(Boolean).join(",");
 
-const toPriceParam = (value: string | number) => {
-  const parsedValue = Number(value);
+const paramToCategories = (param: string): string[] =>
+  param ? param.split(",").filter(Boolean) : [];
 
-  return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : 0;
-};
-
-export const usePropertyFilters = () => {
+export const usePropertyFilters = (
+  convertToCHF?: (amount: number, currency: string) => number,
+) => {
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(INITIAL_PARAMS.page),
-      category: parseAsString.withDefault(INITIAL_PARAMS.category),
+      categories: parseAsString.withDefault(INITIAL_PARAMS.categories),
       location: parseAsString.withDefault(INITIAL_PARAMS.location),
-      minPrice: parseAsInteger.withDefault(INITIAL_PARAMS.minPrice),
-      maxPrice: parseAsInteger.withDefault(INITIAL_PARAMS.maxPrice),
+      priceRange: parseAsString.withDefault(INITIAL_PARAMS.priceRange),
       currency: parseAsString.withDefault(INITIAL_PARAMS.currency),
       sort: parseAsString.withDefault(INITIAL_PARAMS.sort),
     },
@@ -72,63 +73,44 @@ export const usePropertyFilters = () => {
   const formValues = useMemo<PropertyFilterFormValues>(
     () => ({
       location: queryParams.location,
-      category: queryParams.category,
-      minPrice: toPriceInputValue(queryParams.minPrice),
-      maxPrice: toPriceInputValue(queryParams.maxPrice),
-      currency: queryParams.currency,
+      categories: paramToCategories(queryParams.categories),
+      priceRange: queryParams.priceRange,
+      currency: queryParams.currency || PROPERTY_DEFAULT_CURRENCY,
     }),
     [
-      queryParams.category,
+      queryParams.categories,
       queryParams.currency,
       queryParams.location,
-      queryParams.maxPrice,
-      queryParams.minPrice,
+      queryParams.priceRange,
     ],
-  );
-
-  const handleFilterChange = useCallback(
-    (
-      key: keyof Omit<IPropertyFilterQueryParams, "page" | "sort">,
-      value: string | number,
-    ) => {
-      const normalizedValue =
-        key === "minPrice" || key === "maxPrice" ? toPriceParam(value) : value;
-
-      void setQueryParams({
-        [key]: normalizedValue,
-        page: 1,
-      } as Partial<IPropertyFilterQueryParams>);
-    },
-    [setQueryParams],
   );
 
   const applyFilters = useCallback(
     (filters: Partial<PropertyAppliedFilters> = {}) => {
-      const nextLocation = (filters.location ?? queryParams.location).trim();
-      const nextCategory = filters.category ?? queryParams.category;
-      const nextMinPrice = toPriceParam(
-        filters.minPrice ?? queryParams.minPrice,
-      );
-      const nextMaxPrice = toPriceParam(
-        filters.maxPrice ?? queryParams.maxPrice,
-      );
-      const nextCurrency = filters.currency ?? queryParams.currency;
+      const nextLocation = (
+        filters.location ?? queryParams.location
+      ).trim();
+      const nextCategories =
+        filters.categories !== undefined
+          ? categoriesToParam(filters.categories)
+          : queryParams.categories;
+      const nextPriceRange = filters.priceRange ?? queryParams.priceRange;
+      const nextCurrency =
+        filters.currency ?? queryParams.currency ?? PROPERTY_DEFAULT_CURRENCY;
 
       void setQueryParams({
         page: 1,
         location: nextLocation,
-        category: nextCategory,
-        minPrice: nextMinPrice,
-        maxPrice: nextMaxPrice,
+        categories: nextCategories,
+        priceRange: nextPriceRange,
         currency: nextCurrency,
       });
     },
     [
-      queryParams.category,
+      queryParams.categories,
       queryParams.currency,
       queryParams.location,
-      queryParams.maxPrice,
-      queryParams.minPrice,
+      queryParams.priceRange,
       setQueryParams,
     ],
   );
@@ -147,33 +129,39 @@ export const usePropertyFilters = () => {
     [setQueryParams],
   );
 
-  const filterParams = useMemo(
-    () => ({
+  // Convert price range + currency into CHF min/max for Sanity query
+  const filterParams = useMemo(() => {
+    const range = getPriceRangeByValue(queryParams.priceRange);
+    const currency =
+      queryParams.currency || PROPERTY_DEFAULT_CURRENCY;
+
+    const converter = convertToCHF ?? toCHFStatic;
+    const minPriceCHF = range.min > 0 ? converter(range.min, currency) : 0;
+    const maxPriceCHF = range.max > 0 ? converter(range.max, currency) : 0;
+
+    return {
       page: queryParams.page,
       pageSize: PROPERTY_PAGE_SIZE,
-      category: queryParams.category,
+      category: paramToCategories(queryParams.categories),
       location: queryParams.location ? `*${queryParams.location}*` : "",
-      minPrice: queryParams.minPrice,
-      maxPrice: queryParams.maxPrice,
-      currency: queryParams.currency,
+      minPrice: minPriceCHF,
+      maxPrice: maxPriceCHF,
+      currency: queryParams.currency || PROPERTY_DEFAULT_CURRENCY,
       sort: queryParams.sort,
-    }),
-    [
-      queryParams.category,
-      queryParams.currency,
-      queryParams.location,
-      queryParams.maxPrice,
-      queryParams.minPrice,
-      queryParams.page,
-      queryParams.sort,
-    ],
-  );
+    };
+  }, [
+    queryParams.categories,
+    queryParams.currency,
+    queryParams.location,
+    queryParams.page,
+    queryParams.priceRange,
+    queryParams.sort,
+  ]);
 
   return {
     queryParams,
     formValues,
     setQueryParams,
-    handleFilterChange,
     handlePageChange,
     handleSortChange,
     applyFilters,

@@ -15,7 +15,7 @@ export default async function PropertyDetailPage({ params }: Props) {
   const listRelatedProperty = await fetchProperties({
     page: 1,
     pageSize: 3,
-    category: property?.category?.categoryName ?? "",
+    category: property?.category?.categoryName ? [property.category.categoryName] : [],
     locale: locale,
   });
 

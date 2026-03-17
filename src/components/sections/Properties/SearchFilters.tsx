@@ -1,30 +1,29 @@
 "use client";
 
 import { FC } from "react";
-import { CircleDollarSign, Home, MapPin } from "lucide-react";
+import { Home, MapPin } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 
 import Button from "@/components/customs/Button";
 import {
   InputField,
+  MultiSelectField,
   PriceRangeField,
-  SelectField,
 } from "@/components/customs/Form";
 import { Form } from "@/components/ui/form";
 import { usePropertyFilters } from "@/hooks/usePropertyFilters";
-import { PropertyCategory } from "@/models/Property";
+import type { IPropertyCategory } from "@/models/Property";
 
-interface Props {
-  categories: PropertyCategory[];
+interface ISearchFiltersProps {
+  categories: IPropertyCategory[];
 }
 
-interface SearchFiltersFormValues {
+interface ISearchFiltersFormValues {
   location: string;
-  minPrice: string;
-  maxPrice: string;
+  priceRange: string;
   currency: string;
-  category: string;
+  categories: string[];
 }
 
 const FILTER_LABEL_CLASSNAME =
@@ -35,21 +34,22 @@ const FIELD_CLASSNAME = "w-full lg:w-[320px] space-y-0";
 const FIELD_INPUT_CLASSNAME =
   "h-10 bg-white border-grey-100 text-small font-medium text-black-500 placeholder:text-black-50 !leading-[130%]";
 
-const SearchFilters: FC<Props> = ({ categories }) => {
+const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
   const t = useTranslations("Properties");
   const { formValues, applyFilters } = usePropertyFilters();
 
-  const form = useForm<SearchFiltersFormValues>({
+  const form = useForm<ISearchFiltersFormValues>({
     values: formValues,
   });
 
-  const onSubmit = (values: SearchFiltersFormValues) => {
+  const locationValue = form.watch("location");
+
+  const onSubmit = (values: ISearchFiltersFormValues) => {
     applyFilters({
       location: values.location,
-      category: values.category,
-      minPrice: values.minPrice,
-      maxPrice: values.maxPrice,
+      priceRange: values.priceRange,
       currency: values.currency,
+      categories: values.categories,
     });
   };
 
@@ -70,26 +70,28 @@ const SearchFilters: FC<Props> = ({ categories }) => {
               labelClassName={FILTER_LABEL_CLASSNAME}
               inputClassName={FIELD_INPUT_CLASSNAME}
               icon={<MapPin className="w-[18px] h-[18px]" />}
+              onClear={
+                locationValue
+                  ? () => form.setValue("location", "")
+                  : undefined
+              }
             />
 
             <PriceRangeField
               label={t("filters.price")}
-              placeholder={t("filters.choosePriceRange")}
               className={FIELD_CLASSNAME}
               labelClassName={FILTER_LABEL_CLASSNAME}
               triggerClassName={FIELD_INPUT_CLASSNAME}
-              icon={<CircleDollarSign className="w-[18px] h-[18px]" />}
             />
 
-            <SelectField
-              name="category"
+            <MultiSelectField
+              name="categories"
               label={t("filters.propertyType")}
-              placeholder={t("filters.chooseType")}
+              placeholder={t("filters.anyType")}
               options={categories.map((cat) => ({
                 value: cat.categoryName,
                 label: cat.categoryName,
               }))}
-              register={form.register}
               className={FIELD_CLASSNAME}
               labelClassName={FILTER_LABEL_CLASSNAME}
               triggerClassName={FIELD_INPUT_CLASSNAME}

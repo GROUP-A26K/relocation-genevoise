@@ -898,8 +898,8 @@
       "description": "Suivez toute l’actualité du bassin genevois : mobilité, logement, emploi et conseils pratiques pour bien s’installer dans la région."
     },
     "Properties": {
-      "title": "Relocation Genevoise – Propriétés à louer",
-      "description": "Découvrez des propriétés exceptionnelles à louer à Genève : appartements, maisons et résidences de luxe adaptés à votre style de vie."
+      "title": "Relocation Genevoise – Appartements Exclusifs à Genève",
+      "description": "Découvrez nos appartements exclusifs à Genève sélectionnés par nos experts. Trouvez votre logement idéal avec notre service dédié."
     },
     "Career": {
       "title": "Relocation Genevoise - Carrières",
@@ -1118,16 +1118,12 @@
     },
     "filters": {
       "location": "Localisation",
-      "locationPlaceholder": "Entrer la localisation",
+      "locationPlaceholder": "Rechercher zone ou adresse",
       "price": "Prix",
-      "choosePriceRange": "Choisir une tranche de prix",
-      "minPrice": "Prix min",
-      "maxPrice": "Prix max",
-      "currency": "Devise",
-      "priceInvalid": "Entrez un nombre valide",
-      "minMaxInvalid": "Le min doit être inférieur au max",
+      "anyPrice": "Tout prix",
+      "under": "Moins de",
       "propertyType": "Type de bien",
-      "chooseType": "Choisir le type",
+      "anyType": "Tout type",
       "searchButton": "Rechercher"
     },
     "results": {

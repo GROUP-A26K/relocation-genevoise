@@ -388,11 +388,10 @@ const PROPERTIES_FILTER = `
       _type == "property" &&
       !(_id in path("drafts.**")) &&
       language == $locale &&
-      ($category == "" || category->categoryName == $category) &&
+      (count($categories) == 0 || category->categoryName in $categories) &&
       ($location == "" || mapLocation.name match $location) &&
       ($minPrice == 0 || price >= $minPrice) &&
-      ($maxPrice == 0 || price <= $maxPrice) &&
-      ($currency == "" || priceUnit == $currency)
+      ($maxPrice == 0 || price <= $maxPrice)
 `;
 
 const PROPERTIES_PROJECTION = `{

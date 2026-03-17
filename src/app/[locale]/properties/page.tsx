@@ -7,6 +7,7 @@ import { BookConsultation2 } from "@/components/blocks/Consultation";
 import PropertiesHero from "@/components/sections/Properties/PropertiesHero";
 import PropertyListingsSection from "@/components/sections/Properties/PropertyListingsSection";
 import { SearchFilters } from "@/components/sections/Properties/SearchFilters";
+import { ExchangeRatesProvider } from "@/context/ExchangeRatesContext";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -36,6 +37,7 @@ export default async function PropertiesPage(props: Props) {
   const categories = await fetchPropertyCategories({ locale });
 
   return (
+    <ExchangeRatesProvider>
     <Suspense fallback={null}>
       <section className="relative">
         <PropertiesHero />
@@ -56,5 +58,6 @@ export default async function PropertiesPage(props: Props) {
         </div>
       </section>
     </Suspense>
+    </ExchangeRatesProvider>
   );
 }

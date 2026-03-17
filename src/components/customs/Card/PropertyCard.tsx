@@ -2,14 +2,15 @@
 
 import Image from "next/image";
 import { Link } from "@/libs/i18nNavigation";
-import { PropertyFacility, PropertyListing } from "@/models/Property";
+import { PropertyFacility, IPropertyListing } from "@/models/Property";
 import {
   formatAreaValue,
   formatFacilityValue,
-  formatPriceUnit,
 } from "@/utils/format";
 import { MapPin, Scaling, BedDouble, Bath } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { PROPERTY_DEFAULT_CURRENCY } from "@/constants/property";
+import { useExchangeRates } from "@/context/ExchangeRatesContext";
 
 const FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80";
@@ -21,18 +22,27 @@ const getFacilityByIcon = (
   return facilities.find((f) => f.icon === icon);
 };
 
-export const PropertyCard: React.FC<PropertyListing> = ({
+interface IPropertyCardProps extends IPropertyListing {
+  displayCurrency?: string;
+}
+
+export const PropertyCard: React.FC<IPropertyCardProps> = ({
   title,
   href,
   price,
-  priceUnit,
   rentPeriod,
   location,
   category,
   facilities,
   imageUrl,
+  displayCurrency,
 }) => {
   const t = useTranslations("Properties.card");
+  const { convertFromCHF, getCurrencySymbol } = useExchangeRates();
+
+  const currency = displayCurrency || PROPERTY_DEFAULT_CURRENCY;
+  const convertedPrice = convertFromCHF(price, currency);
+  const currencySymbol = getCurrencySymbol(currency);
 
   const areaFacility = getFacilityByIcon(facilities, "area");
   const bedroomFacility = getFacilityByIcon(facilities, "bedroom");
@@ -116,8 +126,8 @@ export const PropertyCard: React.FC<PropertyListing> = ({
 
           <div className="flex gap-1 items-baseline">
             <span className="text-2xl lg:text-h2 font-semibold text-blue-500 !leading-[130%]">
-              {formatPriceUnit(priceUnit)}
-              {price}
+              {currencySymbol}
+              {convertedPrice.toLocaleString("en-US")}
               <span className="text-sm lg:text-p font-semibold text-blue-500 !leading-[130%]">
                 /{t(`rentPeriod.${rentPeriod}`)}
               </span>
