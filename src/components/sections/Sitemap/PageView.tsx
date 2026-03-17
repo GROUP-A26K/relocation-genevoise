@@ -47,8 +47,9 @@ export const PageView = ({
           { title: t("sections.0.items.5.title"), url: "/call-me-back" },
           { title: t("sections.0.items.6.title"), url: "/blog" },
           { title: t("sections.0.items.7.title"), url: "/faq" },
-          { title: t("sections.0.items.8.title"), url: "/legal-notice" },
-          { title: t("sections.0.items.9.title"), url: "/personal-data" },
+          { title: t("sections.0.items.8.title"), url: "/properties" },
+          { title: t("sections.0.items.9.title"), url: "/legal-notice" },
+          { title: t("sections.0.items.10.title"), url: "/personal-data" },
         ],
       },
       {

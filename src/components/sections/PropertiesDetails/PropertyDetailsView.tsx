@@ -61,9 +61,9 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
                 {property.category.categoryName}
               </Badge>
             </div>
-            <h2 className="font-semibold text-3xl !leading-[130%] tracking-normal text-primary-500">
+            <h1 className="font-semibold text-3xl !leading-[130%] tracking-normal text-primary-500">
               {property.title}
-            </h2>
+            </h1>
             <div className="flex gap-1.5 font-normal text-black-200 !leading-[130%] text-sm">
               <MapPin className="w-4 h-4" />
               <p>{property.mapLocation.name}</p>

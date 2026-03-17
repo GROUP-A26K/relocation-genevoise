@@ -1,7 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { PropertyDetailContainer } from "./PropertyDetailContainer";
 import { PropertyDetailSection } from "./PropertiesDetailSection";
-import Section from "@/components/customs/Section";
 
 const ImagePreviewSkeleton = () => {
   return (
@@ -119,60 +118,60 @@ const DescriptionSkeleton = () => (
 
 export const PropertyDetailsViewSkeleton = () => {
   return (
-    <>
-    <Section isDivider={false}>
-      <ImagePreviewSkeleton/>
-    </Section>
-    <PropertyDetailContainer>
-      {/* Left Column */}
-      <div className="lg:col-span-6 flex flex-col gap-8">
-        {/* Header */}
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center gap-3">
-              <Skeleton className="h-3 w-3 rounded-full" />
-              <Skeleton className="h-4 w-24" />
-              <Skeleton className="h-6 w-20 rounded-full" />
+    <section className="w-full flex flex-col justify-center items-center">
+      <div className="flex flex-col items-center py-12 lg:py-16 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4 gap-12 lg:gap-16 max-w-screen-2xl w-full">
+        <ImagePreviewSkeleton />
+        <PropertyDetailContainer>
+          {/* Left Column */}
+          <div className="lg:col-span-6 flex flex-col gap-8">
+            {/* Header */}
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="h-3 w-3 rounded-full" />
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-6 w-20 rounded-full" />
+                </div>
+                <Skeleton className="h-8 w-3/4" />
+                <div className="flex gap-1.5 items-center">
+                  <Skeleton className="w-4 h-4 rounded-full" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <Skeleton className="h-12 w-32" />
+                <Skeleton className="h-5 w-16" />
+              </div>
             </div>
-            <Skeleton className="h-8 w-3/4" />
-            <div className="flex gap-1.5 items-center">
-              <Skeleton className="w-4 h-4 rounded-full" />
-              <Skeleton className="h-4 w-1/2" />
-            </div>
+
+            <PropertyDetailSection
+              title="&nbsp;"
+              content={<TableSkeleton columns={3} rows={3} />}
+            />
+
+            <PropertyDetailSection
+              title="&nbsp;"
+              content={<DescriptionSkeleton />}
+            />
+
+            <PropertyDetailSection
+              title="&nbsp;"
+              content={<TableSkeleton columns={2} rows={2} />}
+            />
           </div>
-          <div className="flex items-baseline gap-2">
-            <Skeleton className="h-12 w-32" />
-            <Skeleton className="h-5 w-16" />
+
+          <div className="w-full lg:col-span-4 gap-8 flex flex-col">
+            <PropertyDetailSection
+              title="&nbsp;"
+              content={<MapSkeleton />}
+            />
+            <PropertyDetailSection
+              title="&nbsp;"
+              content={<AgentSkeleton />}
+            />
           </div>
-        </div>
-
-        <PropertyDetailSection
-          title="&nbsp;"
-          content={<TableSkeleton columns={3} rows={3} />}
-        />
-
-        <PropertyDetailSection
-          title="&nbsp;"
-          content={<DescriptionSkeleton />}
-        />
-
-        <PropertyDetailSection
-          title="&nbsp;"
-          content={<TableSkeleton columns={2} rows={2} />}
-        />
+        </PropertyDetailContainer>
       </div>
-
-      <div className="w-full lg:col-span-4 gap-8 flex flex-col">
-        <PropertyDetailSection
-          title="&nbsp;"
-          content={<MapSkeleton />}
-        />
-        <PropertyDetailSection
-          title="&nbsp;"
-          content={<AgentSkeleton />}
-        />
-      </div>
-    </PropertyDetailContainer>
-    </>
+    </section>
   );
 };

@@ -856,6 +856,9 @@
             "title": "FAQ"
           },
           {
+            "title": "Annonces immobilières"
+          },
+          {
             "title": "Mentions légales"
           },
           {
@@ -1031,7 +1034,8 @@
       "links": [
         { "text": "Scolarité" },
         { "text": "Découvrir Genève" },
-        { "text": "Conciergerie" }
+        { "text": "Conciergerie" },
+        { "text": "Annonces immobilières" }
       ]
     },
     "support": {

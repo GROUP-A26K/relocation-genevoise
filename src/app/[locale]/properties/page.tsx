@@ -8,6 +8,7 @@ import PropertiesHero from "@/components/sections/Properties/PropertiesHero";
 import PropertyListingsSection from "@/components/sections/Properties/PropertyListingsSection";
 import { SearchFilters } from "@/components/sections/Properties/SearchFilters";
 import { ExchangeRatesProvider } from "@/context/ExchangeRatesContext";
+import { AppConfig } from "@/utils/AppConfig";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -17,16 +18,18 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: "Metadata.Properties",
-  });
+  const t = await getTranslations("Metadata.Properties");
+
+  const { routes } = AppConfig;
+
+  const canonical =
+    routes["properties"][locale as keyof (typeof routes)["properties"]];
 
   return {
     title: t("title"),
     description: t("description"),
     alternates: {
-      canonical: `/${locale === "fr" ? "" : locale}/properties`,
+      canonical: `/${locale == "fr" ? "" : locale}/${canonical}`,
     },
   };
 }
