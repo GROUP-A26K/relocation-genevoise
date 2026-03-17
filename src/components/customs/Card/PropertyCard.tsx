@@ -128,7 +128,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
             <span className="text-2xl lg:text-h2 font-semibold text-blue-500 !leading-[130%]">
               {currencySymbol}
               {convertedPrice.toLocaleString("en-US")}
-              <span className="text-sm lg:text-p font-semibold text-blue-500 !leading-[130%]">
+              <span className="text-sm lg:text-p font-semibold text-black-200 !leading-[130%]">
                 /{t(`rentPeriod.${rentPeriod}`)}
               </span>
             </span>

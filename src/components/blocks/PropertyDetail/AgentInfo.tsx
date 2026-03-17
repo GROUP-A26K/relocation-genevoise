@@ -4,11 +4,11 @@ import BackgroundSVG from "@/assets/img/bg/agent-background.svg";
 import Button from "@/components/customs/Button";
 import { useTranslations } from "next-intl";
 import { PropertyAgent } from "@/models/Property";
-
+import { Link } from "@/libs/i18nNavigation";
 
 interface IAgentDetailsProps {
   agent: PropertyAgent;
-};
+}
 
 export function PropertyAgentDetails(props: IAgentDetailsProps) {
   const t = useTranslations("PropertiesDetails");
@@ -35,7 +35,7 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
             alt={"Agent photo"}
             width={80}
             height={80}
-              className="w-[60px] h-[60px] lg:w-20 lg:h-20 rounded-full object-cover"
+            className="w-[60px] h-[60px] lg:w-20 lg:h-20 rounded-full object-cover"
           />
 
           <div className="flex flex-col gap-2 lg:gap-3 min-w-0">
@@ -44,16 +44,17 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
           </div>
         </div>
 
-        {/* button */}
-        <Button
-          as="solid"
-          variant="md"
-          type="secondary"
-          iconStart={Phone}
-          className="w-full py-3 px-4 !leading-[130%] !h-auto"
-        >
-          {t("agent.contactButton")}
-        </Button>
+        <Link href={`tel:${agentPhone}`} className="w-full">
+          <Button
+            as="solid"
+            variant="md"
+            type="secondary"
+            iconStart={Phone}
+            className="w-full py-3 px-4 !leading-[130%] !h-auto"
+          >
+            {t("agent.contactButton")}
+          </Button>
+        </Link>
       </div>
     </div>
   );
