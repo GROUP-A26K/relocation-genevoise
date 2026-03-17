@@ -1,9 +1,14 @@
 "use client";
 
-import { FC, ReactNode, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { FC, ReactNode } from "react";
+import { useBoolean } from "usehooks-ts";
+import {
+  Check,
+  ChevronDown,
+  ChevronUp,
+  X,
+} from "lucide-react";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
-import { useTranslations } from "next-intl";
 
 import {
   Popover,
@@ -18,19 +23,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/libs/utils";
-import { PriceInputField } from "./PriceInputField";
+import { useTranslations } from "next-intl";
 
-const CURRENCIES = [
-  { value: "EUR", symbol: "€" },
-  { value: "USD", symbol: "$" },
-  { value: "CHF", symbol: "Fr." },
-] as const;
+import {
+  CURRENCIES,
+  PRICE_RANGE_OPTIONS,
+  PROPERTY_DEFAULT_CURRENCY,
+  getPriceRangeByValue,
+} from "@/constants/property";
+import { useExchangeRates } from "@/context/ExchangeRatesContext";
 
 interface PriceRangeFieldProps {
   label?: string;
-  placeholder?: string;
-  minPriceName?: string;
-  maxPriceName?: string;
+  priceRangeName?: string;
   currencyName?: string;
   className?: string;
   labelClassName?: string;
@@ -38,38 +43,50 @@ interface PriceRangeFieldProps {
   icon?: ReactNode;
 }
 
-const isPositiveNumber = (v: string) =>
-  v === "" || (/^\d+(\.\d+)?$/.test(v) && Number(v) >= 0);
-
 export const PriceRangeField: FC<PriceRangeFieldProps> = ({
   label,
-  placeholder,
-  minPriceName = "minPrice",
-  maxPriceName = "maxPrice",
+  priceRangeName = "priceRange",
   currencyName = "currency",
   className,
   labelClassName,
   triggerClassName,
-  icon,
 }) => {
   const t = useTranslations("Properties");
-  const { getValues, trigger, control } = useFormContext();
-
-  const minPrice = useWatch({ name: minPriceName });
-  const maxPrice = useWatch({ name: maxPriceName });
+  const { convertFromCHF } = useExchangeRates();
+  const { control, setValue } = useFormContext();
+  const priceRange = useWatch({ name: priceRangeName });
   const currency = useWatch({ name: currencyName });
+  const { value: open, setValue: setOpen } = useBoolean(false);
+  const { value: currencyOpen, setValue: setCurrencyOpen } = useBoolean(false);
 
-  // Re-validate maxPrice whenever minPrice changes
-  useEffect(() => {
-    if (maxPrice) trigger(maxPriceName);
-  }, [minPrice, maxPrice, maxPriceName, trigger]);
+  const formatAmount = (chfAmount: number, currencyValue: string): string =>
+    convertFromCHF(chfAmount, currencyValue).toLocaleString("en-US");
 
-  const currencySymbol = CURRENCIES.find((c) => c.value === currency)?.symbol;
+  const currencyValue = currency || PROPERTY_DEFAULT_CURRENCY;
+  const selectedRange = getPriceRangeByValue(priceRange);
+  const hasValue = !!priceRange;
 
-  const triggerText =
-    minPrice || maxPrice
-      ? `${minPrice || "0"} – ${maxPrice || "∞"}${currencySymbol ? ` ${currencySymbol}` : ""}`
-      : placeholder;
+  const getRangeLabel = (option: (typeof PRICE_RANGE_OPTIONS)[number]) => {
+    if (!option.min && !option.max) return t("filters.anyPrice");
+    if (option.min === 0)
+      return `${t("filters.under")} ${formatAmount(option.max, currencyValue)}`;
+    if (option.max === 0)
+      return `${formatAmount(option.min, currencyValue)}+`;
+    return `${formatAmount(option.min, currencyValue)} – ${formatAmount(option.max, currencyValue)}`;
+  };
+
+  const displayLabel = getRangeLabel(selectedRange);
+
+  const handleClear = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setValue(priceRangeName, "", { shouldDirty: true });
+  };
+
+  const handleSelectRange = (value: string) => {
+    setValue(priceRangeName, value, { shouldDirty: true });
+    setOpen(false);
+  };
 
   return (
     <div className={cn("w-full flex flex-col gap-1.5", className)}>
@@ -78,94 +95,51 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
           {label}
         </span>
       )}
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <button
-            type="button"
+          <div
             className={cn(
-              "relative flex items-center justify-between w-full rounded-full text-sm h-10",
-              "border border-gray-200 bg-white px-3",
+              "group relative flex items-center w-full rounded-full text-sm h-10",
+              "border bg-white px-3",
+              "border-grey-100",
               "hover:border-black-50",
               "focus:outline-none focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50",
               "[&[data-state=open]]:border-secondary-500 [&[data-state=open]]:ring-2 [&[data-state=open]]:ring-secondary-50",
-              icon && "pl-10",
+              currencyOpen && "!border-secondary-500 ring-2 ring-secondary-50",
               triggerClassName,
             )}
           >
-            {icon && (
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-black-50 pointer-events-none">
-                {icon}
-              </span>
-            )}
-            <span
-              className={cn(
-                "truncate",
-                !minPrice && !maxPrice && "text-black-50 font-medium",
-              )}
+            {/* Currency selector */}
+            <div
+              className="flex items-center shrink-0"
+              onClick={(e) => e.stopPropagation()}
+              onPointerDown={(e) => e.stopPropagation()}
             >
-              {triggerText}
-            </span>
-            <ChevronDown className="w-4 h-4 text-black-50 shrink-0 ml-2" />
-          </button>
-        </PopoverTrigger>
-
-        <PopoverContent
-          className="p-3 rounded-2xl border-[#ededed]"
-          align="start"
-          style={{ width: "var(--radix-popover-trigger-width)" }}
-        >
-          <div className="flex gap-2 items-start">
-            <PriceInputField
-              name={minPriceName}
-              label={t("filters.minPrice")}
-              placeholder="0"
-              suffix={currencySymbol}
-              className="flex-1 min-w-0 space-y-0"
-              labelClassName="text-sm font-semibold text-black-500"
-              rules={{
-                validate: (v) =>
-                  isPositiveNumber(v) || t("filters.priceInvalid"),
-              }}
-            />
-
-            <PriceInputField
-              name={maxPriceName}
-              label={t("filters.maxPrice")}
-              placeholder="∞"
-              suffix={currencySymbol}
-              className="flex-1 min-w-0 space-y-0"
-              labelClassName="text-sm font-semibold text-black-500"
-              rules={{
-                validate: {
-                  isNumber: (v) =>
-                    isPositiveNumber(v) || t("filters.priceInvalid"),
-                  minLessThanMax: (v) => {
-                    const min = getValues(minPriceName);
-                    if (!v || !min) return true;
-                    return (
-                      Number(v) > Number(min) || t("filters.minMaxInvalid")
-                    );
-                  },
-                },
-              }}
-            />
-
-            <div className="flex flex-col gap-1.5">
-              <span className="text-sm font-semibold text-black-500">
-                {t("filters.currency")}
-              </span>
               <Controller
                 control={control}
                 name={currencyName}
                 render={({ field }) => (
                   <Select
+                    onOpenChange={setCurrencyOpen}
                     onValueChange={field.onChange}
-                    value={field.value || undefined}
+                    value={field.value || PROPERTY_DEFAULT_CURRENCY}
                   >
-                    <SelectTrigger className="h-10 w-[72px] rounded-full border-[#ededed] text-sm font-medium text-black-500 shrink-0">
-                      <SelectValue placeholder={t("filters.currency")} />
+                    <SelectTrigger className="h-auto w-auto border-0 shadow-none p-0 gap-1 text-sm font-medium text-black-500 focus:ring-0 [&>svg]:hidden">
+                      <SelectValue />
+                      <span className="shrink-0">
+                        <ChevronDown
+                          className={cn(
+                            "w-3.5 h-3.5 text-black-50 transition-transform duration-200",
+                            currencyOpen && "rotate-180 text-secondary-500",
+                          )}
+                        />
+                      </span>
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent
+                      align="start"
+                      sideOffset={8}
+                      className="-ml-3"
+                    >
                       {CURRENCIES.map((c) => (
                         <SelectItem key={c.value} value={c.value}>
                           {c.value}
@@ -176,7 +150,65 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
                 )}
               />
             </div>
+
+            {/* Divider */}
+            <div className="w-px h-4 bg-[#d9d9d9] mx-2 shrink-0" />
+
+            {/* Price range display */}
+            <span
+              className={cn(
+                "flex-1 text-left truncate text-sm font-medium",
+                hasValue ? "text-black-500" : "text-black-50",
+              )}
+            >
+              {displayLabel}
+            </span>
+
+            {/* Clear button (visible on hover) */}
+            {hasValue && (
+              <X
+                className="w-3.5 h-3.5 text-black-50 shrink-0 ml-2 opacity-0 group-hover:opacity-100 cursor-pointer"
+                onClick={handleClear}
+              />
+            )}
+
+            {/* Chevron */}
+            {open ? (
+              <ChevronUp className="w-3.5 h-3.5 text-black-50 shrink-0 ml-1" />
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5 text-black-50 shrink-0 ml-1" />
+            )}
           </div>
+        </PopoverTrigger>
+
+        <PopoverContent
+          className="p-1 rounded-2xl border-[#ededed] max-h-[320px] overflow-auto flex flex-col gap-0.5"
+          align="start"
+          style={{ width: "var(--radix-popover-trigger-width)" }}
+          onOpenAutoFocus={(e) => e.preventDefault()}
+        >
+          {PRICE_RANGE_OPTIONS.map((option) => {
+            const isSelected = priceRange === option.value;
+            const optionLabel = getRangeLabel(option);
+
+            return (
+              <button
+                key={option.value || "__any__"}
+                type="button"
+                className={cn(
+                  "flex items-center justify-between w-full px-3 py-2.5 rounded-md text-sm font-medium text-black-500",
+                  "hover:bg-grey-50",
+                  isSelected && "bg-grey-50",
+                )}
+                onClick={() => handleSelectRange(option.value)}
+              >
+                <span>{optionLabel}</span>
+                {isSelected && (
+                  <Check className="w-5 h-5 text-secondary-500 shrink-0" />
+                )}
+              </button>
+            );
+          })}
         </PopoverContent>
       </Popover>
     </div>

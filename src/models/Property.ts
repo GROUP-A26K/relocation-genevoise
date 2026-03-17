@@ -1,10 +1,10 @@
 import { Meta } from "./Meta";
 
-export type PropertyPriceUnit = "$" | "CHF" | "EUR";
+export type PropertyPriceUnit = "CHF";
 
 export type PropertyRentPeriod = "month" | "year";
 
-export interface PropertyListing {
+export interface IPropertyListing {
   id: string;
   title: string;
   slug: string;
@@ -24,7 +24,10 @@ export interface PropertyListing {
   availability: boolean;
 }
 
-export interface PropertyPagination { properties: PropertyListing[]; meta: Meta }
+export interface PropertyPagination {
+  properties: IPropertyListing[];
+  meta: Meta;
+}
 
 export interface PropertyFacility {
   icon: string;
@@ -34,7 +37,7 @@ export interface PropertyFacility {
   textValue?: string;
 }
 
-export interface PropertyCategory {
+export interface IPropertyCategory {
   id: string;
   categoryName: string;
 }
@@ -64,7 +67,7 @@ export interface PropertyDetail {
   };
   facilities: PropertyFacility[];
   agent: PropertyAgent;
-  category: PropertyCategory;
+  category: IPropertyCategory;
   areas: PropertyArea[];
   surroundingPlaces: SurroundingPlace[];
 }

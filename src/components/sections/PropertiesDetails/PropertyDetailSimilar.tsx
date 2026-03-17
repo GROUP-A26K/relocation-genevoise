@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button-custom";
-import { PropertyListing } from "@/models/Property";
+import { IPropertyListing } from "@/models/Property";
 import { PropertyCard } from "@/components/customs/Card";
 import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 
 interface IPropertyDetailSimilarProps {
-  relatedProperties: PropertyListing[];
+  relatedProperties: IPropertyListing[];
 }
 
 export async function PropertyDetailSimilar({

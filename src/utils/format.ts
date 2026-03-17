@@ -13,10 +13,6 @@ export const formatFacilityValue = (facility: PropertyFacility): string => {
 };
 
 export const formatPriceUnit = (priceUnit: PropertyPriceUnit): string => {
-  if (priceUnit === "EUR") {
-    return "€";
-  }
-
   return priceUnit;
 };
 

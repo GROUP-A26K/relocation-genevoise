@@ -893,8 +893,8 @@
       "description": "Stay up to date with the Geneva area : mobility, housing, jobs, and practical tips to help you settle in the region."
     },
     "Properties": {
-      "title": "Relocation Genevoise – Properties for rent",
-      "description": "Discover exceptional properties for rent in Geneva: apartments, houses, and luxury residences tailored to your lifestyle."
+      "title": "Relocation Genevoise – Exclusive Apartments in Geneva",
+      "description": "Browse exclusive Geneva apartments, handpicked by relocation experts. Find your perfect home with our dedicated service."
     },
     "Career": {
       "title": "Relocation Genevoise - Career",
@@ -1108,16 +1108,12 @@
     },
     "filters": {
       "location": "Location",
-      "locationPlaceholder": "Enter location",
+      "locationPlaceholder": "Search area or address",
       "price": "Price",
-      "choosePriceRange": "Choose price range",
-      "minPrice": "Min price",
-      "maxPrice": "Max price",
-      "currency": "Currency",
-      "priceInvalid": "Enter a valid number",
-      "minMaxInvalid": "Min must be less than max",
+      "anyPrice": "Any price",
+      "under": "Under",
       "propertyType": "Property type",
-      "chooseType": "Choose type",
+      "anyType": "Any type",
       "searchButton": "Search Property"
     },
     "results": {

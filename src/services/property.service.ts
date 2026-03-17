@@ -8,18 +8,16 @@ import {
 import { client } from "@/sanity/lib/client";
 import { LOCALE, type TLocale } from "@/constants/locale";
 import {
-  PROPERTY_CURRENCY_TO_PRICE_UNIT,
   PROPERTY_DEFAULT_PRICE_UNIT,
   PROPERTY_DEFAULT_RENT_PERIOD,
   PROPERTY_DEFAULT_SORT,
-  type TPropertyCurrency,
 } from "@/constants/property";
 import {
   IAreaPhotoTour,
-  PropertyCategory,
+  IPropertyCategory,
   PropertyDetail,
   PropertyFacility,
-  PropertyListing,
+  IPropertyListing,
 } from "@/models/Property";
 import {
   IPropertiesResponse,
@@ -44,15 +42,6 @@ const EMPTY_PROPERTIES_RESPONSE: IPropertiesResponse = {
   },
 };
 
-const toPriceUnitFilter = (currency?: string): string => {
-  if (!currency) {
-    return "";
-  }
-
-  return (
-    PROPERTY_CURRENCY_TO_PRICE_UNIT[currency as TPropertyCurrency] ?? currency
-  );
-};
 
 const getLocale = (locale?: string): TLocale => {
   return locale === LOCALE.en ? LOCALE.en : DEFAULT_PROPERTY_LOCALE;
@@ -65,7 +54,7 @@ const getPaginationRange = (page: number, pageSize: number) => {
   return { start, end };
 };
 
-const mapProperty = (property: ISanityPropertyResponse): PropertyListing => ({
+const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
   id: property._id,
   title: property.title || "Untitled Property",
   slug: property.slug?.current || "",
@@ -95,7 +84,7 @@ const mapProperty = (property: ISanityPropertyResponse): PropertyListing => ({
 
 const mapPropertyCategory = (
   category: IPropertyCategoryDocument,
-): PropertyCategory => ({
+): IPropertyCategory => ({
   id: category._id,
   categoryName: category.categoryName || "",
 });
@@ -110,6 +99,8 @@ export const fetchProperties = async (
     const sort = params?.sort ?? PROPERTY_DEFAULT_SORT;
     const { start, end } = getPaginationRange(page, pageSize);
 
+    const categories = params?.category?.filter(Boolean) ?? [];
+
     const response = await client.fetch<{
       properties: ISanityPropertyResponse[];
       total: number;
@@ -119,11 +110,10 @@ export const fetchProperties = async (
         start,
         end,
         locale,
-        category: params?.category ?? "",
+        categories,
         location: params?.location || "",
         minPrice: params?.minPrice ?? 0,
         maxPrice: params?.maxPrice ?? 0,
-        currency: toPriceUnitFilter(params?.currency),
       },
       { next: { tags: ["properties"] } },
     );
@@ -148,7 +138,7 @@ export const fetchProperties = async (
 
 export const fetchPropertyCategories = async (
   params?: IPropertyCategoryParams,
-): Promise<PropertyCategory[]> => {
+): Promise<IPropertyCategory[]> => {
   try {
     const response = await client.fetch<IPropertyCategoryDocument[]>(
       PROPERTY_CATEGORIES_QUERY,

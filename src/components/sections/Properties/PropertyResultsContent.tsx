@@ -9,10 +9,10 @@ import EmptyData from "@/components/customs/EmptyData";
 import { Spinner } from "@/components/customs/Spinner/Spinner";
 import { usePropertyFilters } from "@/hooks/usePropertyFilters";
 import { Meta } from "@/models/Meta";
-import { PropertyListing } from "@/models/Property";
+import type { IPropertyListing } from "@/models/Property";
 
 interface IPropertiesProps {
-  properties: PropertyListing[];
+  properties: IPropertyListing[];
   meta: Meta;
   loading: boolean;
 }
@@ -23,7 +23,8 @@ export default function PropertyResultsContent({
   loading,
 }: IPropertiesProps) {
   const t = useTranslations("Properties");
-  const { handlePageChange } = usePropertyFilters();
+  const { handlePageChange, queryParams } = usePropertyFilters();
+  const displayCurrency = queryParams.currency || undefined;
 
   return (
     <>
@@ -69,7 +70,11 @@ export default function PropertyResultsContent({
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
           >
             {properties.map((property) => (
-              <PropertyCard key={property.id} {...property} />
+              <PropertyCard
+                key={property.id}
+                {...property}
+                displayCurrency={displayCurrency}
+              />
             ))}
           </motion.div>
         )}
