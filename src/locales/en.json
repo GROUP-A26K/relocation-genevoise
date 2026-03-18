@@ -1169,8 +1169,7 @@
       "facilities": "Facilities",
       "description": "Description",
       "surrounding": "Surrounding information",
-      "whereYouBe": "Where you'll be",
-      "contactAgent": "Contact the agent"
+      "whereYouBe": "Where you'll be"
     },
     "imagePreview": {
       "viewAllButton": "View all photos"
@@ -1179,7 +1178,7 @@
       "viewOnMap": "View on map"
     },
     "agent": {
-      "title": "Agent Details",
+      "title": "Agent details",
       "contactButton": "Contact agent"
     },
     "description": {

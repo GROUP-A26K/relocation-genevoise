@@ -1,20 +1,21 @@
-'use client';
+"use client";
 import { ReactNode } from "react";
 
 interface PropertyDetailSectionProps {
-  title: string;
+  title?: string;
   content: ReactNode;
 }
 
-export const PropertyDetailSection = ({ title, content }: PropertyDetailSectionProps) => {
+export const PropertyDetailSection = ({
+  title,
+  content,
+}: PropertyDetailSectionProps) => {
   return (
     <div className="flex flex-col gap-6">
-      <h2 className="font-semibold !leading-[130%] text-2xl">
-        {title}
-      </h2>
-      <div className="w-full">
-        {content}
-      </div>
+      {title && (
+        <h2 className="font-semibold !leading-[130%] text-2xl">{title}</h2>
+      )}
+      <div className="w-full">{content}</div>
     </div>
-  )
-}
+  );
+};

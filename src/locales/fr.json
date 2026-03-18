@@ -1179,8 +1179,7 @@
       "facilities": "Équipements",
       "description": "Description",
       "surrounding": "Informations sur les environs",
-      "whereYouBe": "Où vous serez",
-      "contactAgent": "Contacter l'agent"
+      "whereYouBe": "Où vous serez"
     },
     "imagePreview": {
       "viewAllButton": "Voir toutes les photos"
