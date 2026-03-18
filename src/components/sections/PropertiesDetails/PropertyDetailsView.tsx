@@ -107,7 +107,6 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           }
         />
         <PropertyDetailSection
-          title={t("sections.contactAgent")}
           content={
             <PropertyAgentDetails agent={property.agent}/>
           }
