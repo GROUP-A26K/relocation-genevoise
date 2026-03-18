@@ -30,6 +30,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
   title,
   href,
   price,
+  listingType,
   rentPeriod,
   location,
   category,
@@ -70,9 +71,20 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
 
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-3 w-full">
-            <span className="bg-grey-100 text-black-500 text-p font-normal !leading-[1.3] px-2.5 py-px rounded-[2px] w-fit">
-              {category}
-            </span>
+            <div className="flex gap-2 items-center flex-wrap">
+              <span
+                className={`text-sm font-medium !leading-[1.3] px-3 py-1 rounded-[6px] w-fit ${
+                  listingType === "sale"
+                    ? "bg-yellow-50 text-yellow-800"
+                    : "bg-blue-50 text-blue-500"
+                }`}
+              >
+                {t(`listingType.${listingType}`)}
+              </span>
+              <span className="bg-grey-100 text-black-500 text-sm font-medium !leading-[1.3] px-3 py-1 rounded-[6px] w-fit">
+                {category}
+              </span>
+            </div>
 
             <h3 className="text-h3 font-semibold text-black-500 !leading-[130%] truncate w-full">
               {title}
@@ -128,9 +140,11 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
             <span className="text-2xl lg:text-h2 font-semibold text-blue-500 !leading-[130%]">
               {currencySymbol}
               {convertedPrice.toLocaleString("en-US")}
-              <span className="text-sm lg:text-p font-semibold text-black-200 !leading-[130%]">
-                /{t(`rentPeriod.${rentPeriod}`)}
-              </span>
+              {listingType === "rent" && (
+                <span className="text-sm lg:text-p font-semibold text-black-200 !leading-[130%]">
+                  /{t(`rentPeriod.${rentPeriod}`)}
+                </span>
+              )}
             </span>
           </div>
         </div>

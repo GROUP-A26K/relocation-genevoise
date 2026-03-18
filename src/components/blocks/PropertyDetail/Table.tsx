@@ -45,7 +45,7 @@ export const PropertyDetailTable = ({ items, iconMap, columns = 3 }: Props) => {
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-black-500">
                     {Icon && (
-                      <Icon className="w-5 h-5 text-blue-500" />
+                      <Icon className="w-5 h-5 text-blue-500" strokeWidth={2.5} />
                     )}
                     <span className="text-base font-normal leading-[130%]">
                       {item.label}

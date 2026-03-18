@@ -6,6 +6,7 @@ import {
   fetchProperties,
   getPropertyDetail,
 } from "@/services/property.service";
+import Section from "@/components/customs/Section";
 
 type Props = {
   params: Promise<{ locale: string; id: string }>;
@@ -32,11 +33,11 @@ export default async function PropertyDetailPage({ params }: Props) {
 
   return (
     <section className="w-full flex flex-col justify-center items-center">
-      <div className="flex flex-col items-center py-12 lg:py-16 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4 gap-12 lg:gap-16 max-w-screen-2xl w-full">
+      <Section isDivider className="w-full">
         <ImagePreview property={property} propertySlug={id} />
 
         <PropertyDetailView property={property} />
-      </div>
+      </Section>
       <PropertyDetailSimilar
         relatedProperties={listRelatedProperty.properties}
       />

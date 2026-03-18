@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button-custom";
 import { IPropertyListing } from "@/models/Property";
 import { PropertyCard } from "@/components/customs/Card";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import Section from "@/components/customs/Section";
 
 interface IPropertyDetailSimilarProps {
   relatedProperties: IPropertyListing[];
@@ -12,10 +13,9 @@ export async function PropertyDetailSimilar({
   relatedProperties,
 }: IPropertyDetailSimilarProps) {
   const t = await getTranslations("PropertiesDetails");
-  const locale = await getLocale();
 
   return (
-    <div className="flex flex-col gap-16 py-12 lg:py-16 px-4 2xl:px-[100px] xl:px-[60px] lg:px-[48px] max-w-screen-2xl">
+    <Section>
       <div className="flex flex-col gap-6 lg:flex-row lg:justify-between lg:items-end">
         <div className="flex flex-col gap-6 max-w-3xl">
           <div className="flex flex-col items-start gap-3">
@@ -32,7 +32,7 @@ export async function PropertyDetailSimilar({
           </p>
         </div>
 
-        <Link href={`/${locale}/properties`}>
+        <Link href="/properties">
           <Button className="rounded-full">{t("similar.viewAllButton")}</Button>
         </Link>
       </div>
@@ -42,6 +42,6 @@ export async function PropertyDetailSimilar({
           <PropertyCard key={property.id} {...property} />
         ))}
       </div>
-    </div>
+    </Section>
   );
 }

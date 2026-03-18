@@ -40,6 +40,7 @@ export interface ISanityPropertyResponse {
   slug?: { current?: string };
   price?: number;
   priceUnit?: PropertyPriceUnit;
+  listingType?: "rent" | "sale";
   rentPeriod?: PropertyRentPeriod;
   language?: string;
   availability?: boolean;

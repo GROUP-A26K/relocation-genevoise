@@ -1144,6 +1144,10 @@
     "card": {
       "bedroom": "Ch",
       "bathroom": "SdB",
+      "listingType": {
+        "rent": "À louer",
+        "sale": "À vendre"
+      },
       "rentPeriod": {
         "month": "mois",
         "year": "an"
@@ -1170,7 +1174,14 @@
   },
 
   "PropertiesDetails": {
-    "priceUnit": "/mois",
+    "listingType": {
+      "rent": "À louer",
+      "sale": "À vendre"
+    },
+    "rentPeriod": {
+      "month": "/mois",
+      "year": "/an"
+    },
     "status": {
       "available": "Disponible maintenant",
       "notAvailable": "Non disponible"
