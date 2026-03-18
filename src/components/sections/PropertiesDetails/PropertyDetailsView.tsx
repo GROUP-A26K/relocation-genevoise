@@ -49,7 +49,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
 
   return (
     <PropertyDetailContainer>
-      <div className="lg:col-span-6 flex flex-col gap-8">
+      <div className="lg:col-span-6 flex flex-col gap-12 lg:gap-16">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
