@@ -1134,6 +1134,10 @@
     "card": {
       "bedroom": "Bed",
       "bathroom": "Bath",
+      "listingType": {
+        "rent": "For rent",
+        "sale": "For sale"
+      },
       "rentPeriod": {
         "month": "month",
         "year": "year"
@@ -1160,7 +1164,14 @@
   },
 
   "PropertiesDetails": {
-    "priceUnit": "/month",
+    "listingType": {
+      "rent": "For rent",
+      "sale": "For sale"
+    },
+    "rentPeriod": {
+      "month": "/month",
+      "year": "/year"
+    },
     "status": {
       "available": "Available Now",
       "notAvailable": "Not Available"

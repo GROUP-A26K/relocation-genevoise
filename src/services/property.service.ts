@@ -18,6 +18,7 @@ import {
   PropertyDetail,
   PropertyFacility,
   IPropertyListing,
+  PropertyListingType,
 } from "@/models/Property";
 import {
   IPropertiesResponse,
@@ -61,6 +62,7 @@ const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
   href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
   price: property.price || 0,
   priceUnit: property.priceUnit || PROPERTY_DEFAULT_PRICE_UNIT,
+  listingType: (property.listingType as PropertyListingType) || "rent",
   rentPeriod: property.rentPeriod || PROPERTY_DEFAULT_RENT_PERIOD,
   location: {
     name: property.mapLocation?.name || "",

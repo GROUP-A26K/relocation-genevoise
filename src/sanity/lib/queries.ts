@@ -400,6 +400,7 @@ const PROPERTIES_PROJECTION = `{
       slug,
       price,
       priceUnit,
+      listingType,
       rentPeriod,
       language,
       availability,

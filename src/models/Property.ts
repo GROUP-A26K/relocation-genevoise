@@ -4,6 +4,8 @@ export type PropertyPriceUnit = "CHF";
 
 export type PropertyRentPeriod = "month" | "year";
 
+export type PropertyListingType = "rent" | "sale";
+
 export interface IPropertyListing {
   id: string;
   title: string;
@@ -11,6 +13,7 @@ export interface IPropertyListing {
   href: string;
   price: number;
   priceUnit: PropertyPriceUnit;
+  listingType: PropertyListingType;
   rentPeriod: PropertyRentPeriod;
   location: {
     name: string;
