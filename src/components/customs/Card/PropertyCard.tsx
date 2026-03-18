@@ -69,7 +69,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
           className="aspect-video lg:h-[250px] h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
         />
 
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col gap-3 w-full">
             <div className="flex gap-2 items-center flex-wrap">
               <span

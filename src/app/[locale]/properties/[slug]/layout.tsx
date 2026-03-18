@@ -5,18 +5,18 @@ import { getPropertyDetail } from "@/services/property.service";
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string; id: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { locale, id } = await props.params;
-  const property = await getPropertyDetail(id, locale);
+  const { locale, slug } = await props.params;
+  const property = await getPropertyDetail(slug, locale);
 
   if (!property) {
     return {};
   }
 
-  const propertyPath = `${AppConfig.routes.properties[locale as "fr" | "en"]}/${id}`;
+  const propertyPath = `${AppConfig.routes.properties[locale as "fr" | "en"]}/${slug}`;
   const propertyUrl = `${Env.NEXT_PUBLIC_SITE_URL}${locale === "fr" ? "" : `/${locale}`}${propertyPath}`;
   const imageUrl = property.areas[0]?.mainImageUrl;
 

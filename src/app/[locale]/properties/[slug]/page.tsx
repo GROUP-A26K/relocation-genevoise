@@ -9,14 +9,14 @@ import {
 import Section from "@/components/customs/Section";
 
 type Props = {
-  params: Promise<{ locale: string; id: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export const dynamic = "force-dynamic";
 
 export default async function PropertyDetailPage({ params }: Props) {
-  const { locale, id } = await params;
-  const property = await getPropertyDetail(id, locale);
+  const { locale, slug } = await params;
+  const property = await getPropertyDetail(slug, locale);
 
   if (!property) {
     notFound();
@@ -34,7 +34,7 @@ export default async function PropertyDetailPage({ params }: Props) {
   return (
     <section className="w-full flex flex-col justify-center items-center">
       <Section isDivider className="w-full">
-        <ImagePreview property={property} propertySlug={id} />
+        <ImagePreview property={property} propertySlug={slug} />
 
         <PropertyDetailView property={property} />
       </Section>
