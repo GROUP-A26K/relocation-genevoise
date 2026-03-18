@@ -20,10 +20,10 @@ export function PropertyMap({ country, address }: IPropertyMapProps) {
 
   return (
     <div className="overflow-hidden rounded-2xl bg-gray-100">
-      <div className="w-full h-[240px]">
+      <div className="w-full h-[230px]">
         <GoogleMapsEmbed
           apiKey={Env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
-          height={240}
+          height={230}
           width="100%"
           mode="place"
           q={place}
