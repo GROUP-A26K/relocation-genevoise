@@ -45,6 +45,11 @@ export interface IPropertyCategory {
   categoryName: string;
 }
 
+export interface ICoordinates {
+  lat: number;
+  lng: number;
+}
+
 export interface PropertyDetail {
   _id: string;
   _createdAt: string;
@@ -62,11 +67,8 @@ export interface PropertyDetail {
   description: string;
   availability: boolean;
   mapLocation: {
-    name: string;
-    coordinates: {
-      lat: number;
-      lng: number;
-    };
+    coordinates: ICoordinates;
+    name: string
   };
   facilities: PropertyFacility[];
   agent: PropertyAgent;

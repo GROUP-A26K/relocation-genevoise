@@ -68,7 +68,8 @@ export const ImagePreview = ({
           title={mainImageObj?.title || property.title}
           fill
           sizes="100vw"
-          className="object-cover rounded-2xl lg:rounded-none"
+          className="object-cover rounded-2xl lg:rounded-none hover:brightness-[70%] transition-brightness duration-300"
+          onClick={handleNavigateToPhotoTour}
           onLoad={() => handleImageLoad(mainImageObj?.url || "")}
         />
       </div>
@@ -84,7 +85,8 @@ export const ImagePreview = ({
               title={img.title}
               fill
               sizes="25vw, 25vw"
-              className="object-cover rounded-lg lg:rounded-none"
+              className="object-cover rounded-lg lg:rounded-none hover:brightness-[70%] transition-brightness duration-300"
+              onClick={handleNavigateToPhotoTour}
               onLoad={() => handleImageLoad(img.url)}
             />
             {i === 3 && remainingCount > 0 && (

@@ -15,7 +15,7 @@ export default async function GalleryPage({ params }: Props) {
 
   return (
     <Section isDivider>
-      <PropertySectionHeader areas={areas}/>
+      <PropertySectionHeader areas={areas} slug={slug}/>
       <PhotoTourView areas={areas} />
     </Section>
   );
