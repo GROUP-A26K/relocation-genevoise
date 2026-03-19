@@ -68,7 +68,7 @@ export const ImagePreview = ({
           title={mainImageObj?.title || property.title}
           fill
           sizes="100vw"
-          className="object-cover rounded-2xl lg:rounded-none hover:brightness-[70%] transition-brightness duration-300"
+          className="object-cover rounded-2xl lg:rounded-none hover:brightness-[70%] transition-brightness duration-300 hover:cursor-pointer"
           onClick={handleNavigateToPhotoTour}
           onLoad={() => handleImageLoad(mainImageObj?.url || "")}
         />
@@ -85,7 +85,7 @@ export const ImagePreview = ({
               title={img.title}
               fill
               sizes="25vw, 25vw"
-              className="object-cover rounded-lg lg:rounded-none hover:brightness-[70%] transition-brightness duration-300"
+              className="object-cover rounded-lg lg:rounded-none hover:brightness-[70%] transition-brightness duration-300 hover:cursor-pointer"
               onClick={handleNavigateToPhotoTour}
               onLoad={() => handleImageLoad(img.url)}
             />
