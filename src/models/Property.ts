@@ -68,6 +68,7 @@ export interface PropertyDetail {
   availability: boolean;
   mapLocation: {
     coordinates: ICoordinates;
+    name: string
   };
   facilities: PropertyFacility[];
   agent: PropertyAgent;
