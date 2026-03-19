@@ -88,7 +88,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
             </div>
           </div>
           <div className="items-baseline">
-            <span className="font-bold text-blue-500 text-5xl !leading-[130%] py-0">
+            <span className="font-bold text-blue-500 text-3xl !leading-[130%] py-0">
               ${property.price}
             </span>
             {property.listingType !== "sale" && (
@@ -135,8 +135,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           title={t("sections.whereYouBe")}
           content={
             <PropertyMap
-              country={property.mapLocation.name}
-              address={property.mapLocation.name}
+              coordinates={property.mapLocation.coordinates}
             />
           }
         />

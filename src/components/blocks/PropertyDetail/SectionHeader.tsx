@@ -1,24 +1,30 @@
 import { IAreaPhotoTour } from "@/models/Property";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IPropertySectionHeaderProps {
   areas: IAreaPhotoTour[];
+  slug: string;
 }
 
 export async function PropertySectionHeader({
   areas,
+  slug,
 }: IPropertySectionHeaderProps) {
   const t = await getTranslations("PhotoTour");
+  const locale = await getLocale();
   const title = t("title");
   const subheading = t("subheading");
 
   return (
     <div className="flex flex-col gap-8 lg:pb-16">
       <div className="flex flex-col items-start gap-3">
-        <p className="text-yellow-600 text-sm font-semibold !leading[130%]">
-          {title}
-        </p>
+        <Link href={`/${locale}/properties/${slug}`}>
+          <p className="text-yellow-600 text-sm font-semibold !leading[130%]">
+            {title}
+          </p>
+        </Link>
         <h1 className="font-semibold text-3xl !leading[130%] text-black-500">
           {subheading}
         </h1>
