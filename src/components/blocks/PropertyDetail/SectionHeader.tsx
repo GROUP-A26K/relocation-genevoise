@@ -1,4 +1,5 @@
 import { IAreaPhotoTour } from "@/models/Property";
+import { ArrowLeftIcon, ChevronLeft } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,8 +21,9 @@ export async function PropertySectionHeader({
   return (
     <div className="flex flex-col gap-8 lg:pb-16">
       <div className="flex flex-col items-start gap-3">
-        <Link href={`/${locale}/properties/${slug}`}>
-          <p className="text-yellow-600 text-sm font-semibold !leading[130%]">
+        <Link href={`/${locale}/properties/${slug}`} className="flex gap-2 items-center">
+          <ChevronLeft width={18} height={18} className="text-yellow-600" />
+          <p className="text-yellow-600 text-base font-semibold !leading[130%]">
             {title}
           </p>
         </Link>
