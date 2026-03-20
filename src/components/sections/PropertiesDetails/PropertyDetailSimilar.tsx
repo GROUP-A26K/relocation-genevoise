@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button-custom";
 import { IPropertyListing } from "@/models/Property";
 import { PropertyCard } from "@/components/customs/Card";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import Section from "@/components/customs/Section";
+import { Button } from "@/components/ui/button-custom";
 
 interface IPropertyDetailSimilarProps {
   relatedProperties: IPropertyListing[];
@@ -33,7 +33,7 @@ export async function PropertyDetailSimilar({
         </div>
 
         <Link href="/properties">
-          <Button className="rounded-full">{t("similar.viewAllButton")}</Button>
+          <Button className="rounded-full bg-black-500">{t("similar.viewAllButton")}</Button>
         </Link>
       </div>
 
