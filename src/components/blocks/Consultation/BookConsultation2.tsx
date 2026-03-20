@@ -25,12 +25,12 @@ export const BookConsultation2: FC<Props> = ({
   return (
     <div className="flex flex-col lg:gap-16 lg:py-16 gap-12 py-12 rounded-xl bg-grey-50">
       <div className="flex w-full items-center justify-center">
-        <div className="flex flex-col lg:gap-8 gap-4 w-full lg:items-center text-left">
-          <div className="flex flex-col gap-3 max-w-[720px]">
+        <div className="flex flex-col lg:gap-8 gap-4 w-full items-center text-left">
+          <div className="flex flex-col gap-3 max-w-[720px] items-center">
             <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]">
               {heading}
             </p>
-            <h2 className="text-2xl lg:text-3xl font-semibold text-center !leading-[130%] text-balance">
+            <h2 className="text-2xl lg:text-3xl font-semibold text-center !leading-[130%] text-balance text-black-500">
               <FormattedText text={subHeading} />
             </h2>
             <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
@@ -38,24 +38,24 @@ export const BookConsultation2: FC<Props> = ({
             </p>
           </div>
 
-          <div className="flex lg:flex-row flex-col gap-2 lg:gap-4 w-full items-center justify-center">
-            <Link href={"/contact"} className="lg:w-fit w-full">
+          <div className="flex sm:flex-row flex-col gap-2 lg:gap-4 w-full items-center justify-center">
+            <Link href={"/contact"} className="sm:w-fit w-full">
               <Button
                 as="solid"
                 variant="md"
                 type="primary"
-                className="lg:w-fit w-full"
+                className="sm:w-fit w-full"
               >
                 {buttonText1}
               </Button>
             </Link>
-            <Link href={"/find-accommodation"} className="lg:w-fit w-full">
+            <Link href={"/find-accommodation"} className="sm:w-fit w-full">
               <Button
                 as="outline"
                 variant="md"
                 type="primary"
                 iconEnd={ArrowRight}
-                className="lg:w-fit w-full"
+                className="sm:w-fit w-full"
               >
                 {buttonText2}
               </Button>
