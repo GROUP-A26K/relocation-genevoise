@@ -1,5 +1,5 @@
 import { IAreaPhotoTour } from "@/models/Property";
-import { ArrowLeftIcon, ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
