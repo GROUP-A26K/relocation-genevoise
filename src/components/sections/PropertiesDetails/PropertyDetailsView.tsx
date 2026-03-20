@@ -88,7 +88,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
             </div>
           </div>
           <div className="items-baseline">
-            <span className="font-bold text-blue-500 text-3xl !leading-[130%] py-0">
+            <span className="font-semibold text-blue-500 text-3xl !leading-[130%] py-0">
               ${property.price}
             </span>
             {property.listingType !== "sale" && (

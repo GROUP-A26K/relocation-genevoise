@@ -58,7 +58,7 @@ export const ImagePreview = ({
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative w-full">
-      <div className="relative aspect-[1/0.68] w-full h-full">
+      <div className="relative w-full h-0 pb-[68%] lg:pb-[68%]">
         {!loadedImages.has(mainImageObj?.url || "") && (
           <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
         )}
@@ -73,9 +73,9 @@ export const ImagePreview = ({
           onLoad={() => handleImageLoad(mainImageObj?.url || "")}
         />
       </div>
-      <div className="grid grid-cols-4 lg:grid-cols-2 grid-rows-1 lg:grid-rows-2 gap-2">
+      <div className="grid grid-cols-4 lg:grid-cols-2 lg:grid-rows-2 gap-2">
         {gridImages.map((img, i) => (
-          <div key={i} className="relative aspect-[1/0.68] w-full h-full">
+          <div key={i} className="relative w-full h-0 pb-[68%]">
             {!loadedImages.has(img.url) && (
               <Skeleton className="absolute inset-0 rounded-lg lg:rounded-none" />
             )}

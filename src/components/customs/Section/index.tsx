@@ -1,5 +1,6 @@
-import { cn } from '@/libs/utils';
 import { type ReactNode, type FC } from 'react';
+
+import { cn } from '@/libs/utils';
 
 interface Props {
   children: ReactNode;
@@ -14,10 +15,15 @@ const Section: FC<Props> = ({ children, isDivider, className }) => {
         className
       )}
     >
-      <div className="container lg:pt-16 pt-12 2xl:max-w-screen-2xl xl:max-w-screen-2xl lg:max-w-screen-xl md:max-w-screen-md  2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4">
-        <div className="flex flex-col lg:gap-16 gap-14">{children}</div>
+      <div
+        className={cn(
+          'container pt-12 w-full max-w-screen-2xl px-4',
+          '2xl:pt-16 2xl:px-[100px] lg:px-[48px]'
+        )}
+      >
+        <div className="flex flex-col 2xl:gap-16 gap-12">{children}</div>
         <div
-          className={`lg:pt-16 pt-12 ${isDivider && 'border-b border-grey-100'}`}
+          className={`2xl:pt-16 pt-12 ${isDivider && 'border-b border-grey-50'}`}
         />
       </div>
     </section>
