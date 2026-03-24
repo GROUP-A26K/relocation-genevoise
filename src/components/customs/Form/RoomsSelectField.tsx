@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { useBoolean } from "usehooks-ts";
-import { Check, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, X } from "lucide-react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslations } from "next-intl";
 
@@ -52,6 +52,12 @@ export const RoomsSelectField: FC<RoomsSelectFieldProps> = ({
           setOpen(false);
         };
 
+        const handleClear = (e: React.MouseEvent) => {
+          e.stopPropagation();
+          e.preventDefault();
+          setValue(name, "", { shouldDirty: true });
+        };
+
         return (
           <div className={cn("w-full flex flex-col gap-1.5", className)}>
             {label && (
@@ -81,7 +87,13 @@ export const RoomsSelectField: FC<RoomsSelectFieldProps> = ({
                   >
                     {displayText}
                   </span>
-                  <div className="flex items-center shrink-0 ml-2">
+                  <div className="flex items-center shrink-0 ml-2 gap-1">
+                    {hasValue && (
+                      <X
+                        className="w-3.5 h-3.5 text-black-50 opacity-0 group-hover:opacity-100 cursor-pointer"
+                        onClick={handleClear}
+                      />
+                    )}
                     {open ? (
                       <ChevronUp className="w-3.5 h-3.5 text-black-50" />
                     ) : (
