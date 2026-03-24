@@ -6,6 +6,7 @@ import {
   Check,
   ChevronDown,
   ChevronUp,
+  CircleDollarSign,
   X,
 } from "lucide-react";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
@@ -41,6 +42,7 @@ interface PriceRangeFieldProps {
   labelClassName?: string;
   triggerClassName?: string;
   icon?: ReactNode;
+  hideCurrency?: boolean;
 }
 
 export const PriceRangeField: FC<PriceRangeFieldProps> = ({
@@ -50,6 +52,7 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
   className,
   labelClassName,
   triggerClassName,
+  hideCurrency = false,
 }) => {
   const t = useTranslations("Properties");
   const { convertFromCHF } = useExchangeRates();
@@ -109,50 +112,61 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
               triggerClassName,
             )}
           >
-            {/* Currency selector */}
-            <div
-              className="flex items-center shrink-0"
-              onClick={(e) => e.stopPropagation()}
-              onPointerDown={(e) => e.stopPropagation()}
-            >
-              <Controller
-                control={control}
-                name={currencyName}
-                render={({ field }) => (
-                  <Select
-                    onOpenChange={setCurrencyOpen}
-                    onValueChange={field.onChange}
-                    value={field.value || PROPERTY_DEFAULT_CURRENCY}
-                  >
-                    <SelectTrigger className="h-auto w-auto border-0 shadow-none p-0 gap-1 text-sm font-medium text-black-500 focus:ring-0 [&>svg]:hidden">
-                      <SelectValue />
-                      <span className="shrink-0">
-                        <ChevronDown
-                          className={cn(
-                            "w-3.5 h-3.5 text-black-50 transition-transform duration-200",
-                            currencyOpen && "rotate-180 text-secondary-500",
-                          )}
-                        />
-                      </span>
-                    </SelectTrigger>
-                    <SelectContent
-                      align="start"
-                      sideOffset={8}
-                      className="-ml-3"
-                    >
-                      {CURRENCIES.map((c) => (
-                        <SelectItem key={c.value} value={c.value}>
-                          {c.value}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-            </div>
+            {/* Static icon when currency is hidden */}
+            {hideCurrency && (
+              <span className="flex items-center shrink-0 text-black-50 pointer-events-none mr-2">
+                <CircleDollarSign className="w-[18px] h-[18px]" />
+              </span>
+            )}
 
-            {/* Divider */}
-            <div className="w-px h-4 bg-[#d9d9d9] mx-2 shrink-0" />
+            {/* Currency selector */}
+            {!hideCurrency && (
+              <>
+                <div
+                  className="flex items-center shrink-0"
+                  onClick={(e) => e.stopPropagation()}
+                  onPointerDown={(e) => e.stopPropagation()}
+                >
+                  <Controller
+                    control={control}
+                    name={currencyName}
+                    render={({ field }) => (
+                      <Select
+                        onOpenChange={setCurrencyOpen}
+                        onValueChange={field.onChange}
+                        value={field.value || PROPERTY_DEFAULT_CURRENCY}
+                      >
+                        <SelectTrigger className="h-auto w-auto border-0 shadow-none p-0 gap-1 text-sm font-medium text-black-500 focus:ring-0 [&>svg]:hidden">
+                          <SelectValue />
+                          <span className="shrink-0">
+                            <ChevronDown
+                              className={cn(
+                                "w-3.5 h-3.5 text-black-50 transition-transform duration-200",
+                                currencyOpen && "rotate-180 text-secondary-500",
+                              )}
+                            />
+                          </span>
+                        </SelectTrigger>
+                        <SelectContent
+                          align="start"
+                          sideOffset={8}
+                          className="-ml-3"
+                        >
+                          {CURRENCIES.map((c) => (
+                            <SelectItem key={c.value} value={c.value}>
+                              {c.value}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                </div>
+
+                {/* Divider */}
+                <div className="w-px h-4 bg-[#d9d9d9] mx-2 shrink-0" />
+              </>
+            )}
 
             {/* Price range display */}
             <span

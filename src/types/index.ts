@@ -20,6 +20,7 @@ export interface IPropertyParams {
   maxPrice?: number;
   currency?: string;
   sort?: string;
+  rooms?: string;
 }
 
 export interface IPropertyCategoryParams {
@@ -27,7 +28,7 @@ export interface IPropertyCategoryParams {
 }
 
 export interface ISanityPropertyFacility {
-  icon?: string;
+  typeRoom?: string;
   name?: string;
   valueType?: "number" | "text" | "none";
   numberValue?: number;

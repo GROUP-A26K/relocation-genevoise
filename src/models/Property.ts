@@ -33,7 +33,7 @@ export interface PropertyPagination {
 }
 
 export interface PropertyFacility {
-  icon: string;
+  typeRoom: string;
   name: string;
   valueType: "number" | "text" | "none";
   numberValue?: number;

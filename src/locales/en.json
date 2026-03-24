@@ -1116,6 +1116,13 @@
       "price": "Price",
       "anyPrice": "Any price",
       "under": "Under",
+      "rooms": "Rooms",
+      "anyRooms": "Any rooms",
+      "studio": "Studio",
+      "room1": "1 bedroom",
+      "room2": "2 bedroom",
+      "room3": "3 bedroom",
+      "room4plus": "4+ bedroom",
       "propertyType": "Property type",
       "anyType": "Any type",
       "searchButton": "Search Property"

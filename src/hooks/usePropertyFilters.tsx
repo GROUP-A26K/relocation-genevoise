@@ -16,6 +16,7 @@ export interface IPropertyFilterQueryParams {
   priceRange: string;
   currency: string;
   sort: string;
+  rooms: string;
 }
 
 type PropertyAppliedFilters = {
@@ -23,6 +24,7 @@ type PropertyAppliedFilters = {
   location: string;
   priceRange: string;
   currency: string;
+  rooms: string;
 };
 
 export type PropertyFilterFormValues = {
@@ -30,6 +32,7 @@ export type PropertyFilterFormValues = {
   location: string;
   priceRange: string;
   currency: string;
+  rooms: string;
 };
 
 const INITIAL_PARAMS: IPropertyFilterQueryParams = {
@@ -39,6 +42,7 @@ const INITIAL_PARAMS: IPropertyFilterQueryParams = {
   priceRange: "",
   currency: PROPERTY_DEFAULT_CURRENCY,
   sort: "newest",
+  rooms: "",
 };
 
 export const PROPERTY_PAGE_SIZE = 12;
@@ -66,6 +70,7 @@ export const usePropertyFilters = (
       priceRange: parseAsString.withDefault(INITIAL_PARAMS.priceRange),
       currency: parseAsString.withDefault(INITIAL_PARAMS.currency),
       sort: parseAsString.withDefault(INITIAL_PARAMS.sort),
+      rooms: parseAsString.withDefault(INITIAL_PARAMS.rooms),
     },
     { shallow: false, scroll: false },
   );
@@ -76,12 +81,14 @@ export const usePropertyFilters = (
       categories: paramToCategories(queryParams.categories),
       priceRange: queryParams.priceRange,
       currency: queryParams.currency || PROPERTY_DEFAULT_CURRENCY,
+      rooms: queryParams.rooms,
     }),
     [
       queryParams.categories,
       queryParams.currency,
       queryParams.location,
       queryParams.priceRange,
+      queryParams.rooms,
     ],
   );
 
@@ -97,6 +104,7 @@ export const usePropertyFilters = (
       const nextPriceRange = filters.priceRange ?? queryParams.priceRange;
       const nextCurrency =
         filters.currency ?? queryParams.currency ?? PROPERTY_DEFAULT_CURRENCY;
+      const nextRooms = filters.rooms ?? queryParams.rooms;
 
       void setQueryParams({
         page: 1,
@@ -104,6 +112,7 @@ export const usePropertyFilters = (
         categories: nextCategories,
         priceRange: nextPriceRange,
         currency: nextCurrency,
+        rooms: nextRooms,
       });
     },
     [
@@ -111,6 +120,7 @@ export const usePropertyFilters = (
       queryParams.currency,
       queryParams.location,
       queryParams.priceRange,
+      queryParams.rooms,
       setQueryParams,
     ],
   );
@@ -148,6 +158,7 @@ export const usePropertyFilters = (
       maxPrice: maxPriceCHF,
       currency: queryParams.currency || PROPERTY_DEFAULT_CURRENCY,
       sort: queryParams.sort,
+      rooms: queryParams.rooms,
     };
   }, [
     queryParams.categories,
@@ -155,6 +166,7 @@ export const usePropertyFilters = (
     queryParams.location,
     queryParams.page,
     queryParams.priceRange,
+    queryParams.rooms,
     queryParams.sort,
   ]);
 

@@ -83,3 +83,17 @@ export type TPriceRange = (typeof PRICE_RANGE_OPTIONS)[number]["value"];
 
 export const getPriceRangeByValue = (value: string) =>
   PRICE_RANGE_OPTIONS.find((o) => o.value === value) ?? PRICE_RANGE_OPTIONS[0];
+
+export const ROOM_FILTER_OPTIONS = [
+  { value: "", labelKey: "filters.anyRooms", roomsMin: 0, roomsMax: 0 },
+  { value: "studio", labelKey: "filters.studio", roomsMin: 0, roomsMax: 1 },
+  { value: "1", labelKey: "filters.room1", roomsMin: 1, roomsMax: 1 },
+  { value: "2", labelKey: "filters.room2", roomsMin: 2, roomsMax: 2 },
+  { value: "3", labelKey: "filters.room3", roomsMin: 3, roomsMax: 3 },
+  { value: "4plus", labelKey: "filters.room4plus", roomsMin: 4, roomsMax: 99 },
+] as const;
+
+export type TRoomFilter = (typeof ROOM_FILTER_OPTIONS)[number]["value"];
+
+export const getRoomFilterByValue = (value: string) =>
+  ROOM_FILTER_OPTIONS.find((o) => o.value === value) ?? ROOM_FILTER_OPTIONS[0];

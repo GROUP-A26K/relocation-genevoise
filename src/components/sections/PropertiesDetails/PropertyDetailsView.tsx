@@ -43,7 +43,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
     label: item.name,
     value: item.numberValue,
     unit: item.textValue,
-    icon: item.icon,
+    icon: item.typeRoom,
   }));
 
   const surroundingItems = property.surroundingPlaces.map((item) => ({

@@ -10,6 +10,7 @@ import {
   InputField,
   MultiSelectField,
   PriceRangeField,
+  RoomsSelectField,
 } from "@/components/customs/Form";
 import { Form } from "@/components/ui/form";
 import { usePropertyFilters } from "@/hooks/usePropertyFilters";
@@ -24,6 +25,7 @@ interface ISearchFiltersFormValues {
   priceRange: string;
   currency: string;
   categories: string[];
+  rooms: string;
 }
 
 const FILTER_LABEL_CLASSNAME =
@@ -50,6 +52,7 @@ const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
       priceRange: values.priceRange,
       currency: values.currency,
       categories: values.categories,
+      rooms: values.rooms,
     });
   };
 
@@ -79,6 +82,15 @@ const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
 
             <PriceRangeField
               label={t("filters.price")}
+              className={FIELD_CLASSNAME}
+              labelClassName={FILTER_LABEL_CLASSNAME}
+              triggerClassName={FIELD_INPUT_CLASSNAME}
+              hideCurrency
+            />
+
+            <RoomsSelectField
+              name="rooms"
+              label={t("filters.rooms")}
               className={FIELD_CLASSNAME}
               labelClassName={FILTER_LABEL_CLASSNAME}
               triggerClassName={FIELD_INPUT_CLASSNAME}

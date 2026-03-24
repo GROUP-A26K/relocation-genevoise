@@ -3,6 +3,7 @@ export * from "./InputField";
 export * from "./SelectField";
 export * from "./PriceInputField";
 export * from "./PriceRangeField";
+export * from "./RoomsSelectField";
 export * from "./MultiSelectField";
 export * from "./CheckboxField";
 export * from "./TextareaField";
