@@ -391,7 +391,19 @@ const PROPERTIES_FILTER = `
       (count($categories) == 0 || category->categoryName in $categories) &&
       ($location == "" || mapLocation.name match $location) &&
       ($minPrice == 0 || price >= $minPrice) &&
-      ($maxPrice == 0 || price <= $maxPrice)
+      ($maxPrice == 0 || price <= $maxPrice) &&
+      (
+        $rooms == "" ||
+        ($rooms == "studio" && (
+          coalesce(facilities[typeRoom == "room" && valueType == "number"][0].numberValue, 0) +
+          coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) +
+          coalesce(facilities[typeRoom == "bathroom" && valueType == "number"][0].numberValue, 0)
+        ) <= 1) ||
+        ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||
+        ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||
+        ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||
+        ($rooms == "4plus" && coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) >= 4)
+      )
 `;
 
 const PROPERTIES_PROJECTION = `{
@@ -411,7 +423,7 @@ const PROPERTIES_PROJECTION = `{
       },
       "category": category->categoryName,
       "facilities": facilities[] {
-        icon,
+        typeRoom,
         name,
         valueType,
         numberValue,
@@ -477,7 +489,7 @@ export const PROPERTY_DETAIL_QUERY = defineQuery(`
     }
   },
   facilities[] {
-    icon,
+    typeRoom,
     name,
     valueType,
     numberValue,

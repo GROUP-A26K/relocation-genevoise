@@ -72,7 +72,7 @@ const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
   category: property.category || "",
   facilities: (property.facilities || []).map(
     (facility): PropertyFacility => ({
-      icon: facility.icon || "",
+      typeRoom: facility.typeRoom || "",
       name: facility.name || "",
       valueType: facility.valueType || "none",
       numberValue: facility.numberValue,
@@ -116,6 +116,7 @@ export const fetchProperties = async (
         location: params?.location || "",
         minPrice: params?.minPrice ?? 0,
         maxPrice: params?.maxPrice ?? 0,
+        rooms: params?.rooms ?? "",
       },
       { next: { tags: ["properties"] } },
     );

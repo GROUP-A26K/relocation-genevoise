@@ -1126,6 +1126,13 @@
       "price": "Prix",
       "anyPrice": "Tout prix",
       "under": "Moins de",
+      "rooms": "Pièces",
+      "anyRooms": "Toutes pièces",
+      "studio": "Studio",
+      "room1": "1 chambre",
+      "room2": "2 chambres",
+      "room3": "3 chambres",
+      "room4plus": "4+ chambres",
       "propertyType": "Type de bien",
       "anyType": "Tout type",
       "searchButton": "Rechercher"

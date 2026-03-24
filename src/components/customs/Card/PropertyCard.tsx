@@ -17,9 +17,9 @@ const FALLBACK_IMAGE =
 
 const getFacilityByIcon = (
   facilities: PropertyFacility[],
-  icon: string,
+  typeRoom: string,
 ): PropertyFacility | undefined => {
-  return facilities.find((f) => f.icon === icon);
+  return facilities.find((f) => f.typeRoom === typeRoom);
 };
 
 interface IPropertyCardProps extends IPropertyListing {
