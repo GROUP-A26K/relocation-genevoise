@@ -18,6 +18,8 @@ interface Props {
 }
 export const Pagination: FC<Props> = (props) => {
   const currentPage = props.meta.pagination.page;
+  const pageItemClassName =
+    "h-10 w-10 p-0 rounded-full flex items-center justify-center font-semibold";
 
   const handleTabClick = (value: number) => {
     props.onClick(value);
@@ -34,7 +36,7 @@ export const Pagination: FC<Props> = (props) => {
       >
         <PaginationLink
           className={cn(
-            "rounded-full",
+            pageItemClassName,
             props.meta.pagination.page === 1 &&
               "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
           )}
@@ -61,7 +63,7 @@ export const Pagination: FC<Props> = (props) => {
         >
           <PaginationLink
             className={cn(
-              "rounded-full",
+              pageItemClassName,
               props.meta.pagination.page === i &&
                 "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
             )}
@@ -83,7 +85,7 @@ export const Pagination: FC<Props> = (props) => {
         >
           <PaginationLink
             className={cn(
-              "rounded-full",
+              pageItemClassName,
               props.meta.pagination.page === max &&
                 "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
             )}
@@ -97,9 +99,9 @@ export const Pagination: FC<Props> = (props) => {
     return items || [];
   };
   return (
-    <PaginationShadcn className="lg:py-16 py-14 w-full">
+    <PaginationShadcn className="lg:py-16 py-12 w-full">
       {/* Desktop */}
-      <PaginationContent className="w-full flex-row justify-between lg:flex hidden">
+      <PaginationContent className="w-full flex-row justify-between lg:flex hidden lg:pt-8 border-t border-t-grey-100">
         <PaginationItem>
           <PaginationPrevious
             className={cn("cursor-pointer", currentPage === 1 && "invisible")}
@@ -133,7 +135,7 @@ export const Pagination: FC<Props> = (props) => {
       </PaginationContent>
 
       {/* Mobile */}
-      <PaginationContent className="w-full flex flex-row justify-between lg:hidden ">
+      <PaginationContent className="w-full flex flex-row justify-between lg:hidden pt-8 border-t border-t-grey-100">
         <PaginationItem>
           <div
             className="flex h-10 w-10 p-2 lg:p-3 rounded-xl border items-center justify-center cursor-pointer"

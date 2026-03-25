@@ -59,5 +59,10 @@ export const AppConfig = {
       en: "/faq",
       priority: 0.6,
     },
+    properties: {
+      fr: "/proprietes",
+      en: "/properties",
+      priority: 0.7,
+    },
   },
 };

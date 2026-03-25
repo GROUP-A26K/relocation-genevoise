@@ -266,7 +266,7 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 `);
 
 export const POST_CATEGORIES_QUERY = defineQuery(
-  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`
+  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`,
 );
 
 export const CAREERS_QUERY = defineQuery(`
@@ -382,6 +382,168 @@ export const CAREER_SLUG_QUERY = defineQuery(`
   }
 `);
 
-export const DEPARTMENT_QUERY = defineQuery(
-  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`
+// ==================== PROPERTIES ====================
+
+const PROPERTIES_FILTER = `
+      _type == "property" &&
+      !(_id in path("drafts.**")) &&
+      language == $locale &&
+      (count($categories) == 0 || category->categoryName in $categories) &&
+      ($location == "" || mapLocation.name match $location) &&
+      ($minPrice == 0 || price >= $minPrice) &&
+      ($maxPrice == 0 || price <= $maxPrice) &&
+      (
+        $rooms == "" ||
+        ($rooms == "studio" && (
+          coalesce(facilities[typeRoom == "room" && valueType == "number"][0].numberValue, 0) +
+          coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) +
+          coalesce(facilities[typeRoom == "bathroom" && valueType == "number"][0].numberValue, 0)
+        ) <= 1) ||
+        ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||
+        ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||
+        ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||
+        ($rooms == "4plus" && coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) >= 4)
+      )
+`;
+
+const PROPERTIES_PROJECTION = `{
+      _id,
+      title,
+      slug,
+      price,
+      priceUnit,
+      listingType,
+      rentPeriod,
+      language,
+      availability,
+      description,
+      mapLocation {
+        name,
+        coordinates
+      },
+      "category": category->categoryName,
+      "facilities": facilities[] {
+        typeRoom,
+        name,
+        valueType,
+        numberValue,
+        textValue
+      },
+      "imageUrl": areas[0].mainImage.asset->url
+    }`;
+
+export const buildPropertiesQuery = (sort: string) => {
+  const orderClause =
+    sort === "price_asc"
+      ? "price asc"
+      : sort === "price_desc"
+        ? "price desc"
+        : "_createdAt desc";
+
+  return `{
+    "properties": *[${PROPERTIES_FILTER}] | order(${orderClause}) [$start...$end] ${PROPERTIES_PROJECTION},
+    "total": count(*[${PROPERTIES_FILTER}])
+  }`;
+};
+
+export const PROPERTY_CATEGORIES_QUERY = defineQuery(
+  `*[
+    _type == "propertyCategory" &&
+    count(
+      *[
+        _type == "property" &&
+        !(_id in path("drafts.**")) &&
+        language == $locale &&
+        references(^._id)
+      ]
+    ) > 0
+  ] | order(categoryName asc) {
+    _id,
+    categoryName
+  }`
 );
+
+export const DEPARTMENT_QUERY = defineQuery(
+  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 0]`,
+);
+
+export const PROPERTY_DETAIL_QUERY = defineQuery(`
+*[_type == "property" && slug.current == $slug][0] {
+  _id,
+  _createdAt,
+  _updatedAt,
+  language,
+  title,
+  slug,
+  listingType,
+  price,
+  priceUnit,
+  rentPeriod,
+  description,
+  availability,
+  mapLocation {
+    name,
+    coordinates {
+      lat,
+      lng
+    }
+  },
+  facilities[] {
+    typeRoom,
+    name,
+    valueType,
+    numberValue,
+    textValue
+  },
+  agent-> {
+    _id,
+    agentName,
+    agentPhone,
+    "photoUrl": photo.asset->url
+  },
+  category-> {
+    _id,
+    categoryName
+  },
+  areas[] {
+    title,
+    "mainImageUrl": mainImage.asset->url,
+    "galleryImages": galleryImages[] {
+      "url": asset->url
+    }
+  },
+  surroundingPlaces[] {
+    icon,
+    name,
+    distance
+  }
+}
+`);
+
+export const PROPERTY_PHOTO_TOUR_QUERY = defineQuery(`
+*[_type == "property" && slug.current == $slug][0].areas[] {
+  title,
+  description,
+  "mainImageUrl": mainImage.asset->url,
+  "galleryImages": galleryImages[] {
+    "url": asset->url
+  }
+}
+`);
+
+
+export const PROPERTY_SLUG_QUERY = defineQuery(`
+  *[
+    _type == "property" &&
+    slug.current == $slug
+  ][0] {
+    "targetSlug": *[
+      _type == "translation.metadata"&& 
+      references(^._id)
+    ][0].translations[].value->
+    {
+      language,
+      "slug": slug.current
+    }
+  }
+`);

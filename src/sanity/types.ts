@@ -104,7 +104,9 @@ export type Property = {
   _updatedAt: string;
   _rev: string;
   charges?: number;
-  rent?: number;
+  price?: number;
+  priceUnit?: '$' | 'CHF' | 'EUR';
+  rentPeriod?: 'month' | 'year';
   location?: string;
   numRooms?: number;
   numBedrooms?: number;

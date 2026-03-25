@@ -851,6 +851,9 @@
             "title": "FAQ"
           },
           {
+            "title": "Listing Properties"
+          },
+          {
             "title": "Legal Notice"
           },
           {
@@ -891,6 +894,10 @@
     "Blog": {
       "title": "Relocation Genevoise – Articles and news",
       "description": "Stay up to date with the Geneva area : mobility, housing, jobs, and practical tips to help you settle in the region."
+    },
+    "Properties": {
+      "title": "Relocation Genevoise – Exclusive Apartments in Geneva",
+      "description": "Browse exclusive Geneva apartments, handpicked by relocation experts. Find your perfect home with our dedicated service."
     },
     "Career": {
       "title": "Relocation Genevoise - Career",
@@ -974,6 +981,10 @@
           {
             "title": "Discover Geneva",
             "description": "Let us show you Geneva and its must-see attractions"
+          },
+          {
+            "title": "Listing Properties",
+            "description": "Browse our available properties in Geneva and find your ideal home"
           }
         ]
       }
@@ -1017,7 +1028,8 @@
       "links": [
         { "text": "Academic Services" },
         { "text": "Discover Geneva" },
-        { "text": "Concierge" }
+        { "text": "Concierge" },
+        { "text": "Listing Properties" }
       ]
     },
     "support": {
@@ -1090,6 +1102,118 @@
     "Subscribe": {
       "emailInvalid": "Please enter a valid email address."
     }
+  },
+
+  "Properties": {
+    "hero": {
+      "tagline": "Property",
+      "title": "Find your perfect investment properties",
+      "description": "Discover exceptional properties tailored to your lifestyle, offering comfort, elegance, and prime locations. Whether you're searching for a modern apartment, a charming house, or a luxury residence, find the perfect home to match your needs."
+    },
+    "filters": {
+      "location": "Location",
+      "locationPlaceholder": "Search area or address",
+      "price": "Price",
+      "anyPrice": "Any price",
+      "under": "Under",
+      "rooms": "Rooms",
+      "anyRooms": "Any rooms",
+      "studio": "Studio",
+      "room1": "1 bedroom",
+      "room2": "2 bedroom",
+      "room3": "3 bedroom",
+      "room4plus": "4+ bedroom",
+      "propertyType": "Property type",
+      "anyType": "Any type",
+      "searchButton": "Search Property"
+    },
+    "results": {
+      "showing": "Show",
+      "ofTotal": "of total",
+      "results": "results",
+      "sortBy": "Sort by"
+    },
+    "sort": {
+      "newest": "Most popular",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low"
+    },
+    "card": {
+      "bedroom": "Bed",
+      "bathroom": "Bath",
+      "listingType": {
+        "rent": "For rent",
+        "sale": "For sale"
+      },
+      "rentPeriod": {
+        "month": "month",
+        "year": "year"
+      }
+    },
+    "emptyData": {
+      "title": "No properties found",
+      "description": "Try adjusting your search filters to find what you're looking for."
+    },
+    "cooperate": {
+      "tagline": "Cooperate",
+      "title": "Would you like to benefit from our expertise and services?",
+      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
+      "contactButton": "Contact us",
+      "findButton": "Find accommodation"
+    },
+    "BookConsultation": {
+      "heading": "Cooperate",
+      "subHeading": "Would you like to benefit from our expertise and services?",
+      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
+      "buttonText1": "Contact us",
+      "buttonText2": "Find accommodation"
+    }
+  },
+
+  "PropertiesDetails": {
+    "listingType": {
+      "rent": "For rent",
+      "sale": "For sale"
+    },
+    "rentPeriod": {
+      "month": "/month",
+      "year": "/year"
+    },
+    "status": {
+      "available": "Available Now",
+      "notAvailable": "Not Available"
+    },
+    "sections": {
+      "facilities": "Facilities",
+      "description": "Description",
+      "surrounding": "Surrounding information",
+      "whereYouBe": "Where you'll be"
+    },
+    "imagePreview": {
+      "viewAllButton": "Show all photos"
+    },
+    "map": {
+      "viewOnMap": "View on map"
+    },
+    "agent": {
+      "title": "Agent details",
+      "contactButton": "Contact agent"
+    },
+    "description": {
+      "readMore": "Read more",
+      "readLess": "Read less"
+    },
+    "similar": {
+      "title": "Property",
+      "subheading": "Discover similar properties",
+      "description": "Whether you’re looking for a modern apartment in the city or a peaceful home in the suburbs, our listings offer something for everyone.",
+      "viewAllButton": "See all property"
+    }
+  },
+
+  "PhotoTour": {
+    "title": "Back",
+    "subheading": "Photo tour"
   },
 
   "ToastMessage": {

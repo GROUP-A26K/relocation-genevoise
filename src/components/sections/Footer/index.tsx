@@ -100,6 +100,10 @@ const Footer = async () => {
           text: t("company.links.2.text"),
           url: "/services/concierge-service",
         },
+        {
+          text: t("company.links.3.text"),
+          url: "/properties",
+        },
       ],
     },
     support: {
