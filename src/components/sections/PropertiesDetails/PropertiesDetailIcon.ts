@@ -31,6 +31,12 @@ import {
   Mail,
   CircleParking,
   University,
+  Sparkles,
+  ChefHat,
+  Mountain,
+  Baby,
+  PawPrint,
+  VolumeXIcon,
 } from "lucide-react";
 
 export const FacilityIconMap: Record<string, React.ComponentType> = {
@@ -51,6 +57,12 @@ export const FacilityIconMap: Record<string, React.ComponentType> = {
   internet: Wifi,
   laundry: WashingMachine,
   storage: Archive,
+  dishwasher: Sparkles,
+  kitchen: ChefHat,
+  view: Mountain,
+  quietNeighborhood: VolumeXIcon,
+  childFriendly: Baby,
+  petAllowed: PawPrint,
 };
 
 export const SurroundingPlaceIconMap: Record<string, React.ComponentType> = {

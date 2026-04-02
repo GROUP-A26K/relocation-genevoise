@@ -30,7 +30,7 @@ export const PropertyDescription = ({ content }: IDescriptionProps) => {
     <div className="flex flex-col gap-3">
       <p
         ref={textRef}
-        className={`text-sm !leading-[130%] text-black-200 ${
+        className={`text-sm !leading-[130%] text-black-200 whitespace-pre-wrap ${
           !isExpanded.value && showReadMore.value ? 'line-clamp-4' : ''
         }`}
       >
