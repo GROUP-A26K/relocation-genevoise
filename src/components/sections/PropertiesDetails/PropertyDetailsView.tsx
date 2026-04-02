@@ -41,8 +41,8 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
 
   const facilityItems = property.facilities.map((item) => ({
     label: item.name,
-    value: item.numberValue,
-    unit: item.textValue,
+    value: item.valueType === "none" ? undefined : (item.numberValue ?? item.textValue),
+    unit: item.valueType !== "none" && item.typeRoom === "area" ? "m²" : undefined,
     icon: item.typeRoom,
   }));
 
