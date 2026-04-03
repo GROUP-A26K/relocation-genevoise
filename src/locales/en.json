@@ -9,7 +9,6 @@
       "buttonText": "Contact-us",
       "buttonText2": "Find accommodation"
     },
-
     "ContactFeature": {
       "heading": "Offers",
       "subHeading": "((Our Relocation Services))",
@@ -34,11 +33,9 @@
         }
       ]
     },
-
     "Logos": {
       "heading": "A network of trusted partners"
     },
-
     "StatsGrid": {
       "heading": "Availability & Transparency",
       "subHeading": "An agency by your side through every step of ((your relocation.))",
@@ -60,7 +57,6 @@
         "label": "Facilities in Switzerland "
       }
     },
-
     "EngagementFeature": {
       "heading": " Our Commitments",
       "subHeading": "Guiding you to your new home with ((care and expertise.))",
@@ -84,7 +80,6 @@
         }
       ]
     },
-
     "ContentWithImg": {
       "heading": "A trusted partner",
       "subHeading": "Choose the leading ((relocation provider in Geneva.))",
@@ -95,7 +90,6 @@
       ],
       "buttonText": "Contact our team"
     },
-
     "ServiceFeature": {
       "heading": "Your relocation to Geneva",
       "subHeading": "Find your new home in Geneva ((easily and quickly.))",
@@ -116,14 +110,12 @@
         }
       ]
     },
-
     "BlogList": {
       "heading": "Blog & News",
       "subHeading": "((Our latest articles))",
       "description": "Find our latest news, articles, and expert advice to help you choose the best insurance solutions.",
       "buttonText": "See more"
     },
-
     "BookConsultation": {
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
@@ -132,7 +124,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "FindAccommodation": {
     "Hero": {
       "heading": "Your relocation project",
@@ -187,7 +178,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "FindATenant": {
     "Hero": {
       "heading": "Lease transfer",
@@ -230,7 +220,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "RemindMe": {
     "Consultation": {
       "heading": "Call me back",
@@ -270,7 +259,6 @@
       ]
     }
   },
-
   "Contact": {
     "ContactInfo": {
       "heading": "Contact us",
@@ -300,23 +288,43 @@
       "description": "If you would like to contact us or are interested in our services, feel free to reach out by phone or via the contact form below."
     },
     "ContactForm": {
-      "first_name": { "label": "First name", "placeholder": "First name" },
-      "last_name": { "label": "Last name", "placeholder": "Last name" },
-      "email": { "label": "Email", "placeholder": "Email" },
+      "first_name": {
+        "label": "First name",
+        "placeholder": "First name"
+      },
+      "last_name": {
+        "label": "Last name",
+        "placeholder": "Last name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Email"
+      },
       "phone": {
         "label": "Phone",
         "placeholder": "Phone"
       },
-      "company": { "label": "Company", "placeholder": "Company" },
+      "company": {
+        "label": "Company",
+        "placeholder": "Company"
+      },
       "subject": {
         "name": "help",
         "label": "How we can help you ?",
         "placeholder": "Choose from the list",
         "options": [
-          { "label": "Find accommodation" },
-          { "label": "Find a tenant" },
-          { "label": "Corporate services" },
-          { "label": "Concierge services" }
+          {
+            "label": "Find accommodation"
+          },
+          {
+            "label": "Find a tenant"
+          },
+          {
+            "label": "Corporate services"
+          },
+          {
+            "label": "Concierge services"
+          }
         ]
       },
       "message": {
@@ -327,11 +335,9 @@
       "send": "Send"
     }
   },
-
   "LegalNotices": {
     "heading": "Legal",
     "subHeading": "((Legal Notice))",
-
     "sections": [
       {
         "title": "1. Company Information",
@@ -415,7 +421,6 @@
       }
     ]
   },
-
   "LegalPersonal": {
     "heading": "Legal",
     "subHeading": "((Personal Data))",
@@ -478,7 +483,6 @@
       }
     ]
   },
-
   "Education": {
     "heading": "Our service",
     "subHeading": "((Academic Services))",
@@ -535,7 +539,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "DiscoverGeneva": {
     "heading": "Our service",
     "subHeading": "((Discover Geneva))",
@@ -548,7 +551,6 @@
           }
         ]
       },
-
       {
         "content": [
           {
@@ -556,7 +558,6 @@
           }
         ]
       },
-
       {
         "content": [
           {
@@ -590,7 +591,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "ConciergeService": {
     "heading": "Our service",
     "subHeading": "((Concierge service))",
@@ -626,7 +626,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "Companies": {
     "BusinessInfo": {
       "heading": "Professional",
@@ -706,7 +705,6 @@
       ]
     }
   },
-
   "FAQ": {
     "heading": "FAQ",
     "subHeading": "Any questions?\n ((Here are our answers))",
@@ -743,7 +741,6 @@
       "buttonText1": "Contact-us"
     }
   },
-
   "Blog": {
     "heading": "Blog",
     "subHeading": "((Our latest news))",
@@ -754,7 +751,6 @@
       "description": "We couldn't find any blog"
     }
   },
-
   "BlogDetail": {
     "tableContent": "Table of contents",
     "buttonCopy": "Copy link",
@@ -765,7 +761,6 @@
       "buttonText": "See more"
     }
   },
-
   "Career": {
     "emptyTitle": "We're Not Hiring Today, But We're Always Listening",
     "emptyDescription": "While we don't have open positions right now, we’re always looking to connect with passionate individuals who share our values.",
@@ -773,52 +768,64 @@
     "subHeading": "((Join Us))",
     "description": "Be part of a dynamic team committed to supporting individuals and businesses in Switzerland."
   },
-
   "Application": {
     "ApplyForm": {
       "formTitle": "Application form",
-      "first_name": { "label": "First name", "placeholder": "Lucas" },
-      "last_name": { "label": "Last name", "placeholder": "Zimmer" },
-      "email": { "label": "Email", "placeholder": "you@email.com" },
+      "first_name": {
+        "label": "First name",
+        "placeholder": "Lucas"
+      },
+      "last_name": {
+        "label": "Last name",
+        "placeholder": "Zimmer"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "you@email.com"
+      },
       "phone": {
         "label": "Phone number",
         "placeholder": "+41"
       },
-
       "experienceYears": {
         "label": "Experience in years",
         "placeholder": "Choose your experience",
         "options": [
-          { "label": "0-1 year" },
-          { "label": "2-3 years" },
-          { "label": "4-5 years" },
-          { "label": "6+ years" },
-          { "label": "Other" }
+          {
+            "label": "0-1 year"
+          },
+          {
+            "label": "2-3 years"
+          },
+          {
+            "label": "4-5 years"
+          },
+          {
+            "label": "6+ years"
+          },
+          {
+            "label": "Other"
+          }
         ]
       },
-
       "expected": {
         "label": "Expected annual CTC",
         "placeholder": "Enter your expected"
       },
-
       "resume": {
         "label": "Your resume",
         "placeholder": "Upload your resume",
         "fileType": "DOCX, PDF (max. 500MB)"
       },
-
       "accept": "By checking this box, I agree that the information entered will be used as part of the contact.",
       "send": "Send"
     }
   },
-
   "CareerDetail": {
     "FeaturedJob": {
       "title": "Other jobs"
     }
   },
-
   "SiteMap": {
     "heading": "Link",
     "subHeading": "((Sitemap))",
@@ -877,7 +884,6 @@
       }
     ]
   },
-
   "Metadata": {
     "Home": {
       "title": "Relocation Genevoise – Relocation Agency in Geneva",
@@ -953,7 +959,6 @@
       "title": "Relocation Genevoise - Error 500"
     }
   },
-
   "Navbar": {
     "menu": [
       {
@@ -999,7 +1004,6 @@
       "text": "Read more"
     }
   },
-
   "Footer": {
     "contact": {
       "title": "Sign up for our newsletter",
@@ -1010,7 +1014,7 @@
     "logo": {
       "title": "Shadcnblocks.com"
     },
-    "tagline": "Relocation Genevoise provides customized solutions with integrity, professionalism, and a focus on your needs.",
+    "tagline": "Relocation Genevoise provides customized solutions with integrity, professionalism, and a focus on your needs in Switzerland.",
     "googleRating": {
       "title": "Google Rating",
       "subTitle": "See all our reviews"
@@ -1018,40 +1022,69 @@
     "service": {
       "title": "Professional",
       "links": [
-        { "text": "Find accommodation" },
-        { "text": "Find a tenant" },
-        { "text": "Companies" }
+        {
+          "text": "Find accommodation"
+        },
+        {
+          "text": "Find a tenant"
+        },
+        {
+          "text": "Companies"
+        }
       ]
     },
     "company": {
       "title": "Individual",
       "links": [
-        { "text": "Academic Services" },
-        { "text": "Discover Geneva" },
-        { "text": "Concierge" },
-        { "text": "Listing Properties" }
+        {
+          "text": "Academic Services"
+        },
+        {
+          "text": "Discover Geneva"
+        },
+        {
+          "text": "Concierge"
+        },
+        {
+          "text": "Listing Properties"
+        }
       ]
     },
     "support": {
       "title": "Support",
       "links": [
-        { "text": "Contact-us" },
-        { "text": "FAQ" },
-        { "text": "Career" }
+        {
+          "text": "Contact-us"
+        },
+        {
+          "text": "FAQ"
+        },
+        {
+          "text": "Career"
+        }
       ]
     },
     "social": {
       "title": "Social Medias",
-      "links": [{ "text": "LinkedIn" }]
+      "links": [
+        {
+          "text": "LinkedIn"
+        }
+      ]
     },
     "copyright": "©2025 RG Relocation Genevoise.  All rights reserved.",
     "bottomLinks": [
-      { "text": "Legal Notices" },
-      { "text": "Peronal Data" },
-      { "text": "Sitemap" }
+      {
+        "text": "Legal Notices"
+      },
+      {
+        "text": "Peronal Data"
+      },
+      {
+        "text": "Sitemap"
+      }
     ]
   },
-
   "Error": {
     "404": {
       "title": "Oops...page not found",
@@ -1067,7 +1100,6 @@
     },
     "buttonText": "Bring to home"
   },
-
   "Validation": {
     "Contact": {
       "roleRequired": "Please select your role",
@@ -1103,7 +1135,6 @@
       "emailInvalid": "Please enter a valid email address."
     }
   },
-
   "Properties": {
     "hero": {
       "tagline": "Property",
@@ -1169,7 +1200,6 @@
       "buttonText2": "Find accommodation"
     }
   },
-
   "PropertiesDetails": {
     "listingType": {
       "rent": "For rent",
@@ -1210,12 +1240,10 @@
       "viewAllButton": "See all property"
     }
   },
-
   "PhotoTour": {
     "title": "Back",
     "subheading": "Photo tour"
   },
-
   "ToastMessage": {
     "Booking": {
       "successTitle": "Success",
@@ -1248,7 +1276,6 @@
       "error": "Error subscribing to the newsletter. Please try again later."
     }
   },
-
   "Button&Text": {
     "applyNow": "Apply now",
     "share": "Share",
