@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Env } from "@/libs/Env";
 import { AppConfig } from "@/utils/AppConfig";
 import { getPropertyDetail } from "@/services/property.service";
+import { ScrollToTop } from "@/components/customs/ScrollToTop";
 
 type Props = {
   children: React.ReactNode;
@@ -58,5 +59,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function PropertyDetailLayout({ children }: Props) {
-  return children;
+  return (
+    <>
+      <ScrollToTop />
+      {children}
+    </>
+  );
 }

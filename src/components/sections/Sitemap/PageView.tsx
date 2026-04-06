@@ -8,6 +8,7 @@ import { cn } from "@/libs/utils";
 import { useTranslations } from "next-intl";
 import { BlogSitemap } from "@/models/BLog";
 import { Meta } from "@/models/Meta";
+import { PropertySitemap } from "@/models/Property";
 import { FormattedText } from "@/components/customs/Text";
 
 export interface MenuItem {
@@ -23,14 +24,17 @@ export interface NavbarProps {
 
 export const PageView = ({
   blogSitemap,
+  propertySitemap,
 }: {
   blogSitemap: { blogs: BlogSitemap[]; meta: Meta };
+  propertySitemap: { properties: PropertySitemap[]; meta: { total: number } };
 }) => {
   const t = useTranslations("SiteMap");
   const { activeId, setActiveId } = useScrollspy([
     "general",
     "services",
     "blog",
+    "properties",
   ]);
 
   const sitemap: NavbarProps = {
@@ -75,6 +79,16 @@ export const PageView = ({
         id: "blog",
         items: [
           ...blogSitemap.blogs.map((item) => ({
+            title: item.title,
+            url: item.href,
+          })),
+        ],
+      },
+      {
+        title: "Properties",
+        id: "properties",
+        items: [
+          ...propertySitemap.properties.map((item) => ({
             title: item.title,
             url: item.href,
           })),

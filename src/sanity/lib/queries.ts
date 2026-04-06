@@ -265,6 +265,25 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
 }
 `);
 
+export const PROPERTIES_SITEMAP_QUERY = defineQuery(`
+  {
+    "properties": *[
+      _type == "property" &&
+      language == $locale
+    ] | order(_createdAt desc) {
+      _id,
+      title,
+      slug,
+    },
+    "total": count(
+      *[
+        _type == "property" &&
+        language == $locale
+      ]
+    )
+  }
+`);
+
 export const POST_CATEGORIES_QUERY = defineQuery(
   `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`,
 );

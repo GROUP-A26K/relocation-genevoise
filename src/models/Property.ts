@@ -1,5 +1,12 @@
 import { Meta } from "./Meta";
 
+export interface PropertySitemap {
+  id: string;
+  title: string;
+  href: string;
+  slug: string;
+}
+
 export type PropertyPriceUnit = "CHF";
 
 export type PropertyRentPeriod = "month" | "year";
