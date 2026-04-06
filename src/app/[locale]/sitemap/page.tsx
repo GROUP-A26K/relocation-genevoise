@@ -1,5 +1,6 @@
 import { PageView } from '@/components/sections/Sitemap';
 import { fetchSitemapBlogs } from '@/services/blog.service';
+import { fetchSitemapProperties } from '@/services/property.service';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 type Props = {
@@ -23,8 +24,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 export default async function Page(props: Props) {
   const { locale } = await props.params;
-  const posts = await fetchSitemapBlogs({
-    locale: locale,
-  });
-  return <PageView blogSitemap={posts} />;
+  const [posts, properties] = await Promise.all([
+    fetchSitemapBlogs({ locale }),
+    fetchSitemapProperties({ locale }),
+  ]);
+  return <PageView blogSitemap={posts} propertySitemap={properties} />;
 }

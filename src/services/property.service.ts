@@ -1,5 +1,6 @@
 import {
   buildPropertiesQuery,
+  PROPERTIES_SITEMAP_QUERY,
   PROPERTY_CATEGORIES_QUERY,
   PROPERTY_DETAIL_QUERY,
   PROPERTY_PHOTO_TOUR_QUERY,
@@ -19,6 +20,7 @@ import {
   PropertyFacility,
   IPropertyListing,
   PropertyListingType,
+  PropertySitemap,
 } from "@/models/Property";
 import {
   IPropertiesResponse,
@@ -192,6 +194,37 @@ export async function getPropertyPhotoTour(
     return [];
   }
 }
+
+export const fetchSitemapProperties = async (
+  params?: IPropertyParams,
+): Promise<{ properties: PropertySitemap[]; meta: { total: number } }> => {
+  try {
+    const response = await client.fetch<{
+      properties: ISanityPropertyResponse[];
+      total: number;
+    }>(
+      PROPERTIES_SITEMAP_QUERY,
+      {
+        locale: getLocale(params?.locale),
+      },
+      { next: { tags: ["sitemap-properties"] } },
+    );
+
+    return {
+      properties: response.properties.map((property) => ({
+        id: property._id,
+        title: property.title || "Untitled Property",
+        slug: property.slug?.current || "",
+        href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
+      })),
+      meta: { total: response.total },
+    };
+  } catch (error) {
+    console.error("Error fetching sitemap properties:", error);
+  }
+
+  return { properties: [], meta: { total: 0 } };
+};
 
 export const fetchPropertySlugBySlug = async (slug: string) => {
   try {

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Env } from "@/libs/Env";
 import { AppConfig } from "@/utils/AppConfig";
 import { getPropertyDetail } from "@/services/property.service";
+import { ScrollToTop } from "@/components/customs/ScrollToTop";
 
 type Props = {
   children: React.ReactNode;
@@ -22,7 +23,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   return {
     title: property.title,
-    description: property.description,
+    description:
+      property.description.length > 160
+        ? `${property.description.substring(0, 157)}...`
+        : property.description,
     openGraph: {
       type: "website",
       locale: "de-DE",
@@ -58,5 +62,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function PropertyDetailLayout({ children }: Props) {
-  return children;
+  return (
+    <>
+      <ScrollToTop />
+      {children}
+    </>
+  );
 }
