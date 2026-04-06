@@ -39,7 +39,9 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
   useEffect(() => {
     if (!emblaApi) return;
     emblaApi.on("select", onSelect);
-    return () => { emblaApi.off("select", onSelect); };
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi, onSelect]);
 
   useEffect(() => {
@@ -87,7 +89,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                     alt={`${area.title} - ${i + 1}`}
                     title={`${area.title} - ${i + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover cursor-pointer"
                     sizes="(max-width: 784px) 100vw, 784px"
                     priority={i === 0}
                   />
@@ -123,7 +125,9 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
               <button
                 key={i}
                 data-selected={activeIndex === i}
-                ref={(node) => { thumbRefs.current[i] = node; }}
+                ref={(node) => {
+                  thumbRefs.current[i] = node;
+                }}
                 onClick={() => selectImage(i)}
                 className={cn(
                   "relative flex-shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-[168/120] rounded-xl overflow-hidden",
