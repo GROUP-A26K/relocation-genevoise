@@ -45,7 +45,6 @@ const EMPTY_PROPERTIES_RESPONSE: IPropertiesResponse = {
   },
 };
 
-
 const getLocale = (locale?: string): TLocale => {
   return locale === LOCALE.en ? LOCALE.en : DEFAULT_PROPERTY_LOCALE;
 };
@@ -83,7 +82,7 @@ const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
   ),
   description: property.description || "",
   imageUrl: property.imageUrl || "",
-  availability: property.availability ?? true,
+  availability: Boolean(property.availability),
 });
 
 const mapPropertyCategory = (
@@ -105,11 +104,13 @@ export const fetchProperties = async (
 
     const categories = params?.category?.filter(Boolean) ?? [];
 
+    const availableOnly = params?.availableOnly ?? false;
+
     const response = await client.fetch<{
       properties: ISanityPropertyResponse[];
       total: number;
     }>(
-      buildPropertiesQuery(sort),
+      buildPropertiesQuery(sort, availableOnly),
       {
         start,
         end,
