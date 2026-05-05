@@ -1167,7 +1167,8 @@
       "showing": "Affichage",
       "ofTotal": "sur un total de",
       "results": "résultats",
-      "sortBy": "Trier par"
+      "sortBy": "Trier par",
+      "showAvailableOnly": "Disponibles uniquement"
     },
     "sort": {
       "newest": "Plus populaires",
@@ -1177,6 +1178,7 @@
     "card": {
       "bedroom": "Ch",
       "bathroom": "SdB",
+      "offMarket": "Hors marché",
       "listingType": {
         "rent": "À louer",
         "sale": "À vendre"

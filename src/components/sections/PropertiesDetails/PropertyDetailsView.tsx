@@ -41,8 +41,12 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
 
   const facilityItems = property.facilities.map((item) => ({
     label: item.name,
-    value: item.valueType === "none" ? undefined : (item.numberValue ?? item.textValue),
-    unit: item.valueType !== "none" && item.typeRoom === "area" ? "m²" : undefined,
+    value:
+      item.valueType === "none"
+        ? undefined
+        : (item.numberValue ?? item.textValue),
+    unit:
+      item.valueType !== "none" && item.typeRoom === "area" ? "m²" : undefined,
     icon: item.typeRoom,
   }));
 
@@ -54,11 +58,13 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
 
   return (
     <PropertyDetailContainer>
-      <div className="lg:col-span-6 flex flex-col gap-12 lg:gap-16">
+      <div className="lg:col-span-8 flex flex-col gap-12 lg:gap-16">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3 flex-wrap">
-              <span className="h-4 w-4 rounded-full bg-green-500 border-[3px] border-green-200"></span>
+              <span
+                className={`h-4 w-4 rounded-full ${property.availability ? "bg-green-500 border-[3px] border-green-200" : "bg-grey-300 border-[3px] border-grey-100"}`}
+              ></span>
               <span>
                 {property.availability
                   ? t("status.available")
@@ -129,14 +135,12 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
           />
         </div>
       </div>
-      
+
       <div className="w-full lg:col-span-4 gap-8 flex flex-col">
         <PropertyDetailSection
           title={t("sections.whereYouBe")}
           content={
-            <PropertyMap
-              coordinates={property.mapLocation.coordinates}
-            />
+            <PropertyMap coordinates={property.mapLocation.coordinates} />
           }
         />
         <PropertyDetailSection

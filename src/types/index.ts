@@ -21,6 +21,7 @@ export interface IPropertyParams {
   currency?: string;
   sort?: string;
   rooms?: string;
+  availableOnly?: boolean;
 }
 
 export interface IPropertyCategoryParams {

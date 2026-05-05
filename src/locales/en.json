@@ -1162,7 +1162,8 @@
       "showing": "Show",
       "ofTotal": "of total",
       "results": "results",
-      "sortBy": "Sort by"
+      "sortBy": "Sort by",
+      "showAvailableOnly": "Show available only"
     },
     "sort": {
       "newest": "Most popular",
@@ -1172,6 +1173,7 @@
     "card": {
       "bedroom": "Bed",
       "bathroom": "Bath",
+      "offMarket": "Off market",
       "listingType": {
         "rent": "For rent",
         "sale": "For sale"

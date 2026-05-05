@@ -6,7 +6,7 @@ interface Props {
 
 export const PropertyDetailContainer: FC<Props> = ({ children }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-10 lg:gap-16 gap-12">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-12 lg:gap-16 gap-12">
       {children}
     </div>
   );
