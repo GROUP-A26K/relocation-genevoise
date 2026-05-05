@@ -45,7 +45,6 @@ const EMPTY_PROPERTIES_RESPONSE: IPropertiesResponse = {
   },
 };
 
-
 const getLocale = (locale?: string): TLocale => {
   return locale === LOCALE.en ? LOCALE.en : DEFAULT_PROPERTY_LOCALE;
 };
@@ -83,7 +82,7 @@ const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
   ),
   description: property.description || "",
   imageUrl: property.imageUrl || "",
-  availability: property.availability ?? true,
+  availability: Boolean(property.availability),
 });
 
 const mapPropertyCategory = (
