@@ -403,7 +403,7 @@ export const CAREER_SLUG_QUERY = defineQuery(`
 
 // ==================== PROPERTIES ====================
 
-const PROPERTIES_FILTER = `
+const PROPERTIES_BASE_FILTER = `
       _type == "property" &&
       !(_id in path("drafts.**")) &&
       language == $locale &&
@@ -451,7 +451,7 @@ const PROPERTIES_PROJECTION = `{
       "imageUrl": areas[0].mainImage.asset->url
     }`;
 
-export const buildPropertiesQuery = (sort: string) => {
+export const buildPropertiesQuery = (sort: string, availableOnly = false) => {
   const orderClause =
     sort === "price_asc"
       ? "price asc"
@@ -459,9 +459,12 @@ export const buildPropertiesQuery = (sort: string) => {
         ? "price desc"
         : "_createdAt desc";
 
+  const availabilityClause = availableOnly ? " && availability == true" : "";
+  const filter = `${PROPERTIES_BASE_FILTER}${availabilityClause}`;
+
   return `{
-    "properties": *[${PROPERTIES_FILTER}] | order(${orderClause}) [$start...$end] ${PROPERTIES_PROJECTION},
-    "total": count(*[${PROPERTIES_FILTER}])
+    "properties": *[${filter}] | order(availability desc, ${orderClause}) [$start...$end] ${PROPERTIES_PROJECTION},
+    "total": count(*[${filter}])
   }`;
 };
 

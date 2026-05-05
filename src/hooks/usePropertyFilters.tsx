@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo } from "react";
-import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
+import { parseAsBoolean, parseAsInteger, parseAsString, useQueryStates } from "nuqs";
 
 import {
   PROPERTY_DEFAULT_CURRENCY,
@@ -17,6 +17,7 @@ export interface IPropertyFilterQueryParams {
   currency: string;
   sort: string;
   rooms: string;
+  availableOnly: boolean;
 }
 
 type PropertyAppliedFilters = {
@@ -43,6 +44,7 @@ const INITIAL_PARAMS: IPropertyFilterQueryParams = {
   currency: PROPERTY_DEFAULT_CURRENCY,
   sort: "newest",
   rooms: "",
+  availableOnly: false,
 };
 
 export const PROPERTY_PAGE_SIZE = 12;
@@ -71,6 +73,7 @@ export const usePropertyFilters = (
       currency: parseAsString.withDefault(INITIAL_PARAMS.currency),
       sort: parseAsString.withDefault(INITIAL_PARAMS.sort),
       rooms: parseAsString.withDefault(INITIAL_PARAMS.rooms),
+      availableOnly: parseAsBoolean.withDefault(INITIAL_PARAMS.availableOnly),
     },
     { shallow: false, scroll: false },
   );
@@ -139,6 +142,13 @@ export const usePropertyFilters = (
     [setQueryParams],
   );
 
+  const handleAvailableOnlyChange = useCallback(
+    (availableOnly: boolean) => {
+      void setQueryParams({ availableOnly, page: 1 });
+    },
+    [setQueryParams],
+  );
+
   // Convert price range + currency into CHF min/max for Sanity query
   const filterParams = useMemo(() => {
     const range = getPriceRangeByValue(queryParams.priceRange);
@@ -159,8 +169,10 @@ export const usePropertyFilters = (
       currency: queryParams.currency || PROPERTY_DEFAULT_CURRENCY,
       sort: queryParams.sort,
       rooms: queryParams.rooms,
+      availableOnly: queryParams.availableOnly,
     };
   }, [
+    queryParams.availableOnly,
     queryParams.categories,
     queryParams.currency,
     queryParams.location,
@@ -176,6 +188,7 @@ export const usePropertyFilters = (
     setQueryParams,
     handlePageChange,
     handleSortChange,
+    handleAvailableOnlyChange,
     applyFilters,
     filterParams,
   };

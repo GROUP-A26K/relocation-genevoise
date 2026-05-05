@@ -105,11 +105,13 @@ export const fetchProperties = async (
 
     const categories = params?.category?.filter(Boolean) ?? [];
 
+    const availableOnly = params?.availableOnly ?? false;
+
     const response = await client.fetch<{
       properties: ISanityPropertyResponse[];
       total: number;
     }>(
-      buildPropertiesQuery(sort),
+      buildPropertiesQuery(sort, availableOnly),
       {
         start,
         end,

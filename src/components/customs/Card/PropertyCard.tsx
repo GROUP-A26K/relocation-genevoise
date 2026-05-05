@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import { Link } from "@/libs/i18nNavigation";
+import { cn } from "@/libs/utils";
 import { PropertyFacility, IPropertyListing } from "@/models/Property";
-import {
-  formatAreaValue,
-  formatFacilityValue,
-} from "@/utils/format";
-import { MapPin, Scaling, BedDouble, Bath } from "lucide-react";
+import { formatAreaValue, formatFacilityValue } from "@/utils/format";
+import { Clock, MapPin, Scaling, BedDouble, Bath } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { PROPERTY_DEFAULT_CURRENCY } from "@/constants/property";
 import { useExchangeRates } from "@/context/ExchangeRatesContext";
@@ -36,6 +34,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
   category,
   facilities,
   imageUrl,
+  availability,
   displayCurrency,
 }) => {
   const t = useTranslations("Properties.card");
@@ -57,17 +56,38 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
     ? formatFacilityValue(bathroomFacility)
     : null;
 
+  const isUnavailable = availability === false;
+
   return (
     <Link href={href}>
       <article className="flex flex-col gap-5 items-start rounded-xl h-full cursor-pointer group">
-        <Image
-          alt={title}
-          title={title}
-          src={imageUrl || FALLBACK_IMAGE}
-          width={640}
-          height={250}
-          className="aspect-video lg:h-[250px] h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-        />
+        <div className="relative w-full">
+          <Image
+            alt={title}
+            title={title}
+            src={imageUrl || FALLBACK_IMAGE}
+            width={392}
+            height={250}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 392px"
+            className={cn("w-full rounded-2xl bg-gray-100 object-cover", {
+              "opacity-90": isUnavailable,
+            })}
+          />
+          {isUnavailable && (
+            <>
+              <div className="absolute inset-0 rounded-2xl bg-white/30" />
+              <div className="absolute top-4 left-4">
+                <span className="flex items-center gap-1 bg-white border border-grey-200 rounded-[6px] px-2.5 py-1 text-sm font-medium text-black-500 !leading-[1.3]">
+                  <Clock
+                    className="w-3.5 h-3.5 text-black-200"
+                    strokeWidth={2.8}
+                  />
+                  {t("offMarket")}
+                </span>
+              </div>
+            </>
+          )}
+        </div>
 
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-col gap-3 w-full">
@@ -137,7 +157,9 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
           </div>
 
           <div className="flex gap-1 items-baseline">
-            <span className="text-2xl lg:text-h2 font-semibold text-blue-500 !leading-[130%]">
+            <span
+              className={`text-2xl lg:text-h2 font-semibold !leading-[130%] ${isUnavailable ? "text-black-200" : "text-blue-500"}`}
+            >
               {currencySymbol}
               {convertedPrice.toLocaleString("en-US")}
               {listingType === "rent" && (

@@ -1,19 +1,20 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { PropertyDetailContainer } from "./PropertyDetailContainer";
-import { PropertyDetailSection } from "./PropertiesDetailSection";
 
 const ImagePreviewSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-2 xl:rounded-3xl overflow-hidden">
-      <Skeleton className="relative aspect-[1/0.68] w-full h-full rounded-2xl xl:rounded-none" />
-      <div className="grid grid-cols-4 xl:grid-cols-2 grid-rows-1 xl:grid-rows-2 gap-2">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative w-full">
+      <div className="relative w-full h-0 pb-[68%]">
+        <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
+      </div>
+      <div className="grid grid-cols-4 lg:grid-cols-2 lg:grid-rows-2 gap-2">
         {Array.from({ length: 4 }).map((_, i) => (
-          <Skeleton
-            key={i}
-            className="relative aspect-[1/0.68] w-full h-full rounded-lg xl:rounded-none"
-          />
+          <div key={i} className="relative w-full h-0 pb-[68%]">
+            <Skeleton className="absolute inset-0 rounded-lg lg:rounded-none" />
+          </div>
         ))}
       </div>
+      <Skeleton className="absolute bottom-4 right-4 hidden lg:block h-10 w-40 rounded-full" />
     </div>
   );
 };
@@ -29,7 +30,11 @@ const TableSkeleton = ({ columns, rows }: TableSkeletonProps) => {
   const xlCols = columns;
   const smGridColsClass = smCols === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2";
   const xlGridColsClass =
-    xlCols === 1 ? "xl:grid-cols-1" : xlCols === 2 ? "xl:grid-cols-2" : "xl:grid-cols-3";
+    xlCols === 1
+      ? "xl:grid-cols-1"
+      : xlCols === 2
+        ? "xl:grid-cols-2"
+        : "xl:grid-cols-3";
   const gridCols = `grid-cols-1 ${smGridColsClass} ${xlGridColsClass}`;
 
   return (
@@ -57,7 +62,7 @@ const TableSkeleton = ({ columns, rows }: TableSkeletonProps) => {
                 !isLastColSm ? "sm:border-r" : "sm:border-r-0",
                 !isLastRowSm ? "sm:border-b" : "sm:border-b-0",
                 !isLastColXl ? "xl:border-r" : "xl:border-r-0",
-                !isLastRowXl ? "xl:border-b" : "xl:border-b-0"
+                !isLastRowXl ? "xl:border-b" : "xl:border-b-0",
               ].join(" ")}
             >
               <div className="flex items-center justify-between gap-4">
@@ -116,59 +121,52 @@ const DescriptionSkeleton = () => (
   </div>
 );
 
+const SectionSkeleton = ({ content }: { content: React.ReactNode }) => (
+  <div className="flex flex-col gap-6">
+    <Skeleton className="h-8 w-40" />
+    <div className="w-full">{content}</div>
+  </div>
+);
+
 export const PropertyDetailsViewSkeleton = () => {
   return (
     <section className="w-full flex flex-col justify-center items-center">
-      <div className="flex flex-col items-center py-12 lg:py-16 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4 gap-12 lg:gap-16 max-w-screen-2xl w-full">
+      <div className="flex flex-col items-center pt-12 2xl:pt-16 2xl:px-[100px] lg:px-[48px] px-4 gap-12 2xl:gap-16 max-w-screen-2xl w-full">
         <ImagePreviewSkeleton />
         <PropertyDetailContainer>
           {/* Left Column */}
-          <div className="lg:col-span-6 flex flex-col gap-8">
+          <div className="lg:col-span-8 flex flex-col gap-12 lg:gap-16">
             {/* Header */}
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-3">
-                  <Skeleton className="h-3 w-3 rounded-full" />
+                <div className="flex items-center gap-3 flex-wrap">
+                  <Skeleton className="h-4 w-4 rounded-full" />
                   <Skeleton className="h-4 w-24" />
-                  <Skeleton className="h-6 w-20 rounded-full" />
+                  <div className="flex gap-2">
+                    <Skeleton className="h-6 w-20 rounded-[6px]" />
+                    <Skeleton className="h-6 w-24 rounded-[6px]" />
+                  </div>
                 </div>
-                <Skeleton className="h-8 w-3/4" />
+                <Skeleton className="h-9 w-3/4" />
                 <div className="flex gap-1.5 items-center">
                   <Skeleton className="w-4 h-4 rounded-full" />
                   <Skeleton className="h-4 w-1/2" />
                 </div>
               </div>
               <div className="flex items-baseline gap-2">
-                <Skeleton className="h-12 w-32" />
+                <Skeleton className="h-9 w-32" />
                 <Skeleton className="h-5 w-16" />
               </div>
             </div>
 
-            <PropertyDetailSection
-              title="&nbsp;"
-              content={<TableSkeleton columns={3} rows={3} />}
-            />
-
-            <PropertyDetailSection
-              title="&nbsp;"
-              content={<DescriptionSkeleton />}
-            />
-
-            <PropertyDetailSection
-              title="&nbsp;"
-              content={<TableSkeleton columns={2} rows={2} />}
-            />
+            <SectionSkeleton content={<TableSkeleton columns={3} rows={3} />} />
+            <SectionSkeleton content={<DescriptionSkeleton />} />
+            <SectionSkeleton content={<TableSkeleton columns={2} rows={2} />} />
           </div>
 
           <div className="w-full lg:col-span-4 gap-8 flex flex-col">
-            <PropertyDetailSection
-              title="&nbsp;"
-              content={<MapSkeleton />}
-            />
-            <PropertyDetailSection
-              title="&nbsp;"
-              content={<AgentSkeleton />}
-            />
+            <SectionSkeleton content={<MapSkeleton />} />
+            <SectionSkeleton content={<AgentSkeleton />} />
           </div>
         </PropertyDetailContainer>
       </div>
