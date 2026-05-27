@@ -38,6 +38,7 @@ import {
   PawPrint,
   VolumeXIcon,
   TramFront,
+  Accessibility,
 } from "lucide-react";
 
 export const FacilityIconMap: Record<string, React.ComponentType> = {
@@ -64,6 +65,7 @@ export const FacilityIconMap: Record<string, React.ComponentType> = {
   quietNeighborhood: VolumeXIcon,
   childFriendly: Baby,
   petAllowed: PawPrint,
+  wheelchairAccess: Accessibility,
 };
 
 export const SurroundingPlaceIconMap: Record<string, React.ComponentType> = {
