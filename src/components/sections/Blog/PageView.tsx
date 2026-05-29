@@ -37,7 +37,7 @@ const initialParams = {
 export const PageView: FC<Props> = (props) => {
   const t = useTranslations("Blog");
   const locale = useLocale();
-  const searchPlaceholder = locale === 'fr' ? 'Rechercher' : 'Search';
+  const searchPlaceholder = locale === "fr" ? "Rechercher" : "Search";
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(initialParams.page),
@@ -47,12 +47,12 @@ export const PageView: FC<Props> = (props) => {
     {
       shallow: false,
       scroll: false,
-    }
+    },
   );
 
   const [debouncedSearch, search, setSearch] = useDebounce(
     queryParams.search,
-    500
+    500,
   );
 
   const handleSearchChange = (value: string) => {
@@ -92,12 +92,12 @@ export const PageView: FC<Props> = (props) => {
       setData({ blogs, meta });
       setLoading(false);
     },
-    [props.newestBlog?.slug]
+    [props.newestBlog?.slug],
   );
 
   useEffect(() => {
     loadNewsPost(searchParams);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryParams.page, queryParams.filterBy, debouncedSearch]);
 
   return (
@@ -178,7 +178,7 @@ export const PageView: FC<Props> = (props) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="py-12 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 border-b border-grey-100"
+              className="pt-12 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
             >
               {data.blogs.map((blog) => (
                 <BlogCard key={blog.id} {...blog} />
