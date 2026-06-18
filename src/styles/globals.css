@@ -105,3 +105,24 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+.progress-step-animation {
+  animation: progress-step-fill var(--progress-step-duration, 3s) linear
+    forwards;
+}
+
+@keyframes progress-step-fill {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-step-animation {
+    animation: none;
+    transform: scaleY(1);
+  }
+}
