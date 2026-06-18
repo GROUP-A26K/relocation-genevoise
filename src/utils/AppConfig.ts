@@ -49,6 +49,26 @@ export const AppConfig = {
       en: "/find-a-tenant",
       priority: 0.8,
     },
+    findATenantLandlords: {
+      fr: "/trouver-un-locataire/bailleurs",
+      en: "/find-a-tenant/landlords",
+      priority: 0.8,
+    },
+    findATenantLandlordsForm: {
+      fr: "/trouver-un-locataire/bailleurs/formulaire",
+      en: "/find-a-tenant/landlords/form",
+      priority: 0.6,
+    },
+    findATenantTenant: {
+      fr: "/trouver-un-locataire/locataires",
+      en: "/find-a-tenant/tenant",
+      priority: 0.8,
+    },
+    findATenantTenantForm: {
+      fr: "/trouver-un-locataire/locataires/formulaire",
+      en: "/find-a-tenant/tenant/form",
+      priority: 0.6,
+    },
     findAccommodation: {
       fr: "/trouver-un-logement",
       en: "/find-accommodation",

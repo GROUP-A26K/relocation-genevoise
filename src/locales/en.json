@@ -179,38 +179,303 @@
     }
   },
   "FindATenant": {
-    "Hero": {
-      "heading": "Lease transfer",
-      "subHeading": "((Find a tenant))",
-      "description": "We help you quickly find a reliable tenant through a comprehensive service: professional photos, rigorous candidate screening, and management of all administrative procedures."
+    "Tabs": {
+      "landlords": "For landlords",
+      "tenant": "For tenants"
     },
-    "Content": {
-      "items": [
-        {
-          "title": "Professional photos and videos of your property",
-          "description": "We produce high-quality professional photos and videos to showcase your property and capture the attention of potential tenants from the very first impression."
-        },
-        {
-          "title": "Listing distribution",
-          "description": "Your property is promoted on major specialized platforms and networks, both in Switzerland and internationally. listings are also sent to our database and to many active clients searching for housing."
-        },
-        {
-          "title": "Visit coordination",
-          "description": "We personally organize and conduct visits to your property. during the visits, we highlight your property’s strengths and accurately answer candidates’ questions to spark their interest and help them make a decision."
-        },
-        {
-          "title": "Application management and review",
-          "description": "we collect, analyze, and verify each application to present you only with serious, financially reliable, and motivated candidates, following a rigorous, transparent process aligned with your selection criteria."
-        },
-        {
-          "title": "Application follow-up",
-          "description": "Once applications are submitted to the agency or landlord, we provide thorough follow-up to ensure a smooth and efficient process right up to the lease signing by the future tenant."
-        },
-        {
-          "title": "New tenant !",
-          "description": "Once your new tenant is selected, we assist you in finalizing the administrative procedures to ensure a smooth and well-organized move-in."
-        }
-      ]
+    "Landlords": {
+      "Hero": {
+        "heading": "Find the right tenant.\nStay in control.",
+        "description": "From listing your property to signing the lease, we manage the entire rental process for you. You remain fully in control of the final decision, with all the information you need to choose with confidence.",
+        "primaryCta": "List My Property",
+        "secondaryCta": "Learn More",
+        "stats": [
+          {
+            "value": "100%",
+            "label": "Compliant tenant applications"
+          },
+          {
+            "value": "21 Days",
+            "label": "Average time to rent"
+          },
+          {
+            "value": "500+",
+            "label": "Satisfied landlords"
+          }
+        ]
+      },
+      "Services": {
+        "eyebrow": "Services",
+        "heading": "A complete rental service,\nfrom A to Z",
+        "description": "Professional photography, listing creation, marketing, viewings, tenant screening, lease preparation, and move-in coordination. Your only job is choosing your tenant.",
+        "cta": "Contact our team",
+        "items": [
+          {
+            "title": "Professional photography",
+            "description": "We arrange professional photography to showcase your property at its best, increasing visibility and attracting qualified tenants from the first impression."
+          },
+          {
+            "title": "Maximum local and international exposure",
+            "description": "Your property is promoted on Homegate, ImmoScout24, and other leading platforms, maximizing visibility among local and international candidates."
+          },
+          {
+            "title": "Tenant pre-screening",
+            "description": "Every applicant is reviewed for financial reliability, professional stability, and suitability before being presented to you."
+          },
+          {
+            "title": "Viewing management",
+            "description": "We organize and conduct all property viewings on your behalf. You only meet shortlisted candidates with complete application files."
+          },
+          {
+            "title": "Lease preparation and rent notice",
+            "description": "When required, we prepare the lease agreement and official rent notice in accordance with Geneva regulations."
+          },
+          {
+            "title": "Move-in inspection and key handover",
+            "description": "We organize and supervise the move-in inspection and key handover, ensuring a smooth and compliant transition."
+          }
+        ]
+      },
+      "OurRentalProcess": {
+        "eyebrow": "Our rental process",
+        "heading": "A transparent process from start to finish",
+        "steps": [
+          {
+            "title": "Property assessment & visit",
+            "description": "We visit your property, evaluate the optimal rental price, and organize professional photography."
+          },
+          {
+            "title": "Listing & marketing",
+            "description": "Your property is published across major rental platforms. Incoming applications are collected and screened for you."
+          },
+          {
+            "title": "Viewings & tenant selection",
+            "description": "We conduct viewings and present a shortlist of fully verified applications, allowing you to make an informed decision with confidence."
+          },
+          {
+            "title": "Lease signing & move-in coordination",
+            "description": "We prepare the lease, coordinate the move-in inspection, and hand over the keys to your new tenant."
+          }
+        ]
+      },
+      "WhyChooseUs": {
+        "eyebrow": "Why choose us",
+        "heading": "Why choose Relocation Genevoise?",
+        "description": "For more than 10 years, we have operated at the heart of Geneva’s rental market. We understand agencies, landlords, tenants, and the local regulations that govern every transaction.",
+        "highlights": [
+          "Deep expertise in the Geneva rental market",
+          "Established network of agencies and property owners",
+          "Personalized support from real experts, not algorithms",
+          "Fast results with an average rental period of three weeks"
+        ],
+        "metrics": [
+          {
+            "value": "10+",
+            "label": "Years of experience"
+          },
+          {
+            "value": "2,000+",
+            "label": "Successful assignments"
+          },
+          {
+            "value": "5/5",
+            "label": "Average client rating"
+          },
+          {
+            "value": "Geneva",
+            "label": "Local market expertise"
+          }
+        ]
+      },
+      "Testimonials": {
+        "eyebrow": "Testimonials",
+        "heading": "What our landlords say",
+        "description": "Landlords who successfully found the right tenant through our service.",
+        "items": [
+          {
+            "quote": "Everything was handled for me, from listing the property to screening applicants. I simply chose the tenant I preferred. The apartment was rented within 18 days.",
+            "name": "Philippe Monnier",
+            "role": "Private Landlord, Genève"
+          },
+          {
+            "quote": "The lease was ready, the move-in inspection was organized, and the keys were handed over. We didn’t have to do anything. A truly complete service.",
+            "name": "Anne-Catherine Rochat",
+            "role": "Property Investor, Genève"
+          },
+          {
+            "quote": "I was relocating abroad and needed a hassle-free solution. The process was seamless, and a reliable tenant was found in under three weeks.",
+            "name": "Mélanie Moret",
+            "role": "Owner of a Rental Property, Cologny"
+          },
+          {
+            "quote": "What impressed me most was the quality of the applications. Every profile was complete, verified, and relevant. Choosing a tenant became remarkably simple.",
+            "name": "Valérie Piguet",
+            "role": "Property Owner, Genève"
+          },
+          {
+            "quote": "The team understood exactly the type of tenant I was looking for. Their advice on pricing and positioning helped rent the apartment much faster than I expected.",
+            "name": "Thierry Dufaux",
+            "role": "Real Estate Investor, Nyon"
+          },
+          {
+            "quote": "Professional photos, excellent marketing, and efficient communication. The property received strong interest within days of publication.",
+            "name": "Isabelle Cottier",
+            "role": "Apartment Owner, Carouge"
+          }
+        ]
+      },
+      "CtaBanner": {
+        "heading": "A fully managed rental experience",
+        "description": "Entrust us with your property and focus on what matters most. We take care of every step until the right tenant moves in.",
+        "cta": "List My Property"
+      }
+    },
+    "Tenant": {
+      "Hero": {
+        "heading": "Need to leave your rental? We'll find your replacement tenant.",
+        "description": "Leave your apartment before your lease ends. We handle everything from photos and listings to viewings, paperwork, and final release.",
+        "primaryCta": "Start my lease transfer",
+        "secondaryCta": "See how it works",
+        "stats": [
+          {
+            "value": "100%",
+            "label": "Accepted lease transfers"
+          },
+          {
+            "value": "2.5 weeks",
+            "label": "Average release time"
+          },
+          {
+            "value": "800+",
+            "label": "Successful lease transfers"
+          }
+        ]
+      },
+      "Services": {
+        "eyebrow": "Services",
+        "heading": "We take care of everything to get you released from your lease",
+        "description": "Photos, listing, viewings, qualification, application file, submission to the property management company. You only need to sign your release agreement.",
+        "cta": "Contact our team",
+        "items": [
+          {
+            "title": "Professional photography",
+            "description": "A well presented apartment finds a replacement tenant faster. We arrange professional photography to attract serious candidates from day one."
+          },
+          {
+            "title": "Wide and targeted exposure",
+            "description": "Your lease transfer listing is published on Homegate and other relevant platforms to maximize visibility and attract qualified candidates."
+          },
+          {
+            "title": "Tenant pre-screening",
+            "description": "We verify the financial standing and professional situation of every candidate before preparing their application file."
+          },
+          {
+            "title": "Viewing management",
+            "description": "We plan and conduct all viewings of your apartment. You do not need to be present. We select the right profile for you."
+          },
+          {
+            "title": "Application file and submission",
+            "description": "We prepare the application file according to your property manager's requirements and submit it on your behalf."
+          },
+          {
+            "title": "Legal support until release",
+            "description": "Article 264 CO gives you the right to be released from your lease. We manage the process until your release agreement is signed."
+          }
+        ]
+      },
+      "OurRentalProcess": {
+        "eyebrow": "How it works",
+        "heading": "A complete service from the mandate to the release of your lease",
+        "steps": [
+          {
+            "title": "Assessment and situation review",
+            "description": "You explain your situation and constraints. We assess feasibility and explain your rights regarding your property management company."
+          },
+          {
+            "title": "Photography and listing publication",
+            "description": "We arrange professional photography of your apartment and publish the listing on suitable platforms to quickly find replacement candidates."
+          },
+          {
+            "title": "Viewings and qualification",
+            "description": "We organize viewings, qualify candidates, and prepare the selected replacement tenant's application file according to the standards of your property management company."
+          },
+          {
+            "title": "Submission and release",
+            "description": "The application file is submitted to the property management company on your behalf. Once approved, you receive your lease release agreement and are officially released from your obligations."
+          }
+        ]
+      },
+      "WhyChooseUs": {
+        "eyebrow": "Why choose us",
+        "heading": "Why Relocation Genevoise?",
+        "description": "For more than 10 years, we have operated at the heart of Geneva's rental market. We know the property management companies, their expectations, and their procedures, and we work on both sides of the transaction.",
+        "highlights": [
+          "Exclusive expertise in the Geneva rental market",
+          "Established network of property management companies and landlords",
+          "Personalised support, not an algorithm",
+          "Fast results with an average release time of 3 weeks"
+        ],
+        "metrics": [
+          {
+            "value": "10+",
+            "label": "Years of experience"
+          },
+          {
+            "value": "2,000+",
+            "label": "Successful assignments"
+          },
+          {
+            "value": "5/5",
+            "label": "Average client rating"
+          },
+          {
+            "value": "Geneva",
+            "label": "Exclusive local expertise"
+          }
+        ]
+      },
+      "Testimonials": {
+        "eyebrow": "Success stories",
+        "heading": "Released from their lease",
+        "description": "Tenants who were released from their lease thanks to our support.",
+        "items": [
+          {
+            "quote": "I received a job offer in Singapore and had to leave quickly. Within a few days, the apartment was listed and visits were organised. The replacement tenant was approved without any issues.",
+            "name": "Nicolas Moret",
+            "role": "Lease transfer in Plainpalais, job opportunity abroad"
+          },
+          {
+            "quote": "My property management company was known for being very strict. They presented an impeccable replacement tenant with a perfect application file. I was released in two weeks. A real relief.",
+            "name": "Julien Rochat",
+            "role": "Lease transfer in Saint Gervais, professional relocation"
+          },
+          {
+            "quote": "I was worried about continuing to pay rent after moving out. They explained the process clearly, found qualified candidates and handled all communication with the property manager.",
+            "name": "Laura Müller",
+            "role": "Lease transfer in Carouge, moving in with partner"
+          },
+          {
+            "quote": "We were moving to London in six weeks. They handled everything: photos, listing, viewings, application file. We signed our release agreement before we even left.",
+            "name": "Sarah & Marc Dubois",
+            "role": "Lease transfer in Champel, relocation abroad"
+          },
+          {
+            "quote": "Between work and family, I simply didn't have time to organise visits myself. They managed everything and kept me informed at each step. The process was smooth and much faster than I expected.",
+            "name": "Sophie Rey",
+            "role": "Lease transfer in Eaux Vives, family relocation"
+          },
+          {
+            "quote": "The team knew exactly what documents were required and how to present the application. Everything was accepted the first time. It saved me weeks of stress.",
+            "name": "Ahmed Khelifi",
+            "role": "Lease transfer in Nations, international relocation"
+          }
+        ]
+      },
+      "CtaBanner": {
+        "heading": "Leave your lease with peace of mind",
+        "description": "We handle everything from listing to lease release, so you can focus on your move.",
+        "cta": "Start my lease transfer"
+      }
     },
     "BookConsultation": {
       "heading": "We look forward to meeting you",
@@ -1086,17 +1351,17 @@
     ]
   },
   "Error": {
+    "403": {
+      "title": "Access denied",
+      "description": "Sorry, you don’t have permission to view this pageHere are some helpful links"
+    },
     "404": {
       "title": "Oops...page not found",
-      "description": "Sorry, the page you are looking for doesn't exist. Here are some helpful links"
+      "description": "Sorry, the page you are looking for doesn't exist.Here are some helpful links"
     },
     "500": {
       "title": "Something went wrong!",
       "description": "Sorry, we’re experiencing technical difficulties. Please try again later"
-    },
-    "403": {
-      "title": "Access denied",
-      "description": "Sorry, you don’t have permission to view this page Here are some helpful links"
     },
     "buttonText": "Bring to home"
   },
