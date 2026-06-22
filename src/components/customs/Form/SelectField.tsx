@@ -1,4 +1,11 @@
-import { FC, ReactNode } from "react";
+import {
+  Controller,
+  UseFormRegister,
+  type FieldPath,
+  type FieldValues,
+} from "react-hook-form";
+
+import { cn } from "@/libs/utils";
 import {
   Select,
   SelectContent,
@@ -7,26 +14,26 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FormControl } from "@/components/ui/form";
-import { Controller, UseFormRegister } from "react-hook-form";
-import { FormField } from "./FormField";
-import { cn } from "@/libs/utils";
 
-type SelectFieldProps = {
-  name: string;
+import { FormField } from "./FormField";
+
+import type { ReactNode } from "react";
+
+type SelectFieldProps<TFieldValues extends FieldValues = FieldValues> = {
+  name: FieldPath<TFieldValues>;
   label: string;
   placeholder?: string;
   options: { value: string; label: string }[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
   error?: string;
   isRequired?: boolean;
   className?: string;
   labelClassName?: string;
   triggerClassName?: string;
   icon?: ReactNode;
+  register: UseFormRegister<TFieldValues>;
 };
 
-export const SelectField: FC<SelectFieldProps> = ({
+export const SelectField = <TFieldValues extends FieldValues = FieldValues>({
   name,
   label,
   options,
@@ -37,7 +44,7 @@ export const SelectField: FC<SelectFieldProps> = ({
   labelClassName,
   triggerClassName,
   icon,
-}) => {
+}: SelectFieldProps<TFieldValues>) => {
   return (
     <FormField
       isRequired={isRequired}
@@ -45,6 +52,7 @@ export const SelectField: FC<SelectFieldProps> = ({
       message={error}
       className={className}
       labelClassName={labelClassName}
+      htmlFor={name}
     >
       <div className="relative">
         {icon && (
@@ -62,6 +70,7 @@ export const SelectField: FC<SelectFieldProps> = ({
             >
               <FormControl>
                 <SelectTrigger
+                  id={name}
                   className={cn(
                     "rounded-full text-sm h-10 !mt-0",
                     "shadow-none data-[placeholder]:text-black-50 placeholder:font-medium rounded-[1.5rem] border-gray-200",
@@ -70,7 +79,7 @@ export const SelectField: FC<SelectFieldProps> = ({
                     "[&[data-state=open]]:!text-black-50 [&[data-state=open]]:!border-secondary-500 [&[data-state=open]]:!ring-2 [&[data-state=open]]:!ring-secondary-50",
                     icon && "pl-10",
                     error && "border-red-500 hover:border-red-500",
-                    triggerClassName
+                    triggerClassName,
                   )}
                 >
                   <SelectValue placeholder={placeholder} />

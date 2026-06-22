@@ -185,38 +185,383 @@
     }
   },
   "FindATenant": {
-    "Hero": {
-      "heading": "Placement rapide",
-      "subHeading": "((Trouver un locataire))",
-      "description": "Nous vous aidons à trouver rapidement un locataire fiable grâce à un service complet : photos professionnelles, sélection rigoureuse des candidats et gestion de toutes les démarches administratives."
+    "Tabs": {
+      "landlords": "Pour les propriétaires",
+      "tenant": "Pour les locataires"
     },
-    "Content": {
-      "items": [
-        {
-          "title": "Photos et vidéos professionnelles de votre bien",
-          "description": "Nous réalisons des photos et vidéos de qualité professionnelle pour mettre en valeur votre bien et attirer l’attention des locataires potentiels dès la première impression."
+    "Landlords": {
+      "Hero": {
+        "heading": "Trouvez le locataire idéal, gardez la main.",
+        "description": "De la publication de l'annonce à la signature du bail, nous gérons l'intégralité du processus. Vous restez maître du choix final avec toutes les informations nécessaires pour décider en toute confiance.",
+        "primaryCta": "Confier mon bien",
+        "secondaryCta": "En savoir plus",
+        "stats": [
+          {
+            "value": "100%",
+            "label": "Dossiers solvables"
+          },
+          {
+            "value": "21 jours",
+            "label": "Délai moyen de location"
+          },
+          {
+            "value": "500+",
+            "label": "Propriétaires satisfaits"
+          }
+        ]
+      },
+      "Services": {
+        "eyebrow": "Services",
+        "heading": "Un service complet, de A à Z",
+        "description": "Photos, annonce, diffusion, visites, dossiers, bail et état des lieux. Vous n'avez qu'une seule chose à faire : choisir votre locataire.",
+        "cta": "Contacter notre équipe",
+        "items": [
+          {
+            "title": "Photographie professionnelle",
+            "description": "Nous réalisons des photos professionnelles pour mettre votre bien en valeur, accroître sa visibilité et attirer des locataires qualifiés dès le premier regard."
+          },
+          {
+            "title": "Diffusion maximale et internationale",
+            "description": "Votre bien est diffusé sur Homegate, ImmoScout24 et d'autres plateformes de référence afin de maximiser sa visibilité auprès de candidats locaux et internationaux."
+          },
+          {
+            "title": "Présélection des candidats",
+            "description": "Nous analysons chaque candidature selon la solvabilité, la stabilité professionnelle et l'adéquation au profil recherché. Seuls les dossiers correspondant à vos critères vous sont présentés."
+          },
+          {
+            "title": "Organisation des visites",
+            "description": "Nous planifions et conduisons toutes les visites à votre place. Vous recevez uniquement les candidatures retenues avec leur dossier complet."
+          },
+          {
+            "title": "Préparation du bail et avis de loyer",
+            "description": "Lorsque nécessaire, nous préparons le contrat de bail et l'avis officiel de loyer conformément à la réglementation genevoise."
+          },
+          {
+            "title": "État des lieux et remise des clés",
+            "description": "Nous organisons et accompagnons l'état des lieux d'entrée ainsi que la remise des clés afin d'assurer une transition fluide et conforme."
+          }
+        ]
+      },
+      "OurRentalProcess": {
+        "eyebrow": "Comment ça se passe",
+        "heading": "Un processus transparent où vous gardez le contrôle.",
+        "steps": [
+          {
+            "title": "Mandat et visite du bien",
+            "description": "Vous nous confiez votre bien. Nous visitons le logement, établissons un avis de valeur locative si nécessaire et organisons la séance photo professionnelle."
+          },
+          {
+            "title": "Publication et diffusion",
+            "description": "L'annonce est publiée sur les principales plateformes. Les demandes sont reçues et présélectionnées pour vous."
+          },
+          {
+            "title": "Visites et présentation des dossiers",
+            "description": "Nous organisons les visites et vous présentons une sélection de dossiers complets et validés afin que vous puissiez choisir en toute sérénité."
+          },
+          {
+            "title": "Bail, état des lieux et remise des clés",
+            "description": "Nous préparons le bail, organisons l'état des lieux et remettons les clés au nouveau locataire."
+          }
+        ]
+      },
+      "WhyChooseUs": {
+        "eyebrow": "Pourquoi nous choisir",
+        "heading": "Pourquoi Relocation Genevoise ?",
+        "description": "Depuis plus de 10 ans, nous évoluons au cœur du marché locatif genevois. Nous connaissons les régies, leurs attentes et leurs processus, et nous travaillons avec l'ensemble des acteurs du marché.",
+        "highlights": [
+          "Expertise approfondie du marché locatif genevois",
+          "Réseau établi de régies et de propriétaires",
+          "Accompagnement personnalisé par de vrais experts",
+          "Résultats rapides avec un délai moyen de location de trois semaines"
+        ],
+        "metrics": [
+          {
+            "value": "10+",
+            "label": "Années d'expérience"
+          },
+          {
+            "value": "2,000+",
+            "label": "Missions réalisées"
+          },
+          {
+            "value": "5/5",
+            "label": "Note moyenne des clients"
+          },
+          {
+            "value": "Genève",
+            "label": "Expertise locale"
+          }
+        ]
+      },
+      "Testimonials": {
+        "eyebrow": "Témoignages",
+        "heading": "Ce que disent nos propriétaires",
+        "description": "Des propriétaires qui ont trouvé le bon locataire grâce à notre accompagnement.",
+        "items": [
+          {
+            "quote": "Tout a été géré pour moi, de la mise en annonce du bien à la sélection des candidats. J'ai simplement choisi le locataire que je préférais. L'appartement a été loué en 18 jours.",
+            "name": "Philippe Monnier",
+            "role": "Propriétaire bailleur, Genève"
+          },
+          {
+            "quote": "Le bail était prêt, l'état des lieux d'entrée organisé, et les clés remises. Nous n'avons rien eu à faire. Un service vraiment complet.",
+            "name": "Anne-Catherine Rochat",
+            "role": "Investisseur immobilier, Genève"
+          },
+          {
+            "quote": "Je déménageais à l'étranger et n'avais pas le temps de gérer les visites moi-même. L'ensemble du processus a été géré de façon professionnelle, et j'ai trouvé un locataire fiable en moins de trois semaines.",
+            "name": "Mélanie Moret",
+            "role": "Propriétaire d'un bien locatif, Cologny"
+          },
+          {
+            "quote": "Ce qui m'a le plus impressionné, c'est la qualité des candidatures. Chaque profil était complet, vérifié et pertinent. Choisir un locataire est devenu remarquablement simple.",
+            "name": "Valérie Piguet",
+            "role": "Propriétaire immobilier, Genève"
+          },
+          {
+            "quote": "L'équipe a parfaitement compris le type de locataire que je recherchais. Leurs conseils sur le prix et le positionnement ont permis de louer l'appartement bien plus rapidement que prévu.",
+            "name": "Thierry Dufaux",
+            "role": "Investisseur immobilier, Nyon"
+          },
+          {
+            "quote": "Des photos professionnelles, un marketing excellent et une communication efficace. Le bien a suscité un vif intérêt dès les premiers jours de publication.",
+            "name": "Isabelle Cottier",
+            "role": "Propriétaire d'appartement, Carouge"
+          }
+        ]
+      },
+      "CtaBanner": {
+        "heading": "Nous nous occupons de tout, de l'annonce aux clés",
+        "description": "Confiez nous votre bien et concentrez vous sur l'essentiel : choisir votre locataire.",
+        "cta": "Confier mon bien"
+      },
+      "Form": {
+        "eyebrow": "Propriétaire",
+        "heading": "Parlez nous de votre bien",
+        "description": "Partagez quelques informations sur votre bien. Un spécialiste vous contactera sous 24 heures.",
+        "contact": {
+          "title": "Informations de contact",
+          "fullName": { "label": "Nom complet", "placeholder": "Nom complet" },
+          "email": { "label": "Email", "placeholder": "Email" },
+          "phone": {
+            "label": "Téléphone",
+            "placeholder": "Numéro de téléphone"
+          }
         },
-        {
-          "title": "Diffusion des annonces",
-          "description": "Votre bien est mis en avant sur les principales plateformes et réseaux spécialisés, en Suisse et à l’international. Les annonces sont également envoyées à notre base de données et à nos nombreux clients en recherche active de logement."
+        "property": {
+          "title": "Informations sur le bien",
+          "address": {
+            "label": "Adresse du bien",
+            "placeholder": "Adresse"
+          },
+          "propertyType": {
+            "label": "Type de bien",
+            "options": [
+              { "value": "apartment", "label": "Appartement" },
+              { "value": "house", "label": "Maison" },
+              { "value": "commercial", "label": "Commercial" }
+            ]
+          },
+          "numberOfRooms": {
+            "label": "Nombre de pièces",
+            "placeholder": "Sélectionnez le nombre de pièces"
+          },
+          "additionalInfo": {
+            "label": "Informations complémentaires",
+            "placeholder": "Parlez nous de votre bien, de sa disponibilité ou de toute demande particulière."
+          }
         },
-        {
-          "title": "Organisation des visites",
-          "description": "Nous organisons et assurons personnellement les visites de votre bien. Lors des visites, nous mettons en valeur les atouts de votre bien et répondons avec précision aux questions des candidats pour susciter leur intérêt et faciliter leur décision."
+        "consent": {
+          "text": "J'accepte d'être contacté concernant ma demande de mise en location et j'accepte la",
+          "policy": "Politique de confidentialité."
         },
-        {
-          "title": "Gestion et réception des dossiers",
-          "description": "Nous collectons, analysons et vérifions chaque dossier pour vous proposer uniquement des candidats sérieux, solvables et motivés, dans le respect d’un processus rigoureux, transparent et aligné avec vos critères de sélection."
+        "submit": "Envoyer"
+      }
+    },
+    "Tenant": {
+      "Hero": {
+        "heading": "Vous voulez partir,\nnous trouvons votre repreneur",
+        "description": "Vous avez le droit de quitter votre logement avant la fin du bail si vous présentez un repreneur solvable à votre régie. Nous nous occupons des photos, de l'annonce, des visites, du dossier et de la soumission jusqu'à votre libération.",
+        "primaryCta": "Me libérer de mon bail",
+        "secondaryCta": "Comment ça fonctionne",
+        "stats": [
+          {
+            "value": "100%",
+            "label": "Remises de bail acceptées"
+          },
+          {
+            "value": "2,5 sem.",
+            "label": "Délai moyen de libération"
+          },
+          {
+            "value": "800+",
+            "label": "Baux repris avec succès"
+          }
+        ]
+      },
+      "Services": {
+        "eyebrow": "Services",
+        "heading": "On s'occupe de tout pour\nvous libérer",
+        "description": "Photos, annonce, visites, qualification, dossier et soumission à la régie. Vous n'avez plus qu'à signer votre accord de libération.",
+        "cta": "Contacter notre équipe",
+        "items": [
+          {
+            "title": "Photos professionnelles",
+            "description": "Un appartement bien présenté trouve un repreneur plus rapidement. Nous réalisons des photos professionnelles pour attirer des candidats sérieux dès le premier jour."
+          },
+          {
+            "title": "Diffusion large et ciblée",
+            "description": "Votre annonce est publiée sur Homegate et les plateformes adaptées afin de maximiser le nombre de candidatures qualifiées."
+          },
+          {
+            "title": "Pré qualification des repreneurs",
+            "description": "Nous vérifions la solvabilité et la situation professionnelle de chaque candidat avant de constituer le dossier destiné à la régie."
+          },
+          {
+            "title": "Organisation des visites",
+            "description": "Nous planifions et réalisons les visites de votre appartement. Vous n'avez pas besoin d'être présent et nous sélectionnons les profils les plus adaptés."
+          },
+          {
+            "title": "Dossier et soumission à la régie",
+            "description": "Nous préparons le dossier du repreneur selon les exigences de votre régie et le soumettons officiellement en votre nom."
+          },
+          {
+            "title": "L'article qui vous libère",
+            "description": "L'article 264 CO vous permet d'être libéré de votre bail si vous présentez un repreneur acceptable. Nous gérons toute la procédure jusqu'à la signature de l'accord de libération."
+          }
+        ]
+      },
+      "OurRentalProcess": {
+        "eyebrow": "Comment ça se passe",
+        "heading": "Un accompagnement complet du mandat à la libération du bail",
+        "steps": [
+          {
+            "title": "Mandat et situation",
+            "description": "Vous nous expliquez votre situation et vos contraintes de délai. Nous évaluons la faisabilité et vous expliquons vos droits vis à vis de votre régie."
+          },
+          {
+            "title": "Photographie et publication d'annonces",
+            "description": "Nous réalisons les photos professionnelles de votre appartement et publions l'annonce sur les plateformes adaptées pour trouver rapidement des candidats repreneurs."
+          },
+          {
+            "title": "Visites et qualification",
+            "description": "Nous organisons les visites, qualifions les candidats et constituons le dossier du repreneur retenu selon les standards de votre régie."
+          },
+          {
+            "title": "Soumission et libération",
+            "description": "Le dossier est soumis à la régie en votre nom. Une fois l'accord obtenu, vous recevez votre libération de bail et êtes officiellement dégagé de vos obligations."
+          }
+        ]
+      },
+      "WhyChooseUs": {
+        "eyebrow": "Pourquoi nous choisir",
+        "heading": "Pourquoi Relocation Genevoise ?",
+        "description": "Depuis plus de 10 ans, nous opérons au cœur du marché locatif genevois. Nous connaissons les régies, leurs attentes et leurs processus, et nous travaillons avec les différentes parties de la transaction.",
+        "highlights": [
+          "Expertise approfondie du marché locatif genevois",
+          "Réseau établi de régies et de propriétaires",
+          "Accompagnement personnalisé par de vrais experts",
+          "Résultats rapides avec un délai moyen de trois semaines"
+        ],
+        "metrics": [
+          {
+            "value": "10+",
+            "label": "Années d'expérience"
+          },
+          {
+            "value": "2,000+",
+            "label": "Missions réussies"
+          },
+          {
+            "value": "5/5",
+            "label": "Note moyenne clients"
+          },
+          {
+            "value": "Genève",
+            "label": "Expertise locale"
+          }
+        ]
+      },
+      "Testimonials": {
+        "eyebrow": "Histoires de réussite",
+        "heading": "Libérés de leur bail",
+        "description": "Des locataires qui ont obtenu leur libération de bail grâce à notre accompagnement.",
+        "items": [
+          {
+            "quote": "J'avais reçu une offre à Singapour et devais partir rapidement. En quelques jours, l'appartement était en ligne et les visites organisées. Le locataire remplaçant a été accepté sans problème.",
+            "name": "Nicolas Moret",
+            "role": "Cession de bail à Plainpalais, opportunité professionnelle à l'étranger"
+          },
+          {
+            "quote": "Ma gérance était réputée très stricte. Ils ont présenté un candidat impeccable avec un dossier parfait. J'ai été libéré en deux semaines. Un vrai soulagement.",
+            "name": "Julien Rochat",
+            "role": "Cession de bail à Saint-Gervais, déménagement professionnel"
+          },
+          {
+            "quote": "Je craignais de continuer à payer le loyer après mon départ. Ils ont clairement expliqué le processus, trouvé des candidats qualifiés et géré tous les échanges avec la gérance.",
+            "name": "Laura Müller",
+            "role": "Cession de bail à Carouge, mise en couple"
+          },
+          {
+            "quote": "Nous partions à Londres dans six semaines. Ils ont tout géré : photos, annonce, visites, dossier. Nous avons signé la résiliation avant même notre départ.",
+            "name": "Sarah & Marc Dubois",
+            "role": "Cession de bail à Champel, déménagement à l'étranger"
+          },
+          {
+            "quote": "Entre le travail et la famille, je n'avais pas le temps d'organiser les visites. Ils ont tout géré et m'ont tenue informée à chaque étape. Bien plus rapide que prévu.",
+            "name": "Sophie Rey",
+            "role": "Cession de bail aux Eaux-Vives, déménagement familial"
+          },
+          {
+            "quote": "L'équipe savait exactement quels documents fournir et comment présenter le dossier. Tout a été accepté du premier coup. Des semaines de stress en moins.",
+            "name": "Ahmed Khelifi",
+            "role": "Cession de bail aux Nations, déménagement international"
+          }
+        ]
+      },
+      "CtaBanner": {
+        "heading": "Libérez vous de votre bail sereinement",
+        "description": "Vous avez le droit de partir. Nous nous assurons que la régie ne puisse pas refuser votre dossier. Photos, diffusion, visites et dossier, nous nous occupons de tout.",
+        "cta": "Démarrer ma remise de bail"
+      },
+      "Form": {
+        "eyebrow": "Locataire",
+        "heading": "Commencez votre remise de bail",
+        "description": "Partagez quelques informations sur votre bail et nous vous contacterons sous 24 heures.",
+        "contact": {
+          "title": "Informations de contact",
+          "fullName": { "label": "Nom complet", "placeholder": "Nom complet" },
+          "email": { "label": "Email", "placeholder": "Email" },
+          "phone": {
+            "label": "Téléphone",
+            "placeholder": "Numéro de téléphone"
+          }
         },
-        {
-          "title": "Suivi des candidatures",
-          "description": "Une fois les candidatures soumises à l'agence ou au propriétaire, nous assurons un suivi rigoureux, pour garantir une gestion fluide et efficace jusqu’à la signature du bail par le futur locataire."
+        "rental": {
+          "title": "Informations sur votre logement actuel",
+          "address": {
+            "label": "Adresse du logement",
+            "placeholder": "Adresse actuelle"
+          },
+          "propertyType": {
+            "label": "Type de logement",
+            "options": [
+              { "value": "apartment", "label": "Appartement" },
+              { "value": "house", "label": "Maison" },
+              { "value": "commercial", "label": "Commercial" }
+            ]
+          },
+          "numberOfRooms": {
+            "label": "Nombre de pièces",
+            "placeholder": "Sélectionnez le nombre de pièces"
+          }
         },
-        {
-          "title": "Nouveau locataire !",
-          "description": "Une fois votre nouveau locataire sélectionné, nous vous accompagnons pour finaliser les démarches administratives et garantir une installation sereine et parfaitement organisée."
-        }
-      ]
+        "consent": {
+          "text": "J'accepte d'être contacté concernant ma demande de mise en location et j'accepte la",
+          "policy": "Politique de confidentialité."
+        },
+        "submit": "Envoyer"
+      }
     },
     "BookConsultation": {
       "heading": "Vous accompagner",
@@ -1091,6 +1436,10 @@
     ]
   },
   "Error": {
+    "403": {
+      "title": "Accès interdit",
+      "description": "Désolée, vous n’avez pas accès à cette page."
+    },
     "404": {
       "title": "Oops...page non trouvée",
       "description": "Désolé, la page que vous recherchez n'existe pas ou n’existe plus."
@@ -1098,10 +1447,6 @@
     "500": {
       "title": "Quelque chose s'est mal passé !",
       "description": "Désolé, nous rencontrons des difficultés techniques. Veuillez réessayer plus tard."
-    },
-    "403": {
-      "title": "Accès interdit",
-      "description": "Désolée, vous n’avez pas accès à cette page."
     },
     "buttonText": "Retourner à l’accueil"
   },
@@ -1134,6 +1479,16 @@
     },
     "Booking": {
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "acceptRequired": "Vous devez accepter pour continuer."
+    },
+    "FindATenant": {
+      "fullNameMinLength": "Le nom complet doit comporter au moins 2 caractères.",
+      "fullNameMaxLength": "Le nom complet ne peut pas dépasser 100 caractères.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "addressRequired": "Veuillez saisir l'adresse du bien.",
+      "propertyTypeRequired": "Veuillez sélectionner un type de bien.",
+      "numberOfRoomsRequired": "Veuillez sélectionner le nombre de pièces.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "Subscribe": {
@@ -1275,6 +1630,12 @@
       "errorTitle": "Erreur",
       "success": "Votre contact a été soumis avec succès !",
       "error": "Votre contact n'a pas pu être soumis. Veuillez réessayer plus tard."
+    },
+    "FindATenant": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Votre demande a été soumise avec succès !",
+      "error": "Votre demande n'a pas pu être soumise. Veuillez réessayer plus tard."
     },
     "Subscribe": {
       "successTitle": "Succès",

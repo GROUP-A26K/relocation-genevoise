@@ -1,4 +1,10 @@
-import { Backpack, Building, School, UserRoundSearch, House } from "lucide-react";
+import {
+  Backpack,
+  Building,
+  School,
+  UserRoundSearch,
+  House,
+} from "lucide-react";
 import { FC } from "react";
 import { NavbarContainer, NavbarProps } from "./NavbarContainer";
 import { getTranslations } from "next-intl/server";
@@ -16,7 +22,7 @@ const Navbar: FC<{ locale: string }> = async ({ locale }) => {
       },
       {
         title: tNav("menu.1.title"),
-        url: "/find-a-tenant",
+        url: "/find-a-tenant/landlords",
       },
       {
         title: tNav("menu.2.title"),

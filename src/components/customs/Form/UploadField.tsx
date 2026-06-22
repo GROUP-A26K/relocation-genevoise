@@ -1,16 +1,23 @@
 "use client";
 
-import { CloudUpload, X } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import { Controller, UseFormRegister } from "react-hook-form";
-import PDFIcon from "@/assets/img/icons/file/pdf-type-icon.svg";
-import { Input } from "@/components/ui/input";
-import { FormField } from "./FormField";
-import { CircularProgressBar } from "@/components/customs/Progress/circularProgressBar";
-import { cn } from "@/libs/utils";
 import { useTranslations } from "next-intl";
+import { useDropzone } from "react-dropzone";
+import { CloudUpload, X } from "lucide-react";
+import { useCallback, useState } from "react";
+import {
+  Controller,
+  type FieldPath,
+  type FieldValues,
+} from "react-hook-form";
+
+import { cn } from "@/libs/utils";
+import { Input } from "@/components/ui/input";
+import PDFIcon from "@/assets/img/icons/file/pdf-type-icon.svg";
+import { CircularProgressBar } from "@/components/customs/Progress/circularProgressBar";
+
+import { FormField } from "./FormField";
+
 const COMPLETED_PROGRESS = 100;
 
 interface UploadState {
@@ -19,13 +26,11 @@ interface UploadState {
   timerId: NodeJS.Timeout;
 }
 
-interface UploadFieldProps
+interface UploadFieldProps<TFieldValues extends FieldValues = FieldValues>
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
-  name: string;
+  name: FieldPath<TFieldValues>;
   label?: string;
   placeholder?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
   onChange: (file: File | null) => void;
   isRequired?: boolean;
   error?: string;
@@ -33,14 +38,14 @@ interface UploadFieldProps
 
 const formatSize = (bytes: number) => `${Math.round(bytes / 1000)} KB`;
 
-export const UploadField: React.FC<UploadFieldProps> = ({
+export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
   label,
   isRequired,
   error,
   onChange,
   className,
   ...props
-}) => {
+}: UploadFieldProps<TFieldValues>) => {
   const [upload, setUpload] = useState<UploadState | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
@@ -50,7 +55,7 @@ export const UploadField: React.FC<UploadFieldProps> = ({
         if (!curr) return curr;
         const next = Math.min(
           curr.progress + Math.floor(Math.random() * 15) + 5,
-          COMPLETED_PROGRESS
+          COMPLETED_PROGRESS,
         );
         if (next === COMPLETED_PROGRESS) {
           clearInterval(curr.timerId);
@@ -69,7 +74,7 @@ export const UploadField: React.FC<UploadFieldProps> = ({
       if (files[0]) onChange(files[0]);
       simulateUpload(files[0]);
     },
-    [onChange]
+    [onChange],
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -150,7 +155,7 @@ function FileCard({
         <div
           className={cn(
             "absolute inset-0 bg-grey-50 transition-all duration-300 rounded-l-[12px]",
-            pct > 90 && "rounded-[12px]"
+            pct > 90 && "rounded-[12px]",
           )}
           style={{ width: `${pct}%` }}
         />

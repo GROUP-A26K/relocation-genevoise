@@ -1,32 +1,71 @@
-import { type ReactNode, type FC } from 'react';
+import { cn } from "@/libs/utils";
 
-import { cn } from '@/libs/utils';
+import type { FC } from "react";
 
-interface Props {
-  children: ReactNode;
+interface ISectionProps
+  extends React.PropsWithChildren,
+    React.HTMLAttributes<HTMLElement> {
   isDivider?: boolean;
   className?: string;
+  wrapperProps?: React.HTMLAttributes<HTMLElement>;
+  childrenProps?: React.HTMLAttributes<HTMLElement>;
+  dividerProps?: React.HTMLAttributes<HTMLElement>;
 }
-const Section: FC<Props> = ({ children, isDivider, className }) => {
+
+const Section: FC<ISectionProps> = ({
+  children,
+  isDivider,
+  className,
+  wrapperProps,
+  childrenProps,
+  dividerProps,
+  ...props
+}) => {
+  const { className: wrapperClassname, ...restWrapperProps } =
+    wrapperProps ?? {};
+
+  const { className: childrenClassname, ...restChildrenProps } =
+    childrenProps ?? {};
+
+  const { className: dividerClassname, ...restDividerProps } =
+    dividerProps ?? {};
+
   return (
     <section
       className={cn(
-        'flex flex-col justify-center items-center text-black-500',
-        className
+        "flex flex-col justify-center items-center text-black-500",
+        className,
       )}
+      {...props}
     >
       <div
         className={cn(
-          'container pt-12 w-full max-w-screen-2xl px-4',
-          '2xl:pt-16 2xl:px-[100px] lg:px-[48px]'
+          "container pt-12 w-full max-w-screen-2xl px-4",
+          "2xl:pt-16 2xl:px-[100px] lg:px-[48px]",
+          wrapperClassname,
         )}
+        {...restWrapperProps}
       >
-        <div className="flex flex-col 2xl:gap-16 gap-12">{children}</div>
         <div
-          className={`2xl:pt-16 pt-12 ${isDivider && 'border-b border-grey-50'}`}
+          className={cn("flex flex-col gap-12 xl:gap-16", childrenClassname)}
+          {...restChildrenProps}
+        >
+          {children}
+        </div>
+        <div
+          className={cn(
+            "pt-12",
+            "2xl:pt-16",
+            {
+              "border-b border-grey-50": isDivider,
+            },
+            dividerClassname,
+          )}
+          {...restDividerProps}
         />
       </div>
     </section>
   );
 };
+
 export default Section;

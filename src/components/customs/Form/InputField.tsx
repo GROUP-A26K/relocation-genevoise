@@ -1,25 +1,32 @@
-import { FC, ReactNode } from "react";
 import { X } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { UseFormRegister } from "react-hook-form";
-import { FormField } from "./FormField";
-import { cn } from "@/libs/utils";
+import {
+  UseFormRegister,
+  type FieldPath,
+  type FieldValues,
+} from "react-hook-form";
 
-interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  name: string;
+import { cn } from "@/libs/utils";
+import { Input } from "@/components/ui/input";
+
+import { FormField } from "./FormField";
+
+import type { ReactNode } from "react";
+
+interface InputFieldProps<TFieldValues extends FieldValues = FieldValues>
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: FieldPath<TFieldValues>;
   label?: string;
   placeholder: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: UseFormRegister<any>;
   isRequired?: boolean;
   error?: string;
   inputClassName?: string;
   icon?: ReactNode;
   labelClassName?: string;
+  register: UseFormRegister<TFieldValues>;
   onClear?: () => void;
 }
 
-export const InputField: FC<InputFieldProps> = ({
+export const InputField = <TFieldValues extends FieldValues = FieldValues>({
   name,
   label,
   placeholder,
@@ -32,7 +39,7 @@ export const InputField: FC<InputFieldProps> = ({
   className,
   onClear,
   ...props
-}) => {
+}: InputFieldProps<TFieldValues>) => {
   return (
     <FormField
       isRequired={isRequired}
@@ -40,6 +47,7 @@ export const InputField: FC<InputFieldProps> = ({
       message={error}
       className={className}
       labelClassName={labelClassName}
+      htmlFor={name}
     >
       <div className="group relative">
         {icon && (
@@ -48,6 +56,7 @@ export const InputField: FC<InputFieldProps> = ({
           </div>
         )}
         <Input
+          id={name}
           className={cn(
             "text-sm h-10 !mt-0",
             "shadow-none placeholder:text-black-50 text-black-50 rounded-[1.5rem] border-gray-200",
@@ -56,7 +65,7 @@ export const InputField: FC<InputFieldProps> = ({
             icon && "pl-10",
             onClear && "pr-8",
             error && "border-red-500 hover:border-red-500",
-            inputClassName
+            inputClassName,
           )}
           placeholder={placeholder}
           {...register(name)}

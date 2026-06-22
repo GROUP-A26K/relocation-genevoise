@@ -80,7 +80,7 @@ const Footer = async () => {
         { text: t("service.links.0.text"), url: "/find-accommodation" },
         {
           text: t("service.links.1.text"),
-          url: "/find-a-tenant",
+          url: "/find-a-tenant/landlords",
         },
         {
           text: t("service.links.2.text"),
@@ -273,11 +273,11 @@ const Footer = async () => {
                         {link?.icon && (
                           <Image
                             src={link.icon}
-                            alt={"Linkedin logo"}
-                            title="Linkedin logo"
+                            alt={link.text}
+                            title={link.text}
                             width={12}
                             height={12}
-                            className="flex lg:h-3 lg:w-3 h-6 w-6"
+                            className="flex size-3"
                           />
                         )}
 
@@ -293,9 +293,7 @@ const Footer = async () => {
       </Section>
 
       <section className="relative flex flex-col justify-center items-center bg-grey-50 text-black-500">
-        <div
-          className={`container py-8 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4`}
-        >
+        <div className="px-4 py-8 w-full lg:px-[48px] 2xl:px-[100px] 2xl:max-w-screen-2xl">
           <Link
             href="https://groupe-genevoise.ch/"
             target="_blank"

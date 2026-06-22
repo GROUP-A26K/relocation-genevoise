@@ -177,13 +177,11 @@ export const ContactForm: FC = () => {
           name="message"
           label={t("message.label")}
           placeholder={t("message.placeholder")}
-          register={form.register}
           error={form.formState.errors.message?.message}
         />
         <CheckboxField
           name="accept"
           label={t("accept")}
-          register={form.register}
           error={form.formState.errors.accept?.message}
         />
         <Button
