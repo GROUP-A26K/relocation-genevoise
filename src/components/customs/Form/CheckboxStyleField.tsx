@@ -1,8 +1,4 @@
-import {
-  Controller,
-  type FieldPath,
-  type FieldValues,
-} from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues } from "react-hook-form";
 
 import {
   FormControl,
@@ -48,22 +44,16 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
             />
           </FormControl>
         </div>
-        <div>
+        <div className="text-sm leading-[150%]">
           <FormLabel
-            className="text-sm font-normal text-black-300 !leading-[150%] cursor-pointer"
             htmlFor={name}
+            className="inline font-normal cursor-pointer"
           >
             {label}
-          </FormLabel>
-          {policy && (
-            <Link
-              href="/legal-notices"
-              className="leading-[130%] font-semibold text-sm text-black-500"
-            >
-              {" "}
-              {policy}
-            </Link>
-          )}
+          </FormLabel>{" "}
+          <Link href="/legal-notices" className="font-semibold text-black-500">
+            {policy}
+          </Link>
         </div>
       </div>
       {error && <FormMessage>{error}</FormMessage>}

@@ -5,6 +5,7 @@ import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/libs/utils";
 import { Link } from "@/libs/i18nNavigation";
 import Button from "@/components/customs/Button";
+import CountUp from "@/components/customs/CountUp";
 import Section from "@/components/customs/Section";
 import { AnimatedGridPattern } from "@/components/ui/magicui/animated-grid-pattern";
 
@@ -121,9 +122,10 @@ export default function Hero({
           {stats.map((stat, index) => (
             <Fragment key={stat.label}>
               <div className="flex flex-1 w-full flex-col items-center gap-3 p-6 text-center lg:py-12">
-                <p className="text-4xl font-bold !leading-[130%] text-black-500 lg:text-[40px]">
-                  {stat.value}
-                </p>
+                <CountUp
+                  value={stat.value}
+                  className="text-4xl font-bold !leading-[130%] text-black-500 lg:text-[40px]"
+                />
                 <p className="text-base lg:text-lg font-semibold !leading-[130%] text-black-200">
                   {stat.label}
                 </p>
