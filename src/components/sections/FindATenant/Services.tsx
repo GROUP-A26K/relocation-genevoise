@@ -51,7 +51,7 @@ export default function Services({
         {items.map(({ Icon, title, description }) => (
           <div
             key={title}
-            className="flex flex-col gap-4 rounded-2xl bg-grey-50 p-6 lg:gap-6"
+            className="flex flex-col gap-4 rounded-2xl bg-grey-50 p-6 transition-colors border border-transparent hover:bg-white hover:border-secondary-500 lg:gap-6"
           >
             <div className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-secondary-500 lg:size-12">
               <Icon className="size-5 text-black-500 lg:size-6" />

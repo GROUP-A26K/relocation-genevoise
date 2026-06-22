@@ -107,7 +107,7 @@ body {
 }
 
 .progress-step-animation {
-  animation: progress-step-fill var(--progress-step-duration, 3s) linear
+  animation: progress-step-fill var(--progress-step-duration, 2s) linear
     forwards;
 }
 

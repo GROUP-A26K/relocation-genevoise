@@ -3,6 +3,7 @@ import { Check } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 
 import Section from "@/components/customs/Section";
+import CountUp from "@/components/customs/CountUp";
 
 type TMetric = {
   value: string;
@@ -85,9 +86,10 @@ export default function WhyChooseUs({
         {metrics.map((metric, index) => (
           <Fragment key={metric.label}>
             <div className="flex flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
-              <p className="text-4xl font-bold !leading-[130%] text-white lg:text-[40px]">
-                {metric.value}
-              </p>
+              <CountUp
+                value={metric.value}
+                className="text-4xl font-bold !leading-[130%] text-white lg:text-[40px]"
+              />
               <p className="text-base font-semibold !leading-[130%] text-grey-200 lg:text-lg">
                 {metric.label}
               </p>

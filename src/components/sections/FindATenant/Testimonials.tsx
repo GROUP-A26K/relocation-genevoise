@@ -65,6 +65,39 @@ export default function Testimonials({
     };
   }, [api]);
 
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    let intervalId: ReturnType<typeof setInterval>;
+
+    const start = () => {
+      stop();
+
+      intervalId = setInterval(() => {
+        if (api.canScrollNext()) {
+          api.scrollNext();
+        } else {
+          api.scrollTo(0);
+        }
+      }, 5000);
+    };
+
+    const stop = () => clearInterval(intervalId);
+
+    start();
+
+    api.on("pointerDown", stop);
+    api.on("select", start);
+
+    return () => {
+      stop();
+      api.off("pointerDown", stop);
+      api.off("select", start);
+    };
+  }, [api]);
+
   if (!items?.length) {
     return null;
   }
