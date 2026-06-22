@@ -334,6 +334,48 @@
         "heading": "Nous nous occupons de tout, de l'annonce aux clés",
         "description": "Confiez nous votre bien et concentrez vous sur l'essentiel : choisir votre locataire.",
         "cta": "Confier mon bien"
+      },
+      "Form": {
+        "eyebrow": "Propriétaire",
+        "heading": "Parlez nous de votre bien",
+        "description": "Partagez quelques informations sur votre bien. Un spécialiste vous contactera sous 24 heures.",
+        "contact": {
+          "title": "Informations de contact",
+          "fullName": { "label": "Nom complet", "placeholder": "Nom complet" },
+          "email": { "label": "Email", "placeholder": "Email" },
+          "phone": {
+            "label": "Téléphone",
+            "placeholder": "Numéro de téléphone"
+          }
+        },
+        "property": {
+          "title": "Informations sur le bien",
+          "address": {
+            "label": "Adresse du bien",
+            "placeholder": "Adresse"
+          },
+          "propertyType": {
+            "label": "Type de bien",
+            "options": [
+              { "value": "apartment", "label": "Appartement" },
+              { "value": "house", "label": "Maison" },
+              { "value": "commercial", "label": "Commercial" }
+            ]
+          },
+          "numberOfRooms": {
+            "label": "Nombre de pièces",
+            "placeholder": "Sélectionnez le nombre de pièces"
+          },
+          "additionalInfo": {
+            "label": "Informations complémentaires",
+            "placeholder": "Parlez nous de votre bien, de sa disponibilité ou de toute demande particulière."
+          }
+        },
+        "consent": {
+          "text": "J'accepte d'être contacté concernant ma demande de mise en location et j'accepte la",
+          "policy": "Politique de confidentialité."
+        },
+        "submit": "Envoyer"
       }
     },
     "Tenant": {
@@ -481,6 +523,44 @@
         "heading": "Libérez vous de votre bail sereinement",
         "description": "Vous avez le droit de partir. Nous nous assurons que la régie ne puisse pas refuser votre dossier. Photos, diffusion, visites et dossier, nous nous occupons de tout.",
         "cta": "Démarrer ma remise de bail"
+      },
+      "Form": {
+        "eyebrow": "Locataire",
+        "heading": "Commencez votre remise de bail",
+        "description": "Partagez quelques informations sur votre bail et nous vous contacterons sous 24 heures.",
+        "contact": {
+          "title": "Informations de contact",
+          "fullName": { "label": "Nom complet", "placeholder": "Nom complet" },
+          "email": { "label": "Email", "placeholder": "Email" },
+          "phone": {
+            "label": "Téléphone",
+            "placeholder": "Numéro de téléphone"
+          }
+        },
+        "rental": {
+          "title": "Informations sur votre logement actuel",
+          "address": {
+            "label": "Adresse du logement",
+            "placeholder": "Adresse actuelle"
+          },
+          "propertyType": {
+            "label": "Type de logement",
+            "options": [
+              { "value": "apartment", "label": "Appartement" },
+              { "value": "house", "label": "Maison" },
+              { "value": "commercial", "label": "Commercial" }
+            ]
+          },
+          "numberOfRooms": {
+            "label": "Nombre de pièces",
+            "placeholder": "Sélectionnez le nombre de pièces"
+          }
+        },
+        "consent": {
+          "text": "J'accepte d'être contacté concernant ma demande de mise en location et j'accepte la",
+          "policy": "Politique de confidentialité."
+        },
+        "submit": "Envoyer"
       }
     },
     "BookConsultation": {
@@ -1401,6 +1481,16 @@
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
+    "FindATenant": {
+      "fullNameMinLength": "Le nom complet doit comporter au moins 2 caractères.",
+      "fullNameMaxLength": "Le nom complet ne peut pas dépasser 100 caractères.",
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "addressRequired": "Veuillez saisir l'adresse du bien.",
+      "propertyTypeRequired": "Veuillez sélectionner un type de bien.",
+      "numberOfRoomsRequired": "Veuillez sélectionner le nombre de pièces.",
+      "acceptRequired": "Vous devez accepter pour continuer."
+    },
     "Subscribe": {
       "emailInvalid": "Veuillez entrer une adresse e-mail valide."
     }
@@ -1540,6 +1630,12 @@
       "errorTitle": "Erreur",
       "success": "Votre contact a été soumis avec succès !",
       "error": "Votre contact n'a pas pu être soumis. Veuillez réessayer plus tard."
+    },
+    "FindATenant": {
+      "successTitle": "Succès",
+      "errorTitle": "Erreur",
+      "success": "Votre demande a été soumise avec succès !",
+      "error": "Votre demande n'a pas pu être soumise. Veuillez réessayer plus tard."
     },
     "Subscribe": {
       "successTitle": "Succès",

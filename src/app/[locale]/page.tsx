@@ -64,7 +64,7 @@ export default async function Page(props: Props) {
     {
       title: t("ServiceFeature.reasons.0.reasonItems.1.title"),
       icon: Building2,
-      link: "/find-a-tenant",
+      link: "/find-a-tenant/landlords",
     },
     {
       title: t("ServiceFeature.reasons.0.reasonItems.2.title"),

@@ -44,11 +44,6 @@ export const AppConfig = {
       en: "/companies",
       priority: 0.7,
     },
-    findATenant: {
-      fr: "/trouver-un-locataire",
-      en: "/find-a-tenant",
-      priority: 0.8,
-    },
     findATenantLandlords: {
       fr: "/trouver-un-locataire/bailleurs",
       en: "/find-a-tenant/landlords",

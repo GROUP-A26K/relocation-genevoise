@@ -1,6 +1,7 @@
 export * from "./FormField";
 export * from "./InputField";
 export * from "./SelectField";
+export * from "./ChipSelectField";
 export * from "./PriceInputField";
 export * from "./PriceRangeField";
 export * from "./RoomsSelectField";

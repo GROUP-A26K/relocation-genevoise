@@ -14,6 +14,7 @@ type FormFieldProps = {
   message?: string;
   className?: string;
   labelClassName?: string;
+  htmlFor?: string;
 };
 
 export const FormField: FC<FormFieldProps> = ({
@@ -23,12 +24,14 @@ export const FormField: FC<FormFieldProps> = ({
   message,
   className,
   labelClassName,
+  htmlFor,
 }) => {
   return (
     <FormItem className={cn('w-full flex flex-col gap-1.5', className)}>
       {label && (
         <FormLabel
           className={cn('text-sm !leading-[130%] flex gap-0.5', labelClassName)}
+          {...(htmlFor ? { htmlFor } : {})}
         >
           {label}
           {isRequired && <div className="text-red-500">*</div>}

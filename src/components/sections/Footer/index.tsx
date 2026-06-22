@@ -80,7 +80,7 @@ const Footer = async () => {
         { text: t("service.links.0.text"), url: "/find-accommodation" },
         {
           text: t("service.links.1.text"),
-          url: "/find-a-tenant",
+          url: "/find-a-tenant/landlords",
         },
         {
           text: t("service.links.2.text"),

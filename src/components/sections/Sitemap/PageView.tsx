@@ -46,7 +46,10 @@ export const PageView = ({
           { title: t("sections.0.items.0.title"), url: "/" },
           { title: t("sections.0.items.1.title"), url: "/contact" },
           { title: t("sections.0.items.2.title"), url: "/find-accommodation" },
-          { title: t("sections.0.items.3.title"), url: "/find-a-tenant" },
+          {
+            title: t("sections.0.items.3.title"),
+            url: "/find-a-tenant/landlords",
+          },
           { title: t("sections.0.items.4.title"), url: "/companies" },
           { title: t("sections.0.items.5.title"), url: "/call-me-back" },
           { title: t("sections.0.items.6.title"), url: "/blog" },
@@ -113,14 +116,14 @@ export const PageView = ({
       <div className="flex flex-col lg:flex-row gap-8">
         <div
           className={cn(
-            "lg:!sticky lg:!top-8 h-fit relative w-full lg:max-w-[228px]"
+            "lg:!sticky lg:!top-8 h-fit relative w-full lg:max-w-[228px]",
           )}
         >
           <BlogContentMenu
             setActiveId={setActiveId}
             activeId={activeId}
             menuItems={sitemap.menu.filter(
-              (item): item is { id: string; title: string } => !!item.id
+              (item): item is { id: string; title: string } => !!item.id,
             )}
           />
         </div>

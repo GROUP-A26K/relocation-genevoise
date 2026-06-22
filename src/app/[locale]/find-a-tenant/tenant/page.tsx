@@ -118,7 +118,7 @@ export default async function Page(
         }}
         secondaryCta={{
           text: t("Tenant.Hero.secondaryCta"),
-          href: "/contact",
+          href: "//find-a-tenant/tenant#services",
         }}
         image={{
           src: HeroImage.src,

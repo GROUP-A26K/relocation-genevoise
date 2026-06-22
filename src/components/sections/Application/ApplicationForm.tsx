@@ -219,7 +219,6 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
               <UploadField
                 name="resume_file"
                 label={t("resume.label", { default: "Resume" })}
-                register={form.register}
                 onChange={(file) =>
                   file
                     ? form.setValue("resume_file", file, {
@@ -234,7 +233,6 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
               <CheckboxField
                 name="accept"
                 label={t("accept")}
-                register={form.register}
                 error={form.formState.errors.accept?.message}
               />
 

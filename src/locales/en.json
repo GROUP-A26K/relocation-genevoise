@@ -328,6 +328,42 @@
         "heading": "A fully managed rental experience",
         "description": "Entrust us with your property and focus on what matters most. We take care of every step until the right tenant moves in.",
         "cta": "List My Property"
+      },
+      "Form": {
+        "eyebrow": "Landlord",
+        "heading": "Tell us about your property",
+        "description": "Share a few details about your property and one of our specialists will contact you within 24 hours.",
+        "contact": {
+          "title": "Contact information",
+          "fullName": { "label": "Full name", "placeholder": "Full name" },
+          "email": { "label": "Email", "placeholder": "Email" },
+          "phone": { "label": "Phone", "placeholder": "Phone number" }
+        },
+        "property": {
+          "title": "Property information",
+          "address": { "label": "Property address", "placeholder": "Address" },
+          "propertyType": {
+            "label": "Property type",
+            "options": [
+              { "value": "apartment", "label": "Apartment" },
+              { "value": "house", "label": "House" },
+              { "value": "commercial", "label": "Commercial" }
+            ]
+          },
+          "numberOfRooms": {
+            "label": "Number of rooms",
+            "placeholder": "Select number of rooms"
+          },
+          "additionalInfo": {
+            "label": "Additional information",
+            "placeholder": "Tell us more about your property, availability, or any specific requirements."
+          }
+        },
+        "consent": {
+          "text": "I agree to be contacted regarding my property inquiry and accept the",
+          "policy": "Privacy Policy."
+        },
+        "submit": "Submit"
       }
     },
     "Tenant": {
@@ -475,6 +511,41 @@
         "heading": "Leave your lease with peace of mind",
         "description": "We handle everything from listing to lease release, so you can focus on your move.",
         "cta": "Start my lease transfer"
+      },
+      "Form": {
+        "eyebrow": "Tenant",
+        "heading": "Start your lease transfer",
+        "description": "Share a few details about your lease and we'll contact you within 24 hours.",
+        "contact": {
+          "title": "Contact information",
+          "fullName": { "label": "Full name", "placeholder": "Full name" },
+          "email": { "label": "Email", "placeholder": "Email" },
+          "phone": { "label": "Phone", "placeholder": "Phone number" }
+        },
+        "rental": {
+          "title": "Current rental information",
+          "address": {
+            "label": "Rental address",
+            "placeholder": "Current rental address"
+          },
+          "propertyType": {
+            "label": "Property type",
+            "options": [
+              { "value": "apartment", "label": "Apartment" },
+              { "value": "house", "label": "House" },
+              { "value": "commercial", "label": "Commercial" }
+            ]
+          },
+          "numberOfRooms": {
+            "label": "Number of rooms",
+            "placeholder": "Select number of rooms"
+          }
+        },
+        "consent": {
+          "text": "I agree to be contacted regarding my property inquiry and accept the",
+          "policy": "Privacy Policy."
+        },
+        "submit": "Submit"
       }
     },
     "BookConsultation": {
@@ -1396,6 +1467,16 @@
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
       "acceptRequired": "You must accept to proceed."
     },
+    "FindATenant": {
+      "fullNameMinLength": "Full name must have at least 2 characters.",
+      "fullNameMaxLength": "Full name can have a maximum of 100 characters.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "addressRequired": "Please enter the property address.",
+      "propertyTypeRequired": "Please select a property type.",
+      "numberOfRoomsRequired": "Please select the number of rooms.",
+      "acceptRequired": "You must accept to proceed."
+    },
     "Subscribe": {
       "emailInvalid": "Please enter a valid email address."
     }
@@ -1535,6 +1616,12 @@
       "errorTitle": "Error",
       "success": "Your contact has been submitted successfully!",
       "error": "Your contact could not be submitted. Please try again later."
+    },
+    "FindATenant": {
+      "successTitle": "Success",
+      "errorTitle": "Error",
+      "success": "Your request has been submitted successfully!",
+      "error": "Your request could not be submitted. Please try again later."
     },
     "Subscribe": {
       "successTitle": "Success",
