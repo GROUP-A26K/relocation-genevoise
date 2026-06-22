@@ -15,7 +15,7 @@ import {
   Text,
 } from "@react-email/components";
 
-interface ContactProps {
+interface FindATenantCustomerProps {
   username: string;
   baseUrl: string;
   locale: "en" | "fr";
@@ -26,7 +26,7 @@ const copy = {
     preview: "We Received Your Message",
     heading: "We Received Your Message <br /> Thank You!",
     hi: "Hi",
-    thanks: "Thank you for reaching out to us through our contact form.",
+    thanks: "Thank you for reaching out to us.",
     received:
       "We’ve received your message and a member of our team will get back to you as soon as possible — typically within 1–2 business days.",
     urgent: "If your request is urgent, feel free to call us directly at ",
@@ -45,7 +45,7 @@ const copy = {
     preview: "Nous avons bien reçu votre message",
     heading: "Nous avons bien reçu votre message <br /> Merci !",
     hi: "Bonjour",
-    thanks: "Merci de nous avoir contactés via notre formulaire.",
+    thanks: "Merci de nous avoir contactés.",
     received:
       "Nous avons bien reçu votre message et un membre de notre équipe vous répondra dans les plus brefs délais — généralement sous 1 à 2 jours ouvrables.",
     urgent: "Si votre demande est urgente, appelez-nous directement au ",
@@ -61,7 +61,11 @@ const copy = {
   },
 } as const;
 
-export const Contact = ({ username, baseUrl, locale = "en" }: ContactProps) => {
+export const FindATenantCustomer = ({
+  username,
+  baseUrl,
+  locale = "en",
+}: FindATenantCustomerProps) => {
   const t = copy[locale];
 
   return (
@@ -96,7 +100,7 @@ export const Contact = ({ username, baseUrl, locale = "en" }: ContactProps) => {
                           alt="Globe icon"
                         />
                         <Text className="text-[#7C6C06] text-xs font-semibold !leading-[100%] ml-1">
-                          https://relocation-genevoise/ch
+                          https://relocation-genevoise.ch/
                         </Text>
                       </div>
                     </Link>
@@ -125,9 +129,11 @@ export const Contact = ({ username, baseUrl, locale = "en" }: ContactProps) => {
 
             <Text className="text-black text-[14px] leading-[24px] px-8">
               {t.urgent}
-              <strong className="text-[#D7BC12]">
-                +41 (022) 715 17 48
-              </strong>. {t.explore}
+              <Link href="telto:41227151748">
+                <strong className="text-[#D7BC12]">+41 (022) 715 17 48</strong>.
+              </Link>
+              <br />
+              {t.explore}
               <Link href="https://relocation-genevoise.ch/service">
                 <strong className="text-[#D7BC12]">
                   https://relocation-genevoise.ch/service
@@ -164,7 +170,7 @@ export const Contact = ({ username, baseUrl, locale = "en" }: ContactProps) => {
                 {/* Left column: icons + info */}
                 <Column colSpan={4}>
                   {/* phone */}
-                  <Link href="https://relocation-genevoise.ch">
+                  <Link href="telto:41227151748">
                     <div style={{ display: "flex" }}>
                       <Img
                         src={`${baseUrl}/phone-call-lucid.png`}
@@ -190,13 +196,13 @@ export const Contact = ({ username, baseUrl, locale = "en" }: ContactProps) => {
                         alt="Globe"
                       />
                       <Text className="text-[#605204] text-xs font-semibold !leading-[100%]  my-3 ml-1 mr-auto">
-                        https://relocation-genevoise/ch
+                        https://relocation-genevoise.ch/
                       </Text>
                     </div>
                   </Link>
 
                   {/* address */}
-                  <Link href="https://relocation-genevoise.ch">
+                  <Link href="https://maps.app.goo.gl/jfRDDkPPBRkA57dA8">
                     <div style={{ display: "flex" }}>
                       <Img
                         src={`${baseUrl}/buildings-lucid.png`}
@@ -235,9 +241,9 @@ export const Contact = ({ username, baseUrl, locale = "en" }: ContactProps) => {
   );
 };
 
-Contact.PreviewProps = {
+FindATenantCustomer.PreviewProps = {
   username: "Gavin",
   baseUrl: "http://localhost:3000/",
   locale: "fr",
-} as ContactProps;
-export default Contact;
+} as FindATenantCustomerProps;
+export default FindATenantCustomer;

@@ -1,27 +1,23 @@
-'use client';
-import React, { FC } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   FormControl,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Controller, UseFormRegister } from 'react-hook-form';
+} from "@/components/ui/form";
+import { Controller, FieldPath, FieldValues } from "react-hook-form";
 
-type CheckboxFieldProps = {
+type CheckboxFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   label: string;
-  name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>;
+  name: FieldPath<TFieldValues>;
   error?: string;
 };
 
-export const CheckboxField: FC<CheckboxFieldProps> = ({
+export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
   label,
   name,
   error,
-}) => {
+}: CheckboxFieldProps<TFieldValues>) => {
   return (
     <FormItem>
       <div className="flex flex-row items-start gap-1.5">
