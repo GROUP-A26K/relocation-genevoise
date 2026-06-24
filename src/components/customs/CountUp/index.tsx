@@ -19,14 +19,31 @@ function parseValue(value: string) {
 
   const raw = match[0];
   const start = match.index ?? 0;
-  const decimalPart = raw.split(".")[1];
+
+  const lastSep = Math.max(raw.lastIndexOf(","), raw.lastIndexOf("."));
+  const trailing = lastSep >= 0 ? raw.slice(lastSep + 1) : "";
+  const hasDecimal = lastSep >= 0 && trailing.length !== 3;
+
+  const decimal = hasDecimal ? raw[lastSep] : ".";
+  const decimals = hasDecimal ? trailing.length : 0;
+  const integerPart = hasDecimal ? raw.slice(0, lastSep) : raw;
+  const separator = integerPart.includes(",")
+    ? ","
+    : integerPart.includes(".")
+      ? "."
+      : "";
+
+  const numeric = hasDecimal
+    ? `${integerPart.replace(/[.,]/g, "")}.${trailing}`
+    : raw.replace(/[.,]/g, "");
 
   return {
     prefix: value.slice(0, start),
     suffix: value.slice(start + raw.length),
-    end: Number.parseFloat(raw.replaceAll(",", "")),
-    decimals: decimalPart ? decimalPart.length : 0,
-    separator: raw.includes(",") ? "," : "",
+    end: Number.parseFloat(numeric),
+    decimals,
+    separator,
+    decimal,
   };
 }
 
@@ -47,7 +64,7 @@ export default function CountUp({
     );
   }
 
-  const { prefix, suffix, end, decimals, separator } = parsed;
+  const { prefix, suffix, end, decimals, separator, decimal } = parsed;
 
   return (
     <span ref={ref} className={className}>
@@ -58,9 +75,10 @@ export default function CountUp({
           duration={duration}
           decimals={decimals}
           separator={separator}
+          decimal={decimal}
         />
       ) : (
-        (0).toFixed(decimals)
+        (0).toFixed(decimals).replace(".", decimal)
       )}
       {suffix}
     </span>
