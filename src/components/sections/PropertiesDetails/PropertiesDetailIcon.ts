@@ -40,6 +40,8 @@ import {
   TramFront,
   Accessibility,
   Cigarette,
+  Lightbulb,
+  ShieldCheck,
 } from "lucide-react";
 
 export const FacilityIconMap: Record<string, React.ComponentType> = {
@@ -68,6 +70,8 @@ export const FacilityIconMap: Record<string, React.ComponentType> = {
   petAllowed: PawPrint,
   wheelchairAccess: Accessibility,
   smoking: Cigarette,
+  certified: Lightbulb,
+  construction: ShieldCheck,
 };
 
 export const SurroundingPlaceIconMap: Record<string, React.ComponentType> = {
