@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-export const BLOG_LASTEST_QUERY = defineQuery(`
+export const BLOG_LATEST_QUERY = defineQuery(`
   *[
     _type == "relocationBlogPost" &&
     !(_id in path("drafts.**")) &&
@@ -83,16 +83,18 @@ export const BLOG_LASTEST_QUERY = defineQuery(`
   }
 `);
 
-export const BLOGS_QUERY = defineQuery(`
-    {
-    "blogs": *[
+const BLOGS_BASE_FILTER = `
       _type == "relocationBlogPost" &&
       !(_id in path("drafts.**")) &&
       language == $locale &&
       slug.current != $slug &&
-      ($category == "" || $category in category[]->name)&&
+      ($category == "" || $category in category[]->name) &&
       ($title == "" || title match $title)
-    ]| order(publishedDate desc) [$start...$end] {
+`;
+
+export const BLOGS_QUERY = defineQuery(`
+    {
+    "blogs": *[${BLOGS_BASE_FILTER}]| order(publishedDate desc) [$start...$end] {
       _originalId,
       _id,
       title,
@@ -131,14 +133,7 @@ export const BLOGS_QUERY = defineQuery(`
         }
       }
     },
-    "total": count(
-      *[
-        _type == "relocationBlogPost" &&
-        language == $locale &&
-        slug.current != $slug &&
-        ($category == "" || $category in category[]->name)
-      ]
-    )
+    "total": count(*[${BLOGS_BASE_FILTER}])
   }
 `);
 
@@ -230,7 +225,7 @@ export const BLOG_SLUG_QUERY = defineQuery(`
     slug.current == $slug
   ][0] {
     "targetSlug": *[
-      _type == "translation.metadata"&& 
+      _type == "translation.metadata"&&
       references(^._id)
     ][0].translations[].value->
     {
@@ -240,14 +235,17 @@ export const BLOG_SLUG_QUERY = defineQuery(`
   }
 `);
 
+const BLOGS_SITEMAP_FILTER = `
+      _type == "relocationBlogPost" &&
+      !(_id in path("drafts.**")) &&
+      language == $locale &&
+      ($category == "" || $category in category[]->name) &&
+      ($title == "" || title match $title)
+`;
+
 export const BLOGS_SITEMAP_QUERY = defineQuery(`
   {
-    "blogs": *[
-      _type == "relocationBlogPost" &&
-      language == $locale &&
-      ($category == "" || $category in category[]->name)&&
-      ($title == "" || title match $title)
-    ]| order(publishedDate desc) {
+    "blogs": *[${BLOGS_SITEMAP_FILTER}]| order(publishedDate desc) {
     _originalId,
     _id,
     publishedDate,
@@ -255,13 +253,7 @@ export const BLOGS_SITEMAP_QUERY = defineQuery(`
     summary,
     slug,
   },
-  "total": count(
-    *[
-      _type == "relocationBlogPost" &&
-      language == $locale &&
-      ($category == "" || $category in category[]->name)
-    ]
-  )
+  "total": count(*[${BLOGS_SITEMAP_FILTER}])
 }
 `);
 
@@ -288,15 +280,17 @@ export const POST_CATEGORIES_QUERY = defineQuery(
   `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`,
 );
 
-export const CAREERS_QUERY = defineQuery(`
-  {
-    "jobs": *[
+const CAREERS_BASE_FILTER = `
       _type == "relocationJobPost" &&
       isHidden == false &&
       !(_id in path("drafts.**")) &&
-      ($department == "" || $department == department->title[$locale])&&
+      ($department == "" || $department == department->title[$locale]) &&
       language == $locale
-    ]| order(publishedAt desc) [$start...$end] {
+`;
+
+export const CAREERS_QUERY = defineQuery(`
+  {
+    "jobs": *[${CAREERS_BASE_FILTER}]| order(publishedAt desc) [$start...$end] {
       ...,
       _originalId,
       publishedAt,
@@ -304,14 +298,7 @@ export const CAREERS_QUERY = defineQuery(`
           title
         }
     },
-    "total": count(
-      *[
-        _type == "relocationJobPost" &&
-        ($department == "" || $department == department->title.fr)&&
-        language == $locale &&
-        isHidden == false
-      ]
-    )
+    "total": count(*[${CAREERS_BASE_FILTER}])
   }
 `);
 
@@ -359,11 +346,11 @@ export const CAREER_DETAIL_QUERY = defineQuery(`
                 _id,
                 url
                 }
-              
+
             }
           }
         ,
-       
+
         _type == "photoZone" => {
           ...,
           mainPhoto{
@@ -391,7 +378,7 @@ export const CAREER_SLUG_QUERY = defineQuery(`
     slug.current == $slug
   ][0] {
     "targetSlug": *[
-      _type == "translation.metadata"&& 
+      _type == "translation.metadata"&&
       references(^._id)
     ][0].translations[].value->
     {
@@ -482,7 +469,7 @@ export const PROPERTY_CATEGORIES_QUERY = defineQuery(
   ] | order(categoryName asc) {
     _id,
     categoryName
-  }`
+  }`,
 );
 
 export const DEPARTMENT_QUERY = defineQuery(
@@ -553,14 +540,13 @@ export const PROPERTY_PHOTO_TOUR_QUERY = defineQuery(`
 }
 `);
 
-
 export const PROPERTY_SLUG_QUERY = defineQuery(`
   *[
     _type == "property" &&
     slug.current == $slug
   ][0] {
     "targetSlug": *[
-      _type == "translation.metadata"&& 
+      _type == "translation.metadata"&&
       references(^._id)
     ][0].translations[].value->
     {
