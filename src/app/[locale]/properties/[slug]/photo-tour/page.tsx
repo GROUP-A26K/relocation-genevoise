@@ -3,8 +3,6 @@ import { PropertySectionHeader } from "@/components/blocks/PropertyDetail/Sectio
 import { PhotoTourView } from "@/components/sections/PhotoTour/PhotoTourView";
 import { getPropertyPhotoTour } from "@/services/property.service";
 
-export const dynamic = "force-dynamic";
-
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };

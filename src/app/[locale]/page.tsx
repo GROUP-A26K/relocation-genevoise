@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { HomeHero } from "@/components/blocks/Hero";
 import Section from "@/components/customs/Section";
 import { getTranslations } from "next-intl/server";
@@ -24,7 +23,6 @@ import {
 import { StatsGrid2 } from "@/components/blocks/Stats";
 import { ContentWithImg } from "@/components/blocks/Content";
 import { BookConsultation2 } from "@/components/blocks/Consultation";
-// import { Logos } from '@/components/blocks/Logos';
 import { fetchBlogs } from "@/services/blog.service";
 import { BlogList } from "@/components/blocks/Blog";
 

@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useTransition } from 'react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
 import { Job } from '@/models/Job';
@@ -10,72 +10,35 @@ import { Meta } from '@/models/Meta';
 import Section from '@/components/customs/Section';
 import TabsMenu from '@/components/blocks/TabsMenu';
 import { JobCard } from '@/components/customs/Card';
-import { ParamsProps } from '@/services/blog.service';
 import EmptyData from '@/components/customs/EmptyData';
 import { AssuranceJobDepartment } from '@/sanity/types';
 import { Pagination } from '@/components/blocks/Pagination';
 import { Spinner } from '@/components/customs/Spinner/Spinner';
-import { fetchJobPosts } from '@/services/career/career.service';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 
 import { ContentContainer } from './ContentContainer';
 
 interface Props {
   departments: AssuranceJobDepartment[];
+  jobs: Job[];
+  meta: Meta;
 }
-
-const initialParams = {
-  page: 1,
-  pageSize: 5,
-  filterBy: '',
-  locale: 'en',
-  search: '',
-};
 
 export const PageView: FC<Props> = (props) => {
   const t = useTranslations('Career');
   const locale = useLocale();
+  const [isPending, startTransition] = useTransition();
 
   const [queryParams, setQueryParams] = useQueryStates(
     {
-      page: parseAsInteger.withDefault(initialParams.page),
-      filterBy: parseAsString.withDefault(initialParams.filterBy),
-      search: parseAsString.withDefault(initialParams.search),
+      page: parseAsInteger.withDefault(1),
+      filterBy: parseAsString.withDefault(''),
     },
-    { shallow: false, scroll: false }
+    { shallow: false, scroll: false, startTransition }
   );
 
-  const [data, setData] = useState<{ jobs: Job[]; meta: Meta }>({
-    jobs: [],
-    meta: {
-      pagination: {
-        page: 1,
-        pageSize: 15,
-        pageCount: 0,
-        total: 0,
-      },
-    },
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const searchParams: ParamsProps = {
-    ...initialParams,
-    locale,
-    page: queryParams.page,
-    filterBy: queryParams.filterBy,
-  };
-
-  const loadJobs = useCallback(async (params: ParamsProps) => {
-    setLoading(true);
-    const { jobs, meta } = await fetchJobPosts(params);
-    setData({ jobs, meta });
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    loadJobs(searchParams);
-  }, [queryParams.page, queryParams.filterBy, loadJobs]);
+  const showEmpty = !isPending && props.jobs.length === 0;
+  const showList = !isPending && props.jobs.length > 0;
 
   return (
     <>
@@ -116,7 +79,7 @@ export const PageView: FC<Props> = (props) => {
         <div className="flex flex-col items-center justify-center">
           <div className="mx-auto w-full 2xl:max-w-[768px] xl:max-w-[660px] max-w-[768px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
             <AnimatePresence>
-              {loading && (
+              {isPending && (
                 <motion.div
                   key="spinner"
                   initial={{ opacity: 1 }}
@@ -131,7 +94,7 @@ export const PageView: FC<Props> = (props) => {
 
             <h2 className="sr-only">Job posts</h2>
             <AnimatePresence>
-              {!loading && data.jobs.length === 0 && (
+              {showEmpty && (
                 <motion.div
                   key="empty"
                   initial={{ opacity: 0 }}
@@ -146,7 +109,7 @@ export const PageView: FC<Props> = (props) => {
                   />
                 </motion.div>
               )}
-              {!loading && data.jobs.length > 0 && (
+              {showList && (
                 <motion.div
                   key="jobList"
                   initial={{ opacity: 0 }}
@@ -155,7 +118,7 @@ export const PageView: FC<Props> = (props) => {
                   transition={{ duration: 0.5 }}
                   className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
                 >
-                  {data.jobs.map((job) => (
+                  {props.jobs.map((job) => (
                     <JobCard
                       key={job.id}
                       job={job}
@@ -168,9 +131,9 @@ export const PageView: FC<Props> = (props) => {
           </div>
         </div>
 
-        {!loading && data.jobs.length > 0 && (
+        {showList && (
           <Pagination
-            meta={data.meta}
+            meta={props.meta}
             onClick={(page: number) => setQueryParams({ page })}
           />
         )}

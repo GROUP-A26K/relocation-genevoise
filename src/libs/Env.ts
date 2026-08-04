@@ -4,6 +4,9 @@ import { z } from "zod";
 export const Env = createEnv({
   server: {
     SANITY_API_READ_TOKEN: z.string().min(1),
+    SANITY_API_VERSION: z.string().min(1),
+    SANITY_PROJECT_ID: z.string().min(1),
+    SANITY_DATASET: z.string().min(1),
     DATABASE_URL: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
     RESEND_EMAIL: z.string().min(1),
@@ -16,14 +19,11 @@ export const Env = createEnv({
     RESEND_RECEIVER_EMAIL: z.string().min(1),
     SUPABASE_DATABASE_URL: z.string().min(1),
     SUPABASE_DIRECT_URL: z.string().min(1),
+    REVALIDATE_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().min(1),
     NEXT_PUBLIC_GTM_ID: z.string().min(1),
-    NEXT_PUBLIC_SANITY_STUDIO_URL: z.string().url(),
-    NEXT_PUBLIC_SANITY_API_VERSION: z.string().min(1),
-    NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
-    NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
     NEXT_PUBLIC_SERVER_TIMEZONE: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
   },
@@ -33,6 +33,7 @@ export const Env = createEnv({
   runtimeEnv: {
     SUPABASE_DATABASE_URL: process.env.SUPABASE_DATABASE_URL,
     SUPABASE_DIRECT_URL: process.env.SUPABASE_DIRECT_URL,
+    REVALIDATE_SECRET: process.env.REVALIDATE_SECRET,
     MINIO_BUCKET: process.env.MINIO_BUCKET,
     MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
     MINIO_PORT: process.env.MINIO_PORT,
@@ -41,8 +42,7 @@ export const Env = createEnv({
     NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
     RESEND_EMAIL: process.env.RESEND_EMAIL,
     SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
-    NEXT_PUBLIC_SANITY_STUDIO_URL: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
-    NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+    SANITY_API_VERSION: process.env.SANITY_API_VERSION,
     DATABASE_URL: process.env.DATABASE_URL,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NODE_ENV: process.env.NODE_ENV,
@@ -50,8 +50,9 @@ export const Env = createEnv({
     RESEND_SENDER_NAME: process.env.RESEND_SENDER_NAME,
     NEXT_PUBLIC_SERVER_TIMEZONE: process.env.NEXT_PUBLIC_SERVER_TIMEZONE,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+    SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
+    SANITY_DATASET: process.env.SANITY_DATASET,
+    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:
+      process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   },
 });

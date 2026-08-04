@@ -1,7 +1,7 @@
 // app/api/sitemap/blog-category/route.ts
 import { POST_CATEGORIES_QUERY } from '@/sanity/lib/queries';
 import type { BlogCategory } from '@/sanity/types';
-import { client } from '@/sanity/lib/client';
+import { sanityFetch } from '@/sanity/lib/fetch';
 import { Env } from '@/libs/Env';
 
 /* ------------------------------------------------------------------ */
@@ -42,10 +42,9 @@ interface SitemapEntry {
 const NOW = new Date().toISOString();
 
 const buildEntries = async (): Promise<SitemapEntry[]> => {
-  const categories = await client.fetch<BlogCategory[]>(
-    POST_CATEGORIES_QUERY,
-    { limit: CFG.FETCH_LIMIT }
-  );
+  const categories = await sanityFetch<BlogCategory[]>(POST_CATEGORIES_QUERY, {
+    limit: CFG.FETCH_LIMIT,
+  });
 
   const mainEntry: SitemapEntry = {
     url: `${CFG.BASE_URL}${CFG.MAIN.path}`,

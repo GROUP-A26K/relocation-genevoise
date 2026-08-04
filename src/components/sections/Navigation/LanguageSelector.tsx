@@ -8,104 +8,51 @@ import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { cn } from "@/libs/utils";
 import { getAlternatePath } from "@/utils/Helpers";
-import { fetchCareerSlugBySlug } from "@/services/career/career.service";
-import { fetchBlogSlugBySlug } from "@/services/blog.service";
-import { fetchPropertySlugBySlug } from "@/services/property.service";
+import {
+  resolveAlternateSlug,
+  type AlternateContentType,
+} from "@/actions/alternateSlug.action";
+
 interface LanguageSelectorProps {
   className?: string;
 }
+
+const CONTENT_ROUTES: { prefixes: string[]; type: AlternateContentType }[] = [
+  { prefixes: ["/blog/"], type: "blog" },
+  { prefixes: ["/carriere/", "/career/"], type: "career" },
+  { prefixes: ["/properties/", "/proprietes/"], type: "property" },
+];
+
 const [english, french]: string[] = ["en", "fr"];
+
 const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
   const [isRotated, setIsRotated] = useState(false);
 
-  const handleContentTranslation = async (
-    pathname: string,
-    locale: string,
-    targetLocale: string,
-    fetchFunction: (slug: string) => Promise<
-      {
-        locale: string;
-        slug: string;
-        href: string;
-      }[]
-    >
-  ) => {
-    try {
-      const currentSlug = pathname.split("/")[2];
-      const response = await fetchFunction(`${locale}-${currentSlug}`);
-
-      if (response.length === 0) {
-        return null;
-      }
-
-      const translatedItem = response.find(
-        (item) => item.locale === targetLocale
-      );
-      return translatedItem?.href
-        ? `/${targetLocale}${translatedItem.href}`
-        : null;
-    } catch (error) {
-      console.error("Failed to fetch translated URL:", error);
-      return null;
-    }
-  };
-
   const handleChange = async () => {
     const targetLocale = locale === "fr" ? "en" : "fr";
 
-    if (pathname?.startsWith("/blog/")) {
-      const translatedUrl = await handleContentTranslation(
-        pathname,
-        locale,
+    const route = CONTENT_ROUTES.find(({ prefixes }) =>
+      prefixes.some((prefix) => pathname?.startsWith(prefix)),
+    );
+
+    if (route) {
+      const currentSlug = pathname.split("/")[2];
+
+      const translatedUrl = await resolveAlternateSlug(
+        route.type,
+        `${locale}-${currentSlug}`,
         targetLocale,
-        fetchBlogSlugBySlug
-      );
+      ).catch(() => null);
 
       if (translatedUrl) {
-        router.push(translatedUrl);
-        router.refresh();
-        return;
-      }
-    }
-
-    if (
-      pathname?.startsWith("/carriere/") ||
-      pathname?.startsWith("/career/")
-    ) {
-      const translatedUrl = await handleContentTranslation(
-        pathname,
-        locale,
-        targetLocale,
-        fetchCareerSlugBySlug
-      );
-
-      if (translatedUrl) {
-        router.push(translatedUrl);
-        router.refresh();
-        return;
-      }
-    }
-
-    if (
-      pathname?.startsWith("/properties/") ||
-      pathname?.startsWith("/proprietes/")
-    ) {
-      const translatedUrl = await handleContentTranslation(
-        pathname,
-        locale,
-        targetLocale,
-        fetchPropertySlugBySlug
-      );
-
-      if (translatedUrl) {
-        const targetUrl = pathname?.endsWith("/photo-tour")
-          ? `${translatedUrl}/photo-tour`
-          : translatedUrl;
-
-        router.push(targetUrl);
+        router.push(
+          pathname.endsWith("/photo-tour")
+            ? `${translatedUrl}/photo-tour`
+            : translatedUrl,
+        );
         router.refresh();
         return;
       }
@@ -113,7 +60,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
 
     router.push(getAlternatePath(`/${locale}${pathname}`));
     router.refresh();
-  };  
+  };
 
   useEffect(() => {
     setIsRotated((prev) => !prev);
@@ -131,7 +78,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
       <Globe
         className={cn(
           "!h-5 !w-5 transition-transform duration-500",
-          isRotated && "rotate-180"
+          isRotated && "rotate-180",
         )}
       />
       <div className="flex divide-x-2 divide-grey-200">

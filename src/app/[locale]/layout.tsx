@@ -5,16 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
 import { Navbar } from "@/components/sections/Navigation/NavBar";
-import { SanityLive } from "@/sanity/lib/live";
-import { draftMode } from "next/headers";
 import { Env } from "@/libs/Env";
-import dynamic from "next/dynamic";
-
-const VisualEditing = dynamic(() =>
-  import("next-sanity/visual-editing").then((m) => ({
-    default: m.VisualEditing,
-  })),
-);
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -42,8 +33,6 @@ export default async function RootLayout(props: {
     >
       <Navbar locale={locale} />
       {props.children}
-      <SanityLive />
-      {(await draftMode()).isEnabled && <VisualEditing />}
       <Toaster />
     </NextIntlClientProvider>
   );

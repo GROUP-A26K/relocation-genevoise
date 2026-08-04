@@ -2,7 +2,15 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 
-import { fetchPropertyCategories } from "@/services/property.service";
+import {
+  fetchProperties,
+  fetchPropertyCategories,
+} from "@/services/property.service";
+import { getExchangeRates, toCHFWithRates } from "@/utils/exchangeRate.server";
+import {
+  buildPropertyFilterParams,
+  parsePropertySearchParams,
+} from "@/utils/propertyFilters";
 import { BookConsultation2 } from "@/components/blocks/Consultation";
 import PropertiesHero from "@/components/sections/Properties/PropertiesHero";
 import PropertyListingsSection from "@/components/sections/Properties/PropertyListingsSection";
@@ -12,9 +20,8 @@ import { AppConfig } from "@/utils/AppConfig";
 
 type Props = {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
-
-export const dynamic = "force-dynamic";
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
@@ -36,8 +43,21 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function PropertiesPage(props: Props) {
   const { locale } = await props.params;
+  const searchParams = await props.searchParams;
   const t = await getTranslations("Properties");
-  const categories = await fetchPropertyCategories({ locale });
+
+  const [categories, rates] = await Promise.all([
+    fetchPropertyCategories({ locale }),
+    getExchangeRates(),
+  ]);
+
+  const { properties, meta } = await fetchProperties({
+    ...buildPropertyFilterParams(
+      parsePropertySearchParams(searchParams),
+      (amount, currency) => toCHFWithRates(amount, currency, rates),
+    ),
+    locale,
+  });
 
   return (
     <ExchangeRatesProvider>
@@ -48,7 +68,7 @@ export default async function PropertiesPage(props: Props) {
             <SearchFilters categories={categories} />
           </div>
         </section>
-        <PropertyListingsSection />
+        <PropertyListingsSection properties={properties} meta={meta} />
         <section className="w-full flex justify-center">
           <div className="w-full max-w-[1240px] bg-grey-50 max-md:px-4 xl:rounded-[24px]">
             <BookConsultation2

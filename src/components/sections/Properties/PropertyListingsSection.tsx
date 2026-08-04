@@ -1,83 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
-import { useBoolean } from "usehooks-ts";
+import { useTransition } from "react";
 
-import {
-  PROPERTY_PAGE_SIZE,
-  usePropertyFilters,
-} from "@/hooks/usePropertyFilters";
+import { usePropertyFilters } from "@/hooks/usePropertyFilters";
 import { useExchangeRates } from "@/context/ExchangeRatesContext";
 import { Meta } from "@/models/Meta";
 import { IPropertyListing } from "@/models/Property";
-import { fetchProperties } from "@/services/property.service";
-import type { IPropertyParams } from "@/types";
 
 import PropertyResultsContent from "./PropertyResultsContent";
 import PropertyResultsHeader from "./PropertyResultsHeader";
 
-const INITIAL_DATA: { properties: IPropertyListing[]; meta: Meta } = {
-  properties: [],
-  meta: {
-    pagination: {
-      page: 1,
-      pageSize: PROPERTY_PAGE_SIZE,
-      pageCount: 0,
-      total: 0,
-    },
-  },
-};
+interface Props {
+  properties: IPropertyListing[];
+  meta: Meta;
+}
 
-export default function PropertyListingsSection() {
-  const locale = useLocale();
+export default function PropertyListingsSection({ properties, meta }: Props) {
   const { convertToCHF } = useExchangeRates();
-  const { filterParams } = usePropertyFilters(convertToCHF);
+  const [isPending, startTransition] = useTransition();
 
-  const [data, setData] = useState(INITIAL_DATA);
-  const {
-    value: loading,
-    setTrue: setLoadingTrue,
-    setFalse: setLoadingFalse,
-  } = useBoolean(false);
-
-  useEffect(() => {
-    let isActive = true;
-
-    const loadProperties = async (params: IPropertyParams) => {
-      setLoadingTrue();
-
-      try {
-        const result = await fetchProperties(params);
-
-        if (isActive) {
-          setData(result);
-        }
-      } finally {
-        if (isActive) {
-          setLoadingFalse();
-        }
-      }
-    };
-
-    void loadProperties({
-      ...filterParams,
-      locale,
-    });
-
-    return () => {
-      isActive = false;
-    };
-  }, [filterParams, locale, setLoadingFalse, setLoadingTrue]);
+  usePropertyFilters(convertToCHF, startTransition);
 
   return (
     <section className="flex flex-col items-center 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4">
       <div className="w-full max-w-[1240px]">
-        <PropertyResultsHeader {...data.meta.pagination} />
+        <PropertyResultsHeader {...meta.pagination} />
         <PropertyResultsContent
-          properties={data.properties}
-          meta={data.meta}
-          loading={loading}
+          properties={properties}
+          meta={meta}
+          loading={isPending}
         />
       </div>
     </section>
