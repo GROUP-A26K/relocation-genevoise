@@ -14,15 +14,18 @@ import { FC } from "react";
 
 interface Props {
   meta: Meta;
+  className?: string;
   onClick: (value: number) => void;
 }
-export const Pagination: FC<Props> = (props) => {
-  const currentPage = props.meta.pagination.page;
-  const pageItemClassName =
-    "h-10 w-10 p-0 rounded-full flex items-center justify-center font-semibold";
+
+const pageItemClassName =
+  "h-10 w-10 p-0 rounded-full flex items-center justify-center font-semibold";
+
+export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
+  const currentPage = meta.pagination.page;
 
   const handleTabClick = (value: number) => {
-    props.onClick(value);
+    onClick(value);
   };
 
   const generatePaginationLinks = (current: number, max: number) => {
@@ -37,10 +40,10 @@ export const Pagination: FC<Props> = (props) => {
         <PaginationLink
           className={cn(
             pageItemClassName,
-            props.meta.pagination.page === 1 &&
-              "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
+            meta.pagination.page === 1 &&
+              "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
           )}
-          isActive={props.meta.pagination.page === 1}
+          isActive={meta.pagination.page === 1}
         >
           {1}
         </PaginationLink>
@@ -64,14 +67,14 @@ export const Pagination: FC<Props> = (props) => {
           <PaginationLink
             className={cn(
               pageItemClassName,
-              props.meta.pagination.page === i &&
-                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
+              meta.pagination.page === i &&
+                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
             )}
-            isActive={props.meta.pagination.page === i}
+            isActive={meta.pagination.page === i}
           >
             {i}
           </PaginationLink>
-        </PaginationItem>
+        </PaginationItem>,
       );
     }
 
@@ -86,20 +89,20 @@ export const Pagination: FC<Props> = (props) => {
           <PaginationLink
             className={cn(
               pageItemClassName,
-              props.meta.pagination.page === max &&
-                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500"
+              meta.pagination.page === max &&
+                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
             )}
-            isActive={props.meta.pagination.page === max}
+            isActive={meta.pagination.page === max}
           >
             {max}
           </PaginationLink>
-        </PaginationItem>
+        </PaginationItem>,
       );
 
     return items || [];
   };
   return (
-    <PaginationShadcn className="lg:py-16 py-12 w-full">
+    <PaginationShadcn className={cn("py-12 w-full lg:py-16", className)}>
       {/* Desktop */}
       <PaginationContent className="w-full flex-row justify-between lg:flex hidden lg:pt-8 border-t border-t-grey-100">
         <PaginationItem>
@@ -114,19 +117,19 @@ export const Pagination: FC<Props> = (props) => {
         </PaginationItem>
         <div className="flex">
           {generatePaginationLinks(
-            props.meta.pagination.page,
-            props.meta.pagination.pageCount
+            meta.pagination.page,
+            meta.pagination.pageCount,
           )}
         </div>
         <PaginationItem>
           <PaginationNext
             className={cn(
               "cursor-pointer",
-              currentPage === props.meta.pagination.pageCount && "invisible",
-              props.meta.pagination.pageCount === 0 && "invisible"
+              currentPage === meta.pagination.pageCount && "invisible",
+              meta.pagination.pageCount === 0 && "invisible",
             )}
             onClick={() => {
-              if (currentPage < props.meta.pagination.pageCount) {
+              if (currentPage < meta.pagination.pageCount) {
                 handleTabClick(currentPage + 1);
               }
             }}
@@ -149,13 +152,13 @@ export const Pagination: FC<Props> = (props) => {
           </div>
         </PaginationItem>
         <div className="flex items-center justify-center text-sm font-normal text-black-200 !leading-[130%]">
-          Page {currentPage} of {props.meta.pagination.pageCount}
+          Page {currentPage} of {meta.pagination.pageCount}
         </div>
         <PaginationItem>
           <div
             className="flex h-10 w-10 p-2 lg:p-3 rounded-xl border items-center justify-center cursor-pointer"
             onClick={() => {
-              if (currentPage < props.meta.pagination.pageCount) {
+              if (currentPage < meta.pagination.pageCount) {
                 handleTabClick(currentPage + 1);
               }
             }}

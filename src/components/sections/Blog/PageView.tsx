@@ -160,6 +160,7 @@ export const PageView: FC<Props> = (props) => {
             >
               <Pagination
                 meta={props.meta}
+                className="py-0 lg:py-0"
                 onClick={(page: number) => setQueryParams({ page })}
               />
             </motion.div>
