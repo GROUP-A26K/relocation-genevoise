@@ -6,6 +6,8 @@ interface SanityFetchOptions {
   tags?: string[];
 }
 
+const REVALIDATE_FALLBACK_SECONDS = 300;
+
 export const sanityFetch = async <T>(
   query: string,
   params: Record<string, unknown> = {},
@@ -24,7 +26,6 @@ export const sanityFetch = async <T>(
   }
 
   return client.fetch<T>(query, params, {
-    cache: "force-cache",
-    next: { tags: options.tags },
+    next: { revalidate: REVALIDATE_FALLBACK_SECONDS, tags: options.tags },
   });
 };
