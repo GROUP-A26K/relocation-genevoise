@@ -20,6 +20,7 @@ const CFG = {
     priority: 0.7,
   },
   FETCH_LIMIT: 10,
+  LOCALE: 'fr',
 } as const;
 
 type ChangeFreq = typeof CFG.MAIN.changefreq;
@@ -44,6 +45,7 @@ const NOW = new Date().toISOString();
 const buildEntries = async (): Promise<SitemapEntry[]> => {
   const categories = await sanityFetch<BlogCategory[]>(POST_CATEGORIES_QUERY, {
     limit: CFG.FETCH_LIMIT,
+    locale: CFG.LOCALE,
   });
 
   const mainEntry: SitemapEntry = {
@@ -63,7 +65,9 @@ const buildEntries = async (): Promise<SitemapEntry[]> => {
   return [mainEntry, ...subEntries];
 };
 
-const toXml = (entries: SitemapEntry[]): string => `<?xml version="1.0" encoding="UTF-8"?>
+const toXml = (
+  entries: SitemapEntry[]
+): string => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries
   .map(
