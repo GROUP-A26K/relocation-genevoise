@@ -6,7 +6,7 @@ This is a relocation-genevoise project built with Next.js and Sanity. It include
 
 Before you begin, ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (version 16 or higher)
+- [Node.js](https://nodejs.org/) (version 22 or higher)
 - [Sanity CLI](https://www.sanity.io/docs/cli) (installed globally)
 
 ## Steps to Run the Project
@@ -22,7 +22,7 @@ Before you begin, ensure you have the following installed:
    Copy the `.env.example` file to `.env`:
 
    ```bash
-   cp .example.env .env.local
+   cp .example.env .env
    ```
 
    Update the `.env` file with the required environment variables.
@@ -43,6 +43,7 @@ Before you begin, ensure you have the following installed:
 
 5. **Access the Application**
    Open your browser and navigate to:
+
    ```
    http://localhost:3000
    ```

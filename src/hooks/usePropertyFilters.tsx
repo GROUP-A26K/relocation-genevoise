@@ -1,24 +1,28 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
-import { parseAsBoolean, parseAsInteger, parseAsString, useQueryStates } from "nuqs";
+import { useCallback, useMemo, type TransitionStartFunction } from "react";
+import {
+  parseAsBoolean,
+  parseAsInteger,
+  parseAsString,
+  useQueryStates,
+} from "nuqs";
 
 import {
   PROPERTY_DEFAULT_CURRENCY,
-  getPriceRangeByValue,
   toCHF as toCHFStatic,
 } from "@/constants/property";
+import {
+  buildPropertyFilterParams,
+  categoriesToParam,
+  INITIAL_PROPERTY_QUERY_PARAMS as INITIAL_PARAMS,
+  paramToCategories,
+} from "@/utils/propertyFilters";
 
-export interface IPropertyFilterQueryParams {
-  page: number;
-  categories: string;
-  location: string;
-  priceRange: string;
-  currency: string;
-  sort: string;
-  rooms: string;
-  availableOnly: boolean;
-}
+export {
+  PROPERTY_PAGE_SIZE,
+  type IPropertyFilterQueryParams,
+} from "@/utils/propertyFilters";
 
 type PropertyAppliedFilters = {
   categories: string[];
@@ -36,33 +40,15 @@ export type PropertyFilterFormValues = {
   rooms: string;
 };
 
-const INITIAL_PARAMS: IPropertyFilterQueryParams = {
-  page: 1,
-  categories: "",
-  location: "",
-  priceRange: "",
-  currency: PROPERTY_DEFAULT_CURRENCY,
-  sort: "newest",
-  rooms: "",
-  availableOnly: false,
-};
-
-export const PROPERTY_PAGE_SIZE = 12;
-
 export const PROPERTY_SORT_OPTIONS = [
   { value: "newest", labelKey: "sort.newest" },
   { value: "price_asc", labelKey: "sort.priceAsc" },
   { value: "price_desc", labelKey: "sort.priceDesc" },
 ] as const;
 
-const categoriesToParam = (categories: string[]): string =>
-  categories.filter(Boolean).join(",");
-
-const paramToCategories = (param: string): string[] =>
-  param ? param.split(",").filter(Boolean) : [];
-
 export const usePropertyFilters = (
   convertToCHF?: (amount: number, currency: string) => number,
+  startTransition?: TransitionStartFunction,
 ) => {
   const [queryParams, setQueryParams] = useQueryStates(
     {
@@ -75,7 +61,7 @@ export const usePropertyFilters = (
       rooms: parseAsString.withDefault(INITIAL_PARAMS.rooms),
       availableOnly: parseAsBoolean.withDefault(INITIAL_PARAMS.availableOnly),
     },
-    { shallow: false, scroll: false },
+    { shallow: false, scroll: false, startTransition },
   );
 
   const formValues = useMemo<PropertyFilterFormValues>(
@@ -97,9 +83,7 @@ export const usePropertyFilters = (
 
   const applyFilters = useCallback(
     (filters: Partial<PropertyAppliedFilters> = {}) => {
-      const nextLocation = (
-        filters.location ?? queryParams.location
-      ).trim();
+      const nextLocation = (filters.location ?? queryParams.location).trim();
       const nextCategories =
         filters.categories !== undefined
           ? categoriesToParam(filters.categories)
@@ -149,38 +133,10 @@ export const usePropertyFilters = (
     [setQueryParams],
   );
 
-  // Convert price range + currency into CHF min/max for Sanity query
-  const filterParams = useMemo(() => {
-    const range = getPriceRangeByValue(queryParams.priceRange);
-    const currency =
-      queryParams.currency || PROPERTY_DEFAULT_CURRENCY;
-
-    const converter = convertToCHF ?? toCHFStatic;
-    const minPriceCHF = range.min > 0 ? converter(range.min, currency) : 0;
-    const maxPriceCHF = range.max > 0 ? converter(range.max, currency) : 0;
-
-    return {
-      page: queryParams.page,
-      pageSize: PROPERTY_PAGE_SIZE,
-      category: paramToCategories(queryParams.categories),
-      location: queryParams.location ? `*${queryParams.location}*` : "",
-      minPrice: minPriceCHF,
-      maxPrice: maxPriceCHF,
-      currency: queryParams.currency || PROPERTY_DEFAULT_CURRENCY,
-      sort: queryParams.sort,
-      rooms: queryParams.rooms,
-      availableOnly: queryParams.availableOnly,
-    };
-  }, [
-    queryParams.availableOnly,
-    queryParams.categories,
-    queryParams.currency,
-    queryParams.location,
-    queryParams.page,
-    queryParams.priceRange,
-    queryParams.rooms,
-    queryParams.sort,
-  ]);
+  const filterParams = useMemo(
+    () => buildPropertyFilterParams(queryParams, convertToCHF ?? toCHFStatic),
+    [queryParams, convertToCHF],
+  );
 
   return {
     queryParams,

@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useTransition } from "react";
 import { parseAsString, parseAsInteger, useQueryStates } from "nuqs";
 
 import { Blog } from "@/models/BLog";
@@ -17,88 +17,52 @@ import { BlogCard } from "@/components/customs/Card";
 import EmptyData from "@/components/customs/EmptyData";
 import { Pagination } from "@/components/blocks/Pagination";
 import { Spinner } from "@/components/customs/Spinner/Spinner";
-import { fetchBlogs, ParamsProps } from "@/services/blog.service";
-
-import { ContentContainer } from "./ContentContainer";
 
 interface Props {
   category: BlogCategory[];
   newestBlog: Blog | null;
+  blogs: Blog[];
+  meta: Meta;
 }
-
-const initialParams = {
-  page: 1,
-  pageSize: 9,
-  filterBy: "",
-  locale: "en",
-  search: "",
-};
 
 export const PageView: FC<Props> = (props) => {
   const t = useTranslations("Blog");
-  const locale = useLocale();
-  const searchPlaceholder = locale === "fr" ? "Rechercher" : "Search";
+  const [isPending, startTransition] = useTransition();
+
   const [queryParams, setQueryParams] = useQueryStates(
     {
-      page: parseAsInteger.withDefault(initialParams.page),
-      filterBy: parseAsString.withDefault(initialParams.filterBy),
-      search: parseAsString.withDefault(initialParams.search),
+      page: parseAsInteger.withDefault(1),
+      filterBy: parseAsString.withDefault(""),
+      search: parseAsString.withDefault(""),
     },
     {
       shallow: false,
       scroll: false,
+      startTransition,
     },
   );
+
+  const locale = useLocale();
+  const searchPlaceholder = locale === "fr" ? "Rechercher" : "Search";
 
   const [debouncedSearch, search, setSearch] = useDebounce(
     queryParams.search,
     500,
   );
 
-  const handleSearchChange = (value: string) => {
-    setSearch(value);
-    setQueryParams({ search: value, page: 1 });
-  };
-
-  const [data, setData] = useState<{ blogs: Blog[]; meta: Meta }>({
-    blogs: [],
-    meta: {
-      pagination: {
-        page: 1,
-        pageSize: 15,
-        pageCount: 0,
-        total: 0,
-      },
-    },
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const searchParams: ParamsProps = {
-    ...initialParams,
-    locale,
-    page: queryParams.page,
-    filterBy: queryParams.filterBy,
-    search: debouncedSearch,
-  };
-
-  const loadNewsPost = useCallback(
-    async (params: ParamsProps) => {
-      setLoading(true);
-      const { blogs, meta } = await fetchBlogs({
-        ...params,
-        exceptSlug: props.newestBlog?.slug,
-      });
-      setData({ blogs, meta });
-      setLoading(false);
-    },
-    [props.newestBlog?.slug],
-  );
+  const lastPushedSearch = useRef(queryParams.search);
 
   useEffect(() => {
-    loadNewsPost(searchParams);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryParams.page, queryParams.filterBy, debouncedSearch]);
+    if (debouncedSearch === lastPushedSearch.current) {
+      return;
+    }
+
+    lastPushedSearch.current = debouncedSearch;
+    setQueryParams({ search: debouncedSearch, page: 1 });
+  }, [debouncedSearch, setQueryParams]);
+
+  const showEmpty = !isPending && props.blogs.length === 0;
+  const showList = !isPending && props.blogs.length > 0;
 
   return (
     <>
@@ -114,7 +78,7 @@ export const PageView: FC<Props> = (props) => {
         )}
       </Section>
 
-      <ContentContainer>
+      <Section childrenProps={{ className: "xl:gap-12" }}>
         <div className="flex lg:flex-row flex-col items-center justify-between gap-8">
           <div className="lg:w-fit w-full px-auto overflow-y-auto">
             <TabsMenu
@@ -132,15 +96,13 @@ export const PageView: FC<Props> = (props) => {
             type="search"
             placeholder={searchPlaceholder}
             value={search}
-            onChange={(e) =>
-              handleSearchChange((e.target as HTMLInputElement).value)
-            }
+            onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
             className="text-base h-10 lg:max-w-[280px] w-full flex items-center"
           />
         </div>
 
         <AnimatePresence>
-          {loading && (
+          {isPending && (
             <motion.div
               key="spinner"
               initial={{ opacity: 1 }}
@@ -152,7 +114,7 @@ export const PageView: FC<Props> = (props) => {
             </motion.div>
           )}
 
-          {!loading && data.blogs.length === 0 && (
+          {showEmpty && (
             <motion.div
               key="noBlogs"
               className="flex items-center justify-center"
@@ -171,23 +133,23 @@ export const PageView: FC<Props> = (props) => {
         <h2 className="sr-only">Blog posts</h2>
 
         <AnimatePresence>
-          {!loading && data.blogs.length > 0 && (
+          {showList && (
             <motion.div
               key="blogList"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="pt-12 mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+              className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
             >
-              {data.blogs.map((blog) => (
+              {props.blogs.map((blog) => (
                 <BlogCard key={blog.id} {...blog} />
               ))}
             </motion.div>
           )}
         </AnimatePresence>
 
-        {!loading && data.blogs.length > 0 && (
+        {showList && (
           <AnimatePresence mode="wait">
             <motion.div
               key="pagination"
@@ -197,13 +159,14 @@ export const PageView: FC<Props> = (props) => {
               exit={{ opacity: 0 }}
             >
               <Pagination
-                meta={data.meta}
+                meta={props.meta}
+                className="py-0 lg:py-0"
                 onClick={(page: number) => setQueryParams({ page })}
               />
             </motion.div>
           </AnimatePresence>
         )}
-      </ContentContainer>
+      </Section>
     </>
   );
 };

@@ -12,8 +12,6 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function PropertyDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   const property = await getPropertyDetail(slug, locale);

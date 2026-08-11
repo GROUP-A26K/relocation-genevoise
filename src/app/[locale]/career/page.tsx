@@ -4,9 +4,16 @@ import { getTranslations } from "next-intl/server";
 
 import { AppConfig } from "@/utils/AppConfig";
 import { PageView } from "@/components/sections/Career";
-import { fetchDepartments } from "@/services/career/career.service";
+import {
+  fetchDepartments,
+  fetchJobPosts,
+} from "@/services/career/career.service";
+
+const PAGE_SIZE = 5;
+
 type Props = {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string; filterBy?: string }>;
 };
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
@@ -27,12 +34,21 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 export default async function Page(props: Props) {
   const { locale } = await props.params;
+  const { page, filterBy } = await props.searchParams;
 
-  const { departments } = await fetchDepartments({ locale });
+  const [{ departments }, { jobs, meta }] = await Promise.all([
+    fetchDepartments({ locale }),
+    fetchJobPosts({
+      locale,
+      page: Number(page) || 1,
+      pageSize: PAGE_SIZE,
+      filterBy: filterBy ?? "",
+    }),
+  ]);
 
   return (
     <Suspense fallback={null}>
-      <PageView departments={departments} />;
+      <PageView departments={departments} jobs={jobs} meta={meta} />
     </Suspense>
   );
 }
