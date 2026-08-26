@@ -195,7 +195,7 @@ export const fetchPropertySlugBySlug = async (slug: string) => {
       language: string;
       slug: string;
     }[];
-  } | null>(PROPERTY_SLUG_QUERY, { slug });
+  } | null>(PROPERTY_SLUG_QUERY, { slug }, { tags: ["property"] });
 
   if (!response?.targetSlug) {
     return [];

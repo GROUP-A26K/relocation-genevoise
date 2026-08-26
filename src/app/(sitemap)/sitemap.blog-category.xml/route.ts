@@ -43,10 +43,14 @@ interface SitemapEntry {
 const NOW = new Date().toISOString();
 
 const buildEntries = async (): Promise<SitemapEntry[]> => {
-  const categories = await sanityFetch<BlogCategory[]>(POST_CATEGORIES_QUERY, {
-    limit: CFG.FETCH_LIMIT,
-    locale: CFG.LOCALE,
-  });
+  const categories = await sanityFetch<BlogCategory[]>(
+    POST_CATEGORIES_QUERY,
+    {
+      limit: CFG.FETCH_LIMIT,
+      locale: CFG.LOCALE,
+    },
+    { tags: ['categories'] }
+  );
 
   const mainEntry: SitemapEntry = {
     url: `${CFG.BASE_URL}${CFG.MAIN.path}`,

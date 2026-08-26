@@ -6,6 +6,8 @@ interface SanityFetchOptions {
   tags?: string[];
 }
 
+const REVALIDATE_TAGGED_SECONDS = 86400;
+
 const REVALIDATE_FALLBACK_SECONDS = 300;
 
 export const sanityFetch = async <T>(
@@ -21,11 +23,10 @@ export const sanityFetch = async <T>(
     );
   }
 
-  if (!options.tags) {
-    return client.fetch<T>(query, params);
-  }
 
   return client.fetch<T>(query, params, {
-    next: { revalidate: REVALIDATE_FALLBACK_SECONDS, tags: options.tags },
+    next: { revalidate: options.tags?.length
+        ? REVALIDATE_TAGGED_SECONDS
+        : REVALIDATE_FALLBACK_SECONDS, tags: options.tags },
   });
 };
