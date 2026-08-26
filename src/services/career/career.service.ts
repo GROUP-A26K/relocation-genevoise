@@ -148,7 +148,7 @@ export const fetchCareerSlugBySlug = async (slug: string) => {
         current: string;
       };
     }[];
-  } | null>(CAREER_SLUG_QUERY, { slug });
+  } | null>(CAREER_SLUG_QUERY, { slug }, { tags: ["job-detail"] });
 
   if (!response?.targetSlug) {
     return [];

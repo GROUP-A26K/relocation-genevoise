@@ -207,7 +207,7 @@ export const fetchBlogSlugBySlug = async (slug: string) => {
         current: string;
       };
     }[];
-  } | null>(BLOG_SLUG_QUERY, { slug });
+  } | null>(BLOG_SLUG_QUERY, { slug }, { tags: ["blog"] });
 
   if (!response?.targetSlug) {
     return [];
