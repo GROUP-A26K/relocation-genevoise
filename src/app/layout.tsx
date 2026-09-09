@@ -69,7 +69,9 @@ export default async function RootLayout(props: Props) {
           strategy="beforeInteractive"
         />
       </head>
-      <GoogleTagManager gtmId={Env.NEXT_PUBLIC_GTM_ID} />
+      {Env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={Env.NEXT_PUBLIC_GTM_ID} />
+      )}
 
       <body>{<NuqsAdapter>{props.children}</NuqsAdapter>}</body>
     </html>
