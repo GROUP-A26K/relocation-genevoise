@@ -50,7 +50,7 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
             variant="md"
             type="secondary"
             iconStart={Phone}
-            className="w-full py-3 px-4 !leading-[130%] !h-auto"
+            className="w-full py-3 px-4 leading-[130%]! h-auto!"
           >
             {t("agent.contactButton")}
           </Button>

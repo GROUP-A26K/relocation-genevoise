@@ -39,15 +39,15 @@ export default function OurRentalProcess({
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-24">
         <div className="flex flex-col gap-12 lg:flex-1 lg:self-start">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+            <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
               {eyebrow}
             </p>
-            <h2 className="text-pretty text-[32px] font-bold !leading-[130%] text-black-500 lg:text-[40px]">
+            <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
               {heading}
             </h2>
           </div>
 
-          <div className="relative aspect-[572/420] w-full overflow-hidden rounded-3xl">
+          <div className="relative aspect-572/420 w-full overflow-hidden rounded-3xl">
             <Image
               src={image.src}
               alt={image.alt}
@@ -84,7 +84,7 @@ export default function OurRentalProcess({
                   >
                     <span
                       className={cn(
-                        "text-lg font-semibold !leading-[130%] transition-colors duration-300 lg:text-2xl",
+                        "text-lg font-semibold leading-[130%]! transition-colors duration-300 lg:text-2xl",
                         isReached ? "text-black-500" : "text-black-100",
                       )}
                     >
@@ -96,7 +96,7 @@ export default function OurRentalProcess({
                     className={cn(
                       "relative w-px flex-1 overflow-hidden",
                       isLast
-                        ? "bg-gradient-to-b from-grey-200 to-transparent"
+                        ? "bg-linear-to-b from-grey-200 to-transparent"
                         : "bg-grey-200",
                     )}
                   >
@@ -129,7 +129,7 @@ export default function OurRentalProcess({
                   >
                     <h3
                       className={cn(
-                        "text-2xl font-semibold !leading-[130%] transition-colors duration-300",
+                        "text-2xl font-semibold leading-[130%]! transition-colors duration-300",
                         isReached ? "text-black-500" : "text-black-100",
                       )}
                     >
@@ -138,7 +138,7 @@ export default function OurRentalProcess({
                   </button>
                   <p
                     className={cn(
-                      "text-base font-normal !leading-[150%] transition-colors duration-300",
+                      "text-base font-normal leading-[150%]! transition-colors duration-300",
                       isReached ? "text-black-300" : "text-black-100",
                     )}
                   >

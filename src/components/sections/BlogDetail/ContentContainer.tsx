@@ -12,9 +12,9 @@ export const ContentContainer: FC<Props> = ({ children }) => {
         className={cn(
           "container flex flex-col gap-8 relative pb-14 pt-0 px-4",
           "lg:flex-row lg:pb-16 lg:pt-8 lg:px-[48px]",
-          "xl:max-w-screen-xl xl:px-[100px]",
-          "2xl:max-w-screen-2xl",
-          "md:max-w-screen-md"
+          "xl:max-w-(--breakpoint-xl) xl:px-[100px]",
+          "2xl:max-w-(--breakpoint-2xl)",
+          "md:max-w-(--breakpoint-md)"
         )}
       >
         {children}

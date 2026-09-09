@@ -21,7 +21,7 @@ export const ImageTitle: FC<Props> = ({ imgUrl, title }) => {
           className="aspect-video lg:h-[480px] lg:max-h-[480px] max-w-[720px] rounded-2xl w-full bg-gray-100 object-cover"
         />
       </div>
-      <div className="flex gap-2 text-gray-500 text-xs !leading-[130%] font-medium items-center">
+      <div className="flex gap-2 text-gray-500 text-xs leading-[130%]! font-medium items-center">
         <Link className="h-4 w-4" />
         {title}
       </div>

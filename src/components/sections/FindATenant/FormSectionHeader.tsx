@@ -16,7 +16,7 @@ export default function FormSectionHeader({ title }: IFormSectionHeaderProps) {
         <rect width="7" height="7" className="fill-secondary-500" />
         <rect x="7" y="7.25" width="7" height="7" className="fill-black-500" />
       </svg>
-      <h2 className="text-xl font-semibold !leading-[130%] text-black-500">
+      <h2 className="text-xl font-semibold leading-[130%]! text-black-500">
         {title}
       </h2>
     </div>

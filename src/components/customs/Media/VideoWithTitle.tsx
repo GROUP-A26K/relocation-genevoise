@@ -59,7 +59,7 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
                 <div className="flex lg:h-10 h-8">
                   <VideoPlayerMuteButton
                     className={cn(
-                      'lg:size-10 size-8 text-white text-sm font-normal !leading-[130%] bg-transparent pr-0',
+                      'lg:size-10 size-8 text-white text-sm font-normal leading-[130%]! bg-transparent pr-0',
                       '[--media-icon-color:#FFFFFF]'
                     )}
                   />
@@ -91,7 +91,7 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
             </div>
           </VideoPlayerControlBar>
         </VideoPlayer>
-        <div className="flex gap-2 text-gray-500 text-xs !leading-[130%] font-medium items-center">
+        <div className="flex gap-2 text-gray-500 text-xs leading-[130%]! font-medium items-center">
           {title}
         </div>
       </div>

@@ -163,10 +163,10 @@ const Footer = async () => {
       <Section isDivider>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-start justify-between gap-y-4">
           <div className="flex flex-col gap-2 max-w-xl justify-start">
-            <h3 className="text-lg font-semibold !leading-[130%]">
+            <h3 className="text-lg font-semibold leading-[130%]!">
               {contact.title}
             </h3>
-            <p className="text-xs font-normal text-black-200 !leading-[130%]">
+            <p className="text-xs font-normal text-black-200 leading-[130%]!">
               {contact.subTitle}
             </p>
           </div>
@@ -187,7 +187,7 @@ const Footer = async () => {
                 />
               </Link>
             </div>
-            <p className="text-sm text-black-200 !leading-[130%]">{tagline}</p>
+            <p className="text-sm text-black-200 leading-[130%]!">{tagline}</p>
             <GoogleRating
               googleUrl={googleRating.googleUrl}
               point={5}
@@ -203,7 +203,7 @@ const Footer = async () => {
                   {service.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="font-medium hover:text-primary flex items-center gap-1.5 !leading-[130%]"
+                      className="font-medium hover:text-primary flex items-center gap-1.5 leading-[130%]!"
                     >
                       {link?.icon && (
                         <Image
@@ -222,7 +222,7 @@ const Footer = async () => {
                   {company.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="font-medium hover:text-primary flex items-center gap-1.5 !leading-[130%]"
+                      className="font-medium hover:text-primary flex items-center gap-1.5 leading-[130%]!"
                     >
                       {link?.icon && (
                         <Image
@@ -243,7 +243,7 @@ const Footer = async () => {
                   {support.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="font-medium hover:text-primary flex items-center gap-1.5 !leading-[130%]"
+                      className="font-medium hover:text-primary flex items-center gap-1.5 leading-[130%]!"
                     >
                       {link?.icon && (
                         <Image
@@ -268,7 +268,7 @@ const Footer = async () => {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium hover:text-primary flex items-center gap-1.5 !leading-[130%]"
+                        className="font-medium hover:text-primary flex items-center gap-1.5 leading-[130%]!"
                       >
                         {link?.icon && (
                           <Image
@@ -293,7 +293,7 @@ const Footer = async () => {
       </Section>
 
       <section className="relative flex flex-col justify-center items-center bg-grey-50 text-black-500">
-        <div className="px-4 py-8 w-full lg:px-[48px] 2xl:px-[100px] 2xl:max-w-screen-2xl">
+        <div className="px-4 py-8 w-full lg:px-[48px] 2xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
           <Link
             href="https://groupe-genevoise.ch/"
             target="_blank"
@@ -302,7 +302,7 @@ const Footer = async () => {
             <GGLogo className="mb-4" />
           </Link>
 
-          <div className="flex w-full flex-col justify-between gap-4 text-xs font-normal !leading-[130%] text-black-300 md:flex-row md:items-center">
+          <div className="flex w-full flex-col justify-between gap-4 text-xs font-normal leading-[130%]! text-black-300 md:flex-row md:items-center">
             <p>{copyright}</p>
             <ul className="flex gap-4">
               {bottomLinks.map((link, linkIdx) => (

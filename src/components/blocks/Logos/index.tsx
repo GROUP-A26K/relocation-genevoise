@@ -101,7 +101,7 @@ const Logos: FC<Props> = ({
   return (
     <section className="relative flex flex-col items-center overflow-hidden lg:py-16 py-12 text-black-500 bg-grey-50">
       <div className="container flex flex-col items-center text-center">
-        <h2 className="lg:text-xl text-base font-semibold !leading-[130%] text-pretty">
+        <h2 className="lg:text-xl text-base font-semibold leading-[130%]! text-pretty">
           {heading}
         </h2>
       </div>
@@ -137,8 +137,8 @@ const Logos: FC<Props> = ({
             </CarouselContent>
           </Carousel>
 
-          <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent" />
-          <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-12 bg-linear-to-r from-background to-transparent" />
+          <div className="absolute inset-y-0 right-0 w-12 bg-linear-to-l from-background to-transparent" />
         </div>
       </div>
     </section>

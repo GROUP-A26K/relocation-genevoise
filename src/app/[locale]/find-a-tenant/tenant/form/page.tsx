@@ -47,7 +47,7 @@ export default async function Page(
       heading={t("heading")}
       description={t("description")}
       image={{ src: FormImage, alt: t("heading") }}
-      imageWrapperClassname="aspect-[556/668]"
+      imageWrapperClassname="aspect-556/668"
     >
       <TenantForm />
     </FormLayout>

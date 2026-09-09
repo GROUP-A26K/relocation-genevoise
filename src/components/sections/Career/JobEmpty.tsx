@@ -22,10 +22,10 @@ const JobEmpty: React.FC<JobEmptyProps> = ({
         sizes="100vw"
       />
       <div className="flex flex-col gap-6 justify-center items-center max-w-[720px]">
-        <h3 className="text-2xl text-black-500 text-center font-semibold !leading-[130%] font-playfair">
+        <h3 className="text-2xl text-black-500 text-center font-semibold leading-[130%]! font-playfair">
           {title}
         </h3>
-        <p className="text-sm text-black-200 text-center font-normal !leading-[130%]">
+        <p className="text-sm text-black-200 text-center font-normal leading-[130%]!">
           {description}
         </p>
       </div>

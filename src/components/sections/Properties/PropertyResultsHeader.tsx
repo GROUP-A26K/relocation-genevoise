@@ -37,7 +37,7 @@ export default function PropertyResultsHeader({
 
   return (
     <div className="flex mb-8 max-md:flex-col-reverse md:items-center md:justify-between gap-4">
-      <div className="text-p font-normal text-black-500 !leading-[130%]">
+      <div className="text-p font-normal text-black-500 leading-[130%]!">
         {t("results.showing")}{" "}
         <span className="font-bold">
           {startItem}-{endItem}
@@ -64,7 +64,7 @@ export default function PropertyResultsHeader({
               }`}
             />
           </div>
-          <span className="text-p font-normal text-black-500 !leading-[130%] whitespace-nowrap">
+          <span className="text-p font-normal text-black-500 leading-[130%]! whitespace-nowrap">
             {t("results.showAvailableOnly")}
           </span>
         </button>
@@ -73,7 +73,7 @@ export default function PropertyResultsHeader({
           <div className="relative">
             <button
               onClick={() => setSortOpen((isOpen) => !isOpen)}
-              className="flex items-center justify-center gap-2 h-10 px-4 py-3 bg-grey-100 hover:bg-grey-200 rounded-full text-p font-semibold text-black-500 !leading-[130%] whitespace-nowrap transition-colors"
+              className="flex items-center justify-center gap-2 h-10 px-4 py-3 bg-grey-100 hover:bg-grey-200 rounded-full text-p font-semibold text-black-500 leading-[130%]! whitespace-nowrap transition-colors"
             >
               {t(currentSortLabel)}
               <ChevronDown className="w-4 h-4" />
@@ -84,7 +84,7 @@ export default function PropertyResultsHeader({
                   <button
                     key={option.value}
                     onClick={() => handleSortSelect(option.value)}
-                    className={`w-full text-left px-4 py-2 text-p !leading-[130%] hover:bg-grey-50 transition-colors ${
+                    className={`w-full text-left px-4 py-2 text-p leading-[130%]! hover:bg-grey-50 transition-colors ${
                       queryParams.sort === option.value
                         ? "font-semibold text-black-500"
                         : "font-normal text-black-300"

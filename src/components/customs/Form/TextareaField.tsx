@@ -46,7 +46,7 @@ export const TextareaField = <TFieldValues extends FieldValues = FieldValues>({
         <Textarea
           id={name}
           className={cn(
-            "text-sm !mt-0 rounded-xl !leading-[130%]",
+            "text-sm mt-0! rounded-xl leading-[130%]!",
             "shadow-none placeholder:text-black-50 text-black-50 border-gray-200",
             "hover:border-black-50 hover:text-back-100",
             "focus-visible:text-black-50 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-50",
@@ -60,7 +60,7 @@ export const TextareaField = <TFieldValues extends FieldValues = FieldValues>({
           {...register(name)}
         />
         {!!maxLength && (
-          <span className="pointer-events-none absolute bottom-2.5 right-3 text-sm !leading-[130%] text-black-50">
+          <span className="pointer-events-none absolute bottom-2.5 right-3 text-sm leading-[130%]! text-black-50">
             {length}/{maxLength}
           </span>
         )}

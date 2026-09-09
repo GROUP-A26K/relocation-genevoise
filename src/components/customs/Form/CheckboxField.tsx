@@ -36,7 +36,7 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
           />
         </FormControl>
         <FormLabel
-          className="text-sm font-normal text-black-200 !leading-[130%] cursor-pointer"
+          className="text-sm font-normal text-black-200 leading-[130%]! cursor-pointer"
           htmlFor={name}
         >
           {label}

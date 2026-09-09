@@ -93,7 +93,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputComponentProps>(
   ({ className, inputClassName, ...props }, ref) => (
     <Input
       className={cn(
-        "h-10 rounded-e-[1.5rem] rounded-s-none border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50",
+        "h-10 rounded-e-3xl rounded-s-none border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50",
         "hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0",
         className,
         inputClassName
@@ -165,7 +165,7 @@ const CountrySelect = ({
           type="button"
           variant="outline"
           className={cn(
-            "flex h-10 items-center gap-2 rounded-s-[1.5rem] rounded-e-none border border-gray-200 border-r-0 bg-white px-3 text-sm text-black-50 shadow-none",
+            "flex h-10 items-center gap-2 rounded-s-3xl rounded-e-none border border-gray-200 border-r-0 bg-white px-3 text-sm text-black-50 shadow-none",
             "hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0",
             disabled && "bg-black-25 text-black-200",
             className

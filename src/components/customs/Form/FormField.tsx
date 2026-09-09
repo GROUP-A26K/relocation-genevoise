@@ -30,7 +30,7 @@ export const FormField: FC<FormFieldProps> = ({
     <FormItem className={cn('w-full flex flex-col gap-1.5', className)}>
       {label && (
         <FormLabel
-          className={cn('text-sm !leading-[130%] flex gap-0.5', labelClassName)}
+          className={cn('text-sm leading-[130%]! flex gap-0.5', labelClassName)}
           {...(htmlFor ? { htmlFor } : {})}
         >
           {label}
@@ -38,7 +38,7 @@ export const FormField: FC<FormFieldProps> = ({
         </FormLabel>
       )}
       <FormControl className="mt-0 rounded-full">{children}</FormControl>
-      {message && <FormMessage className="!mt-0">{message}</FormMessage>}
+      {message && <FormMessage className="mt-0!">{message}</FormMessage>}
     </FormItem>
   );
 };

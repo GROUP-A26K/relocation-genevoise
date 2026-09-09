@@ -77,7 +77,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
             <>
               <div className="absolute inset-0 rounded-2xl bg-white/30" />
               <div className="absolute top-4 left-4">
-                <span className="flex items-center gap-1 bg-white border border-grey-200 rounded-[6px] px-2.5 py-1 text-sm font-medium text-black-500 !leading-[1.3]">
+                <span className="flex items-center gap-1 bg-white border border-grey-200 rounded-[6px] px-2.5 py-1 text-sm font-medium text-black-500 leading-[1.3]!">
                   <Clock
                     className="w-3.5 h-3.5 text-black-200"
                     strokeWidth={2.8}
@@ -93,7 +93,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
           <div className="flex flex-col gap-3 w-full">
             <div className="flex gap-2 items-center flex-wrap">
               <span
-                className={`text-sm font-medium !leading-[1.3] px-3 py-1 rounded-[6px] w-fit ${
+                className={`text-sm font-medium leading-[1.3]! px-3 py-1 rounded-[6px] w-fit ${
                   listingType === "sale"
                     ? "bg-yellow-50 text-yellow-800"
                     : "bg-blue-50 text-blue-500"
@@ -101,20 +101,20 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
               >
                 {t(`listingType.${listingType}`)}
               </span>
-              <span className="bg-grey-100 text-black-500 text-sm font-medium !leading-[1.3] px-3 py-1 rounded-[6px] w-fit">
+              <span className="bg-grey-100 text-black-500 text-sm font-medium leading-[1.3]! px-3 py-1 rounded-[6px] w-fit">
                 {category}
               </span>
             </div>
 
-            <h3 className="text-h3 font-semibold text-black-500 !leading-[130%] truncate w-full">
+            <h3 className="text-h3 font-semibold text-black-500 leading-[130%]! truncate w-full">
               {title}
             </h3>
 
             <div className="flex flex-col gap-2 w-full">
               {location.name && (
                 <div className="flex gap-1.5 items-center">
-                  <MapPin className="!w-4 h-4 text-black-200" />
-                  <span className="text-sm lg:text-p  font-normal text-black-200 !leading-[130%]">
+                  <MapPin className="w-4! h-4 text-black-200" />
+                  <span className="text-sm lg:text-p  font-normal text-black-200 leading-[130%]!">
                     {location.name}
                   </span>
                 </div>
@@ -123,8 +123,8 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
               <div className="flex gap-3 items-center h-[21px]">
                 {areaValue && (
                   <div className="flex gap-1.5 items-center">
-                    <Scaling className="!w-4 h-4 text-black-200" />
-                    <span className="text-sm lg:text-p  font-normal text-black-200 !leading-[130%]">
+                    <Scaling className="w-4! h-4 text-black-200" />
+                    <span className="text-sm lg:text-p  font-normal text-black-200 leading-[130%]!">
                       {formatAreaValue(areaValue)} m
                       <sup className="text-[10px]">2</sup>
                     </span>
@@ -135,8 +135,8 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
                 )}
                 {bedValue && (
                   <div className="flex gap-1.5 items-center">
-                    <BedDouble className="!w-4 h-4 text-black-200" />
-                    <span className="text-sm lg:text-p  font-normal text-black-200 !leading-[130%]">
+                    <BedDouble className="w-4! h-4 text-black-200" />
+                    <span className="text-sm lg:text-p  font-normal text-black-200 leading-[130%]!">
                       {bedValue} {t("bedroom")}
                     </span>
                   </div>
@@ -146,8 +146,8 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
                 )}
                 {bathValue && (
                   <div className="flex gap-1.5 items-center">
-                    <Bath className="!w-4 h-4 text-black-200" />
-                    <span className="text-sm lg:text-p  font-normal text-black-200 !leading-[130%]">
+                    <Bath className="w-4! h-4 text-black-200" />
+                    <span className="text-sm lg:text-p  font-normal text-black-200 leading-[130%]!">
                       {bathValue} {t("bathroom")}
                     </span>
                   </div>
@@ -158,12 +158,12 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
 
           <div className="flex gap-1 items-baseline">
             <span
-              className={`text-2xl lg:text-h2 font-semibold !leading-[130%] ${isUnavailable ? "text-black-200" : "text-blue-500"}`}
+              className={`text-2xl lg:text-h2 font-semibold leading-[130%]! ${isUnavailable ? "text-black-200" : "text-blue-500"}`}
             >
               {currencySymbol}
               {convertedPrice.toLocaleString("en-US")}
               {listingType === "rent" && (
-                <span className="text-sm lg:text-p font-semibold text-black-200 !leading-[130%]">
+                <span className="text-sm lg:text-p font-semibold text-black-200 leading-[130%]!">
                   /{t(`rentPeriod.${rentPeriod}`)}
                 </span>
               )}

@@ -58,7 +58,7 @@ export default function Hero({
               width={80}
               className={cn(
                 "size-full text-yellow-25 opacity-70",
-                "[mask-image:radial-gradient(circle_at_top,white,transparent_95%)]",
+                "mask-[radial-gradient(circle_at_top,white,transparent_95%)]",
               )}
             />
           </div>
@@ -68,10 +68,10 @@ export default function Hero({
 
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <h1 className="whitespace-pre-line text-pretty text-center text-4xl font-bold !leading-[130%] text-black-500 lg:text-5xl lg:text-left">
+                <h1 className="whitespace-pre-line text-pretty text-center text-4xl font-bold leading-[130%]! text-black-500 lg:text-5xl lg:text-left">
                   {heading}
                 </h1>
-                <p className="text-pretty text-base text-center font-normal !leading-[150%] text-black-300 lg:text-left">
+                <p className="text-pretty text-base text-center font-normal leading-[150%]! text-black-300 lg:text-left">
                   {description}
                 </p>
               </div>
@@ -102,7 +102,7 @@ export default function Hero({
             </div>
           </div>
 
-          <div className="flex-1 relative aspect-[572/420] w-full">
+          <div className="flex-1 relative aspect-572/420 w-full">
             <Image
               src={image.src}
               alt={image.alt}
@@ -124,9 +124,9 @@ export default function Hero({
               <div className="flex flex-1 w-full flex-col items-center gap-3 p-6 text-center lg:py-12">
                 <CountUp
                   value={stat.value}
-                  className="text-4xl font-bold !leading-[130%] text-black-500 lg:text-[40px]"
+                  className="text-4xl font-bold leading-[130%]! text-black-500 lg:text-[40px]"
                 />
-                <p className="text-base lg:text-lg font-semibold !leading-[130%] text-black-200">
+                <p className="text-base lg:text-lg font-semibold leading-[130%]! text-black-200">
                   {stat.label}
                 </p>
               </div>

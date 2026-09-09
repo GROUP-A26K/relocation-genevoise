@@ -105,15 +105,15 @@ export default function Testimonials({
   return (
     <Section className="bg-white">
       <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+        <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
           {eyebrow}
         </p>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-pretty text-[32px] font-bold !leading-[130%] text-black-500 lg:text-[40px]">
+          <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
             {heading}
           </h2>
-          <p className="text-base font-normal !leading-[150%] text-black-300">
+          <p className="text-base font-normal leading-[150%]! text-black-300">
             {description}
           </p>
         </div>
@@ -140,7 +140,7 @@ export default function Testimonials({
                       />
                     ))}
                   </div>
-                  <p className="text-base font-normal !leading-[150%] text-black-300">
+                  <p className="text-base font-normal leading-[150%]! text-black-300">
                     {item.quote}
                   </p>
                 </div>
@@ -162,10 +162,10 @@ export default function Testimonials({
                     </div>
                   )}
                   <div className="flex flex-col gap-0.5">
-                    <p className="text-base font-semibold !leading-[130%] text-black-500">
+                    <p className="text-base font-semibold leading-[130%]! text-black-500">
                       {item.name}
                     </p>
-                    <p className="text-sm font-normal !leading-[150%] text-black-200">
+                    <p className="text-sm font-normal leading-[150%]! text-black-200">
                       {item.role}
                     </p>
                   </div>

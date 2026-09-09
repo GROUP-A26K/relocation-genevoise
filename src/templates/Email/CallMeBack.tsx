@@ -73,7 +73,7 @@ export const CallMeBack = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold !leading-[100%] ml-1">
+                        <Text className="text-[#7C6C06] text-xs font-semibold leading-[100%]! ml-1">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -85,7 +85,7 @@ export const CallMeBack = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#7C6C06] text-3xl font-semibold !leading-[130%] text-start m-8 mb-6"
+              className="text-[#7C6C06] text-3xl font-semibold leading-[130%]! text-start m-8 mb-6"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 

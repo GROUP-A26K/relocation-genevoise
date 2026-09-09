@@ -18,7 +18,7 @@ export const FeatureColCard2: React.FC<Props> = ({
   info,
 }) => {
   return (
-    <div className="flex p-6 h-full flex-col w-full lg:gap-6 gap-4 border border-grey-50 bg-white hover:border-secondary-500 rounded-2xl leading-none no-underline transition-colors outline-none select-none">
+    <div className="flex p-6 h-full flex-col w-full lg:gap-6 gap-4 border border-grey-50 bg-white hover:border-secondary-500 rounded-2xl leading-none no-underline transition-colors outline-hidden select-none">
       <div className="lg:h-12 lg:w-12 w-10 h-10 rounded-xl bg-secondary-500 flex items-center justify-center">
         <div className="lg:p-3 p-2.5">
           {Icon && <Icon className="lg:h-6 lg:w-6 w-5 h-5 text-black-500" />}
@@ -26,11 +26,11 @@ export const FeatureColCard2: React.FC<Props> = ({
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className={cn("flex flex-col text-black-500 lg:gap-2 gap-1")}>
-          <h3 className="text-xl font-semibold !leading-[130%]">{title}</h3>
+          <h3 className="text-xl font-semibold leading-[130%]!">{title}</h3>
           {description && (
             <p
               className={cn(
-                "lg:text-sm text-sm text-black-200 font-normal !leading-[130%]"
+                "lg:text-sm text-sm text-black-200 font-normal leading-[130%]!"
               )}
             >
               {description}
@@ -40,7 +40,7 @@ export const FeatureColCard2: React.FC<Props> = ({
 
         {link && (
           <Link href={link}>
-            <div className="flex items-center text-[14px] text-primary-500 font-semibold !leading-[130%] pt-4">
+            <div className="flex items-center text-[14px] text-primary-500 font-semibold leading-[130%]! pt-4">
               Discover our offers
               <ArrowRight
                 strokeWidth={3}
@@ -55,7 +55,7 @@ export const FeatureColCard2: React.FC<Props> = ({
         )}
 
         {info && (
-          <div className="flex items-center text-xl text-primary-500 font-semibold !leading-[130%] pt-4">
+          <div className="flex items-center text-xl text-primary-500 font-semibold leading-[130%]! pt-4">
             {info}
           </div>
         )}

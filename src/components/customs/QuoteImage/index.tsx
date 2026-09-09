@@ -22,7 +22,7 @@ const QuoteImage: React.FC<QuoteImageProps> = ({
           "lg:p-6 lg:bg-grey-50"
         )}
       >
-        <blockquote className="italic text-center text-base text-black-500 font-normal !leading-[130%]">
+        <blockquote className="italic text-center text-base text-black-500 font-normal leading-[130%]!">
           {content}
         </blockquote>
         <div className="w-full flex flex-col items-center gap-3">
@@ -35,10 +35,10 @@ const QuoteImage: React.FC<QuoteImageProps> = ({
             className="w-10 h-10 rounded-full object-contain"
           />
           <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-black-500 text-base font-semibold !leading-[130%]">
+            <p className="text-black-500 text-base font-semibold leading-[130%]!">
               {author}
             </p>
-            <p className="text-black-200 text-sm font-normal !leading-[130%]">
+            <p className="text-black-200 text-sm font-normal leading-[130%]!">
               {authorInfo}
             </p>
           </div>

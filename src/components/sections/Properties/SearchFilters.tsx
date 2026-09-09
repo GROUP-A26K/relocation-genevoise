@@ -29,12 +29,12 @@ interface ISearchFiltersFormValues {
 }
 
 const FILTER_LABEL_CLASSNAME =
-  "text-body font-semibold text-black-500 !leading-[130%]";
+  "text-body font-semibold text-black-500 leading-[130%]!";
 
 const FIELD_CLASSNAME = "w-full lg:w-[320px] space-y-0";
 
 const FIELD_INPUT_CLASSNAME =
-  "h-10 bg-white border-grey-100 text-small font-medium text-black-500 placeholder:text-black-50 !leading-[130%]";
+  "h-10 bg-white border-grey-100 text-small font-medium text-black-500 placeholder:text-black-50 leading-[130%]!";
 
 const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
   const t = useTranslations("Properties");

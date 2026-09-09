@@ -37,7 +37,7 @@ export const BlogBGCard: React.FC<Blog> = ({
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none !leading-[130%]"
+                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none leading-[130%]!"
                 >
                   {cat.title}
                 </Badge>
@@ -46,13 +46,13 @@ export const BlogBGCard: React.FC<Blog> = ({
             <div className="flex flex-col gap-2">
               <h2
                 title={title}
-                className="lg:text-3xl text-xl font-semibold text-black-500 group-hover:text-black-600 !leading-[130%]"
+                className="lg:text-3xl text-xl font-semibold text-black-500 group-hover:text-black-600 leading-[130%]!"
               >
                 {title}
               </h2>
               <p
                 title={description}
-                className="lg:text-base font-normal text-sm !leading-[130%] text-black-200"
+                className="lg:text-base font-normal text-sm leading-[130%]! text-black-200"
               >
                 {description}
               </p>
@@ -69,15 +69,15 @@ export const BlogBGCard: React.FC<Blog> = ({
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
               <div className="flex flex-col gap-[2px]">
-                <p className="text-base font-semibold text-grey-700 !leading-[130%]">
+                <p className="text-base font-semibold text-grey-700 leading-[130%]!">
                   {author.name}
                 </p>
-                <p className="text-sm font-normal text-grey-700 !leading-[130%]">
+                <p className="text-sm font-normal text-grey-700 leading-[130%]!">
                   {publishedDate}
                 </p>
               </div>
             </div>
-            <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 !leading-[130%]">
+            <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 leading-[130%]!">
               {timeToRead}{' '}
               {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>
@@ -98,7 +98,7 @@ export const BlogBGCard: React.FC<Blog> = ({
               'aspect-video',
               'lg:h-[495px] lg:max-h-[495px] sm:h-[280px] md:h-full max-xs:max-h-[226px]',
               'rounded-2xl w-full bg-gray-100 object-cover',
-              'sm:aspect-[2/1] lg:aspect-[3/2]'
+              'sm:aspect-2/1 lg:aspect-3/2'
             )}
           />
         </div>

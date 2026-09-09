@@ -71,12 +71,12 @@ const PaginationPrevious = ({
       aria-label="Go to previous page"
       size="default"
       className={cn(
-        'gap-1 pl-2.5 text-black-500 font-semibold !leading-[130%]',
+        'gap-1 pl-2.5 text-black-500 font-semibold leading-[130%]!',
         className
       )}
       {...props}
     >
-      <ArrowLeft strokeWidth={3} className="!h-3 !w-3" />
+      <ArrowLeft strokeWidth={3} className="h-3! w-3!" />
       <span>{locale === 'en' ? 'Previous' : 'Anterior'}</span>
     </PaginationLink>
   );
@@ -93,13 +93,13 @@ const PaginationNext = ({
       aria-label="Go to next page"
       size="default"
       className={cn(
-        'gap-1 pr-2.5 text-black-500 font-semibold !leading-[130%]',
+        'gap-1 pr-2.5 text-black-500 font-semibold leading-[130%]!',
         className
       )}
       {...props}
     >
       <span>{locale === 'en' ? 'Next' : 'Siguiente'}</span>
-      <ArrowRight strokeWidth={3} className="!h-3 !w-3" />
+      <ArrowRight strokeWidth={3} className="h-3! w-3!" />
     </PaginationLink>
   );
 };
@@ -114,7 +114,7 @@ const PaginationEllipsis = ({
     className={cn('flex h-9 w-9 items-center justify-center', className)}
     {...props}
   >
-    <MoreHorizontal className="!h-3 !w-3" />
+    <MoreHorizontal className="h-3! w-3!" />
     <span className="sr-only">More pages</span>
   </span>
 );

@@ -58,7 +58,7 @@ export const FAQBlog: React.FC<Props> = ({
 }) => {
   return (
     <div id={id} className={cn("flex flex-col w-full gap-4 items-start")}>
-      <h2 className="text-2xl font-semibold text-left text-primary-500 !leading-[130%]">
+      <h2 className="text-2xl font-semibold text-left text-primary-500 leading-[130%]!">
         {heading}
       </h2>
       <Accordion
@@ -78,13 +78,13 @@ export const FAQBlog: React.FC<Props> = ({
             )}
           >
             <AccordionTrigger
-              className={cn("text-lg font-semibold !leading-[130%] py-0")}
+              className={cn("text-lg font-semibold leading-[130%]! py-0")}
             >
               {item.question}
             </AccordionTrigger>
             <AccordionContent
               className={cn(
-                "py-0 pt-2 max-w-[720px] text-sm text-black-200 !leading-[130%]",
+                "py-0 pt-2 max-w-[720px] text-sm text-black-200 leading-[130%]!",
                 "lg:max-w-[672px]"
               )}
             >

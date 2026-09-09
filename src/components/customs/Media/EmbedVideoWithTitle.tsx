@@ -17,7 +17,7 @@ export const EmbedVideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         />
-        <div className="flex gap-2 text-gray-500 text-xs !leading-[130%] font-medium items-center">
+        <div className="flex gap-2 text-gray-500 text-xs leading-[130%]! font-medium items-center">
           {title}
         </div>
       </div>

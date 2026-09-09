@@ -54,7 +54,7 @@ const Callout: React.FC<CalloutProps> = ({ sectionType, content, title }) => {
           )}
           <h3
             className={cn(
-              "text-lg !leading-[130%] font-semibold",
+              "text-lg leading-[130%]! font-semibold",
               STYLE_TITLE[sectionType]
             )}
           >

@@ -33,15 +33,15 @@ export default function Services({
   return (
     <Section id="services" className="bg-white">
       <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+        <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
           {eyebrow}
         </p>
 
         <div className="flex flex-col gap-4">
-          <h2 className="whitespace-pre-line text-[32px] font-bold !leading-[130%] text-black-500 lg:text-[40px]">
+          <h2 className="whitespace-pre-line text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
             {heading}
           </h2>
-          <p className="text-base font-normal !leading-[150%] text-black-300">
+          <p className="text-base font-normal leading-[150%]! text-black-300">
             {description}
           </p>
         </div>
@@ -58,10 +58,10 @@ export default function Services({
             </div>
 
             <div className="flex flex-col gap-1 lg:gap-2">
-              <h3 className="text-xl font-semibold !leading-[130%] text-black-500">
+              <h3 className="text-xl font-semibold leading-[130%]! text-black-500">
                 {title}
               </h3>
-              <p className="text-base font-normal !leading-[150%] text-black-300">
+              <p className="text-base font-normal leading-[150%]! text-black-300">
                 {description}
               </p>
             </div>

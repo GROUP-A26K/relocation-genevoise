@@ -49,13 +49,13 @@ const ContactChannelButton = ({
     aria-pressed={isActive}
     onClick={() => onSelect(value)}
     className={cn(
-      "px-4 py-2 rounded-[1.5rem] text-base font-semibold shadow-none cursor-pointer",
-      "md:w-fit w-full flex items-center justify-center gap-2 border border-solid h-10 lg:h-12 bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
+      "px-4 py-2 rounded-3xl text-base font-semibold shadow-none cursor-pointer",
+      "md:w-fit w-full flex items-center justify-center gap-2 border border-solid h-10 lg:h-12 bg-white transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500",
       isActive ? "bg-yellow-25 border-yellow-500" : "border-grey-200"
     )}
   >
     {icon}
-    <span className="text-sm text-black-500 font-normal !leading-[130%]">
+    <span className="text-sm text-black-500 font-normal leading-[130%]!">
       {label}
     </span>
   </button>
@@ -193,7 +193,7 @@ export const ConsultationFormView: FC<Props> = ({
         icon: (
           <div className="p-[6.17px] rounded-full bg-yellow-500 text-center">
             <Phone
-              className="!w-[11.67px] !h-[11.67px] text-white"
+              className="w-[11.67px]! h-[11.67px]! text-white"
               strokeWidth={2.5}
             />
           </div>
@@ -202,7 +202,7 @@ export const ConsultationFormView: FC<Props> = ({
       {
         value: "whatsapp" as const,
         label: cardContent.whatsappLabel,
-        icon: <WhatsappIcon className="!w-6 !h-6" />,
+        icon: <WhatsappIcon className="w-6! h-6!" />,
       },
     ],
     [cardContent.telephoneLabel, cardContent.whatsappLabel]
@@ -223,19 +223,19 @@ export const ConsultationFormView: FC<Props> = ({
             "flex flex-col text-center gap-4",
             "lg:gap-6 lg:text-left",
             "w-full",
-            "2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px]",
+            "2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)  xl:px-[100px]",
             "xl:px-[100px] lg:px-[48px] px-4"
           )}
         >
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-primary-500 !leading-[130%]">
+            <p className="text-sm font-semibold text-primary-500 leading-[130%]!">
               {heading}
             </p>
-            <h1 className="text-3xl font-semibold !leading-[130%]">
+            <h1 className="text-3xl font-semibold leading-[130%]!">
               {TextWithStrong(subHeading)}
             </h1>
           </div>
-          <p className="text-sm font-normal text-black-200 !leading-[130%]">
+          <p className="text-sm font-normal text-black-200 leading-[130%]!">
             {description}
           </p>
         </div>
@@ -250,20 +250,20 @@ export const ConsultationFormView: FC<Props> = ({
       >
         <div className={cn("flex flex-col gap-6 w-full", "lg:p-8")}>
           <div className="flex flex-col gap-3">
-            <h2 className="lg:text-2xl text-xl font-semibold !leading-[130%] max-w-[450px]">
+            <h2 className="lg:text-2xl text-xl font-semibold leading-[130%]! max-w-[450px]">
               {cardContent.title}
             </h2>
             <div className="flex flex-col gap-3">
               <div className="flex gap-2 items-center">
                 <PhoneIncoming className="h-4 w-4 text-primary-500" />
-                <h3 className="text-sm font-normal text-black-500 !leading-[130%]">
+                <h3 className="text-sm font-normal text-black-500 leading-[130%]!">
                   {cardContent.callTitle}
                 </h3>
               </div>
 
               <div className="flex gap-2 items-center">
                 <CalendarDays className="h-4 w-4 text-primary-500" />
-                <h3 className="flex text-sm text-center text-black-500 !leading-[130%]">
+                <h3 className="flex text-sm text-center text-black-500 leading-[130%]!">
                   {cardContent.calendarTitle}
                 </h3>
               </div>
@@ -275,7 +275,7 @@ export const ConsultationFormView: FC<Props> = ({
               <div
                 className={`rounded-full h-2 w-2 ${isOpen ? "bg-green-500" : "bg-red-500"}`}
               />
-              <h3 className="text-black-500 text-sm !leading-[130%]">
+              <h3 className="text-black-500 text-sm leading-[130%]!">
                 {isOpen
                   ? cardContent.openStatusTitle
                   : cardContent.closeStatusTitle}
@@ -330,10 +330,10 @@ export const ConsultationFormView: FC<Props> = ({
                 </form>
               </Form>
             </div>
-            <h3 className="text-sm font-normal text-black-500 !leading-[130%] w-full">
+            <h3 className="text-sm font-normal text-black-500 leading-[130%]! w-full">
               {cardContent.noteTitle}{" "}
               <Link href={"/mentions-legales"}>
-                <strong className="text-sm font-semibold !leading-[130%] cursor-pointer w-full">
+                <strong className="text-sm font-semibold leading-[130%]! cursor-pointer w-full">
                   {cardContent.policyTitle}
                 </strong>
               </Link>

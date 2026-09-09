@@ -12,7 +12,7 @@ export const ContactContainer: FC<Props> = (props) => {
   return (
     <section className="relative flex flex-col justify-center items-center text-black-500">
       <div
-        className={`container 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md xl:pr-0 xl:px-[100px] lg:px-[48px] px-4`}
+        className={`container 2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) xl:pr-0 xl:px-[100px] lg:px-[48px] px-4`}
       >
         <div
           className={`xl:pb-0 pb-14 border-t xl:border-none border-grey-100`}
@@ -21,13 +21,13 @@ export const ContactContainer: FC<Props> = (props) => {
           <div className="flex flex-col items-center xl:justify-center lg:justify-start w-full">
             <div className="flex flex-col items-start lg:gap-8 gap-12">
               <div className="flex flex-col gap-3">
-                <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
+                <p className="text-sm font-semibold text-secondary-600 leading-[130%]!">
                   {t('title')}
                 </p>
-                <h2 className="text-3xl font-semibold !leading-[130%]">
+                <h2 className="text-3xl font-semibold leading-[130%]!">
                   {t('subTitle')}
                 </h2>
-                <p className="text-sm font-normal text-black-200 !leading-[130%] max-w-2xl">
+                <p className="text-sm font-normal text-black-200 leading-[130%]! max-w-2xl">
                   {t('description')}
                 </p>
               </div>

@@ -43,9 +43,9 @@ export const HomeHero: FC<Props> = ({
           width={80}
           className={cn(
             "min-h-1226",
-            "[mask-image:radial-gradient(450px_circle_at_center,white,transparent)]",
-            "md:[mask-image:radial-gradient(380px_circle_at_center,white,transparent)]",
-            "lg:[mask-image:radial-gradient(800px_circle_at_center,white,transparent)]"
+            "mask-[radial-gradient(450px_circle_at_center,white,transparent)]",
+            "md:mask-[radial-gradient(380px_circle_at_center,white,transparent)]",
+            "lg:mask-[radial-gradient(800px_circle_at_center,white,transparent)]"
           )}
         />
       </div>
@@ -54,14 +54,14 @@ export const HomeHero: FC<Props> = ({
         <div className="flex flex-col gap-6">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl w-full lg:items-center text-center">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]">
+              <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 leading-[130%]!">
                 {heading}
               </p>
-              <h1 className="lg:text-5xl text-4xl font-bold text-center text-balance !leading-[130%]">
+              <h1 className="lg:text-5xl text-4xl font-bold text-center text-balance leading-[130%]!">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
+            <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-balance">
               {description}
             </p>
           </div>
@@ -104,7 +104,7 @@ export const HomeHero: FC<Props> = ({
             src={HeroImage}
             width={1240}
             height={480}
-            className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
           />
         </div>
       </div>

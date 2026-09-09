@@ -16,7 +16,7 @@ export const SubMenuLink: React.FC<MenuItem> = ({
 }) => {
   const STYLE_TEXT: Record<'lg' | 'md', string> = {
     lg: cn('text-[14px]'),
-    md: cn('text-[12px]'),
+    md: cn('text-subtle'),
   };
 
   const STYLE_ITEM: Record<'lg' | 'md', string> = {
@@ -24,20 +24,20 @@ export const SubMenuLink: React.FC<MenuItem> = ({
     md: cn('gap-[4px]'),
   };
   return (
-    <div className='group flex p-3 flex-row gap-[8px] rounded-md leading-none no-underline transition-colors outline-none select-none hover:bg-grey-50 hover:text-accent-foreground'>
-      <div className='!h-8 rounded-sm !w-8 bg-secondary-500 flex items-center justify-center'>
+    <div className='group flex p-3 flex-row gap-[8px] rounded-md leading-none no-underline transition-colors outline-hidden select-none hover:bg-grey-50 hover:text-accent-foreground'>
+      <div className='h-8! rounded-sm w-8! bg-secondary-500 flex items-center justify-center'>
         <div className='p-4'>
-          {Icon && <Icon className='!h-4 !w-4 text-primary-500' />}
+          {Icon && <Icon className='h-4! w-4! text-primary-500' />}
         </div>
       </div>
       <div className={cn('flex flex-col text-black-500 ', STYLE_ITEM[variant])}>
-        <div className='text-[14px] font-semibold !leading-[130%]'>{title}</div>
+        <div className='text-[14px] font-semibold leading-[130%]!'>{title}</div>
         {description && (
           <p
             className={cn(
-              'text-[14px] text-black-200 font-normal !leading-[130%]',
+              'text-[14px] text-black-200 font-normal leading-[130%]!',
               STYLE_TEXT[variant],
-              '!leading-[130%]'
+              'leading-[130%]!'
             )}
           >
             {description}

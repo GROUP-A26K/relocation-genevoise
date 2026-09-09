@@ -34,14 +34,14 @@ const AccordionTrigger = React.forwardRef<
     >
       {children}
       <span className="ml-6 flex h-6 items-center">
-        {/* <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-[&[data-state='open']]:rotate-180" /> */}
+        {/* <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[state='open']:rotate-180" /> */}
         <CirclePlus
           aria-hidden="true"
-          className="size-6 text-grey-500 group-[&[data-state=open]]:hidden transition-transform duration-500 rotate-180 group-data-[open]:hidden"
+          className="size-6 text-grey-500 group-data-[state=open]:hidden transition-transform duration-500 rotate-180 group-data-open:hidden"
         />
         <CircleMinus
           aria-hidden="true"
-          className="size-6 text-grey-500 hidden group-[&[data-state=open]]:block transition-transform duration-500 rotate-180"
+          className="size-6 text-grey-500 hidden group-data-[state=open]:block transition-transform duration-500 rotate-180"
         />
       </span>
     </AccordionPrimitive.Trigger>

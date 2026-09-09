@@ -25,7 +25,7 @@ export const JobCard: React.FC<Props> = ({
     <Link href={job.href}>
       <div className="flex flex-col gap-4 h-full cursor-pointer border border-grey-200 p-6 rounded-2xl w-full">
         <div className="flex flex-col w-full">
-          <div className="flex flex-col gap-1 text-left !leading-[130%]">
+          <div className="flex flex-col gap-1 text-left leading-[130%]!">
             <div className="flex flex-row flex-wrap justify-between gap-2">
               <p className="line-clamp-1 text-sm font-semibold text-secondary-600">
                 {job.department}
@@ -66,13 +66,13 @@ export const JobCard: React.FC<Props> = ({
 
         <p
           title={job.excerpt || 'No description available.'}
-          className="line-clamp-2 text-sm lg:text-sm font-normal text-black-200 !leading-[130%]"
+          className="line-clamp-2 text-sm lg:text-sm font-normal text-black-200 leading-[130%]!"
         >
           {job.excerpt || 'No description available.'}
         </p>
 
         <div className="flex flex-row flex-wrap">
-          <div className="flex items-center gap-1.5 !pr-6">
+          <div className="flex items-center gap-1.5 pr-6!">
             <div className="min-w-4 w-4">
               <MapPin className="size-4 text-black-50" />
             </div>

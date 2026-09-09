@@ -18,7 +18,7 @@ export const GoogleRating: FC<Props> = ({
 }) => {
   return (
     <Link href={googleUrl} target="_blank" rel="noopener noreferrer">
-      <div className="flex flex-row w-full gap-[11.33px] outline-none select-none">
+      <div className="flex flex-row w-full gap-[11.33px] outline-hidden select-none">
         <div className="flex justify-center">
           <Image
             src={GoogleLogo}

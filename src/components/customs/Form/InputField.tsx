@@ -58,8 +58,8 @@ export const InputField = <TFieldValues extends FieldValues = FieldValues>({
         <Input
           id={name}
           className={cn(
-            "text-sm h-10 !mt-0",
-            "shadow-none placeholder:text-black-50 text-black-50 rounded-[1.5rem] border-gray-200",
+            "text-sm h-10 mt-0!",
+            "shadow-none placeholder:text-black-50 text-black-50 rounded-3xl border-gray-200",
             "hover:border-black-50 hover:text-back-100",
             "focus-visible:text-black-50 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-50",
             icon && "pl-10",
