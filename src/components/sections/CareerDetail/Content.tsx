@@ -122,32 +122,32 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
                   data-type="Primary"
                   className="inline-flex justify-center items-center gap-1.5"
                 >
-                  <div className="justify-start text-secondary-600 text-sm font-semibold font-['Inter'] leading-tight">
+                  <div className="justify-start text-secondary-600 text-sm font-semibold font-sans leading-tight">
                     {jobDetail.department}
                   </div>
                 </div>
-                <h1 className="self-stretch justify-start text-gray-900 text-3xl font-semibold font-['Inter'] leading-10">
+                <h1 className="self-stretch justify-start text-gray-900 text-3xl font-semibold font-sans leading-10">
                   {jobDetail.title}
                 </h1>
               </div>
               <div className="self-stretch inline-flex justify-start items-center gap-3 flex-wrap">
                 <div className="flex justify-start items-center gap-1.5">
                   <Clock className="size-4 text-black-50" />
-                  <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
+                  <div className="justify-start text-black-200 text-sm font-medium font-sans leading-tight">
                     {jobDetail.employmentType}
                   </div>
                 </div>
                 <div className="w-px h-4 bg-slate-200" />
                 <div className="flex justify-start items-center gap-1.5">
                   <MapPin className="size-4 text-black-50" />
-                  <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
+                  <div className="justify-start text-black-200 text-sm font-medium font-sans leading-tight">
                     {jobDetail.location}
                   </div>
                 </div>
                 <div className="w-px h-4 bg-slate-200" />
                 <div className="flex justify-start items-center gap-1.5">
                   <CircleDollarSign className="size-4 text-black-50" />
-                  <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
+                  <div className="justify-start text-black-200 text-sm font-medium font-sans leading-tight">
                     {jobDetail.salaryMin} - {jobDetail.salaryMax}{" "}
                     {jobDetail.currency}
                   </div>

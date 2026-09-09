@@ -1,10 +1,18 @@
 import { Metadata } from "next";
 import Script from "next/script";
+import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 import { Env } from "@/libs/Env";
+
+// Variable font, so the full 100-900 weight axis comes for free.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 type Props = {
   children: ReactNode;
@@ -49,7 +57,7 @@ export const metadata: Metadata = {
 // is required, even if it's just passing children through.
 export default async function RootLayout(props: Props) {
   return (
-    <html lang="fr" className="scroll-smooth">
+    <html lang="fr" className={`${inter.variable} scroll-smooth`}>
       <head>
         <link
           rel="icon"
