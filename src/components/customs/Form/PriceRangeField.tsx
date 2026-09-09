@@ -94,7 +94,7 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
   return (
     <div className={cn("w-full flex flex-col gap-1.5", className)}>
       {label && (
-        <span className={cn("text-sm !leading-[130%]", labelClassName)}>
+        <span className={cn("text-sm leading-[130%]!", labelClassName)}>
           {label}
         </span>
       )}
@@ -106,9 +106,9 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
               "border bg-white px-3",
               "border-grey-100",
               "hover:border-black-50",
-              "focus:outline-none focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50",
-              "[&[data-state=open]]:border-secondary-500 [&[data-state=open]]:ring-2 [&[data-state=open]]:ring-secondary-50",
-              currencyOpen && "!border-secondary-500 ring-2 ring-secondary-50",
+              "focus:outline-hidden focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50",
+              "data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50",
+              currencyOpen && "border-secondary-500! ring-2 ring-secondary-50",
               triggerClassName,
             )}
           >
@@ -196,7 +196,7 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
         </PopoverTrigger>
 
         <PopoverContent
-          className="p-1 rounded-2xl border-[#ededed] max-h-[320px] overflow-auto flex flex-col gap-0.5"
+          className="p-1 rounded-2xl border-grey-100 max-h-[320px] overflow-auto flex flex-col gap-0.5"
           align="start"
           style={{ width: "var(--radix-popover-trigger-width)" }}
           onOpenAutoFocus={(e) => e.preventDefault()}

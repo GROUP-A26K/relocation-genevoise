@@ -60,14 +60,14 @@ export const AssistanceFAQ: FC<Props> = ({
       <div className='flex w-full justify-start'>
         <div className='flex flex-col lg:gap-6 gap-4 max-w-3xl text-left'>
           <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold text-secondary-600 !leading-[130%]'>
+            <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
               {heading}
             </p>
-            <h2 className='text-3xl font-semibold !leading-[130%]'>
+            <h2 className='text-3xl font-semibold leading-[130%]!'>
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal text-black-200 !leading-[130%]'>
+          <p className='text-sm font-normal text-black-200 leading-[130%]!'>
             {description}
           </p>
         </div>
@@ -81,13 +81,13 @@ export const AssistanceFAQ: FC<Props> = ({
           >
             <dt>
               <DisclosureButton className='group flex w-full items-start justify-between text-left text-black-500'>
-                <span className='text-lg font-semibold !leading-[130%]'>
+                <span className='text-lg font-semibold leading-[130%]!'>
                   {faq.question}
                 </span>
                 <span className='ml-6 flex h-6 items-center'>
                   <CirclePlus
                     aria-hidden='true'
-                    className='size-6 text-primary-500 group-data-[open]:hidden'
+                    className='size-6 text-primary-500 group-data-open:hidden'
                   />
                   <CircleMinus
                     aria-hidden='true'
@@ -99,9 +99,9 @@ export const AssistanceFAQ: FC<Props> = ({
             <DisclosurePanel
               transition
               as='dd'
-              className='origin-top transition duration-500 ease-out data-[closed]:-translate-y-6 data-[closed]:opacity-0'
+              className='origin-top transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0'
             >
-              <p className='pt-2 max-w-[720px] text-sm text-black-200 !leading-[130%]'>
+              <p className='pt-2 max-w-[720px] text-sm text-black-200 leading-[130%]!'>
                 {faq.answer}
               </p>
             </DisclosurePanel>

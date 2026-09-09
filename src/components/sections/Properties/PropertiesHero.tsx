@@ -23,14 +23,14 @@ export default function PropertiesHero() {
       <div className="relative flex flex-col items-center pt-12 lg:pt-16 pb-24 lg:pb-40 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4">
         <article className="flex flex-col gap-4 lg:gap-6 items-center max-w-[720px]">
           <div className="flex flex-col gap-3 items-center w-full">
-            <span className="text-body font-semibold text-yellow-500 !leading-[1.3]">
+            <span className="text-body font-semibold text-yellow-500 leading-[1.3]!">
               {t("hero.tagline")}
             </span>
-            <h1 className="text-3xl lg:text-h1 font-bold text-white text-center !leading-[1.3] text-balance">
+            <h1 className="text-3xl lg:text-h1 font-bold text-white text-center leading-[1.3]! text-balance">
               {t("hero.title")}
             </h1>
           </div>
-          <p className="text-body font-normal text-white text-center !leading-[1.3] text-pretty">
+          <p className="text-body font-normal text-white text-center leading-[1.3]! text-pretty">
             {t("hero.description")}
           </p>
         </article>

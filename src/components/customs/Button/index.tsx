@@ -65,16 +65,16 @@ const Button: FC<Props> = ({
   // Define button size styles for different variants (lg, md, sm, xs)
   const STYLE_BTN: Record<IVariant, string> = {
     lg: cn(
-      'px-[24px] py-[22px] rounded-[1.5rem] text-[18px] text-white font-semibold lineHeight-large w-fit'
+      'px-[24px] py-[22px] rounded-3xl text-large text-white font-semibold lineHeight-large w-fit'
     ),
     md: cn(
-      'px-[16px] py-[20px] rounded-[1.5rem] text-[16px] text-white font-semibold lineHeight-md w-fit'
+      'px-[16px] py-[20px] rounded-3xl text-[16px] text-white font-semibold lineHeight-md w-fit'
     ),
     sm: cn(
-      'px-[12px] py-[17px] rounded-[1.5rem] text-[14px] text-white font-semibold lineHeight-sm w-fit'
+      'px-[12px] py-[17px] rounded-3xl text-[14px] text-white font-semibold lineHeight-sm w-fit'
     ),
     xs: cn(
-      'px-[10px] py-[10px] rounded-[1.5rem] text-[12px] text-white font-semibold lineHeight-xs w-fit'
+      'px-[10px] py-[10px] rounded-3xl text-subtle text-white font-semibold lineHeight-xs w-fit'
     ),
   };
 
@@ -141,10 +141,10 @@ const Button: FC<Props> = ({
 
   // Define icon size for each variant
   const STYLE_ICON: Record<IVariant, string> = {
-    lg: cn('!w-[20px] !h-[20px]'),
-    md: cn('!w-[16px] !h-[16px]'),
-    sm: cn('!w-[12px] !h-[12px]'),
-    xs: cn('!w-[10px] !h-[10px]'),
+    lg: cn('w-[20px]! h-[20px]!'),
+    md: cn('w-[16px]! h-[16px]!'),
+    sm: cn('w-[12px]! h-[12px]!'),
+    xs: cn('w-[10px]! h-[10px]!'),
   };
 
   const renderButtonContent = () => (

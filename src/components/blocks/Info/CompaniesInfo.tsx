@@ -58,14 +58,14 @@ export const CompaniesInfo: FC<Props> = ({
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-3xl lg:items-center text-left">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
+              <p className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
                 {heading}
               </p>
-              <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
+              <h1 className="lg:text-5xl text-4xl font-bold text-center lg:leading-[130%]! leading-[100%]! text-pretty">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-pretty">
+            <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-pretty">
               {description}
             </p>
           </div>
@@ -74,7 +74,7 @@ export const CompaniesInfo: FC<Props> = ({
       <div className="flex flex-col lg:gap-8 gap-8">
         {items.map((item, i) => (
           <div key={i} className="flex flex-col lg:gap-8 gap-8">
-            <h2 className="flex lg:text-2xl text-xl font-semibold !leading-[130%] pl-4 border-l-4 border-secondary-500">
+            <h2 className="flex lg:text-2xl text-xl font-semibold leading-[130%]! pl-4 border-l-4 border-secondary-500">
               {item.title}
             </h2>
 

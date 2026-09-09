@@ -30,13 +30,13 @@ const StatsList: FC<StatsBlock> = ({
       <div className="flex flex-col gap-5">
         <div
           title={firstStat.value}
-          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-secondary-600 text-center"
+          className="line-clamp-1 text-3xl font-semibold leading-[130%]! text-secondary-600 text-center"
         >
           {firstStat.value}
         </div>
         <p
           title={firstStat.label}
-          className="line-clamp-1 text-sm font-semibold !leading-[130%] text-black-500 text-center"
+          className="line-clamp-1 text-sm font-semibold leading-[130%]! text-black-500 text-center"
         >
           {firstStat.label}
         </p>
@@ -45,13 +45,13 @@ const StatsList: FC<StatsBlock> = ({
       <div className="flex flex-col gap-5">
         <div
           title={secondStat.value}
-          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-secondary-600 text-center"
+          className="line-clamp-1 text-3xl font-semibold leading-[130%]! text-secondary-600 text-center"
         >
           {secondStat.value}
         </div>
         <p
           title={secondStat.value}
-          className="line-clamp-1 text-sm font-semibold !leading-[130%] text-black-500 text-center"
+          className="line-clamp-1 text-sm font-semibold leading-[130%]! text-black-500 text-center"
         >
           {secondStat.label}
         </p>
@@ -60,13 +60,13 @@ const StatsList: FC<StatsBlock> = ({
       <div className="flex flex-col gap-5">
         <div
           title={thirdStat.value}
-          className="line-clamp-1 text-3xl font-semibold !leading-[130%] text-secondary-600 text-center"
+          className="line-clamp-1 text-3xl font-semibold leading-[130%]! text-secondary-600 text-center"
         >
           {thirdStat.value}
         </div>
         <p
           title={thirdStat.value}
-          className="line-clamp-1 text-sm font-semibold !leading-[130%] text-black-500 text-center"
+          className="line-clamp-1 text-sm font-semibold leading-[130%]! text-black-500 text-center"
         >
           {thirdStat.label}
         </p>

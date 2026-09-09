@@ -3,7 +3,7 @@ import Image, { type StaticImageData } from "next/image";
 import { cn } from "@/libs/utils";
 
 const CONTAINER =
-  "container w-full max-w-screen-2xl mx-auto px-4 lg:px-[48px] 2xl:px-[100px]";
+  "container w-full max-w-(--breakpoint-2xl) mx-auto px-4 lg:px-[48px] 2xl:px-[100px]";
 
 interface IFormLayoutProps extends React.PropsWithChildren {
   eyebrow: string;
@@ -29,14 +29,14 @@ export default function FormLayout({
       <div className="bg-yellow-25">
         <div className={cn(CONTAINER, "pb-24 pt-12 lg:pb-32 lg:pt-16")}>
           <div className="flex max-w-[760px] flex-col gap-3">
-            <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+            <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
               {eyebrow}
             </p>
             <div className="flex flex-col gap-4">
-              <h1 className="whitespace-pre-line text-pretty text-[32px] font-bold !leading-[130%] lg:text-5xl">
+              <h1 className="whitespace-pre-line text-pretty text-[32px] font-bold leading-[130%]! lg:text-5xl">
                 {heading}
               </h1>
-              <p className="text-base font-normal !leading-[150%] text-black-300">
+              <p className="text-base font-normal leading-[150%]! text-black-300">
                 {description}
               </p>
             </div>
@@ -50,7 +50,7 @@ export default function FormLayout({
 
           <div
             className={cn(
-              "relative w-full hidden aspect-[556/852] overflow-hidden rounded-3xl lg:block",
+              "relative w-full hidden aspect-556/852 overflow-hidden rounded-3xl lg:block",
               imageWrapperClassname,
             )}
           >

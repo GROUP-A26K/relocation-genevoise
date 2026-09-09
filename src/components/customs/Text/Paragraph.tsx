@@ -30,7 +30,7 @@ export const Paragraph: FC<Props> = ({
     <Tag
       className={cn(
         variantStyles[style] || variantStyles.normal,
-        'text-black-200 font-normal !leading-[130%] p-0',
+        'text-black-200 font-normal leading-[130%]! p-0',
         className
       )}
     >

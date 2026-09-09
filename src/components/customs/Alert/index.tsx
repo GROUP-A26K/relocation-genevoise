@@ -62,12 +62,12 @@ const Alert: FC<Props> = ({ children, type, title, as, onClick }) => {
         <ShadcnAlert
           className={cn(
             { [STYLE_SOLID[type]]: as === 'solid' },
-            'rounded-[1.5rem] h-fit sm:w-[400px] w-full flex items-center justify-between '
+            'rounded-3xl h-fit sm:w-[400px] w-full flex items-center justify-between '
           )}
         >
           <div
             className={cn(
-              'flex items-center justify-center rounded-full mr-[13px] text-opacity-100 '
+              'flex items-center justify-center rounded-full mr-[13px]'
             )}
           >
             <Info className="h-[24px] w-[24px] text-white" />
@@ -104,7 +104,7 @@ const Alert: FC<Props> = ({ children, type, title, as, onClick }) => {
         <ShadcnAlert
           className={cn(
             { [STYLE_GHOST[type]]: as === 'ghost' },
-            'rounded-[1.5rem] sm:w-[400px] h-fit w-full flex items-center justify-between '
+            'rounded-3xl sm:w-[400px] h-fit w-full flex items-center justify-between '
           )}
         >
           <div

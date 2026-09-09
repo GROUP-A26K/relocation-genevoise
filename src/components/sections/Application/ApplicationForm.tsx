@@ -121,7 +121,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
     jobDetail;
 
   return (
-    <div className="container w-full 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md xl:px-[100px] lg:px-[48px] px-4 gap-8 pt-8">
+    <div className="container w-full 2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) xl:px-[100px] lg:px-[48px] px-4 gap-8 pt-8">
       <header className="flex w-full">
         <div className="flex flex-col gap-4 lg:gap-6">
           <p className="text-sm font-semibold text-secondary-600">

@@ -60,14 +60,14 @@ export const FAQ: FC<Props> = ({
       <div className='flex w-full items-center lg:justify-center justify-start'>
         <div className='flex flex-col lg:gap-6 gap-4 max-w-3xl lg:items-center text-left'>
           <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold lg:text-center text-left text-secondary-600 !leading-[130%]'>
+            <p className='text-sm font-semibold lg:text-center text-left text-secondary-600 leading-[130%]!'>
               {heading}
             </p>
-            <h2 className='text-5xl font-semibold lg:text-center text-left !leading-[130%]'>
+            <h2 className='text-5xl font-semibold lg:text-center text-left leading-[130%]!'>
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal lg:text-center text-left text-black-200 !leading-[130%]'>
+          <p className='text-sm font-normal lg:text-center text-left text-black-200 leading-[130%]!'>
             {description}
           </p>
         </div>
@@ -76,18 +76,18 @@ export const FAQ: FC<Props> = ({
       <Accordion
         type='single'
         collapsible
-        className='divide-y divide-gray-900/10 flex flex-col max-w-3xl w-full'
+        className='flex flex-col max-w-3xl w-full'
       >
         {faqs.map((item, index) => (
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className='py-8 first:pt-0 last:pb-0 duration-500 border-b-0'
+            className='py-8 first:pt-0 last:pb-0 duration-500 border-b border-gray-900/10 last:border-b-0'
           >
-            <AccordionTrigger className='text-lg font-semibold !leading-[130%] py-0'>
+            <AccordionTrigger className='text-lg font-semibold leading-[130%]! py-0'>
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className='py-0 pt-2 max-w-[720px] text-sm text-black-200 !leading-[130%]'>
+            <AccordionContent className='py-0 pt-2 max-w-[720px] text-sm text-black-200 leading-[130%]!'>
               <p>
                 <FormattedText text={item.answer} />
               </p>

@@ -39,7 +39,7 @@ export const ChipSelectField: FC<IChipSelectFieldProps> = ({
     <FormItem className={cn("flex w-full flex-col gap-2.5", className)}>
       {label && (
         <FormLabel
-          className={cn("flex gap-0.5 text-sm !leading-[130%]", labelClassName)}
+          className={cn("flex gap-0.5 text-sm leading-[130%]!", labelClassName)}
         >
           {label}
           {isRequired && <span className="text-red-500">*</span>}
@@ -65,7 +65,7 @@ export const ChipSelectField: FC<IChipSelectFieldProps> = ({
                     })
                   }
                   className={cn(
-                    "flex items-center gap-2 rounded-full border bg-white px-3 py-2 text-sm font-normal !leading-[130%] text-black-300 transition-colors",
+                    "flex items-center gap-2 rounded-full border bg-white px-3 py-2 text-sm font-normal leading-[130%]! text-black-300 transition-colors",
                     isSelected
                       ? "border-secondary-500 bg-secondary-25"
                       : "border-grey-100 hover:border-secondary-400",
@@ -80,7 +80,7 @@ export const ChipSelectField: FC<IChipSelectFieldProps> = ({
         )}
       />
 
-      {error && <FormMessage className="!mt-0">{error}</FormMessage>}
+      {error && <FormMessage className="mt-0!">{error}</FormMessage>}
     </FormItem>
   );
 };

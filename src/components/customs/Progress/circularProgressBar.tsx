@@ -29,7 +29,7 @@ export const CircularProgressBar: React.FC<Props> = ({
       style={{ width: size, height: size }}
     >
       <svg
-        className="rotate-[-90deg]"
+        className="-rotate-90"
         viewBox="0 0 100 100"
         width={size}
         height={size}

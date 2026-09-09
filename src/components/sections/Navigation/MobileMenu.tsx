@@ -44,7 +44,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                 variant="lg"
                 type="primary"
                 as="solid"
-                className="border-2 border-white rounded-none bg-white text-black-500 active:!bg-white hover:!bg-white group-[&[data-state='open']]:hidden pointer-events-auto shadow-none"
+                className="border-2 border-white rounded-none bg-white text-black-500 active:bg-white! hover:bg-white! group-data-[state='open']:hidden pointer-events-auto shadow-none"
                 icon={() => (
                   <Image
                     height={22}
@@ -81,7 +81,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                 variant="lg"
                 type="primary"
                 as="solid"
-                className="border-2 border-white rounded-[0.5rem] bg-black-500 text-white active:!bg-black-500 hover:!bg-black-500 group-[&[data-state='closed']]:hidden pointer-events-auto shadow-none"
+                className="border-2 border-white rounded-[0.5rem] bg-black-500 text-white active:bg-black-500! hover:bg-black-500! group-data-[state='closed']:hidden pointer-events-auto shadow-none"
                 icon={X}
               />
             </SheetClose>

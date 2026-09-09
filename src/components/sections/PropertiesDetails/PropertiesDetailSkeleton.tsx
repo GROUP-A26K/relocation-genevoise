@@ -131,7 +131,7 @@ const SectionSkeleton = ({ content }: { content: React.ReactNode }) => (
 export const PropertyDetailsViewSkeleton = () => {
   return (
     <section className="w-full flex flex-col justify-center items-center">
-      <div className="flex flex-col items-center pt-12 2xl:pt-16 2xl:px-[100px] lg:px-[48px] px-4 gap-12 2xl:gap-16 max-w-screen-2xl w-full">
+      <div className="flex flex-col items-center pt-12 2xl:pt-16 2xl:px-[100px] lg:px-[48px] px-4 gap-12 2xl:gap-16 max-w-(--breakpoint-2xl) w-full">
         <ImagePreviewSkeleton />
         <PropertyDetailContainer>
           {/* Left Column */}

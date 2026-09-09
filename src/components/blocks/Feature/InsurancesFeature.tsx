@@ -50,14 +50,14 @@ export const InsurancesFeature: FC<Props> = ({
       <div className='flex w-full justify-start'>
         <div className='flex flex-col lg:gap-4 gap-4 max-w-3xl text-left'>
           <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold text-secondary-600 !leading-[130%]'>
+            <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
               {heading}
             </p>
-            <h2 className='text-3xl font-semibold !leading-[130%]'>
+            <h2 className='text-3xl font-semibold leading-[130%]!'>
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal text-black-200 !leading-[130%]'>
+          <p className='text-sm font-normal text-black-200 leading-[130%]!'>
             {description}
           </p>
         </div>
@@ -67,12 +67,12 @@ export const InsurancesFeature: FC<Props> = ({
           {reasonItems.map((reasonItem, i) => (
             <div
               key={i}
-              className='xl:max-w-[536px] w-full  lg:p-6 p-4 pl-6 !pr-0 flex flex-col text-black-500 border-l-4 border-gray-100 hover:border-primary-500 lg:gap-3 gap-1'
+              className='xl:max-w-[536px] w-full  lg:p-6 p-4 pl-6 pr-0! flex flex-col text-black-500 border-l-4 border-gray-100 hover:border-primary-500 lg:gap-3 gap-1'
             >
-              <h3 className='text-xl font-semibold !leading-[130%]'>
+              <h3 className='text-xl font-semibold leading-[130%]!'>
                 {reasonItem.title}
               </h3>
-              <p className='lg:text-sm text-sm text-black-200 font-normal !leading-[130%]'>
+              <p className='lg:text-sm text-sm text-black-200 font-normal leading-[130%]!'>
                 <FormattedText text={reasonItem.description} />
               </p>
             </div>

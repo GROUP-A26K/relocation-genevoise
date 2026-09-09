@@ -72,7 +72,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
               </span>
               <div className="flex gap-2 items-center">
                 <span
-                  className={`shadow-none text-xs !leading-[130%] font-medium px-3 py-1 rounded-[6px] w-fit ${
+                  className={`shadow-none text-xs leading-[130%]! font-medium px-3 py-1 rounded-[6px] w-fit ${
                     property.listingType === "sale"
                       ? "bg-yellow-50 text-yellow-800"
                       : "bg-blue-50 text-blue-500"
@@ -80,25 +80,25 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
                 >
                   {t(`listingType.${property.listingType || "rent"}`)}
                 </span>
-                <span className="bg-grey-100 text-black-500 font-medium shadow-none text-xs !leading-[130%] px-3 py-1 rounded-[6px] w-fit">
+                <span className="bg-grey-100 text-black-500 font-medium shadow-none text-xs leading-[130%]! px-3 py-1 rounded-[6px] w-fit">
                   {property.category.categoryName}
                 </span>
               </div>
             </div>
-            <h1 className="font-semibold text-3xl !leading-[130%] tracking-normal text-primary-500">
+            <h1 className="font-semibold text-3xl leading-[130%]! tracking-normal text-primary-500">
               {property.title}
             </h1>
-            <div className="flex gap-1.5 font-normal text-black-200 !leading-[130%] text-sm">
+            <div className="flex gap-1.5 font-normal text-black-200 leading-[130%]! text-sm">
               <MapPin className="w-4 h-4" />
               <p>{property.mapLocation.name}</p>
             </div>
           </div>
           <div className="items-baseline">
-            <span className="font-semibold text-blue-500 text-3xl !leading-[130%] py-0">
+            <span className="font-semibold text-blue-500 text-3xl leading-[130%]! py-0">
               CHF{property.price}
             </span>
             {property.listingType !== "sale" && (
-              <span className="font-semibold text-black-200 !leading-[130%] text-lg relative">
+              <span className="font-semibold text-black-200 leading-[130%]! text-lg relative">
                 {t(`rentPeriod.${property.rentPeriod || "month"}`)}
               </span>
             )}

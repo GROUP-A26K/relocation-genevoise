@@ -28,13 +28,13 @@ const CtaBlock: React.FC<CtaBlockProps> = ({
         <div className="flex flex-col gap-4">
           <h2
             className={cn(
-              "text-xl font-semibold text-black-500 !leading-[130%]",
+              "text-xl font-semibold text-black-500 leading-[130%]!",
               "lg:text-2xl"
             )}
           >
             {title}
           </h2>
-          <p className="text-sm text-black-200 font-normal !leading-[130%]">
+          <p className="text-sm text-black-200 font-normal leading-[130%]!">
             {description}
           </p>
         </div>

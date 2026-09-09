@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   ComponentPropsWithoutRef,
@@ -6,13 +6,12 @@ import {
   useId,
   useRef,
   useState,
-} from "react";
-import { motion } from "motion/react";
+} from 'react';
+import { motion } from 'motion/react';
 
-import { cn } from "@/libs/utils";
+import { cn } from '@/libs/utils';
 
-export interface AnimatedGridPatternProps
-  extends ComponentPropsWithoutRef<"svg"> {
+export interface AnimatedGridPatternProps extends ComponentPropsWithoutRef<'svg'> {
   width?: number;
   height?: number;
   x?: number;
@@ -100,7 +99,7 @@ export function AnimatedGridPattern({
       ref={containerRef}
       aria-hidden="true"
       className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full stroke-yellow-50 text-[#fcf4cc]",
+        'pointer-events-none absolute inset-0 size-full stroke-yellow-50 text-[#fcf4cc]',
         className
       )}
       {...props}
@@ -131,7 +130,7 @@ export function AnimatedGridPattern({
               duration,
               repeat: 1,
               delay: index * 0.1,
-              repeatType: "reverse",
+              repeatType: 'reverse',
             }}
             onAnimationComplete={() => updateSquarePosition(id)}
             key={`${x}-${y}-${index}`}

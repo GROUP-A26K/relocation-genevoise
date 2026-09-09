@@ -70,7 +70,7 @@ export const MultiSelectField: FC<MultiSelectFieldProps> = ({
           <div className={cn("w-full flex flex-col gap-1.5", className)}>
             {label && (
               <span
-                className={cn("text-sm !leading-[130%]", labelClassName)}
+                className={cn("text-sm leading-[130%]!", labelClassName)}
               >
                 {label}
               </span>
@@ -84,8 +84,8 @@ export const MultiSelectField: FC<MultiSelectFieldProps> = ({
                     "border bg-white px-3",
                     "border-grey-100",
                     "hover:border-black-50",
-                    "focus:outline-none focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50",
-                    "[&[data-state=open]]:border-secondary-500 [&[data-state=open]]:ring-2 [&[data-state=open]]:ring-secondary-50",
+                    "focus:outline-hidden focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50",
+                    "data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50",
                     icon && "pl-10",
                     triggerClassName,
                   )}
@@ -121,7 +121,7 @@ export const MultiSelectField: FC<MultiSelectFieldProps> = ({
               </PopoverTrigger>
 
               <PopoverContent
-                className="p-1 rounded-2xl border-[#ededed] max-h-[320px] overflow-auto"
+                className="p-1 rounded-2xl border-grey-100 max-h-[320px] overflow-auto"
                 align="start"
                 style={{ width: "var(--radix-popover-trigger-width)" }}
               >

@@ -46,7 +46,7 @@ const Input: FC<Props> = ({
           <ShadcnInput
             type="search"
             className={cn(
-              'h-10 shadow-none text-sm placeholder:text-grey-400 text-black-400 rounded-[1.5rem] border-gray-200 pl-8 !leading-[130%]',
+              'h-10 shadow-none text-sm placeholder:text-grey-400 text-black-400 rounded-3xl border-gray-200 pl-8 leading-[130%]!',
               'hover:border-grey-400',
               'focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-50',
               disabled &&
@@ -63,7 +63,7 @@ const Input: FC<Props> = ({
       return (
         <ShadcnInput
           className={cn(
-            'text-[14px] shadow-none placeholder:text-black-50 text-black-50 rounded-[1.5rem] border-gray-200',
+            'text-[14px] shadow-none placeholder:text-black-50 text-black-50 rounded-3xl border-gray-200',
             'hover:border-black-50 hover:text-back-100',
             'focus-visible:text-black-50 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-50',
             disabled &&

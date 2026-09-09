@@ -27,9 +27,9 @@ export default function HeroTabs({ active, labels }: IHeroTabsProps) {
             href={href}
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "group flex items-center gap-2 rounded-full px-3 py-2 text-base font-semibold !leading-[130%] transition-colors",
+              "group flex items-center gap-2 rounded-full px-3 py-2 text-base font-semibold leading-[130%]! transition-colors",
               isActive
-                ? "bg-black-500 text-white shadow-sm"
+                ? "bg-black-500 text-white shadow-xs"
                 : "text-black-200 hover:text-black-500",
             )}
           >

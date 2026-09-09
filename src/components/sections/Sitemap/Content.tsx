@@ -9,7 +9,7 @@ export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
       <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] lg:max-w-[470px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
         {sitemap.menu.map((section) => (
           <div id={section.id} className="flex flex-col gap-4" key={section.id}>
-            <h2 className="lg:text-2xl text-xl font-bold !leading-[130%]">
+            <h2 className="lg:text-2xl text-xl font-bold leading-[130%]!">
               {section.title}
             </h2>
             <List className="flex flex-col gap-4">

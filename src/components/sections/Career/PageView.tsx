@@ -46,14 +46,14 @@ export const PageView: FC<Props> = (props) => {
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left max-w-4xl">
             <div className="flex flex-col gap-3">
-              <div className="text-sm font-semibold text-center text-secondary-500 !leading-[130%]">
+              <div className="text-sm font-semibold text-center text-secondary-500 leading-[130%]!">
                 {t('heading')}
               </div>
-              <h1 className="text-5xl font-bold text-center !leading-[130%]">
+              <h1 className="text-5xl font-bold text-center leading-[130%]!">
                 {TextWithStrong(t('subHeading'))}
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
+            <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-balance">
               {t('description')}
             </p>
           </div>

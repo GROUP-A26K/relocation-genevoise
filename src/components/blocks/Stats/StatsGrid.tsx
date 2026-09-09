@@ -53,14 +53,14 @@ const StatsGrid: FC<Props> = ({
     <div className="flex flex-col lg:gap-16 gap-14">
       <div className="flex flex-col lg:gap-6 gap-4">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
+          <p className="text-sm font-semibold text-secondary-600 leading-[130%]!">
             {heading}
           </p>
-          <h2 className="text-3xl font-semibold !leading-[130%]">
+          <h2 className="text-3xl font-semibold leading-[130%]!">
             <FormattedText text={subHeading} />
           </h2>
         </div>
-        <p className="text-sm font-normal text-black-200 !leading-[130%]">
+        <p className="text-sm font-normal text-black-200 leading-[130%]!">
           {description}
         </p>
       </div>
@@ -70,38 +70,38 @@ const StatsGrid: FC<Props> = ({
           <div className="grid items-center divide-y divide-grey-100 w-full">
             <div className="grid lg:grid-cols-2 items-center lg:items-start lg:divide-x divide-y divide-grey-100 lg:divide-y-0 lg:pb-3">
               <div className="flex flex-col gap-3 items-center lg:pr-4 lg:py-3 pb-9">
-                <div className="text-5xl font-bold  bg-gradient-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text !leading-[130%]">
+                <div className="text-5xl font-bold  bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text leading-[130%]!">
                   {stats1.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 !leading-[130%]">
+                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
                   {stats1.label}
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 items-center lg:pl-4 lg:py-3 py-9">
-                <div className="text-5xl font-bold  bg-gradient-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text !leading-[130%]">
+                <div className="text-5xl font-bold  bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text leading-[130%]!">
                   {stats2.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 !leading-[130%]">
+                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
                   {stats2.label}
                 </p>
               </div>
             </div>
             <div className="grid lg:grid-cols-2 items-center lg:items-start lg:divide-x divide-y lg:divide-y-0 divide-grey-100 lg:pt-3">
               <div className="flex flex-col gap-3 items-center lg:pr-4 lg:py-3 py-9">
-                <div className="text-5xl font-bold !leading-[130%] bg-gradient-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text">
+                <div className="text-5xl font-bold leading-[130%]! bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text">
                   {stats3.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 !leading-[130%]">
+                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
                   {stats3.label}
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 items-center lg:pl-4 lg:py-3 pt-9">
-                <div className="text-5xl font-bold bg-gradient-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text !leading-[130%]">
+                <div className="text-5xl font-bold bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text leading-[130%]!">
                   {stats4.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 !leading-[130%]">
+                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
                   {stats4.label}
                 </p>
               </div>

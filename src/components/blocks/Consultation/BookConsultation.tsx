@@ -36,10 +36,10 @@ export const BookConsultation: FC<Props> = ({
             />
           </div>
           <div className="flex flex-col gap-3">
-            <h2 className="text-2xl font-semibold text-center !leading-[130%]">
+            <h2 className="text-2xl font-semibold text-center leading-[130%]!">
               <FormattedText text={subHeading} />
             </h2>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">
+            <p className="text-sm font-normal text-center text-black-200 leading-[130%]!">
               {description}
             </p>
           </div>

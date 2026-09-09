@@ -20,7 +20,7 @@ const DesktopMenu: FC<Props> = (props) => {
   return (
     <div className="lg:flex flex-col gap-4 w-fit hidden">
       {props?.isTableContent && (
-        <div className="flex lg:text-xl text-base text-black-500 font-semibold !leading-[130%]">
+        <div className="flex lg:text-xl text-base text-black-500 font-semibold leading-[130%]!">
           {props.title && props.title}
         </div>
       )}
@@ -32,7 +32,7 @@ const DesktopMenu: FC<Props> = (props) => {
               title={item.title}
               onClick={() => props.setActiveId(item.id)}
               className={cn(
-                "menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap",
+                "menu-link text-base text-black-200 font-semibold leading-[130%]! line-clamp-2 text-wrap",
                 item.id === props.activeId && "text-primary-500"
               )}
             >
@@ -59,11 +59,11 @@ const MobileMenu: FC<Props> = (props) => {
         <AccordionItem value="item-1" className="border-0">
           <AccordionTrigger className="px-4 py-3 hover:no-underline">
             {props?.isTableContent ? (
-              <div className="flex lg:text-xl text-base text-black-200 font-semibold !leading-[130%]">
+              <div className="flex lg:text-xl text-base text-black-200 font-semibold leading-[130%]!">
                 {props.title && props.title}
               </div>
             ) : (
-              <div className="flex lg:text-xl text-base text-black-200 font-semibold !leading-[130%]">
+              <div className="flex lg:text-xl text-base text-black-200 font-semibold leading-[130%]!">
                 Menu
               </div>
             )}
@@ -77,7 +77,7 @@ const MobileMenu: FC<Props> = (props) => {
                     title={item.title}
                     onClick={() => props.setActiveId(item.id)}
                     className={cn(
-                      "menu-link text-base text-black-200 font-semibold !leading-[130%] line-clamp-2 text-wrap",
+                      "menu-link text-base text-black-200 font-semibold leading-[130%]! line-clamp-2 text-wrap",
                       item.id === props.activeId &&
                         "text-black-500 pl-4 border-l-4 border-primary-500"
                     )}

@@ -58,14 +58,14 @@ const ContactFeature: FC<Props> = ({
       <div className='flex w-full items-center justify-center'>
         <div className='flex flex-col lg:gap-6 gap-4 max-w-3xl lg:items-center text-center'>
           <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]'>
+            <p className='text-sm font-semibold lg:text-center text-center text-secondary-600 leading-[130%]!'>
               {heading}
             </p>
-            <h2 className='text-3xl font-semibold lg:text-center text-center !leading-[130%] text-balance'>
+            <h2 className='text-3xl font-semibold lg:text-center text-center leading-[130%]! text-balance'>
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal lg:text-center text-center text-black-200 !leading-[130%] text-balance'>
+          <p className='text-sm font-normal lg:text-center text-center text-black-200 leading-[130%]! text-balance'>
             {description}
           </p>
         </div>

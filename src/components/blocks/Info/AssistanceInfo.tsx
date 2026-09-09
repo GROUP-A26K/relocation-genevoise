@@ -51,14 +51,14 @@ export const AssistanceInfo: FC<Props> = ({
         <div className='flex w-full justify-center'>
           <div className='flex flex-col lg:gap-6 gap-4 max-w-xl text-center'>
             <div className='flex flex-col gap-3'>
-              <p className='text-sm font-semibold text-secondary-600 !leading-[130%]'>
+              <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
                 {heading}
               </p>
-              <h1 className='text-5xl font-semibold !leading-[130%]'>
+              <h1 className='text-5xl font-semibold leading-[130%]!'>
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className='text-sm font-normal text-black-200 !leading-[130%]'>
+            <p className='text-sm font-normal text-black-200 leading-[130%]!'>
               {description}
             </p>
           </div>

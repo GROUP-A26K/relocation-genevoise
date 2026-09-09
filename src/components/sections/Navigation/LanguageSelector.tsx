@@ -77,7 +77,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
     >
       <Globe
         className={cn(
-          "!h-5 !w-5 transition-transform duration-500",
+          "h-5! w-5! transition-transform duration-500",
           isRotated && "rotate-180",
         )}
       />

@@ -99,7 +99,7 @@ export const FindATenantCustomer = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold !leading-[100%] ml-1">
+                        <Text className="text-[#7C6C06] text-xs font-semibold leading-[100%]! ml-1">
                           https://relocation-genevoise.ch/
                         </Text>
                       </div>
@@ -111,7 +111,7 @@ export const FindATenantCustomer = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#7C6C06] text-3xl font-semibold !leading-[130%] text-start m-8 mb-6"
+              className="text-[#7C6C06] text-3xl font-semibold leading-[130%]! text-start m-8 mb-6"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
@@ -179,7 +179,7 @@ export const FindATenantCustomer = ({
                         height="13"
                         alt="Phone"
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
+                      <Text className="text-[#605204] text-xs font-semibold leading-[100%]! my-0 ml-1 mr-auto">
                         +41 (022) 715 17 48
                       </Text>
                     </div>
@@ -195,7 +195,7 @@ export const FindATenantCustomer = ({
                         height="13"
                         alt="Globe"
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%]  my-3 ml-1 mr-auto">
+                      <Text className="text-[#605204] text-xs font-semibold leading-[100%]!  my-3 ml-1 mr-auto">
                         https://relocation-genevoise.ch/
                       </Text>
                     </div>
@@ -211,7 +211,7 @@ export const FindATenantCustomer = ({
                         height="13"
                         alt="Building"
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
+                      <Text className="text-[#605204] text-xs font-semibold leading-[100%]! my-0 ml-1 mr-auto">
                         Rue des Alpes 5, 1201 Geneva
                       </Text>
                     </div>
@@ -221,13 +221,13 @@ export const FindATenantCustomer = ({
                 {/* Right column: links */}
                 <Column colSpan={4}>
                   <Link href="https://relocation-genevoise.ch/contact">
-                    <Text className="text-[#605204] text-xs font-semibold !leading-[100%] ml-auto mr-5">
+                    <Text className="text-[#605204] text-xs font-semibold leading-[100%]! ml-auto mr-5">
                       {t.contactUs}
                     </Text>
                   </Link>
 
                   <Link href="https://relocation-genevoise.ch/mentions-legales">
-                    <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-3 ml-auto">
+                    <Text className="text-[#605204] text-xs font-semibold leading-[100%]! my-3 ml-auto">
                       {t.privacy}
                     </Text>
                   </Link>

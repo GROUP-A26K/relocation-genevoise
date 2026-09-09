@@ -47,14 +47,14 @@ const ContactInfo: FC<Props> = ({
         <div className="flex w-full items-center justify-center">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-xl lg:items-center text-left">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
+              <p className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
                 {heading}
               </p>
-              <h1 className="text-3xl font-semibold text-center !leading-[130%] text-balance">
+              <h1 className="text-3xl font-semibold text-center leading-[130%]! text-balance">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%]">
+            <p className="text-sm font-normal text-center text-black-200 leading-[130%]!">
               {description}
             </p>
           </div>

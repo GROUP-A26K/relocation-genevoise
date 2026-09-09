@@ -103,9 +103,9 @@ const IconButton: FC<Props> = ({
   };
 
   const STYLE_ICON: Record<IVariant, string> = {
-    lg: cn('!w-[20px] !h-[20px]'),
-    md: cn('!w-[16px] !h-[16px]'),
-    sm: cn('!w-[12px] !h-[12px]'),
+    lg: cn('w-[20px]! h-[20px]!'),
+    md: cn('w-[16px]! h-[16px]!'),
+    sm: cn('w-[12px]! h-[12px]!'),
   };
 
   const renderButtonContent = () => (

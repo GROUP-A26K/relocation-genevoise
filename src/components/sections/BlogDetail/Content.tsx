@@ -116,9 +116,9 @@ export const Content = (blog: BlogDetail) => {
               height={48}
               className="h-[48px] w-[48px] rounded-full bg-gray-100 object-cover"
             />
-            <div className="text-base !leading-[130%] gap-[2px]">
+            <div className="text-base leading-[130%]! gap-[2px]">
               <p className="font-semibold text-gray-700">{blog.author.name}</p>
-              <p className="text-sm font-normal text-gray-700 !leading-[130%]">
+              <p className="text-sm font-normal text-gray-700 leading-[130%]!">
                 {blog.author.email}
               </p>
             </div>

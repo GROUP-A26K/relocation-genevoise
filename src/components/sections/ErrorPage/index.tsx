@@ -52,13 +52,13 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ errorCode, message }) => {
       id="home-section"
       className="lg:h-screen h-fit flex flex-col justify-center items-center text-primary text-black-500"
     >
-      <div className="container h-fit 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4 lg:py-0 py-12">
+      <div className="container h-fit 2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)  xl:px-[100px] lg:px-[48px] px-4 lg:py-0 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center justify-between gap-12">
           <div className="col-span-6 flex flex-col lg:gap-6 gap-4 justify-start lg:justify-center">
             <h1 className="lg:text-[164px] text-[120px] text-grey-200 leading-[131.2px] font-semibold">
               {errorCode}
             </h1>
-            <h1 className="lg:text-[48px] text-3xl font-bold text-black-500 lg:!leading-[130%]">
+            <h1 className="lg:text-h1 text-3xl font-bold text-black-500 lg:leading-[130%]!">
               {title}
             </h1>
             <p className="text-[14px] text-black-200 leading-[18.2px] font-normal">

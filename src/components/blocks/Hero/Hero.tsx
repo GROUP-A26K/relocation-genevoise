@@ -41,14 +41,14 @@ export const Hero: FC<Props> = ({
         <div className="flex flex-col gap-6">
           <div className="flex flex-col lg:gap-6 gap-4 max-w-3xl w-full lg:items-center text-center">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 !leading-[130%]">
+              <p className="text-sm font-semibold lg:text-center text-center text-secondary-600 leading-[130%]!">
                 {heading}
               </p>
-              <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
+              <h1 className="lg:text-5xl text-4xl font-bold text-center lg:leading-[130%]! leading-[100%]! text-pretty">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-pretty">
+            <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-pretty">
               {description}
             </p>
           </div>
@@ -85,7 +85,7 @@ export const Hero: FC<Props> = ({
             src={heroImage.src}
             width={1240}
             height={480}
-            className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            className="aspect-video lg:h-[480px] lg:max-h-[480px] max-h-[226px] rounded-2xl w-full bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
             priority
             loading="eager"
             draggable={false}

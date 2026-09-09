@@ -78,18 +78,18 @@ export const Content: FC<ContentProps> = ({ items }) => {
                         <div className="flex flex-col lg:gap-3 gap-4 max-w-[560px] text-left">
                           <div className="flex flex-col gap-3">
                             <h2
-                              className="lg:text-xl text-lg font-semibold !leading-[130%]"
+                              className="lg:text-xl text-lg font-semibold leading-[130%]!"
                               id={`item-${index}`}
                             >
                               {item.title}
                             </h2>
                           </div>
-                          <h3 className="text-sm font-normal text-black-200 !leading-[130%]">
+                          <h3 className="text-sm font-normal text-black-200 leading-[130%]!">
                             {item.description}
                           </h3>
                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="py-0 pt-10 max-w-[720px] flex justify-center h-fit text-sm text-black-200 !leading-[130%] duration-700">
+                      <AccordionContent className="py-0 pt-10 max-w-[720px] flex justify-center h-fit text-sm text-black-200 leading-[130%]! duration-700">
                         <Image
                           src={item.image}
                           alt={item.title}

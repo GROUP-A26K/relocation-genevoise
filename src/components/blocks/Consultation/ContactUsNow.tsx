@@ -26,10 +26,10 @@ export const ContactUsNow: FC<Props> = ({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 items-start justify-between gap-y-4 bg-primary-500 lg:p-16 p-6 rounded-xl gap-4">
       <div className="flex flex-col gap-4 max-w-xl text-white">
-        <h2 className="lg:text-3xl text-2xl font-semibold !leading-[130%]">
+        <h2 className="lg:text-3xl text-2xl font-semibold leading-[130%]!">
           {heading}
         </h2>
-        <p className="text-sm font-normal !leading-[130%]">
+        <p className="text-sm font-normal leading-[130%]!">
           <FormattedText text={subHeading ?? ""} />
         </p>
       </div>
@@ -38,7 +38,7 @@ export const ContactUsNow: FC<Props> = ({
         <div className="flex flex-row gap-2 items-center justify-start">
           <div className="flex rounded-full h-2 w-2 bg-white" />
 
-          <p className="text-white text-sm !leading-[130%]">{statusTitle}</p>
+          <p className="text-white text-sm leading-[130%]!">{statusTitle}</p>
         </div>
         <div className="flex lg:flex-row flex-col w-full items-center justify-start gap-2">
           <Input
@@ -56,9 +56,9 @@ export const ContactUsNow: FC<Props> = ({
             {buttonText}
           </Button>
         </div>
-        <p className="text-sm font-normal text-white !leading-[130%]">
+        <p className="text-sm font-normal text-white leading-[130%]!">
           We care about your data in our{" "}
-          <span className="text-sm font-semibold !leading-[130%] cursor-pointer">
+          <span className="text-sm font-semibold leading-[130%]! cursor-pointer">
             Privacy Policy
           </span>
         </p>

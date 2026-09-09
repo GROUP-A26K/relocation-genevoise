@@ -78,12 +78,12 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
         </p>
       </div>
 
-      <div className="lg:flex-[2] flex flex-col gap-4 min-w-0">
-        <div className="relative aspect-[784/480] w-full rounded-3xl overflow-hidden">
+      <div className="lg:flex-2 flex flex-col gap-4 min-w-0">
+        <div className="relative aspect-784/480 w-full rounded-3xl overflow-hidden">
           <div ref={emblaRef} className="h-full">
             <div className="flex h-full">
               {allImages.map((img, i) => (
-                <div key={i} className="relative flex-shrink-0 w-full h-full">
+                <div key={i} className="relative shrink-0 w-full h-full">
                   <Image
                     src={img.url}
                     alt={`${area.title} - ${i + 1}`}
@@ -130,7 +130,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                 }}
                 onClick={() => selectImage(i)}
                 className={cn(
-                  "relative flex-shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-[168/120] rounded-xl overflow-hidden",
+                  "relative shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-168/120 rounded-xl overflow-hidden",
                   'before:content-[""] before:absolute before:inset-0 before:z-10 before:rounded-xl before:border-2 before:border-transparent before:pointer-events-none',
                   "data-[selected=true]:before:border-blue-400",
                 )}

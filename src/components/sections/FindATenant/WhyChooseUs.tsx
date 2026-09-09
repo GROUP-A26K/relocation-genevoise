@@ -34,17 +34,17 @@ export default function WhyChooseUs({
     <Section className="bg-black-700" childrenProps={{ className: "gap-16" }}>
       <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-24">
         <div className="flex flex-1 flex-col gap-3">
-          <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+          <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
             {eyebrow}
           </p>
 
           <div className="flex flex-col gap-8">
-            <h2 className="text-pretty text-[32px] font-bold !leading-[130%] text-white lg:text-[40px]">
+            <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-white lg:text-[40px]">
               {heading}
             </h2>
 
             <div className="flex flex-col gap-6">
-              <p className="text-base font-normal !leading-[150%] text-grey-100">
+              <p className="text-base font-normal leading-[150%]! text-grey-100">
                 {description}
               </p>
 
@@ -59,7 +59,7 @@ export default function WhyChooseUs({
                         />
                       </span>
                     </span>
-                    <span className="text-base font-normal !leading-[150%] text-grey-100">
+                    <span className="text-base font-normal leading-[150%]! text-grey-100">
                       {highlight}
                     </span>
                   </li>
@@ -69,7 +69,7 @@ export default function WhyChooseUs({
           </div>
         </div>
 
-        <div className="relative aspect-[572/420] w-full overflow-hidden rounded-3xl lg:flex-1">
+        <div className="relative aspect-572/420 w-full overflow-hidden rounded-3xl lg:flex-1">
           <Image
             src={image.src}
             alt={image.alt}
@@ -88,9 +88,9 @@ export default function WhyChooseUs({
             <div className="flex flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
               <CountUp
                 value={metric.value}
-                className="text-4xl font-bold !leading-[130%] text-white lg:text-[40px]"
+                className="text-4xl font-bold leading-[130%]! text-white lg:text-[40px]"
               />
-              <p className="text-base font-semibold !leading-[130%] text-grey-200 lg:text-lg">
+              <p className="text-base font-semibold leading-[130%]! text-grey-200 lg:text-lg">
                 {metric.label}
               </p>
             </div>

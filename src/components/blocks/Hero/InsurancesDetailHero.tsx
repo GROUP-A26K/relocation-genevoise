@@ -31,14 +31,14 @@ export const InsurancesDetailHero: FC<Props> = ({
         <div className="flex flex-col items-start gap-6 lg:justify-center lg:text-left text-center">
           <div className="flex flex-col lg:gap-6 gap-4">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
+              <p className="text-sm font-semibold text-secondary-600 leading-[130%]!">
                 {heading}
               </p>
-              <h1 className="2xl:text-5xl xl:text-4xl text-4xl font-bold !leading-[130%]">
+              <h1 className="2xl:text-5xl xl:text-4xl text-4xl font-bold leading-[130%]!">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="lg:text-sm text-sm font-normal text-black-200 !leading-[130%] flex flex-col gap-4">
+            <p className="lg:text-sm text-sm font-normal text-black-200 leading-[130%]! flex flex-col gap-4">
               {description?.map((item, index) => (
                 <span key={index}>{item.paragraph}</span>
               ))}

@@ -35,11 +35,11 @@ export async function PropertySectionHeader({
       <div className="hidden lg:grid xl:grid-cols-5 lg:grid-cols-4 gap-8 w-full">
         {areas.map((area, index) => (
           <a
-            className="flex-shrink-0 flex flex-col gap-6"
+            className="shrink-0 flex flex-col gap-6"
             key={index}
             href={`#area-${index}`}
           >
-            <div className="relative flex-shrink-0 aspect-[224.4/167] rounded-2xl overflow-hidden">
+            <div className="relative shrink-0 aspect-[224.4/167] rounded-2xl overflow-hidden">
               <Image
                 src={area.mainImageUrl}
                 fill

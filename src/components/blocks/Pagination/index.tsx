@@ -41,7 +41,7 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
           className={cn(
             pageItemClassName,
             meta.pagination.page === 1 &&
-              "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
+              "border-0 text-black-500! bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
           )}
           isActive={meta.pagination.page === 1}
         >
@@ -68,7 +68,7 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
             className={cn(
               pageItemClassName,
               meta.pagination.page === i &&
-                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
+                "border-0 text-black-500! bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
             )}
             isActive={meta.pagination.page === i}
           >
@@ -90,7 +90,7 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
             className={cn(
               pageItemClassName,
               meta.pagination.page === max &&
-                "border-0 !text-black-500 bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
+                "border-0 text-black-500! bg-secondary-500 hover:bg-secondary-500 active:bg-secondary-500",
             )}
             isActive={meta.pagination.page === max}
           >
@@ -151,7 +151,7 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
             <ChevronLeft className="h-5 w-5 text-black-500" />
           </div>
         </PaginationItem>
-        <div className="flex items-center justify-center text-sm font-normal text-black-200 !leading-[130%]">
+        <div className="flex items-center justify-center text-sm font-normal text-black-200 leading-[130%]!">
           Page {currentPage} of {meta.pagination.pageCount}
         </div>
         <PaginationItem>

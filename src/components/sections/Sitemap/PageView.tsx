@@ -104,10 +104,10 @@ export const PageView = ({
     <PageContainer>
       <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left py-16">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
+          <p className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
             {t("heading")}
           </p>
-          <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
+          <h1 className="lg:text-5xl text-4xl font-bold text-center lg:leading-[130%]! leading-[100%]! text-pretty">
             <FormattedText text={t("subHeading")} />
           </h1>
         </div>
@@ -116,7 +116,7 @@ export const PageView = ({
       <div className="flex flex-col lg:flex-row gap-8">
         <div
           className={cn(
-            "lg:!sticky lg:!top-8 h-fit relative w-full lg:max-w-[228px]",
+            "lg:sticky! lg:top-8! h-fit relative w-full lg:max-w-[228px]",
           )}
         >
           <BlogContentMenu

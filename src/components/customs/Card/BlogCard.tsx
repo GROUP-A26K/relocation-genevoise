@@ -26,7 +26,7 @@ export const BlogCard: React.FC<Blog> = ({
             src={imageUrl}
             width={640}
             height={250}
-            className="aspect-video lg:h-[250px] h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+            className="aspect-video lg:h-[250px] h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
           />
         </div>
         <div className="w-full flex flex-col justify-between h-full pt-5">
@@ -35,7 +35,7 @@ export const BlogCard: React.FC<Blog> = ({
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none !leading-[130%]"
+                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none leading-[130%]!"
                 >
                   {cat.title}
                 </Badge>
@@ -44,13 +44,13 @@ export const BlogCard: React.FC<Blog> = ({
             <div className="flex flex-col gap-2">
               <h3
                 title={title}
-                className="line-clamp-2 lg:text-2xl text-xl font-semibold text-gray-900 group-hover:text-gray-600 !leading-[130%]"
+                className="line-clamp-2 lg:text-2xl text-xl font-semibold text-gray-900 group-hover:text-gray-600 leading-[130%]!"
               >
                 {title}
               </h3>
               <p
                 title={description}
-                className="line-clamp-3 lg:text-base font-normal text-sm !leading-[130%] text-gray-600 max-w-3xl"
+                className="line-clamp-3 lg:text-base font-normal text-sm leading-[130%]! text-gray-600 max-w-3xl"
               >
                 {description}
               </p>
@@ -66,17 +66,17 @@ export const BlogCard: React.FC<Blog> = ({
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
-              <div className="text-base !leading-[130%] gap-[2px]">
-                <p className="font-semibold text-grey-700 !leading-[130%]">
+              <div className="text-base leading-[130%]! gap-[2px]">
+                <p className="font-semibold text-grey-700 leading-[130%]!">
                   {author.name}
                 </p>
-                <p className="text-sm font-normal text-gray-700 !leading-[130%]">
+                <p className="text-sm font-normal text-gray-700 leading-[130%]!">
                   {publishedDate}
                 </p>
               </div>
             </div>
 
-            <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 !leading-[130%]">
+            <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 leading-[130%]!">
               {timeToRead}{' '}
               {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>

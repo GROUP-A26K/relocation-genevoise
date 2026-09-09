@@ -28,10 +28,10 @@ export default function CtaBanner({
     >
       <div className="flex flex-col items-center gap-8 bg-grey-50 px-4 py-12 text-center lg:p-16 lg:rounded-3xl">
         <div className="flex max-w-[720px] flex-col gap-4">
-          <h2 className="text-pretty text-[32px] font-bold !leading-[130%] text-black-500 lg:text-[40px]">
+          <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
             {heading}
           </h2>
-          <p className="text-base font-normal !leading-[150%] text-black-300">
+          <p className="text-base font-normal leading-[150%]! text-black-300">
             {description}
           </p>
         </div>

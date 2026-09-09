@@ -40,7 +40,7 @@ const Section: FC<ISectionProps> = ({
     >
       <div
         className={cn(
-          "container pt-12 w-full max-w-screen-2xl px-4",
+          "container pt-12 w-full max-w-(--breakpoint-2xl) px-4",
           "2xl:pt-16 2xl:px-[100px] lg:px-[48px]",
           wrapperClassname,
         )}

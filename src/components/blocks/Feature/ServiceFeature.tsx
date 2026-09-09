@@ -25,16 +25,16 @@ const ServiceFeature = ({
   return (
     <div className='flex flex-col lg:gap-16 gap-12'>
       <div className='flex flex-col gap-3'>
-        <p className='text-sm font-semibold text-secondary-600 !leading-[130%]'>
+        <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
           {heading}
         </p>
-        <h2 className='text-3xl font-semibold !leading-[130%]'>
+        <h2 className='text-3xl font-semibold leading-[130%]!'>
           <FormattedText text={subHeading} />
         </h2>
       </div>
       {reasons.map((reason, i) => (
         <div key={i} className='flex flex-col lg:gap-6 gap-8'>
-          <h3 className='lg:text-2xl text-xl font-semibold !leading-[130%]'>
+          <h3 className='lg:text-2xl text-xl font-semibold leading-[130%]!'>
             {reason.reasonName}
           </h3>
 
