@@ -3,13 +3,9 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------------------------------------------------------------------------
-   Brand design tokens (ported from the v3 `tailwind.config.ts`)
-   --------------------------------------------------------------------------- */
 @theme {
   --font-weight-inherit: inherit;
 
-  /* Supplied by `next/font/google` in src/app/layout.tsx. */
   --font-sans: var(--font-inter), sans-serif;
 
   --color-green-40: #50b3701a;
@@ -158,7 +154,6 @@
   --leading-small: 18.2px;
   --leading-subtle: 15.6px;
 
-  /* Declared ascending: v4 orders breakpoint variants by declaration order. */
   --breakpoint-xxs: 340px;
   --breakpoint-xs: 450px;
   --breakpoint-sm: 640px;
@@ -191,11 +186,6 @@
   }
 }
 
-/* ---------------------------------------------------------------------------
-   shadcn/ui semantic palette.
-   Values are the exact oklch equivalents of the previous `H S% L%` triples
-   (zinc), so colours are unchanged from v3.
-   --------------------------------------------------------------------------- */
 :root {
   --radius: 0.5rem;
 
@@ -293,10 +283,6 @@
 }
 
 @layer base {
-  /*
-    v4 preflight defaults `border-color` to `currentcolor`. v3 defaulted it to
-    `gray-200`; this keeps pseudo-elements looking the same.
-  */
   *,
   ::after,
   ::before,
@@ -313,16 +299,12 @@
     @apply bg-background text-foreground;
   }
 
-  /*
-    v4 preflight sets `cursor: default` on buttons; v3 used `cursor: pointer`.
-  */
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
   }
 }
 
-/* Unlayered, as in v3, so it wins over any `font-*` utility. */
 body {
   font-family: var(--font-sans);
 }
