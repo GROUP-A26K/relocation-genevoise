@@ -6,16 +6,27 @@
     "node": ">=22",
     "npm": ">=10"
   },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "npm run prisma:generate && next build",
     "start": "next start",
     "lint": "next lint",
+    "lint-staged": "lint-staged",
     "prisma:generate": "npm run prisma:generate:mysql && npm run prisma:generate:supabase",
     "prisma:generate:mysql": "prisma generate --schema=./prisma/mysql/schema.prisma",
     "prisma:generate:supabase": "prisma generate --schema=./prisma/supabase/schema.prisma",
     "email": "email dev --dir src/templates/Email",
-    "typegen": "sanity schema extract --path=src/sanity/extract.json && sanity typegen generate"
+    "typegen": "sanity schema extract --path=src/sanity/extract.json && sanity typegen generate",
+    "prepare": "husky"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -83,6 +94,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.0",
     "postcss": "^8",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
@@ -90,8 +103,5 @@
     "react-email": "^6.6.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   }
 }
