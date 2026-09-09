@@ -1,7 +1,6 @@
 import * as Sentry from "@sentry/nextjs";
 
-const SENTRY_DSN =
-  process.env.NEXT_PUBLIC_SENTRY_DSN || process.env.SENTRY_DSN || "";
+const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN || "";
 
 const thirdPartyFramePattern =
   /translate_http|translate\.goog|\/el_main|tr\.de\.[A-Za-z0-9-]+|cdn-cookieyes\.com|\/client_data\/[a-f0-9]+\/banner\.js|clarity\.ms/;
@@ -94,6 +93,18 @@ Sentry.init({
     ) {
       return null;
     }
+    // Scripts injected by in-app browsers / extensions (Google App's
+    // auto-translate, Instagram webview) are attributed to the document URL,
+    // not to their own origin, so denyUrls and the pattern above can't match
+    // them. Our own code always lives in /_next/static/, so an exception with
+    // frames but none of ours did not come from this app.
+    const hasOwnFrame = exceptionFrames?.some((frame) =>
+      /\/_next\/static\//.test(`${frame.filename ?? ""} ${frame.abs_path ?? ""}`),
+    );
+    if (exceptionFrames?.length && !hasOwnFrame) {
+      return null;
+    }
+
     return event;
   },
 });
