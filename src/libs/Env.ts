@@ -1,10 +1,9 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs';
+import { z } from 'zod';
 
 export const Env = createEnv({
   server: {
-    // Deployment environment: only "production" allows search engine indexing
-    NEXT_APP_ENV: z.enum(["development", "staging", "production"]).optional(),
+    NEXT_APP_ENV: z.enum(['development', 'staging', 'production']).optional(),
     SANITY_API_READ_TOKEN: z.string().min(1),
     SANITY_API_VERSION: z.string().min(1),
     SANITY_PROJECT_ID: z.string().min(1),
@@ -30,7 +29,7 @@ export const Env = createEnv({
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
   },
   shared: {
-    NODE_ENV: z.enum(["test", "development", "production"]).optional(),
+    NODE_ENV: z.enum(['test', 'development', 'production']).optional(),
   },
   runtimeEnv: {
     NEXT_APP_ENV: process.env.NEXT_APP_ENV,
