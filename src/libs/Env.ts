@@ -3,6 +3,8 @@ import { z } from "zod";
 
 export const Env = createEnv({
   server: {
+    // Deployment environment: only "production" allows search engine indexing
+    NEXT_APP_ENV: z.enum(["development", "staging", "production"]).optional(),
     SANITY_API_READ_TOKEN: z.string().min(1),
     SANITY_API_VERSION: z.string().min(1),
     SANITY_PROJECT_ID: z.string().min(1),
@@ -31,6 +33,7 @@ export const Env = createEnv({
     NODE_ENV: z.enum(["test", "development", "production"]).optional(),
   },
   runtimeEnv: {
+    NEXT_APP_ENV: process.env.NEXT_APP_ENV,
     SUPABASE_DATABASE_URL: process.env.SUPABASE_DATABASE_URL,
     SUPABASE_DIRECT_URL: process.env.SUPABASE_DIRECT_URL,
     REVALIDATE_SECRET: process.env.REVALIDATE_SECRET,
