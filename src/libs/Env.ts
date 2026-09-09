@@ -23,7 +23,7 @@ export const Env = createEnv({
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().min(1),
-    NEXT_PUBLIC_GTM_ID: z.string().min(1),
+    NEXT_PUBLIC_GTM_ID: z.string().optional(),
     NEXT_PUBLIC_SERVER_TIMEZONE: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
   },
