@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
+import Image, { type StaticImageData } from 'next/image';
 
 import { Link } from '@/libs/i18nNavigation';
 import GGLogo from '@/components/icons/GGLogo';
 import Section from '@/components/customs/Section';
-import AgLogo from '@/assets/img/logos/rg-logo.svg';
+import LogoIcon from '@/components/icons/LogoIcon';
 import Facebook from '@/assets/img/logos/social/facebook.svg';
 import Linkedin from '@/assets/img/logos/social/linkedin.svg';
 import Instagram from '@/assets/img/logos/social/instagram.svg';
@@ -12,63 +12,48 @@ import { GoogleRating } from '@/components/blocks/GoogleRating';
 
 import { SubscribeForm } from './SubscribeForm';
 
-import type { StaticImageData } from 'next/image';
-
-interface MenuItem {
+type TMenuItem = {
   title: string;
   links: {
     text: string;
     url: string;
     icon?: string | StaticImageData;
   }[];
-}
+};
 
-interface Props {
+type TFooterData = {
   contact: {
     title: string;
     subTitle: string;
     buttonText: string;
     inputPlaceholder: string;
   };
-  logo: {
-    url: string;
-    src: string | StaticImageData;
-    alt: string;
-    title: string;
-  };
-
   tagline: string;
   googleRating: {
     googleUrl: string;
     title: string;
     subTitle: string;
   };
-  service: MenuItem;
-  company: MenuItem;
-  support: MenuItem;
-  social: MenuItem;
+  service: TMenuItem;
+  company: TMenuItem;
+  support: TMenuItem;
+  social: TMenuItem;
   copyright: string;
   bottomLinks: {
     text: string;
     url: string;
   }[];
-}
+};
 
 const Footer = async () => {
   const t = await getTranslations('Footer');
 
-  const footerData: Props = {
+  const footerData: TFooterData = {
     contact: {
       title: t('contact.title'),
       subTitle: t('contact.subTitle'),
       buttonText: t('contact.buttonText'),
       inputPlaceholder: t('contact.inputPlaceholder'),
-    },
-    logo: {
-      title: t('logo.title'),
-      src: AgLogo,
-      alt: 'blocks for shadcn/ui',
-      url: '/',
     },
     tagline: t('tagline'),
     googleRating: {
@@ -144,9 +129,9 @@ const Footer = async () => {
       { text: t('bottomLinks.2.text'), url: '/sitemap' },
     ],
   };
+
   const {
     contact,
-    logo,
     tagline,
     googleRating,
     service,
@@ -178,15 +163,10 @@ const Footer = async () => {
 
       <Section>
         <div className="flex flex-col gap-0 lg:flex-row lg:gap-16">
-          <div className="mb-8 flex w-full flex-col gap-6 lg:mb-0 lg:max-w-[336px]">
+          <div className="mb-8 flex w-full flex-col gap-6 lg:mb-0 lg:max-w-84">
             <div className="flex items-center lg:justify-start">
-              <Link href={logo.url}>
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  title={logo.title}
-                  className="h-8 w-[83px]"
-                />
+              <Link href="/">
+                <LogoIcon height={32} />
               </Link>
             </div>
             <p className="text-sm leading-[130%]! text-black-200">{tagline}</p>
@@ -201,7 +181,7 @@ const Footer = async () => {
           <div className="grid w-full grid-cols-2 gap-8 text-sm lg:grid-cols-4 lg:gap-0">
             <div className="flex w-full flex-col gap-8 lg:col-span-2 lg:grid lg:grid-cols-2 lg:gap-0">
               <div>
-                <ul role="list" className="space-y-3">
+                <ul className="space-y-3">
                   {service.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
@@ -220,7 +200,7 @@ const Footer = async () => {
                 </ul>
               </div>
               <div>
-                <ul role="list" className="space-y-3">
+                <ul className="space-y-3">
                   {company.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
@@ -241,7 +221,7 @@ const Footer = async () => {
             </div>
             <div className="flex w-full flex-col gap-8 lg:col-span-2 lg:grid lg:grid-cols-2 lg:gap-0">
               <div>
-                <ul role="list" className="space-y-3">
+                <ul className="space-y-3">
                   {support.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
@@ -260,10 +240,7 @@ const Footer = async () => {
                 </ul>
               </div>
               <div>
-                <ul
-                  role="list"
-                  className="flex flex-col gap-3 lg:flex-col lg:gap-0 lg:space-y-3"
-                >
+                <ul className="flex flex-col gap-3 lg:flex-col lg:gap-0 lg:space-y-3">
                   {social.links.map((link, linkIdx) => (
                     <li key={linkIdx}>
                       <Link
@@ -295,10 +272,11 @@ const Footer = async () => {
       </Section>
 
       <section className="relative flex flex-col items-center justify-center bg-grey-50 text-black-500">
-        <div className="w-full px-4 py-8 lg:px-[48px] 2xl:max-w-(--breakpoint-2xl) 2xl:px-[100px]">
+        <div className="w-full px-4 py-8 lg:px-12 2xl:max-w-(--breakpoint-2xl) 2xl:px-25">
           <Link
             href="https://groupe-genevoise.ch/"
             target="_blank"
+            rel="noopener noreferrer"
             className="flex w-fit items-center"
           >
             <GGLogo className="mb-4" />

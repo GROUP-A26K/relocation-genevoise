@@ -1,59 +1,45 @@
-import Image from 'next/image';
 import { Phone } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
-import Logo from '@/assets/img/logos/rg-logo.svg';
+import LogoIcon from '@/components/icons/LogoIcon';
 import { renderMenuItem } from '@/components/blocks/MenuItem';
-import {
-  NavigationMenu,
-  NavigationMenuList,
-} from '@/components/ui/navigation-menu-custom';
 
+import PhoneButton from './PhoneButton';
 import { LanguageSelector } from './LanguageSelector';
+import MotionNavigationMenu from './MotionNavigationMenu';
 
-import type { NavbarProps } from './NavbarContainer';
+import type { INavbarProps } from './NavbarContainer';
 
-const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
+const DesktopMenu = async ({ menu, callButton, locale }: INavbarProps) => {
+  const menuItems = await Promise.all(
+    menu.map((item) => renderMenuItem(item, locale))
+  );
+  const routeItems = menu.map((item) => ({
+    key: item.title,
+    paths: [item.url, ...(item.items?.map((subItem) => subItem.url) ?? [])],
+  }));
+
   return (
     <nav className="hidden justify-between nav:flex">
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src={Logo.src}
-              alt="Relocation Genevoise, courtier en relocation à Genève"
-              title="Relocation Genevoise, courtier en relocation à Genève"
-              width={70}
-              height={26.98}
-              className="min-h-[26.98px] min-w-[70px]"
-            />
+          <Link href="/">
+            <LogoIcon height={27} />
           </Link>
-          <NavigationMenu className="static nav:block">
-            <NavigationMenuList className="gap-2 xl:gap-8">
-              {menu.map((item) => renderMenuItem(item, locale))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          <MotionNavigationMenu
+            className="static nav:block"
+            listClassName="gap-2 xl:gap-8"
+            routeItems={routeItems}
+          >
+            {menuItems}
+          </MotionNavigationMenu>
         </div>
         <div className="flex items-center gap-2">
-          <Link
-            href="tel:+41227151748"
-            className="flex items-center no-underline"
-          >
-            <Button
-              as="link"
-              href="tel:+41227151748"
-              variant="md"
-              type="primary"
-              iconStart={Phone}
-              className="text-black-500 no-underline hover:text-black-500"
-            >
-              +41 22 715 17 48
-            </Button>
-          </Link>
+          <PhoneButton phoneNumber="+41 22 715 17 48" />
           <LanguageSelector />
           <Link
-            href={callButton?.url ?? '/rappelez-moi'}
+            href={callButton?.url ?? '/call-me-back'}
             className="flex items-center"
           >
             <Button as="solid" variant="md" type="primary" iconStart={Phone}>

@@ -1,6 +1,4 @@
-import type { IIconProps } from '@/types';
-
-export default function WhatsappIcon(props: IIconProps) {
+export default function WhatsappIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

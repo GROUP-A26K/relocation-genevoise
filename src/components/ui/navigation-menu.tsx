@@ -73,7 +73,7 @@ function NavigationMenuContent({
     <NavigationMenuPrimitive.Content
       data-slot="navigation-menu-content"
       className={cn(
-        'top-0 left-0 w-full data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out md:absolute md:w-auto',
+        'top-0 left-0 w-full duration-300 ease-out data-[motion^=from-]:animate-in data-[motion^=from-]:slide-in-from-top-4 data-[motion^=to-]:animate-out data-[motion^=to-]:slide-out-to-top-4 md:absolute md:w-auto',
         className
       )}
       {...props}
@@ -91,7 +91,7 @@ function NavigationMenuViewport({
       <NavigationMenuPrimitive.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
-          'origin-top-center relative mt-0 h-(--radix-navigation-menu-viewport-height) w-full overflow-hidden border-t-[0.5px]! bg-popover text-popover-foreground shadow-lg data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 md:w-(--radix-navigation-menu-viewport-width)',
+          'relative mt-0 h-(--radix-navigation-menu-viewport-height) w-full origin-top overflow-hidden border-t-[0.5px]! bg-popover text-popover-foreground shadow-lg transition-[height] duration-300 ease-out data-[state=closed]:nav-viewport-slide-up data-[state=open]:nav-viewport-slide-down md:w-(--radix-navigation-menu-viewport-width)',
           className
         )}
         {...props}

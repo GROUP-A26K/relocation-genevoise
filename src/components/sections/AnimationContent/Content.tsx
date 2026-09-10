@@ -10,7 +10,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion-changelog-custom';
+} from '@/components/ui/accordion-changelog';
 
 export interface ContentProps {
   position?: string;

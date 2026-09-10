@@ -35,7 +35,7 @@ export const HomeHero: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
-      <div className="absolute inset-0 top-0 -z-10 flex size-full justify-center lg:top-0">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[511px] overflow-hidden lg:h-[1216px]">
         <AnimatedGridPattern
           numSquares={30}
           maxOpacity={1}
@@ -43,10 +43,10 @@ export const HomeHero: FC<Props> = ({
           height={80}
           width={80}
           className={cn(
-            'min-h-1226',
-            'mask-[radial-gradient(450px_circle_at_center,white,transparent)]',
-            'md:mask-[radial-gradient(380px_circle_at_center,white,transparent)]',
-            'lg:mask-[radial-gradient(800px_circle_at_center,white,transparent)]'
+            'size-full stroke-yellow-50/75 text-yellow-25 lg:stroke-yellow-50/90',
+            'mask-[radial-gradient(ellipse_50%_100%_at_50%_0%,white,transparent_95%)]',
+            'mask-size-[724px_724px] mask-top mask-no-repeat',
+            'lg:mask-size-[1216px_1216px]'
           )}
         />
       </div>

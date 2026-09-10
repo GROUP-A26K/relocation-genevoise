@@ -1,11 +1,11 @@
 import { Link } from '@/libs/i18nNavigation';
-import { SheetClose } from '@/components/ui/sheet-custom';
+import { SheetClose } from '@/components/ui/sheet';
 import { SubMenuLink } from '@/components/customs/SubMenuLink';
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion-nav-custom';
+} from '@/components/ui/accordion-nav';
 
 export interface MenuItem {
   title: string;
@@ -27,9 +27,6 @@ export const renderMobileMenuItem = (item: MenuItem) => {
           <div>{item.title}</div>
         </AccordionTrigger>
         <AccordionContent className="mt-2 pb-0">
-          {/* <p className="text-subtle font-medium uppercase leading-[130%]! pt-[8px] pb-[6px]">
-            {item.title}
-          </p> */}
           {item.items.map((subItem) => (
             <Link href={subItem.url} key={subItem.title}>
               <SheetClose asChild>

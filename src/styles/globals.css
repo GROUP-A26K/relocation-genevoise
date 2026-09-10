@@ -344,3 +344,34 @@ body {
     transform: scaleY(1);
   }
 }
+
+/* Navigation menu dropdown: slide the viewport open/closed instead of fading it. */
+@utility nav-viewport-slide-down {
+  animation: nav-viewport-slide-down 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@utility nav-viewport-slide-up {
+  animation: nav-viewport-slide-up 200ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+@keyframes nav-viewport-slide-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-navigation-menu-viewport-height);
+    opacity: 1;
+  }
+}
+
+@keyframes nav-viewport-slide-up {
+  from {
+    height: var(--radix-navigation-menu-viewport-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
