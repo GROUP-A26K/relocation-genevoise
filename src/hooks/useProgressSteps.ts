@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
 export default function useProgressSteps(stepCount: number) {
   const [activeStep, setActiveStep] = useState(0);
@@ -17,7 +17,7 @@ export default function useProgressSteps(stepCount: number) {
       setActiveStep(Math.min(Math.max(index, 0), stepCount - 1));
       restartAnimation();
     },
-    [restartAnimation, stepCount],
+    [restartAnimation, stepCount]
   );
 
   const advanceStep = useCallback(() => {

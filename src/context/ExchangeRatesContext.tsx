@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
 import {
   createContext,
-  FC,
-  ReactNode,
+  type FC,
+  type ReactNode,
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
-import { CURRENCIES } from "@/constants/property";
+import { CURRENCIES } from '@/constants/property';
 import {
-  ExchangeRates,
+  type ExchangeRates,
   FALLBACK_RATES,
   getCachedRates,
   setCachedRates,
-} from "@/utils/exchangeRate";
+} from '@/utils/exchangeRate';
 
 interface ExchangeRatesContextValue {
   rates: ExchangeRates;
@@ -50,7 +50,7 @@ export const ExchangeRatesProvider: FC<{ children: ReactNode }> = ({
     }
 
     // 2. Fetch from our API route (server-cached for 30 days on the backend)
-    fetch("/api/exchange-rates")
+    fetch('/api/exchange-rates')
       .then((res) => res.json())
       .then((data: { rates: ExchangeRates }) => {
         setRates(data.rates);

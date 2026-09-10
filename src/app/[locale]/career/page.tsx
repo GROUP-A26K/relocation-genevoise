@@ -1,13 +1,14 @@
-import { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
 
-import { AppConfig } from "@/utils/AppConfig";
-import { PageView } from "@/components/sections/Career";
+import { AppConfig } from '@/utils/AppConfig';
+import { PageView } from '@/components/sections/Career';
 import {
   fetchDepartments,
   fetchJobPosts,
-} from "@/services/career/career.service";
+} from '@/services/career/career.service';
+
+import type { Metadata } from 'next';
 
 const PAGE_SIZE = 5;
 
@@ -19,16 +20,16 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: "Metadata.Career",
+    namespace: 'Metadata.Career',
   });
 
   const { routes } = AppConfig;
-  const canonical = routes["career"][locale as keyof (typeof routes)["career"]];
+  const canonical = routes['career'][locale as keyof (typeof routes)['career']];
   return {
-    title: t("title"),
-    description: t("description"),
+    title: t('title'),
+    description: t('description'),
     alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/${canonical}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
     },
   };
 }
@@ -42,7 +43,7 @@ export default async function Page(props: Props) {
       locale,
       page: Number(page) || 1,
       pageSize: PAGE_SIZE,
-      filterBy: filterBy ?? "",
+      filterBy: filterBy ?? '',
     }),
   ]);
 

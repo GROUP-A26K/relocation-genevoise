@@ -1,7 +1,9 @@
+import { Building } from 'lucide-react';
+
 import { CompanyCard } from '@/components/customs/Card';
 import { FormattedText } from '@/components/customs/Text';
-import { Building } from 'lucide-react';
-import { FC } from 'react';
+
+import type { FC } from 'react';
 
 interface Item {
   title: string;
@@ -53,28 +55,28 @@ export const CompaniesInfo: FC<Props> = ({
   ],
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12">
+    <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
         <div className="flex w-full items-center justify-center">
-          <div className="flex flex-col lg:gap-6 gap-4 max-w-3xl lg:items-center text-left">
+          <div className="flex max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
+              <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
                 {heading}
               </p>
-              <h1 className="lg:text-5xl text-4xl font-bold text-center lg:leading-[130%]! leading-[100%]! text-pretty">
+              <h1 className="text-center text-4xl leading-[100%]! font-bold text-pretty lg:text-5xl lg:leading-[130%]!">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-pretty">
+            <p className="text-center text-sm leading-[130%]! font-normal text-pretty text-black-200">
               {description}
             </p>
           </div>
         </div>
       )}
-      <div className="flex flex-col lg:gap-8 gap-8">
+      <div className="flex flex-col gap-8 lg:gap-8">
         {items.map((item, i) => (
-          <div key={i} className="flex flex-col lg:gap-8 gap-8">
-            <h2 className="flex lg:text-2xl text-xl font-semibold leading-[130%]! pl-4 border-l-4 border-secondary-500">
+          <div key={i} className="flex flex-col gap-8 lg:gap-8">
+            <h2 className="flex border-l-4 border-secondary-500 pl-4 text-xl leading-[130%]! font-semibold lg:text-2xl">
               {item.title}
             </h2>
 

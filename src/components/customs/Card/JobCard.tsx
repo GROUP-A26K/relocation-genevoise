@@ -1,11 +1,13 @@
 'use client';
 
-import { Badge } from '@/components/ui/badge';
-import { Link } from '@/libs/i18nNavigation';
 import { ArrowUpRight, CircleDollarSign, MapPin } from 'lucide-react';
-import Button from '../Button';
-import { Job } from '@/models/Job';
+
 import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
+import { Badge } from '@/components/ui/badge';
+import Button from '@/components/customs/Button';
+
+import type { Job } from '@/models/Job';
 
 export type EmploymentType = 'Full-time' | 'Part-time' | 'Contract' | 'Intern';
 interface Options {
@@ -23,8 +25,8 @@ export const JobCard: React.FC<Props> = ({
 }) => {
   return (
     <Link href={job.href}>
-      <div className="flex flex-col gap-4 h-full cursor-pointer border border-grey-200 p-6 rounded-2xl w-full">
-        <div className="flex flex-col w-full">
+      <div className="flex h-full w-full cursor-pointer flex-col gap-4 rounded-2xl border border-grey-200 p-6">
+        <div className="flex w-full flex-col">
           <div className="flex flex-col gap-1 text-left leading-[130%]!">
             <div className="flex flex-row flex-wrap justify-between gap-2">
               <p className="line-clamp-1 text-sm font-semibold text-secondary-600">
@@ -36,7 +38,7 @@ export const JobCard: React.FC<Props> = ({
                   href={job.href}
                   variant="md"
                   type="primary"
-                  className="h-fit p-0 lg:text-base text-xs text-black-500 font-semibold"
+                  className="h-fit p-0 text-xs font-semibold text-black-500 lg:text-base"
                   iconEnd={ArrowUpRight}
                 >
                   View details
@@ -51,11 +53,11 @@ export const JobCard: React.FC<Props> = ({
 
               <Badge
                 className={cn(
-                  'truncate text-sm font-medium text-black-500 bg-grey-50 border border-grey-200 hover:bg-grey-50 shadow-none',
+                  'truncate border border-grey-200 bg-grey-50 text-sm font-medium text-black-500 shadow-none hover:bg-grey-50',
                   job.employmentType === 'Internship' &&
-                    'bg-cyan-50 text-cyan-600 border-cyan-50 hover:bg-cyan-50',
+                    'border-cyan-50 bg-cyan-50 text-cyan-600 hover:bg-cyan-50',
                   job.employmentType === 'Full-time' &&
-                    'text-blue-500 bg-blue-50 border-blue-50 hover:bg-blue-50'
+                    'border-blue-50 bg-blue-50 text-blue-500 hover:bg-blue-50'
                 )}
               >
                 {job.employmentType}
@@ -66,14 +68,14 @@ export const JobCard: React.FC<Props> = ({
 
         <p
           title={job.excerpt || 'No description available.'}
-          className="line-clamp-2 text-sm lg:text-sm font-normal text-black-200 leading-[130%]!"
+          className="line-clamp-2 text-sm leading-[130%]! font-normal text-black-200 lg:text-sm"
         >
           {job.excerpt || 'No description available.'}
         </p>
 
         <div className="flex flex-row flex-wrap">
           <div className="flex items-center gap-1.5 pr-6!">
-            <div className="min-w-4 w-4">
+            <div className="w-4 min-w-4">
               <MapPin className="size-4 text-black-50" />
             </div>
             <p className="line-clamp-1 text-sm text-black-200">
@@ -82,7 +84,7 @@ export const JobCard: React.FC<Props> = ({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <div className="min-w-4 w-4">
+            <div className="w-4 min-w-4">
               <CircleDollarSign className="size-4 text-black-50" />
             </div>
             <p className="truncate text-sm text-black-200">{`${job.salaryMin} - ${job.salaryMax} ${job.currency}`}</p>

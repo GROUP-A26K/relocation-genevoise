@@ -1,4 +1,4 @@
-import { IIconProps } from "@/types";
+import type { IIconProps } from '@/types';
 
 export default function WhatsappIcon(props: IIconProps) {
   return (

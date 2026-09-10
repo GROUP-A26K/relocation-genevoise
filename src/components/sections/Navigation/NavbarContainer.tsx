@@ -1,5 +1,5 @@
-import { DesktopMenu } from './DesktopMenu';
 import { MobileMenu } from './MobileMenu';
+import { DesktopMenu } from './DesktopMenu';
 export interface MenuItem {
   title: string;
   subtitle?: string;
@@ -29,8 +29,8 @@ const NavbarContainer = ({
   contactButton,
 }: NavbarProps) => {
   return (
-    <header className="relative flex flex-col justify-center items-center">
-      <nav className="container 2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-2xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) 2xl:px-[100px] xl:px-[60px] px-[48px]">
+    <header className="relative flex flex-col items-center justify-center">
+      <nav className="container px-[48px] md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-2xl) xl:px-[60px] 2xl:max-w-(--breakpoint-2xl) 2xl:px-[100px]">
         <DesktopMenu menu={menu} callButton={callButton} locale={locale} />
       </nav>
       <MobileMenu

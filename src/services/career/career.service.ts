@@ -1,18 +1,19 @@
-import "server-only";
+import 'server-only';
 
+import { sanityFetch } from '@/sanity/lib/fetch';
 import {
   CAREER_DETAIL_QUERY,
   CAREER_SLUG_QUERY,
   CAREERS_QUERY,
   DEPARTMENT_QUERY,
   FEATURED_CAREER_QUERY,
-} from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { AssuranceJobDepartment, AssuranceJobPost } from "@/sanity/types";
-import { Meta } from "@/models/Meta";
-import { Job, JobDetail } from "@/models/Job";
+} from '@/sanity/lib/queries';
 
-export interface JobPostProps extends Omit<AssuranceJobPost, "department"> {
+import type { Meta } from '@/models/Meta';
+import type { Job, JobDetail } from '@/models/Job';
+import type { AssuranceJobDepartment, AssuranceJobPost } from '@/sanity/types';
+
+export interface JobPostProps extends Omit<AssuranceJobPost, 'department'> {
   department: {
     title: {
       en: string;
@@ -33,22 +34,22 @@ export interface ParamsProps {
 
 const toJob = (job: JobPostProps, locale?: string): Job => ({
   id: job._id,
-  title: job.title || "Untitled",
-  href: `/career/${(job?.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
-  slug: job.slug?.current || "",
-  employmentType: job.employmentType || "Full-time",
-  locationType: job.locationType || "Remote",
+  title: job.title || 'Untitled',
+  href: `/career/${(job?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+  slug: job.slug?.current || '',
+  employmentType: job.employmentType || 'Full-time',
+  locationType: job.locationType || 'Remote',
   salaryMin: job.salaryMin || 0,
-  department: job.department?.title?.[(locale as "en" | "fr") || "en"] || "",
+  department: job.department?.title?.[(locale as 'en' | 'fr') || 'en'] || '',
   salaryMax: job.salaryMax || 0,
-  currency: job.currency || "CHF",
-  excerpt: job.excerpt || "",
-  location: job.location || "",
-  publishedAt: job.publishedAt || "",
-  closingAt: job.closingAt || "",
+  currency: job.currency || 'CHF',
+  excerpt: job.excerpt || '',
+  location: job.location || '',
+  publishedAt: job.publishedAt || '',
+  closingAt: job.closingAt || '',
   isFeatured: job.isFeatured || false,
   isHidden: job.isHidden || false,
-  language: job.language || "",
+  language: job.language || '',
 });
 
 export const fetchJobPosts = async (
@@ -66,11 +67,11 @@ export const fetchJobPosts = async (
     {
       start: start,
       end: end,
-      locale: params?.locale ?? "en",
-      department: params?.filterBy ?? "",
-      title: params?.search ? `*${params?.search}*` : "",
+      locale: params?.locale ?? 'en',
+      department: params?.filterBy ?? '',
+      title: params?.search ? `*${params?.search}*` : '',
     },
-    { tags: ["jobs"] }
+    { tags: ['jobs'] }
   );
 
   return {
@@ -95,11 +96,11 @@ export const fetchFeaturedJobPosts = async (
   }>(
     FEATURED_CAREER_QUERY,
     {
-      slug: `${params?.locale ?? "fr"}-${slug}`,
-      locale: params?.locale ?? "fr",
-      department: params?.filterBy ?? "",
+      slug: `${params?.locale ?? 'fr'}-${slug}`,
+      locale: params?.locale ?? 'fr',
+      department: params?.filterBy ?? '',
     },
-    { tags: ["jobs-featured"] }
+    { tags: ['jobs-featured'] }
   );
 
   return {
@@ -109,12 +110,12 @@ export const fetchFeaturedJobPosts = async (
 
 export const fetchJobDetailBySlug = async (
   slug: string,
-  locale: string = "en"
+  locale: string = 'en'
 ): Promise<JobDetail | null> => {
   const response = await sanityFetch<JobPostProps | null>(
     CAREER_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
-    { tags: ["job-detail"] }
+    { tags: ['job-detail'] }
   );
 
   if (!response) {
@@ -123,7 +124,7 @@ export const fetchJobDetailBySlug = async (
 
   return {
     ...toJob(response, locale),
-    slug: (response.slug?.current || "").replace(/^[a-z]{2}-/i, ""),
+    slug: (response.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
     body: response?.body || [],
   };
 };
@@ -131,8 +132,8 @@ export const fetchJobDetailBySlug = async (
 export const fetchDepartments = async (params?: ParamsProps) => {
   const departments = await sanityFetch<AssuranceJobDepartment[]>(
     DEPARTMENT_QUERY,
-    { locale: params?.locale ?? "en" },
-    { tags: ["departments"] }
+    { locale: params?.locale ?? 'en' },
+    { tags: ['departments'] }
   );
 
   return {
@@ -148,7 +149,7 @@ export const fetchCareerSlugBySlug = async (slug: string) => {
         current: string;
       };
     }[];
-  } | null>(CAREER_SLUG_QUERY, { slug }, { tags: ["job-detail"] });
+  } | null>(CAREER_SLUG_QUERY, { slug }, { tags: ['job-detail'] });
 
   if (!response?.targetSlug) {
     return [];
@@ -157,6 +158,6 @@ export const fetchCareerSlugBySlug = async (slug: string) => {
   return response.targetSlug.map((item) => ({
     locale: item.language,
     slug: item.slug.current,
-    href: `/carriere/${item.slug.current.replace(/^[a-z]{2}-/i, "")}`,
+    href: `/carriere/${item.slug.current.replace(/^[a-z]{2}-/i, '')}`,
   }));
 };

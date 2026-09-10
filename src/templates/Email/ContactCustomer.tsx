@@ -14,7 +14,8 @@ import {
   Tailwind,
   Text,
 } from '@react-email/components';
-import { ContactFormInput } from '@/validations/contact.validation';
+
+import type { ContactFormInput } from '@/validations/contact.validation';
 
 interface ContactProps {
   userInfo: ContactFormInput;
@@ -56,8 +57,8 @@ export const ContactCustomer = ({
       <Preview>{t.heading}</Preview>
 
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             {/* ---------- Header ---------- */}
             <Section className="px-[32px] py-[40px]">
               <Row>
@@ -81,7 +82,7 @@ export const ContactCustomer = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold leading-[100%]! ml-1">
+                        <Text className="ml-1 text-xs leading-[100%]! font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -93,31 +94,31 @@ export const ContactCustomer = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#7C6C06] text-3xl font-semibold leading-[130%]! text-start m-8 mb-6"
+              className="m-8 mb-6 text-start text-3xl leading-[130%]! font-semibold text-[#7C6C06]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.name}:{' '}
               <strong>
                 {userInfo.first_name} {userInfo.last_name}
               </strong>
               ,
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.email}: <strong>{userInfo.email}</strong>,
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.phone}: <strong>{userInfo.phone}</strong>,
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.subject}: <strong>{userInfo.subject}</strong>,
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.company}: <strong>{userInfo.company}</strong>,
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.message}: <strong>{userInfo.message}</strong>,
             </Text>
 

@@ -1,16 +1,17 @@
 'use client';
-import React, { FC, useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
+import { useForm } from 'react-hook-form';
+import React, { type FC, useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useLocale, useTranslations } from 'next-intl';
+
 import axios from '@/libs/axios';
 import { Form } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { useLocale, useTranslations } from 'next-intl';
-import { InputField } from '@/components/customs/Form';
-import Button from '@/components/customs/Button';
 import Alert from '@/components/customs/Alert';
+import Button from '@/components/customs/Button';
+import { InputField } from '@/components/customs/Form';
 import {
-  SubscribeFormInput,
+  type SubscribeFormInput,
   subscribeSchema,
 } from '@/validations/subscribe.validation';
 
@@ -77,20 +78,20 @@ export const SubscribeForm: FC = () => {
             e.preventDefault();
           }
         }}
-        className="flex lg:flex-row flex-col w-full items-start justify-end gap-2"
+        className="flex w-full flex-col items-start justify-end gap-2 lg:flex-row"
       >
         <InputField
           name="email"
           placeholder={t('inputPlaceholder')}
           register={form.register}
           error={form.formState.errors.email?.message}
-          className="lg:w-[340px] w-full text-base h-fit"
+          className="h-fit w-full text-base lg:w-[340px]"
         />
         <Button
           as="solid"
           variant="md"
           type="primary"
-          className="lg:w-fit w-full"
+          className="w-full lg:w-fit"
           disabled={loading || submitted}
         >
           {t('buttonText')}

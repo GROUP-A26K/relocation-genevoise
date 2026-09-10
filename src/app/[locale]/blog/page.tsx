@@ -1,13 +1,14 @@
-import { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
 
-import { PageView } from "@/components/sections/Blog/PageView";
+import { PageView } from '@/components/sections/Blog/PageView';
 import {
   fetchBlogs,
   fetchLatestBlog,
   fetchPostCategory,
-} from "@/services/blog.service";
+} from '@/services/blog.service';
+
+import type { Metadata } from 'next';
 
 const PAGE_SIZE = 9;
 
@@ -20,14 +21,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: "Metadata.Blog",
+    namespace: 'Metadata.Blog',
   });
 
   return {
-    title: t("title"),
-    description: t("description"),
+    title: t('title'),
+    description: t('description'),
     alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/blog`,
+      canonical: `/${locale == 'fr' ? '' : locale}/blog`,
     },
   };
 }
@@ -45,8 +46,8 @@ export default async function Page(props: Props) {
     locale,
     page: Number(page) || 1,
     pageSize: PAGE_SIZE,
-    filterBy: filterBy ?? "",
-    search: search ?? "",
+    filterBy: filterBy ?? '',
+    search: search ?? '',
     exceptSlug: newestBlog?.slug,
   });
 

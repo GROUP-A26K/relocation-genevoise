@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { useLocale } from 'next-intl';
 import { ArrowLeft, ArrowRight, MoreHorizontal } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
-import { ButtonProps, buttonVariants } from '@/components/ui/button-custom';
-import { useLocale } from 'next-intl';
+import {
+  type ButtonProps,
+  buttonVariants,
+} from '@/components/ui/button-custom';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
@@ -50,7 +53,7 @@ const PaginationLink = ({
         variant: isActive ? 'outline' : 'ghost',
         size,
       }),
-      'text-black-300 font-normal',
+      'font-normal text-black-300',
       className
     )}
     {...props}
@@ -68,7 +71,7 @@ const PaginationPrevious = ({
       aria-label="Go to previous page"
       size="default"
       className={cn(
-        'text-black-500 gap-1 pl-2.5 leading-[130%]! font-semibold',
+        'gap-1 pl-2.5 leading-[130%]! font-semibold text-black-500',
         className
       )}
       {...props}
@@ -90,7 +93,7 @@ const PaginationNext = ({
       aria-label="Go to next page"
       size="default"
       className={cn(
-        'text-black-500 gap-1 pr-2.5 leading-[130%]! font-semibold',
+        'gap-1 pr-2.5 leading-[130%]! font-semibold text-black-500',
         className
       )}
       {...props}

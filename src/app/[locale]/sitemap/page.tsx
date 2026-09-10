@@ -1,8 +1,10 @@
+import { getTranslations } from 'next-intl/server';
+
 import { PageView } from '@/components/sections/Sitemap';
 import { fetchSitemapBlogs } from '@/services/blog.service';
 import { fetchSitemapProperties } from '@/services/property.service';
-import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+
+import type { Metadata } from 'next';
 type Props = {
   params: Promise<{ locale: string }>;
 };

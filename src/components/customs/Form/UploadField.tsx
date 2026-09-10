@@ -1,22 +1,18 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-import { useDropzone } from "react-dropzone";
-import { CloudUpload, X } from "lucide-react";
-import { useCallback, useState } from "react";
-import {
-  Controller,
-  type FieldPath,
-  type FieldValues,
-} from "react-hook-form";
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { useDropzone } from 'react-dropzone';
+import { CloudUpload, X } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { Controller, type FieldPath, type FieldValues } from 'react-hook-form';
 
-import { cn } from "@/libs/utils";
-import { Input } from "@/components/ui/input";
-import PDFIcon from "@/assets/img/icons/file/pdf-type-icon.svg";
-import { CircularProgressBar } from "@/components/customs/Progress/circularProgressBar";
+import { cn } from '@/libs/utils';
+import { Input } from '@/components/ui/input';
+import PDFIcon from '@/assets/img/icons/file/pdf-type-icon.svg';
+import { CircularProgressBar } from '@/components/customs/Progress/circularProgressBar';
 
-import { FormField } from "./FormField";
+import { FormField } from './FormField';
 
 const COMPLETED_PROGRESS = 100;
 
@@ -26,8 +22,9 @@ interface UploadState {
   timerId: NodeJS.Timeout;
 }
 
-interface UploadFieldProps<TFieldValues extends FieldValues = FieldValues>
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+interface UploadFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+> extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   name: FieldPath<TFieldValues>;
   label?: string;
   placeholder?: string;
@@ -55,7 +52,7 @@ export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
         if (!curr) return curr;
         const next = Math.min(
           curr.progress + Math.floor(Math.random() * 15) + 5,
-          COMPLETED_PROGRESS,
+          COMPLETED_PROGRESS
         );
         if (next === COMPLETED_PROGRESS) {
           clearInterval(curr.timerId);
@@ -74,16 +71,16 @@ export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
       if (files[0]) onChange(files[0]);
       simulateUpload(files[0]);
     },
-    [onChange],
+    [onChange]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     multiple: false,
     accept: {
-      "application/pdf": [".pdf"],
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-        [".docx"],
+      'application/pdf': ['.pdf'],
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        ['.docx'],
     },
   });
 
@@ -103,11 +100,11 @@ export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
     >
       <Controller
         name={props.name}
-        render={({}) => (
+        render={() => (
           <div className="w-full">
             <label
               {...getRootProps()}
-              className="flex flex-col items-center justify-center w-full border border-gray-200 rounded-[12px] hover:border-black-50 cursor-pointer"
+              className="flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border border-gray-200 hover:border-black-50"
             >
               {upload && (
                 <FileCard
@@ -150,18 +147,18 @@ function FileCard({
   const pct = progress ?? COMPLETED_PROGRESS;
 
   return (
-    <div className="relative flex gap-2 p-2 pr-4 w-full">
+    <div className="relative flex w-full gap-2 p-2 pr-4">
       {progress !== undefined && (
         <div
           className={cn(
-            "absolute inset-0 bg-grey-50 transition-all duration-300 rounded-l-[12px]",
-            pct > 90 && "rounded-[12px]",
+            'absolute inset-0 rounded-l-[12px] bg-grey-50 transition-all duration-300',
+            pct > 90 && 'rounded-[12px]'
           )}
           style={{ width: `${pct}%` }}
         />
       )}
 
-      <div className="relative flex items-center gap-3 flex-1">
+      <div className="relative flex flex-1 items-center gap-3">
         <Image
           src={PDFIcon.src}
           width={40}
@@ -170,8 +167,8 @@ function FileCard({
           className="size-10"
         />
 
-        <div className="flex flex-col w-full gap-1">
-          <p className="text-base font-medium max-w-[300px] text-gray-900 leading-none truncate">
+        <div className="flex w-full flex-col gap-1">
+          <p className="max-w-[300px] truncate text-base leading-none font-medium text-gray-900">
             {file.name}
           </p>
           <div className="flex items-center text-sm text-gray-500">
@@ -180,7 +177,7 @@ function FileCard({
               <>
                 <span className="mx-1 h-[3px] w-[3px] rounded-full bg-gray-300" />
                 <span>
-                  {pct < COMPLETED_PROGRESS ? `Uploading ${pct}%` : "Uploaded"}
+                  {pct < COMPLETED_PROGRESS ? `Uploading ${pct}%` : 'Uploaded'}
                 </span>
               </>
             )}
@@ -205,15 +202,15 @@ function FileCard({
 }
 
 function EmptyState() {
-  const textT = useTranslations("Button&Text.UploadFile");
+  const textT = useTranslations('Button&Text.UploadFile');
   return (
     <div className="flex flex-col items-center justify-center gap-6 py-6">
-      <div className="flex size-12 rounded-lg items-center justify-center bg-grey-50">
+      <div className="flex size-12 items-center justify-center rounded-lg bg-grey-50">
         <CloudUpload className="size-6 text-blue-500" />
       </div>
       <p className="text-center text-sm text-black-400">
-        <span className="font-semibold text-black-500">{textT("title")}</span>{" "}
-        {textT("description")}
+        <span className="font-semibold text-black-500">{textT('title')}</span>{' '}
+        {textT('description')}
         <br />
         <span className="text-xs">DOCX, PDF&nbsp;(max&nbsp;500&nbsp;MB)</span>
       </p>

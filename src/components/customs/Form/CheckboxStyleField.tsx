@@ -1,14 +1,14 @@
-import { Controller, type FieldPath, type FieldValues } from "react-hook-form";
+import { Controller, type FieldPath, type FieldValues } from 'react-hook-form';
 
+import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   FormControl,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
-import { cn } from "@/libs/utils";
-import { Link } from "@/libs/i18nNavigation";
+} from '@/components/ui/form';
 
 type CheckboxFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   label: string;
@@ -27,7 +27,7 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
 }: CheckboxFieldProps<TFieldValues>) => {
   return (
     <FormItem>
-      <div className={cn("flex flex-row items-start gap-1.5", className)}>
+      <div className={cn('flex flex-row items-start gap-1.5', className)}>
         <div className="h-[21px]">
           <FormControl className="rounded-full">
             <Controller
@@ -47,10 +47,10 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
         <div className="text-sm leading-[150%]">
           <FormLabel
             htmlFor={name}
-            className="inline font-normal cursor-pointer"
+            className="inline cursor-pointer font-normal"
           >
             {label}
-          </FormLabel>{" "}
+          </FormLabel>{' '}
           <Link href="/legal-notices" className="font-semibold text-black-500">
             {policy}
           </Link>

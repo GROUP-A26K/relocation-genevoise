@@ -16,18 +16,18 @@ export const FeatureRowCard: React.FC<Props> = ({
 }) => {
   return (
     <Link href={link}>
-      <div className='flex p-6 flex-row w-full h-full lg:gap-6 gap-4 bg-grey-50 border border-grey-50 hover:bg-white hover:border-primary-500 rounded-xl leading-none no-underline transition-colors outline-hidden select-none'>
-        <div className='lg:h-12 lg:w-12 w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center'>
-          <div className='lg:p-3 p-2.5'>
-            {Icon && <Icon className='lg:h-6 lg:w-6 w-5 h-5 text-white' />}
+      <div className="flex h-full w-full flex-row gap-4 rounded-xl border border-grey-50 bg-grey-50 p-6 leading-none no-underline outline-hidden transition-colors select-none hover:border-primary-500 hover:bg-white lg:gap-6">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-500 lg:h-12 lg:w-12">
+          <div className="p-2.5 lg:p-3">
+            {Icon && <Icon className="h-5 w-5 text-white lg:h-6 lg:w-6" />}
           </div>
         </div>
-        <div className={cn('flex flex-col text-black-500 lg:gap-2 gap-1')}>
-          <h4 className='text-xl font-semibold leading-[130%]!'>{title}</h4>
+        <div className={cn('flex flex-col gap-1 text-black-500 lg:gap-2')}>
+          <h4 className="text-xl leading-[130%]! font-semibold">{title}</h4>
           {description && (
             <p
               className={cn(
-                'text-base text-black-200 font-normal leading-[130%]!'
+                'text-base leading-[130%]! font-normal text-black-200'
               )}
             >
               {description}

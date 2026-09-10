@@ -192,14 +192,7 @@ export type WysiwygBlock = {
             _key: string;
           }>;
           style?:
-            | 'normal'
-            | 'h1'
-            | 'h2'
-            | 'h3'
-            | 'h4'
-            | 'h5'
-            | 'h6'
-            | 'blockquote';
+            'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
           listItem?: 'bullet' | 'number';
           markDefs?: Array<{
             href?: string;
@@ -348,11 +341,7 @@ export type AssuranceJobPost = {
     [internalGroqTypeReferenceTo]?: 'assuranceJobDepartment';
   };
   employmentType?:
-    | 'Full-time'
-    | 'Part-time'
-    | 'Contract'
-    | 'Internship'
-    | 'Temporary';
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
   locationType?: 'Remote' | 'Hybrid' | 'On-site';
   location?: string;
   salaryMin?: number;
@@ -368,14 +357,7 @@ export type AssuranceJobPost = {
           _key: string;
         }>;
         style?:
-          | 'normal'
-          | 'h1'
-          | 'h2'
-          | 'h3'
-          | 'h4'
-          | 'h5'
-          | 'h6'
-          | 'blockquote';
+          'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
         listItem?: 'bullet' | 'number';
         markDefs?: Array<{
           href?: string;

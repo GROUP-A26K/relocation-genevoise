@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import { useTransition } from "react";
+import { useTransition } from 'react';
 
-import { usePropertyFilters } from "@/hooks/usePropertyFilters";
-import { useExchangeRates } from "@/context/ExchangeRatesContext";
-import { Meta } from "@/models/Meta";
-import { IPropertyListing } from "@/models/Property";
+import { usePropertyFilters } from '@/hooks/usePropertyFilters';
+import { useExchangeRates } from '@/context/ExchangeRatesContext';
 
-import PropertyResultsContent from "./PropertyResultsContent";
-import PropertyResultsHeader from "./PropertyResultsHeader";
+import PropertyResultsHeader from './PropertyResultsHeader';
+import PropertyResultsContent from './PropertyResultsContent';
+
+import type { Meta } from '@/models/Meta';
+import type { IPropertyListing } from '@/models/Property';
 
 interface Props {
   properties: IPropertyListing[];
@@ -22,7 +23,7 @@ export default function PropertyListingsSection({ properties, meta }: Props) {
   usePropertyFilters(convertToCHF, startTransition);
 
   return (
-    <section className="flex flex-col items-center 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4">
+    <section className="flex flex-col items-center px-4 lg:px-[48px] xl:px-[60px] 2xl:px-[100px]">
       <div className="w-full max-w-[1240px]">
         <PropertyResultsHeader {...meta.pagination} />
         <PropertyResultsContent

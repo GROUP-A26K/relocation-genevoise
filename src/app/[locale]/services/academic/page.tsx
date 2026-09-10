@@ -1,11 +1,13 @@
+import { getTranslations } from 'next-intl/server';
+
+import { AppConfig } from '@/utils/AppConfig';
 import { Hero } from '@/components/blocks/Hero';
 import Section from '@/components/customs/Section';
-import { getTranslations } from 'next-intl/server';
-import { Metadata } from 'next';
-import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { ContentView } from '@/components/sections/ServiceDetail';
+import { BookConsultation2 } from '@/components/blocks/Consultation';
 import HeroImage from '@/assets/img/hero/service/scolarite-hero-image.webp';
-import { AppConfig } from '@/utils/AppConfig';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -106,7 +108,7 @@ export default async function Page(props: Props) {
           },
         ]}
       />
-      <Section className="lg:bg-white bg-grey-50">
+      <Section className="bg-grey-50 lg:bg-white">
         <BookConsultation2
           heading={t('BookConsultation.heading')}
           subHeading={t('BookConsultation.subHeading')}

@@ -42,7 +42,7 @@ import {
   Cigarette,
   Lightbulb,
   ShieldCheck,
-} from "lucide-react";
+} from 'lucide-react';
 
 export const FacilityIconMap: Record<string, React.ComponentType> = {
   area: Ruler,

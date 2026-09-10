@@ -1,11 +1,13 @@
-import { FormattedText } from '@/components/customs/Text';
+import { CircleMinus, CirclePlus } from 'lucide-react';
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react';
-import { CircleMinus, CirclePlus } from 'lucide-react';
-import { FC } from 'react';
+
+import { FormattedText } from '@/components/customs/Text';
+
+import type { FC } from 'react';
 
 interface FAQ {
   question: string;
@@ -56,52 +58,52 @@ export const AssistanceFAQ: FC<Props> = ({
   ],
 }) => {
   return (
-    <div className='flex lg:flex-row flex-col  lg:gap-16 gap-12 items-start'>
-      <div className='flex w-full justify-start'>
-        <div className='flex flex-col lg:gap-6 gap-4 max-w-3xl text-left'>
-          <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
+    <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-16">
+      <div className="flex w-full justify-start">
+        <div className="flex max-w-3xl flex-col gap-4 text-left lg:gap-6">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
               {heading}
             </p>
-            <h2 className='text-3xl font-semibold leading-[130%]!'>
+            <h2 className="text-3xl leading-[130%]! font-semibold">
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal text-black-200 leading-[130%]!'>
+          <p className="text-sm leading-[130%]! font-normal text-black-200">
             {description}
           </p>
         </div>
       </div>
-      <dl className='flex flex-col max-w-3xl w-full gap-8'>
+      <dl className="flex w-full max-w-3xl flex-col gap-8">
         {faqs.map((faq) => (
           <Disclosure
             key={faq.question}
-            as='div'
-            className='first:pt-0 last:pb-0 duration-500'
+            as="div"
+            className="duration-500 first:pt-0 last:pb-0"
           >
             <dt>
-              <DisclosureButton className='group flex w-full items-start justify-between text-left text-black-500'>
-                <span className='text-lg font-semibold leading-[130%]!'>
+              <DisclosureButton className="group flex w-full items-start justify-between text-left text-black-500">
+                <span className="text-lg leading-[130%]! font-semibold">
                   {faq.question}
                 </span>
-                <span className='ml-6 flex h-6 items-center'>
+                <span className="ml-6 flex h-6 items-center">
                   <CirclePlus
-                    aria-hidden='true'
-                    className='size-6 text-primary-500 group-data-open:hidden'
+                    aria-hidden="true"
+                    className="size-6 text-primary-500 group-data-open:hidden"
                   />
                   <CircleMinus
-                    aria-hidden='true'
-                    className='size-6 text-primary-500 group-[&:not([data-open])]:hidden'
+                    aria-hidden="true"
+                    className="size-6 text-primary-500 group-[&:not([data-open])]:hidden"
                   />
                 </span>
               </DisclosureButton>
             </dt>
             <DisclosurePanel
               transition
-              as='dd'
-              className='origin-top transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0'
+              as="dd"
+              className="origin-top transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
             >
-              <p className='pt-2 max-w-[720px] text-sm text-black-200 leading-[130%]!'>
+              <p className="max-w-[720px] pt-2 text-sm leading-[130%]! text-black-200">
                 {faq.answer}
               </p>
             </DisclosurePanel>

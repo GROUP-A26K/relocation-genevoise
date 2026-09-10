@@ -1,25 +1,27 @@
 'use client';
 
+import { useBoolean } from 'usehooks-ts';
 import { useRef, useEffect } from 'react';
-import { useTranslations } from "next-intl";
-import { useBoolean } from "usehooks-ts";
+import { useTranslations } from 'next-intl';
 
 interface IDescriptionProps {
   content: string;
 }
 
 export const PropertyDescription = ({ content }: IDescriptionProps) => {
-  const t = useTranslations("PropertiesDetails");
+  const t = useTranslations('PropertiesDetails');
   const isExpanded = useBoolean(false);
   const showReadMore = useBoolean(false);
   const textRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (textRef.current) {
-      const lineHeight = parseInt(window.getComputedStyle(textRef.current).lineHeight);
+      const lineHeight = parseInt(
+        window.getComputedStyle(textRef.current).lineHeight
+      );
       const height = textRef.current.scrollHeight;
       const lines = height / lineHeight;
-      
+
       if (lines > 4) {
         showReadMore.setTrue();
       }
@@ -30,7 +32,7 @@ export const PropertyDescription = ({ content }: IDescriptionProps) => {
     <div className="flex flex-col gap-3">
       <p
         ref={textRef}
-        className={`text-sm leading-[130%]! text-black-200 whitespace-pre-wrap ${
+        className={`text-sm leading-[130%]! whitespace-pre-wrap text-black-200 ${
           !isExpanded.value && showReadMore.value ? 'line-clamp-4' : ''
         }`}
       >
@@ -39,9 +41,11 @@ export const PropertyDescription = ({ content }: IDescriptionProps) => {
       {showReadMore.value && (
         <button
           onClick={isExpanded.toggle}
-          className="text-black-500 font-semibold text-base self-start hover:underline"
+          className="self-start text-base font-semibold text-black-500 hover:underline"
         >
-          {isExpanded.value ? t("description.readLess") : t("description.readMore")}
+          {isExpanded.value
+            ? t('description.readLess')
+            : t('description.readMore')}
         </button>
       )}
     </div>

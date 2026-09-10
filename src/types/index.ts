@@ -1,9 +1,9 @@
-import { Meta } from "@/models/Meta";
+import type { Meta } from '@/models/Meta';
 import type {
   IPropertyListing,
   PropertyPriceUnit,
   PropertyRentPeriod,
-} from "@/models/Property";
+} from '@/models/Property';
 
 export interface IIconProps {
   className?: string;
@@ -31,7 +31,7 @@ export interface IPropertyCategoryParams {
 export interface ISanityPropertyFacility {
   typeRoom?: string;
   name?: string;
-  valueType?: "number" | "text" | "none";
+  valueType?: 'number' | 'text' | 'none';
   numberValue?: number;
   textValue?: string;
 }
@@ -42,7 +42,7 @@ export interface ISanityPropertyResponse {
   slug?: { current?: string };
   price?: number;
   priceUnit?: PropertyPriceUnit;
-  listingType?: "rent" | "sale";
+  listingType?: 'rent' | 'sale';
   rentPeriod?: PropertyRentPeriod;
   language?: string;
   availability?: boolean;

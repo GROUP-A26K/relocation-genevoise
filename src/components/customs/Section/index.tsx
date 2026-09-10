@@ -1,10 +1,9 @@
-import { cn } from "@/libs/utils";
+import { cn } from '@/libs/utils';
 
-import type { FC } from "react";
+import type { FC } from 'react';
 
 interface ISectionProps
-  extends React.PropsWithChildren,
-    React.HTMLAttributes<HTMLElement> {
+  extends React.PropsWithChildren, React.HTMLAttributes<HTMLElement> {
   isDivider?: boolean;
   className?: string;
   wrapperProps?: React.HTMLAttributes<HTMLElement>;
@@ -33,33 +32,33 @@ const Section: FC<ISectionProps> = ({
   return (
     <section
       className={cn(
-        "flex flex-col justify-center items-center text-black-500",
-        className,
+        'flex flex-col items-center justify-center text-black-500',
+        className
       )}
       {...props}
     >
       <div
         className={cn(
-          "container pt-12 w-full max-w-(--breakpoint-2xl) px-4",
-          "2xl:pt-16 2xl:px-[100px] lg:px-[48px]",
-          wrapperClassname,
+          'container w-full max-w-(--breakpoint-2xl) px-4 pt-12',
+          'lg:px-[48px] 2xl:px-[100px] 2xl:pt-16',
+          wrapperClassname
         )}
         {...restWrapperProps}
       >
         <div
-          className={cn("flex flex-col gap-12 xl:gap-16", childrenClassname)}
+          className={cn('flex flex-col gap-12 xl:gap-16', childrenClassname)}
           {...restChildrenProps}
         >
           {children}
         </div>
         <div
           className={cn(
-            "pt-12",
-            "2xl:pt-16",
+            'pt-12',
+            '2xl:pt-16',
             {
-              "border-b border-grey-50": isDivider,
+              'border-b border-grey-50': isDivider,
             },
-            dividerClassname,
+            dividerClassname
           )}
           {...restDividerProps}
         />

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Image, { type StaticImageData } from "next/image";
+import Image, { type StaticImageData } from 'next/image';
 
-import { cn } from "@/libs/utils";
-import useProgressSteps from "@/hooks/useProgressSteps";
-import Section from "@/components/customs/Section";
+import { cn } from '@/libs/utils';
+import Section from '@/components/customs/Section';
+import useProgressSteps from '@/hooks/useProgressSteps';
 
 export type TRentalStep = {
   title: string;
@@ -39,10 +39,10 @@ export default function OurRentalProcess({
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-24">
         <div className="flex flex-col gap-12 lg:flex-1 lg:self-start">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
+            <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
               {eyebrow}
             </p>
-            <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
+            <h2 className="text-[32px] leading-[130%]! font-bold text-pretty text-black-500 lg:text-[40px]">
               {heading}
             </h2>
           </div>
@@ -74,30 +74,30 @@ export default function OurRentalProcess({
                     type="button"
                     onClick={() => selectStep(index)}
                     aria-label={`Step ${index + 1}: ${step.title}`}
-                    aria-current={isActive ? "step" : undefined}
+                    aria-current={isActive ? 'step' : undefined}
                     className={cn(
-                      "flex size-9 cursor-pointer items-center justify-center rounded-[10px] border transition-colors duration-300 lg:size-11",
+                      'flex size-9 cursor-pointer items-center justify-center rounded-[10px] border transition-colors duration-300 lg:size-11',
                       isReached
-                        ? "border-transparent bg-secondary-500"
-                        : "border-grey-200 bg-transparent hover:border-secondary-500",
+                        ? 'border-transparent bg-secondary-500'
+                        : 'border-grey-200 bg-transparent hover:border-secondary-500'
                     )}
                   >
                     <span
                       className={cn(
-                        "text-lg font-semibold leading-[130%]! transition-colors duration-300 lg:text-2xl",
-                        isReached ? "text-black-500" : "text-black-100",
+                        'text-lg leading-[130%]! font-semibold transition-colors duration-300 lg:text-2xl',
+                        isReached ? 'text-black-500' : 'text-black-100'
                       )}
                     >
-                      {String(index + 1).padStart(2, "0")}
+                      {String(index + 1).padStart(2, '0')}
                     </span>
                   </button>
 
                   <div
                     className={cn(
-                      "relative w-px flex-1 overflow-hidden",
+                      'relative w-px flex-1 overflow-hidden',
                       isLast
-                        ? "bg-linear-to-b from-grey-200 to-transparent"
-                        : "bg-grey-200",
+                        ? 'bg-linear-to-b from-grey-200 to-transparent'
+                        : 'bg-grey-200'
                     )}
                   >
                     {isComplete && (
@@ -108,7 +108,7 @@ export default function OurRentalProcess({
                       <span
                         key={`${activeStep}-${animationKey}`}
                         onAnimationEnd={advanceStep}
-                        className="progress-step-animation absolute inset-0 origin-top bg-secondary-500"
+                        className="absolute inset-0 origin-top progress-step-animation bg-secondary-500"
                       />
                     )}
                   </div>
@@ -116,10 +116,10 @@ export default function OurRentalProcess({
 
                 <div
                   className={cn(
-                    "flex min-w-0 flex-1 flex-col gap-3 pb-8 lg:pb-12",
+                    'flex min-w-0 flex-1 flex-col gap-3 pb-8 lg:pb-12',
                     {
-                      "pb-0 lg:pb-0": isLast,
-                    },
+                      'pb-0 lg:pb-0': isLast,
+                    }
                   )}
                 >
                   <button
@@ -129,8 +129,8 @@ export default function OurRentalProcess({
                   >
                     <h3
                       className={cn(
-                        "text-2xl font-semibold leading-[130%]! transition-colors duration-300",
-                        isReached ? "text-black-500" : "text-black-100",
+                        'text-2xl leading-[130%]! font-semibold transition-colors duration-300',
+                        isReached ? 'text-black-500' : 'text-black-100'
                       )}
                     >
                       {step.title}
@@ -138,8 +138,8 @@ export default function OurRentalProcess({
                   </button>
                   <p
                     className={cn(
-                      "text-base font-normal leading-[150%]! transition-colors duration-300",
-                      isReached ? "text-black-300" : "text-black-100",
+                      'text-base leading-[150%]! font-normal transition-colors duration-300',
+                      isReached ? 'text-black-300' : 'text-black-100'
                     )}
                   >
                     {step.description}

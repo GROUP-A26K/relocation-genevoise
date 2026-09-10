@@ -1,17 +1,18 @@
-import { redirect } from "next/navigation";
-import { AppConfig } from "@/utils/AppConfig";
+import { redirect } from 'next/navigation';
+
+import { AppConfig } from '@/utils/AppConfig';
 
 export default async function Page(
-  props: PageProps<"/[locale]/find-a-tenant">,
+  props: PageProps<'/[locale]/find-a-tenant'>
 ) {
   const { locale } = await props.params;
 
   const { routes } = AppConfig;
 
   const target =
-    routes["findATenantLandlords"][
-      locale as keyof (typeof routes)["findATenantLandlords"]
+    routes['findATenantLandlords'][
+      locale as keyof (typeof routes)['findATenantLandlords']
     ];
 
-  redirect(`/${locale === "fr" ? "" : locale}${target}`);
+  redirect(`/${locale === 'fr' ? '' : locale}${target}`);
 }

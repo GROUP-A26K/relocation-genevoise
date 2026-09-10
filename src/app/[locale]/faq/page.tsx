@@ -1,9 +1,11 @@
-import { BookConsultation } from '@/components/blocks/Consultation';
+import { getTranslations } from 'next-intl/server';
+
 import { FAQ } from '@/components/blocks/FAQ';
 import Section from '@/components/customs/Section';
 import GroupAvatar from '@/assets/img/avt/group-avt-1.webp';
-import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { BookConsultation } from '@/components/blocks/Consultation';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;

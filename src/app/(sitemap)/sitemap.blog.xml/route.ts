@@ -1,7 +1,7 @@
 // app/api/sitemap/blog/route.ts
 import { Env } from '@/libs/Env';
-import { fetchBlogs } from '@/services/blog.service';
 import { AppConfig } from '@/utils/AppConfig';
+import { fetchBlogs } from '@/services/blog.service';
 
 /* ------------------------------------------------------------------ */
 /* Config                                                              */

@@ -1,11 +1,13 @@
-import type { FC } from 'react';
-import { cn } from '@/libs/utils';
 import { Info, XIcon } from 'lucide-react';
+
+import { cn } from '@/libs/utils';
 import {
   Alert as ShadcnAlert,
   AlertDescription,
   AlertTitle,
 } from '@/components/ui/alert';
+
+import type { FC } from 'react';
 type IType = 'danger' | 'success' | 'warning' | 'info';
 
 interface GhostProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
@@ -62,37 +64,37 @@ const Alert: FC<Props> = ({ children, type, title, as, onClick }) => {
         <ShadcnAlert
           className={cn(
             { [STYLE_SOLID[type]]: as === 'solid' },
-            'rounded-3xl h-fit sm:w-[400px] w-full flex items-center justify-between '
+            'flex h-fit w-full items-center justify-between rounded-3xl sm:w-[400px]'
           )}
         >
           <div
             className={cn(
-              'flex items-center justify-center rounded-full mr-[13px]'
+              'mr-[13px] flex items-center justify-center rounded-full'
             )}
           >
             <Info className="h-[24px] w-[24px] text-white" />
           </div>
 
           {/* Alert text content */}
-          <div className="flex h-fit justify-between w-full">
+          <div className="flex h-fit w-full justify-between">
             <div className="flex flex-col">
-              <AlertTitle className="text-[16px] text-white font-semibold lineHeight-md mb-[3px]">
+              <AlertTitle className="lineHeight-md mb-[3px] text-[16px] font-semibold text-white">
                 {title
                   ? title
                   : `${type.charAt(0).toUpperCase() + type.slice(1)}`}
               </AlertTitle>
-              <AlertDescription className="text-[16px] text-white font-medium lineHeight-md">
+              <AlertDescription className="lineHeight-md text-[16px] font-medium text-white">
                 {children}
               </AlertDescription>
             </div>
 
             {/* Close button */}
             <div
-              className="flex items-start justify-start cursor-pointer"
+              className="flex cursor-pointer items-start justify-start"
               onClick={onClick}
             >
               <button className="p-[6px] text-white">
-                <XIcon className="w-[20px] h-[20px]" />
+                <XIcon className="h-[20px] w-[20px]" />
               </button>
             </div>
           </div>
@@ -104,35 +106,35 @@ const Alert: FC<Props> = ({ children, type, title, as, onClick }) => {
         <ShadcnAlert
           className={cn(
             { [STYLE_GHOST[type]]: as === 'ghost' },
-            'rounded-3xl sm:w-[400px] h-fit w-full flex items-center justify-between '
+            'flex h-fit w-full items-center justify-between rounded-3xl sm:w-[400px]'
           )}
         >
           <div
-            className={cn('flex items-center justify-center rounded-full mr-4')}
+            className={cn('mr-4 flex items-center justify-center rounded-full')}
           >
             <Info className={cn(STYLE_ICON[type], 'h-[24px] w-[24px]')} />
           </div>
           {/* Alert text content */}
 
-          <div className="flex h-fit justify-between w-full">
+          <div className="flex h-fit w-full justify-between">
             <div className="flex flex-col">
-              <AlertTitle className="text-[16px] text-black-500 font-semibold lineHeight-md mb-[3px]">
+              <AlertTitle className="lineHeight-md mb-[3px] text-[16px] font-semibold text-black-500">
                 {title
                   ? title
                   : `${type.charAt(0).toUpperCase() + type.slice(1)}`}
               </AlertTitle>
-              <AlertDescription className="text-[16px] text-black-500 font-medium lineHeight-md">
+              <AlertDescription className="lineHeight-md text-[16px] font-medium text-black-500">
                 {children}
               </AlertDescription>
             </div>
 
             {/* Close button */}
             <div
-              className="flex items-start justify-start cursor-pointer"
+              className="flex cursor-pointer items-start justify-start"
               onClick={onClick}
             >
               <button className="p-[6px] text-black-500">
-                <XIcon className="w-[20px] h-[20px]" />
+                <XIcon className="h-[20px] w-[20px]" />
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import ReactCountUp from "react-countup";
-import { useInView } from "react-intersection-observer";
+import ReactCountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 
 interface ICountUpProps {
   value: string;
@@ -20,22 +20,22 @@ function parseValue(value: string) {
   const raw = match[0];
   const start = match.index ?? 0;
 
-  const lastSep = Math.max(raw.lastIndexOf(","), raw.lastIndexOf("."));
-  const trailing = lastSep >= 0 ? raw.slice(lastSep + 1) : "";
+  const lastSep = Math.max(raw.lastIndexOf(','), raw.lastIndexOf('.'));
+  const trailing = lastSep >= 0 ? raw.slice(lastSep + 1) : '';
   const hasDecimal = lastSep >= 0 && trailing.length !== 3;
 
-  const decimal = hasDecimal ? raw[lastSep] : ".";
+  const decimal = hasDecimal ? raw[lastSep] : '.';
   const decimals = hasDecimal ? trailing.length : 0;
   const integerPart = hasDecimal ? raw.slice(0, lastSep) : raw;
-  const separator = integerPart.includes(",")
-    ? ","
-    : integerPart.includes(".")
-      ? "."
-      : "";
+  const separator = integerPart.includes(',')
+    ? ','
+    : integerPart.includes('.')
+      ? '.'
+      : '';
 
   const numeric = hasDecimal
-    ? `${integerPart.replace(/[.,]/g, "")}.${trailing}`
-    : raw.replace(/[.,]/g, "");
+    ? `${integerPart.replace(/[.,]/g, '')}.${trailing}`
+    : raw.replace(/[.,]/g, '');
 
   return {
     prefix: value.slice(0, start),
@@ -78,7 +78,7 @@ export default function CountUp({
           decimal={decimal}
         />
       ) : (
-        (0).toFixed(decimals).replace(".", decimal)
+        (0).toFixed(decimals).replace('.', decimal)
       )}
       {suffix}
     </span>

@@ -1,6 +1,7 @@
-import internal from 'node:stream';
-import { createBucketIfNotExists, minio } from '@/libs/minio';
 import { Env } from '@/libs/Env';
+import { createBucketIfNotExists, minio } from '@/libs/minio';
+
+import type internal from 'node:stream';
 
 interface SaveParams {
   bucketName: string;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface UseOpenStatusOptions {
   timezone?: string;
@@ -21,22 +21,22 @@ export const isServiceOpen = (
     return false;
   }
 
-  const hourFormatter = new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
+  const hourFormatter = new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
     hour12: false,
     timeZone: timezone,
   });
   const hourParts = hourFormatter.formatToParts(date);
-  const hourPart = hourParts.find((part) => part.type === "hour");
-  const hour = parseInt(hourPart?.value ?? "0", 10);
+  const hourPart = hourParts.find((part) => part.type === 'hour');
+  const hour = parseInt(hourPart?.value ?? '0', 10);
 
-  const weekdayFormatter = new Intl.DateTimeFormat("en-US", {
-    weekday: "short",
+  const weekdayFormatter = new Intl.DateTimeFormat('en-US', {
+    weekday: 'short',
     timeZone: timezone,
   });
   const weekday = weekdayFormatter.format(date);
 
-  const isWeekday = weekday !== "Sat" && weekday !== "Sun";
+  const isWeekday = weekday !== 'Sat' && weekday !== 'Sun';
 
   return isWeekday && hour >= openHour && hour < closeHour;
 };
@@ -52,7 +52,7 @@ export const useOpenStatus = ({
   );
 
   useEffect(() => {
-    if (!timezone || typeof window === "undefined") {
+    if (!timezone || typeof window === 'undefined') {
       setIsOpen(false);
       return;
     }

@@ -5,7 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion-custom';
-import { FC } from 'react';
+
+import type { FC } from 'react';
 
 interface FAQ {
   question: string;
@@ -56,38 +57,38 @@ export const FAQ: FC<Props> = ({
   ],
 }) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-12 items-center'>
-      <div className='flex w-full items-center lg:justify-center justify-start'>
-        <div className='flex flex-col lg:gap-6 gap-4 max-w-3xl lg:items-center text-left'>
-          <div className='flex flex-col gap-3'>
-            <p className='text-sm font-semibold lg:text-center text-left text-secondary-600 leading-[130%]!'>
+    <div className="flex flex-col items-center gap-12 lg:gap-16">
+      <div className="flex w-full items-center justify-start lg:justify-center">
+        <div className="flex max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
+          <div className="flex flex-col gap-3">
+            <p className="text-left text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
               {heading}
             </p>
-            <h2 className='text-5xl font-semibold lg:text-center text-left leading-[130%]!'>
+            <h2 className="text-left text-5xl leading-[130%]! font-semibold lg:text-center">
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className='text-sm font-normal lg:text-center text-left text-black-200 leading-[130%]!'>
+          <p className="text-left text-sm leading-[130%]! font-normal text-black-200 lg:text-center">
             {description}
           </p>
         </div>
       </div>
 
       <Accordion
-        type='single'
+        type="single"
         collapsible
-        className='flex flex-col max-w-3xl w-full'
+        className="flex w-full max-w-3xl flex-col"
       >
         {faqs.map((item, index) => (
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className='py-8 first:pt-0 last:pb-0 duration-500 border-b border-gray-900/10 last:border-b-0'
+            className="border-b border-gray-900/10 py-8 duration-500 first:pt-0 last:border-b-0 last:pb-0"
           >
-            <AccordionTrigger className='text-lg font-semibold leading-[130%]! py-0'>
+            <AccordionTrigger className="py-0 text-lg leading-[130%]! font-semibold">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className='py-0 pt-2 max-w-[720px] text-sm text-black-200 leading-[130%]!'>
+            <AccordionContent className="max-w-[720px] py-0 pt-2 text-sm leading-[130%]! text-black-200">
               <p>
                 <FormattedText text={item.answer} />
               </p>

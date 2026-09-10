@@ -1,7 +1,7 @@
-import Section from "@/components/customs/Section";
-import { PropertySectionHeader } from "@/components/blocks/PropertyDetail/SectionHeader";
-import { PhotoTourView } from "@/components/sections/PhotoTour/PhotoTourView";
-import { getPropertyPhotoTour } from "@/services/property.service";
+import Section from '@/components/customs/Section';
+import { getPropertyPhotoTour } from '@/services/property.service';
+import { PhotoTourView } from '@/components/sections/PhotoTour/PhotoTourView';
+import { PropertySectionHeader } from '@/components/blocks/PropertyDetail/SectionHeader';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -13,7 +13,7 @@ export default async function GalleryPage({ params }: Props) {
 
   return (
     <Section isDivider>
-      <PropertySectionHeader areas={areas} slug={slug}/>
+      <PropertySectionHeader areas={areas} slug={slug} />
       <PhotoTourView areas={areas} />
     </Section>
   );

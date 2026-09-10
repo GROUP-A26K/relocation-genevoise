@@ -1,19 +1,16 @@
-import { X } from "lucide-react";
-import {
-  UseFormRegister,
-  type FieldPath,
-  type FieldValues,
-} from "react-hook-form";
+import { X } from 'lucide-react';
 
-import { cn } from "@/libs/utils";
-import { Input } from "@/components/ui/input";
+import { cn } from '@/libs/utils';
+import { Input } from '@/components/ui/input';
 
-import { FormField } from "./FormField";
+import { FormField } from './FormField';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
+import type { UseFormRegister, FieldPath, FieldValues } from 'react-hook-form';
 
-interface InputFieldProps<TFieldValues extends FieldValues = FieldValues>
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+> extends React.InputHTMLAttributes<HTMLInputElement> {
   name: FieldPath<TFieldValues>;
   label?: string;
   placeholder: string;
@@ -33,7 +30,7 @@ export const InputField = <TFieldValues extends FieldValues = FieldValues>({
   isRequired,
   register,
   error,
-  inputClassName = "",
+  inputClassName = '',
   icon,
   labelClassName,
   className,
@@ -51,21 +48,21 @@ export const InputField = <TFieldValues extends FieldValues = FieldValues>({
     >
       <div className="group relative">
         {icon && (
-          <div className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-black-50">
+          <div className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-black-50">
             {icon}
           </div>
         )}
         <Input
           id={name}
           className={cn(
-            "text-sm h-10 mt-0!",
-            "shadow-none placeholder:text-black-50 text-black-50 rounded-3xl border-gray-200",
-            "hover:border-black-50 hover:text-back-100",
-            "focus-visible:text-black-50 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-50",
-            icon && "pl-10",
-            onClear && "pr-8",
-            error && "border-red-500 hover:border-red-500",
-            inputClassName,
+            'mt-0! h-10 text-sm',
+            'rounded-3xl border-gray-200 text-black-50 shadow-none placeholder:text-black-50',
+            'hover:text-back-100 hover:border-black-50',
+            'focus-visible:border-secondary-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-secondary-50',
+            icon && 'pl-10',
+            onClear && 'pr-8',
+            error && 'border-red-500 hover:border-red-500',
+            inputClassName
           )}
           placeholder={placeholder}
           {...register(name)}
@@ -75,10 +72,10 @@ export const InputField = <TFieldValues extends FieldValues = FieldValues>({
           <button
             type="button"
             onClick={onClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-black-50 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
+            className="absolute top-1/2 right-3 -translate-y-1/2 text-black-50 opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100"
             tabIndex={-1}
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="h-3.5 w-3.5" />
           </button>
         )}
       </div>

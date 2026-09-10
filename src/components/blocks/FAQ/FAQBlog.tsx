@@ -1,12 +1,12 @@
-import cn from "classnames";
+import cn from 'classnames';
 
+import { FormattedText } from '@/components/customs/Text';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion-custom";
-import { FormattedText } from "@/components/customs/Text";
+} from '@/components/ui/accordion-custom';
 
 interface FAQ {
   question: string;
@@ -21,71 +21,71 @@ interface Props {
   faqs?: FAQ[];
 }
 export const FAQBlog: React.FC<Props> = ({
-  heading = "FAQ",
-  id = "faq",
+  heading = 'FAQ',
+  id = 'faq',
   faqs = [
     {
-      question: "Is there a free trial available?",
+      question: 'Is there a free trial available?',
       answer:
-        "Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.",
+        'Yes, you can try us for free for 30 days. If you want, we’ll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.',
     },
     {
-      question: "Can I change my plan later?",
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-    },
-    {
-      question: "What is your cancellation policy?",
+      question: 'Can I change my plan later?',
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "Can other info be added to an invoice?",
+      question: 'What is your cancellation policy?',
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "How does billing work?",
+      question: 'Can other info be added to an invoice?',
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
     {
-      question: "How do I change my account email?",
+      question: 'How does billing work?',
+      answer:
+        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+    },
+    {
+      question: 'How do I change my account email?',
       answer:
         "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
     },
   ],
 }) => {
   return (
-    <div id={id} className={cn("flex flex-col w-full gap-4 items-start")}>
-      <h2 className="text-2xl font-semibold text-left text-primary-500 leading-[130%]!">
+    <div id={id} className={cn('flex w-full flex-col items-start gap-4')}>
+      <h2 className="text-left text-2xl leading-[130%]! font-semibold text-primary-500">
         {heading}
       </h2>
       <Accordion
-        defaultValue={faqs.length > 0 ? "item-0" : ""}
+        defaultValue={faqs.length > 0 ? 'item-0' : ''}
         type="single"
         collapsible
-        className="divide-gray-900/10 flex flex-col max-w-[904px] w-full"
+        className="flex w-full max-w-[904px] flex-col divide-gray-900/10"
       >
         {faqs.map((item, index) => (
           <AccordionItem
             key={index}
             value={`item-${index}`}
             className={cn(
-              "pb-6 transition-all bg-white border-solid border-grey-100 border-b",
-              "data-[state=open]:h-auto",
-              { "pt-6": index !== 0 }
+              'border-b border-solid border-grey-100 bg-white pb-6 transition-all',
+              'data-[state=open]:h-auto',
+              { 'pt-6': index !== 0 }
             )}
           >
             <AccordionTrigger
-              className={cn("text-lg font-semibold leading-[130%]! py-0")}
+              className={cn('py-0 text-lg leading-[130%]! font-semibold')}
             >
               {item.question}
             </AccordionTrigger>
             <AccordionContent
               className={cn(
-                "py-0 pt-2 max-w-[720px] text-sm text-black-200 leading-[130%]!",
-                "lg:max-w-[672px]"
+                'max-w-[720px] py-0 pt-2 text-sm leading-[130%]! text-black-200',
+                'lg:max-w-[672px]'
               )}
             >
               <p>

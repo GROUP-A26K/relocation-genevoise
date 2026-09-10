@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import React, { type FC } from 'react';
+
+import { cn } from '@/libs/utils';
 import {
   FormControl,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { cn } from '@/libs/utils';
 
 type FormFieldProps = {
   label?: string;
@@ -27,10 +28,10 @@ export const FormField: FC<FormFieldProps> = ({
   htmlFor,
 }) => {
   return (
-    <FormItem className={cn('w-full flex flex-col gap-1.5', className)}>
+    <FormItem className={cn('flex w-full flex-col gap-1.5', className)}>
       {label && (
         <FormLabel
-          className={cn('text-sm leading-[130%]! flex gap-0.5', labelClassName)}
+          className={cn('flex gap-0.5 text-sm leading-[130%]!', labelClassName)}
           {...(htmlFor ? { htmlFor } : {})}
         >
           {label}

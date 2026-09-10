@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
+import { cn } from '@/libs/utils';
+import { useScrollspy } from '@/hooks/useScrollspy';
+import { BlogContentMenu } from '@/components/blocks/BlogContent';
 import {
-  Block,
+  type Block,
   BLOG_BODY_BLOCKS,
-  BlogDetail,
-  WysiwygBlock,
-} from "@/models/BLog";
-import { cn } from "@/libs/utils";
-import { useScrollspy } from "@/hooks/useScrollspy";
-import { BlogContentMenu } from "@/components/blocks/BlogContent";
+  type BlogDetail,
+  type WysiwygBlock,
+} from '@/models/BLog';
 
-import { Content } from "./Content";
-import { ContentContainer } from "./ContentContainer";
+import { Content } from './Content';
+import { ContentContainer } from './ContentContainer';
 interface Props {
   tableOfContent?: string;
   blog: BlogDetail;
@@ -25,9 +25,9 @@ export const ContentView = ({ blog, tableOfContent }: Props) => {
 
   const listBlock = blog.body.filter(
     (item): item is Block & { _key: string } & WysiwygBlock =>
-      typeof item === "object" &&
-      "_key" in item &&
-      "_type" in item &&
+      typeof item === 'object' &&
+      '_key' in item &&
+      '_type' in item &&
       allowedBlockTypes.includes(
         item._type as (typeof allowedBlockTypes)[number]
       )
@@ -41,9 +41,7 @@ export const ContentView = ({ blog, tableOfContent }: Props) => {
   return (
     <ContentContainer>
       <div
-        className={cn(
-          "lg:sticky! lg:top-8! h-fit relative lg:w-fit w-full"
-        )}
+        className={cn('relative h-fit w-full lg:sticky! lg:top-8! lg:w-fit')}
       >
         <BlogContentMenu
           title={tableOfContent}
@@ -53,7 +51,7 @@ export const ContentView = ({ blog, tableOfContent }: Props) => {
           menuItems={[
             ...listBlock.map((item) => ({
               id: item._key,
-              title: item.blockTitle?.title ?? "",
+              title: item.blockTitle?.title ?? '',
             })),
           ]}
         />

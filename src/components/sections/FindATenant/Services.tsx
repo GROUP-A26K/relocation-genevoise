@@ -1,8 +1,8 @@
-import { Link } from "@/libs/i18nNavigation";
-import Button from "@/components/customs/Button";
-import Section from "@/components/customs/Section";
+import { Link } from '@/libs/i18nNavigation';
+import Button from '@/components/customs/Button';
+import Section from '@/components/customs/Section';
 
-import type { LucideIcon } from "lucide-react";
+import type { LucideIcon } from 'lucide-react';
 
 type TCta = {
   text: string;
@@ -33,15 +33,15 @@ export default function Services({
   return (
     <Section id="services" className="bg-white">
       <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
+        <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
           {eyebrow}
         </p>
 
         <div className="flex flex-col gap-4">
-          <h2 className="whitespace-pre-line text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
+          <h2 className="text-[32px] leading-[130%]! font-bold whitespace-pre-line text-black-500 lg:text-[40px]">
             {heading}
           </h2>
-          <p className="text-base font-normal leading-[150%]! text-black-300">
+          <p className="text-base leading-[150%]! font-normal text-black-300">
             {description}
           </p>
         </div>
@@ -51,17 +51,17 @@ export default function Services({
         {items.map(({ Icon, title, description }) => (
           <div
             key={title}
-            className="flex flex-col gap-4 rounded-2xl bg-grey-50 p-6 transition-colors border border-transparent hover:bg-white hover:border-secondary-500 lg:gap-6"
+            className="flex flex-col gap-4 rounded-2xl border border-transparent bg-grey-50 p-6 transition-colors hover:border-secondary-500 hover:bg-white lg:gap-6"
           >
             <div className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-secondary-500 lg:size-12">
               <Icon className="size-5 text-black-500 lg:size-6" />
             </div>
 
             <div className="flex flex-col gap-1 lg:gap-2">
-              <h3 className="text-xl font-semibold leading-[130%]! text-black-500">
+              <h3 className="text-xl leading-[130%]! font-semibold text-black-500">
                 {title}
               </h3>
-              <p className="text-base font-normal leading-[150%]! text-black-300">
+              <p className="text-base leading-[150%]! font-normal text-black-300">
                 {description}
               </p>
             </div>

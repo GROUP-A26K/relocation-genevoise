@@ -1,9 +1,9 @@
-import { House, KeyRound } from "lucide-react";
+import { House, KeyRound } from 'lucide-react';
 
-import { cn } from "@/libs/utils";
-import { Link } from "@/libs/i18nNavigation";
+import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
 
-export type TFindATenantAudience = "landlords" | "tenant";
+export type TFindATenantAudience = 'landlords' | 'tenant';
 
 interface IHeroTabsProps {
   active: TFindATenantAudience;
@@ -11,8 +11,8 @@ interface IHeroTabsProps {
 }
 
 const TABS = [
-  { key: "landlords", href: "/find-a-tenant/landlords", Icon: KeyRound },
-  { key: "tenant", href: "/find-a-tenant/tenant", Icon: House },
+  { key: 'landlords', href: '/find-a-tenant/landlords', Icon: KeyRound },
+  { key: 'tenant', href: '/find-a-tenant/tenant', Icon: House },
 ] as const;
 
 export default function HeroTabs({ active, labels }: IHeroTabsProps) {
@@ -25,17 +25,17 @@ export default function HeroTabs({ active, labels }: IHeroTabsProps) {
           <Link
             key={key}
             href={href}
-            aria-current={isActive ? "page" : undefined}
+            aria-current={isActive ? 'page' : undefined}
             className={cn(
-              "group flex items-center gap-2 rounded-full px-3 py-2 text-base font-semibold leading-[130%]! transition-colors",
+              'group flex items-center gap-2 rounded-full px-3 py-2 text-base leading-[130%]! font-semibold transition-colors',
               isActive
-                ? "bg-black-500 text-white shadow-xs"
-                : "text-black-200 hover:text-black-500",
+                ? 'bg-black-500 text-white shadow-xs'
+                : 'text-black-200 hover:text-black-500'
             )}
           >
             <Icon
-              className={cn("size-4 shrink-0", {
-                "group-hover:text-grey-900": !isActive,
+              className={cn('size-4 shrink-0', {
+                'group-hover:text-grey-900': !isActive,
               })}
             />
             {labels[key]}

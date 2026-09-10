@@ -1,8 +1,15 @@
-import { FC, ReactNode } from "react";
-import { Controller, RegisterOptions, useFormContext } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { FormField } from "./FormField";
-import { cn } from "@/libs/utils";
+import {
+  Controller,
+  type RegisterOptions,
+  useFormContext,
+} from 'react-hook-form';
+
+import { cn } from '@/libs/utils';
+import { Input } from '@/components/ui/input';
+
+import { FormField } from './FormField';
+
+import type { FC, ReactNode } from 'react';
 
 interface PriceInputFieldProps {
   name: string;
@@ -46,17 +53,17 @@ export const PriceInputField: FC<PriceInputFieldProps> = ({
               inputMode="numeric"
               placeholder={placeholder}
               className={cn(
-                "text-sm h-10 mt-0!",
-                "shadow-none placeholder:text-black-50 text-black-500 rounded-3xl border-gray-200",
-                "hover:border-black-50",
-                "focus-visible:text-black-500 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-50",
-                suffix && "pr-10",
-                fieldState.error && "border-red-500 hover:border-red-500",
+                'mt-0! h-10 text-sm',
+                'rounded-3xl border-gray-200 text-black-500 shadow-none placeholder:text-black-50',
+                'hover:border-black-50',
+                'focus-visible:border-secondary-500 focus-visible:text-black-500 focus-visible:ring-2 focus-visible:ring-secondary-50',
+                suffix && 'pr-10',
+                fieldState.error && 'border-red-500 hover:border-red-500',
                 inputClassName
               )}
             />
             {suffix && (
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-black-500 pointer-events-none select-none">
+              <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-sm text-black-500 select-none">
                 {suffix}
               </span>
             )}

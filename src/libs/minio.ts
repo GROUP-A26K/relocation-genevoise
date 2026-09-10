@@ -1,4 +1,5 @@
 import { Client } from 'minio';
+
 import { Env } from './Env';
 export const minio = new Client({
   endPoint: Env.MINIO_ENDPOINT,

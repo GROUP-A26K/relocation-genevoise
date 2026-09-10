@@ -1,10 +1,11 @@
-import type { FC } from 'react';
 import { Search } from 'lucide-react';
+
 import { cn } from '@/libs/utils';
 import { Input as ShadcnInput } from '@/components/ui/input';
 
-interface InputSearchProps
-  extends React.AnchorHTMLAttributes<HTMLButtonElement> {
+import type { FC } from 'react';
+
+interface InputSearchProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
   href?: never;
   target?: never;
   onClick?: () => void;
@@ -36,21 +37,21 @@ const Input: FC<Props> = ({
   switch (as) {
     case 'search':
       return (
-        <div className={cn('w-full relative', className)}>
+        <div className={cn('relative w-full', className)}>
           <Search
             className={cn(
-              'w-[18px] h-[18px] absolute left-2.5 top-2.5 text-grey-500',
-              disabled && 'text-gray-100 font-medium'
+              'absolute top-2.5 left-2.5 h-[18px] w-[18px] text-grey-500',
+              disabled && 'font-medium text-gray-100'
             )}
           />
           <ShadcnInput
             type="search"
             className={cn(
-              'h-10 shadow-none text-sm placeholder:text-grey-400 text-black-400 rounded-3xl border-gray-200 pl-8 leading-[130%]!',
+              'h-10 rounded-3xl border-gray-200 pl-8 text-sm leading-[130%]! text-black-400 shadow-none placeholder:text-grey-400',
               'hover:border-grey-400',
               'focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-50',
               disabled &&
-                'placeholder:text-gray-100 placeholder:font-medium text-gray-50 pointer-events-none select-none',
+                'pointer-events-none text-gray-50 select-none placeholder:font-medium placeholder:text-gray-100',
               error && 'border-red-500 hover:border-red-500',
               'w-full'
             )}
@@ -63,11 +64,11 @@ const Input: FC<Props> = ({
       return (
         <ShadcnInput
           className={cn(
-            'text-[14px] shadow-none placeholder:text-black-50 text-black-50 rounded-3xl border-gray-200',
-            'hover:border-black-50 hover:text-back-100',
-            'focus-visible:text-black-50 focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-50',
+            'rounded-3xl border-gray-200 text-[14px] text-black-50 shadow-none placeholder:text-black-50',
+            'hover:text-back-100 hover:border-black-50',
+            'focus-visible:border-blue-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-blue-50',
             disabled &&
-              'placeholder:text-gray-100 placeholder:font-medium text-gray-50 pointer-events-none select-none',
+              'pointer-events-none text-gray-50 select-none placeholder:font-medium placeholder:text-gray-100',
             error && 'border-red-500 hover:border-red-500',
             className
           )}

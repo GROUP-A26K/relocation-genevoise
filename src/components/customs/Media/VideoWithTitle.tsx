@@ -1,4 +1,5 @@
 'use client';
+import { cn } from '@/libs/utils';
 import {
   VideoPlayer,
   VideoPlayerContent,
@@ -10,7 +11,6 @@ import {
   VideoPlayerTimeRange,
   VideoPlayerVolumeRange,
 } from '@/components/ui/kibo-ui/video-player';
-import { cn } from '@/libs/utils';
 
 interface Props {
   title?: string;
@@ -20,9 +20,9 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
   if (!videoUrl) return null;
   return (
     <div className="w-full">
-      <div className="flex flex-col items-start justify-between gap-4 py-6 w-full">
-        <VideoPlayer className="relative overflow-hidden rounded-2xl border w-full">
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,.31)_31%,rgba(0,0,0,.7)_70%,rgba(0,0,0,.7)_100%)]" />
+      <div className="flex w-full flex-col items-start justify-between gap-4 py-6">
+        <VideoPlayer className="relative w-full overflow-hidden rounded-2xl border">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,.31)_31%,rgba(0,0,0,.7)_70%,rgba(0,0,0,.7)_100%)]" />
 
           <VideoPlayerContent
             slot="media"
@@ -38,34 +38,34 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
           <VideoPlayerControlBar
             className={cn(
               'relative z-20',
-              'lg:[--media-control-padding:3.75px] [--media-control-padding:2.25px]'
+              '[--media-control-padding:2.25px] lg:[--media-control-padding:3.75px]'
             )}
           >
-            <div className="flex flex-col items-center w-full">
-              <div className="flex w-full items-center justify-between lg:h-10 h-8">
-                <div className="flex lg:h-10 h-8">
+            <div className="flex w-full flex-col items-center">
+              <div className="flex h-8 w-full items-center justify-between lg:h-10">
+                <div className="flex h-8 lg:h-10">
                   <VideoPlayerPlayButton
                     className={cn(
-                      'lg:size-10 size-8 text-white bg-transparent',
+                      'size-8 bg-transparent text-white lg:size-10',
                       '[--media-icon-color:#FFFFFF]'
                     )}
                   />
                   <VideoPlayerTimeDisplay
                     showDuration
-                    className="text-white bg-transparent px-2"
+                    className="bg-transparent px-2 text-white"
                   />
                 </div>
 
-                <div className="flex lg:h-10 h-8">
+                <div className="flex h-8 lg:h-10">
                   <VideoPlayerMuteButton
                     className={cn(
-                      'lg:size-10 size-8 text-white text-sm font-normal leading-[130%]! bg-transparent pr-0',
+                      'size-8 bg-transparent pr-0 text-sm leading-[130%]! font-normal text-white lg:size-10',
                       '[--media-icon-color:#FFFFFF]'
                     )}
                   />
                   <VideoPlayerVolumeRange
                     className={cn(
-                      'text-white bg-transparent px-0 w-14 max-w-14 mx-0 lg:h-10 h-8',
+                      'mx-0 h-8 w-14 max-w-14 bg-transparent px-0 text-white lg:h-10',
                       '[--media-range-bar-color:#FFFFFF]',
                       '[--media-range-track-background:#94a3b8]',
                       '[--media-range-thumb-background:#FFFFFF]',
@@ -74,7 +74,7 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
                   />
                   <VideoPlayerFullscreenButton
                     className={cn(
-                      'text-white bg-transparent lg:size-10 size-8',
+                      'size-8 bg-transparent text-white lg:size-10',
                       '[--media-icon-color:#FFFFFF]'
                     )}
                   />
@@ -82,7 +82,7 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
               </div>
               <VideoPlayerTimeRange
                 className={cn(
-                  'bg-transparent w-full h-fit py-0 pb-4 text-white',
+                  'h-fit w-full bg-transparent py-0 pb-4 text-white',
                   '[--media-range-bar-color:#F7D913]',
                   '[--media-range-track-background:#94a3b8]',
                   '[--media-range-thumb-background:transparent]'
@@ -91,7 +91,7 @@ export const VideoWithTitle: React.FC<Props> = ({ videoUrl, title }) => {
             </div>
           </VideoPlayerControlBar>
         </VideoPlayer>
-        <div className="flex gap-2 text-gray-500 text-xs leading-[130%]! font-medium items-center">
+        <div className="flex items-center gap-2 text-xs leading-[130%]! font-medium text-gray-500">
           {title}
         </div>
       </div>

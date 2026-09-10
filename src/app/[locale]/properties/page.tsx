@@ -1,22 +1,23 @@
-import { Metadata } from "next";
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
 
+import { AppConfig } from '@/utils/AppConfig';
+import { BookConsultation2 } from '@/components/blocks/Consultation';
+import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
+import PropertiesHero from '@/components/sections/Properties/PropertiesHero';
+import { getExchangeRates, toCHFWithRates } from '@/utils/exchangeRate.server';
+import { SearchFilters } from '@/components/sections/Properties/SearchFilters';
 import {
   fetchProperties,
   fetchPropertyCategories,
-} from "@/services/property.service";
-import { getExchangeRates, toCHFWithRates } from "@/utils/exchangeRate.server";
+} from '@/services/property.service';
+import PropertyListingsSection from '@/components/sections/Properties/PropertyListingsSection';
 import {
   buildPropertyFilterParams,
   parsePropertySearchParams,
-} from "@/utils/propertyFilters";
-import { BookConsultation2 } from "@/components/blocks/Consultation";
-import PropertiesHero from "@/components/sections/Properties/PropertiesHero";
-import PropertyListingsSection from "@/components/sections/Properties/PropertyListingsSection";
-import { SearchFilters } from "@/components/sections/Properties/SearchFilters";
-import { ExchangeRatesProvider } from "@/context/ExchangeRatesContext";
-import { AppConfig } from "@/utils/AppConfig";
+} from '@/utils/propertyFilters';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -25,18 +26,18 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
-  const t = await getTranslations("Metadata.Properties");
+  const t = await getTranslations('Metadata.Properties');
 
   const { routes } = AppConfig;
 
   const canonical =
-    routes["properties"][locale as keyof (typeof routes)["properties"]];
+    routes['properties'][locale as keyof (typeof routes)['properties']];
 
   return {
-    title: t("title"),
-    description: t("description"),
+    title: t('title'),
+    description: t('description'),
     alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/${canonical}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
     },
   };
 }
@@ -44,7 +45,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function PropertiesPage(props: Props) {
   const { locale } = await props.params;
   const searchParams = await props.searchParams;
-  const t = await getTranslations("Properties");
+  const t = await getTranslations('Properties');
 
   const [categories, rates] = await Promise.all([
     fetchPropertyCategories({ locale }),
@@ -54,7 +55,7 @@ export default async function PropertiesPage(props: Props) {
   const { properties, meta } = await fetchProperties({
     ...buildPropertyFilterParams(
       parsePropertySearchParams(searchParams),
-      (amount, currency) => toCHFWithRates(amount, currency, rates),
+      (amount, currency) => toCHFWithRates(amount, currency, rates)
     ),
     locale,
   });
@@ -69,14 +70,14 @@ export default async function PropertiesPage(props: Props) {
           </div>
         </section>
         <PropertyListingsSection properties={properties} meta={meta} />
-        <section className="w-full flex justify-center">
+        <section className="flex w-full justify-center">
           <div className="w-full max-w-[1240px] bg-grey-50 max-md:px-4 xl:rounded-[24px]">
             <BookConsultation2
-              heading={t("BookConsultation.heading")}
-              subHeading={t("BookConsultation.subHeading")}
-              description={t("BookConsultation.description")}
-              buttonText1={t("BookConsultation.buttonText1")}
-              buttonText2={t("BookConsultation.buttonText2")}
+              heading={t('BookConsultation.heading')}
+              subHeading={t('BookConsultation.subHeading')}
+              description={t('BookConsultation.description')}
+              buttonText1={t('BookConsultation.buttonText1')}
+              buttonText2={t('BookConsultation.buttonText2')}
             />
           </div>
         </section>

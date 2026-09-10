@@ -1,20 +1,22 @@
+import { getTranslations } from 'next-intl/server';
+
+import { AppConfig } from '@/utils/AppConfig';
 import { Hero } from '@/components/blocks/Hero';
 import Section from '@/components/customs/Section';
-import { getTranslations } from 'next-intl/server';
-import { Metadata } from 'next';
 import { ContentView } from '@/components/sections/AnimationContent';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import HeroImage from '@/assets/img/bg/relocation-genevoise-trouver-un-iogement.webp';
-import ContentImage1 from '@/assets/img/bg/trouver-un-logement/entretien-de-decouverte.webp';
-import ContentImage2 from '@/assets/img/bg/trouver-un-logement/constitution-de-votre-dossier.webp';
 import ContentImage3 from '@/assets/img/bg/trouver-un-logement/analyse-du-marche.webp';
-import ContentImage4 from '@/assets/img/bg/trouver-un-logement/propositions-de-biens.webp';
-import ContentImage5 from '@/assets/img/bg/trouver-un-logement/organisation-des-visites.webp';
-import ContentImage6 from '@/assets/img/bg/trouver-un-logement/envoi-et-suivi-de-votre-dossier.webp';
-import ContentImage7 from '@/assets/img/bg/trouver-un-logement/formalites-administratives.webp';
 import ContentImage8 from '@/assets/img/bg/trouver-un-logement/aide-a-lemmenagement.webp';
+import ContentImage4 from '@/assets/img/bg/trouver-un-logement/propositions-de-biens.webp';
+import ContentImage1 from '@/assets/img/bg/trouver-un-logement/entretien-de-decouverte.webp';
+import ContentImage5 from '@/assets/img/bg/trouver-un-logement/organisation-des-visites.webp';
+import ContentImage7 from '@/assets/img/bg/trouver-un-logement/formalites-administratives.webp';
 import ContentImage9 from '@/assets/img/bg/trouver-un-logement/support-apres-linstallation.webp';
-import { AppConfig } from '@/utils/AppConfig';
+import ContentImage2 from '@/assets/img/bg/trouver-un-logement/constitution-de-votre-dossier.webp';
+import ContentImage6 from '@/assets/img/bg/trouver-un-logement/envoi-et-suivi-de-votre-dossier.webp';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -114,7 +116,7 @@ export default async function Page(props: Props) {
         ]}
       />
 
-      <Section className="lg:bg-white bg-grey-50">
+      <Section className="bg-grey-50 lg:bg-white">
         <BookConsultation2
           heading={t('BookConsultation.heading')}
           subHeading={t('BookConsultation.subHeading')}

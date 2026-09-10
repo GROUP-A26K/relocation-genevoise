@@ -1,7 +1,9 @@
-import { FeatureColCard } from '@/components/customs/Card';
-import { FormattedText } from '@/components/customs/Text';
 import { Mail, MessageCircle, Phone } from 'lucide-react';
-import { FC } from 'react';
+
+import { FormattedText } from '@/components/customs/Text';
+import { FeatureColCard } from '@/components/customs/Card';
+
+import type { FC } from 'react';
 
 interface Reason {
   title: string;
@@ -46,29 +48,29 @@ export const AssistanceInfo: FC<Props> = ({
   ],
 }) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-12'>
+    <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
-        <div className='flex w-full justify-center'>
-          <div className='flex flex-col lg:gap-6 gap-4 max-w-xl text-center'>
-            <div className='flex flex-col gap-3'>
-              <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
+        <div className="flex w-full justify-center">
+          <div className="flex max-w-xl flex-col gap-4 text-center lg:gap-6">
+            <div className="flex flex-col gap-3">
+              <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
                 {heading}
               </p>
-              <h1 className='text-5xl font-semibold leading-[130%]!'>
+              <h1 className="text-5xl leading-[130%]! font-semibold">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className='text-sm font-normal text-black-200 leading-[130%]!'>
+            <p className="text-sm leading-[130%]! font-normal text-black-200">
               {description}
             </p>
           </div>
         </div>
       )}
-      <div className='flex flex-col lg:gap-6 gap-8'>
-        <h2 className='sr-only'>
+      <div className="flex flex-col gap-8 lg:gap-6">
+        <h2 className="sr-only">
           <FormattedText text={subHeading} />
         </h2>
-        <ul role='list' className='grid gap-4 lg:grid-cols-3 lg:gap-8'>
+        <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
           {reasonItems.map((reasonItem) => (
             <li key={reasonItem.title}>
               <FeatureColCard {...reasonItem} />

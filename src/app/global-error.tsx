@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import ErrorPage from "@/components/sections/ErrorPage";
-import { useEffect } from "react";
-import * as Sentry from "@sentry/nextjs";
+import { useEffect } from 'react';
+import * as Sentry from '@sentry/nextjs';
+
+import ErrorPage from '@/components/sections/ErrorPage';
 
 export default function GlobalError(props: {
   error: Error & { digest?: string };
@@ -11,7 +12,7 @@ export default function GlobalError(props: {
   useEffect(() => {
     Sentry.captureException(props.error);
 
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === 'development') {
       console.error(props.error);
     }
   }, [props.error]);

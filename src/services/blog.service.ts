@@ -1,5 +1,7 @@
-import "server-only";
+import 'server-only';
 
+import { formatDate } from '@/utils/Helpers';
+import { sanityFetch } from '@/sanity/lib/fetch';
 import {
   POST_CATEGORIES_QUERY,
   BLOGS_QUERY,
@@ -7,37 +9,38 @@ import {
   BLOGS_SITEMAP_QUERY,
   BLOG_SLUG_QUERY,
   BLOG_LATEST_QUERY,
-} from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import {
+} from '@/sanity/lib/queries';
+
+import type { Meta } from '@/models/Meta';
+import type { Blog, BlogDetail, BlogSitemap } from '@/models/BLog';
+import type {
   Author,
   BlogCategory,
   BlogPost,
   SanityImageAsset,
   SanityImageCrop,
   SanityImageHotspot,
-} from "@/sanity/types";
-import { Blog, BlogDetail, BlogSitemap } from "@/models/BLog";
-import { Meta } from "@/models/Meta";
-import { formatDate } from "@/utils/Helpers";
+} from '@/sanity/types';
 
 const FALLBACK_IMAGE =
-  "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80";
+  'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80';
 
-export interface AuthorProps extends Omit<Author, "authorAvatar"> {
+export interface AuthorProps extends Omit<Author, 'authorAvatar'> {
   authorAvatar?: { asset?: SanityImageAsset };
   name?: string;
   email?: string;
 }
 
-export interface BlogPostProps
-  extends Omit<BlogPost, "category" | "author" | "mainPhoto"> {
+export interface BlogPostProps extends Omit<
+  BlogPost,
+  'category' | 'author' | 'mainPhoto'
+> {
   mainPhoto?: {
     photo?: {
       asset?: SanityImageAsset;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      _type: "image";
+      _type: 'image';
     };
     photoAlt?: string;
   };
@@ -58,35 +61,35 @@ export interface ParamsProps {
 
 const toBlog = (post: BlogPostProps, publishedDate: string): Blog => ({
   id: post._id,
-  title: post.title || "Untitled Post",
-  href: `/blog/${(post?.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
-  description: post?.summary || "No summary available",
+  title: post.title || 'Untitled Post',
+  href: `/blog/${(post?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+  description: post?.summary || 'No summary available',
   timeToRead: post?.timeToRead || 0,
   publishedDate,
-  slug: post?.slug?.current || "",
+  slug: post?.slug?.current || '',
   imageUrl: post.mainPhoto?.photo?.asset?.url || FALLBACK_IMAGE,
-  time: "3",
+  time: '3',
   category:
     post?.category?.map((cat) => ({
-      title: cat?.name || "Unknown Category",
-      href: `/blog/category/${cat?.name || ""}`,
+      title: cat?.name || 'Unknown Category',
+      href: `/blog/category/${cat?.name || ''}`,
     })) || [],
   author: {
-    name: post.author?.name || "Unknown Author",
-    role: "Author",
-    href: `/blog/author/${post?.author?.name || ""}`,
-    email: post.author?.email || "Unknown Email",
+    name: post.author?.name || 'Unknown Author',
+    role: 'Author',
+    href: `/blog/author/${post?.author?.name || ''}`,
+    email: post.author?.email || 'Unknown Email',
     imageUrl: post.author?.authorAvatar?.asset?.url || FALLBACK_IMAGE,
   },
 });
 
 const toBlogDetail = (post: BlogPostProps): BlogDetail => ({
-  ...toBlog(post, post?.publishedDate || "Unknown Date"),
+  ...toBlog(post, post?.publishedDate || 'Unknown Date'),
   body: post?.body || [],
 });
 
 export const fetchBlogs = async (
-  params?: ParamsProps,
+  params?: ParamsProps
 ): Promise<{ blogs: Blog[]; meta: Meta }> => {
   const pageSize = params?.pageSize || 10;
   const end = (params?.page || 1) * pageSize;
@@ -100,12 +103,12 @@ export const fetchBlogs = async (
     {
       start: start,
       end: end,
-      locale: params?.locale ?? "en",
-      category: params?.filterBy ?? "",
-      title: params?.search ? `*${params?.search}*` : "",
-      slug: params?.exceptSlug ?? "",
+      locale: params?.locale ?? 'en',
+      category: params?.filterBy ?? '',
+      title: params?.search ? `*${params?.search}*` : '',
+      slug: params?.exceptSlug ?? '',
     },
-    { tags: ["blogs"] },
+    { tags: ['blogs'] }
   );
 
   return {
@@ -113,9 +116,9 @@ export const fetchBlogs = async (
       toBlog(
         post,
         post?.publishedDate
-          ? formatDate(post.publishedDate, params?.locale ?? "en")
-          : "Unknown Date",
-      ),
+          ? formatDate(post.publishedDate, params?.locale ?? 'en')
+          : 'Unknown Date'
+      )
     ),
     meta: {
       pagination: {
@@ -130,19 +133,19 @@ export const fetchBlogs = async (
 
 export const fetchBlogBySlug = async (
   slug: string,
-  locale: string = "en",
+  locale: string = 'en'
 ): Promise<BlogDetail | null> => {
   const response = await sanityFetch<BlogPostProps | null>(
     BLOG_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
-    { tags: ["blog"] },
+    { tags: ['blog'] }
   );
 
   return response ? toBlogDetail(response) : null;
 };
 
 export const fetchSitemapBlogs = async (
-  params?: ParamsProps,
+  params?: ParamsProps
 ): Promise<{ blogs: BlogSitemap[]; meta: Meta }> => {
   const response = await sanityFetch<{
     blogs: BlogPostProps[];
@@ -150,19 +153,19 @@ export const fetchSitemapBlogs = async (
   }>(
     BLOGS_SITEMAP_QUERY,
     {
-      locale: params?.locale ?? "en",
-      category: "",
-      title: "",
+      locale: params?.locale ?? 'en',
+      category: '',
+      title: '',
     },
-    { tags: ["sitemap-blogs"] },
+    { tags: ['sitemap-blogs'] }
   );
 
   return {
     blogs: response.blogs.map((post) => ({
       id: post._id,
-      title: post.title || "Untitled Post",
-      slug: post?.slug?.current || "",
-      href: `/blog/${(post?.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
+      title: post.title || 'Untitled Post',
+      slug: post?.slug?.current || '',
+      href: `/blog/${(post?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
     })),
     meta: {
       pagination: {
@@ -176,12 +179,12 @@ export const fetchSitemapBlogs = async (
 };
 
 export const fetchLatestBlog = async (
-  locale: string = "fr",
+  locale: string = 'fr'
 ): Promise<BlogDetail | null> => {
   const response = await sanityFetch<BlogPostProps | null>(
     BLOG_LATEST_QUERY,
     { locale },
-    { tags: ["blog"] },
+    { tags: ['blog'] }
   );
 
   return response ? toBlogDetail(response) : null;
@@ -190,8 +193,8 @@ export const fetchLatestBlog = async (
 export async function fetchPostCategory(params?: ParamsProps) {
   const posts = await sanityFetch<BlogCategory[]>(
     POST_CATEGORIES_QUERY,
-    { locale: params?.locale ?? "en" },
-    { tags: ["categories"] },
+    { locale: params?.locale ?? 'en' },
+    { tags: ['categories'] }
   );
 
   return {
@@ -207,7 +210,7 @@ export const fetchBlogSlugBySlug = async (slug: string) => {
         current: string;
       };
     }[];
-  } | null>(BLOG_SLUG_QUERY, { slug }, { tags: ["blog"] });
+  } | null>(BLOG_SLUG_QUERY, { slug }, { tags: ['blog'] });
 
   if (!response?.targetSlug) {
     return [];
@@ -216,6 +219,6 @@ export const fetchBlogSlugBySlug = async (slug: string) => {
   return response.targetSlug.map((item) => ({
     locale: item.language,
     slug: item.slug.current,
-    href: `/blog/${item.slug.current.replace(/^[a-z]{2}-/i, "")}`,
+    href: `/blog/${item.slug.current.replace(/^[a-z]{2}-/i, '')}`,
   }));
 };

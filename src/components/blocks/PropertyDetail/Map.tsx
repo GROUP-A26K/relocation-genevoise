@@ -1,8 +1,9 @@
-import { useMemo } from "react";
-import { GoogleMapsEmbed } from "@next/third-parties/google";
+import { useMemo } from 'react';
+import { GoogleMapsEmbed } from '@next/third-parties/google';
 
-import { Env } from "@/libs/Env";
-import { ICoordinates } from "@/models/Property";
+import { Env } from '@/libs/Env';
+
+import type { ICoordinates } from '@/models/Property';
 
 interface IPropertyMapProps {
   coordinates: ICoordinates;
@@ -11,13 +12,13 @@ interface IPropertyMapProps {
 export function PropertyMap({ coordinates }: IPropertyMapProps) {
   const place = useMemo(
     () => `${coordinates.lat},${coordinates.lng}`,
-    [coordinates],
+    [coordinates]
   );
 
   return (
-    <div className="w-full h-[230px] rounded-2xl overflow-hidden">
+    <div className="h-[230px] w-full overflow-hidden rounded-2xl">
       <GoogleMapsEmbed
-        apiKey={Env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}
+        apiKey={Env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}
         height={230}
         width="100%"
         mode="place"

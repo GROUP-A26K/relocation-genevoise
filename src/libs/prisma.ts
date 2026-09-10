@@ -1,6 +1,7 @@
-import { PrismaClient as MysqlPrismaClient } from "@prisma/mysql-client";
-import { PrismaClient as SupabasePrismaClient } from "@prisma/supabase-client";
-import { Env } from "./Env";
+import { PrismaClient as MysqlPrismaClient } from '@prisma/mysql-client';
+import { PrismaClient as SupabasePrismaClient } from '@prisma/supabase-client';
+
+import { Env } from './Env';
 
 type GlobalPrismaCache = typeof globalThis & {
   mysqlPrisma?: MysqlPrismaClient;
@@ -15,7 +16,7 @@ export const prismaMysql =
 export const prismaSupabase =
   globalForPrisma.supabasePrisma || new SupabasePrismaClient();
 
-if (Env.NODE_ENV !== "production") {
+if (Env.NODE_ENV !== 'production') {
   globalForPrisma.mysqlPrisma = prismaMysql;
   globalForPrisma.supabasePrisma = prismaSupabase;
 }
@@ -52,14 +53,14 @@ export async function executeWithReplication<M, S = void>(
       supabase: S;
     };
   } catch (error) {
-    console.error("Supabase replication failed", error);
+    console.error('Supabase replication failed', error);
 
     if (options.rollback) {
       try {
         await options.rollback(prismaMysql, mysqlResult);
       } catch (rollbackError) {
         console.error(
-          "Rollback after replication failure failed",
+          'Rollback after replication failure failed',
           rollbackError
         );
       }

@@ -1,21 +1,22 @@
 'use client';
-import { PageContainer } from './PageContainer';
-import { Content } from './Content';
 import { useTranslations } from 'next-intl';
+
 import { FormattedText } from '@/components/customs/Text';
+
+import { Content } from './Content';
+import { PageContainer } from './PageContainer';
 
 export const PageView = () => {
   const t = useTranslations('LegalPersonal');
 
   return (
     <PageContainer>
-      <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left py-16">
+      <div className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
+          <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
             {t('heading')}
           </p>
-          <h1 className="lg:text-5xl text-4xl font-bold text-center lg:leading-[130%]! leading-[100%]! text-pretty">
-            
+          <h1 className="text-center text-4xl leading-[100%]! font-bold text-pretty lg:text-5xl lg:leading-[130%]!">
             <FormattedText text={t('subHeading')} />
           </h1>
         </div>

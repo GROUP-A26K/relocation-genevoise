@@ -1,4 +1,4 @@
-const COOKIE_KEY = "x_exchange_rates";
+const COOKIE_KEY = 'x_exchange_rates';
 const CACHE_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 export interface ExchangeRates {
@@ -20,17 +20,17 @@ export const FALLBACK_RATES: ExchangeRates = {
 };
 
 export const getCachedRates = (): ExchangeRates | null => {
-  if (typeof document === "undefined") return null;
+  if (typeof document === 'undefined') return null;
 
   try {
     const match = document.cookie
-      .split("; ")
+      .split('; ')
       .find((row) => row.startsWith(`${COOKIE_KEY}=`));
 
     if (!match) return null;
 
     const raw = decodeURIComponent(match.slice(COOKIE_KEY.length + 1));
-    const cached: CachedRates = JSON.parse(raw);
+    const cached = JSON.parse(raw) as CachedRates;
 
     if (Date.now() - cached.fetchedAt > CACHE_DURATION_MS) return null;
 
@@ -41,7 +41,7 @@ export const getCachedRates = (): ExchangeRates | null => {
 };
 
 export const setCachedRates = (rates: ExchangeRates): void => {
-  if (typeof document === "undefined") return;
+  if (typeof document === 'undefined') return;
 
   try {
     const payload: CachedRates = { rates, fetchedAt: Date.now() };

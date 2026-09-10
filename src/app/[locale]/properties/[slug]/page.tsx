@@ -1,12 +1,13 @@
-import { notFound } from "next/navigation";
-import { ImagePreview } from "@/components/sections/PropertiesDetails/ImagePreview";
-import { PropertyDetailSimilar } from "@/components/sections/PropertiesDetails/PropertyDetailSimilar";
-import { PropertyDetailView } from "@/components/sections/PropertiesDetails/PropertyDetailsView";
+import { notFound } from 'next/navigation';
+
+import Section from '@/components/customs/Section';
+import { ImagePreview } from '@/components/sections/PropertiesDetails/ImagePreview';
 import {
   fetchProperties,
   getPropertyDetail,
-} from "@/services/property.service";
-import Section from "@/components/customs/Section";
+} from '@/services/property.service';
+import { PropertyDetailView } from '@/components/sections/PropertiesDetails/PropertyDetailsView';
+import { PropertyDetailSimilar } from '@/components/sections/PropertiesDetails/PropertyDetailSimilar';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -30,7 +31,7 @@ export default async function PropertyDetailPage({ params }: Props) {
   });
 
   return (
-    <section className="w-full flex flex-col justify-center items-center">
+    <section className="flex w-full flex-col items-center justify-center">
       <Section isDivider className="w-full">
         <ImagePreview property={property} propertySlug={slug} />
 

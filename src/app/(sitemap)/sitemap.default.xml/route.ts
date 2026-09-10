@@ -66,7 +66,7 @@ ${entries
 /* Route handler                                                      */
 /* ------------------------------------------------------------------ */
 
-export async function GET(): Promise<Response> {
+export function GET(): Response {
   try {
     const xml = toXml(buildEntries());
 

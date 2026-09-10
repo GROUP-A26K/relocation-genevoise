@@ -1,7 +1,9 @@
-import { FC } from 'react';
 import { cn } from '@/libs/utils';
+
 import { renderGroupedContent } from './renderContent';
-import { WysiwygBlock } from '@/models/Block';
+
+import type { FC } from 'react';
+import type { WysiwygBlock } from '@/models/Block';
 
 export interface ContentProps extends WysiwygBlock {
   _key: string;
@@ -20,7 +22,7 @@ export const DynamicContent: FC<ContentProps> = ({
       {blockTitle?.title && (
         <h2
           className={cn(
-             'blog-title text-black-500 text-3xl font-bold leading-[130%]!',
+            'blog-title text-3xl leading-[130%]! font-bold text-black-500',
             titleClassName
           )}
         >

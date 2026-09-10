@@ -3,9 +3,10 @@ import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
 import { cn } from '@/libs/utils';
-import { Blog } from '@/models/BLog';
 import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
+
+import type { Blog } from '@/models/BLog';
 
 export const BlogBGCard: React.FC<Blog> = ({
   title,
@@ -28,8 +29,8 @@ export const BlogBGCard: React.FC<Blog> = ({
       >
         <div
           className={cn(
-            'flex self-stretch flex-col gap-6 justify-between w-full',
-            'md:p-8 max-w-[340px] lg:max-w-[432px]'
+            'flex w-full flex-col justify-between gap-6 self-stretch',
+            'max-w-[340px] md:p-8 lg:max-w-[432px]'
           )}
         >
           <div className="flex flex-col gap-2">
@@ -37,7 +38,7 @@ export const BlogBGCard: React.FC<Blog> = ({
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none leading-[130%]!"
+                  className="bg-blue-50 text-sm leading-[130%]! font-medium text-blue-500 shadow-none hover:bg-blue-50"
                 >
                   {cat.title}
                 </Badge>
@@ -46,19 +47,19 @@ export const BlogBGCard: React.FC<Blog> = ({
             <div className="flex flex-col gap-2">
               <h2
                 title={title}
-                className="lg:text-3xl text-xl font-semibold text-black-500 group-hover:text-black-600 leading-[130%]!"
+                className="text-xl leading-[130%]! font-semibold text-black-500 group-hover:text-black-600 lg:text-3xl"
               >
                 {title}
               </h2>
               <p
                 title={description}
-                className="lg:text-base font-normal text-sm leading-[130%]! text-black-200"
+                className="text-sm leading-[130%]! font-normal text-black-200 lg:text-base"
               >
                 {description}
               </p>
             </div>
           </div>
-          <div className="flex justify-between ">
+          <div className="flex justify-between">
             <div className="flex items-center gap-3">
               <Image
                 alt="Article author"
@@ -69,15 +70,15 @@ export const BlogBGCard: React.FC<Blog> = ({
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
               <div className="flex flex-col gap-[2px]">
-                <p className="text-base font-semibold text-grey-700 leading-[130%]!">
+                <p className="text-base leading-[130%]! font-semibold text-grey-700">
                   {author.name}
                 </p>
-                <p className="text-sm font-normal text-grey-700 leading-[130%]!">
+                <p className="text-sm leading-[130%]! font-normal text-grey-700">
                   {publishedDate}
                 </p>
               </div>
             </div>
-            <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 leading-[130%]!">
+            <div className="flex items-end text-xs leading-[130%]! font-medium text-black-100 lg:text-sm">
               {timeToRead}{' '}
               {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>
@@ -96,8 +97,8 @@ export const BlogBGCard: React.FC<Blog> = ({
             loading="eager"
             className={cn(
               'aspect-video',
-              'lg:h-[495px] lg:max-h-[495px] sm:h-[280px] md:h-full max-xs:max-h-[226px]',
-              'rounded-2xl w-full bg-gray-100 object-cover',
+              'max-xs:max-h-[226px] sm:h-[280px] md:h-full lg:h-[495px] lg:max-h-[495px]',
+              'w-full rounded-2xl bg-gray-100 object-cover',
               'sm:aspect-2/1 lg:aspect-3/2'
             )}
           />

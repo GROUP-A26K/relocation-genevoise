@@ -1,6 +1,6 @@
-import "server-only";
+import 'server-only';
 
-import { client } from "./client";
+import { client } from './client';
 
 interface SanityFetchOptions {
   tags?: string[];
@@ -13,20 +13,22 @@ const REVALIDATE_FALLBACK_SECONDS = 300;
 export const sanityFetch = async <T>(
   query: string,
   params: Record<string, unknown> = {},
-  options: SanityFetchOptions = {},
+  options: SanityFetchOptions = {}
 ): Promise<T> => {
   if (!client.config().token) {
     throw new Error(
-      "Sanity read token is missing. Against a private dataset this would " +
-        "silently return empty results instead of failing — check that " +
-        "SANITY_API_READ_TOKEN is set in the deployment environment.",
+      'Sanity read token is missing. Against a private dataset this would ' +
+        'silently return empty results instead of failing — check that ' +
+        'SANITY_API_READ_TOKEN is set in the deployment environment.'
     );
   }
 
-
   return client.fetch<T>(query, params, {
-    next: { revalidate: options.tags?.length
+    next: {
+      revalidate: options.tags?.length
         ? REVALIDATE_TAGGED_SECONDS
-        : REVALIDATE_FALLBACK_SECONDS, tags: options.tags },
+        : REVALIDATE_FALLBACK_SECONDS,
+      tags: options.tags,
+    },
   });
 };

@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Env } from "@/libs/Env";
-import { resend } from "@/libs/resend";
-import { executeWithReplication } from "@/libs/prisma";
-import { landlordsFormSchema } from "@/validations/findATenant.validation";
-import { FindATenantInquiry } from "@/templates/Email/FindATenantInquiry";
-import { FindATenantCustomer } from "@/templates/Email/FindATenantCustomer";
+import { Env } from '@/libs/Env';
+import { resend } from '@/libs/resend';
+import { executeWithReplication } from '@/libs/prisma';
+import { FindATenantInquiry } from '@/templates/Email/FindATenantInquiry';
+import { landlordsFormSchema } from '@/validations/findATenant.validation';
+import { FindATenantCustomer } from '@/templates/Email/FindATenantCustomer';
 
 const senderEmail = Env.RESEND_EMAIL;
 const senderName = Env.RESEND_SENDER_NAME;
@@ -13,34 +13,34 @@ const receiverEmail = Env.RESEND_RECEIVER_EMAIL;
 const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 
 const subjectTitle = {
-  en: "New landlord inquiry",
-  fr: "Nouvelle demande propriétaire",
+  en: 'New landlord inquiry',
+  fr: 'Nouvelle demande propriétaire',
 } as const;
 
 const customerSubjectTitle = {
-  en: "We received your inquiry",
-  fr: "Nous avons bien reçu votre demande",
+  en: 'We received your inquiry',
+  fr: 'Nous avons bien reçu votre demande',
 } as const;
 
 export async function POST(request: Request) {
   try {
     const url = new URL(request.url);
-    const locale = url.searchParams.get("locale") === "en" ? "en" : "fr";
+    const locale = url.searchParams.get('locale') === 'en' ? 'en' : 'fr';
 
-    if (!request.headers.get("Content-Type")?.includes("application/json")) {
+    if (!request.headers.get('Content-Type')?.includes('application/json')) {
       return NextResponse.json(
-        { error: "Content-Type must be application/json" },
-        { status: 400 },
+        { error: 'Content-Type must be application/json' },
+        { status: 400 }
       );
     }
 
-    const body = await request.json();
+    const body: unknown = await request.json();
 
     const parsedData = landlordsFormSchema().safeParse(body);
     if (!parsedData.success) {
       return NextResponse.json(
         { error: parsedData.error.format() },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
           accept: data.accept,
           created_at: new Date(),
         },
-      }),
+      })
     );
 
     await resend.emails.send({
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       to: receiverEmail,
       subject: subjectTitle[locale],
       react: FindATenantInquiry({
-        audience: "landlord",
+        audience: 'landlord',
         userInfo: data,
         baseUrl,
         locale,
@@ -83,10 +83,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json(mysql, { status: 201 });
   } catch (error) {
-    console.error("Error creating landlord inquiry:", error);
+    console.error('Error creating landlord inquiry:', error);
     return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 },
+      { error: 'Internal server error' },
+      { status: 500 }
     );
   }
 }

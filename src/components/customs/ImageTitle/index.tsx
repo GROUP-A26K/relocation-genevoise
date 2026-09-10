@@ -1,13 +1,14 @@
-import { type FC } from 'react';
 import Image from 'next/image';
 import { Link } from 'lucide-react';
+
+import type { FC } from 'react';
 interface Props {
   imgUrl?: string;
   title: string;
 }
 export const ImageTitle: FC<Props> = ({ imgUrl, title }) => {
   return (
-    <article className="flex flex-col relative items-start justify-between gap-4 py-6">
+    <article className="relative flex flex-col items-start justify-between gap-4 py-6">
       <div className="w-full">
         <Image
           alt={title}
@@ -18,10 +19,10 @@ export const ImageTitle: FC<Props> = ({ imgUrl, title }) => {
           }
           width={720}
           height={480}
-          className="aspect-video lg:h-[480px] lg:max-h-[480px] max-w-[720px] rounded-2xl w-full bg-gray-100 object-cover"
+          className="aspect-video w-full max-w-[720px] rounded-2xl bg-gray-100 object-cover lg:h-[480px] lg:max-h-[480px]"
         />
       </div>
-      <div className="flex gap-2 text-gray-500 text-xs leading-[130%]! font-medium items-center">
+      <div className="flex items-center gap-2 text-xs leading-[130%]! font-medium text-gray-500">
         <Link className="h-4 w-4" />
         {title}
       </div>

@@ -35,7 +35,7 @@ const buildSitemapTag = (file: SitemapFile): string => `
 /* Route handler                                                      */
 /* ------------------------------------------------------------------ */
 
-export async function GET(): Promise<Response> {
+export function GET(): Response {
   try {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex

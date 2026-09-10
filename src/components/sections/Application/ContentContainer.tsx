@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import type { FC, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -7,9 +7,9 @@ interface Props {
 const ContentContainer: FC<Props> = ({ children }) => (
   <div className="bg-white pb-8">
     {/* Decorative top banner */}
-    <div className="bg-secondary-25 lg:pb-12 pb-8 h-[303px]" />
+    <div className="h-[303px] bg-secondary-25 pb-8 lg:pb-12" />
 
-    <div className="relative flex flex-col items-center mt-[-300px]">
+    <div className="relative mt-[-300px] flex flex-col items-center">
       {children}
     </div>
   </div>

@@ -1,22 +1,23 @@
-"use client";
+'use client';
 
-import { useLocale, useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "framer-motion";
-import { FC, useEffect, useRef, useTransition } from "react";
-import { parseAsString, parseAsInteger, useQueryStates } from "nuqs";
+import { useLocale, useTranslations } from 'next-intl';
+import { AnimatePresence, motion } from 'framer-motion';
+import { type FC, useEffect, useRef, useTransition } from 'react';
+import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
-import { Blog } from "@/models/BLog";
-import { Meta } from "@/models/Meta";
-import { BlogCategory } from "@/sanity/types";
-import useDebounce from "@/hooks/useDebounce";
-import Input from "@/components/customs/Input";
-import Section from "@/components/customs/Section";
-import TabsMenu from "@/components/blocks/TabsMenu";
-import { BlogHero } from "@/components/blocks/Hero";
-import { BlogCard } from "@/components/customs/Card";
-import EmptyData from "@/components/customs/EmptyData";
-import { Pagination } from "@/components/blocks/Pagination";
-import { Spinner } from "@/components/customs/Spinner/Spinner";
+import useDebounce from '@/hooks/useDebounce';
+import Input from '@/components/customs/Input';
+import Section from '@/components/customs/Section';
+import TabsMenu from '@/components/blocks/TabsMenu';
+import { BlogHero } from '@/components/blocks/Hero';
+import { BlogCard } from '@/components/customs/Card';
+import EmptyData from '@/components/customs/EmptyData';
+import { Pagination } from '@/components/blocks/Pagination';
+import { Spinner } from '@/components/customs/Spinner/Spinner';
+
+import type { Blog } from '@/models/BLog';
+import type { Meta } from '@/models/Meta';
+import type { BlogCategory } from '@/sanity/types';
 
 interface Props {
   category: BlogCategory[];
@@ -26,28 +27,28 @@ interface Props {
 }
 
 export const PageView: FC<Props> = (props) => {
-  const t = useTranslations("Blog");
+  const t = useTranslations('Blog');
   const [isPending, startTransition] = useTransition();
 
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(1),
-      filterBy: parseAsString.withDefault(""),
-      search: parseAsString.withDefault(""),
+      filterBy: parseAsString.withDefault(''),
+      search: parseAsString.withDefault(''),
     },
     {
       shallow: false,
       scroll: false,
       startTransition,
-    },
+    }
   );
 
   const locale = useLocale();
-  const searchPlaceholder = locale === "fr" ? "Rechercher" : "Search";
+  const searchPlaceholder = locale === 'fr' ? 'Rechercher' : 'Search';
 
   const [debouncedSearch, search, setSearch] = useDebounce(
     queryParams.search,
-    500,
+    500
   );
 
   const lastPushedSearch = useRef(queryParams.search);
@@ -58,7 +59,7 @@ export const PageView: FC<Props> = (props) => {
     }
 
     lastPushedSearch.current = debouncedSearch;
-    setQueryParams({ search: debouncedSearch, page: 1 });
+    void setQueryParams({ search: debouncedSearch, page: 1 });
   }, [debouncedSearch, setQueryParams]);
 
   const showEmpty = !isPending && props.blogs.length === 0;
@@ -69,21 +70,21 @@ export const PageView: FC<Props> = (props) => {
       <Section isDivider>
         {props.newestBlog && (
           <BlogHero
-            heading={t("heading")}
-            subHeading={t("subHeading")}
-            description={t("description")}
-            buttonText={t("buttonText")}
+            heading={t('heading')}
+            subHeading={t('subHeading')}
+            description={t('description')}
+            buttonText={t('buttonText')}
             blog={props.newestBlog}
           />
         )}
       </Section>
 
-      <Section childrenProps={{ className: "xl:gap-12" }}>
-        <div className="flex lg:flex-row flex-col items-center justify-between gap-8">
-          <div className="lg:w-fit w-full px-auto overflow-y-auto">
+      <Section childrenProps={{ className: 'xl:gap-12' }}>
+        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">
+          <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
               category={props.category.map((cat) => ({
-                title: cat.name || "Unknown Category",
+                title: cat.name || 'Unknown Category',
               }))}
               activeValue={queryParams.filterBy}
               onClick={(filterBy: string) =>
@@ -97,7 +98,7 @@ export const PageView: FC<Props> = (props) => {
             placeholder={searchPlaceholder}
             value={search}
             onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
-            className="text-base h-10 lg:max-w-[280px] w-full flex items-center"
+            className="flex h-10 w-full items-center text-base lg:max-w-[280px]"
           />
         </div>
 
@@ -123,8 +124,8 @@ export const PageView: FC<Props> = (props) => {
               exit={{ opacity: 0 }}
             >
               <EmptyData
-                title={t("emptyData.title")}
-                description={t("emptyData.description")}
+                title={t('emptyData.title')}
+                description={t('emptyData.description')}
               />
             </motion.div>
           )}
