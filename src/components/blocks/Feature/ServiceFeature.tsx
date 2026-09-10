@@ -1,5 +1,5 @@
-import { FeatureRowCard } from '@/components/customs/Card';
 import { FormattedText } from '@/components/customs/Text';
+import { FeatureRowCard } from '@/components/customs/Card';
 
 interface Reason {
   title: string;
@@ -23,22 +23,22 @@ const ServiceFeature = ({
   reasons,
 }: Props) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-12'>
-      <div className='flex flex-col gap-3'>
-        <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
+    <div className="flex flex-col gap-12 lg:gap-16">
+      <div className="flex flex-col gap-3">
+        <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
           {heading}
         </p>
-        <h2 className='text-3xl font-semibold leading-[130%]!'>
+        <h2 className="text-3xl leading-[130%]! font-semibold">
           <FormattedText text={subHeading} />
         </h2>
       </div>
       {reasons.map((reason, i) => (
-        <div key={i} className='flex flex-col lg:gap-6 gap-8'>
-          <h3 className='lg:text-2xl text-xl font-semibold leading-[130%]!'>
+        <div key={i} className="flex flex-col gap-8 lg:gap-6">
+          <h3 className="text-xl leading-[130%]! font-semibold lg:text-2xl">
             {reason.reasonName}
           </h3>
 
-          <ul role='list' className='grid gap-4 lg:grid-cols-3 lg:gap-8'>
+          <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
             {reason.reasonItems.map((reasonItem) => (
               <li key={reasonItem.title}>
                 <FeatureRowCard {...reasonItem} />

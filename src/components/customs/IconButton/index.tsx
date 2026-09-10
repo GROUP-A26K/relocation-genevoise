@@ -1,12 +1,12 @@
-import { FC } from 'react';
 import { cn } from '@/libs/utils';
 import { Button as ShadcnButton } from '@/components/ui/button-custom';
+
+import type { FC } from 'react';
 type IType = 'primary' | 'secondary';
 type IVariant = 'lg' | 'md' | 'sm';
 
 // Defining types for the `src` as a React component (LucideReact icon)
-interface IconButtonSolidProps
-  extends React.AnchorHTMLAttributes<HTMLButtonElement> {
+interface IconButtonSolidProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Accepts a LucideReact icon component
   href?: never;
   target?: never;
@@ -14,8 +14,7 @@ interface IconButtonSolidProps
   as: 'solid';
 }
 
-interface IconButtonOutlineProps
-  extends React.AnchorHTMLAttributes<HTMLButtonElement> {
+interface IconButtonOutlineProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Accepts a LucideReact icon component
   href?: never;
   target?: never;
@@ -23,8 +22,7 @@ interface IconButtonOutlineProps
   as: 'outline';
 }
 
-interface IconButtonGhostProps
-  extends React.AnchorHTMLAttributes<HTMLButtonElement> {
+interface IconButtonGhostProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; // Accepts a LucideReact icon component
   href?: never;
   target?: never;
@@ -116,7 +114,7 @@ const IconButton: FC<Props> = ({
     case 'solid':
       return (
         <ShadcnButton
-          type='submit'
+          type="submit"
           className={cn(
             STYLE_BTN[variant],
             {
@@ -133,7 +131,7 @@ const IconButton: FC<Props> = ({
     case 'outline':
       return (
         <ShadcnButton
-          type='submit'
+          type="submit"
           className={cn(
             STYLE_BTN[variant],
             {
@@ -150,7 +148,7 @@ const IconButton: FC<Props> = ({
     case 'ghost':
       return (
         <ShadcnButton
-          type='submit'
+          type="submit"
           className={cn(
             STYLE_BTN[variant],
             {

@@ -1,5 +1,6 @@
-import { cn } from "@/libs/utils";
-import { FC } from "react";
+import { cn } from '@/libs/utils';
+
+import type { FC } from 'react';
 
 interface Props {
   children: React.ReactNode;
@@ -7,14 +8,14 @@ interface Props {
 
 export const ContentContainer: FC<Props> = ({ children }) => {
   return (
-    <section className="relative flex flex-col justify-center items-center text-black-500">
+    <section className="relative flex flex-col items-center justify-center text-black-500">
       <div
         className={cn(
-          "container flex flex-col gap-8 relative pb-14 pt-0 px-4",
-          "lg:flex-row lg:pb-16 lg:pt-8 lg:px-[48px]",
-          "xl:max-w-(--breakpoint-xl) xl:px-[100px]",
-          "2xl:max-w-(--breakpoint-2xl)",
-          "md:max-w-(--breakpoint-md)"
+          'relative container flex flex-col gap-8 px-4 pt-0 pb-14',
+          'lg:flex-row lg:px-[48px] lg:pt-8 lg:pb-16',
+          'xl:max-w-(--breakpoint-xl) xl:px-[100px]',
+          '2xl:max-w-(--breakpoint-2xl)',
+          'md:max-w-(--breakpoint-md)'
         )}
       >
         {children}

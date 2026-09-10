@@ -1,7 +1,8 @@
-import Button from "@/components/customs/Button";
-import Input from "@/components/customs/Input";
-import { FormattedText } from "@/components/customs/Text";
-import { FC } from "react";
+import Input from '@/components/customs/Input';
+import Button from '@/components/customs/Button';
+import { FormattedText } from '@/components/customs/Text';
+
+import type { FC } from 'react';
 
 interface Props {
   heading?: string;
@@ -24,41 +25,41 @@ export const ContactUsNow: FC<Props> = ({
   inputPlaceholder,
 }) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 items-start justify-between gap-y-4 bg-primary-500 lg:p-16 p-6 rounded-xl gap-4">
-      <div className="flex flex-col gap-4 max-w-xl text-white">
-        <h2 className="lg:text-3xl text-2xl font-semibold leading-[130%]!">
+    <div className="grid grid-cols-1 items-start justify-between gap-4 gap-y-4 rounded-xl bg-primary-500 p-6 lg:grid-cols-2 lg:p-16">
+      <div className="flex max-w-xl flex-col gap-4 text-white">
+        <h2 className="text-2xl leading-[130%]! font-semibold lg:text-3xl">
           {heading}
         </h2>
-        <p className="text-sm font-normal leading-[130%]!">
-          <FormattedText text={subHeading ?? ""} />
+        <p className="text-sm leading-[130%]! font-normal">
+          <FormattedText text={subHeading ?? ''} />
         </p>
       </div>
 
       <div className="flex flex-col gap-3">
-        <div className="flex flex-row gap-2 items-center justify-start">
-          <div className="flex rounded-full h-2 w-2 bg-white" />
+        <div className="flex flex-row items-center justify-start gap-2">
+          <div className="flex h-2 w-2 rounded-full bg-white" />
 
-          <p className="text-white text-sm leading-[130%]!">{statusTitle}</p>
+          <p className="text-sm leading-[130%]! text-white">{statusTitle}</p>
         </div>
-        <div className="flex lg:flex-row flex-col w-full items-center justify-start gap-2">
+        <div className="flex w-full flex-col items-center justify-start gap-2 lg:flex-row">
           <Input
             as="input"
             type="email"
             placeholder={inputPlaceholder}
-            className="lg:w-[431px] w-full text-base h-10 bg-white focus-visible:border-white"
+            className="h-10 w-full bg-white text-base focus-visible:border-white lg:w-[431px]"
           />
           <Button
             as="outline"
             variant="md"
             type="primary"
-            className="lg:w-fit w-full"
+            className="w-full lg:w-fit"
           >
             {buttonText}
           </Button>
         </div>
-        <p className="text-sm font-normal text-white leading-[130%]!">
-          We care about your data in our{" "}
-          <span className="text-sm font-semibold leading-[130%]! cursor-pointer">
+        <p className="text-sm leading-[130%]! font-normal text-white">
+          We care about your data in our{' '}
+          <span className="cursor-pointer text-sm leading-[130%]! font-semibold">
             Privacy Policy
           </span>
         </p>

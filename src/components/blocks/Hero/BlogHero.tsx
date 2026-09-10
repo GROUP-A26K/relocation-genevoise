@@ -1,9 +1,10 @@
-"use client";
+'use client';
 
-import { BlogBGCard } from "@/components/customs/Card";
-import { FC } from "react";
-import { Blog } from "@/models/BLog";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
+import { BlogBGCard } from '@/components/customs/Card';
+import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+
+import type { FC } from 'react';
+import type { Blog } from '@/models/BLog';
 
 interface Props {
   tagline?: string;
@@ -17,24 +18,24 @@ interface Props {
 }
 
 const BlogHero: FC<Props> = ({
-  heading = "Blog",
-  subHeading = "Our Latest News",
-  description = "Lorem ipsum dolor sit amet consectetur. Sed massa turpis enim congue erat sit ultricies. Turpis tempor adipiscing.",
+  heading = 'Blog',
+  subHeading = 'Our Latest News',
+  description = 'Lorem ipsum dolor sit amet consectetur. Sed massa turpis enim congue erat sit ultricies. Turpis tempor adipiscing.',
   blog,
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12">
+    <div className="flex flex-col gap-12 lg:gap-16">
       <div className="flex w-full items-center justify-center">
-        <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left max-w-3xl">
+        <div className="flex w-full max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
           <div className="flex flex-col gap-3">
-            <h1 className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
+            <h1 className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
               {heading}
             </h1>
-            <h2 className="text-3xl font-semibold text-center leading-[130%]!">
+            <h2 className="text-center text-3xl leading-[130%]! font-semibold">
               {TextWithStrong(subHeading)}
             </h2>
           </div>
-          <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-balance">
+          <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
             {description}
           </p>
           {/* <div className="flex flex-row gap-2 w-full items-center justify-center h-10">

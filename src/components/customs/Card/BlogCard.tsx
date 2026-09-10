@@ -1,9 +1,11 @@
 'use client';
-import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import { Link } from '@/libs/i18nNavigation';
-import { Blog } from '@/models/BLog';
 import { useLocale } from 'next-intl';
+
+import { Link } from '@/libs/i18nNavigation';
+import { Badge } from '@/components/ui/badge';
+
+import type { Blog } from '@/models/BLog';
 
 export const BlogCard: React.FC<Blog> = ({
   title,
@@ -18,7 +20,7 @@ export const BlogCard: React.FC<Blog> = ({
   const locale = useLocale();
   return (
     <Link href={href}>
-      <article className="flex flex-col items-start cursor-pointer h-full">
+      <article className="flex h-full cursor-pointer flex-col items-start">
         <div className="w-full">
           <Image
             alt="Relocation Genevoise Article"
@@ -26,16 +28,16 @@ export const BlogCard: React.FC<Blog> = ({
             src={imageUrl}
             width={640}
             height={250}
-            className="aspect-video lg:h-[250px] h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
+            className="aspect-video h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2 lg:h-[250px]"
           />
         </div>
-        <div className="w-full flex flex-col justify-between h-full pt-5">
+        <div className="flex h-full w-full flex-col justify-between pt-5">
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap gap-2 text-xs">
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="text-sm font-medium text-blue-500 bg-blue-50 hover:bg-blue-50 shadow-none leading-[130%]!"
+                  className="bg-blue-50 text-sm leading-[130%]! font-medium text-blue-500 shadow-none hover:bg-blue-50"
                 >
                   {cat.title}
                 </Badge>
@@ -44,19 +46,19 @@ export const BlogCard: React.FC<Blog> = ({
             <div className="flex flex-col gap-2">
               <h3
                 title={title}
-                className="line-clamp-2 lg:text-2xl text-xl font-semibold text-gray-900 group-hover:text-gray-600 leading-[130%]!"
+                className="line-clamp-2 text-xl leading-[130%]! font-semibold text-gray-900 group-hover:text-gray-600 lg:text-2xl"
               >
                 {title}
               </h3>
               <p
                 title={description}
-                className="line-clamp-3 lg:text-base font-normal text-sm leading-[130%]! text-gray-600 max-w-3xl"
+                className="line-clamp-3 max-w-3xl text-sm leading-[130%]! font-normal text-gray-600 lg:text-base"
               >
                 {description}
               </p>
             </div>
           </div>
-          <div className="flex justify-between mt-6">
+          <div className="mt-6 flex justify-between">
             <div className="flex items-center gap-3">
               <Image
                 alt="Author Image"
@@ -66,17 +68,17 @@ export const BlogCard: React.FC<Blog> = ({
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
-              <div className="text-base leading-[130%]! gap-[2px]">
-                <p className="font-semibold text-grey-700 leading-[130%]!">
+              <div className="gap-[2px] text-base leading-[130%]!">
+                <p className="leading-[130%]! font-semibold text-grey-700">
                   {author.name}
                 </p>
-                <p className="text-sm font-normal text-gray-700 leading-[130%]!">
+                <p className="text-sm leading-[130%]! font-normal text-gray-700">
                   {publishedDate}
                 </p>
               </div>
             </div>
 
-            <div className="flex lg:text-sm text-xs items-end font-medium text-black-100 leading-[130%]!">
+            <div className="flex items-end text-xs leading-[130%]! font-medium text-black-100 lg:text-sm">
               {timeToRead}{' '}
               {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
             </div>

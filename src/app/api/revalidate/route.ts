@@ -1,48 +1,53 @@
-import { revalidateTag } from "next/cache";
-import { NextResponse } from "next/server";
+import { revalidateTag } from 'next/cache';
+import { NextResponse } from 'next/server';
 
-import { Env } from "@/libs/Env";
+import { Env } from '@/libs/Env';
 
 const ALL_TAGS = [
-  "blogs",
-  "blog",
-  "sitemap-blogs",
-  "categories",
-  "properties",
-  "property",
-  "property-categories",
-  "sitemap-properties",
-  "jobs",
-  "jobs-featured",
-  "job-detail",
-  "departments",
+  'blogs',
+  'blog',
+  'sitemap-blogs',
+  'categories',
+  'properties',
+  'property',
+  'property-categories',
+  'sitemap-properties',
+  'jobs',
+  'jobs-featured',
+  'job-detail',
+  'departments',
 ];
 
 const TAGS_BY_TYPE: Record<string, string[]> = {
-  relocationBlogPost: ["blogs", "blog", "sitemap-blogs"],
-  relocationBlogCategory: ["categories", "blogs", "blog"],
-  relocationAuthor: ["blogs", "blog"],
-  relocationJobPost: ["jobs", "jobs-featured", "job-detail"],
-  relocationJobDepartment: ["departments", "jobs"],
-  property: ["properties", "property", "sitemap-properties"],
-  propertyCategory: ["property-categories", "properties"],
-  propertyAgent: ["property"],
+  relocationBlogPost: ['blogs', 'blog', 'sitemap-blogs'],
+  relocationBlogCategory: ['categories', 'blogs', 'blog'],
+  relocationAuthor: ['blogs', 'blog'],
+  relocationJobPost: ['jobs', 'jobs-featured', 'job-detail'],
+  relocationJobDepartment: ['departments', 'jobs'],
+  property: ['properties', 'property', 'sitemap-properties'],
+  propertyCategory: ['property-categories', 'properties'],
+  propertyAgent: ['property'],
 };
 
 const readDocumentType = async (request: Request): Promise<string | null> => {
   try {
-    const payload = await request.json();
-    const type = payload?._type ?? payload?.type;
+    const payload: unknown = await request.json();
 
-    return typeof type === "string" ? type : null;
+    if (typeof payload !== 'object' || payload === null) return null;
+
+    const { _type, type } = payload as Record<string, unknown>;
+
+    if (typeof _type === 'string') return _type;
+
+    return typeof type === 'string' ? type : null;
   } catch {
     return null;
   }
 };
 
 export async function POST(request: Request) {
-  if (request.headers.get("x-revalidate-secret") !== Env.REVALIDATE_SECRET) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  if (request.headers.get('x-revalidate-secret') !== Env.REVALIDATE_SECRET) {
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
   const type = await readDocumentType(request);

@@ -1,12 +1,13 @@
-import { cn } from "@/libs/utils";
-import { FC } from "react";
+import { cn } from '@/libs/utils';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+} from '@/components/ui/accordion';
+
+import type { FC } from 'react';
 
 interface Props {
   title?: string;
@@ -18,13 +19,13 @@ interface Props {
 
 const DesktopMenu: FC<Props> = (props) => {
   return (
-    <div className="lg:flex flex-col gap-4 w-fit hidden">
+    <div className="hidden w-fit flex-col gap-4 lg:flex">
       {props?.isTableContent && (
-        <div className="flex lg:text-xl text-base text-black-500 font-semibold leading-[130%]!">
+        <div className="flex text-base leading-[130%]! font-semibold text-black-500 lg:text-xl">
           {props.title && props.title}
         </div>
       )}
-      <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[160px] w-full">
+      <ul className="menu flex w-full flex-col gap-3 lg:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[228px]">
         {props.menuItems.map((item) => (
           <li key={`menu-item-${item.id}`} className="menu-item flex">
             <a
@@ -32,8 +33,8 @@ const DesktopMenu: FC<Props> = (props) => {
               title={item.title}
               onClick={() => props.setActiveId(item.id)}
               className={cn(
-                "menu-link text-base text-black-200 font-semibold leading-[130%]! line-clamp-2 text-wrap",
-                item.id === props.activeId && "text-primary-500"
+                'menu-link line-clamp-2 text-base leading-[130%]! font-semibold text-wrap text-black-200',
+                item.id === props.activeId && 'text-primary-500'
               )}
             >
               {item.title}
@@ -46,30 +47,30 @@ const DesktopMenu: FC<Props> = (props) => {
 };
 
 const MobileMenu: FC<Props> = (props) => {
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery('(max-width: 1024px)');
   if (!isMobile) return null;
   return (
     <div className="w-full lg:hidden">
       <Accordion
         type="single"
         collapsible
-        className="w-full bg-grey-50 rounded-2xl"
+        className="w-full rounded-2xl bg-grey-50"
         defaultValue="item-1"
       >
         <AccordionItem value="item-1" className="border-0">
           <AccordionTrigger className="px-4 py-3 hover:no-underline">
             {props?.isTableContent ? (
-              <div className="flex lg:text-xl text-base text-black-200 font-semibold leading-[130%]!">
+              <div className="flex text-base leading-[130%]! font-semibold text-black-200 lg:text-xl">
                 {props.title && props.title}
               </div>
             ) : (
-              <div className="flex lg:text-xl text-base text-black-200 font-semibold leading-[130%]!">
+              <div className="flex text-base leading-[130%]! font-semibold text-black-200 lg:text-xl">
                 Menu
               </div>
             )}
           </AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-4 text-balance px-4 pb-3">
-            <ul className="menu flex flex-col gap-3 2xl:max-w-[228px] xl:max-w-[200px] lg:max-w-[160px] w-full border-t-2 border-grey-100 pt-3">
+          <AccordionContent className="flex flex-col gap-4 px-4 pb-3 text-balance">
+            <ul className="menu flex w-full flex-col gap-3 border-t-2 border-grey-100 pt-3 lg:max-w-[160px] xl:max-w-[200px] 2xl:max-w-[228px]">
               {props.menuItems.map((item) => (
                 <li key={`menu-item-${item.id}`} className="menu-item flex">
                   <a
@@ -77,9 +78,9 @@ const MobileMenu: FC<Props> = (props) => {
                     title={item.title}
                     onClick={() => props.setActiveId(item.id)}
                     className={cn(
-                      "menu-link text-base text-black-200 font-semibold leading-[130%]! line-clamp-2 text-wrap",
+                      'menu-link line-clamp-2 text-base leading-[130%]! font-semibold text-wrap text-black-200',
                       item.id === props.activeId &&
-                        "text-black-500 pl-4 border-l-4 border-primary-500"
+                        'border-l-4 border-primary-500 pl-4 text-black-500'
                     )}
                   >
                     {item.title}

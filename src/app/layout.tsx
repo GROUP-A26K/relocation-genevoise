@@ -1,17 +1,18 @@
-import { Metadata } from "next";
-import Script from "next/script";
-import { Inter } from "next/font/google";
-import { ReactNode } from "react";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { GoogleTagManager } from "@next/third-parties/google";
+import Script from 'next/script';
+import { Inter } from 'next/font/google';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { GoogleTagManager } from '@next/third-parties/google';
 
-import { Env } from "@/libs/Env";
+import { Env } from '@/libs/Env';
+
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
 // Variable font, so the full 100-900 weight axis comes for free.
 const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
 });
 
 type Props = {
@@ -21,23 +22,23 @@ type Props = {
 export const metadata: Metadata = {
   metadataBase: new URL(Env.NEXT_PUBLIC_SITE_URL),
   alternates: {
-    canonical: "/",
+    canonical: '/',
     languages: {
-      "en-US": "/en-US",
-      "de-DE": "/de-DE",
+      'en-US': '/en-US',
+      'de-DE': '/de-DE',
     },
   },
   openGraph: {
-    type: "website",
-    locale: "de-DE",
+    type: 'website',
+    locale: 'de-DE',
     url: Env.NEXT_PUBLIC_SITE_URL,
-    siteName: "Relocation Genevoise",
+    siteName: 'Relocation Genevoise',
     images: [
       {
         url: `${Env.NEXT_PUBLIC_SITE_URL}/relocation-genevoise-preview.png`,
         width: 1200,
         height: 630,
-        alt: "Relocation Genevoise",
+        alt: 'Relocation Genevoise',
       },
     ],
   },
@@ -48,14 +49,14 @@ export const metadata: Metadata = {
         url: `${Env.NEXT_PUBLIC_SITE_URL}/relocation-genevoise-preview.png`,
         width: 1200,
         height: 630,
-        alt: "Relocation Genevoise",
+        alt: 'Relocation Genevoise',
       },
     ],
   },
 };
 // Since we have a `not-found.tsx` page on the root, a layout file
 // is required, even if it's just passing children through.
-export default async function RootLayout(props: Props) {
+export default function RootLayout(props: Props) {
   return (
     <html lang="fr" className={`${inter.variable} scroll-smooth`}>
       <head>
@@ -81,7 +82,9 @@ export default async function RootLayout(props: Props) {
         <GoogleTagManager gtmId={Env.NEXT_PUBLIC_GTM_ID} />
       )}
 
-      <body>{<NuqsAdapter>{props.children}</NuqsAdapter>}</body>
+      <body>
+        <NuqsAdapter>{props.children}</NuqsAdapter>
+      </body>
     </html>
   );
 }

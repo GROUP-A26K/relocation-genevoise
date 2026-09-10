@@ -1,15 +1,16 @@
 'use client';
-import { List, ListItem } from '@/components/customs/Text';
-import { NavbarProps } from './PageView';
 import { Link } from '@/libs/i18nNavigation';
+import { List, ListItem } from '@/components/customs/Text';
+
+import type { NavbarProps } from './PageView';
 
 export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
   return (
     <div className="top-0 flex flex-col items-center justify-center">
-      <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] lg:max-w-[470px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[470px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         {sitemap.menu.map((section) => (
           <div id={section.id} className="flex flex-col gap-4" key={section.id}>
-            <h2 className="lg:text-2xl text-xl font-bold leading-[130%]!">
+            <h2 className="text-xl leading-[130%]! font-bold lg:text-2xl">
               {section.title}
             </h2>
             <List className="flex flex-col gap-4">

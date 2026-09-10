@@ -1,8 +1,9 @@
-import { Metadata } from "next";
-import { Env } from "@/libs/Env";
-import { AppConfig } from "@/utils/AppConfig";
-import { getPropertyDetail } from "@/services/property.service";
-import { ScrollToTop } from "@/components/customs/ScrollToTop";
+import { Env } from '@/libs/Env';
+import { AppConfig } from '@/utils/AppConfig';
+import { ScrollToTop } from '@/components/customs/ScrollToTop';
+import { getPropertyDetail } from '@/services/property.service';
+
+import type { Metadata } from 'next';
 
 type Props = {
   children: React.ReactNode;
@@ -17,8 +18,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {};
   }
 
-  const propertyPath = `${AppConfig.routes.properties[locale as "fr" | "en"]}/${slug}`;
-  const propertyUrl = `${Env.NEXT_PUBLIC_SITE_URL}${locale === "fr" ? "" : `/${locale}`}${propertyPath}`;
+  const propertyPath = `${AppConfig.routes.properties[locale as 'fr' | 'en']}/${slug}`;
+  const propertyUrl = `${Env.NEXT_PUBLIC_SITE_URL}${locale === 'fr' ? '' : `/${locale}`}${propertyPath}`;
   const imageUrl = property.areas[0]?.mainImageUrl;
 
   return {
@@ -28,9 +29,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         ? `${property.description.substring(0, 157)}...`
         : property.description,
     openGraph: {
-      type: "website",
-      locale: "de-DE",
-      siteName: "Relocation Genevoise",
+      type: 'website',
+      locale: 'de-DE',
+      siteName: 'Relocation Genevoise',
       url: propertyUrl,
       images: imageUrl
         ? [
@@ -56,12 +57,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         : [],
     },
     alternates: {
-      canonical: `/${locale === "fr" ? "" : locale}${propertyPath}`,
+      canonical: `/${locale === 'fr' ? '' : locale}${propertyPath}`,
     },
   };
 }
 
-export default async function PropertyDetailLayout({ children }: Props) {
+export default function PropertyDetailLayout({ children }: Props) {
   return (
     <>
       <ScrollToTop />

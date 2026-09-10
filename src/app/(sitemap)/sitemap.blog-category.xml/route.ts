@@ -1,8 +1,9 @@
+import { Env } from '@/libs/Env';
+import { sanityFetch } from '@/sanity/lib/fetch';
 // app/api/sitemap/blog-category/route.ts
 import { POST_CATEGORIES_QUERY } from '@/sanity/lib/queries';
+
 import type { BlogCategory } from '@/sanity/types';
-import { sanityFetch } from '@/sanity/lib/fetch';
-import { Env } from '@/libs/Env';
 
 /* ------------------------------------------------------------------ */
 /* Config                                                              */

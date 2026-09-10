@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from 'react-hook-form';
 
-import { cn } from "@/libs/utils";
-import { FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { cn } from '@/libs/utils';
+import { FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 
-import type { FC } from "react";
-import type { LucideIcon } from "lucide-react";
+import type { FC } from 'react';
+import type { LucideIcon } from 'lucide-react';
 
 type TChipOption = {
   value: string;
@@ -36,10 +36,10 @@ export const ChipSelectField: FC<IChipSelectFieldProps> = ({
   const { control, setValue } = useFormContext();
 
   return (
-    <FormItem className={cn("flex w-full flex-col gap-2.5", className)}>
+    <FormItem className={cn('flex w-full flex-col gap-2.5', className)}>
       {label && (
         <FormLabel
-          className={cn("flex gap-0.5 text-sm leading-[130%]!", labelClassName)}
+          className={cn('flex gap-0.5 text-sm leading-[130%]!', labelClassName)}
         >
           {label}
           {isRequired && <span className="text-red-500">*</span>}
@@ -59,16 +59,16 @@ export const ChipSelectField: FC<IChipSelectFieldProps> = ({
                   key={value}
                   type="button"
                   onClick={() =>
-                    setValue(name, isSelected ? "" : value, {
+                    setValue(name, isSelected ? '' : value, {
                       shouldDirty: true,
                       shouldValidate: true,
                     })
                   }
                   className={cn(
-                    "flex items-center gap-2 rounded-full border bg-white px-3 py-2 text-sm font-normal leading-[130%]! text-black-300 transition-colors",
+                    'flex items-center gap-2 rounded-full border bg-white px-3 py-2 text-sm leading-[130%]! font-normal text-black-300 transition-colors',
                     isSelected
-                      ? "border-secondary-500 bg-secondary-25"
-                      : "border-grey-100 hover:border-secondary-400",
+                      ? 'border-secondary-500 bg-secondary-25'
+                      : 'border-grey-100 hover:border-secondary-400'
                   )}
                 >
                   {Icon && <Icon className="size-4 shrink-0 text-black-300" />}

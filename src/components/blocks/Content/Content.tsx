@@ -1,5 +1,6 @@
 import { FormattedText } from '@/components/customs/Text';
-import { FC } from 'react';
+
+import type { FC } from 'react';
 
 interface Props {
   heading?: string;
@@ -17,18 +18,18 @@ export const Content: FC<Props> = ({
   description,
 }) => {
   return (
-    <div className='flex flex-col lg:gap-16 gap-14'>
-      <div className='flex flex-col lg:flex-row justify-between gap-6'>
-        <div className='w-full flex flex-col items-start gap-3 text-left justify-start'>
-          <p className='text-sm font-semibold text-secondary-600 leading-[130%]!'>
+    <div className="flex flex-col gap-14 lg:gap-16">
+      <div className="flex flex-col justify-between gap-6 lg:flex-row">
+        <div className="flex w-full flex-col items-start justify-start gap-3 text-left">
+          <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
             {heading}
           </p>
-          <h2 className='text-3xl font-semibold leading-[130%]!'>
+          <h2 className="text-3xl leading-[130%]! font-semibold">
             <FormattedText text={subHeading} />
           </h2>
         </div>
-        <div className='max-w-[600px] flex flex-col items-start gap-6 text-left justify-start'>
-          <p className='lg:text-sm text-sm font-normal text-black-200 leading-[130%]! flex flex-col gap-4'>
+        <div className="flex max-w-[600px] flex-col items-start justify-start gap-6 text-left">
+          <p className="flex flex-col gap-4 text-sm leading-[130%]! font-normal text-black-200 lg:text-sm">
             {description?.map((item, index) => (
               <FormattedText text={item.paragraph} key={index} />
             ))}

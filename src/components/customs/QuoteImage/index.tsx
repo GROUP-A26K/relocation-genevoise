@@ -1,5 +1,5 @@
-import cn from "classnames";
-import Image from "next/image";
+import cn from 'classnames';
+import Image from 'next/image';
 
 type QuoteImageProps = {
   content?: string;
@@ -9,36 +9,36 @@ type QuoteImageProps = {
 };
 
 const QuoteImage: React.FC<QuoteImageProps> = ({
-  content = "This is a sample quote content.",
-  author = "Author Name",
-  authorInfo = "Author Information",
-  photoUrl = "",
+  content = 'This is a sample quote content.',
+  author = 'Author Name',
+  authorInfo = 'Author Information',
+  photoUrl = '',
 }) => {
   return (
-    <div className={cn("py-4", "lg:py-6")}>
+    <div className={cn('py-4', 'lg:py-6')}>
       <div
         className={cn(
-          "w-full rounded-2xl bg-white flex flex-col items-start justify-start gap-5 py-0",
-          "lg:p-6 lg:bg-grey-50"
+          'flex w-full flex-col items-start justify-start gap-5 rounded-2xl bg-white py-0',
+          'lg:bg-grey-50 lg:p-6'
         )}
       >
-        <blockquote className="italic text-center text-base text-black-500 font-normal leading-[130%]!">
+        <blockquote className="text-center text-base leading-[130%]! font-normal text-black-500 italic">
           {content}
         </blockquote>
-        <div className="w-full flex flex-col items-center gap-3">
+        <div className="flex w-full flex-col items-center gap-3">
           <Image
             src={photoUrl}
             alt="Author image"
             title="Author image"
             width={40}
             height={40}
-            className="w-10 h-10 rounded-full object-contain"
+            className="h-10 w-10 rounded-full object-contain"
           />
-          <div className="w-full flex flex-col justify-center items-center">
-            <p className="text-black-500 text-base font-semibold leading-[130%]!">
+          <div className="flex w-full flex-col items-center justify-center">
+            <p className="text-base leading-[130%]! font-semibold text-black-500">
               {author}
             </p>
-            <p className="text-black-200 text-sm font-normal leading-[130%]!">
+            <p className="text-sm leading-[130%]! font-normal text-black-200">
               {authorInfo}
             </p>
           </div>

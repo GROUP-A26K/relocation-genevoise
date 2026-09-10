@@ -84,8 +84,8 @@ export const Subscribe = ({
       <Head />
       <Preview>{t.thanks}</Preview>
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             {/* header */}
             <Section className="px-[32px] py-[40px]">
               <Row>
@@ -108,7 +108,7 @@ export const Subscribe = ({
                           className="my-auto ml-auto"
                           alt="Globe"
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold leading-[100%]! ml-1">
+                        <Text className="ml-1 text-xs leading-[100%]! font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -119,27 +119,27 @@ export const Subscribe = ({
             </Section>
 
             {/* hero heading */}
-            <Heading className="text-[#7C6C06] text-3xl font-semibold leading-[130%]! text-start m-8 mb-6">
+            <Heading className="m-8 mb-6 text-start text-3xl leading-[130%]! font-semibold text-[#7C6C06]">
               {t.headingPrefix} <br />
               {subject}
             </Heading>
 
             {/* paragraphs */}
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.hi},
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.thanks}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.fromNow}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.teamReview}
             </Text>
 
             {/* three cards */}
-            <Row cellSpacing={16} className="px-4 h-fit">
+            <Row cellSpacing={16} className="h-fit px-4">
               {[
                 { img: 'chart-pie-slice-lucid.png', text: t.card1 },
                 { img: 'lightbulb-filament-lucid.png', text: t.card2 },
@@ -170,7 +170,7 @@ export const Subscribe = ({
                       alignItems: 'center',
                     }}
                   />
-                  <Text className="text-black text-[14px] font-semibold leading-[24px] mt-4 mb-auto h-[48px]">
+                  <Text className="mt-4 mb-auto h-[48px] text-[14px] leading-[24px] font-semibold text-black">
                     {text}
                   </Text>
                 </Column>
@@ -178,16 +178,16 @@ export const Subscribe = ({
             </Row>
 
             {/* closing paragraphs */}
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.respect}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.welcomeAgain}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8 mb-0">
+            <Text className="mb-0 px-8 text-[14px] leading-[24px] text-black">
               {t.regards}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8 mt-0">
+            <Text className="mt-0 px-8 text-[14px] leading-[24px] text-black">
               <strong>{t.team}</strong>
             </Text>
 
@@ -201,7 +201,7 @@ export const Subscribe = ({
               }}
             >
               <Text
-                className="text-[#605204] text-[14px] leading-[24px] text-center"
+                className="text-center text-[14px] leading-[24px] text-[#605204]"
                 dangerouslySetInnerHTML={{ __html: t.footer }}
               />
 
@@ -218,7 +218,7 @@ export const Subscribe = ({
                         height="13"
                         alt="Phone"
                       />
-                      <Text className="text-[#605204] text-xs font-semibold leading-[100%]! my-0 ml-1 mr-auto">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
                         +1 (555) 000-0000
                       </Text>
                     </div>
@@ -234,7 +234,7 @@ export const Subscribe = ({
                         height="13"
                         alt="Globe"
                       />
-                      <Text className="text-[#605204] text-xs font-semibold leading-[100%]!  my-3 ml-1 mr-auto">
+                      <Text className="my-3 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
                         https://relocation-genevoise/ch
                       </Text>
                     </div>
@@ -250,7 +250,7 @@ export const Subscribe = ({
                         height="13"
                         alt="Building"
                       />
-                      <Text className="text-[#605204] text-xs font-semibold leading-[100%]! my-0 ml-1 mr-auto">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
                         Rue des Alpes 5, 1201 Geneva
                       </Text>
                     </div>
@@ -260,18 +260,18 @@ export const Subscribe = ({
                 {/* Right column: links */}
                 <Column colSpan={4}>
                   <Link href="https://relocation-genevoise.ch/contact">
-                    <Text className="text-[#605204] text-xs font-semibold leading-[100%]! ml-auto mr-5">
+                    <Text className="mr-5 ml-auto text-xs leading-[100%]! font-semibold text-[#605204]">
                       {t.contactUs}
                     </Text>
                   </Link>
 
                   <Link href="https://relocation-genevoise.ch/mentions-legales">
-                    <Text className="text-[#605204] text-xs font-semibold leading-[100%]! my-3 ml-auto">
+                    <Text className="my-3 ml-auto text-xs leading-[100%]! font-semibold text-[#605204]">
                       {t.privacy}
                     </Text>
                   </Link>
 
-                  <Text className="text-[#605204] text-xs font-semibold leading-[100%]! ml-auto mr-2">
+                  <Text className="mr-2 ml-auto text-xs leading-[100%]! font-semibold text-[#605204]">
                     {t.unsubscribe}
                   </Text>
                 </Column>

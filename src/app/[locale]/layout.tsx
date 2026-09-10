@@ -1,11 +1,12 @@
-import { routing } from "@/libs/i18nNavigation";
-import { notFound } from "next/navigation";
-import { getMessages, setRequestLocale } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
-import { Toaster } from "@/components/ui/sonner";
-import "@/styles/globals.css";
-import { Navbar } from "@/components/sections/Navigation/NavBar";
-import { Env } from "@/libs/Env";
+import { notFound } from 'next/navigation';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+
+import { Env } from '@/libs/Env';
+import { routing } from '@/libs/i18nNavigation';
+import '@/styles/globals.css';
+import { Toaster } from '@/components/ui/sonner';
+import { Navbar } from '@/components/sections/Navigation/NavBar';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

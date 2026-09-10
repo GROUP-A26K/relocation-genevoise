@@ -14,14 +14,14 @@ import Button from '@/components/customs/Button';
 import CtaBlock from '@/components/customs/CtaBlock';
 import { StatsList } from '@/components/blocks/Stats';
 import { FAQBlog } from '@/components/blocks/FAQ/FAQBlog';
-import { Block, BLOG_BODY_BLOCKS, BlogDetail } from '@/models/BLog';
 import { BlogContent } from '@/components/blocks/BlogContent/BlogContent';
+import { type Block, BLOG_BODY_BLOCKS, type BlogDetail } from '@/models/BLog';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
 
 function renderListBlocks(blocks: Block[]) {
   return blocks.map((block) => {
-    if (!block || typeof block !== "object" || !("_type" in block)) return null;
+    if (!block || typeof block !== 'object' || !('_type' in block)) return null;
 
     const { _type, _key } = block;
 
@@ -41,7 +41,7 @@ function renderListBlocks(blocks: Block[]) {
             key={_key}
             {...block}
             className={cn(
-              block.blockTitle?.isStyle && "p-8 bg-grey-50 rounded-xl"
+              block.blockTitle?.isStyle && 'rounded-xl bg-grey-50 p-8'
             )}
           />
         );
@@ -53,9 +53,9 @@ function renderListBlocks(blocks: Block[]) {
           <CtaBlock
             key={_key}
             id={_key}
-            title={block.blockTitle?.title || ""}
-            description={block.blockTitle?.description || ""}
-            buttonText={block.blockTitle?.buttonText || "Contact Us"}
+            title={block.blockTitle?.title || ''}
+            description={block.blockTitle?.description || ''}
+            buttonText={block.blockTitle?.buttonText || 'Contact Us'}
           />
         );
       default:
@@ -63,7 +63,6 @@ function renderListBlocks(blocks: Block[]) {
     }
   });
 }
-
 
 export const Content = (blog: BlogDetail) => {
   const t = useTranslations('BlogDetail');
@@ -103,10 +102,10 @@ export const Content = (blog: BlogDetail) => {
   };
   return (
     <div className="top-0 flex flex-col items-center justify-center">
-      <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] lg:max-w-[570px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[570px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         {renderListBlocks(blog.body)}
 
-        <div className="flex lg:flex-row flex-col gap-y-6 justify-between border-t border-grey-100 pt-6 ">
+        <div className="flex flex-col justify-between gap-y-6 border-t border-grey-100 pt-6 lg:flex-row">
           <div className="flex items-center gap-3">
             <Image
               alt="Author image"
@@ -116,9 +115,9 @@ export const Content = (blog: BlogDetail) => {
               height={48}
               className="h-[48px] w-[48px] rounded-full bg-gray-100 object-cover"
             />
-            <div className="text-base leading-[130%]! gap-[2px]">
+            <div className="gap-[2px] text-base leading-[130%]!">
               <p className="font-semibold text-gray-700">{blog.author.name}</p>
-              <p className="text-sm font-normal text-gray-700 leading-[130%]!">
+              <p className="text-sm leading-[130%]! font-normal text-gray-700">
                 {blog.author.email}
               </p>
             </div>

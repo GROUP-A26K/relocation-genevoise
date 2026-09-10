@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Body,
   Column,
@@ -13,32 +13,33 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components";
-import { BookingFormInput } from "@/validations/booking.validation";
+} from '@react-email/components';
+
+import type { BookingFormInput } from '@/validations/booking.validation';
 
 interface ContactProps {
   userInfo: BookingFormInput;
   baseUrl: string;
-  locale: "en" | "fr";
+  locale: 'en' | 'fr';
 }
 
 const copy = {
   en: {
-    heading: "Booking information",
-    phone: "Phone",
-    contactVia: "Contact via",
+    heading: 'Booking information',
+    phone: 'Phone',
+    contactVia: 'Contact via',
   },
   fr: {
-    heading: "Informations de rendez-vous",
-    phone: "Téléphone",
-    contactVia: "Contact par",
+    heading: 'Informations de rendez-vous',
+    phone: 'Téléphone',
+    contactVia: 'Contact par',
   },
 } as const;
 
 export const CallMeBack = ({
   userInfo,
   baseUrl,
-  locale = "en",
+  locale = 'en',
 }: ContactProps) => {
   const t = copy[locale];
 
@@ -48,8 +49,8 @@ export const CallMeBack = ({
       <Preview>{t.heading}</Preview>
 
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             {/* ---------- Header ---------- */}
             <Section className="px-[32px] py-[40px]">
               <Row>
@@ -65,7 +66,7 @@ export const CallMeBack = ({
                 <Column align="right">
                   <Row align="right">
                     <Link href="https://relocation-genevoise.ch">
-                      <div style={{ display: "flex" }}>
+                      <div style={{ display: 'flex' }}>
                         <Img
                           src={`${baseUrl}/globe-lucid.png`}
                           width="13"
@@ -73,7 +74,7 @@ export const CallMeBack = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold leading-[100%]! ml-1">
+                        <Text className="ml-1 text-xs leading-[100%]! font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -85,18 +86,18 @@ export const CallMeBack = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#7C6C06] text-3xl font-semibold leading-[130%]! text-start m-8 mb-6"
+              className="m-8 mb-6 text-start text-3xl leading-[130%]! font-semibold text-[#7C6C06]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.phone}: <strong>{userInfo.phone}</strong>,
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8 mb-8">
-              {t.contactVia}:{" "}
+            <Text className="mb-8 px-8 text-[14px] leading-[24px] text-black">
+              {t.contactVia}:{' '}
               <strong>
-                {userInfo.contactVia === "telephone" ? t.phone : "Whatsapp"}
+                {userInfo.contactVia === 'telephone' ? t.phone : 'Whatsapp'}
               </strong>
               .
             </Text>
@@ -111,9 +112,9 @@ export const CallMeBack = ({
 
 CallMeBack.PreviewProps = {
   userInfo: {
-    phone: "000-000-0000",
+    phone: '000-000-0000',
   },
-  baseUrl: "http://localhost:3000/",
-  locale: "fr",
+  baseUrl: 'http://localhost:3000/',
+  locale: 'fr',
 } as ContactProps;
 export default CallMeBack;

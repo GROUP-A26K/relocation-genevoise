@@ -1,11 +1,12 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import { Controller, type FieldPath, type FieldValues } from 'react-hook-form';
+
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   FormControl,
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Controller, FieldPath, FieldValues } from "react-hook-form";
+} from '@/components/ui/form';
 
 type CheckboxFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   label: string;
@@ -36,7 +37,7 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
           />
         </FormControl>
         <FormLabel
-          className="text-sm font-normal text-black-200 leading-[130%]! cursor-pointer"
+          className="cursor-pointer text-sm leading-[130%]! font-normal text-black-200"
           htmlFor={name}
         >
           {label}

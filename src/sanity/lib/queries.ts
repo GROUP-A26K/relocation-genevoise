@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const BLOG_LATEST_QUERY = defineQuery(`
   *[
@@ -277,7 +277,7 @@ export const PROPERTIES_SITEMAP_QUERY = defineQuery(`
 `);
 
 export const POST_CATEGORIES_QUERY = defineQuery(
-  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`,
+  `*[_type == "relocationBlogCategory" && count(*[_type == "relocationBlogPost" && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) >= 1]`
 );
 
 const CAREERS_BASE_FILTER = `
@@ -442,13 +442,13 @@ const PROPERTIES_PROJECTION = `{
 
 export const buildPropertiesQuery = (sort: string, availableOnly = false) => {
   const orderClause =
-    sort === "price_asc"
-      ? "price asc"
-      : sort === "price_desc"
-        ? "price desc"
-        : "_createdAt desc";
+    sort === 'price_asc'
+      ? 'price asc'
+      : sort === 'price_desc'
+        ? 'price desc'
+        : '_createdAt desc';
 
-  const availabilityClause = availableOnly ? " && availability == true" : "";
+  const availabilityClause = availableOnly ? ' && availability == true' : '';
   const filter = `${PROPERTIES_BASE_FILTER}${availabilityClause}`;
 
   return `{
@@ -471,11 +471,11 @@ export const PROPERTY_CATEGORIES_QUERY = defineQuery(
   ] | order(categoryName asc) {
     _id,
     categoryName
-  }`,
+  }`
 );
 
 export const DEPARTMENT_QUERY = defineQuery(
-  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) > 0]`,
+  `*[_type == "relocationJobDepartment" && count(*[_type == "relocationJobPost" && isHidden == false && language == $locale && !(_id in path("drafts.**")) && references(^._id)]) > 0]`
 );
 
 export const PROPERTY_DETAIL_QUERY = defineQuery(`

@@ -1,8 +1,10 @@
-import { InfoContactCard } from '@/components/customs/Card';
-import { FormattedText } from '@/components/customs/Text';
-import { Link } from '@/libs/i18nNavigation';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { FC } from 'react';
+
+import { Link } from '@/libs/i18nNavigation';
+import { FormattedText } from '@/components/customs/Text';
+import { InfoContactCard } from '@/components/customs/Card';
+
+import type { FC } from 'react';
 
 interface Reason {
   title: string;
@@ -42,25 +44,25 @@ const ContactInfo: FC<Props> = ({
   ],
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12">
+    <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
         <div className="flex w-full items-center justify-center">
-          <div className="flex flex-col lg:gap-6 gap-4 max-w-xl lg:items-center text-left">
+          <div className="flex max-w-xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-sm font-semibold text-center text-secondary-600 leading-[130%]!">
+              <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
                 {heading}
               </p>
-              <h1 className="text-3xl font-semibold text-center leading-[130%]! text-balance">
+              <h1 className="text-center text-3xl leading-[130%]! font-semibold text-balance">
                 <FormattedText text={subHeading} />
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 leading-[130%]!">
+            <p className="text-center text-sm leading-[130%]! font-normal text-black-200">
               {description}
             </p>
           </div>
         </div>
       )}
-      <div className="flex flex-col lg:gap-6 gap-8">
+      <div className="flex flex-col gap-8 lg:gap-6">
         <div className="grid gap-12 lg:grid-cols-3 lg:gap-8">
           <Link
             href={`mailto:${reasonItems[0].info}`}

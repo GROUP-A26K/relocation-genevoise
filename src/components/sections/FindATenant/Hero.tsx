@@ -1,15 +1,15 @@
-import { Fragment } from "react";
-import { ArrowRight } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
+import { Fragment } from 'react';
+import { ArrowRight } from 'lucide-react';
+import Image, { type StaticImageData } from 'next/image';
 
-import { cn } from "@/libs/utils";
-import { Link } from "@/libs/i18nNavigation";
-import Button from "@/components/customs/Button";
-import CountUp from "@/components/customs/CountUp";
-import Section from "@/components/customs/Section";
-import { AnimatedGridPattern } from "@/components/ui/magicui/animated-grid-pattern";
+import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
+import Button from '@/components/customs/Button';
+import CountUp from '@/components/customs/CountUp';
+import Section from '@/components/customs/Section';
+import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
-import HeroTabs, { type TFindATenantAudience } from "./HeroTabs";
+import HeroTabs, { type TFindATenantAudience } from './HeroTabs';
 
 type TCta = {
   text: string;
@@ -57,21 +57,21 @@ export default function Hero({
               height={80}
               width={80}
               className={cn(
-                "size-full text-yellow-25 opacity-70",
-                "mask-[radial-gradient(circle_at_top,white,transparent_95%)]",
+                'size-full text-yellow-25 opacity-70',
+                'mask-[radial-gradient(circle_at_top,white,transparent_95%)]'
               )}
             />
           </div>
 
-          <div className="flex flex-1 flex-col items-center gap-6 lg:gap-12 lg:items-start">
+          <div className="flex flex-1 flex-col items-center gap-6 lg:items-start lg:gap-12">
             <HeroTabs active={active} labels={tabLabels} />
 
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <h1 className="whitespace-pre-line text-pretty text-center text-4xl font-bold leading-[130%]! text-black-500 lg:text-5xl lg:text-left">
+                <h1 className="text-center text-4xl leading-[130%]! font-bold text-pretty whitespace-pre-line text-black-500 lg:text-left lg:text-5xl">
                   {heading}
                 </h1>
-                <p className="text-pretty text-base text-center font-normal leading-[150%]! text-black-300 lg:text-left">
+                <p className="text-center text-base leading-[150%]! font-normal text-pretty text-black-300 lg:text-left">
                   {description}
                 </p>
               </div>
@@ -83,7 +83,7 @@ export default function Hero({
                     variant="md"
                     type="secondary"
                     iconEnd={ArrowRight}
-                    className="rounded-full w-full"
+                    className="w-full rounded-full"
                   >
                     {primaryCta.text}
                   </Button>
@@ -93,7 +93,7 @@ export default function Hero({
                     as="outline"
                     variant="md"
                     type="primary"
-                    className="rounded-full w-full"
+                    className="w-full rounded-full"
                   >
                     {secondaryCta.text}
                   </Button>
@@ -102,7 +102,7 @@ export default function Hero({
             </div>
           </div>
 
-          <div className="flex-1 relative aspect-572/420 w-full">
+          <div className="relative aspect-572/420 w-full flex-1">
             <Image
               src={image.src}
               alt={image.alt}
@@ -118,21 +118,21 @@ export default function Hero({
           </div>
         </div>
 
-        <div className="flex flex-col overflow-hidden items-center rounded-3xl bg-secondary-25 sm:flex-row">
+        <div className="flex flex-col items-center overflow-hidden rounded-3xl bg-secondary-25 sm:flex-row">
           {stats.map((stat, index) => (
             <Fragment key={stat.label}>
-              <div className="flex flex-1 w-full flex-col items-center gap-3 p-6 text-center lg:py-12">
+              <div className="flex w-full flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
                 <CountUp
                   value={stat.value}
-                  className="text-4xl font-bold leading-[130%]! text-black-500 lg:text-[40px]"
+                  className="text-4xl leading-[130%]! font-bold text-black-500 lg:text-[40px]"
                 />
-                <p className="text-base lg:text-lg font-semibold leading-[130%]! text-black-200">
+                <p className="text-base leading-[130%]! font-semibold text-black-200 lg:text-lg">
                   {stat.label}
                 </p>
               </div>
 
               {index < stats.length - 1 && (
-                <div className="bg-yellow-300 h-px w-[100px] lg:w-px lg:h-[100px]" />
+                <div className="h-px w-[100px] bg-yellow-300 lg:h-[100px] lg:w-px" />
               )}
             </Fragment>
           ))}

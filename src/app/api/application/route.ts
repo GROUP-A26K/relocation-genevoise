@@ -1,35 +1,35 @@
-import { Env } from "@/libs/Env";
-import { saveFileInBucket } from "@/utils/minio-file-management";
+import { nanoid } from 'nanoid';
+import { NextResponse } from 'next/server';
+
+import { Env } from '@/libs/Env';
+import { resend } from '@/libs/resend';
+import { executeWithReplication } from '@/libs/prisma';
+import Application from '@/templates/Email/Application';
+import { saveFileInBucket } from '@/utils/minio-file-management';
+import ApplicationInformation from '@/templates/Email/ApplicationInformation';
 import {
-  ApplicationFormInput,
+  type ApplicationFormInput,
   applicationSchema,
-} from "@/validations/application.validation";
-import { NextResponse } from "next/server";
-import { nanoid } from "nanoid";
-import ApplicationInformation from "@/templates/Email/ApplicationInformation";
-import Application from "@/templates/Email/Application";
-import { resend } from "@/libs/resend";
-import { executeWithReplication } from "@/libs/prisma";
+} from '@/validations/application.validation';
 const senderEmail = Env.RESEND_EMAIL;
 const senderReceiverEmail = Env.RESEND_RECEIVER_EMAIL;
 const senderName = Env.RESEND_SENDER_NAME;
 const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 
 const subjectTitle = {
-  en: "Welcome to our company!",
-  fr: "Bienvenue chez notre entreprise!",
+  en: 'Welcome to our company!',
+  fr: 'Bienvenue chez notre entreprise!',
 } as const;
 
 const applicationInformationSubjectTitle = {
-  en: "Application Submission Received",
-  fr: "Soumission de candidature reçue",
+  en: 'Application Submission Received',
+  fr: 'Soumission de candidature reçue',
 } as const;
 
-interface UserInfo
-  extends Omit<
-    ApplicationFormInput,
-    "resume_file " | "accept " | "expected_ctc"
-  > {
+interface UserInfo extends Omit<
+  ApplicationFormInput,
+  'resume_file ' | 'accept ' | 'expected_ctc'
+> {
   resume_url: string;
   expected_ctc: number | undefined;
 }
@@ -37,7 +37,7 @@ interface UserInfo
 const sendEmail = async (
   email: string,
   userInfo: UserInfo,
-  locale: "fr" | "en"
+  locale: 'fr' | 'en'
 ) => {
   try {
     await resend.emails.send({
@@ -62,24 +62,22 @@ const sendEmail = async (
       }),
     });
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email");
+    console.error('Error sending email:', error);
+    throw new Error('Failed to send email');
   }
 };
 
-const getString = (fd: FormData, key: string, fallback = "") =>
-  typeof fd.get(key) === "string" ? (fd.get(key) as string) : fallback;
+const getString = (fd: FormData, key: string, fallback = '') =>
+  typeof fd.get(key) === 'string' ? (fd.get(key) as string) : fallback;
 
 export async function POST(request: Request) {
   try {
     const url = new URL(request.url);
-    const locale = (url.searchParams.get("locale") === "en" ? "en" : "fr") as
-      | "fr"
-      | "en";
+    const locale = url.searchParams.get('locale') === 'en' ? 'en' : 'fr';
 
-    if (!request.headers.get("content-type")?.includes("multipart/form-data")) {
+    if (!request.headers.get('content-type')?.includes('multipart/form-data')) {
       return NextResponse.json(
-        { error: "Content-Type must be multipart/form-data" },
+        { error: 'Content-Type must be multipart/form-data' },
         { status: 400 }
       );
     }
@@ -87,16 +85,16 @@ export async function POST(request: Request) {
     const formData = await request.formData();
 
     const data = {
-      first_name: getString(formData, "first_name"),
-      last_name: getString(formData, "last_name"),
-      email: getString(formData, "email"),
-      phone: getString(formData, "phone"),
-      experience_years: getString(formData, "experience_years"),
-      expected_ctc: Number(getString(formData, "expected_ctc", "0")),
-      accept: getString(formData, "accept") === "true",
-      resume_file: formData.get("resume_file") as File,
-      department: getString(formData, "department"),
-      position: getString(formData, "position"),
+      first_name: getString(formData, 'first_name'),
+      last_name: getString(formData, 'last_name'),
+      email: getString(formData, 'email'),
+      phone: getString(formData, 'phone'),
+      experience_years: getString(formData, 'experience_years'),
+      expected_ctc: Number(getString(formData, 'expected_ctc', '0')),
+      accept: getString(formData, 'accept') === 'true',
+      resume_file: formData.get('resume_file') as File,
+      department: getString(formData, 'department'),
+      position: getString(formData, 'position'),
     };
 
     const parsed = applicationSchema()
@@ -147,13 +145,13 @@ export async function POST(request: Request) {
     await sendEmail(data.email, { ...data, resume_url: file.url }, locale);
 
     return NextResponse.json(
-      { status: "ok", message: "Files were uploaded successfully" },
+      { status: 'ok', message: 'Files were uploaded successfully' },
       { status: 201 }
     );
   } catch (err) {
-    console.error("Upload error:", err);
+    console.error('Upload error:', err);
     return NextResponse.json(
-      { status: "fail", message: "Upload error" },
+      { status: 'fail', message: 'Upload error' },
       { status: 500 }
     );
   }

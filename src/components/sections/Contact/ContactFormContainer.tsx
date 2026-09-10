@@ -1,8 +1,10 @@
 'use client';
-import { FC } from 'react';
 import Image from 'next/image';
-import ContactBG from '@/assets/img/bg/relocation-genevoise-contact.webp';
 import { useTranslations } from 'next-intl';
+
+import ContactBG from '@/assets/img/bg/relocation-genevoise-contact.webp';
+
+import type { FC } from 'react';
 interface Props {
   children: React.ReactNode;
 }
@@ -10,24 +12,20 @@ interface Props {
 export const ContactContainer: FC<Props> = (props) => {
   const t = useTranslations('Contact.ContactContainer');
   return (
-    <section className="relative flex flex-col justify-center items-center text-black-500">
-      <div
-        className={`container 2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) xl:pr-0 xl:px-[100px] lg:px-[48px] px-4`}
-      >
-        <div
-          className={`xl:pb-0 pb-14 border-t xl:border-none border-grey-100`}
-        />
-        <div className="flex flex-col xl:flex-row items-center justify-end xl:gap-[100px] gap-[100px]">
-          <div className="flex flex-col items-center xl:justify-center lg:justify-start w-full">
-            <div className="flex flex-col items-start lg:gap-8 gap-12">
+    <section className="relative flex flex-col items-center justify-center text-black-500">
+      <div className="container px-4 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:px-[100px] xl:pr-0 2xl:max-w-(--breakpoint-2xl)">
+        <div className="border-t border-grey-100 pb-14 xl:border-none xl:pb-0" />
+        <div className="flex flex-col items-center justify-end gap-[100px] xl:flex-row xl:gap-[100px]">
+          <div className="flex w-full flex-col items-center lg:justify-start xl:justify-center">
+            <div className="flex flex-col items-start gap-12 lg:gap-8">
               <div className="flex flex-col gap-3">
-                <p className="text-sm font-semibold text-secondary-600 leading-[130%]!">
+                <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
                   {t('title')}
                 </p>
-                <h2 className="text-3xl font-semibold leading-[130%]!">
+                <h2 className="text-3xl leading-[130%]! font-semibold">
                   {t('subTitle')}
                 </h2>
-                <p className="text-sm font-normal text-black-200 leading-[130%]! max-w-2xl">
+                <p className="max-w-2xl text-sm leading-[130%]! font-normal text-black-200">
                   {t('description')}
                 </p>
               </div>
@@ -40,10 +38,10 @@ export const ContactContainer: FC<Props> = (props) => {
             title="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
             width={736}
             height={984}
-            className="lg:max-h-[984px] 2xl:min-w-[736px] min-w-[600px] rounded-3xl object-cover xl:flex hidden"
+            className="hidden min-w-[600px] rounded-3xl object-cover lg:max-h-[984px] xl:flex 2xl:min-w-[736px]"
           />
         </div>
-        <div className={`lg:pt-16 pt-12 border-b border-grey-100`} />
+        <div className="border-b border-grey-100 pt-12 lg:pt-16" />
       </div>
     </section>
   );

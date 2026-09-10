@@ -1,9 +1,17 @@
 import * as React from 'react';
-import { CheckIcon, ChevronsUpDown } from 'lucide-react';
-import * as RPNInput from 'react-phone-number-input';
 import flags from 'react-phone-number-input/flags';
+import * as RPNInput from 'react-phone-number-input';
+import { CheckIcon, ChevronsUpDown } from 'lucide-react';
 
+import { cn } from '@/libs/utils';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   Command,
   CommandEmpty,
@@ -12,14 +20,6 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command-custom';
-import { Input } from '@/components/ui/input';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { cn } from '@/libs/utils';
 type PhoneInputProps = Omit<
   React.ComponentProps<'input'>,
   'onChange' | 'value' | 'ref'
@@ -91,8 +91,8 @@ function InputComponent({
     <Input
       data-slot="input-component"
       className={cn(
-        'text-black-50 placeholder:text-black-50 h-10 rounded-s-none rounded-e-3xl border border-l-0 border-gray-200 text-sm shadow-none',
-        'hover:border-black-50 focus-visible:text-black-50 focus-visible:border-yellow-500 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0',
+        'h-10 rounded-s-none rounded-e-3xl border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50',
+        'hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0',
         className,
         inputClassName
       )}
@@ -150,9 +150,7 @@ const CountrySelect = ({
       modal
       onOpenChange={(open) => {
         setIsOpen(open);
-
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        open && setSearchValue('');
+        if (open) setSearchValue('');
       }}
     >
       <PopoverTrigger asChild>
@@ -160,8 +158,8 @@ const CountrySelect = ({
           type="button"
           variant="outline"
           className={cn(
-            'text-black-50 flex h-10 items-center gap-2 rounded-s-3xl rounded-e-none border border-r-0 border-gray-200 bg-white px-3 text-sm shadow-none',
-            'hover:border-black-50 focus-visible:text-black-50 focus-visible:border-yellow-500 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0',
+            'flex h-10 items-center gap-2 rounded-s-3xl rounded-e-none border border-r-0 border-gray-200 bg-white px-3 text-sm text-black-50 shadow-none',
+            'hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0',
             disabled && 'bg-black-25 text-black-200',
             className
           )}
@@ -245,7 +243,7 @@ const CountrySelectOption = ({
     <CommandItem className="gap-2" onSelect={handleSelect}>
       <FlagComponent country={country} countryName={countryName} />
       <span className="flex-1 text-sm">{countryName}</span>
-      <span className="text-foreground/50 text-sm">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+      <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
       <CheckIcon
         className={`ml-auto size-4 ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
       />
@@ -257,7 +255,7 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
   const Flag = flags[country];
 
   return (
-    <span className="bg-foreground/20 flex h-4 w-6 overflow-hidden rounded-sm [&_svg:not([class*='size-'])]:size-full">
+    <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-foreground/20 [&_svg:not([class*='size-'])]:size-full">
       {Flag && <Flag title={countryName} />}
     </span>
   );

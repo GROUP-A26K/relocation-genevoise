@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
+import { useEffect, useState } from 'react';
+import Image, { type StaticImageData } from 'next/image';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
-import { cn } from "@/libs/utils";
-import Section from "@/components/customs/Section";
+import { cn } from '@/libs/utils';
+import Section from '@/components/customs/Section';
 import {
   type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
 export type TTestimonial = {
   quote: string;
@@ -29,11 +29,11 @@ interface ITestimonialsProps {
 
 function getInitials(name: string) {
   return name
-    .split(" ")
+    .split(' ')
     .filter(Boolean)
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase())
-    .join("");
+    .join('');
 }
 
 export default function Testimonials({
@@ -56,12 +56,12 @@ export default function Testimonials({
     };
 
     onReInit();
-    api.on("select", onSelect);
-    api.on("reInit", onReInit);
+    api.on('select', onSelect);
+    api.on('reInit', onReInit);
 
     return () => {
-      api.off("select", onSelect);
-      api.off("reInit", onReInit);
+      api.off('select', onSelect);
+      api.off('reInit', onReInit);
     };
   }, [api]);
 
@@ -88,13 +88,13 @@ export default function Testimonials({
 
     start();
 
-    api.on("pointerDown", stop);
-    api.on("select", start);
+    api.on('pointerDown', stop);
+    api.on('select', start);
 
     return () => {
       stop();
-      api.off("pointerDown", stop);
-      api.off("select", start);
+      api.off('pointerDown', stop);
+      api.off('select', start);
     };
   }, [api]);
 
@@ -105,15 +105,15 @@ export default function Testimonials({
   return (
     <Section className="bg-white">
       <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
+        <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
           {eyebrow}
         </p>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-black-500 lg:text-[40px]">
+          <h2 className="text-[32px] leading-[130%]! font-bold text-pretty text-black-500 lg:text-[40px]">
             {heading}
           </h2>
-          <p className="text-base font-normal leading-[150%]! text-black-300">
+          <p className="text-base leading-[150%]! font-normal text-black-300">
             {description}
           </p>
         </div>
@@ -121,7 +121,7 @@ export default function Testimonials({
 
       <Carousel
         setApi={setApi}
-        opts={{ align: "start", containScroll: "trimSnaps" }}
+        opts={{ align: 'start', containScroll: 'trimSnaps' }}
         className="w-full"
       >
         <CarouselContent className="-ml-8">
@@ -140,7 +140,7 @@ export default function Testimonials({
                       />
                     ))}
                   </div>
-                  <p className="text-base font-normal leading-[150%]! text-black-300">
+                  <p className="text-base leading-[150%]! font-normal text-black-300">
                     {item.quote}
                   </p>
                 </div>
@@ -162,10 +162,10 @@ export default function Testimonials({
                     </div>
                   )}
                   <div className="flex flex-col gap-0.5">
-                    <p className="text-base font-semibold leading-[130%]! text-black-500">
+                    <p className="text-base leading-[130%]! font-semibold text-black-500">
                       {item.name}
                     </p>
-                    <p className="text-sm font-normal leading-[150%]! text-black-200">
+                    <p className="text-sm leading-[150%]! font-normal text-black-200">
                       {item.role}
                     </p>
                   </div>
@@ -195,8 +195,8 @@ export default function Testimonials({
               aria-label={`Go to testimonial ${index + 1}`}
               aria-current={index === selectedIndex}
               className={cn(
-                "size-2.5 rounded-full transition-colors",
-                index === selectedIndex ? "bg-black-500" : "bg-grey-200",
+                'size-2.5 rounded-full transition-colors',
+                index === selectedIndex ? 'bg-black-500' : 'bg-grey-200'
               )}
             />
           ))}

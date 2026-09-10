@@ -1,9 +1,11 @@
-import { ContactInfo } from '@/components/blocks/Info';
-import Section from '@/components/customs/Section';
-import { ContactFormView } from '@/components/sections/Contact';
 import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { Metadata } from 'next';
+
+import Section from '@/components/customs/Section';
+import { ContactInfo } from '@/components/blocks/Info';
+import { ContactFormView } from '@/components/sections/Contact';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;

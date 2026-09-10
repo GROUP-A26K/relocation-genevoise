@@ -1,4 +1,4 @@
-import { Block } from './Block';
+import type { Block } from './Block';
 
 export interface Job {
   id: string;
@@ -7,11 +7,7 @@ export interface Job {
   slug: string;
   department: string;
   employmentType:
-    | 'Full-time'
-    | 'Part-time'
-    | 'Contract'
-    | 'Internship'
-    | 'Temporary';
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
   locationType: 'Remote' | 'Hybrid' | 'On-site';
   location: string;
   salaryMin: number;

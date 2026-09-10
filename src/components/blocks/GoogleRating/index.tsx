@@ -1,9 +1,11 @@
+import Image from 'next/image';
+
+import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
 import GoogleLogo from '@/assets/img/logos/gg-logo.svg';
 import StarIcon from '@/assets/img/icons/star-icon.svg';
-import Image from 'next/image';
-import { cn } from '@/libs/utils';
-import { FC } from 'react';
-import { Link } from '@/libs/i18nNavigation';
+
+import type { FC } from 'react';
 interface Props {
   point: number;
   googleUrl: string;
@@ -18,7 +20,7 @@ export const GoogleRating: FC<Props> = ({
 }) => {
   return (
     <Link href={googleUrl} target="_blank" rel="noopener noreferrer">
-      <div className="flex flex-row w-full gap-[11.33px] outline-hidden select-none">
+      <div className="flex w-full flex-row gap-[11.33px] outline-hidden select-none">
         <div className="flex justify-center">
           <Image
             src={GoogleLogo}
@@ -28,8 +30,8 @@ export const GoogleRating: FC<Props> = ({
             height={53}
           />
         </div>
-        <div className={cn('flex flex-col text-black-500 gap-0.5')}>
-          <div className="text-xs font-bold leading-[15.11px] text-grey-400">
+        <div className={cn('flex flex-col gap-0.5 text-black-500')}>
+          <div className="text-xs leading-[15.11px] font-bold text-grey-400">
             {title}
           </div>
           <div className="flex items-center gap-1.5">
@@ -50,7 +52,7 @@ export const GoogleRating: FC<Props> = ({
             </div>
           </div>
 
-          <p className={cn('text-xs text-grey-400 font-normal leading-[100%]')}>
+          <p className={cn('text-xs leading-[100%] font-normal text-grey-400')}>
             {subTitle}
           </p>
         </div>

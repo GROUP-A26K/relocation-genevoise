@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { CircleMinus, CirclePlus } from 'lucide-react';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
+
 import { cn } from '@/libs/utils';
 
 const Accordion = AccordionPrimitive.Root;
@@ -29,7 +30,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          'group text-black-500 flex w-full flex-1 items-start justify-between py-4 text-left text-sm font-medium transition-all',
+          'group flex w-full flex-1 items-start justify-between py-4 text-left text-sm font-medium text-black-500 transition-all',
           className
         )}
         {...props}
@@ -39,11 +40,11 @@ function AccordionTrigger({
           {/* <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[state='open']:rotate-180" /> */}
           <CirclePlus
             aria-hidden="true"
-            className="text-grey-500 size-6 rotate-180 transition-transform duration-500 group-data-open:hidden group-data-[state=open]:hidden"
+            className="size-6 rotate-180 text-grey-500 transition-transform duration-500 group-data-open:hidden group-data-[state=open]:hidden"
           />
           <CircleMinus
             aria-hidden="true"
-            className="text-grey-500 hidden size-6 rotate-180 transition-transform duration-500 group-data-[state=open]:block"
+            className="hidden size-6 rotate-180 text-grey-500 transition-transform duration-500 group-data-[state=open]:block"
           />
         </span>
       </AccordionPrimitive.Trigger>
@@ -58,7 +59,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
       {...props}
     >
       <div className={cn('pt-0 pb-4', className)}>{children}</div>

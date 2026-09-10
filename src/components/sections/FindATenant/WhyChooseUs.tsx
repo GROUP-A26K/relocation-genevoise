@@ -1,9 +1,9 @@
-import { Fragment } from "react";
-import { Check } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
+import { Fragment } from 'react';
+import { Check } from 'lucide-react';
+import Image, { type StaticImageData } from 'next/image';
 
-import Section from "@/components/customs/Section";
-import CountUp from "@/components/customs/CountUp";
+import Section from '@/components/customs/Section';
+import CountUp from '@/components/customs/CountUp';
 
 type TMetric = {
   value: string;
@@ -31,20 +31,20 @@ export default function WhyChooseUs({
   image,
 }: IWhyChooseUsProps) {
   return (
-    <Section className="bg-black-700" childrenProps={{ className: "gap-16" }}>
+    <Section className="bg-black-700" childrenProps={{ className: 'gap-16' }}>
       <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-24">
         <div className="flex flex-1 flex-col gap-3">
-          <p className="text-sm font-semibold leading-[130%]! text-yellow-600">
+          <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
             {eyebrow}
           </p>
 
           <div className="flex flex-col gap-8">
-            <h2 className="text-pretty text-[32px] font-bold leading-[130%]! text-white lg:text-[40px]">
+            <h2 className="text-[32px] leading-[130%]! font-bold text-pretty text-white lg:text-[40px]">
               {heading}
             </h2>
 
             <div className="flex flex-col gap-6">
-              <p className="text-base font-normal leading-[150%]! text-grey-100">
+              <p className="text-base leading-[150%]! font-normal text-grey-100">
                 {description}
               </p>
 
@@ -59,7 +59,7 @@ export default function WhyChooseUs({
                         />
                       </span>
                     </span>
-                    <span className="text-base font-normal leading-[150%]! text-grey-100">
+                    <span className="text-base leading-[150%]! font-normal text-grey-100">
                       {highlight}
                     </span>
                   </li>
@@ -88,9 +88,9 @@ export default function WhyChooseUs({
             <div className="flex flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
               <CountUp
                 value={metric.value}
-                className="text-4xl font-bold leading-[130%]! text-white lg:text-[40px]"
+                className="text-4xl leading-[130%]! font-bold text-white lg:text-[40px]"
               />
-              <p className="text-base font-semibold leading-[130%]! text-grey-200 lg:text-lg">
+              <p className="text-base leading-[130%]! font-semibold text-grey-200 lg:text-lg">
                 {metric.label}
               </p>
             </div>

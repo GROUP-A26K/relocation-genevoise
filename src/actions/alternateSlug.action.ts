@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { fetchBlogSlugBySlug } from "@/services/blog.service";
-import { fetchCareerSlugBySlug } from "@/services/career/career.service";
-import { fetchPropertySlugBySlug } from "@/services/property.service";
+import { fetchBlogSlugBySlug } from '@/services/blog.service';
+import { fetchPropertySlugBySlug } from '@/services/property.service';
+import { fetchCareerSlugBySlug } from '@/services/career/career.service';
 
-export type AlternateContentType = "blog" | "career" | "property";
+export type AlternateContentType = 'blog' | 'career' | 'property';
 
 const RESOLVERS = {
   blog: fetchBlogSlugBySlug,
@@ -15,7 +15,7 @@ const RESOLVERS = {
 export const resolveAlternateSlug = async (
   type: AlternateContentType,
   slug: string,
-  targetLocale: string,
+  targetLocale: string
 ): Promise<string | null> => {
   const translations = await RESOLVERS[type](slug);
   const match = translations.find((item) => item.locale === targetLocale);

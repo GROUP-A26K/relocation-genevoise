@@ -1,15 +1,19 @@
-import { AppConfig } from "@/utils/AppConfig";
-import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
-import { withSentryConfig } from "@sentry/nextjs";
-import sentryWebpackPluginOptions from "./sentry.config";
-const withNextIntl = createNextIntlPlugin("./src/libs/i18n.ts");
+import { withSentryConfig } from '@sentry/nextjs';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+import { AppConfig } from '@/utils/AppConfig';
+
+import sentryWebpackPluginOptions from './sentry.config';
+
+import type { NextConfig } from 'next';
+
+const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
 
 type LocaleMap = Record<string, string | number>;
 
 function buildRewrites() {
   const { locales, routes } = AppConfig;
-  const en = "en";
+  const en = 'en';
 
   return Object.values(routes).flatMap((localeMap: LocaleMap) => {
     return locales.map((locale) => ({
@@ -21,7 +25,7 @@ function buildRewrites() {
 
 function buildRedirects() {
   const { defaultLocale, routes, locales } = AppConfig;
-  const en = "en";
+  const en = 'en';
 
   return Object.values(routes).flatMap((localeMap: LocaleMap) => {
     if (localeMap[en] === localeMap[defaultLocale]) {
@@ -47,9 +51,9 @@ function buildRedirects() {
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com", "cdn.sanity.io", "randomuser.me"],
+    domains: ['images.unsplash.com', 'cdn.sanity.io', 'randomuser.me'],
   },
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
   sentry: {
     hideSourceMaps: true,
     widenClientFileUpload: true,
@@ -57,12 +61,12 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/fr/carriere/:slug*",
-        destination: "/fr/career/:slug*",
+        source: '/fr/carriere/:slug*',
+        destination: '/fr/career/:slug*',
       },
       {
-        source: "/fr/proprietes/:slug*",
-        destination: "/fr/properties/:slug*",
+        source: '/fr/proprietes/:slug*',
+        destination: '/fr/properties/:slug*',
       },
       ...buildRewrites(),
     ];
@@ -71,23 +75,23 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/en/carriere/:slug*",
-        destination: "/en/career/:slug*",
+        source: '/en/carriere/:slug*',
+        destination: '/en/career/:slug*',
         permanent: true,
       },
       {
-        source: "/career/:slug*",
-        destination: "/carriere/:slug*",
+        source: '/career/:slug*',
+        destination: '/carriere/:slug*',
         permanent: true,
       },
       {
-        source: "/en/proprietes/:slug*",
-        destination: "/en/properties/:slug*",
+        source: '/en/proprietes/:slug*',
+        destination: '/en/properties/:slug*',
         permanent: true,
       },
       {
-        source: "/properties/:slug*",
-        destination: "/proprietes/:slug*",
+        source: '/properties/:slug*',
+        destination: '/proprietes/:slug*',
         permanent: true,
       },
       ...buildRedirects(),

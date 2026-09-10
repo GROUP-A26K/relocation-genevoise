@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
+
 import { cn } from '@/libs/utils';
 
 const Accordion = AccordionPrimitive.Root;
@@ -29,7 +30,7 @@ function AccordionTrigger({
         <AccordionPrimitive.Trigger
           data-slot="accordion-trigger"
           className={cn(
-            'group text-black-500 flex w-full flex-1 items-start justify-between text-left text-sm font-medium transition-all',
+            'group flex w-full flex-1 items-start justify-between text-left text-sm font-medium text-black-500 transition-all',
             className
           )}
           {...props}
@@ -48,7 +49,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up-slow data-[state=open]:animate-accordion-down-slow overflow-hidden text-sm"
+      className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up-slow data-[state=open]:animate-accordion-down-slow"
       {...props}
     >
       <div className={cn('pt-0 pb-4', className)}>{children}</div>

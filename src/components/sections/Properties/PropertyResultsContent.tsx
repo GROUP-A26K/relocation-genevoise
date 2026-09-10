@@ -1,15 +1,16 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations } from 'next-intl';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { Pagination } from "@/components/blocks/Pagination";
-import { PropertyCard } from "@/components/customs/Card";
-import EmptyData from "@/components/customs/EmptyData";
-import { Spinner } from "@/components/customs/Spinner/Spinner";
-import { usePropertyFilters } from "@/hooks/usePropertyFilters";
-import { Meta } from "@/models/Meta";
-import type { IPropertyListing } from "@/models/Property";
+import EmptyData from '@/components/customs/EmptyData';
+import { PropertyCard } from '@/components/customs/Card';
+import { Pagination } from '@/components/blocks/Pagination';
+import { Spinner } from '@/components/customs/Spinner/Spinner';
+import { usePropertyFilters } from '@/hooks/usePropertyFilters';
+
+import type { Meta } from '@/models/Meta';
+import type { IPropertyListing } from '@/models/Property';
 
 interface IPropertiesProps {
   properties: IPropertyListing[];
@@ -22,7 +23,7 @@ export default function PropertyResultsContent({
   meta,
   loading,
 }: IPropertiesProps) {
-  const t = useTranslations("Properties");
+  const t = useTranslations('Properties');
   const { handlePageChange, queryParams } = usePropertyFilters();
   const displayCurrency = queryParams.currency || undefined;
 
@@ -52,8 +53,8 @@ export default function PropertyResultsContent({
             exit={{ opacity: 0 }}
           >
             <EmptyData
-              title={t("emptyData.title")}
-              description={t("emptyData.description")}
+              title={t('emptyData.title')}
+              description={t('emptyData.description')}
             />
           </motion.div>
         )}
@@ -67,7 +68,7 @@ export default function PropertyResultsContent({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+            className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
           >
             {properties.map((property) => (
               <PropertyCard

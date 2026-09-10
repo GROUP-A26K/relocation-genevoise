@@ -1,6 +1,7 @@
 'use client';
 import { cn } from '@/libs/utils';
-import { type FC } from 'react';
+
+import type { FC } from 'react';
 
 interface Props {
   format?: string;
@@ -13,7 +14,7 @@ export const List: FC<Props> = ({ children, format, className }) => {
       {format === 'ordered' ? (
         <ol
           className={cn(
-            'text-black-200 lg:text-base text-sm font-normal leading-[130%]! list-decimal pl-5',
+            'list-decimal pl-5 text-sm leading-[130%]! font-normal text-black-200 lg:text-base',
             className
           )}
         >
@@ -22,7 +23,7 @@ export const List: FC<Props> = ({ children, format, className }) => {
       ) : (
         <ul
           className={cn(
-            'text-black-200 lg:text-base text-sm font-normal leading-4! list-disc pl-5',
+            'list-disc pl-5 text-sm leading-4! font-normal text-black-200 lg:text-base',
             className
           )}
         >

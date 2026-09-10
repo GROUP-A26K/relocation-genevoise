@@ -1,3 +1,13 @@
+import Image from 'next/image';
+import { Phone, PhoneCall, X } from 'lucide-react';
+
+import { Link } from '@/libs/i18nNavigation';
+import Button from '@/components/customs/Button';
+import Logo from '@/assets/img/logos/rg-logo.svg';
+import MenuIcon from '@/assets/img/icons/menu-icon.webp';
+import IconButton from '@/components/customs/IconButton';
+import { Accordion } from '@/components/ui/accordion-custom';
+import { renderMobileMenuItem } from '@/components/blocks/MenuItem/MobileMenuItem';
 import {
   Sheet,
   SheetClose,
@@ -8,26 +18,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet-custom';
-import { Phone, PhoneCall, X } from 'lucide-react';
-import MenuIcon from '@/assets/img/icons/menu-icon.webp';
-import { Accordion } from '@/components/ui/accordion-custom';
-import { renderMobileMenuItem } from '@/components/blocks/MenuItem/MobileMenuItem';
-import { NavbarProps } from './NavbarContainer';
-import { Link } from '@/libs/i18nNavigation';
-import Image from 'next/image';
-import Logo from '@/assets/img/logos/rg-logo.svg';
-import IconButton from '@/components/customs/IconButton';
-import Button from '@/components/customs/Button';
+
 import { LanguageSelector } from './LanguageSelector';
+
+import type { NavbarProps } from './NavbarContainer';
 
 const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
   return (
-    <nav className="bg-white z-20 h-[72px] w-full md:px-4 px-4 nav:hidden">
-      <div className="flex h-full w-full min-w-[205px] items-center justify-between relative">
-        <Link
-          href={'/'}
-          className="flex items-center gap-2 pointer-events-auto"
-        >
+    <nav className="z-20 h-[72px] w-full bg-white px-4 md:px-4 nav:hidden">
+      <div className="relative flex h-full w-full min-w-[205px] items-center justify-between">
+        <Link href="/" className="pointer-events-auto flex items-center gap-2">
           <Image
             src={Logo.src}
             alt="Relocation Genevoise, courtier en Relocation à Genève"
@@ -38,13 +38,13 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
           />
         </Link>
         <Sheet>
-          <SheetTrigger asChild className="z-20 absolute right-0">
+          <SheetTrigger asChild className="absolute right-0 z-20">
             <span className="group">
               <IconButton
                 variant="lg"
                 type="primary"
                 as="solid"
-                className="border-2 border-white rounded-none bg-white text-black-500 active:bg-white! hover:bg-white! group-data-[state='open']:hidden pointer-events-auto shadow-none"
+                className="pointer-events-auto rounded-none border-2 border-white bg-white text-black-500 shadow-none group-data-[state='open']:hidden hover:bg-white! active:bg-white!"
                 icon={() => (
                   <Image
                     height={22}
@@ -52,7 +52,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                     src={MenuIcon.src}
                     alt="X logo"
                     title="X logo"
-                  ></Image>
+                  />
                 )}
               />
             </span>
@@ -60,7 +60,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
 
           <div className="flex flex-row gap-3">
             <Link
-              href={'tel:+41 22 715 17 48'}
+              href="tel:+41 22 715 17 48"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -69,7 +69,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                   as="ghost"
                   variant="md"
                   type="secondary"
-                  className="w-full border-2 border-white pointer-events-auto whitespace-normal"
+                  className="pointer-events-auto w-full border-2 border-white whitespace-normal"
                   iconStart={PhoneCall}
                 >
                   <div className="line-clamp-1">+41 22 715 17 48</div>
@@ -81,7 +81,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                 variant="lg"
                 type="primary"
                 as="solid"
-                className="border-2 border-white rounded-[0.5rem] bg-black-500 text-white active:bg-black-500! hover:bg-black-500! group-data-[state='closed']:hidden pointer-events-auto shadow-none"
+                className="pointer-events-auto rounded-[0.5rem] border-2 border-white bg-black-500 text-white shadow-none group-data-[state='closed']:hidden hover:bg-black-500! active:bg-black-500!"
                 icon={X}
               />
             </SheetClose>
@@ -91,10 +91,10 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
             <SheetOverlay />
             <SheetContent
               side="top"
-              className="absolute w-full p-0 pt-[72px] z-10 max-h-screen overflow-scroll nav:hidden"
+              className="absolute z-10 max-h-screen w-full overflow-scroll p-0 pt-[72px] nav:hidden"
             >
               <SheetHeader>
-                <SheetTitle></SheetTitle>
+                <SheetTitle />
               </SheetHeader>
               <div className="flex flex-col">
                 <Accordion
@@ -104,7 +104,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
                 >
                   {menu.map((item) => renderMobileMenuItem(item))}
                 </Accordion>
-                <LanguageSelector className="active:bg-transparent hover:bg-transparent bg-transparent shadow-none" />
+                <LanguageSelector className="bg-transparent shadow-none hover:bg-transparent active:bg-transparent" />
 
                 <div className="flex flex-col gap-3 p-3">
                   <Link

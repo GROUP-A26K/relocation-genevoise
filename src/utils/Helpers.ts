@@ -1,6 +1,6 @@
 import { Env } from '@/libs/Env';
-import { routing } from '@/libs/i18nNavigation';
 import { AppConfig } from '@/utils/AppConfig';
+import { routing } from '@/libs/i18nNavigation';
 
 export const getBaseUrl = () => {
   if (Env.NEXT_PUBLIC_SITE_URL) {
@@ -25,7 +25,7 @@ export const formatDate = (dateString: string, locale: string) => {
     month: 'long',
     day: 'numeric',
   };
-  
+
   return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-GB', options);
 };
 
@@ -34,7 +34,7 @@ export const getAlternatePath = (currentPath: string): string => {
   if (!currentPath.startsWith('/')) currentPath = `/${currentPath}`;
 
   const [, locale, ...rest] = currentPath.split('/');
-  const slug = `/${rest.join('/')}` || '/';
+  const slug = `/${rest.join('/')}`;
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   const match = Object.values(routes).find(

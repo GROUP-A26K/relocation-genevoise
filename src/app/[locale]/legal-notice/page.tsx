@@ -1,7 +1,9 @@
-import { PageView } from '@/components/sections/LegalNotices';
-import { AppConfig } from '@/utils/AppConfig';
-import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+
+import { AppConfig } from '@/utils/AppConfig';
+import { PageView } from '@/components/sections/LegalNotices';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -27,6 +29,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
   };
 }
-export default async function Page() {
+export default function Page() {
   return <PageView />;
 }

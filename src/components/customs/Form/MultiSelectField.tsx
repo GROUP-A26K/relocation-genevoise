@@ -1,16 +1,17 @@
-"use client";
+'use client';
 
-import { FC, ReactNode } from "react";
-import { useBoolean } from "usehooks-ts";
-import { Check, ChevronDown, ChevronUp, X } from "lucide-react";
-import { Controller, useFormContext } from "react-hook-form";
+import { useBoolean } from 'usehooks-ts';
+import { Controller, useFormContext } from 'react-hook-form';
+import { Check, ChevronDown, ChevronUp, X } from 'lucide-react';
 
+import { cn } from '@/libs/utils';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/libs/utils";
+} from '@/components/ui/popover';
+
+import type { FC, ReactNode } from 'react';
 
 interface MultiSelectFieldProps {
   name: string;
@@ -41,7 +42,7 @@ export const MultiSelectField: FC<MultiSelectFieldProps> = ({
       control={control}
       name={name}
       render={({ field }) => {
-        const selected: string[] = field.value || [];
+        const selected = (field.value as string[] | undefined) ?? [];
 
         const handleToggle = (value: string) => {
           const next = selected.includes(value)
@@ -67,11 +68,9 @@ export const MultiSelectField: FC<MultiSelectFieldProps> = ({
         const hasValue = selected.length > 0;
 
         return (
-          <div className={cn("w-full flex flex-col gap-1.5", className)}>
+          <div className={cn('flex w-full flex-col gap-1.5', className)}>
             {label && (
-              <span
-                className={cn("text-sm leading-[130%]!", labelClassName)}
-              >
+              <span className={cn('text-sm leading-[130%]!', labelClassName)}>
                 {label}
               </span>
             )}
@@ -80,73 +79,73 @@ export const MultiSelectField: FC<MultiSelectFieldProps> = ({
                 <button
                   type="button"
                   className={cn(
-                    "group relative flex items-center justify-between w-full rounded-full text-sm h-10",
-                    "border bg-white px-3",
-                    "border-grey-100",
-                    "hover:border-black-50",
-                    "focus:outline-hidden focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50",
-                    "data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50",
-                    icon && "pl-10",
-                    triggerClassName,
+                    'group relative flex h-10 w-full items-center justify-between rounded-full text-sm',
+                    'border bg-white px-3',
+                    'border-grey-100',
+                    'hover:border-black-50',
+                    'focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50 focus:outline-hidden',
+                    'data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
+                    icon && 'pl-10',
+                    triggerClassName
                   )}
                 >
                   {icon && (
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-black-50 pointer-events-none">
+                    <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-black-50">
                       {icon}
                     </span>
                   )}
                   <span
                     className={cn(
-                      "truncate text-sm font-medium",
-                      hasValue ? "text-black-500" : "text-black-50",
+                      'truncate text-sm font-medium',
+                      hasValue ? 'text-black-500' : 'text-black-50'
                     )}
                   >
                     {displayText}
                   </span>
 
-                  <div className="flex items-center shrink-0 ml-2 gap-1">
+                  <div className="ml-2 flex shrink-0 items-center gap-1">
                     {hasValue && (
                       <X
-                        className="w-3.5 h-3.5 text-black-50 opacity-0 group-hover:opacity-100 cursor-pointer"
+                        className="h-3.5 w-3.5 cursor-pointer text-black-50 opacity-0 group-hover:opacity-100"
                         onClick={handleClear}
                       />
                     )}
                     {open ? (
-                      <ChevronUp className="w-3.5 h-3.5 text-black-50" />
+                      <ChevronUp className="h-3.5 w-3.5 text-black-50" />
                     ) : (
-                      <ChevronDown className="w-3.5 h-3.5 text-black-50" />
+                      <ChevronDown className="h-3.5 w-3.5 text-black-50" />
                     )}
                   </div>
                 </button>
               </PopoverTrigger>
 
               <PopoverContent
-                className="p-1 rounded-2xl border-grey-100 max-h-[320px] overflow-auto"
+                className="max-h-[320px] overflow-auto rounded-2xl border-grey-100 p-1"
                 align="start"
-                style={{ width: "var(--radix-popover-trigger-width)" }}
+                style={{ width: 'var(--radix-popover-trigger-width)' }}
               >
                 <div className="flex flex-col gap-0.5">
-                {options.map((option) => {
-                  const isSelected = selected.includes(option.value);
+                  {options.map((option) => {
+                    const isSelected = selected.includes(option.value);
 
-                  return (
-                    <button
-                      key={option.value}
-                      type="button"
-                      className={cn(
-                        "flex items-center justify-between w-full px-3 py-2.5 rounded-md text-sm font-medium text-black-500",
-                        "hover:bg-grey-50",
-                        isSelected && "bg-grey-50",
-                      )}
-                      onClick={() => handleToggle(option.value)}
-                    >
-                      <span>{option.label}</span>
-                      {isSelected && (
-                        <Check className="w-5 h-5 text-secondary-500 shrink-0" />
-                      )}
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        className={cn(
+                          'flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-black-500',
+                          'hover:bg-grey-50',
+                          isSelected && 'bg-grey-50'
+                        )}
+                        onClick={() => handleToggle(option.value)}
+                      >
+                        <span>{option.label}</span>
+                        {isSelected && (
+                          <Check className="h-5 w-5 shrink-0 text-secondary-500" />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </PopoverContent>
             </Popover>

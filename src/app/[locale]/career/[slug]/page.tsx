@@ -1,13 +1,15 @@
-import { PageView } from "@/components/sections/CareerDetail";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
+import { notFound } from 'next/navigation';
+
+import { PageView } from '@/components/sections/CareerDetail';
+
+import type { Metadata } from 'next';
 const NUMBER_OF_FEATURED_JOBS = 5;
 
+import { AppConfig } from '@/utils/AppConfig';
 import {
   fetchJobDetailBySlug,
   fetchFeaturedJobPosts,
-} from "@/services/career/career.service";
-import { AppConfig } from "@/utils/AppConfig";
+} from '@/services/career/career.service';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -35,12 +37,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   const { routes } = AppConfig;
 
-  const canonical = routes["career"][locale as keyof (typeof routes)["career"]];
+  const canonical = routes['career'][locale as keyof (typeof routes)['career']];
   return {
     title: jobDetail.title,
     description: jobDetail.excerpt,
     alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/${canonical}/${jobDetail.slug}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}/${jobDetail.slug}`,
     },
   };
 }

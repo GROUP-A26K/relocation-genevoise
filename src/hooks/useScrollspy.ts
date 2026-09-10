@@ -12,7 +12,7 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
 
   const handleScroll = useCallback(() => {
     if (rafRef.current !== null || isUpdatingRef.current) return;
-    
+
     rafRef.current = requestAnimationFrame(() => {
       try {
         const scroll = window.pageYOffset;
@@ -56,7 +56,7 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
           isUpdatingRef.current = true;
           activeIdRef.current = newActiveId;
           setActiveId(newActiveId);
-          
+
           setTimeout(() => {
             isUpdatingRef.current = false;
           }, 0);
@@ -91,7 +91,7 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
       isUpdatingRef.current = true;
       activeIdRef.current = id;
       setActiveId(id);
-      
+
       setTimeout(() => {
         isUpdatingRef.current = false;
       }, 0);

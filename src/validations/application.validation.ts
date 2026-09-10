@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { type TranslationValues } from 'next-intl'; // Make sure to import this if using next-intl
+
+import type { TranslationValues } from 'next-intl'; // Make sure to import this if using next-intl
 
 // Phone regex for validation
 const phoneRegex = new RegExp(

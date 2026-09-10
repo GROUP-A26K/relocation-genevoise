@@ -1,12 +1,14 @@
-"use client";
-import { useState } from "react";
-import Image from "next/image";
-import { Image as ImageIcon } from "lucide-react";
-import Button from "@/components/customs/Button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { PropertyDetail } from "@/models/Property";
+'use client';
+import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Image as ImageIcon } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+
+import Button from '@/components/customs/Button';
+import { Skeleton } from '@/components/ui/skeleton';
+
+import type { PropertyDetail } from '@/models/Property';
 
 type ImageObj = {
   url: string;
@@ -21,7 +23,7 @@ export const ImagePreview = ({
   property,
   propertySlug,
 }: IImagePreviewProps) => {
-  const t = useTranslations("PropertiesDetails");
+  const t = useTranslations('PropertiesDetails');
   const router = useRouter();
   const locale = useLocale();
 
@@ -36,7 +38,7 @@ export const ImagePreview = ({
         area.galleryImages?.map((img, index) => ({
           url: img.url,
           title: `${property.title} - ${area.title} ${index + 1}`,
-        })) || [],
+        })) || []
     )
     .flat();
 
@@ -57,9 +59,9 @@ export const ImagePreview = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:rounded-3xl overflow-hidden relative w-full">
-      <div className="relative w-full h-0 pb-[68%] lg:pb-[68%]">
-        {!loadedImages.has(mainImageObj?.url || "") && (
+    <div className="relative grid w-full grid-cols-1 gap-2 overflow-hidden lg:grid-cols-2 lg:rounded-3xl">
+      <div className="relative h-0 w-full pb-[68%] lg:pb-[68%]">
+        {!loadedImages.has(mainImageObj?.url || '') && (
           <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
         )}
         <Image
@@ -68,14 +70,14 @@ export const ImagePreview = ({
           title={mainImageObj?.title || property.title}
           fill
           sizes="100vw"
-          className="object-cover rounded-2xl lg:rounded-none hover:brightness-70 transition-brightness duration-300 hover:cursor-pointer"
+          className="transition-brightness rounded-2xl object-cover duration-300 hover:cursor-pointer hover:brightness-70 lg:rounded-none"
           onClick={handleNavigateToPhotoTour}
-          onLoad={() => handleImageLoad(mainImageObj?.url || "")}
+          onLoad={() => handleImageLoad(mainImageObj?.url || '')}
         />
       </div>
-      <div className="grid grid-cols-4 lg:grid-cols-2 lg:grid-rows-2 gap-2">
+      <div className="grid grid-cols-4 gap-2 lg:grid-cols-2 lg:grid-rows-2">
         {gridImages.map((img, i) => (
-          <div key={i} className="relative w-full h-0 pb-[68%]">
+          <div key={i} className="relative h-0 w-full pb-[68%]">
             {!loadedImages.has(img.url) && (
               <Skeleton className="absolute inset-0 rounded-lg lg:rounded-none" />
             )}
@@ -85,13 +87,16 @@ export const ImagePreview = ({
               title={img.title}
               fill
               sizes="25vw, 25vw"
-              className="object-cover rounded-lg lg:rounded-none hover:brightness-70 transition-brightness duration-300 hover:cursor-pointer"
+              className="transition-brightness rounded-lg object-cover duration-300 hover:cursor-pointer hover:brightness-70 lg:rounded-none"
               onClick={handleNavigateToPhotoTour}
               onLoad={() => handleImageLoad(img.url)}
             />
             {i === 3 && remainingCount > 0 && (
-              <div className="absolute inset-0 bg-[#000000]/50 rounded-lg lg:hidden flex items-center justify-center">
-                <span className="text-white font-semibold text-base leading-[130%]" onClick={handleNavigateToPhotoTour}>
+              <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#000000]/50 lg:hidden">
+                <span
+                  className="text-base leading-[130%] font-semibold text-white"
+                  onClick={handleNavigateToPhotoTour}
+                >
                   +{remainingCount}
                 </span>
               </div>
@@ -103,11 +108,11 @@ export const ImagePreview = ({
         as="solid"
         variant="md"
         type="primary"
-        className="absolute bottom-4 right-4 hidden lg:flex items-center gap-2 z-10"
+        className="absolute right-4 bottom-4 z-10 hidden items-center gap-2 lg:flex"
         iconStart={ImageIcon}
         onClick={handleNavigateToPhotoTour}
       >
-        {t("imagePreview.viewAllButton")}
+        {t('imagePreview.viewAllButton')}
       </Button>
     </div>
   );

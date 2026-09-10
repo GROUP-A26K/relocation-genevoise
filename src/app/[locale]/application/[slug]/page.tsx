@@ -1,7 +1,9 @@
-import { Metadata } from "next";
-import { PageView } from "@/components/sections/Application";
-import { fetchJobDetailBySlug } from "@/services/career/career.service";
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
+
+import { PageView } from '@/components/sections/Application';
+import { fetchJobDetailBySlug } from '@/services/career/career.service';
+
+import type { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -27,7 +29,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: jobDetail.title,
     description: jobDetail.excerpt,
     alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/application/${slug}`,
+      canonical: `/${locale == 'fr' ? '' : locale}/application/${slug}`,
     },
   };
 }

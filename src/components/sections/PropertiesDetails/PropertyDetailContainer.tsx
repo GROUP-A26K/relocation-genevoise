@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from 'react';
 
 interface Props {
   children: React.ReactNode;
@@ -6,7 +6,7 @@ interface Props {
 
 export const PropertyDetailContainer: FC<Props> = ({ children }) => {
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-12 lg:gap-16 gap-12">
+    <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
       {children}
     </div>
   );

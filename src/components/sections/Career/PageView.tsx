@@ -1,22 +1,23 @@
 'use client';
 
+import { type FC, useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useTransition } from 'react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
-import { Job } from '@/models/Job';
-import { Meta } from '@/models/Meta';
 import Section from '@/components/customs/Section';
 import TabsMenu from '@/components/blocks/TabsMenu';
 import { JobCard } from '@/components/customs/Card';
 import EmptyData from '@/components/customs/EmptyData';
-import { AssuranceJobDepartment } from '@/sanity/types';
 import { Pagination } from '@/components/blocks/Pagination';
 import { Spinner } from '@/components/customs/Spinner/Spinner';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 
 import { ContentContainer } from './ContentContainer';
+
+import type { Job } from '@/models/Job';
+import type { Meta } from '@/models/Meta';
+import type { AssuranceJobDepartment } from '@/sanity/types';
 
 interface Props {
   departments: AssuranceJobDepartment[];
@@ -44,16 +45,16 @@ export const PageView: FC<Props> = (props) => {
     <>
       <Section>
         <div className="flex w-full items-center justify-center">
-          <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left max-w-4xl">
+          <div className="flex w-full max-w-4xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
-              <div className="text-sm font-semibold text-center text-secondary-500 leading-[130%]!">
+              <div className="text-center text-sm leading-[130%]! font-semibold text-secondary-500">
                 {t('heading')}
               </div>
-              <h1 className="text-5xl font-bold text-center leading-[130%]!">
+              <h1 className="text-center text-5xl leading-[130%]! font-bold">
                 {TextWithStrong(t('subHeading'))}
               </h1>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 leading-[130%]! text-balance">
+            <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
               {t('description')}
             </p>
           </div>
@@ -61,8 +62,8 @@ export const PageView: FC<Props> = (props) => {
       </Section>
 
       <ContentContainer>
-        <div className="flex lg:flex-row flex-col items-center justify-center gap-8">
-          <div className="lg:w-fit w-full px-auto overflow-y-auto">
+        <div className="flex flex-col items-center justify-center gap-8 lg:flex-row">
+          <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
               category={props.departments.map((dept) => ({
                 title:
@@ -77,7 +78,7 @@ export const PageView: FC<Props> = (props) => {
         </div>
 
         <div className="flex flex-col items-center justify-center">
-          <div className="mx-auto w-full 2xl:max-w-[768px] xl:max-w-[660px] max-w-[768px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
+          <div className="mx-auto flex w-full max-w-[768px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[660px] 2xl:max-w-[768px]">
             <AnimatePresence>
               {isPending && (
                 <motion.div
@@ -101,7 +102,7 @@ export const PageView: FC<Props> = (props) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
+                  className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-b border-grey-100 py-12 lg:max-w-none"
                 >
                   <EmptyData
                     title={t('emptyTitle')}
@@ -116,7 +117,7 @@ export const PageView: FC<Props> = (props) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
+                  className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-b border-grey-100 py-12 lg:max-w-none"
                 >
                   {props.jobs.map((job) => (
                     <JobCard

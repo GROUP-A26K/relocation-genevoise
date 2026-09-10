@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import { FC } from 'react';
-import StatsBG from '@/assets/img/bg/relocation-genevoise-a-geneve.webp';
+
 import { FormattedText } from '@/components/customs/Text';
+import StatsBG from '@/assets/img/bg/relocation-genevoise-a-geneve.webp';
+
+import type { FC } from 'react';
 interface Props {
   heading?: string;
   subHeading?: string;
@@ -50,58 +52,58 @@ const StatsGrid: FC<Props> = ({
   },
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-14">
-      <div className="flex flex-col lg:gap-6 gap-4">
+    <div className="flex flex-col gap-14 lg:gap-16">
+      <div className="flex flex-col gap-4 lg:gap-6">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-secondary-600 leading-[130%]!">
+          <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
             {heading}
           </p>
-          <h2 className="text-3xl font-semibold leading-[130%]!">
+          <h2 className="text-3xl leading-[130%]! font-semibold">
             <FormattedText text={subHeading} />
           </h2>
         </div>
-        <p className="text-sm font-normal text-black-200 leading-[130%]!">
+        <p className="text-sm leading-[130%]! font-normal text-black-200">
           {description}
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center justify-end lg:gap-16 gap-14">
-        <div className="flex flex-col items-center lg:justify-center text-center lg:text-left lg:w-full w-full">
-          <div className="grid items-center divide-y divide-grey-100 w-full">
-            <div className="grid lg:grid-cols-2 items-center lg:items-start lg:divide-x divide-y divide-grey-100 lg:divide-y-0 lg:pb-3">
-              <div className="flex flex-col gap-3 items-center lg:pr-4 lg:py-3 pb-9">
-                <div className="text-5xl font-bold  bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text leading-[130%]!">
+      <div className="flex flex-col items-center justify-end gap-14 lg:flex-row lg:gap-16">
+        <div className="flex w-full flex-col items-center text-center lg:w-full lg:justify-center lg:text-left">
+          <div className="grid w-full items-center divide-y divide-grey-100">
+            <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x lg:divide-y-0 lg:pb-3">
+              <div className="flex flex-col items-center gap-3 pb-9 lg:py-3 lg:pr-4">
+                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
                   {stats1.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
                   {stats1.label}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 items-center lg:pl-4 lg:py-3 py-9">
-                <div className="text-5xl font-bold  bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text leading-[130%]!">
+              <div className="flex flex-col items-center gap-3 py-9 lg:py-3 lg:pl-4">
+                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
                   {stats2.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
                   {stats2.label}
                 </p>
               </div>
             </div>
-            <div className="grid lg:grid-cols-2 items-center lg:items-start lg:divide-x divide-y lg:divide-y-0 divide-grey-100 lg:pt-3">
-              <div className="flex flex-col gap-3 items-center lg:pr-4 lg:py-3 py-9">
-                <div className="text-5xl font-bold leading-[130%]! bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text">
+            <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x lg:divide-y-0 lg:pt-3">
+              <div className="flex flex-col items-center gap-3 py-9 lg:py-3 lg:pr-4">
+                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
                   {stats3.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
                   {stats3.label}
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 items-center lg:pl-4 lg:py-3 pt-9">
-                <div className="text-5xl font-bold bg-linear-to-r from-secondary-902 to-secondary-901 text-transparent bg-clip-text leading-[130%]!">
+              <div className="flex flex-col items-center gap-3 pt-9 lg:py-3 lg:pl-4">
+                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
                   {stats4.value}
                 </div>
-                <p className="text-lg text-center font-semibold text-black-200 leading-[130%]!">
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
                   {stats4.label}
                 </p>
               </div>
@@ -114,7 +116,7 @@ const StatsGrid: FC<Props> = ({
           title="Relocation Genevoise, votre partenaire de confiance en Suisse"
           width={616}
           height={380}
-          className="lg:max-h-[380px] xl:min-w-[616px] lg:min-w-[450px]  max-h-[226px]  rounded-2xl object-cover"
+          className="max-h-[226px] rounded-2xl object-cover lg:max-h-[380px] lg:min-w-[450px] xl:min-w-[616px]"
         />
       </div>
     </div>

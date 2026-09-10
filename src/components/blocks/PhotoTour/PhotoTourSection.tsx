@@ -1,11 +1,13 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { IAreaPhotoTour } from "@/models/Property";
-import { cn } from "@/libs/utils";
+import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+
+import { cn } from '@/libs/utils';
+
+import type { IAreaPhotoTour } from '@/models/Property';
 
 interface IPhotoTourSectionProps {
   area: IAreaPhotoTour;
@@ -22,7 +24,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
       { url: area.mainImageUrl },
       ...(area.galleryImages?.map((img) => ({ url: img.url })) || []),
     ],
-    [area.mainImageUrl, area.galleryImages],
+    [area.mainImageUrl, area.galleryImages]
   );
   const hasMultipleImages = allImages.length > 1;
 
@@ -38,9 +40,9 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
 
   useEffect(() => {
     if (!emblaApi) return;
-    emblaApi.on("select", onSelect);
+    emblaApi.on('select', onSelect);
     return () => {
-      emblaApi.off("select", onSelect);
+      emblaApi.off('select', onSelect);
     };
   }, [emblaApi, onSelect]);
 
@@ -54,42 +56,42 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
       container.scrollLeft +
       (elRect.left - containerRect.left) -
       (container.offsetWidth / 2 - el.offsetWidth / 2);
-    container.scrollTo({ left: scrollLeft, behavior: "smooth" });
+    container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }, [activeIndex]);
 
   const prevImage = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const nextImage = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
   const selectImage = useCallback(
     (idx: number) => emblaApi?.scrollTo(idx),
-    [emblaApi],
+    [emblaApi]
   );
 
   return (
     <div
-      className="flex flex-col gap-8 lg:flex-row lg:gap-16 w-full"
+      className="flex w-full flex-col gap-8 lg:flex-row lg:gap-16"
       id={`area-${index}`}
     >
-      <div className="flex flex-col gap-3 lg:py-6 lg:flex-1 lg:gap-6">
-        <h2 className="font-semibold text-3xl text-black-500 leading-[130%]">
+      <div className="flex flex-col gap-3 lg:flex-1 lg:gap-6 lg:py-6">
+        <h2 className="text-3xl leading-[130%] font-semibold text-black-500">
           {area.title}
         </h2>
-        <p className="text-sm text-black-200 leading-[130%]">
+        <p className="text-sm leading-[130%] text-black-200">
           {area.description}
         </p>
       </div>
 
-      <div className="lg:flex-2 flex flex-col gap-4 min-w-0">
-        <div className="relative aspect-784/480 w-full rounded-3xl overflow-hidden">
+      <div className="flex min-w-0 flex-col gap-4 lg:flex-2">
+        <div className="relative aspect-784/480 w-full overflow-hidden rounded-3xl">
           <div ref={emblaRef} className="h-full">
             <div className="flex h-full">
               {allImages.map((img, i) => (
-                <div key={i} className="relative shrink-0 w-full h-full">
+                <div key={i} className="relative h-full w-full shrink-0">
                   <Image
                     src={img.url}
                     alt={`${area.title} - ${i + 1}`}
                     title={`${area.title} - ${i + 1}`}
                     fill
-                    className="object-cover cursor-pointer"
+                    className="cursor-pointer object-cover"
                     sizes="(max-width: 784px) 100vw, 784px"
                     priority={i === 0}
                   />
@@ -102,15 +104,15 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-[25px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black-500/40 text-white hover:bg-black/60 transition"
+                className="absolute top-1/2 left-[25px] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black-500/40 text-white transition hover:bg-black/60"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-[25px] top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black-500/40 text-white hover:bg-black/60 transition"
+                className="absolute top-1/2 right-[25px] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black-500/40 text-white transition hover:bg-black/60"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="h-5 w-5" />
               </button>
             </>
           )}
@@ -119,7 +121,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
         {hasMultipleImages && (
           <div
             ref={thumbContainerRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide"
+            className="scrollbar-hide flex gap-4 overflow-x-auto"
           >
             {allImages.map((img, i) => (
               <button
@@ -130,9 +132,9 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                 }}
                 onClick={() => selectImage(i)}
                 className={cn(
-                  "relative shrink-0 w-[120px] sm:w-[140px] lg:w-[168px] aspect-168/120 rounded-xl overflow-hidden",
-                  'before:content-[""] before:absolute before:inset-0 before:z-10 before:rounded-xl before:border-2 before:border-transparent before:pointer-events-none',
-                  "data-[selected=true]:before:border-blue-400",
+                  'relative aspect-168/120 w-[120px] shrink-0 overflow-hidden rounded-xl sm:w-[140px] lg:w-[168px]',
+                  'before:pointer-events-none before:absolute before:inset-0 before:z-10 before:rounded-xl before:border-2 before:border-transparent before:content-[""]',
+                  'data-[selected=true]:before:border-blue-400'
                 )}
               >
                 <Image

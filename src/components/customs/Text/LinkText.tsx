@@ -1,5 +1,6 @@
 import { Link } from '@/libs/i18nNavigation';
-import { type FC } from 'react';
+
+import type { FC } from 'react';
 
 interface Props {
   link?: string;
@@ -7,7 +8,7 @@ interface Props {
 }
 export const LinkText: FC<Props> = ({ children, link }) => {
   return (
-    <span className="text-secondary-600 font-semibold leading-[130%]! p-0">
+    <span className="p-0 leading-[130%]! font-semibold text-secondary-600">
       <Link href={link ?? ''} target="_blank" rel="noopener noreferrer">
         {children}
       </Link>

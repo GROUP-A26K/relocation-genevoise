@@ -1,33 +1,34 @@
-"use client";
-import Button from "@/components/customs/Button";
-import { CalendarDays, Phone, PhoneIncoming } from "lucide-react";
-import Image from "next/image";
-import { FC, ReactNode, useCallback, useMemo, useState } from "react";
-import ConsultationBG from "@/assets/img/bg/relocation-genevoise-geneve-courtage.webp";
-import { PhoneInputField } from "@/components/customs/Form";
-import { Form } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "@/libs/axios";
-import { toast } from "sonner";
-import Alert from "@/components/customs/Alert";
-import { Env } from "@/libs/Env";
-import { Link } from "@/libs/i18nNavigation";
-import { useLocale, useTranslations } from "next-intl";
-import { TextWithStrong } from "@/components/customs/Text/TextWithStrong";
-import WhatsappIcon from "@/components/icons/WhatsappIcon";
-import { cn } from "@/libs/utils";
+'use client';
+import Image from 'next/image';
+import { toast } from 'sonner';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useLocale, useTranslations } from 'next-intl';
+import { CalendarDays, Phone, PhoneIncoming } from 'lucide-react';
+import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
+
+import axios from '@/libs/axios';
+import { Env } from '@/libs/Env';
+import { cn } from '@/libs/utils';
+import { Form } from '@/components/ui/form';
+import { Link } from '@/libs/i18nNavigation';
+import Alert from '@/components/customs/Alert';
+import Button from '@/components/customs/Button';
+import { useOpenStatus } from '@/hooks/use-open-status';
+import WhatsappIcon from '@/components/icons/WhatsappIcon';
+import { PhoneInputField } from '@/components/customs/Form';
+import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import ConsultationBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
 import {
-  BookingFormInput,
+  type BookingFormInput,
   bookingSchema,
-} from "@/validations/booking.validation";
-import { useOpenStatus } from "@/hooks/use-open-status";
+} from '@/validations/booking.validation';
 
 const TIME_OPEN = 9;
 const TIME_CLOSE = 18;
 const RESET_OPEN_STATUS_TIME = 60000;
 
-type ContactChannel = BookingFormInput["contactVia"];
+type ContactChannel = BookingFormInput['contactVia'];
 
 interface ContactChannelButtonProps {
   label?: string;
@@ -49,13 +50,13 @@ const ContactChannelButton = ({
     aria-pressed={isActive}
     onClick={() => onSelect(value)}
     className={cn(
-      "px-4 py-2 rounded-3xl text-base font-semibold shadow-none cursor-pointer",
-      "md:w-fit w-full flex items-center justify-center gap-2 border border-solid h-10 lg:h-12 bg-white transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500",
-      isActive ? "bg-yellow-25 border-yellow-500" : "border-grey-200"
+      'cursor-pointer rounded-3xl px-4 py-2 text-base font-semibold shadow-none',
+      'flex h-10 w-full items-center justify-center gap-2 border border-solid bg-white transition-colors focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-hidden md:w-fit lg:h-12',
+      isActive ? 'border-yellow-500 bg-yellow-25' : 'border-grey-200'
     )}
   >
     {icon}
-    <span className="text-sm text-black-500 font-normal leading-[130%]!">
+    <span className="text-sm leading-[130%]! font-normal text-black-500">
       {label}
     </span>
   </button>
@@ -86,25 +87,25 @@ interface Props {
 }
 
 export const ConsultationFormView: FC<Props> = ({
-  heading = "Why Insurance Geneva ?",
-  subHeading = "Our expertise at your service",
-  description = "Our advisors will call you back during our opening hours and answer all your questions.",
+  heading = 'Why Insurance Geneva ?',
+  subHeading = 'Our expertise at your service',
+  description = 'Our advisors will call you back during our opening hours and answer all your questions.',
   cardContent = {
-    title: "Contact with an advisor",
-    openStatusTitle: "We are available",
-    closeStatusTitle: "We are currently closed",
-    callTitle: "Call us",
-    calendarTitle: "Schedule an appointment",
-    buttonText: "Contact us now",
-    noteTitle: "Note: we are available Monday to Friday from 9 am to 6 pm.",
-    policyTitle: "Privacy Policy",
-    buttonPlaceholder: "Phone number",
-    telephoneLabel: "Phone",
-    whatsappLabel: "Whatsapp",
+    title: 'Contact with an advisor',
+    openStatusTitle: 'We are available',
+    closeStatusTitle: 'We are currently closed',
+    callTitle: 'Call us',
+    calendarTitle: 'Schedule an appointment',
+    buttonText: 'Contact us now',
+    noteTitle: 'Note: we are available Monday to Friday from 9 am to 6 pm.',
+    policyTitle: 'Privacy Policy',
+    buttonPlaceholder: 'Phone number',
+    telephoneLabel: 'Phone',
+    whatsappLabel: 'Whatsapp',
   },
 }) => {
-  const formT = useTranslations("Validation.Booking");
-  const toastT = useTranslations("ToastMessage.Booking");
+  const formT = useTranslations('Validation.Booking');
+  const toastT = useTranslations('ToastMessage.Booking');
   const locale = useLocale();
   const timezone = Env.NEXT_PUBLIC_SERVER_TIMEZONE;
   const isOpen = useOpenStatus({
@@ -118,18 +119,18 @@ export const ConsultationFormView: FC<Props> = ({
   const form = useForm<BookingFormInput>({
     resolver: zodResolver(bookingSchema(formT)),
     defaultValues: {
-      phone: "",
+      phone: '',
       accept: true,
-      contactVia: "telephone",
+      contactVia: 'telephone',
     },
   });
-  const contactVia = form.watch("contactVia");
+  const contactVia = form.watch('contactVia');
 
   const showToast = useCallback(
-    (type: "success" | "danger") => {
-      const isSuccess = type === "success";
-      const titleKey = isSuccess ? "successTitle" : "errorTitle";
-      const messageKey = isSuccess ? "success" : "error";
+    (type: 'success' | 'danger') => {
+      const isSuccess = type === 'success';
+      const titleKey = isSuccess ? 'successTitle' : 'errorTitle';
+      const messageKey = isSuccess ? 'success' : 'error';
 
       toast.custom((t) => (
         <Alert
@@ -147,7 +148,7 @@ export const ConsultationFormView: FC<Props> = ({
 
   const handleContactViaChange = useCallback(
     (value: ContactChannel) => {
-      form.setValue("contactVia", value, {
+      form.setValue('contactVia', value, {
         shouldDirty: true,
         shouldTouch: true,
       });
@@ -170,12 +171,12 @@ export const ConsultationFormView: FC<Props> = ({
 
         if (response.status === 201) {
           setHasSubmitted(true);
-          showToast("success");
+          showToast('success');
         }
       } catch (error) {
         setHasSubmitted(true);
-        showToast("danger");
-        console.error("Error submitting form:", error);
+        showToast('danger');
+        console.error('Error submitting form:', error);
       } finally {
         setIsLoading(false);
       }
@@ -188,94 +189,94 @@ export const ConsultationFormView: FC<Props> = ({
   const contactOptions = useMemo(
     () => [
       {
-        value: "telephone" as const,
+        value: 'telephone' as const,
         label: cardContent.telephoneLabel,
         icon: (
-          <div className="p-[6.17px] rounded-full bg-yellow-500 text-center">
+          <div className="rounded-full bg-yellow-500 p-[6.17px] text-center">
             <Phone
-              className="w-[11.67px]! h-[11.67px]! text-white"
+              className="h-[11.67px]! w-[11.67px]! text-white"
               strokeWidth={2.5}
             />
           </div>
         ),
       },
       {
-        value: "whatsapp" as const,
+        value: 'whatsapp' as const,
         label: cardContent.whatsappLabel,
-        icon: <WhatsappIcon className="w-6! h-6!" />,
+        icon: <WhatsappIcon className="h-6! w-6!" />,
       },
     ],
     [cardContent.telephoneLabel, cardContent.whatsappLabel]
   );
 
   return (
-    <section className={cn("bg-white -space-y-16", "lg:-space-y-24")}>
+    <section className={cn('-space-y-16 bg-white', 'lg:-space-y-24')}>
       <div
         className={cn(
-          "bg-yellow-50 pt-12 pb-24",
-          "lg:pt-16 lg:pb-32",
-          "flex flex-col",
-          "items-center"
+          'bg-yellow-50 pt-12 pb-24',
+          'lg:pt-16 lg:pb-32',
+          'flex flex-col',
+          'items-center'
         )}
       >
         <div
           className={cn(
-            "flex flex-col text-center gap-4",
-            "lg:gap-6 lg:text-left",
-            "w-full",
-            "2xl:max-w-(--breakpoint-2xl) xl:max-w-(--breakpoint-xl) lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md)  xl:px-[100px]",
-            "xl:px-[100px] lg:px-[48px] px-4"
+            'flex flex-col gap-4 text-center',
+            'lg:gap-6 lg:text-left',
+            'w-full',
+            'md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)',
+            'px-4 lg:px-[48px] xl:px-[100px]'
           )}
         >
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-primary-500 leading-[130%]!">
+            <p className="text-sm leading-[130%]! font-semibold text-primary-500">
               {heading}
             </p>
-            <h1 className="text-3xl font-semibold leading-[130%]!">
+            <h1 className="text-3xl leading-[130%]! font-semibold">
               {TextWithStrong(subHeading)}
             </h1>
           </div>
-          <p className="text-sm font-normal text-black-200 leading-[130%]!">
+          <p className="text-sm leading-[130%]! font-normal text-black-200">
             {description}
           </p>
         </div>
       </div>
       <div
         className={cn(
-          "mx-auto flex max-w-[1240px] flex-col items-start gap-12 rounded-3xl bg-white p-4 pt-6 shadow-xl",
-          "md:p-8",
-          "max-lg:mx-4 lg:mx-8 lg:flex-row lg:gap-16 lg:p-8",
-          "xl:mx-auto"
+          'mx-auto flex max-w-[1240px] flex-col items-start gap-12 rounded-3xl bg-white p-4 pt-6 shadow-xl',
+          'md:p-8',
+          'max-lg:mx-4 lg:mx-8 lg:flex-row lg:gap-16 lg:p-8',
+          'xl:mx-auto'
         )}
       >
-        <div className={cn("flex flex-col gap-6 w-full", "lg:p-8")}>
+        <div className={cn('flex w-full flex-col gap-6', 'lg:p-8')}>
           <div className="flex flex-col gap-3">
-            <h2 className="lg:text-2xl text-xl font-semibold leading-[130%]! max-w-[450px]">
+            <h2 className="max-w-[450px] text-xl leading-[130%]! font-semibold lg:text-2xl">
               {cardContent.title}
             </h2>
             <div className="flex flex-col gap-3">
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 <PhoneIncoming className="h-4 w-4 text-primary-500" />
-                <h3 className="text-sm font-normal text-black-500 leading-[130%]!">
+                <h3 className="text-sm leading-[130%]! font-normal text-black-500">
                   {cardContent.callTitle}
                 </h3>
               </div>
 
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-primary-500" />
-                <h3 className="flex text-sm text-center text-black-500 leading-[130%]!">
+                <h3 className="flex text-center text-sm leading-[130%]! text-black-500">
                   {cardContent.calendarTitle}
                 </h3>
               </div>
             </div>
           </div>
 
-          <div className={cn("flex flex-col gap-3", "lg:gap-[18px]")}>
-            <div className="flex gap-2 items-center">
+          <div className={cn('flex flex-col gap-3', 'lg:gap-[18px]')}>
+            <div className="flex items-center gap-2">
               <div
-                className={`rounded-full h-2 w-2 ${isOpen ? "bg-green-500" : "bg-red-500"}`}
+                className={`h-2 w-2 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'}`}
               />
-              <h3 className="text-black-500 text-sm leading-[130%]!">
+              <h3 className="text-sm leading-[130%]! text-black-500">
                 {isOpen
                   ? cardContent.openStatusTitle
                   : cardContent.closeStatusTitle}
@@ -286,26 +287,26 @@ export const ConsultationFormView: FC<Props> = ({
                 <form
                   onSubmit={handleFormSubmit}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                    if (e.key === 'Enter') {
                       e.preventDefault();
                     }
                   }}
                   className={cn(
-                    "flex gap-2 items-start justify-between",
-                    "max-md:flex-col"
+                    'flex items-start justify-between gap-2',
+                    'max-md:flex-col'
                   )}
                 >
-                  <div className="w-full flex-1 flex flex-col gap-2 lg:gap-3">
+                  <div className="flex w-full flex-1 flex-col gap-2 lg:gap-3">
                     <PhoneInputField
                       name="phone"
                       placeholder={cardContent.buttonPlaceholder}
                       control={form.control}
                       error={form.formState.errors.phone?.message}
-                      className="lg:max-w-[431px] w-full text-base"
+                      className="w-full text-base lg:max-w-[431px]"
                       inputClassName="bg-white lg:h-12"
                       countrySelectClassName="bg-white lg:h-12"
                     />
-                    <div className="flex gap-2 items-center lg:flex-row xxs:flex-row flex-col w-full">
+                    <div className="flex w-full flex-col items-center gap-2 xxs:flex-row lg:flex-row">
                       {contactOptions.map(({ value, label, icon }) => (
                         <ContactChannelButton
                           key={value}
@@ -322,7 +323,7 @@ export const ConsultationFormView: FC<Props> = ({
                     as="solid"
                     variant="md"
                     type="primary"
-                    className="md:w-fit w-full lg:h-12"
+                    className="w-full md:w-fit lg:h-12"
                     disabled={isLoading || hasSubmitted}
                   >
                     {cardContent.buttonText}
@@ -330,10 +331,10 @@ export const ConsultationFormView: FC<Props> = ({
                 </form>
               </Form>
             </div>
-            <h3 className="text-sm font-normal text-black-500 leading-[130%]! w-full">
-              {cardContent.noteTitle}{" "}
-              <Link href={"/mentions-legales"}>
-                <strong className="text-sm font-semibold leading-[130%]! cursor-pointer w-full">
+            <h3 className="w-full text-sm leading-[130%]! font-normal text-black-500">
+              {cardContent.noteTitle}{' '}
+              <Link href="/mentions-legales">
+                <strong className="w-full cursor-pointer text-sm leading-[130%]! font-semibold">
                   {cardContent.policyTitle}
                 </strong>
               </Link>
@@ -350,9 +351,9 @@ export const ConsultationFormView: FC<Props> = ({
           sizes="100vh"
           priority
           className={cn(
-            "object-cover rounded-[16px]",
-            "lg:max-h-none max-h-[300px]",
-            "xl:w-[488px] xl:h-[394px] lg:w-[380px] lg:h-[384px] max-sm:max-h-[180px]"
+            'rounded-[16px] object-cover',
+            'max-h-[300px] lg:max-h-none',
+            'max-sm:max-h-[180px] lg:h-[384px] lg:w-[380px] xl:h-[394px] xl:w-[488px]'
           )}
         />
       </div>

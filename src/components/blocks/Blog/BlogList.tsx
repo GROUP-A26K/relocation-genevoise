@@ -1,9 +1,10 @@
-import { BlogCard } from '@/components/customs/Card/BlogCard';
-import Button from '@/components/customs/Button';
-import { FC } from 'react';
-import { Blog } from '@/models/BLog';
 import { Link } from '@/libs/i18nNavigation';
+import Button from '@/components/customs/Button';
 import { FormattedText } from '@/components/customs/Text';
+import { BlogCard } from '@/components/customs/Card/BlogCard';
+
+import type { FC } from 'react';
+import type { Blog } from '@/models/BLog';
 
 interface Props {
   tagline?: string;
@@ -24,18 +25,18 @@ const BlogList: FC<Props> = ({
   blogs,
 }) => {
   return (
-    <div className="flex flex-col lg:gap-16 gap-12">
+    <div className="flex flex-col gap-12 lg:gap-16">
       <div className="flex flex-row items-end justify-between">
-        <div className="flex flex-col lg:gap-6 gap-4 max-w-xl">
+        <div className="flex max-w-xl flex-col gap-4 lg:gap-6">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-secondary-600 leading-[130%]!">
+            <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
               {heading}
             </p>
-            <h2 className="text-3xl font-semibold leading-[130%]!">
+            <h2 className="text-3xl leading-[130%]! font-semibold">
               <FormattedText text={subHeading} />
             </h2>
           </div>
-          <p className="text-sm text-black-200 leading-[130%]!">
+          <p className="text-sm leading-[130%]! text-black-200">
             {description}
           </p>
         </div>
@@ -61,7 +62,7 @@ const BlogList: FC<Props> = ({
           as="solid"
           variant="md"
           type="primary"
-          className="lg:hidden w-full"
+          className="w-full lg:hidden"
         >
           {buttonText}
         </Button>

@@ -1,4 +1,4 @@
-import { Meta } from "./Meta";
+import type { Meta } from './Meta';
 
 export interface PropertySitemap {
   id: string;
@@ -7,11 +7,11 @@ export interface PropertySitemap {
   slug: string;
 }
 
-export type PropertyPriceUnit = "CHF";
+export type PropertyPriceUnit = 'CHF';
 
-export type PropertyRentPeriod = "month" | "year";
+export type PropertyRentPeriod = 'month' | 'year';
 
-export type PropertyListingType = "rent" | "sale";
+export type PropertyListingType = 'rent' | 'sale';
 
 export interface IPropertyListing {
   id: string;
@@ -42,7 +42,7 @@ export interface PropertyPagination {
 export interface PropertyFacility {
   typeRoom: string;
   name: string;
-  valueType: "number" | "text" | "none";
+  valueType: 'number' | 'text' | 'none';
   numberValue?: number;
   textValue?: string;
 }
@@ -75,7 +75,7 @@ export interface PropertyDetail {
   availability: boolean;
   mapLocation: {
     coordinates: ICoordinates;
-    name: string
+    name: string;
   };
   facilities: PropertyFacility[];
   agent: PropertyAgent;
@@ -118,7 +118,7 @@ export interface IPropertyAreaPhotoTour {
   _createdAt: string;
   _updatedAt: string;
   slug: {
-    _type: "string";
+    _type: 'string';
     current: string;
   };
   areas: IAreaPhotoTour[];

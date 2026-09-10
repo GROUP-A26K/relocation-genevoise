@@ -1,6 +1,7 @@
-import type { FC } from 'react';
 import { cn } from '@/libs/utils';
 import { Button as ShadcnButton } from '@/components/ui/button-custom';
+
+import type { FC } from 'react';
 
 type IType = 'primary' | 'secondary';
 type IVariant = 'lg' | 'md' | 'sm' | 'xs';
@@ -165,7 +166,7 @@ const Button: FC<Props> = ({
       return (
         <ShadcnButton
           onClick={onClick}
-          type='submit'
+          type="submit"
           className={cn(
             STYLE_BTN[variant],
             {
@@ -184,7 +185,7 @@ const Button: FC<Props> = ({
       return (
         <ShadcnButton
           onClick={onClick}
-          type='submit'
+          type="submit"
           className={cn(
             STYLE_BTN[variant],
             {
@@ -203,7 +204,7 @@ const Button: FC<Props> = ({
       return (
         <ShadcnButton
           onClick={onClick}
-          type='submit'
+          type="submit"
           className={cn(
             STYLE_BTN[variant],
             {
@@ -221,7 +222,7 @@ const Button: FC<Props> = ({
     case 'link':
       return (
         <ShadcnButton
-          variant='link'
+          variant="link"
           className={cn(
             STYLE_BTN[variant],
             {

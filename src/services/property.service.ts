@@ -1,5 +1,12 @@
-import "server-only";
+import 'server-only';
 
+import { sanityFetch } from '@/sanity/lib/fetch';
+import { LOCALE, type TLocale } from '@/constants/locale';
+import {
+  PROPERTY_DEFAULT_PRICE_UNIT,
+  PROPERTY_DEFAULT_RENT_PERIOD,
+  PROPERTY_DEFAULT_SORT,
+} from '@/constants/property';
 import {
   buildPropertiesQuery,
   PROPERTIES_SITEMAP_QUERY,
@@ -7,15 +14,16 @@ import {
   PROPERTY_DETAIL_QUERY,
   PROPERTY_PHOTO_TOUR_QUERY,
   PROPERTY_SLUG_QUERY,
-} from "@/sanity/lib/queries";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { LOCALE, type TLocale } from "@/constants/locale";
-import {
-  PROPERTY_DEFAULT_PRICE_UNIT,
-  PROPERTY_DEFAULT_RENT_PERIOD,
-  PROPERTY_DEFAULT_SORT,
-} from "@/constants/property";
-import {
+} from '@/sanity/lib/queries';
+
+import type {
+  IPropertiesResponse,
+  IPropertyCategoryDocument,
+  IPropertyCategoryParams,
+  IPropertyParams,
+  ISanityPropertyResponse,
+} from '@/types';
+import type {
   IAreaPhotoTour,
   IPropertyCategory,
   PropertyDetail,
@@ -23,14 +31,7 @@ import {
   IPropertyListing,
   PropertyListingType,
   PropertySitemap,
-} from "@/models/Property";
-import {
-  IPropertiesResponse,
-  IPropertyCategoryDocument,
-  IPropertyCategoryParams,
-  IPropertyParams,
-  ISanityPropertyResponse,
-} from "@/types";
+} from '@/models/Property';
 
 const DEFAULT_PROPERTY_PAGE = 1;
 const DEFAULT_PROPERTY_PAGE_SIZE = 15;
@@ -48,42 +49,40 @@ const getPaginationRange = (page: number, pageSize: number) => {
 
 const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
   id: property._id,
-  title: property.title || "Untitled Property",
-  slug: property.slug?.current || "",
-  href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
+  title: property.title || 'Untitled Property',
+  slug: property.slug?.current || '',
+  href: `/properties/${(property.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
   price: property.price || 0,
   priceUnit: property.priceUnit || PROPERTY_DEFAULT_PRICE_UNIT,
-  listingType: (property.listingType as PropertyListingType) || "rent",
+  listingType: (property.listingType as PropertyListingType) || 'rent',
   rentPeriod: property.rentPeriod || PROPERTY_DEFAULT_RENT_PERIOD,
   location: {
-    name: property.mapLocation?.name || "",
+    name: property.mapLocation?.name || '',
     lat: property.mapLocation?.coordinates?.lat,
     lng: property.mapLocation?.coordinates?.lng,
   },
-  category: property.category || "",
-  facilities: (property.facilities || []).map(
-    (facility): PropertyFacility => ({
-      typeRoom: facility.typeRoom || "",
-      name: facility.name || "",
-      valueType: facility.valueType || "none",
-      numberValue: facility.numberValue,
-      textValue: facility.textValue,
-    }),
-  ),
-  description: property.description || "",
-  imageUrl: property.imageUrl || "",
+  category: property.category || '',
+  facilities: (property.facilities || []).map((facility): PropertyFacility => ({
+    typeRoom: facility.typeRoom || '',
+    name: facility.name || '',
+    valueType: facility.valueType || 'none',
+    numberValue: facility.numberValue,
+    textValue: facility.textValue,
+  })),
+  description: property.description || '',
+  imageUrl: property.imageUrl || '',
   availability: Boolean(property.availability),
 });
 
 const mapPropertyCategory = (
-  category: IPropertyCategoryDocument,
+  category: IPropertyCategoryDocument
 ): IPropertyCategory => ({
   id: category._id,
-  categoryName: category.categoryName || "",
+  categoryName: category.categoryName || '',
 });
 
 export const fetchProperties = async (
-  params?: IPropertyParams,
+  params?: IPropertyParams
 ): Promise<IPropertiesResponse> => {
   const page = params?.page ?? DEFAULT_PROPERTY_PAGE;
   const pageSize = params?.pageSize ?? DEFAULT_PROPERTY_PAGE_SIZE;
@@ -105,12 +104,12 @@ export const fetchProperties = async (
       end,
       locale,
       categories,
-      location: params?.location || "",
+      location: params?.location || '',
       minPrice: params?.minPrice ?? 0,
       maxPrice: params?.maxPrice ?? 0,
-      rooms: params?.rooms ?? "",
+      rooms: params?.rooms ?? '',
     },
-    { tags: ["properties"] },
+    { tags: ['properties'] }
   );
 
   return {
@@ -127,14 +126,14 @@ export const fetchProperties = async (
 };
 
 export const fetchPropertyCategories = async (
-  params?: IPropertyCategoryParams,
+  params?: IPropertyCategoryParams
 ): Promise<IPropertyCategory[]> => {
   const response = await sanityFetch<IPropertyCategoryDocument[]>(
     PROPERTY_CATEGORIES_QUERY,
     {
       locale: getLocale(params?.locale),
     },
-    { tags: ["property-categories"] },
+    { tags: ['property-categories'] }
   );
 
   return response.map(mapPropertyCategory);
@@ -142,12 +141,12 @@ export const fetchPropertyCategories = async (
 
 export async function getPropertyDetail(
   slug: string,
-  locale: string = "en",
+  locale: string = 'en'
 ): Promise<PropertyDetail | null> {
   const response = await sanityFetch<PropertyDetail | null>(
     PROPERTY_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
-    { tags: ["property"] },
+    { tags: ['property'] }
   );
 
   return response ?? null;
@@ -155,17 +154,17 @@ export async function getPropertyDetail(
 
 export async function getPropertyPhotoTour(
   slug: string,
-  locale: string = "en",
+  locale: string = 'en'
 ): Promise<IAreaPhotoTour[]> {
   return sanityFetch<IAreaPhotoTour[]>(
     PROPERTY_PHOTO_TOUR_QUERY,
     { slug: `${locale}-${slug}` },
-    { tags: ["property"] },
+    { tags: ['property'] }
   );
 }
 
 export const fetchSitemapProperties = async (
-  params?: IPropertyParams,
+  params?: IPropertyParams
 ): Promise<{ properties: PropertySitemap[]; meta: { total: number } }> => {
   const response = await sanityFetch<{
     properties: ISanityPropertyResponse[];
@@ -175,15 +174,15 @@ export const fetchSitemapProperties = async (
     {
       locale: getLocale(params?.locale),
     },
-    { tags: ["sitemap-properties"] },
+    { tags: ['sitemap-properties'] }
   );
 
   return {
     properties: response.properties.map((property) => ({
       id: property._id,
-      title: property.title || "Untitled Property",
-      slug: property.slug?.current || "",
-      href: `/properties/${(property.slug?.current || "").replace(/^[a-z]{2}-/i, "")}`,
+      title: property.title || 'Untitled Property',
+      slug: property.slug?.current || '',
+      href: `/properties/${(property.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
     })),
     meta: { total: response.total },
   };
@@ -195,7 +194,7 @@ export const fetchPropertySlugBySlug = async (slug: string) => {
       language: string;
       slug: string;
     }[];
-  } | null>(PROPERTY_SLUG_QUERY, { slug }, { tags: ["property"] });
+  } | null>(PROPERTY_SLUG_QUERY, { slug }, { tags: ['property'] });
 
   if (!response?.targetSlug) {
     return [];
@@ -204,6 +203,6 @@ export const fetchPropertySlugBySlug = async (slug: string) => {
   return response.targetSlug.map((item) => ({
     locale: item.language,
     slug: item.slug,
-    href: `/properties/${item.slug.replace(/^[a-z]{2}-/i, "")}`,
+    href: `/properties/${item.slug.replace(/^[a-z]{2}-/i, '')}`,
   }));
 };
