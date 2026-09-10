@@ -6,14 +6,14 @@
       "description": "Your trusted partner in Geneva for a smooth relocation : housing and tenant search, corporate services, and personalized support at every stage of your journey.",
       "experience": "25 years of experience",
       "customer": "2500+ satisfied clients",
-      "buttonText": "Contact-us",
+      "buttonText": "Contact us",
       "buttonText2": "Find accommodation"
     },
     "ContactFeature": {
       "heading": "Offers",
       "subHeading": "((Our Relocation Services))",
       "description": "A flawless client experience and turnkey support to help you find your new home, ease your move, and feel at home as quickly as possible.",
-      "buttonText": "Contact-us",
+      "buttonText": "Contact us",
       "reasonItems": [
         {
           "title": "Property Search",
@@ -120,7 +120,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -174,7 +174,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -552,7 +552,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services ?))",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -871,7 +871,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -923,7 +923,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -958,7 +958,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -1074,7 +1074,7 @@
     "BookConsultation": {
       "subHeading": "Need advice ?\n ((Our team is here to guide you))",
       "description": "Benefit from personalized advice and support tailored to your needs.",
-      "buttonText1": "Contact-us"
+      "buttonText1": "Contact us"
     }
   },
   "Blog": {
@@ -1390,7 +1390,7 @@
       "title": "Support",
       "links": [
         {
-          "text": "Contact-us"
+          "text": "Contact us"
         },
         {
           "text": "FAQ"

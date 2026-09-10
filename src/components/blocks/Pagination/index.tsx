@@ -9,7 +9,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination-custom';
+} from '@/components/ui/pagination';
 
 import type { FC } from 'react';
 import type { Meta } from '@/models/Meta';

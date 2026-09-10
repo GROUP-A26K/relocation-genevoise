@@ -5,11 +5,6 @@ import type {
   PropertyRentPeriod,
 } from '@/models/Property';
 
-export interface IIconProps {
-  className?: string;
-  style?: React.CSSProperties;
-}
-
 export interface IPropertyParams {
   page?: number;
   pageSize?: number;

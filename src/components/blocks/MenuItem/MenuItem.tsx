@@ -3,12 +3,13 @@ import { Link } from '@/libs/i18nNavigation';
 import { fetchBlogs } from '@/services/blog.service';
 import { Card } from '@/components/sections/Navigation/Card';
 import { SubMenuLink } from '@/components/customs/SubMenuLink';
+import MotionNavItem from '@/components/sections/Navigation/MotionNavItem';
 import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu-custom';
+} from '@/components/ui/navigation-menu';
 
 interface MenuItem {
   title: string;
@@ -18,6 +19,13 @@ interface MenuItem {
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   items?: MenuItem[];
 }
+
+const MENU_LINK_STYLE = cn(
+  'ml-0! inline-flex h-[72px] w-max items-center justify-center rounded-none border-0 bg-transparent px-[8px] py-2 text-[16px] leading-[150%]! font-bold text-black-500 shadow-none transition-colors',
+  'hover:bg-transparent hover:text-black-500 focus:bg-transparent focus:text-black-500 focus:outline-hidden',
+  'active:bg-transparent active:text-black-500'
+);
+
 export const renderMenuItem = async (item: MenuItem, locale?: string) => {
   if (item.items) {
     const { blogs } = await fetchBlogs({
@@ -28,22 +36,20 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
     return (
       <NavigationMenuItem
         key={item.title}
-        className={cn(
-          'text-muted-foreground',
-          'focus:border-b-4 focus:border-b-secondary-500! focus:bg-transparent! focus:text-black-500!'
-        )}
+        value={item.title}
+        className="text-muted-foreground"
       >
-        <NavigationMenuTrigger
-          className={cn(
-            'group borer-t-[3px] ml-0 inline-flex h-[72px] w-max items-center justify-center rounded-none border-[3px] border-transparent px-[8px] py-2 text-[16px] leading-[150%] font-bold text-black-500',
-            'hover:border-b-[3px] hover:border-b-secondary-500! hover:bg-transparent hover:text-accent-foreground hover:text-black-500!',
-            'focus:!text-none focus:!none focus:bg-transparent!',
-            'active:border-b-secondary-500! active:bg-transparent! active:text-black-500!',
-            'data-[state=open]:border-b-secondary-500! data-[state=open]:text-black-500! data-[state=open]:hover:bg-transparent'
-          )}
-        >
-          {item.title}
-        </NavigationMenuTrigger>
+        <MotionNavItem itemKey={item.title}>
+          <NavigationMenuTrigger
+            className={cn(
+              'group',
+              MENU_LINK_STYLE,
+              'data-[state=open]:bg-transparent data-[state=open]:text-black-500 data-[state=open]:hover:bg-transparent'
+            )}
+          >
+            {item.title}
+          </NavigationMenuTrigger>
+        </MotionNavItem>
         <NavigationMenuContent
           className={cn(
             'right-0! m-0! w-screen! items-center! justify-center!'
@@ -96,15 +102,11 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
 
   return (
     <li key={item.title}>
-      <Link
-        className={cn(
-          'group ml-0! inline-flex h-[72px] w-max items-center justify-center border-[3px] border-transparent bg-background px-[8px] py-2 text-[16px] leading-[150%]! font-bold text-black-500 transition-colors',
-          'hover:border-b-[3px] hover:border-b-secondary-500 hover:text-accent-foreground hover:text-black-500'
-        )}
-        href={item.url}
-      >
-        {item.title}
-      </Link>
+      <MotionNavItem itemKey={item.title}>
+        <Link className={cn('group', MENU_LINK_STYLE)} href={item.url}>
+          {item.title}
+        </Link>
+      </MotionNavItem>
     </li>
   );
 };

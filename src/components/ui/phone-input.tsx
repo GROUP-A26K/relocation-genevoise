@@ -19,7 +19,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/ui/command-custom';
+} from '@/components/ui/command';
 type PhoneInputProps = Omit<
   React.ComponentProps<'input'>,
   'onChange' | 'value' | 'ref'

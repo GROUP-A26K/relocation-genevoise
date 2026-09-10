@@ -1,15 +1,18 @@
 import { MobileMenu } from './MobileMenu';
 import { DesktopMenu } from './DesktopMenu';
-export interface MenuItem {
+import NavigationHeader from './NavigationHeader';
+
+export type TMenuItem = {
   title: string;
   subtitle?: string;
   url: string;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  items?: MenuItem[];
-}
-export interface NavbarProps {
-  menu: MenuItem[];
+  items?: TMenuItem[];
+};
+
+export interface INavbarProps {
+  menu: TMenuItem[];
   contactButton?: {
     text: string;
     url: string;
@@ -27,10 +30,10 @@ const NavbarContainer = ({
   callButton,
   locale,
   contactButton,
-}: NavbarProps) => {
+}: INavbarProps) => {
   return (
-    <header className="relative flex flex-col items-center justify-center">
-      <nav className="container px-[48px] md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-2xl) xl:px-[60px] 2xl:max-w-(--breakpoint-2xl) 2xl:px-[100px]">
+    <NavigationHeader>
+      <nav className="container px-12 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-2xl) xl:px-15 2xl:max-w-(--breakpoint-2xl) 2xl:px-25">
         <DesktopMenu menu={menu} callButton={callButton} locale={locale} />
       </nav>
       <MobileMenu
@@ -38,7 +41,7 @@ const NavbarContainer = ({
         callButton={callButton}
         contactButton={contactButton}
       />
-    </header>
+    </NavigationHeader>
   );
 };
 

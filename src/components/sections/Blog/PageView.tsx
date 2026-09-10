@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { type FC, useEffect, useRef, useTransition } from 'react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 

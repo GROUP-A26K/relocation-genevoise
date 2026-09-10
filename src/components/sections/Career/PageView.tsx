@@ -2,7 +2,7 @@
 
 import { type FC, useTransition } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
 import Section from '@/components/customs/Section';
