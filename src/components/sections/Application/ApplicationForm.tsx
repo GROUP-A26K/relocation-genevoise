@@ -12,6 +12,7 @@ import axios from '@/libs/axios';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
 import ConsultationBG from '@/assets/img/bg/assurance-genevoise-career-form.webp';
 import {
@@ -124,7 +125,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
 
   return (
     <div className="container w-full gap-8 px-4 pt-8 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
-      <header className="flex w-full">
+      <RevealItem as="section" className="flex w-full">
         <div className="flex flex-col gap-4 lg:gap-6">
           <p className="text-sm font-semibold text-secondary-600">
             Application
@@ -142,9 +143,12 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
             />
           </ul>
         </div>
-      </header>
+      </RevealItem>
 
-      <section className="mt-8 flex flex-col gap-12 rounded-xl bg-white p-4 pt-6 shadow-xl lg:flex-row lg:gap-16 lg:p-8">
+      <RevealItem
+        as="section"
+        className="mt-8 flex flex-col gap-12 rounded-xl bg-white p-4 pt-6 shadow-xl lg:flex-row lg:gap-16 lg:p-8"
+      >
         <div className="flex w-full flex-col gap-6 lg:gap-8">
           <h2 className="text-xl font-semibold">
             {t('formTitle', { default: 'Application Forms' })}
@@ -260,7 +264,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
           height={724}
           className="max-h-[180px] rounded-2xl object-cover lg:max-h-[724px] lg:min-w-[400px] 2xl:min-w-[556px]"
         />
-      </section>
+      </RevealItem>
     </div>
   );
 };

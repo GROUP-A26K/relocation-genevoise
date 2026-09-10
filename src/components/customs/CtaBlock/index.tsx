@@ -2,6 +2,7 @@ import cn from 'classnames';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 
 type CtaBlockProps = {
   id: string;
@@ -17,7 +18,7 @@ const CtaBlock: React.FC<CtaBlockProps> = ({
   buttonText = 'Contact Us',
 }) => {
   return (
-    <div className={cn('w-full py-4', 'lg:py-6')}>
+    <RevealItem className={cn('w-full py-4', 'lg:py-6')}>
       <div
         id={id}
         className={cn(
@@ -49,7 +50,7 @@ const CtaBlock: React.FC<CtaBlockProps> = ({
           </Button>
         </Link>
       </div>
-    </div>
+    </RevealItem>
   );
 };
 

@@ -17,7 +17,7 @@ import Section from '@/components/customs/Section';
 import { HomeHero } from '@/components/blocks/Hero';
 import { BlogList } from '@/components/blocks/Blog';
 import { fetchBlogs } from '@/services/blog.service';
-import { StatsGrid2 } from '@/components/blocks/Stats';
+import { StatsGrid } from '@/components/blocks/Stats';
 import { ContentWithImg } from '@/components/blocks/Content';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import {
@@ -77,14 +77,14 @@ export default async function Page(props: Props) {
 
   return (
     <>
-      <Section isDivider className="relative">
+      <Section isDivider revealTrigger="load" className="relative">
         <HomeHero
           heading={t('Hero.heading')}
           subHeading={t('Hero.subHeading')}
           description={t('Hero.description')}
           button={{
             text: t('Hero.buttonText'),
-            url: '/rappelez-moi',
+            url: '/call-me-back',
           }}
           button2={{
             text: t('Hero.buttonText2'),
@@ -126,7 +126,7 @@ export default async function Page(props: Props) {
       </Section>
 
       <Section>
-        <StatsGrid2
+        <StatsGrid
           heading={t('StatsGrid.heading')}
           subHeading={t('StatsGrid.subHeading')}
           description={t('StatsGrid.description')}

@@ -7,6 +7,7 @@ import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import CountUp from '@/components/customs/CountUp';
 import Section from '@/components/customs/Section';
+import { RevealItem } from '@/components/customs/Reveal';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
 import HeroTabs, { type TFindATenantAudience } from './HeroTabs';
@@ -46,7 +47,7 @@ export default function Hero({
   stats,
 }: IHeroProps) {
   return (
-    <Section className="relative">
+    <Section revealTrigger="load" className="relative">
       <div className="flex flex-col gap-12 lg:gap-16">
         <div className="relative flex flex-col items-stretch gap-12 lg:flex-row lg:items-start lg:gap-24">
           <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center overflow-hidden">
@@ -63,7 +64,7 @@ export default function Hero({
             />
           </div>
 
-          <div className="flex flex-1 flex-col items-center gap-6 lg:items-start lg:gap-12">
+          <RevealItem className="flex flex-1 flex-col items-center gap-6 lg:items-start lg:gap-12">
             <HeroTabs active={active} labels={tabLabels} />
 
             <div className="flex flex-col gap-8">
@@ -100,9 +101,9 @@ export default function Hero({
                 </Link>
               </div>
             </div>
-          </div>
+          </RevealItem>
 
-          <div className="relative aspect-572/420 w-full flex-1">
+          <RevealItem className="relative aspect-572/420 w-full flex-1">
             <Image
               src={image.src}
               alt={image.alt}
@@ -115,10 +116,10 @@ export default function Hero({
               fetchPriority="high"
               draggable={false}
             />
-          </div>
+          </RevealItem>
         </div>
 
-        <div className="flex flex-col items-center overflow-hidden rounded-3xl bg-secondary-25 sm:flex-row">
+        <RevealItem className="flex flex-col items-center overflow-hidden rounded-3xl bg-secondary-25 sm:flex-row">
           {stats.map((stat, index) => (
             <Fragment key={stat.label}>
               <div className="flex w-full flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
@@ -136,7 +137,7 @@ export default function Hero({
               )}
             </Fragment>
           ))}
-        </div>
+        </RevealItem>
       </div>
     </Section>
   );

@@ -1,3 +1,4 @@
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText, Paragraph } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -9,7 +10,7 @@ interface Props {
 
 export const ContentDescriptive: FC<Props> = ({ title, content }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <RevealItem className="flex flex-col gap-4">
       {title && <h2 className="text-xl font-bold lg:text-2xl">{title}</h2>}
       <div className="flex flex-col text-sm text-black-200 lg:text-base">
         <div className="flex flex-col gap-6">
@@ -30,6 +31,6 @@ export const ContentDescriptive: FC<Props> = ({ title, content }) => {
           ))}
         </div>
       </div>
-    </div>
+    </RevealItem>
   );
 };

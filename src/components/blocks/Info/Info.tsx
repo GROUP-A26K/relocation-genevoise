@@ -1,6 +1,7 @@
 import { Building } from 'lucide-react';
 
 import { InfoCard } from '@/components/customs/Card';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -46,7 +47,7 @@ export const Info: FC<Props> = ({
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
-        <div className="flex w-full items-center justify-center">
+        <RevealItem className="flex w-full items-center justify-center">
           <div className="flex max-w-xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-center text-sm leading-[130%]! font-semibold text-primary-500">
@@ -60,9 +61,9 @@ export const Info: FC<Props> = ({
               {description}
             </p>
           </div>
-        </div>
+        </RevealItem>
       )}
-      <div className="flex flex-col gap-8 lg:gap-8">
+      <RevealItem className="flex flex-col gap-8 lg:gap-8">
         <div className="grid items-start divide-y divide-grey-100 lg:grid-cols-3 lg:gap-8 lg:divide-y-0">
           <div className="pb-6 lg:p-0">
             <InfoCard {...reasonItems[0]} />
@@ -76,7 +77,7 @@ export const Info: FC<Props> = ({
             <InfoCard {...reasonItems[2]} />
           </div>
         </div>
-      </div>
+      </RevealItem>
     </div>
   );
 };

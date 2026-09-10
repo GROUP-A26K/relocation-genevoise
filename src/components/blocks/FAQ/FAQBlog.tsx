@@ -1,6 +1,8 @@
 import cn from 'classnames';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
+import { ANCHOR_SCROLL_MARGIN } from '@/components/blocks/DynamicContent/constants';
 import {
   Accordion,
   AccordionContent,
@@ -57,7 +59,13 @@ export const FAQBlog: React.FC<Props> = ({
   ],
 }) => {
   return (
-    <div id={id} className={cn('flex w-full flex-col items-start gap-4')}>
+    <RevealItem
+      id={id}
+      className={cn(
+        'flex w-full flex-col items-start gap-4',
+        ANCHOR_SCROLL_MARGIN
+      )}
+    >
       <h2 className="text-left text-2xl leading-[130%]! font-semibold text-primary-500">
         {heading}
       </h2>
@@ -95,6 +103,6 @@ export const FAQBlog: React.FC<Props> = ({
           </AccordionItem>
         ))}
       </Accordion>
-    </div>
+    </RevealItem>
   );
 };

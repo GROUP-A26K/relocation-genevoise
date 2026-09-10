@@ -9,6 +9,7 @@ import Section from '@/components/customs/Section';
 import TabsMenu from '@/components/blocks/TabsMenu';
 import { JobCard } from '@/components/customs/Card';
 import EmptyData from '@/components/customs/EmptyData';
+import { RevealItem } from '@/components/customs/Reveal';
 import { Pagination } from '@/components/blocks/Pagination';
 import { Spinner } from '@/components/customs/Spinner/Spinner';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
@@ -43,8 +44,8 @@ export const PageView: FC<Props> = (props) => {
 
   return (
     <>
-      <Section>
-        <div className="flex w-full items-center justify-center">
+      <Section revealTrigger="load">
+        <RevealItem className="flex w-full items-center justify-center">
           <div className="flex w-full max-w-4xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <div className="text-center text-sm leading-[130%]! font-semibold text-secondary-500">
@@ -58,11 +59,11 @@ export const PageView: FC<Props> = (props) => {
               {t('description')}
             </p>
           </div>
-        </div>
+        </RevealItem>
       </Section>
 
       <ContentContainer>
-        <div className="flex flex-col items-center justify-center gap-8 lg:flex-row">
+        <RevealItem className="flex flex-col items-center justify-center gap-8 lg:flex-row">
           <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
               category={props.departments.map((dept) => ({
@@ -75,9 +76,9 @@ export const PageView: FC<Props> = (props) => {
               }
             />
           </div>
-        </div>
+        </RevealItem>
 
-        <div className="flex flex-col items-center justify-center">
+        <RevealItem className="flex flex-col items-center justify-center">
           <div className="mx-auto flex w-full max-w-[768px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[660px] 2xl:max-w-[768px]">
             <AnimatePresence>
               {isPending && (
@@ -130,7 +131,7 @@ export const PageView: FC<Props> = (props) => {
               )}
             </AnimatePresence>
           </div>
-        </div>
+        </RevealItem>
 
         {showList && (
           <Pagination

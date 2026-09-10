@@ -1,17 +1,14 @@
 import Image from 'next/image';
 
+import CountUp from '@/components/customs/CountUp';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import StatsBG from '@/assets/img/bg/relocation-genevoise-a-geneve.webp';
 
-import type { FC } from 'react';
-interface Props {
+interface IStatsGridProps {
   heading?: string;
   subHeading?: string;
   description?: string;
-  link?: {
-    text: string;
-    url: string;
-  };
   stats1?: {
     value: string;
     label: string;
@@ -30,7 +27,7 @@ interface Props {
   };
 }
 
-const StatsGrid: FC<Props> = ({
+const StatsGrid: React.FC<IStatsGridProps> = ({
   heading = 'Reliability & transparency',
   subHeading = 'Your trusted partner in Switzerland',
   description = 'We are fully committed to our customers with transparency, responsiveness, and in-depth expertise.',
@@ -53,7 +50,7 @@ const StatsGrid: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-14 lg:gap-16">
-      <div className="flex flex-col gap-4 lg:gap-6">
+      <RevealItem className="flex max-w-3xl flex-col gap-4 lg:gap-6">
         <div className="flex flex-col gap-3">
           <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
             {heading}
@@ -65,60 +62,65 @@ const StatsGrid: FC<Props> = ({
         <p className="text-sm leading-[130%]! font-normal text-black-200">
           {description}
         </p>
-      </div>
+      </RevealItem>
 
-      <div className="flex flex-col items-center justify-end gap-14 lg:flex-row lg:gap-16">
-        <div className="flex w-full flex-col items-center text-center lg:w-full lg:justify-center lg:text-left">
-          <div className="grid w-full items-center divide-y divide-grey-100">
-            <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x lg:divide-y-0 lg:pb-3">
-              <div className="flex flex-col items-center gap-3 pb-9 lg:py-3 lg:pr-4">
-                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
-                  {stats1.value}
-                </div>
-                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
-                  {stats1.label}
-                </p>
-              </div>
-
-              <div className="flex flex-col items-center gap-3 py-9 lg:py-3 lg:pl-4">
-                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
-                  {stats2.value}
-                </div>
-                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
-                  {stats2.label}
-                </p>
-              </div>
-            </div>
-            <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x lg:divide-y-0 lg:pt-3">
-              <div className="flex flex-col items-center gap-3 py-9 lg:py-3 lg:pr-4">
-                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
-                  {stats3.value}
-                </div>
-                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
-                  {stats3.label}
-                </p>
-              </div>
-
-              <div className="flex flex-col items-center gap-3 pt-9 lg:py-3 lg:pl-4">
-                <div className="from-secondary-902 to-secondary-901 bg-linear-to-r bg-clip-text text-5xl leading-[130%]! font-bold text-transparent">
-                  {stats4.value}
-                </div>
-                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200">
-                  {stats4.label}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <RevealItem className="flex flex-col items-center justify-end gap-14 lg:flex-row lg:gap-16">
         <Image
           src={StatsBG}
           alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
           title="Relocation Genevoise, votre partenaire de confiance en Suisse"
           width={616}
           height={380}
-          className="max-h-[226px] rounded-2xl object-cover lg:max-h-[380px] lg:min-w-[450px] xl:min-w-[616px]"
+          className="order-2 max-h-56.5 rounded-2xl object-cover lg:order-1 lg:max-h-95 lg:min-w-112.5 xl:min-w-154"
         />
-      </div>
+        <div className="order-1 flex w-full flex-col items-center text-center lg:order-2 lg:w-full lg:justify-center lg:text-left">
+          <div className="grid w-full items-center divide-y divide-grey-100 lg:divide-y-0">
+            <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x-2 lg:divide-y-0 lg:divide-yellow-100 lg:pb-4">
+              <div className="flex h-full flex-col items-center gap-3 border-l-0 border-yellow-100 pb-9 lg:items-start lg:border-l-2 lg:py-3 lg:pr-4 lg:pl-6">
+                <CountUp
+                  value={stats1.value}
+                  className="bg-clip-text text-5xl leading-[130%]! font-bold"
+                />
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200 lg:text-left">
+                  {stats1.label}
+                </p>
+              </div>
+
+              <div className="flex h-full flex-col items-center gap-3 py-9 lg:items-start lg:py-3 lg:pl-6">
+                <CountUp
+                  value={stats2.value}
+                  className="bg-clip-text text-5xl leading-[130%]! font-bold"
+                />
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200 lg:text-left">
+                  {stats2.label}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x-2 lg:divide-y-0 lg:divide-yellow-100 lg:pt-4">
+              <div className="flex h-full flex-col items-center gap-3 border-l-0 border-yellow-100 py-9 lg:items-start lg:border-l-2 lg:py-3 lg:pr-4 lg:pl-6">
+                <CountUp
+                  value={stats3.value}
+                  className="bg-clip-text text-5xl leading-[130%]! font-bold"
+                />
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200 lg:text-left">
+                  {stats3.label}
+                </p>
+              </div>
+
+              <div className="flex h-full flex-col items-center gap-3 pt-9 lg:items-start lg:py-3 lg:pl-6">
+                <CountUp
+                  value={stats4.value}
+                  className="bg-clip-text text-5xl leading-[130%]! font-bold"
+                />
+                <p className="text-center text-lg leading-[130%]! font-semibold text-black-200 lg:text-left">
+                  {stats4.label}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </RevealItem>
     </div>
   );
 };

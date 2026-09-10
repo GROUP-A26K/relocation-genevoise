@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 
 import Button from '@/components/customs/Button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { RevealItem } from '@/components/customs/Reveal';
 
 import type { PropertyDetail } from '@/models/Property';
 
@@ -59,7 +60,7 @@ export const ImagePreview = ({
   };
 
   return (
-    <div className="relative grid w-full grid-cols-1 gap-2 overflow-hidden lg:grid-cols-2 lg:rounded-3xl">
+    <RevealItem className="relative grid w-full grid-cols-1 gap-2 overflow-hidden lg:grid-cols-2 lg:rounded-3xl">
       <div className="relative h-0 w-full pb-[68%] lg:pb-[68%]">
         {!loadedImages.has(mainImageObj?.url || '') && (
           <Skeleton className="absolute inset-0 rounded-2xl lg:rounded-none" />
@@ -114,6 +115,6 @@ export const ImagePreview = ({
       >
         {t('imagePreview.viewAllButton')}
       </Button>
-    </div>
+    </RevealItem>
   );
 };

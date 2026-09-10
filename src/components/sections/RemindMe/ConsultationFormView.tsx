@@ -17,6 +17,7 @@ import Button from '@/components/customs/Button';
 import { useOpenStatus } from '@/hooks/use-open-status';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
 import { PhoneInputField } from '@/components/customs/Form';
+import { RevealItem, RevealSection } from '@/components/customs/Reveal';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 import ConsultationBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
 import {
@@ -219,7 +220,8 @@ export const ConsultationFormView: FC<Props> = ({
           'items-center'
         )}
       >
-        <div
+        <RevealSection
+          trigger="load"
           className={cn(
             'flex flex-col gap-4 text-center',
             'lg:gap-6 lg:text-left',
@@ -228,20 +230,24 @@ export const ConsultationFormView: FC<Props> = ({
             'px-4 lg:px-[48px] xl:px-[100px]'
           )}
         >
-          <div className="flex flex-col gap-3">
+          <RevealItem className="flex flex-col gap-3">
             <p className="text-sm leading-[130%]! font-semibold text-primary-500">
               {heading}
             </p>
             <h1 className="text-3xl leading-[130%]! font-semibold">
               {TextWithStrong(subHeading)}
             </h1>
-          </div>
-          <p className="text-sm leading-[130%]! font-normal text-black-200">
+          </RevealItem>
+          <RevealItem
+            as="p"
+            className="text-sm leading-[130%]! font-normal text-black-200"
+          >
             {description}
-          </p>
-        </div>
+          </RevealItem>
+        </RevealSection>
       </div>
-      <div
+      <RevealSection
+        trigger="load"
         className={cn(
           'mx-auto flex max-w-[1240px] flex-col items-start gap-12 rounded-3xl bg-white p-4 pt-6 shadow-xl',
           'md:p-8',
@@ -249,7 +255,7 @@ export const ConsultationFormView: FC<Props> = ({
           'xl:mx-auto'
         )}
       >
-        <div className={cn('flex w-full flex-col gap-6', 'lg:p-8')}>
+        <RevealItem className={cn('flex w-full flex-col gap-6', 'lg:p-8')}>
           <div className="flex flex-col gap-3">
             <h2 className="max-w-[450px] text-xl leading-[130%]! font-semibold lg:text-2xl">
               {cardContent.title}
@@ -340,23 +346,25 @@ export const ConsultationFormView: FC<Props> = ({
               </Link>
             </h3>
           </div>
-        </div>
+        </RevealItem>
 
-        <Image
-          src={ConsultationBG}
-          alt="Assurance Genevoise, courtier en assurance à Genève"
-          title="Assurance Genevoise, courtier en assurance à Genève"
-          width={0}
-          height={0}
-          sizes="100vh"
-          priority
-          className={cn(
-            'rounded-[16px] object-cover',
-            'max-h-[300px] lg:max-h-none',
-            'max-sm:max-h-[180px] lg:h-[384px] lg:w-[380px] xl:h-[394px] xl:w-[488px]'
-          )}
-        />
-      </div>
+        <RevealItem>
+          <Image
+            src={ConsultationBG}
+            alt="Assurance Genevoise, courtier en assurance à Genève"
+            title="Assurance Genevoise, courtier en assurance à Genève"
+            width={0}
+            height={0}
+            sizes="100vh"
+            priority
+            className={cn(
+              'rounded-[16px] object-cover',
+              'max-h-[300px] lg:max-h-none',
+              'max-sm:max-h-[180px] lg:h-[384px] lg:w-[380px] xl:h-[394px] xl:w-[488px]'
+            )}
+          />
+        </RevealItem>
+      </RevealSection>
     </section>
   );
 };

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import {
   PROPERTY_SORT_OPTIONS,
   usePropertyFilters,
@@ -37,7 +38,7 @@ export default function PropertyResultsHeader({
   };
 
   return (
-    <div className="mb-8 flex gap-4 max-md:flex-col-reverse md:items-center md:justify-between">
+    <RevealItem className="mb-8 flex gap-4 max-md:flex-col-reverse md:items-center md:justify-between">
       <div className="text-p leading-[130%]! font-normal text-black-500">
         {t('results.showing')}{' '}
         <span className="font-bold">
@@ -99,6 +100,6 @@ export default function PropertyResultsHeader({
           </div>
         </div>
       </div>
-    </div>
+    </RevealItem>
   );
 }

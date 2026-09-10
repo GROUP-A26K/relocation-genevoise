@@ -13,8 +13,9 @@ import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
 import CtaBlock from '@/components/customs/CtaBlock';
 import { StatsList } from '@/components/blocks/Stats';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FAQBlog } from '@/components/blocks/FAQ/FAQBlog';
-import { BlogContent } from '@/components/blocks/BlogContent/BlogContent';
+import { DynamicContent } from '@/components/blocks/DynamicContent';
 import { type Block, BLOG_BODY_BLOCKS, type BlogDetail } from '@/models/BLog';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
@@ -37,7 +38,7 @@ function renderListBlocks(blocks: Block[]) {
         );
       case BLOG_BODY_BLOCKS.WYSIWYG_BLOCK:
         return (
-          <BlogContent
+          <DynamicContent
             key={_key}
             {...block}
             className={cn(
@@ -105,7 +106,7 @@ export const Content = (blog: BlogDetail) => {
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[570px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         {renderListBlocks(blog.body)}
 
-        <div className="flex flex-col justify-between gap-y-6 border-t border-grey-100 pt-6 lg:flex-row">
+        <RevealItem className="flex flex-col justify-between gap-y-6 border-t border-grey-100 pt-6 lg:flex-row">
           <div className="flex items-center gap-3">
             <Image
               alt="Author image"
@@ -151,7 +152,7 @@ export const Content = (blog: BlogDetail) => {
               type="primary"
             /> */}
           </div>
-        </div>
+        </RevealItem>
       </div>
     </div>
   );

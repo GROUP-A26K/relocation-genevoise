@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { getText } from '@/components/customs/Text/TextWithStrong';
 
@@ -41,7 +42,7 @@ export const Hero: FC<Props> = ({
     <div className="flex flex-col gap-12 lg:gap-16">
       <div className="flex w-full items-center justify-center">
         <div className="flex flex-col gap-6">
-          <div className="flex w-full max-w-3xl flex-col gap-4 text-center lg:items-center lg:gap-6">
+          <RevealItem className="flex w-full max-w-3xl flex-col gap-4 text-center lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
                 {heading}
@@ -53,11 +54,11 @@ export const Hero: FC<Props> = ({
             <p className="text-center text-sm leading-[130%]! font-normal text-pretty text-black-200">
               {description}
             </p>
-          </div>
+          </RevealItem>
 
-          <div className="flex w-full flex-row items-center justify-center gap-2">
+          <RevealItem className="flex w-full flex-row items-center justify-center gap-2">
             {button && (
-              <Link href="/rappelez-moi">
+              <Link href="/call-me-back">
                 <Button as="solid" variant="md" type="secondary">
                   {button.text}
                 </Button>
@@ -75,11 +76,11 @@ export const Hero: FC<Props> = ({
                 </Button>
               </Link>
             )}
-          </div>
+          </RevealItem>
         </div>
       </div>
 
-      <div className="relative flex flex-col items-start justify-between">
+      <RevealItem className="relative flex flex-col items-start justify-between">
         <div className="w-full">
           <Image
             alt={getText(heroImage.alt || '')}
@@ -94,7 +95,7 @@ export const Hero: FC<Props> = ({
             fetchPriority="high"
           />
         </div>
-      </div>
+      </RevealItem>
     </div>
   );
 };

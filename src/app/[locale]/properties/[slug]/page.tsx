@@ -32,7 +32,7 @@ export default async function PropertyDetailPage({ params }: Props) {
 
   return (
     <section className="flex w-full flex-col items-center justify-center">
-      <Section isDivider className="w-full">
+      <Section isDivider revealTrigger="load" className="w-full">
         <ImagePreview property={property} propertySlug={slug} />
 
         <PropertyDetailView property={property} />

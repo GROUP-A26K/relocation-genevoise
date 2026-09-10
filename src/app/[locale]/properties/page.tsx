@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { AppConfig } from '@/utils/AppConfig';
+import { RevealSection } from '@/components/customs/Reveal';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
 import PropertiesHero from '@/components/sections/Properties/PropertiesHero';
@@ -71,7 +72,7 @@ export default async function PropertiesPage(props: Props) {
         </section>
         <PropertyListingsSection properties={properties} meta={meta} />
         <section className="flex w-full justify-center">
-          <div className="w-full max-w-[1240px] bg-grey-50 max-md:px-4 xl:rounded-[24px]">
+          <RevealSection className="w-full max-w-[1240px] bg-grey-50 max-md:px-4 xl:rounded-[24px]">
             <BookConsultation2
               heading={t('BookConsultation.heading')}
               subHeading={t('BookConsultation.subHeading')}
@@ -79,7 +80,7 @@ export default async function PropertiesPage(props: Props) {
               buttonText1={t('BookConsultation.buttonText1')}
               buttonText2={t('BookConsultation.buttonText2')}
             />
-          </div>
+          </RevealSection>
         </section>
       </Suspense>
     </ExchangeRatesProvider>

@@ -1,3 +1,4 @@
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { FeatureRowCard } from '@/components/customs/Card';
 
@@ -24,16 +25,16 @@ const ServiceFeature = ({
 }: Props) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
-      <div className="flex flex-col gap-3">
+      <RevealItem className="flex flex-col gap-3">
         <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
           {heading}
         </p>
         <h2 className="text-3xl leading-[130%]! font-semibold">
           <FormattedText text={subHeading} />
         </h2>
-      </div>
+      </RevealItem>
       {reasons.map((reason, i) => (
-        <div key={i} className="flex flex-col gap-8 lg:gap-6">
+        <RevealItem key={i} className="flex flex-col gap-8 lg:gap-6">
           <h3 className="text-xl leading-[130%]! font-semibold lg:text-2xl">
             {reason.reasonName}
           </h3>
@@ -45,7 +46,7 @@ const ServiceFeature = ({
               </li>
             ))}
           </ul>
-        </div>
+        </RevealItem>
       ))}
     </div>
   );

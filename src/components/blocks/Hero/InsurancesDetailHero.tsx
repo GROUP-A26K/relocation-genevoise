@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { getText } from '@/components/customs/Text/TextWithStrong';
 
@@ -33,7 +34,7 @@ export const InsurancesDetailHero: FC<Props> = ({
   return (
     <div className="flex flex-col gap-14 lg:gap-16">
       <div className="flex flex-col items-center justify-end gap-12 lg:flex-row lg:gap-16">
-        <div className="flex flex-col items-start gap-6 text-center lg:justify-center lg:text-left">
+        <RevealItem className="flex flex-col items-start gap-6 text-center lg:justify-center lg:text-left">
           <div className="flex flex-col gap-4 lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -49,26 +50,28 @@ export const InsurancesDetailHero: FC<Props> = ({
               ))}
             </p>
           </div>
-          <Link href="/rappelez-moi" className="w-full lg:w-fit">
+          <Link href="/call-me-back" className="w-full lg:w-fit">
             <Button as="solid" type="primary" variant="md">
               {buttonText}
             </Button>
           </Link>
-        </div>
+        </RevealItem>
 
-        <Image
-          src={imgSrc}
-          alt={`Relocation Genevoise,${heading} ${getText(subHeading)}`}
-          title={`${getText(subHeading)}, ${descriptionText}`}
-          width={588}
-          height={560}
-          className={cn(
-            'rounded-2xl object-cover',
-            'min-h-[226px] lg:min-h-[400px] xl:min-h-[560px]',
-            'min-w-[226px] lg:min-w-[400px] xl:min-w-[588px]',
-            'max-h-[226px] lg:max-h-[560px]'
-          )}
-        />
+        <RevealItem>
+          <Image
+            src={imgSrc}
+            alt={`Relocation Genevoise,${heading} ${getText(subHeading)}`}
+            title={`${getText(subHeading)}, ${descriptionText}`}
+            width={588}
+            height={560}
+            className={cn(
+              'rounded-2xl object-cover',
+              'min-h-[226px] lg:min-h-[400px] xl:min-h-[560px]',
+              'min-w-[226px] lg:min-w-[400px] xl:min-w-[588px]',
+              'max-h-[226px] lg:max-h-[560px]'
+            )}
+          />
+        </RevealItem>
       </div>
     </div>
   );

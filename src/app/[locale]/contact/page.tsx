@@ -34,7 +34,7 @@ export default async function Page(props: Props) {
   });
   return (
     <>
-      <Section>
+      <Section revealTrigger="load">
         <ContactInfo
           heading={t('ContactInfo.heading')}
           subHeading={t('ContactInfo.subHeading')}

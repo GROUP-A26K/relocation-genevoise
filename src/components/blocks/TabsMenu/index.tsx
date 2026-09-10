@@ -1,4 +1,8 @@
+'use client';
+
+import { useId } from 'react';
 import { useLocale } from 'next-intl';
+import { motion, useReducedMotion } from 'motion/react';
 
 import { cn } from '@/libs/utils';
 import Button from '@/components/customs/Button';
@@ -14,6 +18,13 @@ interface TabsMenuProps {
   variant?: IType;
 }
 
+const SPRING_TRANSITION = {
+  type: 'spring',
+  stiffness: 380,
+  damping: 32,
+  mass: 0.8,
+} as const;
+
 const TabsMenu: FC<TabsMenuProps> = ({
   activeValue = '',
   category,
@@ -21,58 +32,52 @@ const TabsMenu: FC<TabsMenuProps> = ({
   variant = 'primary',
 }) => {
   const locale = useLocale();
+  const indicatorId = useId();
+  const shouldReduceMotion = useReducedMotion();
+  const tabs = [
+    { value: '', title: locale === 'fr' ? 'Tous' : 'View all' },
+    ...category.map(({ title }) => ({ value: title, title })),
+  ];
 
   const handleTabClick = (filterBy: string) => {
     if (filterBy === activeValue) return;
     onClick(filterBy);
   };
 
-  /** centralised class builder so we don’t repeat long strings inline */
-  const buildClasses = (isActive: boolean) => {
-    if (variant === 'secondary') {
-      return cn(
-        isActive
-          ? 'bg-yellow-400 text-black-500 shadow-none active:bg-yellow-400 active:text-black-500 hover:bg-yellow-400 hover:text-black-500'
-          : 'bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-yellow-400 active:text-black-500'
-      );
-    }
-
-    return cn(
-      isActive
-        ? 'bg-black-400 text-white shadow-none active:bg-black-400 active:text-white hover:bg-black-400 hover:text-white'
-        : 'bg-grey-50 shadow-none text-black-500 hover:bg-grey-50 hover:text-black-500 active:bg-black-400 active:text-white'
-    );
-  };
-
-  /** pass the same Button `type` prop we expose via `variant` */
-  const buttonType: 'primary' | 'secondary' = variant;
-
   return (
-    <div className="flex w-fit rounded-full bg-grey-50 p-1">
-      {/* “All / Selected” tab */}
-      <Button
-        as="ghost"
-        type={buttonType}
-        variant="md"
-        className={buildClasses(activeValue === '')}
-        onClick={() => handleTabClick('')}
-      >
-        {locale === 'fr' ? 'Tous' : 'View all'}
-      </Button>
+    <div className="relative isolate flex w-fit rounded-full bg-grey-50 p-1">
+      {tabs.map(({ value, title }) => {
+        const isActive = activeValue === value;
 
-      {/* dynamic tabs */}
-      {category.map(({ title }) => (
-        <Button
-          key={title}
-          as="ghost"
-          type={buttonType}
-          variant="md"
-          className={buildClasses(activeValue === title)}
-          onClick={() => handleTabClick(title)}
-        >
-          {title}
-        </Button>
-      ))}
+        return (
+          <Button
+            key={value}
+            as="ghost"
+            type={variant}
+            variant="md"
+            className={cn(
+              'relative bg-transparent shadow-none hover:bg-transparent active:bg-transparent motion-reduce:transition-none',
+              isActive && variant === 'primary'
+                ? 'text-white hover:text-white active:text-white'
+                : 'text-black-500 hover:text-black-500 active:text-black-500'
+            )}
+            onClick={() => handleTabClick(value)}
+          >
+            {isActive && (
+              <motion.span
+                aria-hidden="true"
+                layoutId={shouldReduceMotion ? undefined : indicatorId}
+                transition={SPRING_TRANSITION}
+                className={cn(
+                  'pointer-events-none absolute inset-0 rounded-[inherit]',
+                  variant === 'primary' ? 'bg-black-400' : 'bg-yellow-400'
+                )}
+              />
+            )}
+            <span className="relative z-10">{title}</span>
+          </Button>
+        );
+      })}
     </div>
   );
 };

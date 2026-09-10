@@ -12,6 +12,7 @@ import TabsMenu from '@/components/blocks/TabsMenu';
 import { BlogHero } from '@/components/blocks/Hero';
 import { BlogCard } from '@/components/customs/Card';
 import EmptyData from '@/components/customs/EmptyData';
+import { RevealItem } from '@/components/customs/Reveal';
 import { Pagination } from '@/components/blocks/Pagination';
 import { Spinner } from '@/components/customs/Spinner/Spinner';
 
@@ -67,7 +68,7 @@ export const PageView: FC<Props> = (props) => {
 
   return (
     <>
-      <Section isDivider>
+      <Section isDivider revealTrigger="load">
         {props.newestBlog && (
           <BlogHero
             heading={t('heading')}
@@ -80,7 +81,7 @@ export const PageView: FC<Props> = (props) => {
       </Section>
 
       <Section childrenProps={{ className: 'xl:gap-12' }}>
-        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">
+        <RevealItem className="flex flex-col items-center justify-between gap-8 lg:flex-row">
           <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
               category={props.category.map((cat) => ({
@@ -100,7 +101,7 @@ export const PageView: FC<Props> = (props) => {
             onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
             className="flex h-10 w-full items-center text-base lg:max-w-[280px]"
           />
-        </div>
+        </RevealItem>
 
         <AnimatePresence>
           {isPending && (

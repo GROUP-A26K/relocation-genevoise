@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { cn } from '@/libs/utils';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { getText } from '@/components/customs/Text/TextWithStrong';
 
@@ -49,7 +50,7 @@ export const InsurancesFeature: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
-      <div className="flex w-full justify-start">
+      <RevealItem className="flex w-full justify-start">
         <div className="flex max-w-3xl flex-col gap-4 text-left lg:gap-4">
           <div className="flex flex-col gap-3">
             <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -63,8 +64,8 @@ export const InsurancesFeature: FC<Props> = ({
             {description}
           </p>
         </div>
-      </div>
-      <div className="flex flex-col items-center gap-12 xl:flex-row xl:justify-between xl:gap-16">
+      </RevealItem>
+      <RevealItem className="flex flex-col items-center gap-12 xl:flex-row xl:justify-between xl:gap-16">
         <div className="flex flex-col justify-center">
           {reasonItems.map((reasonItem, i) => (
             <div
@@ -95,7 +96,7 @@ export const InsurancesFeature: FC<Props> = ({
             )}
           />
         </div>
-      </div>
+      </RevealItem>
     </div>
   );
 };

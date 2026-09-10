@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import HeroImage from '@/assets/img/bg/agence-de-relocation-a-geneve.webp';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
@@ -53,7 +54,7 @@ export const HomeHero: FC<Props> = ({
 
       <div className="flex w-full items-center justify-center">
         <div className="flex flex-col gap-6">
-          <div className="flex w-full max-w-xl flex-col gap-4 text-center lg:items-center lg:gap-6">
+          <RevealItem className="flex w-full max-w-xl flex-col gap-4 text-center lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
                 {heading}
@@ -65,9 +66,9 @@ export const HomeHero: FC<Props> = ({
             <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
               {description}
             </p>
-          </div>
+          </RevealItem>
 
-          <div className="flex w-full flex-col items-center justify-center gap-2 lg:flex-row">
+          <RevealItem className="flex w-full flex-col items-center justify-center gap-2 lg:flex-row">
             {button && (
               <Link href="/contact" className="w-full lg:w-fit">
                 <Button
@@ -93,11 +94,11 @@ export const HomeHero: FC<Props> = ({
                 </Button>
               </Link>
             )}
-          </div>
+          </RevealItem>
         </div>
       </div>
 
-      <div className="relative flex flex-col items-start justify-between">
+      <RevealItem className="relative flex flex-col items-start justify-between">
         <div className="w-full">
           <Image
             alt="Agence de Relocation à Genève"
@@ -108,7 +109,7 @@ export const HomeHero: FC<Props> = ({
             className="aspect-video max-h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2 lg:h-[480px] lg:max-h-[480px]"
           />
         </div>
-      </div>
+      </RevealItem>
     </div>
   );
 };

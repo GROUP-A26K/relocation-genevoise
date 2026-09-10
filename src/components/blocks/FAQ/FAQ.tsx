@@ -1,3 +1,4 @@
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import {
   Accordion,
@@ -58,7 +59,7 @@ export const FAQ: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col items-center gap-12 lg:gap-16">
-      <div className="flex w-full items-center justify-start lg:justify-center">
+      <RevealItem className="flex w-full items-center justify-start lg:justify-center">
         <div className="flex max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
           <div className="flex flex-col gap-3">
             <p className="text-left text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
@@ -72,30 +73,28 @@ export const FAQ: FC<Props> = ({
             {description}
           </p>
         </div>
-      </div>
+      </RevealItem>
 
-      <Accordion
-        type="single"
-        collapsible
-        className="flex w-full max-w-3xl flex-col"
-      >
-        {faqs.map((item, index) => (
-          <AccordionItem
-            key={index}
-            value={`item-${index}`}
-            className="border-b border-gray-900/10 py-8 duration-500 first:pt-0 last:border-b-0 last:pb-0"
-          >
-            <AccordionTrigger className="py-0 text-lg leading-[130%]! font-semibold">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="max-w-[720px] py-0 pt-2 text-sm leading-[130%]! text-black-200">
-              <p>
-                <FormattedText text={item.answer} />
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <RevealItem className="flex w-full max-w-3xl flex-col">
+        <Accordion type="single" collapsible className="flex w-full flex-col">
+          {faqs.map((item, index) => (
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border-b border-gray-900/10 py-8 duration-500 first:pt-0 last:border-b-0 last:pb-0"
+            >
+              <AccordionTrigger className="py-0 text-lg leading-[130%]! font-semibold">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent className="max-w-[720px] py-0 pt-2 text-sm leading-[130%]! text-black-200">
+                <p>
+                  <FormattedText text={item.answer} />
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </RevealItem>
     </div>
   );
 };

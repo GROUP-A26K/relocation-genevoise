@@ -1,6 +1,7 @@
 'use client';
 import { useTranslations } from 'next-intl';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 
 import { Content } from './Content';
@@ -9,7 +10,7 @@ export const PageView = () => {
   const t = useTranslations('LegalNotices');
   return (
     <PageContainer>
-      <div className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
+      <RevealItem className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
         <div className="flex flex-col gap-3">
           <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
             {t('heading')}
@@ -18,7 +19,7 @@ export const PageView = () => {
             <FormattedText text={t('subHeading')} />
           </h1>
         </div>
-      </div>
+      </RevealItem>
       <Content
         section={[
           {

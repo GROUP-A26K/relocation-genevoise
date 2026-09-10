@@ -1,5 +1,6 @@
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { BlogCard } from '@/components/customs/Card/BlogCard';
 
@@ -26,7 +27,7 @@ const BlogList: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
-      <div className="flex flex-row items-end justify-between">
+      <RevealItem className="flex flex-row items-end justify-between">
         <div className="flex max-w-xl flex-col gap-4 lg:gap-6">
           <div className="flex flex-col gap-3">
             <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -50,23 +51,25 @@ const BlogList: FC<Props> = ({
             {buttonText}
           </Button>
         </Link>
-      </div>
+      </RevealItem>
 
-      <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <RevealItem className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {blogs.map((post) => (
           <BlogCard key={post.id} {...post} />
         ))}
-      </div>
-      <Link href={buttonUrl} className="lg:hidden">
-        <Button
-          as="solid"
-          variant="md"
-          type="primary"
-          className="w-full lg:hidden"
-        >
-          {buttonText}
-        </Button>
-      </Link>
+      </RevealItem>
+      <RevealItem className="lg:hidden">
+        <Link href={buttonUrl}>
+          <Button
+            as="solid"
+            variant="md"
+            type="primary"
+            className="w-full lg:hidden"
+          >
+            {buttonText}
+          </Button>
+        </Link>
+      </RevealItem>
     </div>
   );
 };

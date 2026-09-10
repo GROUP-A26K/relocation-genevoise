@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import Section from '@/components/customs/Section';
 import { Button } from '@/components/ui/button-custom';
 import { PropertyCard } from '@/components/customs/Card';
+import { RevealItem } from '@/components/customs/Reveal';
 
 import type { IPropertyListing } from '@/models/Property';
 
@@ -18,7 +19,7 @@ export async function PropertyDetailSimilar({
 
   return (
     <Section>
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <RevealItem className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex max-w-3xl flex-col gap-6">
           <div className="flex flex-col items-start gap-3">
             <p className="!leading[130%] text-sm font-semibold text-yellow-600">
@@ -39,13 +40,13 @@ export async function PropertyDetailSimilar({
             {t('similar.viewAllButton')}
           </Button>
         </Link>
-      </div>
+      </RevealItem>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+      <RevealItem className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
         {relatedProperties.map((property) => (
           <PropertyCard key={property.id} {...property} />
         ))}
-      </div>
+      </RevealItem>
     </Section>
   );
 }

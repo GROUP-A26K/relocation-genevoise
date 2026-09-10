@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { cn } from '@/libs/utils';
+import { RevealItem } from '@/components/customs/Reveal';
 
 import type { IAreaPhotoTour } from '@/models/Property';
 
@@ -67,7 +68,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
   );
 
   return (
-    <div
+    <RevealItem
       className="flex w-full flex-col gap-8 lg:flex-row lg:gap-16"
       id={`area-${index}`}
     >
@@ -150,6 +151,6 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
           </div>
         )}
       </div>
-    </div>
+    </RevealItem>
   );
 };

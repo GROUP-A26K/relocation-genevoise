@@ -1,4 +1,5 @@
 import { cn } from '@/libs/utils';
+import { RevealSection } from '@/components/customs/Reveal';
 
 import type { FC } from 'react';
 
@@ -9,7 +10,7 @@ interface Props {
 export const ContentContainer: FC<Props> = ({ children }) => {
   return (
     <section className="relative flex flex-col items-center justify-center text-black-500">
-      <div
+      <RevealSection
         className={cn(
           'relative container flex flex-col gap-8 px-4 pt-0 pb-14',
           'lg:flex-row lg:px-[48px] lg:pt-8 lg:pb-16',
@@ -19,7 +20,7 @@ export const ContentContainer: FC<Props> = ({ children }) => {
         )}
       >
         {children}
-      </div>
+      </RevealSection>
     </section>
   );
 };

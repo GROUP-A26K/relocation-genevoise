@@ -2,6 +2,7 @@
 
 import { useTransition } from 'react';
 
+import { RevealSection } from '@/components/customs/Reveal';
 import { usePropertyFilters } from '@/hooks/usePropertyFilters';
 import { useExchangeRates } from '@/context/ExchangeRatesContext';
 
@@ -24,14 +25,14 @@ export default function PropertyListingsSection({ properties, meta }: Props) {
 
   return (
     <section className="flex flex-col items-center px-4 lg:px-[48px] xl:px-[60px] 2xl:px-[100px]">
-      <div className="w-full max-w-[1240px]">
+      <RevealSection className="w-full max-w-[1240px]">
         <PropertyResultsHeader {...meta.pagination} />
         <PropertyResultsContent
           properties={properties}
           meta={meta}
           loading={isPending}
         />
-      </div>
+      </RevealSection>
     </section>
   );
 }

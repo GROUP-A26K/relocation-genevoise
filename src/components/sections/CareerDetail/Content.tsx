@@ -14,6 +14,7 @@ import Button from '@/components/customs/Button';
 import CtaBlock from '@/components/customs/CtaBlock';
 import { StatsList } from '@/components/blocks/Stats';
 import { type Block, BODY_BLOCKS } from '@/models/Block';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FAQBlog } from '@/components/blocks/FAQ/FAQBlog';
 import { DynamicContent } from '@/components/blocks/DynamicContent';
 
@@ -113,7 +114,7 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
     <div className="top-0 flex w-full flex-col items-start justify-center">
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[570px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         <div className="inline-flex flex-col items-start justify-start">
-          <div className="flex w-full flex-col items-start justify-start gap-6 bg-white pb-8">
+          <RevealItem className="flex w-full flex-col items-start justify-start gap-6 bg-white pb-8">
             <div className="flex w-full flex-col items-start justify-start gap-6">
               <div className="flex flex-col items-start justify-start gap-3 self-stretch">
                 <div
@@ -182,7 +183,7 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
                 {buttonT('share')}
               </Button>
             </div>
-          </div>
+          </RevealItem>
           <div className="flex flex-col items-start justify-start gap-16 self-stretch">
             <div className="flex flex-col items-start justify-start gap-8 self-stretch">
               <div className="h-px self-stretch bg-slate-200" />
