@@ -5,6 +5,7 @@ import { Link } from '@/libs/i18nNavigation';
 import GGLogo from '@/components/icons/GGLogo';
 import Section from '@/components/customs/Section';
 import LogoIcon from '@/components/icons/LogoIcon';
+import { RevealItem } from '@/components/customs/Reveal';
 import Facebook from '@/assets/img/logos/social/facebook.svg';
 import Linkedin from '@/assets/img/logos/social/linkedin.svg';
 import Instagram from '@/assets/img/logos/social/instagram.svg';
@@ -148,7 +149,7 @@ const Footer = async () => {
         Footer
       </h2>
       <Section isDivider>
-        <div className="grid grid-cols-1 items-start justify-between gap-y-4 lg:grid-cols-2">
+        <RevealItem className="grid grid-cols-1 items-start justify-between gap-y-4 lg:grid-cols-2">
           <div className="flex max-w-xl flex-col justify-start gap-2">
             <h3 className="text-lg leading-[130%]! font-semibold">
               {contact.title}
@@ -158,12 +159,12 @@ const Footer = async () => {
             </p>
           </div>
           <SubscribeForm />
-        </div>
+        </RevealItem>
       </Section>
 
       <Section>
         <div className="flex flex-col gap-0 lg:flex-row lg:gap-16">
-          <div className="mb-8 flex w-full flex-col gap-6 lg:mb-0 lg:max-w-84">
+          <RevealItem className="mb-8 flex w-full flex-col gap-6 lg:mb-0 lg:max-w-84">
             <div className="flex items-center lg:justify-start">
               <Link href="/">
                 <LogoIcon height={32} />
@@ -176,9 +177,9 @@ const Footer = async () => {
               title={googleRating.title}
               subTitle={googleRating.subTitle}
             />
-          </div>
+          </RevealItem>
 
-          <div className="grid w-full grid-cols-2 gap-8 text-sm lg:grid-cols-4 lg:gap-0">
+          <RevealItem className="grid w-full grid-cols-2 gap-8 text-sm lg:grid-cols-4 lg:gap-0">
             <div className="flex w-full flex-col gap-8 lg:col-span-2 lg:grid lg:grid-cols-2 lg:gap-0">
               <div>
                 <ul className="space-y-3">
@@ -267,7 +268,7 @@ const Footer = async () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </RevealItem>
         </div>
       </Section>
 

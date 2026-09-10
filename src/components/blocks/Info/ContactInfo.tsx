@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { InfoContactCard } from '@/components/customs/Card';
 
@@ -46,7 +47,7 @@ const ContactInfo: FC<Props> = ({
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
-        <div className="flex w-full items-center justify-center">
+        <RevealItem className="flex w-full items-center justify-center">
           <div className="flex max-w-xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -60,9 +61,9 @@ const ContactInfo: FC<Props> = ({
               {description}
             </p>
           </div>
-        </div>
+        </RevealItem>
       )}
-      <div className="flex flex-col gap-8 lg:gap-6">
+      <RevealItem className="flex flex-col gap-8 lg:gap-6">
         <div className="grid gap-12 lg:grid-cols-3 lg:gap-8">
           <Link
             href={`mailto:${reasonItems[0].info}`}
@@ -89,7 +90,7 @@ const ContactInfo: FC<Props> = ({
             <InfoContactCard {...reasonItems[2]} />
           </Link>
         </div>
-      </div>
+      </RevealItem>
     </div>
   );
 };

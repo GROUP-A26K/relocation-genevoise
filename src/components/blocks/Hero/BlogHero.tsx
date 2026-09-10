@@ -1,6 +1,7 @@
 'use client';
 
 import { BlogBGCard } from '@/components/customs/Card';
+import { RevealItem } from '@/components/customs/Reveal';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 
 import type { FC } from 'react';
@@ -26,7 +27,7 @@ const BlogHero: FC<Props> = ({
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       <div className="flex w-full items-center justify-center">
-        <div className="flex w-full max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
+        <RevealItem className="flex w-full max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
           <div className="flex flex-col gap-3">
             <h1 className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
               {heading}
@@ -50,10 +51,12 @@ const BlogHero: FC<Props> = ({
               </Button>
             </Link>
           </div> */}
-        </div>
+        </RevealItem>
       </div>
 
-      <BlogBGCard {...blog} />
+      <RevealItem>
+        <BlogBGCard {...blog} />
+      </RevealItem>
     </div>
   );
 };

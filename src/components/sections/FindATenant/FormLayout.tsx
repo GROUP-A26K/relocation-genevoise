@@ -1,6 +1,7 @@
 import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/libs/utils';
+import { RevealItem, RevealSection } from '@/components/customs/Reveal';
 
 const CONTAINER =
   'container w-full max-w-(--breakpoint-2xl) mx-auto px-4 lg:px-[48px] 2xl:px-[100px]';
@@ -27,8 +28,11 @@ export default function FormLayout({
   return (
     <section className="bg-white text-black-500">
       <div className="bg-yellow-25">
-        <div className={cn(CONTAINER, 'pt-12 pb-24 lg:pt-16 lg:pb-32')}>
-          <div className="flex max-w-[760px] flex-col gap-3">
+        <RevealSection
+          trigger="load"
+          className={cn(CONTAINER, 'pt-12 pb-24 lg:pt-16 lg:pb-32')}
+        >
+          <RevealItem className="flex max-w-[760px] flex-col gap-3">
             <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
               {eyebrow}
             </p>
@@ -40,12 +44,15 @@ export default function FormLayout({
                 {description}
               </p>
             </div>
-          </div>
-        </div>
+          </RevealItem>
+        </RevealSection>
       </div>
 
-      <div className={cn(CONTAINER, '-mt-16 pb-12 lg:pb-16')}>
-        <div className="overflow-hidden rounded-3xl bg-white p-4 pt-6 shadow-[0px_2px_20px_0px_rgba(203,213,225,0.4)] lg:grid lg:grid-cols-2 lg:gap-16 lg:p-8">
+      <RevealSection
+        trigger="load"
+        className={cn(CONTAINER, '-mt-16 pb-12 lg:pb-16')}
+      >
+        <RevealItem className="overflow-hidden rounded-3xl bg-white p-4 pt-6 shadow-[0px_2px_20px_0px_rgba(203,213,225,0.4)] lg:grid lg:grid-cols-2 lg:gap-16 lg:p-8">
           {children}
 
           <div
@@ -65,8 +72,8 @@ export default function FormLayout({
               draggable={false}
             />
           </div>
-        </div>
-      </div>
+        </RevealItem>
+      </RevealSection>
     </section>
   );
 }

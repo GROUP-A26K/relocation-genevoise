@@ -1,5 +1,6 @@
 import { Mail, MessageCircle, Phone } from 'lucide-react';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { FeatureColCard } from '@/components/customs/Card';
 
@@ -50,7 +51,7 @@ export const AssistanceInfo: FC<Props> = ({
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
-        <div className="flex w-full justify-center">
+        <RevealItem className="flex w-full justify-center">
           <div className="flex max-w-xl flex-col gap-4 text-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -64,9 +65,9 @@ export const AssistanceInfo: FC<Props> = ({
               {description}
             </p>
           </div>
-        </div>
+        </RevealItem>
       )}
-      <div className="flex flex-col gap-8 lg:gap-6">
+      <RevealItem className="flex flex-col gap-8 lg:gap-6">
         <h2 className="sr-only">
           <FormattedText text={subHeading} />
         </h2>
@@ -77,7 +78,7 @@ export const AssistanceInfo: FC<Props> = ({
             </li>
           ))}
         </ul>
-      </div>
+      </RevealItem>
     </div>
   );
 };

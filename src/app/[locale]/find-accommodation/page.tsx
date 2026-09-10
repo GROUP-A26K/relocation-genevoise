@@ -53,7 +53,7 @@ export default async function Page(props: Props) {
 
   return (
     <>
-      <Section className="relative">
+      <Section revealTrigger="load" className="relative">
         <Hero
           heroImage={{
             src: HeroImage.src,

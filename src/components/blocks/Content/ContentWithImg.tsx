@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import ContentWithImgBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
 
@@ -23,7 +24,7 @@ export const ContentWithImg: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-14 lg:gap-16">
-      <div className="flex flex-col items-center justify-end gap-12 lg:flex-row lg:gap-16">
+      <RevealItem className="flex flex-col items-center justify-end gap-12 lg:flex-row lg:gap-16">
         <Image
           src={ContentWithImgBG}
           alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
@@ -61,7 +62,7 @@ export const ContentWithImg: FC<Props> = ({
             </Link>
           )}
         </div>
-      </div>
+      </RevealItem>
     </div>
   );
 };

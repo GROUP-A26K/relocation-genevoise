@@ -1,4 +1,6 @@
 'use client';
+import { RevealItem } from '@/components/customs/Reveal';
+
 import type { ReactNode } from 'react';
 
 interface PropertyDetailSectionProps {
@@ -11,11 +13,11 @@ export const PropertyDetailSection = ({
   content,
 }: PropertyDetailSectionProps) => {
   return (
-    <div className="flex flex-col gap-6">
+    <RevealItem className="flex flex-col gap-6">
       {title && (
         <h2 className="text-2xl leading-[130%]! font-semibold">{title}</h2>
       )}
       <div className="w-full">{content}</div>
-    </div>
+    </RevealItem>
   );
 };

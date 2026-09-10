@@ -35,7 +35,7 @@ export default async function Page(props: Props) {
   });
   return (
     <>
-      <Section>
+      <Section revealTrigger="load">
         <h1 className="sr-only">{t('heading')}</h1>
         <FAQ
           heading={t('heading')}

@@ -4,6 +4,7 @@ import Image, { type StaticImageData } from 'next/image';
 
 import Section from '@/components/customs/Section';
 import CountUp from '@/components/customs/CountUp';
+import { RevealItem } from '@/components/customs/Reveal';
 
 type TMetric = {
   value: string;
@@ -33,7 +34,7 @@ export default function WhyChooseUs({
   return (
     <Section className="bg-black-700" childrenProps={{ className: 'gap-16' }}>
       <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-24">
-        <div className="flex flex-1 flex-col gap-3">
+        <RevealItem className="flex flex-1 flex-col gap-3">
           <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
             {eyebrow}
           </p>
@@ -67,9 +68,9 @@ export default function WhyChooseUs({
               </ul>
             </div>
           </div>
-        </div>
+        </RevealItem>
 
-        <div className="relative aspect-572/420 w-full overflow-hidden rounded-3xl lg:flex-1">
+        <RevealItem className="relative aspect-572/420 w-full overflow-hidden rounded-3xl lg:flex-1">
           <Image
             src={image.src}
             alt={image.alt}
@@ -79,10 +80,10 @@ export default function WhyChooseUs({
             className="object-cover"
             draggable={false}
           />
-        </div>
+        </RevealItem>
       </div>
 
-      <div className="flex flex-col overflow-hidden rounded-3xl bg-black-500 lg:flex-row">
+      <RevealItem className="flex flex-col overflow-hidden rounded-3xl bg-black-500 lg:flex-row">
         {metrics.map((metric, index) => (
           <Fragment key={metric.label}>
             <div className="flex flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
@@ -100,7 +101,7 @@ export default function WhyChooseUs({
             )}
           </Fragment>
         ))}
-      </div>
+      </RevealItem>
     </Section>
   );
 }

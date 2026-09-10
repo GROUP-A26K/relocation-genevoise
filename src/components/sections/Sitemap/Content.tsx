@@ -1,6 +1,9 @@
 'use client';
+import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
+import { RevealItem } from '@/components/customs/Reveal';
 import { List, ListItem } from '@/components/customs/Text';
+import { ANCHOR_SCROLL_MARGIN } from '@/components/blocks/DynamicContent/constants';
 
 import type { NavbarProps } from './PageView';
 
@@ -9,7 +12,11 @@ export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
     <div className="top-0 flex flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[470px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         {sitemap.menu.map((section) => (
-          <div id={section.id} className="flex flex-col gap-4" key={section.id}>
+          <RevealItem
+            id={section.id}
+            className={cn('flex flex-col gap-4', ANCHOR_SCROLL_MARGIN)}
+            key={section.id}
+          >
             <h2 className="text-xl leading-[130%]! font-bold lg:text-2xl">
               {section.title}
             </h2>
@@ -34,7 +41,7 @@ export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
                   </ListItem>
                 ))}
             </List>
-          </div>
+          </RevealItem>
         ))}
       </div>
     </div>

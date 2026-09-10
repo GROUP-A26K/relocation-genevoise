@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation';
+import NextTopLoader from 'nextjs-toploader';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 
+import '@/styles/globals.css';
 import { Env } from '@/libs/Env';
 import { routing } from '@/libs/i18nNavigation';
-import '@/styles/globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import { Navbar } from '@/components/sections/Navigation/NavBar';
 
@@ -33,6 +34,7 @@ export default async function RootLayout(props: {
       timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
     >
       <Navbar locale={locale} />
+      <NextTopLoader color="#f7d913" showSpinner={false} height={1} />
       {props.children}
       <Toaster />
     </NextIntlClientProvider>

@@ -12,7 +12,7 @@ export default async function GalleryPage({ params }: Props) {
   const areas = await getPropertyPhotoTour(slug, locale);
 
   return (
-    <Section isDivider>
+    <Section isDivider revealTrigger="load">
       <PropertySectionHeader areas={areas} slug={slug} />
       <PhotoTourView areas={areas} />
     </Section>

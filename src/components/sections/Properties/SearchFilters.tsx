@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { Form } from '@/components/ui/form';
 import Button from '@/components/customs/Button';
 import { usePropertyFilters } from '@/hooks/usePropertyFilters';
+import { RevealItem, RevealSection } from '@/components/customs/Reveal';
 import {
   InputField,
   MultiSelectField,
@@ -58,8 +59,11 @@ const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
   };
 
   return (
-    <div className="z-10 flex items-start justify-center px-4 pb-12 lg:px-[48px] lg:pb-16 xl:px-[60px] 2xl:px-[100px]">
-      <div className="w-full max-w-[1240px] rounded-3xl bg-white px-4 pt-6 pb-4 shadow-[0px_2px_20px_0px_rgba(211,211,211,0.4)] lg:p-8">
+    <RevealSection
+      trigger="load"
+      className="z-10 flex items-start justify-center px-4 pb-12 lg:px-[48px] lg:pb-16 xl:px-[60px] 2xl:px-[100px]"
+    >
+      <RevealItem className="w-full max-w-[1240px] rounded-3xl bg-white px-4 pt-6 pb-4 shadow-[0px_2px_20px_0px_rgba(211,211,211,0.4)] lg:p-8">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -119,8 +123,8 @@ const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
             </Button>
           </form>
         </Form>
-      </div>
-    </div>
+      </RevealItem>
+    </RevealSection>
   );
 };
 

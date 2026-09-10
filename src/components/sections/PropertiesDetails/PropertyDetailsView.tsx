@@ -3,6 +3,7 @@ import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import { PropertyMap } from '@/components/blocks/PropertyDetail/Map';
 import { PropertyDetailTable } from '@/components/blocks/PropertyDetail/Table';
 import { PropertyAgentDetails } from '@/components/blocks/PropertyDetail/AgentInfo';
@@ -61,7 +62,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
   return (
     <PropertyDetailContainer>
       <div className="flex flex-col gap-12 lg:col-span-8 lg:gap-16">
-        <div className="flex flex-col gap-6">
+        <RevealItem className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <div className="flex flex-wrap items-center gap-3">
               <span
@@ -105,7 +106,7 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
               </span>
             )}
           </div>
-        </div>
+        </RevealItem>
         <div>
           <PropertyDetailSection
             title={t('sections.facilities')}

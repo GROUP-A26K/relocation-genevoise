@@ -2,10 +2,15 @@
 
 import { useTranslations } from 'next-intl';
 
-import { cn } from '@/libs/utils';
-import { useScrollspy } from '@/hooks/useScrollspy';
+import { useScroll } from '@/hooks/useScroll';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
-import { BlogContentMenu } from '@/components/blocks/BlogContent';
+import { ContentMenu } from '@/components/blocks/DynamicContent';
+import {
+  DESKTOP_MENU_OFFSET,
+  MOBILE_MENU_OFFSET,
+} from '@/components/blocks/DynamicContent/constants';
 
 import { Content } from './Content';
 import { PageContainer } from './PageContainer';
@@ -25,6 +30,8 @@ export interface NavbarProps {
   menu: MenuItem[];
 }
 
+const SECTION_IDS = ['general', 'services', 'blog', 'properties'];
+
 export const PageView = ({
   blogSitemap,
   propertySitemap,
@@ -33,12 +40,12 @@ export const PageView = ({
   propertySitemap: { properties: PropertySitemap[]; meta: { total: number } };
 }) => {
   const t = useTranslations('SiteMap');
-  const { activeId, setActiveId } = useScrollspy([
-    'general',
-    'services',
-    'blog',
-    'properties',
-  ]);
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
+  const { activeId, setActiveId } = useScroll(
+    SECTION_IDS,
+    isDesktop ? DESKTOP_MENU_OFFSET : MOBILE_MENU_OFFSET,
+    { lockActiveDuringScroll: true }
+  );
 
   const sitemap: NavbarProps = {
     menu: [
@@ -105,7 +112,7 @@ export const PageView = ({
 
   return (
     <PageContainer>
-      <div className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
+      <RevealItem className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
         <div className="flex flex-col gap-3">
           <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
             {t('heading')}
@@ -114,22 +121,17 @@ export const PageView = ({
             <FormattedText text={t('subHeading')} />
           </h1>
         </div>
-      </div>
+      </RevealItem>
 
       <div className="flex flex-col gap-8 lg:flex-row">
-        <div
-          className={cn(
-            'relative h-fit w-full lg:sticky! lg:top-8! lg:max-w-[228px]'
+        <ContentMenu
+          className="xl:w-[228px]"
+          setActiveId={setActiveId}
+          activeId={activeId}
+          menuItems={sitemap.menu.filter(
+            (item): item is { id: string; title: string } => !!item.id
           )}
-        >
-          <BlogContentMenu
-            setActiveId={setActiveId}
-            activeId={activeId}
-            menuItems={sitemap.menu.filter(
-              (item): item is { id: string; title: string } => !!item.id
-            )}
-          />
-        </div>
+        />
 
         <Content sitemap={sitemap} />
       </div>

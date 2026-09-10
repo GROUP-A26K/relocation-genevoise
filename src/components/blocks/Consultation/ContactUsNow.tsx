@@ -1,5 +1,6 @@
 import Input from '@/components/customs/Input';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -26,16 +27,16 @@ export const ContactUsNow: FC<Props> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 items-start justify-between gap-4 gap-y-4 rounded-xl bg-primary-500 p-6 lg:grid-cols-2 lg:p-16">
-      <div className="flex max-w-xl flex-col gap-4 text-white">
+      <RevealItem className="flex max-w-xl flex-col gap-4 text-white">
         <h2 className="text-2xl leading-[130%]! font-semibold lg:text-3xl">
           {heading}
         </h2>
         <p className="text-sm leading-[130%]! font-normal">
           <FormattedText text={subHeading ?? ''} />
         </p>
-      </div>
+      </RevealItem>
 
-      <div className="flex flex-col gap-3">
+      <RevealItem className="flex flex-col gap-3">
         <div className="flex flex-row items-center justify-start gap-2">
           <div className="flex h-2 w-2 rounded-full bg-white" />
 
@@ -63,7 +64,7 @@ export const ContactUsNow: FC<Props> = ({
             Privacy Policy
           </span>
         </p>
-      </div>
+      </RevealItem>
     </div>
   );
 };

@@ -1,86 +1,98 @@
 'use client';
 
+import { useCallback } from 'react';
 import ReactCountUp from 'react-countup';
-import { useInView } from 'react-intersection-observer';
+import {
+  useInView,
+  type IntersectionOptions,
+} from 'react-intersection-observer';
 
-interface ICountUpProps {
+import { formatNumber, parseValue } from './utils';
+
+interface ICountUpProps extends Omit<
+  React.HTMLAttributes<HTMLSpanElement>,
+  'prefix'
+> {
+  ref?: React.Ref<HTMLSpanElement>;
   value: string;
+  start?: number;
   duration?: number;
-  threshold?: number;
-  className?: string;
-}
-
-function parseValue(value: string) {
-  const match = new RegExp(/[\d.,]+/).exec(value);
-
-  if (!match) {
-    return null;
-  }
-
-  const raw = match[0];
-  const start = match.index ?? 0;
-
-  const lastSep = Math.max(raw.lastIndexOf(','), raw.lastIndexOf('.'));
-  const trailing = lastSep >= 0 ? raw.slice(lastSep + 1) : '';
-  const hasDecimal = lastSep >= 0 && trailing.length !== 3;
-
-  const decimal = hasDecimal ? raw[lastSep] : '.';
-  const decimals = hasDecimal ? trailing.length : 0;
-  const integerPart = hasDecimal ? raw.slice(0, lastSep) : raw;
-  const separator = integerPart.includes(',')
-    ? ','
-    : integerPart.includes('.')
-      ? '.'
-      : '';
-
-  const numeric = hasDecimal
-    ? `${integerPart.replace(/[.,]/g, '')}.${trailing}`
-    : raw.replace(/[.,]/g, '');
-
-  return {
-    prefix: value.slice(0, start),
-    suffix: value.slice(start + raw.length),
-    end: Number.parseFloat(numeric),
-    decimals,
-    separator,
-    decimal,
-  };
+  end?: number;
+  prefix?: string;
+  suffix?: string;
+  separator?: string;
+  decimal?: string;
+  decimals?: number;
+  inViewOptions?: IntersectionOptions;
 }
 
 export default function CountUp({
+  ref: forwardedRef,
   value,
+  start = 0,
   duration = 2,
-  threshold = 0.3,
+  end,
+  prefix,
+  suffix,
+  separator,
+  decimal,
+  decimals,
+  inViewOptions,
   className,
+  ...props
 }: ICountUpProps) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold });
+  const { ref: inViewRef, inView } = useInView({
+    triggerOnce: true,
+    ...inViewOptions,
+  });
+
+  const setRefs = useCallback(
+    (node: HTMLSpanElement | null) => {
+      inViewRef(node);
+      if (typeof forwardedRef === 'function') {
+        forwardedRef(node);
+      } else if (forwardedRef) {
+        forwardedRef.current = node;
+      }
+    },
+    [inViewRef, forwardedRef]
+  );
+
   const parsed = parseValue(value);
 
   if (!parsed) {
     return (
-      <span ref={ref} className={className}>
+      <span ref={setRefs} className={className} {...props}>
         {value}
       </span>
     );
   }
 
-  const { prefix, suffix, end, decimals, separator, decimal } = parsed;
+  const config = {
+    end: end ?? parsed.end,
+    prefix: prefix ?? parsed.prefix,
+    suffix: suffix ?? parsed.suffix,
+    separator: separator ?? parsed.separator,
+    decimal: decimal ?? parsed.decimal,
+    decimals: decimals ?? parsed.decimals,
+  };
 
   return (
-    <span ref={ref} className={className}>
-      {prefix}
+    <span ref={setRefs} className={className} {...props}>
       {inView ? (
         <ReactCountUp
-          end={end}
+          start={start}
+          end={config.end}
           duration={duration}
-          decimals={decimals}
-          separator={separator}
-          decimal={decimal}
+          separator={config.separator}
+          decimal={config.decimal}
+          decimals={config.decimals}
+          prefix={config.prefix}
+          suffix={config.suffix}
         />
       ) : (
-        (0).toFixed(decimals).replace('.', decimal)
+        `${config.prefix}${formatNumber(start, config)}${config.suffix}`
       )}
-      {suffix}
     </span>
   );
 }

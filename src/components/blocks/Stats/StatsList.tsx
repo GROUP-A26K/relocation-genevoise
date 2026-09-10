@@ -1,3 +1,5 @@
+import { RevealItem } from '@/components/customs/Reveal';
+
 import type { FC } from 'react';
 
 export interface StatsBlock {
@@ -27,7 +29,7 @@ const StatsList: FC<StatsBlock> = ({
 }) => {
   return (
     <div className="grid w-full gap-8 rounded-xl bg-grey-50 p-8 lg:grid-cols-3 lg:gap-8">
-      <div className="flex flex-col gap-5">
+      <RevealItem className="flex flex-col gap-5">
         <div
           title={firstStat.value}
           className="line-clamp-1 text-center text-3xl leading-[130%]! font-semibold text-secondary-600"
@@ -40,9 +42,9 @@ const StatsList: FC<StatsBlock> = ({
         >
           {firstStat.label}
         </p>
-      </div>
+      </RevealItem>
 
-      <div className="flex flex-col gap-5">
+      <RevealItem className="flex flex-col gap-5">
         <div
           title={secondStat.value}
           className="line-clamp-1 text-center text-3xl leading-[130%]! font-semibold text-secondary-600"
@@ -55,9 +57,9 @@ const StatsList: FC<StatsBlock> = ({
         >
           {secondStat.label}
         </p>
-      </div>
+      </RevealItem>
 
-      <div className="flex flex-col gap-5">
+      <RevealItem className="flex flex-col gap-5">
         <div
           title={thirdStat.value}
           className="line-clamp-1 text-center text-3xl leading-[130%]! font-semibold text-secondary-600"
@@ -70,7 +72,7 @@ const StatsList: FC<StatsBlock> = ({
         >
           {thirdStat.label}
         </p>
-      </div>
+      </RevealItem>
     </div>
   );
 };

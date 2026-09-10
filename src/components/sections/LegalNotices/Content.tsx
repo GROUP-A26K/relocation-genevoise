@@ -1,3 +1,4 @@
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText, Paragraph } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -15,7 +16,7 @@ export const Content: FC<ContentProps> = ({ section }) => {
     <div className="top-0 flex flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         {section.map((item, index) => (
-          <div key={index} className="flex flex-col gap-4">
+          <RevealItem key={index} className="flex flex-col gap-4">
             <h2 className="text-xl font-bold lg:text-2xl">{item.title}</h2>
             <div className="flex flex-col text-sm text-black-200 lg:text-base">
               <div className="flex flex-col gap-4">
@@ -33,7 +34,7 @@ export const Content: FC<ContentProps> = ({ section }) => {
                 ))}
               </div>
             </div>
-          </div>
+          </RevealItem>
         ))}
       </div>
     </div>

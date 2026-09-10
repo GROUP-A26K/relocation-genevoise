@@ -5,6 +5,7 @@ import {
   DisclosurePanel,
 } from '@headlessui/react';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -59,7 +60,7 @@ export const AssistanceFAQ: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-16">
-      <div className="flex w-full justify-start">
+      <RevealItem className="flex w-full justify-start">
         <div className="flex max-w-3xl flex-col gap-4 text-left lg:gap-6">
           <div className="flex flex-col gap-3">
             <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -73,43 +74,45 @@ export const AssistanceFAQ: FC<Props> = ({
             {description}
           </p>
         </div>
-      </div>
-      <dl className="flex w-full max-w-3xl flex-col gap-8">
-        {faqs.map((faq) => (
-          <Disclosure
-            key={faq.question}
-            as="div"
-            className="duration-500 first:pt-0 last:pb-0"
-          >
-            <dt>
-              <DisclosureButton className="group flex w-full items-start justify-between text-left text-black-500">
-                <span className="text-lg leading-[130%]! font-semibold">
-                  {faq.question}
-                </span>
-                <span className="ml-6 flex h-6 items-center">
-                  <CirclePlus
-                    aria-hidden="true"
-                    className="size-6 text-primary-500 group-data-open:hidden"
-                  />
-                  <CircleMinus
-                    aria-hidden="true"
-                    className="size-6 text-primary-500 group-[&:not([data-open])]:hidden"
-                  />
-                </span>
-              </DisclosureButton>
-            </dt>
-            <DisclosurePanel
-              transition
-              as="dd"
-              className="origin-top transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
+      </RevealItem>
+      <RevealItem className="flex w-full max-w-3xl">
+        <dl className="flex w-full flex-col gap-8">
+          {faqs.map((faq) => (
+            <Disclosure
+              key={faq.question}
+              as="div"
+              className="duration-500 first:pt-0 last:pb-0"
             >
-              <p className="max-w-[720px] pt-2 text-sm leading-[130%]! text-black-200">
-                {faq.answer}
-              </p>
-            </DisclosurePanel>
-          </Disclosure>
-        ))}
-      </dl>
+              <dt>
+                <DisclosureButton className="group flex w-full items-start justify-between text-left text-black-500">
+                  <span className="text-lg leading-[130%]! font-semibold">
+                    {faq.question}
+                  </span>
+                  <span className="ml-6 flex h-6 items-center">
+                    <CirclePlus
+                      aria-hidden="true"
+                      className="size-6 text-primary-500 group-data-open:hidden"
+                    />
+                    <CircleMinus
+                      aria-hidden="true"
+                      className="size-6 text-primary-500 group-[&:not([data-open])]:hidden"
+                    />
+                  </span>
+                </DisclosureButton>
+              </dt>
+              <DisclosurePanel
+                transition
+                as="dd"
+                className="origin-top transition duration-500 ease-out data-closed:-translate-y-6 data-closed:opacity-0"
+              >
+                <p className="max-w-[720px] pt-2 text-sm leading-[130%]! text-black-200">
+                  {faq.answer}
+                </p>
+              </DisclosurePanel>
+            </Disclosure>
+          ))}
+        </dl>
+      </RevealItem>
     </div>
   );
 };

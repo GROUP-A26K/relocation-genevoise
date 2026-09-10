@@ -1,6 +1,7 @@
 import { Building } from 'lucide-react';
 
 import { CompanyCard } from '@/components/customs/Card';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -57,7 +58,7 @@ export const CompaniesInfo: FC<Props> = ({
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       {heading && (
-        <div className="flex w-full items-center justify-center">
+        <RevealItem className="flex w-full items-center justify-center">
           <div className="flex max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
               <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
@@ -71,11 +72,11 @@ export const CompaniesInfo: FC<Props> = ({
               {description}
             </p>
           </div>
-        </div>
+        </RevealItem>
       )}
       <div className="flex flex-col gap-8 lg:gap-8">
         {items.map((item, i) => (
-          <div key={i} className="flex flex-col gap-8 lg:gap-8">
+          <RevealItem key={i} className="flex flex-col gap-8 lg:gap-8">
             <h2 className="flex border-l-4 border-secondary-500 pl-4 text-xl leading-[130%]! font-semibold lg:text-2xl">
               {item.title}
             </h2>
@@ -93,7 +94,7 @@ export const CompaniesInfo: FC<Props> = ({
                   </li>
                 ))}
             </ul>
-          </div>
+          </RevealItem>
         ))}
       </div>
     </div>

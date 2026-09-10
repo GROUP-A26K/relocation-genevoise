@@ -1,5 +1,6 @@
 import { Clock3, CloudUpload, MessagesSquare } from 'lucide-react';
 
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { FeatureColCard2 } from '@/components/customs/Card';
 
@@ -53,7 +54,7 @@ const Feature: FC<Props> = ({
 }) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
-      <div className="flex w-full items-center justify-center">
+      <RevealItem className="flex w-full items-center justify-center">
         <div className="flex max-w-3xl flex-col gap-4 text-center lg:items-center lg:gap-6">
           <div className="flex flex-col gap-3">
             <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
@@ -67,8 +68,8 @@ const Feature: FC<Props> = ({
             {description}
           </p>
         </div>
-      </div>
-      <div className="flex flex-col gap-6 lg:gap-8">
+      </RevealItem>
+      <RevealItem className="flex flex-col gap-6 lg:gap-8">
         <ul role="list" className="grid gap-4 lg:grid-cols-4 lg:gap-8">
           {reasonItems.map((reasonItem) => (
             <li key={reasonItem.title}>
@@ -76,7 +77,7 @@ const Feature: FC<Props> = ({
             </li>
           ))}
         </ul>
-      </div>
+      </RevealItem>
     </div>
   );
 };

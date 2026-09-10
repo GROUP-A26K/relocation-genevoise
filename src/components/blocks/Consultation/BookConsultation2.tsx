@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 
 import type { FC } from 'react';
@@ -27,7 +28,7 @@ export const BookConsultation2: FC<Props> = ({
     <div className="flex flex-col gap-12 rounded-xl bg-grey-50 py-12 lg:gap-16 lg:py-16">
       <div className="flex w-full items-center justify-center">
         <div className="flex w-full flex-col items-center gap-4 text-left lg:gap-8">
-          <div className="flex max-w-[720px] flex-col items-center gap-3">
+          <RevealItem className="flex max-w-[720px] flex-col items-center gap-3">
             <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
               {heading}
             </p>
@@ -37,9 +38,9 @@ export const BookConsultation2: FC<Props> = ({
             <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
               {description}
             </p>
-          </div>
+          </RevealItem>
 
-          <div className="flex w-full flex-col items-center justify-center gap-2 sm:flex-row lg:gap-4">
+          <RevealItem className="flex w-full flex-col items-center justify-center gap-2 sm:flex-row lg:gap-4">
             <Link href="/contact" className="w-full sm:w-fit">
               <Button
                 as="solid"
@@ -61,7 +62,7 @@ export const BookConsultation2: FC<Props> = ({
                 {buttonText2}
               </Button>
             </Link>
-          </div>
+          </RevealItem>
         </div>
       </div>
     </div>

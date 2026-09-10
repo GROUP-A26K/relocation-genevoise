@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { JobCard } from '@/components/customs/Card';
+import { RevealItem } from '@/components/customs/Reveal';
 
 import type { FC } from 'react';
 import type { Job } from '@/models/Job';
@@ -15,7 +16,7 @@ export const RelatedItemsPanel: FC<Props> = ({ jobs }) => {
   const t = useTranslations('CareerDetail.FeaturedJob');
 
   return (
-    <aside className="flex flex-1 flex-col gap-8">
+    <RevealItem as="aside" className="flex flex-1 flex-col gap-8">
       <h2 className="text-xl leading-relaxed font-semibold text-black">
         {t('title')}
       </h2>
@@ -27,6 +28,6 @@ export const RelatedItemsPanel: FC<Props> = ({ jobs }) => {
           </li>
         ))}
       </ul>
-    </aside>
+    </RevealItem>
   );
 };

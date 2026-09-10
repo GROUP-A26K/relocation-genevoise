@@ -1,6 +1,7 @@
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import Section from '@/components/customs/Section';
+import { RevealItem } from '@/components/customs/Reveal';
 
 import type { LucideIcon } from 'lucide-react';
 
@@ -32,7 +33,7 @@ export default function Services({
 }: IServicesProps) {
   return (
     <Section id="services" className="bg-white">
-      <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
+      <RevealItem className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
         <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
           {eyebrow}
         </p>
@@ -45,9 +46,9 @@ export default function Services({
             {description}
           </p>
         </div>
-      </div>
+      </RevealItem>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      <RevealItem className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
         {items.map(({ Icon, title, description }) => (
           <div
             key={title}
@@ -67,9 +68,9 @@ export default function Services({
             </div>
           </div>
         ))}
-      </div>
+      </RevealItem>
 
-      <div className="flex w-full justify-center">
+      <RevealItem className="flex w-full justify-center">
         <Link href={cta.href} className="max-lg:w-full">
           <Button
             as="solid"
@@ -80,7 +81,7 @@ export default function Services({
             {cta.text}
           </Button>
         </Link>
-      </div>
+      </RevealItem>
     </Section>
   );
 }

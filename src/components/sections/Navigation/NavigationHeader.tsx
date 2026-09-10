@@ -20,6 +20,7 @@ const NavigationHeader = ({ children }: INavigationHeaderProps) => {
 
   return (
     <header
+      data-site-header
       className="sticky top-0 z-50 flex w-full flex-col items-center justify-center bg-white transition-shadow duration-200 data-[scrolled=true]:shadow-[0_4px_14px_rgba(15,23,42,0.08)]"
       data-scrolled={hasScrolled}
     >

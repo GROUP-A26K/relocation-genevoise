@@ -1,3 +1,5 @@
+import { RevealSection } from '@/components/customs/Reveal';
+
 import type { FC, ReactNode } from 'react';
 
 interface Props {
@@ -9,9 +11,12 @@ const ContentContainer: FC<Props> = ({ children }) => (
     {/* Decorative top banner */}
     <div className="h-[303px] bg-secondary-25 pb-8 lg:pb-12" />
 
-    <div className="relative mt-[-300px] flex flex-col items-center">
+    <RevealSection
+      trigger="load"
+      className="relative mt-[-300px] flex flex-col items-center"
+    >
       {children}
-    </div>
+    </RevealSection>
   </div>
 );
 

@@ -1,8 +1,9 @@
 import { cn } from '@/libs/utils';
+import { RevealItem } from '@/components/customs/Reveal';
 
+import { ANCHOR_SCROLL_MARGIN } from './constants';
 import { renderGroupedContent } from './renderContent';
 
-import type { FC } from 'react';
 import type { WysiwygBlock } from '@/models/Block';
 
 export interface ContentProps extends WysiwygBlock {
@@ -11,14 +12,17 @@ export interface ContentProps extends WysiwygBlock {
   titleClassName?: string;
 }
 
-export const DynamicContent: FC<ContentProps> = ({
+export const DynamicContent: React.FC<ContentProps> = ({
   blockTitle,
   _key,
   className,
   titleClassName,
 }) => {
   return (
-    <div id={_key} className={cn('flex flex-col gap-4', className)}>
+    <RevealItem
+      id={_key}
+      className={cn('flex flex-col gap-4', ANCHOR_SCROLL_MARGIN, className)}
+    >
       {blockTitle?.title && (
         <h2
           className={cn(
@@ -30,7 +34,7 @@ export const DynamicContent: FC<ContentProps> = ({
         </h2>
       )}
       {blockTitle?.content && renderGroupedContent(blockTitle.content)}
-    </div>
+    </RevealItem>
   );
 };
 

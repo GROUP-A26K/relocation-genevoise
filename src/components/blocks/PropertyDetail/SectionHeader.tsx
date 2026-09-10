@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { ChevronLeft } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 
+import { RevealItem } from '@/components/customs/Reveal';
+
 import type { IAreaPhotoTour } from '@/models/Property';
 
 interface IPropertySectionHeaderProps {
@@ -21,7 +23,7 @@ export async function PropertySectionHeader({
 
   return (
     <div className="flex flex-col gap-8 lg:pb-16">
-      <div className="flex flex-col items-start gap-3">
+      <RevealItem className="flex flex-col items-start gap-3">
         <Link
           href={`/${locale}/properties/${slug}`}
           className="flex items-center gap-2"
@@ -34,9 +36,9 @@ export async function PropertySectionHeader({
         <h1 className="!leading[130%] text-3xl font-semibold text-black-500">
           {subheading}
         </h1>
-      </div>
+      </RevealItem>
 
-      <div className="hidden w-full gap-8 lg:grid lg:grid-cols-4 xl:grid-cols-5">
+      <RevealItem className="hidden w-full gap-8 lg:grid lg:grid-cols-4 xl:grid-cols-5">
         {areas.map((area, index) => (
           <a
             className="flex shrink-0 flex-col gap-6"
@@ -57,7 +59,7 @@ export async function PropertySectionHeader({
             </h2>
           </a>
         ))}
-      </div>
+      </RevealItem>
     </div>
   );
 }

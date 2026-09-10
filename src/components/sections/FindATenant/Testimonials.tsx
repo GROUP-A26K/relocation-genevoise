@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
 import Section from '@/components/customs/Section';
+import { RevealItem } from '@/components/customs/Reveal';
 import {
   type CarouselApi,
   Carousel,
@@ -104,7 +105,7 @@ export default function Testimonials({
 
   return (
     <Section className="bg-white">
-      <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
+      <RevealItem className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
         <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
           {eyebrow}
         </p>
@@ -117,66 +118,68 @@ export default function Testimonials({
             {description}
           </p>
         </div>
-      </div>
+      </RevealItem>
 
-      <Carousel
-        setApi={setApi}
-        opts={{ align: 'start', containScroll: 'trimSnaps' }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-8">
-          {items.map((item) => (
-            <CarouselItem
-              key={item.name}
-              className="basis-full pl-8 lg:basis-1/3"
-            >
-              <article className="flex h-full flex-col justify-between gap-8 rounded-2xl bg-grey-50 p-8">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <Star
-                        key={index}
-                        className="size-5 fill-[#FDB022] text-[#FDB022]"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-base leading-[150%]! font-normal text-black-300">
-                    {item.quote}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  {item.avatar ? (
-                    <Image
-                      src={item.avatar}
-                      alt={item.name}
-                      title={item.name}
-                      width={48}
-                      height={48}
-                      className="size-12 shrink-0 rounded-full object-cover"
-                      draggable={false}
-                    />
-                  ) : (
-                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-grey-200 text-sm font-semibold text-black-300">
-                      {getInitials(item.name)}
+      <RevealItem>
+        <Carousel
+          setApi={setApi}
+          opts={{ align: 'start', containScroll: 'trimSnaps' }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-8">
+            {items.map((item) => (
+              <CarouselItem
+                key={item.name}
+                className="basis-full pl-8 lg:basis-1/3"
+              >
+                <article className="flex h-full flex-col justify-between gap-8 rounded-2xl bg-grey-50 p-8">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Star
+                          key={index}
+                          className="size-5 fill-[#FDB022] text-[#FDB022]"
+                        />
+                      ))}
                     </div>
-                  )}
-                  <div className="flex flex-col gap-0.5">
-                    <p className="text-base leading-[130%]! font-semibold text-black-500">
-                      {item.name}
-                    </p>
-                    <p className="text-sm leading-[150%]! font-normal text-black-200">
-                      {item.role}
+                    <p className="text-base leading-[150%]! font-normal text-black-300">
+                      {item.quote}
                     </p>
                   </div>
-                </div>
-              </article>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
 
-      <div className="flex items-center justify-center gap-6">
+                  <div className="flex items-center gap-3">
+                    {item.avatar ? (
+                      <Image
+                        src={item.avatar}
+                        alt={item.name}
+                        title={item.name}
+                        width={48}
+                        height={48}
+                        className="size-12 shrink-0 rounded-full object-cover"
+                        draggable={false}
+                      />
+                    ) : (
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-grey-200 text-sm font-semibold text-black-300">
+                        {getInitials(item.name)}
+                      </div>
+                    )}
+                    <div className="flex flex-col gap-0.5">
+                      <p className="text-base leading-[130%]! font-semibold text-black-500">
+                        {item.name}
+                      </p>
+                      <p className="text-sm leading-[150%]! font-normal text-black-200">
+                        {item.role}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </RevealItem>
+
+      <RevealItem className="flex items-center justify-center gap-6">
         <button
           type="button"
           onClick={() => api?.scrollPrev()}
@@ -210,7 +213,7 @@ export default function Testimonials({
         >
           <ChevronRight className="size-5" />
         </button>
-      </div>
+      </RevealItem>
     </Section>
   );
 }
