@@ -19,7 +19,6 @@ const EmptyData: React.FC<EmptyDataProps> = ({
         className="h-[232.73px] w-[320px] max-w-[320px] object-contain md:max-w-[320px] lg:max-w-[320px]"
         width={320}
         height={232.73}
-        sizes="100vw"
       />
       <div className="flex max-w-[720px] flex-col items-center justify-center gap-6">
         <h3 className="font-playfair text-center text-2xl leading-[130%]! font-semibold text-black-500">

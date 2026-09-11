@@ -64,15 +64,17 @@ const StatsGrid: React.FC<IStatsGridProps> = ({
         </p>
       </RevealItem>
 
-      <RevealItem className="flex flex-col items-center justify-end gap-14 lg:flex-row lg:gap-16">
-        <Image
-          src={StatsBG}
-          alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
-          title="Relocation Genevoise, votre partenaire de confiance en Suisse"
-          width={616}
-          height={380}
-          className="order-2 max-h-56.5 rounded-2xl object-cover lg:order-1 lg:max-h-95 lg:min-w-112.5 xl:min-w-154"
-        />
+      <RevealItem className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[616fr_560fr] lg:gap-16">
+        <div className="relative aspect-616/380 w-full overflow-hidden rounded-2xl">
+          <Image
+            src={StatsBG}
+            alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
+            title="Relocation Genevoise, votre partenaire de confiance en Suisse"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="order-2 object-cover lg:order-1"
+          />
+        </div>
         <div className="order-1 flex w-full flex-col items-center text-center lg:order-2 lg:w-full lg:justify-center lg:text-left">
           <div className="grid w-full items-center divide-y divide-grey-100 lg:divide-y-0">
             <div className="grid items-center divide-y divide-grey-100 lg:grid-cols-2 lg:items-start lg:divide-x-2 lg:divide-y-0 lg:divide-yellow-100 lg:pb-4">

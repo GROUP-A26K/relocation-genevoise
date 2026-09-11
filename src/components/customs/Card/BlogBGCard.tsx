@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
@@ -23,14 +24,14 @@ export const BlogBGCard: React.FC<Blog> = ({
     <Link href={href}>
       <article
         className={cn(
-          'flex flex-col-reverse items-start gap-5 rounded-2xl',
-          'md:flex-row md:gap-8 md:bg-grey-50'
+          'grid grid-cols-1 items-start gap-5 rounded-2xl',
+          'lg:grid-cols-[432fr_776fr] lg:items-center lg:gap-8 lg:bg-grey-50'
         )}
       >
         <div
           className={cn(
-            'flex w-full flex-col justify-between gap-6 self-stretch',
-            'max-w-[340px] md:p-8 lg:max-w-[432px]'
+            'order-2 flex w-full flex-col justify-between gap-6',
+            'lg:order-1 lg:p-8'
           )}
         >
           <div className="flex flex-col gap-2">
@@ -69,7 +70,7 @@ export const BlogBGCard: React.FC<Blog> = ({
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
-              <div className="flex flex-col gap-[2px]">
+              <div className="flex flex-col gap-0.5">
                 <p className="text-base leading-[130%]! font-semibold text-grey-700">
                   {author.name}
                 </p>
@@ -85,22 +86,16 @@ export const BlogBGCard: React.FC<Blog> = ({
           </div>
         </div>
 
-        <div className={cn('w-full self-stretch', 'lg:w-[776px]')}>
+        <div className="relative order-1 aspect-776/495 w-full overflow-hidden rounded-2xl lg:order-2">
           <Image
-            alt="Assurance Genevoise Article"
-            title="Assurance Genevoise Article"
             src={imageUrl}
-            width={0}
-            height={0}
+            alt={title}
+            title={title}
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             priority
-            sizes="100vw"
             loading="eager"
-            className={cn(
-              'aspect-video',
-              'max-xs:max-h-[226px] sm:h-[280px] md:h-full lg:h-[495px] lg:max-h-[495px]',
-              'w-full rounded-2xl bg-gray-100 object-cover',
-              'sm:aspect-2/1 lg:aspect-3/2'
-            )}
+            className="object-cover"
           />
         </div>
       </article>

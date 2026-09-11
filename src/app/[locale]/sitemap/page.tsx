@@ -5,11 +5,10 @@ import { fetchSitemapBlogs } from '@/services/blog.service';
 import { fetchSitemapProperties } from '@/services/property.service';
 
 import type { Metadata } from 'next';
-type Props = {
-  params: Promise<{ locale: string }>;
-};
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/sitemap'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -24,11 +23,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
   };
 }
-export default async function Page(props: Props) {
+export default async function Page(props: PageProps<'/[locale]/sitemap'>) {
   const { locale } = await props.params;
+
   const [posts, properties] = await Promise.all([
     fetchSitemapBlogs({ locale }),
     fetchSitemapProperties({ locale }),
   ]);
+
   return <PageView blogSitemap={posts} propertySitemap={properties} />;
 }

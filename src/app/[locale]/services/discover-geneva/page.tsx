@@ -9,11 +9,9 @@ import HeroImage from '@/assets/img/hero/service/decouvrir-geneve-hero-image.web
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/services/discover-geneva'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -36,12 +34,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'DiscoverGeneva',
-  });
+export default async function Page() {
+  const t = await getTranslations('DiscoverGeneva');
 
   return (
     <>

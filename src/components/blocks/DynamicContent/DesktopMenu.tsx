@@ -57,10 +57,7 @@ const DesktopMenu: React.FC<IContentMenuProps> = ({
         top: DESKTOP_MENU_OFFSET,
         maxHeight: `calc(100dvh - ${DESKTOP_MENU_OFFSET + 24}px)`,
       }}
-      className={cn(
-        'hidden h-fit w-40 shrink-0 lg:sticky lg:flex xl:w-[263px]',
-        className
-      )}
+      className={cn('hidden h-fit lg:sticky lg:flex', className)}
     >
       <div className="flex max-h-[inherit] w-full flex-col gap-8">
         {isTableContent && title && (

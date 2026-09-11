@@ -1,15 +1,12 @@
 import { Footer } from '@/components/sections/Footer';
 import { Whatsapp } from '@/components/blocks/Whatsapp';
 
-export default function Template(props: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
+export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <>
       <main>
         <Whatsapp phoneNumber="41783371528" />
-        {props.children}
+        {children}
       </main>
       <Footer />
     </>

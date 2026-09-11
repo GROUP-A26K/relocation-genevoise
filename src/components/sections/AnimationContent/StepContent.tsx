@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion, useReducedMotion } from 'motion/react';
 import { Content as AccordionContent } from '@radix-ui/react-accordion';
 
-interface StepContentProps {
+interface IStepContentProps {
   isActive: boolean;
   title: string;
   description: string;
@@ -16,13 +16,11 @@ export const StepContent = ({
   title,
   description,
   image,
-}: StepContentProps) => {
+}: IStepContentProps) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <AccordionContent forceMount hidden={!isActive} className="overflow-hidden">
-      {/* Remove the previous image synchronously so scroll anchoring can keep
-          the new title in place. Only the opening panel changes height. */}
       {isActive && (
         <motion.div
           initial={shouldReduceMotion ? false : { height: 0 }}
@@ -33,14 +31,14 @@ export const StepContent = ({
           }}
           className="overflow-hidden"
         >
-          <div className="flex max-w-180 justify-center pt-10">
+          <div className="relative mt-8 aspect-560/280 w-full overflow-hidden rounded-2xl">
             <Image
               src={image}
               alt={title}
               title={description}
-              width={560}
-              height={280}
-              className="aspect-video h-50 min-h-50 w-fit rounded-md sm:h-70 sm:min-h-70 lg:w-full"
+              fill
+              sizes="(min-width: 640px) 560px, 100vw"
+              className="object-cover"
             />
           </div>
         </motion.div>

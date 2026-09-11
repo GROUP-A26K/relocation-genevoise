@@ -9,11 +9,9 @@ import HeroImage from '@/assets/img/hero/service/scolarite-hero-image.webp';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/services/academic'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -36,12 +34,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'Education',
-  });
+export default async function Page() {
+  const t = await getTranslations('Education');
 
   return (
     <>

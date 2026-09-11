@@ -1,2 +1,2 @@
-export * from './FAQ';
+export * from './Faq';
 export * from './AssistanceFAQ';

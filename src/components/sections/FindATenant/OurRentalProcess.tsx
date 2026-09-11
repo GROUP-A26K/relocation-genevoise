@@ -1,6 +1,7 @@
 'use client';
 
 import Image, { type StaticImageData } from 'next/image';
+import { motion, useTransform, type MotionValue } from 'motion/react';
 
 import { cn } from '@/libs/utils';
 import Section from '@/components/customs/Section';
@@ -22,13 +23,19 @@ interface IOurRentalProcessProps {
   steps: TRentalStep[];
 }
 
+const MARKER_CLASS_NAME =
+  'flex size-9 items-center justify-center rounded-[10px] lg:size-11';
+
+const MARKER_LABEL_CLASS_NAME =
+  'text-lg leading-[130%]! font-semibold lg:text-2xl';
+
 export default function OurRentalProcess({
   eyebrow,
   heading,
   image,
   steps,
 }: IOurRentalProcessProps) {
-  const { activeStep, animationKey, selectStep, advanceStep } =
+  const { progress, activeStep, railRefs, markerRefs, selectStep } =
     useProgressSteps(steps.length);
 
   if (!steps?.length) {
@@ -65,55 +72,51 @@ export default function OurRentalProcess({
           <ol className="flex flex-col">
             {steps.map((step, index) => {
               const isActive = index === activeStep;
-              const isComplete = index < activeStep;
               const isReached = index <= activeStep;
               const isLast = index === steps.length - 1;
+              const label = String(index + 1).padStart(2, '0');
 
               return (
                 <li key={step.title} className="flex gap-4 lg:gap-8">
-                  <div className="flex shrink-0 flex-col items-center self-stretch">
+                  <div
+                    ref={(node) => {
+                      railRefs.current[index] = node;
+                    }}
+                    className="relative flex shrink-0 flex-col items-center self-stretch"
+                  >
                     <button
+                      ref={(node) => {
+                        markerRefs.current[index] = node;
+                      }}
                       type="button"
                       onClick={() => selectStep(index)}
                       aria-label={`Step ${index + 1}: ${step.title}`}
                       aria-current={isActive ? 'step' : undefined}
                       className={cn(
-                        'flex size-9 cursor-pointer items-center justify-center rounded-[10px] border transition-colors duration-300 lg:size-11',
-                        isReached
-                          ? 'border-transparent bg-secondary-500'
-                          : 'border-grey-200 bg-transparent hover:border-secondary-500'
+                        MARKER_CLASS_NAME,
+                        'cursor-pointer border border-grey-200 bg-transparent transition-colors duration-300 hover:border-secondary-500'
                       )}
                     >
                       <span
                         className={cn(
-                          'text-lg leading-[130%]! font-semibold transition-colors duration-300 lg:text-2xl',
-                          isReached ? 'text-black-500' : 'text-black-100'
+                          MARKER_LABEL_CLASS_NAME,
+                          'text-black-100'
                         )}
                       >
-                        {String(index + 1).padStart(2, '0')}
+                        {label}
                       </span>
                     </button>
 
                     <div
                       className={cn(
-                        'relative w-px flex-1 overflow-hidden',
+                        'w-px flex-1',
                         isLast
                           ? 'bg-linear-to-b from-grey-200 to-transparent'
                           : 'bg-grey-200'
                       )}
-                    >
-                      {isComplete && (
-                        <span className="absolute inset-0 bg-secondary-500" />
-                      )}
+                    />
 
-                      {isActive && (
-                        <span
-                          key={`${activeStep}-${animationKey}`}
-                          onAnimationEnd={advanceStep}
-                          className="absolute inset-0 origin-top progress-step-animation bg-secondary-500"
-                        />
-                      )}
-                    </div>
+                    <StepFill progress={progress} index={index} label={label} />
                   </div>
 
                   <div
@@ -154,5 +157,36 @@ export default function OurRentalProcess({
         </RevealItem>
       </div>
     </Section>
+  );
+}
+
+interface StepFillProps {
+  progress: MotionValue<number>;
+  index: number;
+  label: string;
+}
+
+// Filled copy of the rail laid over the grey one and revealed top-down, so the
+// fill runs through the marker and its line as one continuous stroke.
+function StepFill({ progress, index, label }: StepFillProps) {
+  const clipPath = useTransform(progress, (value) => {
+    const filled = Math.min(Math.max(value - index, 0), 1);
+
+    return `inset(0 0 ${(1 - filled) * 100}% 0)`;
+  });
+
+  return (
+    <motion.div
+      aria-hidden
+      style={{ clipPath }}
+      className="pointer-events-none absolute inset-0 flex flex-col items-center"
+    >
+      <span className={cn(MARKER_CLASS_NAME, 'bg-secondary-500')}>
+        <span className={cn(MARKER_LABEL_CLASS_NAME, 'text-black-500')}>
+          {label}
+        </span>
+      </span>
+      <span className="w-px flex-1 bg-secondary-500" />
+    </motion.div>
   );
 }

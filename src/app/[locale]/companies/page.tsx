@@ -23,11 +23,9 @@ import { CompaniesInfo } from '@/components/blocks/Info';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/companies'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -48,12 +46,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'Companies',
-  });
+export default async function Page() {
+  const t = await getTranslations('Companies');
 
   return (
     <Section revealTrigger="load">

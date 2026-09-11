@@ -10,53 +10,9 @@ import { fetchBlogBySlug, fetchBlogs } from '@/services/blog.service';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ slug: string; locale: string }>;
-};
-
-export default async function Page(props: Props) {
-  const { slug, locale } = await props.params;
-
-  const t = await getTranslations({
-    locale,
-    namespace: 'BlogDetail',
-  });
-
-  const blogDetail = await fetchBlogBySlug(slug, locale);
-
-  if (!blogDetail) {
-    notFound();
-  }
-
-  const { blogs } = await fetchBlogs({
-    page: 1,
-    pageSize: 3,
-    locale: locale,
-  });
-
-  return (
-    <>
-      <Section revealTrigger="load">
-        <BlogDetailHero {...blogDetail} />
-      </Section>
-
-      <ContentView tableOfContent={t('tableContent')} blog={blogDetail} />
-
-      <Section>
-        <BlogList
-          blogs={blogs}
-          heading={t('BlogList.heading')}
-          subHeading={t('BlogList.subHeading')}
-          description={t('BlogList.description')}
-          buttonText={t('BlogList.buttonText')}
-          buttonUrl="/blog"
-        />
-      </Section>
-    </>
-  );
-}
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/blog/[slug]'>
+): Promise<Metadata> {
   const { slug, locale } = await props.params;
   const blogDetail = await fetchBlogBySlug(slug, locale);
 
@@ -96,4 +52,43 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       canonical: `/${locale == 'fr' ? '' : locale}/${blogDetail.href}`,
     },
   };
+}
+
+export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
+  const { slug, locale } = await props.params;
+
+  const t = await getTranslations('BlogDetail');
+
+  const blogDetail = await fetchBlogBySlug(slug, locale);
+
+  if (!blogDetail) {
+    notFound();
+  }
+
+  const { blogs } = await fetchBlogs({
+    page: 1,
+    pageSize: 3,
+    locale: locale,
+  });
+
+  return (
+    <>
+      <Section revealTrigger="load" dividerProps={{ className: 'hidden' }}>
+        <BlogDetailHero {...blogDetail} />
+      </Section>
+
+      <ContentView tableOfContent={t('tableContent')} blog={blogDetail} />
+
+      <Section>
+        <BlogList
+          blogs={blogs}
+          heading={t('BlogList.heading')}
+          subHeading={t('BlogList.subHeading')}
+          description={t('BlogList.description')}
+          buttonText={t('BlogList.buttonText')}
+          buttonUrl="/blog"
+        />
+      </Section>
+    </>
+  );
 }

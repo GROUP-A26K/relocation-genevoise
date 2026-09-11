@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useMemo } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
 import { motion, useReducedMotion } from 'motion/react';
 
 import { cn } from '@/libs/utils';
@@ -25,15 +26,21 @@ export interface IContentProps {
 
 export const Content: React.FC<IContentProps> = ({ items }) => {
   const id = useId();
+
+  const isMobile = useMediaQuery('(max-width: 1024px)');
+
   const itemIds = useMemo(
     () => items.map((_, index) => `${id}-item-${index}`),
     [id, items]
   );
-  const { activeId, setActiveId } = useScroll(itemIds, 32, {
+
+  const { activeId, setActiveId } = useScroll(itemIds, isMobile ? 48 : 32, {
     headerSelector: '[data-site-header]',
     preserveScrollPosition: true,
   });
+
   const shouldReduceMotion = useReducedMotion();
+
   const activeStep = itemIds.indexOf(activeId);
 
   return (
@@ -51,7 +58,7 @@ export const Content: React.FC<IContentProps> = ({ items }) => {
                 {items?.map((item, index) => (
                   <AccordionItem
                     value={itemIds[index]}
-                    className="relative border-b-0 pb-8 last:pb-0"
+                    className="relative border-b-0 pb-12 last:pb-6 lg:pb-8 lg:last:pb-0"
                     key={index}
                   >
                     <div

@@ -3,10 +3,9 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { RevealItem } from '@/components/customs/Reveal';
 
-import type { FC } from 'react';
 import type { Blog } from '@/models/BLog';
 
-const BlogDetailHero: FC<Blog> = (blog) => {
+const BlogDetailHero: React.FC<Blog> = (blog) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       <div className="flex w-full items-center justify-center">
@@ -34,17 +33,16 @@ const BlogDetailHero: FC<Blog> = (blog) => {
           </div>
         </RevealItem>
       </div>
-      <RevealItem className="relative flex flex-col items-start justify-between">
-        <div className="w-full">
-          <Image
-            alt="Blog Relocation Genevoise Image"
-            title="Blog Relocation Genevoise Image"
-            src={blog.imageUrl}
-            width={1240}
-            height={620}
-            className="aspect-video max-h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2 lg:h-[620px] lg:max-h-[620px]"
-          />
-        </div>
+      <RevealItem className="relative aspect-1240/620 w-full overflow-hidden rounded-3xl">
+        <Image
+          src={blog.imageUrl}
+          alt={blog.title}
+          title={blog.title}
+          fill
+          sizes="(min-width: 1440px) 1240px, 100vw"
+          priority
+          className="object-cover"
+        />
       </RevealItem>
     </div>
   );

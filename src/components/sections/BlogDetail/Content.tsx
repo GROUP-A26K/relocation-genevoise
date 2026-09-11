@@ -14,7 +14,7 @@ import Button from '@/components/customs/Button';
 import CtaBlock from '@/components/customs/CtaBlock';
 import { StatsList } from '@/components/blocks/Stats';
 import { RevealItem } from '@/components/customs/Reveal';
-import { FAQBlog } from '@/components/blocks/FAQ/FAQBlog';
+import { FaqBlock } from '@/components/blocks/Faq/FaqBlock';
 import { DynamicContent } from '@/components/blocks/DynamicContent';
 import { type Block, BLOG_BODY_BLOCKS, type BlogDetail } from '@/models/BLog';
 
@@ -47,7 +47,7 @@ function renderListBlocks(blocks: Block[]) {
           />
         );
       case BLOG_BODY_BLOCKS.FAQ_BLOCK:
-        return <FAQBlog key={_key} id={_key} faqs={block.faqs} />;
+        return <FaqBlock key={_key} id={_key} faqs={block.faqs} />;
 
       case BLOG_BODY_BLOCKS.CTA_BLOCK:
         return (
@@ -68,8 +68,11 @@ function renderListBlocks(blocks: Block[]) {
 export const Content = (blog: BlogDetail) => {
   const t = useTranslations('BlogDetail');
   const toastT = useTranslations('ToastMessage.Link');
+
   const pathname = usePathname();
+
   const [copied, setCopied] = useState(false);
+
   const handleCopy = () => {
     const link = `${domainURL}${pathname}`;
     navigator.clipboard
@@ -101,59 +104,42 @@ export const Content = (blog: BlogDetail) => {
         ));
       });
   };
+
   return (
-    <div className="top-0 flex flex-col items-center justify-center">
-      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[570px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
-        {renderListBlocks(blog.body)}
+    <div className="flex w-full max-w-180 flex-col gap-x-8 gap-y-8 xl:max-w-180">
+      {renderListBlocks(blog.body)}
 
-        <RevealItem className="flex flex-col justify-between gap-y-6 border-t border-grey-100 pt-6 lg:flex-row">
-          <div className="flex items-center gap-3">
-            <Image
-              alt="Author image"
-              title="Author image"
-              src={blog.author.imageUrl}
-              width={48}
-              height={48}
-              className="h-[48px] w-[48px] rounded-full bg-gray-100 object-cover"
-            />
-            <div className="gap-[2px] text-base leading-[130%]!">
-              <p className="font-semibold text-gray-700">{blog.author.name}</p>
-              <p className="text-sm leading-[130%]! font-normal text-gray-700">
-                {blog.author.email}
-              </p>
-            </div>
+      <RevealItem className="flex flex-col justify-between gap-y-6 border-t border-grey-100 pt-6 lg:flex-row">
+        <div className="flex items-center gap-3">
+          <Image
+            alt="Author image"
+            title="Author image"
+            src={blog.author.imageUrl}
+            width={48}
+            height={48}
+            className="size-12 rounded-full bg-gray-100 object-cover"
+          />
+          <div className="gap-0.5 text-base leading-[130%]!">
+            <p className="font-semibold text-gray-700">{blog.author.name}</p>
+            <p className="text-sm leading-[130%]! font-normal text-gray-700">
+              {blog.author.email}
+            </p>
           </div>
+        </div>
 
-          <div className="flex gap-3">
-            <Button
-              as="outline"
-              iconStart={Copy}
-              onClick={handleCopy}
-              variant="md"
-              type="primary"
-              disabled={copied}
-            >
-              {t('buttonCopy')}
-            </Button>
-
-            {/* <IconButton
-              as="outline"
-              icon={() => (
-                <Image height={20} width={20} src={X} alt="X logo"></Image>
-              )}
-              variant="lg"
-              type="primary"
-            />
-
-            <IconButton
-              as="outline"
-              icon={Facebook}
-              variant="lg"
-              type="primary"
-            /> */}
-          </div>
-        </RevealItem>
-      </div>
+        <div className="flex gap-3">
+          <Button
+            as="outline"
+            iconStart={Copy}
+            onClick={handleCopy}
+            variant="md"
+            type="primary"
+            disabled={copied}
+          >
+            {t('buttonCopy')}
+          </Button>
+        </div>
+      </RevealItem>
     </div>
   );
 };

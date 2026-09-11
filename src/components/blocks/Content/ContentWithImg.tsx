@@ -6,8 +6,7 @@ import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import ContentWithImgBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
 
-import type { FC } from 'react';
-interface Props {
+interface IContentWithImgProps {
   heading?: string;
   subHeading?: string;
   description?: { paragraph: string }[];
@@ -15,7 +14,7 @@ interface Props {
   buttonUrl?: string;
 }
 
-export const ContentWithImg: FC<Props> = ({
+export const ContentWithImg: React.FC<IContentWithImgProps> = ({
   buttonText,
   heading = 'Why Insurance Geneva ?',
   subHeading = 'Our expertise at your service',
@@ -23,46 +22,46 @@ export const ContentWithImg: FC<Props> = ({
   buttonUrl = '/',
 }) => {
   return (
-    <div className="flex flex-col gap-14 lg:gap-16">
-      <RevealItem className="flex flex-col items-center justify-end gap-12 lg:flex-row lg:gap-16">
+    <RevealItem className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="flex flex-col items-start gap-6 text-left lg:justify-center xl:max-w-140">
+        <div className="flex flex-col gap-4 lg:gap-6">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
+              {heading}
+            </p>
+            <h2 className="text-3xl leading-[130%]! font-semibold">
+              <FormattedText text={subHeading} />
+            </h2>
+          </div>
+          <p className="flex flex-col gap-4 text-sm leading-[130%]! font-normal text-black-200 lg:text-base">
+            {description?.map((item, index) => (
+              <span key={index}>{item.paragraph}</span>
+            ))}
+          </p>
+        </div>
+        {buttonText && (
+          <Link href={buttonUrl} className="w-full">
+            <Button
+              as="solid"
+              type="primary"
+              variant="md"
+              className="w-full lg:w-fit"
+            >
+              {buttonText}
+            </Button>
+          </Link>
+        )}
+      </div>
+      <div className="relative aspect-588/440 w-full overflow-hidden rounded-3xl">
         <Image
           src={ContentWithImgBG}
           alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
           title="Relocation Genevoise, votre partenaire de confiance en Suisse"
-          width={588}
-          height={440}
-          className="order-2 max-h-[226px] rounded-2xl object-cover lg:order-2 lg:max-h-[440px] xl:min-w-[588px]"
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
         />
-        <div className="order-1 flex flex-col items-start gap-6 text-left lg:order-1 lg:justify-center">
-          <div className="flex flex-col gap-4 lg:gap-6">
-            <div className="flex flex-col gap-3">
-              <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
-                {heading}
-              </p>
-              <h2 className="text-3xl leading-[130%]! font-semibold">
-                <FormattedText text={subHeading} />
-              </h2>
-            </div>
-            <p className="flex flex-col gap-4 text-sm leading-[130%]! font-normal text-black-200 lg:text-base">
-              {description?.map((item, index) => (
-                <span key={index}>{item.paragraph}</span>
-              ))}
-            </p>
-          </div>
-          {buttonText && (
-            <Link href={buttonUrl} className="w-full">
-              <Button
-                as="solid"
-                type="primary"
-                variant="md"
-                className="w-full lg:w-fit"
-              >
-                {buttonText}
-              </Button>
-            </Link>
-          )}
-        </div>
-      </RevealItem>
-    </div>
+      </div>
+    </RevealItem>
   );
 };

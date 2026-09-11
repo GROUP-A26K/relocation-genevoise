@@ -22,7 +22,7 @@ interface Props {
   description?: string;
   faqs?: FAQ[];
 }
-export const FAQBlog: React.FC<Props> = ({
+export const FaqBlock: React.FC<Props> = ({
   heading = 'FAQ',
   id = 'faq',
   faqs = [

@@ -5,11 +5,9 @@ import { PageView } from '@/components/sections/LegalNotices';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/legal-notice'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,

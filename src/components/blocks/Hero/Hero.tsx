@@ -7,9 +7,7 @@ import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { getText } from '@/components/customs/Text/TextWithStrong';
 
-import type { FC } from 'react';
-
-interface Props {
+interface IHeroProps {
   tagline?: string;
   heading?: string;
   subHeading?: string;
@@ -30,7 +28,7 @@ interface Props {
   buttonUrl?: string;
 }
 
-export const Hero: FC<Props> = ({
+export const Hero: React.FC<IHeroProps> = ({
   subHeading = 'Your independent broker in Geneva',
   description = 'We work with the set of Swiss insurances companies to support companies, professionals and our private clients with solutions personalized thanks to our offices in Geneva and Switzerland.',
   button,
@@ -80,21 +78,19 @@ export const Hero: FC<Props> = ({
         </div>
       </div>
 
-      <RevealItem className="relative flex flex-col items-start justify-between">
-        <div className="w-full">
-          <Image
-            alt={getText(heroImage.alt || '')}
-            title={getText(heroImage.title || '')}
-            src={heroImage.src}
-            width={1240}
-            height={480}
-            className="aspect-video max-h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2 lg:h-[480px] lg:max-h-[480px]"
-            priority
-            loading="eager"
-            draggable={false}
-            fetchPriority="high"
-          />
-        </div>
+      <RevealItem className="relative aspect-1240/480 w-full overflow-hidden rounded-3xl">
+        <Image
+          alt={getText(heroImage.alt)}
+          title={getText(heroImage.title)}
+          src={heroImage.src}
+          fill
+          sizes="(min-width: 1440px) 1240px, 100vw"
+          className="object-cover"
+          priority
+          loading="eager"
+          draggable={false}
+          fetchPriority="high"
+        />
       </RevealItem>
     </div>
   );

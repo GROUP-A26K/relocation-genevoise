@@ -9,11 +9,9 @@ import HeroImage from '@/assets/img/hero/service/service-de-conciergerie-hero-im
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/services/concierge-service'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -36,12 +34,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'ConciergeService',
-  });
+export default async function Page() {
+  const t = await getTranslations('ConciergeService');
 
   return (
     <>
