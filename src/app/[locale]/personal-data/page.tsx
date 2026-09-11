@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getLocalizedPath } from '@/utils/seo';
 import { PageView } from '@/components/sections/LegalPersonal';
 
 import type { Metadata } from 'next';
@@ -13,16 +13,12 @@ export async function generateMetadata(
     locale,
     namespace: 'Metadata.PersonalData',
   });
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['personalData'][locale as keyof (typeof routes)['personalData']];
 
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: getLocalizedPath(locale, 'personalData'),
     },
   };
 }

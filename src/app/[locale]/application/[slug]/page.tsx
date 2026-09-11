@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 
+import { getI18nPath } from '@/utils/Helpers';
 import { PageView } from '@/components/sections/Application';
 import { fetchJobDetailBySlug } from '@/services/career/career.service';
 
@@ -29,7 +30,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: jobDetail.title,
     description: jobDetail.excerpt,
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/application/${slug}`,
+      canonical: getI18nPath(`/application/${slug}`, locale),
     },
   };
 }

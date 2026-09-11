@@ -13,6 +13,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 
+import { getLocalizedPath } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { HomeHero } from '@/components/blocks/Hero';
 import { BlogList } from '@/components/blocks/Blog';
@@ -41,7 +42,7 @@ export async function generateMetadata(
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}`,
+      canonical: getLocalizedPath(locale, 'home'),
     },
   };
 }

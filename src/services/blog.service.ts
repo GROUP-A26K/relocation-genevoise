@@ -86,6 +86,7 @@ const toBlog = (post: BlogPostProps, publishedDate: string): Blog => ({
 const toBlogDetail = (post: BlogPostProps): BlogDetail => ({
   ...toBlog(post, post?.publishedDate || 'Unknown Date'),
   body: post?.body || [],
+  updatedAt: post?._updatedAt,
 });
 
 export const fetchBlogs = async (

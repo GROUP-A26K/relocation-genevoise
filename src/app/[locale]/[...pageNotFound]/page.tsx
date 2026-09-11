@@ -1,6 +1,5 @@
-import ErrorPage from '@/components/sections/ErrorPage';
-import '@/styles/globals.css';
+import { notFound } from 'next/navigation';
 
-export default function NotFound() {
-  return <ErrorPage errorCode={404} />;
+export default function PageNotFound() {
+  notFound();
 }

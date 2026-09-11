@@ -1,19 +1,23 @@
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
+import { SITE_NAME } from '@/constants/seo';
+import { getLocalizedPath } from '@/utils/seo';
 import { PageView } from '@/components/sections/CareerDetail';
-
-import type { Metadata } from 'next';
-const NUMBER_OF_FEATURED_JOBS = 5;
-
-import { AppConfig } from '@/utils/AppConfig';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import {
   fetchJobDetailBySlug,
   fetchFeaturedJobPosts,
 } from '@/services/career/career.service';
 
+import type { Metadata } from 'next';
+
+const NUMBER_OF_FEATURED_JOBS = 5;
+
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
+
 export default async function Page(props: Props) {
   const { slug, locale } = await props.params;
   const jobDetail = await fetchJobDetailBySlug(slug, locale);
@@ -26,7 +30,27 @@ export default async function Page(props: Props) {
     limit: NUMBER_OF_FEATURED_JOBS,
   });
 
-  return <PageView jobDetail={jobDetail} featuredJobs={featuredJobs} />;
+  const tBreadcrumb = await getTranslations('Breadcrumb');
+
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: SITE_NAME, path: getLocalizedPath(locale, 'home') },
+          {
+            name: tBreadcrumb('career'),
+            path: getLocalizedPath(locale, 'career'),
+          },
+          {
+            name: jobDetail.title,
+            path: getLocalizedPath(locale, 'career', jobDetail.slug),
+          },
+        ]}
+      />
+
+      <PageView jobDetail={jobDetail} featuredJobs={featuredJobs} />
+    </>
+  );
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -35,14 +59,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   if (!jobDetail) return {};
 
-  const { routes } = AppConfig;
-
-  const canonical = routes['career'][locale as keyof (typeof routes)['career']];
   return {
     title: jobDetail.title,
     description: jobDetail.excerpt,
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}/${jobDetail.slug}`,
+      canonical: getLocalizedPath(locale, 'career', jobDetail.slug),
     },
   };
 }

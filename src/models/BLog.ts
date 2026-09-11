@@ -30,6 +30,7 @@ export interface BlogSitemap {
 
 export interface BlogDetail extends Blog {
   body: Block[];
+  updatedAt?: string;
 }
 
 export type Block =

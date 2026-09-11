@@ -8,6 +8,7 @@ export const routing = defineRouting({
   localePrefix: AppConfig.localePrefix,
   defaultLocale: AppConfig.defaultLocale,
   localeDetection: false,
+  alternateLinks: false,
 });
 
 export const { usePathname, useRouter, Link } = createNavigation(routing);

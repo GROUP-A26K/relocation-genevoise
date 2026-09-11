@@ -9,7 +9,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getLocalizedPath } from '@/utils/seo';
 import Hero from '@/components/sections/FindATenant/Hero';
 import CtaBanner from '@/components/sections/FindATenant/CtaBanner';
 import WhyChooseUs from '@/components/sections/FindATenant/WhyChooseUs';
@@ -62,18 +62,11 @@ export async function generateMetadata(
     namespace: 'Metadata.FindATenant',
   });
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['findATenantLandlords'][
-      locale as keyof (typeof routes)['findATenantLandlords']
-    ];
-
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: getLocalizedPath(locale, 'findATenantLandlords'),
     },
   };
 }

@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
-import { Env } from '@/libs/Env';
+import { SITE_NAME } from '@/constants/seo';
 import Section from '@/components/customs/Section';
 import { BlogList } from '@/components/blocks/Blog';
+import BlogJsonLd from '@/components/seo/BlogJsonLd';
 import { BlogDetailHero } from '@/components/blocks/Hero';
 import { ContentView } from '@/components/sections/BlogDetail';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { fetchBlogBySlug, fetchBlogs } from '@/services/blog.service';
+import { getLocalizedPath, getOgLocale, toIsoDate } from '@/utils/seo';
 
 import type { Metadata } from 'next';
 
@@ -18,38 +21,27 @@ export async function generateMetadata(
 
   if (!blogDetail) return {};
 
-  const bloglUrl = `${Env.NEXT_PUBLIC_SITE_URL}/${locale === 'fr' ? '' : locale}${blogDetail.href}`;
+  const canonical = getLocalizedPath(locale, 'blog', slug);
+  const images = [{ url: blogDetail.imageUrl, alt: blogDetail.title }];
 
   return {
     title: blogDetail.title,
     description: blogDetail.description,
     openGraph: {
-      type: 'website',
-      locale: 'de-DE',
-      siteName: 'Relocation Genevoise',
-      url: bloglUrl,
-      images: [
-        {
-          url: blogDetail.imageUrl,
-          width: 1200,
-          height: 630,
-          alt: blogDetail.title,
-        },
-      ],
+      type: 'article',
+      locale: getOgLocale(locale),
+      siteName: SITE_NAME,
+      url: canonical,
+      publishedTime: toIsoDate(blogDetail.publishedDate),
+      modifiedTime: toIsoDate(blogDetail.updatedAt),
+      authors: [blogDetail.author.name],
+      images,
     },
-
     twitter: {
-      images: [
-        {
-          url: blogDetail.imageUrl,
-          width: 1200,
-          height: 630,
-          alt: blogDetail.title,
-        },
-      ],
+      images,
     },
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${blogDetail.href}`,
+      canonical,
     },
   };
 }
@@ -58,6 +50,7 @@ export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
   const { slug, locale } = await props.params;
 
   const t = await getTranslations('BlogDetail');
+  const tBreadcrumb = await getTranslations('Breadcrumb');
 
   const blogDetail = await fetchBlogBySlug(slug, locale);
 
@@ -71,8 +64,19 @@ export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
     locale: locale,
   });
 
+  const blogPath = getLocalizedPath(locale, 'blog', slug);
+
   return (
     <>
+      <BlogJsonLd blog={blogDetail} locale={locale} path={blogPath} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: SITE_NAME, path: getLocalizedPath(locale, 'home') },
+          { name: tBreadcrumb('blog'), path: getLocalizedPath(locale, 'blog') },
+          { name: blogDetail.title, path: blogPath },
+        ]}
+      />
+
       <Section revealTrigger="load" dividerProps={{ className: 'hidden' }}>
         <BlogDetailHero {...blogDetail} />
       </Section>

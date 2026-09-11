@@ -1,10 +1,16 @@
-'use client';
+import { getTranslations } from 'next-intl/server';
 
 import ErrorPage from '@/components/sections/ErrorPage';
 
-// Render the default Next.js 404 page when a route
-// is requested that doesn't match the middleware and
-// therefore doesn't have a locale associated with it.
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Metadata.Error404');
+
+  return {
+    title: t('title'),
+  };
+}
 
 export default function NotFound() {
   return <ErrorPage errorCode={404} />;

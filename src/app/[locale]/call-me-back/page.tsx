@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getLocalizedPath } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { ContactInfo } from '@/components/blocks/Info';
 import { ConsultationFormView } from '@/components/sections/RemindMe';
@@ -17,16 +17,11 @@ export async function generateMetadata(
     namespace: 'Metadata.CallMeBack',
   });
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['callMeBack'][locale as keyof (typeof routes)['callMeBack']];
-
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: getLocalizedPath(locale, 'callMeBack'),
     },
   };
 }
