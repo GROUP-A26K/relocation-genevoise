@@ -1,6 +1,10 @@
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
+import { SITE_NAME } from '@/constants/seo';
+import { getLocalizedPath } from '@/utils/seo';
 import Section from '@/components/customs/Section';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { ImagePreview } from '@/components/sections/PropertiesDetails/ImagePreview';
 import {
   fetchProperties,
@@ -30,16 +34,34 @@ export default async function PropertyDetailPage({ params }: Props) {
     locale: locale,
   });
 
-  return (
-    <section className="flex w-full flex-col items-center justify-center">
-      <Section isDivider revealTrigger="load" className="w-full">
-        <ImagePreview property={property} propertySlug={slug} />
+  const tBreadcrumb = await getTranslations('Breadcrumb');
 
-        <PropertyDetailView property={property} />
-      </Section>
-      <PropertyDetailSimilar
-        relatedProperties={listRelatedProperty.properties}
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: SITE_NAME, path: getLocalizedPath(locale, 'home') },
+          {
+            name: tBreadcrumb('properties'),
+            path: getLocalizedPath(locale, 'properties'),
+          },
+          {
+            name: property.title,
+            path: getLocalizedPath(locale, 'properties', slug),
+          },
+        ]}
       />
-    </section>
+
+      <section className="flex w-full flex-col items-center justify-center">
+        <Section isDivider revealTrigger="load" className="w-full">
+          <ImagePreview property={property} propertySlug={slug} />
+
+          <PropertyDetailView property={property} />
+        </Section>
+        <PropertyDetailSimilar
+          relatedProperties={listRelatedProperty.properties}
+        />
+      </section>
+    </>
   );
 }

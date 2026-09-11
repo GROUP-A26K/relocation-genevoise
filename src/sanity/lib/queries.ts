@@ -144,6 +144,7 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
         slug.current == $slug
       ][0] {
         _id,
+        _updatedAt,
         title,
         summary,
         language,
@@ -273,6 +274,29 @@ export const PROPERTIES_SITEMAP_QUERY = defineQuery(`
       slug,
     },
     "total": count(*[${PROPERTIES_SITEMAP_FILTER}])
+  }
+`);
+
+export const SITEMAP_DOCUMENTS_QUERY = defineQuery(`
+  *[
+    _type == $type &&
+    !(_id in path("drafts.**")) &&
+    coalesce(isHidden, false) == false &&
+    language in $locales &&
+    defined(slug.current)
+  ] | order(_updatedAt desc) {
+    _updatedAt,
+    language,
+    "slug": slug.current,
+    "translations": *[
+      _type == "translation.metadata" &&
+      !(_id in path("drafts.**")) &&
+      references(^._id)
+    ][0].translations[].value->{
+      language,
+      isHidden,
+      "slug": slug.current
+    }
   }
 `);
 

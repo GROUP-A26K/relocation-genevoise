@@ -17,7 +17,7 @@ import {
   Package2,
 } from 'lucide-react';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getLocalizedPath } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { CompaniesInfo } from '@/components/blocks/Info';
 
@@ -32,16 +32,11 @@ export async function generateMetadata(
     namespace: 'Metadata.Companies',
   });
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['companies'][locale as keyof (typeof routes)['companies']];
-
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: getLocalizedPath(locale, 'companies'),
     },
   };
 }

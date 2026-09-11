@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getLocalizedPath } from '@/utils/seo';
 import { RevealSection } from '@/components/customs/Reveal';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
@@ -29,16 +29,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations('Metadata.Properties');
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['properties'][locale as keyof (typeof routes)['properties']];
-
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: getLocalizedPath(locale, 'properties'),
     },
   };
 }

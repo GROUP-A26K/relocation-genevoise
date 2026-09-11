@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getLocalizedPath } from '@/utils/seo';
 import FormLayout from '@/components/sections/FindATenant/FormLayout';
 import LandlordsForm from '@/components/sections/FindATenant/LandlordsForm';
 import FormImage from '@/assets/img/find-a-tenant/landlords/form-image.webp';
@@ -16,18 +16,11 @@ export async function generateMetadata(
     namespace: 'Metadata.FindATenant',
   });
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['findATenantLandlordsForm'][
-      locale as keyof (typeof routes)['findATenantLandlordsForm']
-    ];
-
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
+      canonical: getLocalizedPath(locale, 'findATenantLandlordsForm'),
     },
   };
 }

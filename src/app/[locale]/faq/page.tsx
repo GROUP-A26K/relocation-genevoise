@@ -1,9 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 
 import { Faq } from '@/components/blocks/Faq';
+import { getLocalizedPath } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import GroupAvatar from '@/assets/img/avt/group-avt-1.webp';
 import { BookConsultation } from '@/components/blocks/Consultation';
+import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
 
 import type { Metadata } from 'next';
 
@@ -20,54 +22,40 @@ export async function generateMetadata(
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/faq`,
+      canonical: getLocalizedPath(locale, 'faq'),
     },
   };
 }
 
-export default async function Page() {
+export default async function Page(props: PageProps<'/[locale]/faq'>) {
+  const { locale } = await props.params;
   const t = await getTranslations('FAQ');
 
+  const faqs = t.raw('faqs') as TFaqItem[];
+
   return (
-    <Section revealTrigger="load">
-      <h1 className="sr-only">{t('heading')}</h1>
-      <Faq
-        heading={t('heading')}
-        subHeading={t('subHeading')}
-        description={t('description')}
-        faqs={[
-          {
-            question: t('faqs.0.question'),
-            answer: t('faqs.0.answer'),
-          },
-          {
-            question: t('faqs.1.question'),
-            answer: t('faqs.1.answer'),
-          },
-          {
-            question: t('faqs.2.question'),
-            answer: t('faqs.2.answer'),
-          },
-          {
-            question: t('faqs.3.question'),
-            answer: t('faqs.3.answer'),
-          },
-          {
-            question: t('faqs.4.question'),
-            answer: t('faqs.4.answer'),
-          },
-          {
-            question: t('faqs.5.question'),
-            answer: t('faqs.5.answer'),
-          },
-        ]}
+    <>
+      <FaqJsonLd
+        items={faqs}
+        locale={locale}
+        path={getLocalizedPath(locale, 'faq')}
       />
-      <BookConsultation
-        subHeading={t('BookConsultation.subHeading')}
-        description={t('BookConsultation.description')}
-        buttonText1={t('BookConsultation.buttonText1')}
-        imgSrc={GroupAvatar.src}
-      />
-    </Section>
+
+      <Section revealTrigger="load">
+        <h1 className="sr-only">{t('heading')}</h1>
+        <Faq
+          heading={t('heading')}
+          subHeading={t('subHeading')}
+          description={t('description')}
+          faqs={faqs}
+        />
+        <BookConsultation
+          subHeading={t('BookConsultation.subHeading')}
+          description={t('BookConsultation.description')}
+          buttonText1={t('BookConsultation.buttonText1')}
+          imgSrc={GroupAvatar.src}
+        />
+      </Section>
+    </>
   );
 }

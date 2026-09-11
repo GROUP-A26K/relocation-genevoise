@@ -1309,6 +1309,11 @@
       "title": "Relocation Genevoise - Error 500"
     }
   },
+  "Breadcrumb": {
+    "blog": "Blog",
+    "career": "Carrière",
+    "properties": "Propriétés"
+  },
   "Navbar": {
     "menu": [
       {
