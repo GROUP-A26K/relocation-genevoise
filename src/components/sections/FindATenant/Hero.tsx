@@ -133,7 +133,7 @@ export default function Hero({
               </div>
 
               {index < stats.length - 1 && (
-                <div className="h-px w-[100px] bg-yellow-300 lg:h-[100px] lg:w-px" />
+                <div className="h-px w-25 bg-yellow-300 lg:h-25 lg:w-px" />
               )}
             </Fragment>
           ))}

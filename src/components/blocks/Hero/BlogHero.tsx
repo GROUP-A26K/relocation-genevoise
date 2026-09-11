@@ -4,10 +4,9 @@ import { BlogBGCard } from '@/components/customs/Card';
 import { RevealItem } from '@/components/customs/Reveal';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 
-import type { FC } from 'react';
 import type { Blog } from '@/models/BLog';
 
-interface Props {
+interface IBlogHeroProps {
   tagline?: string;
   heading?: string;
   subHeading?: string;
@@ -18,7 +17,7 @@ interface Props {
   blog: Blog;
 }
 
-const BlogHero: FC<Props> = ({
+const BlogHero: React.FC<IBlogHeroProps> = ({
   heading = 'Blog',
   subHeading = 'Our Latest News',
   description = 'Lorem ipsum dolor sit amet consectetur. Sed massa turpis enim congue erat sit ultricies. Turpis tempor adipiscing.',
@@ -39,18 +38,6 @@ const BlogHero: FC<Props> = ({
           <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
             {description}
           </p>
-          {/* <div className="flex flex-row gap-2 w-full items-center justify-center h-10">
-            <Link href="/contact">
-              <Button as="outline" variant="md" type="primary">
-                {buttonContactText}
-              </Button>
-            </Link>
-            <Link href={blog.href}>
-              <Button as="solid" variant="md" type="primary">
-                {buttonText}
-              </Button>
-            </Link>
-          </div> */}
         </RevealItem>
       </div>
 

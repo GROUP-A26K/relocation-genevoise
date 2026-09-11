@@ -1,53 +1,67 @@
+import Image from 'next/image';
+
 import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
-import { FeatureRowCard } from '@/components/customs/Card';
+import { FeatureRowCard2 } from '@/components/customs/Card';
+import HeroImage from '@/assets/img/bg/trouvez-facilement-votre-nouveau-chez-vous-geneve.webp';
 
-interface Reason {
+type TFeature = {
   title: string;
-  description: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   link: string;
-}
+};
 
-interface Props {
+interface IServiceFeatureProps {
   heading?: string;
   subHeading?: string;
-  reasons: {
-    reasonName: string;
-    reasonItems: Reason[];
-  }[];
+  description: string;
+  features: TFeature[];
 }
 
 const ServiceFeature = ({
   heading = 'Discover our offers',
   subHeading = 'Our services',
-  reasons,
-}: Props) => {
+  features,
+  description,
+}: IServiceFeatureProps) => {
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
-      <RevealItem className="flex flex-col gap-3">
-        <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
-          {heading}
-        </p>
-        <h2 className="text-3xl leading-[130%]! font-semibold">
-          <FormattedText text={subHeading} />
-        </h2>
+      <RevealItem className="flex w-full items-center justify-center">
+        <div className="flex max-w-3xl flex-col gap-4 text-center lg:items-center lg:gap-6">
+          <div className="flex flex-col gap-3">
+            <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
+              {heading}
+            </p>
+            <h2 className="text-center text-3xl leading-[130%]! font-semibold text-balance lg:text-center">
+              <FormattedText text={subHeading} />
+            </h2>
+          </div>
+          <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200 lg:text-center">
+            {description}
+          </p>
+        </div>
       </RevealItem>
-      {reasons.map((reason, i) => (
-        <RevealItem key={i} className="flex flex-col gap-8 lg:gap-6">
-          <h3 className="text-xl leading-[130%]! font-semibold lg:text-2xl">
-            {reason.reasonName}
-          </h3>
-
-          <ul role="list" className="grid gap-4 lg:grid-cols-3 lg:gap-8">
-            {reason.reasonItems.map((reasonItem) => (
-              <li key={reasonItem.title}>
-                <FeatureRowCard {...reasonItem} />
-              </li>
-            ))}
-          </ul>
-        </RevealItem>
-      ))}
+      <RevealItem
+        as="ul"
+        role="list"
+        className="grid gap-4 lg:grid-cols-3 lg:gap-8"
+      >
+        {features.map((feature) => (
+          <li key={feature.title}>
+            <FeatureRowCard2 {...feature} />
+          </li>
+        ))}
+      </RevealItem>
+      <RevealItem className="relative aspect-1240/380 w-full overflow-hidden rounded-3xl">
+        <Image
+          alt="Agence de Relocation à Genève"
+          title="Agence de Relocation à Genève"
+          src={HeroImage}
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="object-cover"
+        />
+      </RevealItem>
     </div>
   );
 };

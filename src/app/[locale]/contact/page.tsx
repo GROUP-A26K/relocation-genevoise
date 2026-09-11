@@ -7,11 +7,9 @@ import { ContactFormView } from '@/components/sections/Contact';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/contact'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -26,12 +24,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     },
   };
 }
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'Contact',
-  });
+export default async function Page() {
+  const t = await getTranslations('Contact');
+
   return (
     <>
       <Section revealTrigger="load">

@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
@@ -18,20 +19,21 @@ export const BlogCard: React.FC<Blog> = ({
   publishedDate,
 }) => {
   const locale = useLocale();
+
   return (
     <Link href={href}>
       <article className="flex h-full cursor-pointer flex-col items-start">
-        <div className="w-full">
+        <div className="relative aspect-392/250 w-full shrink-0 overflow-hidden rounded-2xl">
           <Image
-            alt="Relocation Genevoise Article"
-            title="Relocation Genevoise Article"
+            alt={title}
+            title={title}
             src={imageUrl}
-            width={640}
-            height={250}
-            className="aspect-video h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2 lg:h-[250px]"
+            fill
+            sizes="(min-width: 1440px) 392px, (min-width: 1024px) 33vw, 100vw"
+            className="object-cover"
           />
         </div>
-        <div className="flex h-full w-full flex-col justify-between pt-5">
+        <div className="flex w-full flex-1 flex-col justify-between pt-5">
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap gap-2 text-xs">
               {category.map((cat) => (
@@ -68,7 +70,7 @@ export const BlogCard: React.FC<Blog> = ({
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
-              <div className="gap-[2px] text-base leading-[130%]!">
+              <div className="gap-0.5 text-base leading-[130%]!">
                 <p className="leading-[130%]! font-semibold text-grey-700">
                   {author.name}
                 </p>

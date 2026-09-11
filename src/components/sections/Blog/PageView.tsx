@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { AnimatePresence, motion } from 'motion/react';
-import { type FC, useEffect, useRef, useTransition } from 'react';
+import { useEffect, useRef, useTransition } from 'react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
 import useDebounce from '@/hooks/useDebounce';
@@ -20,14 +20,14 @@ import type { Blog } from '@/models/BLog';
 import type { Meta } from '@/models/Meta';
 import type { BlogCategory } from '@/sanity/types';
 
-interface Props {
+interface IPageViewProps {
   category: BlogCategory[];
   newestBlog: Blog | null;
   blogs: Blog[];
   meta: Meta;
 }
 
-export const PageView: FC<Props> = (props) => {
+export const PageView: React.FC<IPageViewProps> = (props) => {
   const t = useTranslations('Blog');
   const [isPending, startTransition] = useTransition();
 
@@ -99,7 +99,7 @@ export const PageView: FC<Props> = (props) => {
             placeholder={searchPlaceholder}
             value={search}
             onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
-            className="flex h-10 w-full items-center text-base lg:max-w-[280px]"
+            className="flex h-10 w-full items-center text-base lg:max-w-70"
           />
         </RevealItem>
 
@@ -142,7 +142,7 @@ export const PageView: FC<Props> = (props) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+              className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
             >
               {props.blogs.map((blog) => (
                 <BlogCard key={blog.id} {...blog} />

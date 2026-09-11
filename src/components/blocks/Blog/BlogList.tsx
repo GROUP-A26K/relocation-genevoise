@@ -4,10 +4,9 @@ import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { BlogCard } from '@/components/customs/Card/BlogCard';
 
-import type { FC } from 'react';
 import type { Blog } from '@/models/BLog';
 
-interface Props {
+interface IBlogListProps {
   tagline?: string;
   heading?: string;
   subHeading?: string;
@@ -17,7 +16,7 @@ interface Props {
   blogs: Blog[];
 }
 
-const BlogList: FC<Props> = ({
+const BlogList: React.FC<IBlogListProps> = ({
   heading = 'Blog & News',
   subHeading = 'Our latest articles',
   description = 'Our shared values keep us connected and guide us as one team.',
@@ -53,7 +52,7 @@ const BlogList: FC<Props> = ({
         </Link>
       </RevealItem>
 
-      <RevealItem className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <RevealItem className="grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-3">
         {blogs.map((post) => (
           <BlogCard key={post.id} {...post} />
         ))}

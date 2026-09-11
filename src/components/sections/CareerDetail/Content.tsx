@@ -15,7 +15,7 @@ import CtaBlock from '@/components/customs/CtaBlock';
 import { StatsList } from '@/components/blocks/Stats';
 import { type Block, BODY_BLOCKS } from '@/models/Block';
 import { RevealItem } from '@/components/customs/Reveal';
-import { FAQBlog } from '@/components/blocks/FAQ/FAQBlog';
+import { FaqBlock } from '@/components/blocks/Faq/FaqBlock';
 import { DynamicContent } from '@/components/blocks/DynamicContent';
 
 import type { JobDetail } from '@/models/Job';
@@ -54,7 +54,7 @@ function renderListBlocks(blocks: Block[]) {
           />
         );
       case BODY_BLOCKS.FAQ_BLOCK:
-        return <FAQBlog key={_key} id={_key} faqs={block.faqs} />;
+        return <FaqBlock key={_key} id={_key} faqs={block.faqs} />;
       case BODY_BLOCKS.CTA_BLOCK:
         return (
           <CtaBlock

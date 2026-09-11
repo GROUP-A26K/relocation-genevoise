@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { Link } from '@/libs/i18nNavigation';
 import WhatsappIcon from '@/assets/img/logos/social/whatsapp.svg';
 
-import type { FC } from 'react';
-interface Props {
+interface IWhatsappProps {
   phoneNumber: string;
 }
-export const Whatsapp: FC<Props> = ({ phoneNumber }) => {
+
+export const Whatsapp: React.FC<IWhatsappProps> = ({ phoneNumber }) => {
   return (
     <Link
       href={`https://wa.me/${phoneNumber.replace(/\D/g, '')}`}
@@ -21,7 +21,8 @@ export const Whatsapp: FC<Props> = ({ phoneNumber }) => {
           title="Whatsapp logo"
           width={100}
           height={100}
-          className="size-[60px] lg:size-[80px]"
+          priority
+          className="size-15 lg:size-20"
         />
       </div>
     </Link>

@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 
 import { useScroll } from '@/hooks/useScroll';
+import Section from '@/components/customs/Section';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { ContentMenu } from '@/components/blocks/DynamicContent';
 import {
@@ -18,8 +19,8 @@ import {
 } from '@/models/BLog';
 
 import { Content } from './Content';
-import { ContentContainer } from './ContentContainer';
-interface Props {
+
+interface IContentViewProps {
   tableOfContent?: string;
   blog: BlogDetail;
 }
@@ -29,7 +30,7 @@ const allowedBlockTypes = [
   BLOG_BODY_BLOCKS.FAQ_BLOCK,
 ] as const;
 
-export const ContentView = ({ blog, tableOfContent }: Props) => {
+export const ContentView = ({ blog, tableOfContent }: IContentViewProps) => {
   const listBlock = useMemo(
     () =>
       blog.body.filter(
@@ -57,24 +58,26 @@ export const ContentView = ({ blog, tableOfContent }: Props) => {
   );
 
   return (
-    <ContentContainer>
-      <ContentMenu
-        title={tableOfContent}
-        setActiveId={setActiveId}
-        activeId={activeId}
-        isTableContent
-        menuItems={[
-          ...listBlock.map((item) => ({
-            id: item._key,
-            title:
-              item._type === BLOG_BODY_BLOCKS.FAQ_BLOCK
-                ? 'FAQ'
-                : (item.blockTitle?.title ?? ''),
-          })),
-        ]}
-      />
+    <Section className="relative">
+      <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[263fr_945fr]">
+        <ContentMenu
+          title={tableOfContent}
+          setActiveId={setActiveId}
+          activeId={activeId}
+          isTableContent
+          menuItems={[
+            ...listBlock.map((item) => ({
+              id: item._key,
+              title:
+                item._type === BLOG_BODY_BLOCKS.FAQ_BLOCK
+                  ? 'FAQ'
+                  : (item.blockTitle?.title ?? ''),
+            })),
+          ]}
+        />
 
-      <Content {...blog} />
-    </ContentContainer>
+        <Content {...blog} />
+      </div>
+    </Section>
   );
 };

@@ -1,11 +1,12 @@
 'use client';
+
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
+import { useCallback, useMemo, useState } from 'react';
 import { CalendarDays, Phone, PhoneIncoming } from 'lucide-react';
-import { type FC, type ReactNode, useCallback, useMemo, useState } from 'react';
 
 import axios from '@/libs/axios';
 import { Env } from '@/libs/Env';
@@ -31,39 +32,7 @@ const RESET_OPEN_STATUS_TIME = 60000;
 
 type ContactChannel = BookingFormInput['contactVia'];
 
-interface ContactChannelButtonProps {
-  label?: string;
-  icon: ReactNode;
-  value: ContactChannel;
-  isActive: boolean;
-  onSelect: (value: ContactChannel) => void;
-}
-
-const ContactChannelButton = ({
-  label,
-  icon,
-  value,
-  isActive,
-  onSelect,
-}: ContactChannelButtonProps) => (
-  <button
-    type="button"
-    aria-pressed={isActive}
-    onClick={() => onSelect(value)}
-    className={cn(
-      'cursor-pointer rounded-3xl px-4 py-2 text-base font-semibold shadow-none',
-      'flex h-10 w-full items-center justify-center gap-2 border border-solid bg-white transition-colors focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-hidden md:w-fit lg:h-12',
-      isActive ? 'border-yellow-500 bg-yellow-25' : 'border-grey-200'
-    )}
-  >
-    {icon}
-    <span className="text-sm leading-[130%]! font-normal text-black-500">
-      {label}
-    </span>
-  </button>
-);
-
-interface Props {
+interface IConsultationFormViewProps {
   heading?: string;
   subHeading?: string;
   description?: string;
@@ -80,14 +49,13 @@ interface Props {
     telephoneLabel: string;
     whatsappLabel: string;
   };
-
   link?: {
     text: string;
     url: string;
   };
 }
 
-export const ConsultationFormView: FC<Props> = ({
+export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   heading = 'Why Insurance Geneva ?',
   subHeading = 'Our expertise at your service',
   description = 'Our advisors will call you back during our opening hours and answer all your questions.',
@@ -223,11 +191,9 @@ export const ConsultationFormView: FC<Props> = ({
         <RevealSection
           trigger="load"
           className={cn(
-            'flex flex-col gap-4 text-center',
-            'lg:gap-6 lg:text-left',
-            'w-full',
-            'md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)',
-            'px-4 lg:px-[48px] xl:px-[100px]'
+            'flex w-full flex-col gap-4 px-4 text-center',
+            'lg:gap-6 lg:px-12 lg:text-left',
+            '2xl:max-w-(--breakpoint-2xl) 2xl:px-25'
           )}
         >
           <RevealItem className="flex flex-col gap-3">
@@ -249,15 +215,15 @@ export const ConsultationFormView: FC<Props> = ({
       <RevealSection
         trigger="load"
         className={cn(
-          'mx-auto flex max-w-[1240px] flex-col items-start gap-12 rounded-3xl bg-white p-4 pt-6 shadow-xl',
+          'mx-4 grid max-w-310 grid-cols-1 gap-12 rounded-3xl bg-white p-4 pt-6 shadow-xl',
           'md:p-8',
-          'max-lg:mx-4 lg:mx-8 lg:flex-row lg:gap-16 lg:p-8',
-          'xl:mx-auto'
+          'lg:mx-12 lg:grid-cols-2 lg:items-center lg:gap-16',
+          '2xl:mx-auto'
         )}
       >
         <RevealItem className={cn('flex w-full flex-col gap-6', 'lg:p-8')}>
           <div className="flex flex-col gap-3">
-            <h2 className="max-w-[450px] text-xl leading-[130%]! font-semibold lg:text-2xl">
+            <h2 className="max-w-112.5 text-xl leading-[130%]! font-semibold lg:text-2xl">
               {cardContent.title}
             </h2>
             <div className="flex flex-col gap-3">
@@ -277,7 +243,7 @@ export const ConsultationFormView: FC<Props> = ({
             </div>
           </div>
 
-          <div className={cn('flex flex-col gap-3', 'lg:gap-[18px]')}>
+          <div className={cn('flex flex-col gap-3', 'lg:gap-4.5')}>
             <div className="flex items-center gap-2">
               <div
                 className={`h-2 w-2 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'}`}
@@ -298,8 +264,8 @@ export const ConsultationFormView: FC<Props> = ({
                     }
                   }}
                   className={cn(
-                    'flex items-start justify-between gap-2',
-                    'max-md:flex-col'
+                    'flex flex-col items-start justify-between gap-2',
+                    'xl:flex-row'
                   )}
                 >
                   <div className="flex w-full flex-1 flex-col gap-2 lg:gap-3">
@@ -308,7 +274,7 @@ export const ConsultationFormView: FC<Props> = ({
                       placeholder={cardContent.buttonPlaceholder}
                       control={form.control}
                       error={form.formState.errors.phone?.message}
-                      className="w-full text-base lg:max-w-[431px]"
+                      className="w-full text-base lg:max-w-107.75"
                       inputClassName="bg-white lg:h-12"
                       countrySelectClassName="bg-white lg:h-12"
                     />
@@ -329,7 +295,7 @@ export const ConsultationFormView: FC<Props> = ({
                     as="solid"
                     variant="md"
                     type="primary"
-                    className="w-full md:w-fit lg:h-12"
+                    className="w-full lg:h-12 xl:w-fit"
                     disabled={isLoading || hasSubmitted}
                   >
                     {cardContent.buttonText}
@@ -339,7 +305,7 @@ export const ConsultationFormView: FC<Props> = ({
             </div>
             <h3 className="w-full text-sm leading-[130%]! font-normal text-black-500">
               {cardContent.noteTitle}{' '}
-              <Link href="/mentions-legales">
+              <Link href="/legal-notice">
                 <strong className="w-full cursor-pointer text-sm leading-[130%]! font-semibold">
                   {cardContent.policyTitle}
                 </strong>
@@ -348,23 +314,50 @@ export const ConsultationFormView: FC<Props> = ({
           </div>
         </RevealItem>
 
-        <RevealItem>
+        <RevealItem className="relative aspect-556/284 w-full overflow-hidden rounded-2xl">
           <Image
             src={ConsultationBG}
-            alt="Assurance Genevoise, courtier en assurance à Genève"
-            title="Assurance Genevoise, courtier en assurance à Genève"
-            width={0}
-            height={0}
-            sizes="100vh"
+            alt="Relocation Genevoise, courtier en relocation à Genève"
+            title="Relocation Genevoise, courtier en relocation à Genève"
+            fill
+            sizes="(min-width: 1240px) 488px, (min-width: 1024px) 380px, 100vw"
             priority
-            className={cn(
-              'rounded-[16px] object-cover',
-              'max-h-[300px] lg:max-h-none',
-              'max-sm:max-h-[180px] lg:h-[384px] lg:w-[380px] xl:h-[394px] xl:w-[488px]'
-            )}
+            className="object-cover"
           />
         </RevealItem>
       </RevealSection>
     </section>
   );
 };
+
+interface IContactChannelButtonProps {
+  icon: React.ReactNode;
+  value: ContactChannel;
+  isActive: boolean;
+  label?: string;
+  onSelect: (value: ContactChannel) => void;
+}
+
+const ContactChannelButton = ({
+  label,
+  icon,
+  value,
+  isActive,
+  onSelect,
+}: IContactChannelButtonProps) => (
+  <button
+    type="button"
+    aria-pressed={isActive}
+    onClick={() => onSelect(value)}
+    className={cn(
+      'cursor-pointer rounded-3xl px-4 py-2 text-base font-semibold shadow-none',
+      'flex h-10 w-full items-center justify-center gap-2 border border-solid bg-white transition-colors focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-hidden md:w-fit lg:h-12',
+      isActive ? 'border-yellow-500 bg-yellow-25' : 'border-grey-200'
+    )}
+  >
+    {icon}
+    <span className="text-sm leading-[130%]! font-normal text-black-500">
+      {label}
+    </span>
+  </button>
+);

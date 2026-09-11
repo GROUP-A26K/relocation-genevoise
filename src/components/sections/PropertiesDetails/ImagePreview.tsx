@@ -70,7 +70,7 @@ export const ImagePreview = ({
           alt={mainImageObj?.title || property.title}
           title={mainImageObj?.title || property.title}
           fill
-          sizes="100vw"
+          sizes="(min-width: 1440px) 616px, (min-width: 1024px) 50vw, 100vw"
           className="transition-brightness rounded-2xl object-cover duration-300 hover:cursor-pointer hover:brightness-70 lg:rounded-none"
           onClick={handleNavigateToPhotoTour}
           onLoad={() => handleImageLoad(mainImageObj?.url || '')}
@@ -87,7 +87,7 @@ export const ImagePreview = ({
               alt={img.title}
               title={img.title}
               fill
-              sizes="25vw, 25vw"
+              sizes="(min-width: 1440px) 304px, 25vw"
               className="transition-brightness rounded-lg object-cover duration-300 hover:cursor-pointer hover:brightness-70 lg:rounded-none"
               onClick={handleNavigateToPhotoTour}
               onLoad={() => handleImageLoad(img.url)}

@@ -42,7 +42,7 @@ const TESTIMONIAL_AVATARS: StaticImageData[] = [
   TestimonialAva4,
   TestimonialAva5,
   TestimonialAva6,
-] as const;
+];
 
 const SERVICE_ICONS: LucideIcon[] = [
   Camera,
@@ -51,7 +51,7 @@ const SERVICE_ICONS: LucideIcon[] = [
   CalendarCheck2,
   FileText,
   KeyRound,
-] as const;
+];
 
 export async function generateMetadata(
   props: PageProps<'/[locale]/find-a-tenant/landlords'>

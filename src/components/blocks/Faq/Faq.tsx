@@ -7,20 +7,19 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion-custom';
 
-import type { FC } from 'react';
-
-interface FAQ {
+type TFaq = {
   question: string;
   answer: string;
-}
+};
 
-interface Props {
+interface IFaqProps {
   heading?: string;
   subHeading?: string;
   description?: string;
-  faqs?: FAQ[];
+  faqs?: TFaq[];
 }
-export const FAQ: FC<Props> = ({
+
+export const Faq: React.FC<IFaqProps> = ({
   heading = 'FAQ',
   subHeading = 'Do you have any questions? We have the answers!',
   description = 'Everything you need to know about the product and billing.',
@@ -86,7 +85,7 @@ export const FAQ: FC<Props> = ({
               <AccordionTrigger className="py-0 text-lg leading-[130%]! font-semibold">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="max-w-[720px] py-0 pt-2 text-sm leading-[130%]! text-black-200">
+              <AccordionContent className="max-w-180 py-0 pt-2 text-sm leading-[130%]! text-black-200">
                 <p>
                   <FormattedText text={item.answer} />
                 </p>
