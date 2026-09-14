@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getLocalizedPath } from '@/utils/seo';
+import { getPageAlternates } from '@/utils/seo';
 import { Hero } from '@/components/blocks/Hero';
 import Section from '@/components/customs/Section';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
@@ -30,9 +30,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: getLocalizedPath(locale, 'findAccommodation'),
-    },
+    alternates: getPageAlternates(locale, 'findAccommodation'),
   };
 }
 

@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
-import { getLocalizedPath } from '@/utils/seo';
+import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { ContactInfo } from '@/components/blocks/Info';
 import { ConsultationFormView } from '@/components/sections/RemindMe';
@@ -20,9 +20,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: getLocalizedPath(locale, 'callMeBack'),
-    },
+    alternates: getPageAlternates(locale, 'callMeBack'),
   };
 }
 

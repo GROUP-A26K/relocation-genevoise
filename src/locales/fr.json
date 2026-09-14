@@ -1256,20 +1256,20 @@
       "description": "Découvrez nos appartements exclusifs à Genève sélectionnés par nos experts. Trouvez votre logement idéal avec notre service dédié."
     },
     "Career": {
-      "title": "Relocation Genevoise - Carrières",
-      "description": "Rejoignez Relocation Genevoise et faites partie d'une équipe dynamique dédiée à la protection de nos clients en Suisse. Consultez nos offres d'emploi."
+      "title": "Relocation Genevoise – Carrières",
+      "description": "Rejoignez Relocation Genevoise et accompagnez particuliers et entreprises dans leur installation à Genève. Découvrez nos offres d’emploi."
     },
     "LegalNotices": {
-      "title": "Relocation Genevoise - Our legal notice",
-      "description": "Discover the tailored insurance solutions offered by Relocation Genevoise, with a reliable network of partners across Switzerland to meet your specific needs."
+      "title": "Relocation Genevoise – Mentions légales",
+      "description": "Mentions légales de RG Relocation Genevoise SA : entreprise, responsabilité, droits d’auteur, protection des données, cookies et droit applicable."
     },
     "PersonalData": {
-      "title": "Relocation Genevoise - Your personal data",
-      "description": "Protect your personal data with Relocation Genevoise. Discover our commitments to privacy and security to ensure the protection of your information."
+      "title": "Relocation Genevoise – Protection des données",
+      "description": "Découvrez quelles données personnelles Relocation Genevoise traite, dans quel but, avec qui elles sont partagées et comment exercer vos droits selon la nLPD."
     },
     "Sitemap": {
-      "title": "Relocation Genevoise - Sitemap",
-      "description": "Discover the site map of Relocation Genevoise to easily navigate through our insurance services and useful information."
+      "title": "Relocation Genevoise – Plan du site",
+      "description": "Parcourez toutes les pages de Relocation Genevoise : recherche de logement et de locataire, entreprises, annonces immobilières, blog et infos pratiques."
     },
     "FAQ": {
       "title": "Relocation Genevoise – FAQ",
@@ -1284,8 +1284,20 @@
       "description": "Une solution complète et sur mesure pour trouver votre logement idéal à Genève, gérer vos démarches avec simplicité."
     },
     "FindATenant": {
-      "title": "Relocation Genevoise – Trouver un locataire",
-      "description": "Confiez la recherche de locataires à notre équipe : sélection rigoureuse, visites, gestion des candidatures et gain de temps garanti."
+      "title": "Relocation Genevoise – Trouver un locataire pour votre bien",
+      "description": "De l’annonce à la signature du bail, nous gérons votre location à Genève : dossiers solvables, visites et démarches, vous gardez le choix final."
+    },
+    "FindATenantLandlordsForm": {
+      "title": "Relocation Genevoise – Confier la location de votre bien",
+      "description": "Parlez-nous de votre bien à Genève en quelques minutes. Un spécialiste de la location vous contacte sous 24 heures pour trouver le bon locataire."
+    },
+    "FindATenantTenant": {
+      "title": "Relocation Genevoise – Trouver un repreneur de bail",
+      "description": "Vous quittez votre logement avant la fin du bail ? Nous trouvons votre repreneur solvable et gérons photos, annonce, visites et dossier jusqu’à la libération."
+    },
+    "FindATenantTenantForm": {
+      "title": "Relocation Genevoise – Démarrer votre remise de bail",
+      "description": "Partagez quelques informations sur votre bail actuel et notre équipe vous contacte sous 24 heures pour trouver votre repreneur."
     },
     "AcademicService": {
       "title": "Relocation Genevoise – Scolarité",
@@ -1300,13 +1312,14 @@
       "description": "Profitez d’un service de conciergerie sur mesure à Genève : démarches, logement, accueil, pour une installation simple et sereine."
     },
     "Error404": {
-      "title": "Relocation Genevoise - Page Not Found (404)"
+      "title": "Relocation Genevoise – Page introuvable (404)",
+      "description": "La page que vous recherchez n’existe pas ou a été déplacée. Retournez à l’accueil de Relocation Genevoise pour poursuivre votre visite."
     },
     "Error403": {
-      "title": "Relocation Genevoise - Access Denied (403)"
+      "title": "Relocation Genevoise – Accès refusé (403)"
     },
     "Error500": {
-      "title": "Relocation Genevoise - Error 500"
+      "title": "Relocation Genevoise – Erreur serveur (500)"
     }
   },
   "Breadcrumb": {

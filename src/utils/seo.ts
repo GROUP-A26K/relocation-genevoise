@@ -41,6 +41,74 @@ export const getLocalizedPath = (
   return pathname || '/';
 };
 
+export const stripLocalePrefix = (slug: string) =>
+  slug.replace(/^[a-z]{2}-/i, '');
+
+export const getHreflangPaths = (
+  pathByLocale: Partial<Record<string, string>>
+): Record<string, string> => {
+  const entries = AppConfig.locales.flatMap((locale): [string, string][] => {
+    const path = pathByLocale[locale];
+
+    return path ? [[locale, path]] : [];
+  });
+
+  if (entries.length < 2) {
+    return {};
+  }
+
+  const defaultPath = pathByLocale[AppConfig.defaultLocale];
+
+  return Object.fromEntries(
+    defaultPath ? [...entries, ['x-default', defaultPath]] : entries
+  );
+};
+
+export const getPageAlternates = (
+  locale: string,
+  routeKey: TRouteKey,
+  slugByLocale?: Partial<Record<string, string>>
+) => {
+  const pathByLocale = Object.fromEntries(
+    AppConfig.locales.flatMap((currentLocale): [string, string][] => {
+      if (!slugByLocale) {
+        return [[currentLocale, getLocalizedPath(currentLocale, routeKey)]];
+      }
+
+      const slug = slugByLocale[currentLocale];
+
+      return slug
+        ? [
+            [
+              currentLocale,
+              getLocalizedPath(
+                currentLocale,
+                routeKey,
+                stripLocalePrefix(slug)
+              ),
+            ],
+          ]
+        : [];
+    })
+  );
+
+  return {
+    canonical: pathByLocale[locale],
+    languages: getHreflangPaths(pathByLocale),
+  };
+};
+
+export const getSlugByLocale = (
+  locale: string,
+  slug: string,
+  translations: { locale: string; slug: string }[]
+) => ({
+  ...Object.fromEntries(
+    translations.map((translation) => [translation.locale, translation.slug])
+  ),
+  [locale]: slug,
+});
+
 export const getOgLocale = (locale: string) => OG_LOCALES[toLocale(locale)];
 
 export const getLanguageTag = (locale: string) =>

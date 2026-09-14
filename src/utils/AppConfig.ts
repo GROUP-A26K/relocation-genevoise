@@ -3,7 +3,7 @@ import type { LocalePrefixMode } from 'next-intl/routing';
 const localePrefix: LocalePrefixMode = 'as-needed';
 
 export const AppConfig = {
-  name: 'Nextjs Starter',
+  name: 'Relocation Genevoise',
   locales: ['fr', 'en'],
   defaultLocale: 'fr',
   localePrefix,
@@ -16,7 +16,7 @@ export const AppConfig = {
       priority: 0.3,
     },
     sitemap: { fr: '/sitemap', en: '/sitemap', priority: 0.3 },
-    LegalNotices: {
+    legalNotices: {
       fr: '/mentions-legales',
       en: '/legal-notice',
       priority: 0.3,

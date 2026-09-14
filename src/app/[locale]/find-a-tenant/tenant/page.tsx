@@ -9,7 +9,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-import { getLocalizedPath } from '@/utils/seo';
+import { getPageAlternates } from '@/utils/seo';
 import Hero from '@/components/sections/FindATenant/Hero';
 import CtaBanner from '@/components/sections/FindATenant/CtaBanner';
 import WhyChooseUs from '@/components/sections/FindATenant/WhyChooseUs';
@@ -59,15 +59,13 @@ export async function generateMetadata(
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.FindAccommodation',
+    namespace: 'Metadata.FindATenantTenant',
   });
 
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: getLocalizedPath(locale, 'findATenantTenant'),
-    },
+    alternates: getPageAlternates(locale, 'findATenantTenant'),
   };
 }
 

@@ -282,6 +282,7 @@ export const SITEMAP_DOCUMENTS_QUERY = defineQuery(`
     _type == $type &&
     !(_id in path("drafts.**")) &&
     coalesce(isHidden, false) == false &&
+    ($requiresExplicitVisibility == false || isHidden == false) &&
     language in $locales &&
     defined(slug.current)
   ] | order(_updatedAt desc) {

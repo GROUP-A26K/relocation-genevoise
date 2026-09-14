@@ -32,5 +32,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     alternates: {
       canonical: getI18nPath(`/application/${slug}`, locale),
     },
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }

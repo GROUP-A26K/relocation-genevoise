@@ -7,6 +7,7 @@ import { getAlternates, type TSitemapUrl } from '@/utils/sitemap';
 import {
   getAbsoluteUrl,
   getLocalizedPath,
+  stripLocalePrefix,
   toIsoDate,
   type TRouteKey,
 } from '@/utils/seo';
@@ -29,6 +30,7 @@ type TCmsSitemapSource = {
   routeKey: TRouteKey;
   tag: string;
   priority: number;
+  requiresExplicitVisibility: boolean;
 };
 
 const CMS_SITEMAPS = {
@@ -37,26 +39,27 @@ const CMS_SITEMAPS = {
     routeKey: 'blog',
     tag: 'sitemap-blogs',
     priority: 0.7,
+    requiresExplicitVisibility: false,
   },
   properties: {
     type: 'property',
     routeKey: 'properties',
     tag: 'sitemap-properties',
     priority: 0.6,
+    requiresExplicitVisibility: false,
   },
   career: {
     type: 'relocationJobPost',
     routeKey: 'career',
     tag: 'jobs',
     priority: 0.6,
+    requiresExplicitVisibility: true,
   },
 } as const satisfies Record<string, TCmsSitemapSource>;
 
 export type TCmsSitemap = keyof typeof CMS_SITEMAPS;
 
 export const CMS_SITEMAP_NAMES = Object.keys(CMS_SITEMAPS) as TCmsSitemap[];
-
-const stripLocalePrefix = (slug: string) => slug.replace(/^[a-z]{2}-/i, '');
 
 export const getStaticSitemapUrls = (): TSitemapUrl[] =>
   (Object.keys(AppConfig.routes) as TRouteKey[]).flatMap((routeKey) => {
@@ -78,11 +81,12 @@ export const getStaticSitemapUrls = (): TSitemapUrl[] =>
 export const getCmsSitemapUrls = async (
   name: TCmsSitemap
 ): Promise<TSitemapUrl[]> => {
-  const { type, routeKey, tag, priority } = CMS_SITEMAPS[name];
+  const { type, routeKey, tag, priority, requiresExplicitVisibility } =
+    CMS_SITEMAPS[name];
 
   const documents = await sanityFetch<TSitemapDocument[]>(
     SITEMAP_DOCUMENTS_QUERY,
-    { type, locales: AppConfig.locales },
+    { type, locales: AppConfig.locales, requiresExplicitVisibility },
     { tags: [tag] }
   );
 
@@ -93,7 +97,11 @@ export const getCmsSitemapUrls = async (
     const pathByLocale = Object.fromEntries([
       [language, toPath(language, slug)],
       ...(translations ?? []).flatMap((translation): [string, string][] =>
-        translation?.language && translation.slug && !translation.isHidden
+        translation?.language &&
+        translation.slug &&
+        (requiresExplicitVisibility
+          ? translation.isHidden === false
+          : translation.isHidden !== true)
           ? [
               [
                 translation.language,

@@ -1,7 +1,10 @@
 import { SITE_NAME } from '@/constants/seo';
-import { getLocalizedPath, getOgLocale } from '@/utils/seo';
 import { ScrollToTop } from '@/components/customs/ScrollToTop';
-import { getPropertyDetail } from '@/services/property.service';
+import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
+import {
+  fetchPropertySlugBySlug,
+  getPropertyDetail,
+} from '@/services/property.service';
 
 import type { Metadata } from 'next';
 
@@ -18,7 +21,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {};
   }
 
-  const canonical = getLocalizedPath(locale, 'properties', slug);
+  const translations = await fetchPropertySlugBySlug(property.slug.current);
+  const alternates = getPageAlternates(
+    locale,
+    'properties',
+    getSlugByLocale(locale, slug, translations)
+  );
+  const { canonical } = alternates;
   const imageUrl = property.areas[0]?.mainImageUrl;
   const images = imageUrl ? [{ url: imageUrl, alt: property.title }] : [];
 
@@ -38,9 +47,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     twitter: {
       images,
     },
-    alternates: {
-      canonical,
-    },
+    alternates,
   };
 }
 

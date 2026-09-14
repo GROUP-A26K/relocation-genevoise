@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { getLocalizedPath } from '@/utils/seo';
+import { getPageAlternates } from '@/utils/seo';
 import FormLayout from '@/components/sections/FindATenant/FormLayout';
 import TenantForm from '@/components/sections/FindATenant/TenantForm';
 import FormImage from '@/assets/img/find-a-tenant/tenant/form-image.webp';
@@ -13,15 +13,13 @@ export async function generateMetadata(
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
-    namespace: 'Metadata.FindAccommodation',
+    namespace: 'Metadata.FindATenantTenantForm',
   });
 
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: getLocalizedPath(locale, 'findATenantTenantForm'),
-    },
+    alternates: getPageAlternates(locale, 'findATenantTenantForm'),
   };
 }
 

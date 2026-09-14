@@ -2,10 +2,15 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { SITE_NAME } from '@/constants/seo';
-import { getLocalizedPath } from '@/utils/seo';
 import { PageView } from '@/components/sections/CareerDetail';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import {
+  getLocalizedPath,
+  getPageAlternates,
+  getSlugByLocale,
+} from '@/utils/seo';
+import {
+  fetchCareerSlugBySlug,
   fetchJobDetailBySlug,
   fetchFeaturedJobPosts,
 } from '@/services/career/career.service';
@@ -59,11 +64,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   if (!jobDetail) return {};
 
+  const translations = await fetchCareerSlugBySlug(`${locale}-${slug}`);
+
   return {
     title: jobDetail.title,
     description: jobDetail.excerpt,
-    alternates: {
-      canonical: getLocalizedPath(locale, 'career', jobDetail.slug),
-    },
+    alternates: getPageAlternates(
+      locale,
+      'career',
+      getSlugByLocale(locale, jobDetail.slug, translations)
+    ),
   };
 }

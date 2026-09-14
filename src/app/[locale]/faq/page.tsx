@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 
 import { Faq } from '@/components/blocks/Faq';
-import { getLocalizedPath } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import GroupAvatar from '@/assets/img/avt/group-avt-1.webp';
+import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
 import { BookConsultation } from '@/components/blocks/Consultation';
 import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
 
@@ -21,9 +21,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: getLocalizedPath(locale, 'faq'),
-    },
+    alternates: getPageAlternates(locale, 'faq'),
   };
 }
 

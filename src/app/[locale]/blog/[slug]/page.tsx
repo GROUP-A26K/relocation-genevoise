@@ -8,8 +8,18 @@ import BlogJsonLd from '@/components/seo/BlogJsonLd';
 import { BlogDetailHero } from '@/components/blocks/Hero';
 import { ContentView } from '@/components/sections/BlogDetail';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
-import { fetchBlogBySlug, fetchBlogs } from '@/services/blog.service';
-import { getLocalizedPath, getOgLocale, toIsoDate } from '@/utils/seo';
+import {
+  fetchBlogBySlug,
+  fetchBlogs,
+  fetchBlogSlugBySlug,
+} from '@/services/blog.service';
+import {
+  getLocalizedPath,
+  getOgLocale,
+  getPageAlternates,
+  getSlugByLocale,
+  toIsoDate,
+} from '@/utils/seo';
 
 import type { Metadata } from 'next';
 
@@ -21,7 +31,13 @@ export async function generateMetadata(
 
   if (!blogDetail) return {};
 
-  const canonical = getLocalizedPath(locale, 'blog', slug);
+  const translations = await fetchBlogSlugBySlug(blogDetail.slug);
+  const alternates = getPageAlternates(
+    locale,
+    'blog',
+    getSlugByLocale(locale, slug, translations)
+  );
+  const { canonical } = alternates;
   const images = [{ url: blogDetail.imageUrl, alt: blogDetail.title }];
 
   return {
@@ -40,9 +56,7 @@ export async function generateMetadata(
     twitter: {
       images,
     },
-    alternates: {
-      canonical,
-    },
+    alternates,
   };
 }
 

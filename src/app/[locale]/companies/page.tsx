@@ -17,7 +17,7 @@ import {
   Package2,
 } from 'lucide-react';
 
-import { getLocalizedPath } from '@/utils/seo';
+import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { CompaniesInfo } from '@/components/blocks/Info';
 
@@ -35,9 +35,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: getLocalizedPath(locale, 'companies'),
-    },
+    alternates: getPageAlternates(locale, 'companies'),
   };
 }
 

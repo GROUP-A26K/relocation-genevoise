@@ -1242,20 +1242,20 @@
       "description": "Browse exclusive Geneva apartments, handpicked by relocation experts. Find your perfect home with our dedicated service."
     },
     "Career": {
-      "title": "Relocation Genevoise - Career",
-      "description": "Join Relocation Genevoise and build a rewarding career in the insurance industry. Discover our job offers and opportunities for professional development."
+      "title": "Relocation Genevoise – Careers",
+      "description": "Join Relocation Genevoise and help individuals and companies settle in Geneva. Discover our current job openings and grow within a dynamic team."
     },
     "LegalNotices": {
-      "title": "Relocation Genevoise - Our legal notice",
-      "description": "Discover the tailored insurance solutions offered by Relocation Genevoise, with a reliable network of partners across Switzerland to meet your specific needs."
+      "title": "Relocation Genevoise – Legal notice",
+      "description": "Legal notice of RG Relocation Genevoise SA: company information, liability, copyright, data protection, cookies and applicable law."
     },
     "PersonalData": {
-      "title": "Relocation Genevoise - Your personal data",
-      "description": "Protect your personal data with Relocation Genevoise. Discover our commitments to privacy and security to ensure the protection of your information."
+      "title": "Relocation Genevoise – Privacy policy",
+      "description": "Find out which personal data Relocation Genevoise collects, why we process it, who we share it with and how to exercise your rights under the Swiss nFADP."
     },
     "Sitemap": {
-      "title": "Relocation Genevoise - Sitemap",
-      "description": "Discover the site map of Relocation Genevoise to easily navigate through our insurance services and useful information."
+      "title": "Relocation Genevoise – Sitemap",
+      "description": "Browse every page of Relocation Genevoise: housing and tenant search, services for companies, property listings, blog articles and practical information."
     },
     "FAQ": {
       "title": "Relocation Genevoise – FAQ",
@@ -1270,8 +1270,20 @@
       "description": "A complete and tailored solution to find your ideal home in Geneva and handle all formalities with ease."
     },
     "FindATenant": {
-      "title": "Relocation Genevoise – Find a tenant",
-      "description": "Let our team handle your tenant search: careful selection, property visits, application management, and guaranteed time savings."
+      "title": "Relocation Genevoise – Find a tenant for your property",
+      "description": "From listing to lease signing, we manage your rental in Geneva: vetted applications, viewings and paperwork, while you keep the final decision."
+    },
+    "FindATenantLandlordsForm": {
+      "title": "Relocation Genevoise – List your property for rent",
+      "description": "Tell us about your property in Geneva in a few minutes. One of our rental specialists will contact you within 24 hours to find the right tenant."
+    },
+    "FindATenantTenant": {
+      "title": "Relocation Genevoise – Find a replacement tenant",
+      "description": "Leaving your rental before the lease ends? We find your replacement tenant and handle photos, listing, viewings and paperwork until your release."
+    },
+    "FindATenantTenantForm": {
+      "title": "Relocation Genevoise – Start your lease transfer",
+      "description": "Share a few details about your current lease and our team will contact you within 24 hours to start finding your replacement tenant."
     },
     "AcademicService": {
       "title": "Relocation Genevoise – Schooling",
@@ -1286,13 +1298,14 @@
       "description": "Enjoy a tailored concierge service in Geneva: administrative support, housing, welcome assistance—for a smooth and stress-free relocation."
     },
     "Error404": {
-      "title": "Relocation Genevoise - Page Not Found (404)"
+      "title": "Relocation Genevoise – Page not found (404)",
+      "description": "The page you are looking for does not exist or has been moved. Return to the Relocation Genevoise homepage to continue browsing."
     },
     "Error403": {
-      "title": "Relocation Genevoise - Access Denied (403)"
+      "title": "Relocation Genevoise – Access denied (403)"
     },
     "Error500": {
-      "title": "Relocation Genevoise - Error 500"
+      "title": "Relocation Genevoise – Server error (500)"
     }
   },
   "Breadcrumb": {

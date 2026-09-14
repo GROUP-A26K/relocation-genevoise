@@ -1,5 +1,4 @@
-import { getAbsoluteUrl } from '@/utils/seo';
-import { AppConfig } from '@/utils/AppConfig';
+import { getAbsoluteUrl, getHreflangPaths } from '@/utils/seo';
 
 export type TSitemapAlternate = {
   hreflang: string;
@@ -36,35 +35,11 @@ const toTag = (name: string, value?: number | string) =>
 
 export const getAlternates = (
   pathByLocale: Partial<Record<string, string>>
-): TSitemapAlternate[] => {
-  const alternates = AppConfig.locales.flatMap((locale) => {
-    const path = pathByLocale[locale];
-
-    return path ? [{ hreflang: locale, href: getAbsoluteUrl(path) }] : [];
-  });
-
-  if (alternates.length < 2) {
-    return [];
-  }
-
-  const defaultPath = pathByLocale[AppConfig.defaultLocale];
-
-  return defaultPath
-    ? [
-        ...alternates,
-        { hreflang: 'x-default', href: getAbsoluteUrl(defaultPath) },
-      ]
-    : alternates;
-};
-
-export const getLatestModified = (urls: TSitemapUrl[]) =>
-  urls.reduce<string | undefined>(
-    (latest, { lastModified }) =>
-      lastModified && (!latest || lastModified > latest)
-        ? lastModified
-        : latest,
-    undefined
-  );
+): TSitemapAlternate[] =>
+  Object.entries(getHreflangPaths(pathByLocale)).map(([hreflang, path]) => ({
+    hreflang,
+    href: getAbsoluteUrl(path),
+  }));
 
 export const buildUrlsetXml = (urls: TSitemapUrl[]) => {
   const body = urls
