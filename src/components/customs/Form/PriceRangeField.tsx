@@ -101,7 +101,7 @@ export const PriceRangeField: FC<PriceRangeFieldProps> = ({
         <PopoverTrigger asChild>
           <div
             className={cn(
-              'group relative flex h-10 w-full items-center rounded-full text-sm',
+              'group relative flex h-10 w-full cursor-pointer items-center rounded-full text-sm select-none',
               'border bg-white px-3',
               'border-grey-100',
               'hover:border-black-50',

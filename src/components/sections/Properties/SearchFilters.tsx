@@ -15,20 +15,7 @@ import {
   RoomsSelectField,
 } from '@/components/customs/Form';
 
-import type { FC } from 'react';
 import type { IPropertyCategory } from '@/models/Property';
-
-interface ISearchFiltersProps {
-  categories: IPropertyCategory[];
-}
-
-interface ISearchFiltersFormValues {
-  location: string;
-  priceRange: string;
-  currency: string;
-  categories: string[];
-  rooms: string;
-}
 
 const FILTER_LABEL_CLASSNAME =
   'text-body font-semibold text-black-500 leading-[130%]!';
@@ -38,17 +25,29 @@ const FIELD_CLASSNAME = 'w-full lg:w-[320px] space-y-0';
 const FIELD_INPUT_CLASSNAME =
   'h-10 bg-white border-grey-100 text-small font-medium text-black-500 placeholder:text-black-50 leading-[130%]!';
 
-const SearchFilters: FC<ISearchFiltersProps> = ({ categories }) => {
+type TSearchFiltersFormValues = {
+  location: string;
+  priceRange: string;
+  currency: string;
+  categories: string[];
+  rooms: string;
+};
+
+interface ISearchFiltersProps {
+  categories: IPropertyCategory[];
+}
+
+const SearchFilters: React.FC<ISearchFiltersProps> = ({ categories }) => {
   const t = useTranslations('Properties');
   const { formValues, applyFilters } = usePropertyFilters();
 
-  const form = useForm<ISearchFiltersFormValues>({
+  const form = useForm<TSearchFiltersFormValues>({
     values: formValues,
   });
 
   const locationValue = form.watch('location');
 
-  const onSubmit = (values: ISearchFiltersFormValues) => {
+  const onSubmit = (values: TSearchFiltersFormValues) => {
     applyFilters({
       location: values.location,
       priceRange: values.priceRange,

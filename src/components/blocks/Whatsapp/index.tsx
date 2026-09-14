@@ -13,18 +13,17 @@ export const Whatsapp: React.FC<IWhatsappProps> = ({ phoneNumber }) => {
       href={`https://wa.me/${phoneNumber.replace(/\D/g, '')}`}
       target="_blank"
       rel="noopener noreferrer"
+      className="fixed right-4 bottom-4 z-40 lg:right-8 lg:bottom-12"
     >
-      <div className="fixed right-4 bottom-4 z-40 lg:right-8 lg:bottom-12">
-        <Image
-          src={WhatsappIcon}
-          alt="Whatsapp logo"
-          title="Whatsapp logo"
-          width={100}
-          height={100}
-          priority
-          className="size-15 lg:size-20"
-        />
-      </div>
+      <Image
+        src={WhatsappIcon}
+        alt="Whatsapp logo"
+        title="Whatsapp logo"
+        width={100}
+        height={100}
+        priority
+        className="size-15 lg:size-20"
+      />
     </Link>
   );
 };

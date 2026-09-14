@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { RevealItem } from '@/components/customs/Reveal';
@@ -9,6 +7,13 @@ import {
   PROPERTY_SORT_OPTIONS,
   usePropertyFilters,
 } from '@/hooks/usePropertyFilters';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface IPropertyResultsHeaderProps {
   total: number;
@@ -24,21 +29,15 @@ export default function PropertyResultsHeader({
   const t = useTranslations('Properties');
   const { queryParams, handleSortChange, handleAvailableOnlyChange } =
     usePropertyFilters();
-  const [sortOpen, setSortOpen] = useState(false);
 
   const startItem = total > 0 ? (page - 1) * pageSize + 1 : 0;
   const endItem = Math.min(page * pageSize, total);
-  const currentSortLabel =
+  const currentSort =
     PROPERTY_SORT_OPTIONS.find((option) => option.value === queryParams.sort)
-      ?.labelKey ?? 'sort.newest';
-
-  const handleSortSelect = (value: string) => {
-    handleSortChange(value);
-    setSortOpen(false);
-  };
+      ?.value ?? PROPERTY_SORT_OPTIONS[0].value;
 
   return (
-    <RevealItem className="mb-8 flex gap-4 max-md:flex-col-reverse md:items-center md:justify-between">
+    <RevealItem className="flex gap-4 max-md:flex-col-reverse md:items-center md:justify-between">
       <div className="text-p leading-[130%]! font-normal text-black-500">
         {t('results.showing')}{' '}
         <span className="font-bold">
@@ -71,34 +70,26 @@ export default function PropertyResultsHeader({
           </span>
         </button>
 
-        <div className="relative flex items-center gap-3">
-          <div className="relative">
-            <button
-              onClick={() => setSortOpen((isOpen) => !isOpen)}
-              className="flex h-10 items-center justify-center gap-2 rounded-full bg-grey-100 px-4 py-3 text-p leading-[130%]! font-semibold whitespace-nowrap text-black-500 transition-colors hover:bg-grey-200"
-            >
-              {t(currentSortLabel)}
-              <ChevronDown className="h-4 w-4" />
-            </button>
-            {sortOpen && (
-              <div className="absolute top-12 right-0 z-10 min-w-[180px] rounded-xl border border-grey-100 bg-white py-1 shadow-lg">
-                {PROPERTY_SORT_OPTIONS.map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleSortSelect(option.value)}
-                    className={`w-full px-4 py-2 text-left text-p leading-[130%]! transition-colors hover:bg-grey-50 ${
-                      queryParams.sort === option.value
-                        ? 'font-semibold text-black-500'
-                        : 'font-normal text-black-300'
-                    }`}
-                  >
-                    {t(option.labelKey)}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        <Select value={currentSort} onValueChange={handleSortChange}>
+          <SelectTrigger className="h-10 w-auto gap-2 rounded-full border-0 bg-grey-100 px-4 py-3 text-p leading-[130%]! font-semibold text-black-500 shadow-none transition-colors hover:bg-grey-200 focus:ring-0 [&>svg]:opacity-100">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent
+            align="end"
+            sideOffset={8}
+            className="min-w-[180px] rounded-xl border-grey-100 bg-white shadow-lg"
+          >
+            {PROPERTY_SORT_OPTIONS.map((option) => (
+              <SelectItem
+                key={option.value}
+                value={option.value}
+                className="cursor-pointer rounded-md px-4 py-2 text-p leading-[130%]! font-normal text-black-300 focus:bg-grey-50 focus:text-black-500 data-[state=checked]:font-semibold data-[state=checked]:text-black-500 [&>span:first-child]:hidden"
+              >
+                {t(option.labelKey)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </RevealItem>
   );

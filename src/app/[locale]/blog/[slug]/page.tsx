@@ -1,18 +1,16 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
 import { SITE_NAME } from '@/constants/seo';
-import Section from '@/components/customs/Section';
-import { BlogList } from '@/components/blocks/Blog';
 import BlogJsonLd from '@/components/seo/BlogJsonLd';
-import { BlogDetailHero } from '@/components/blocks/Hero';
-import { ContentView } from '@/components/sections/BlogDetail';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
+import { hydrateBlogDetail } from '@/features/blog/blog.hydration';
+import { BlogDetailClient } from '@/components/sections/BlogDetail/BlogDetailClient';
 import {
   fetchBlogBySlug,
-  fetchBlogs,
   fetchBlogSlugBySlug,
-} from '@/services/blog.service';
+} from '@/features/blog/blog.service';
 import {
   getLocalizedPath,
   getOgLocale,
@@ -63,20 +61,16 @@ export async function generateMetadata(
 export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
   const { slug, locale } = await props.params;
 
-  const t = await getTranslations('BlogDetail');
   const tBreadcrumb = await getTranslations('Breadcrumb');
 
-  const blogDetail = await fetchBlogBySlug(slug, locale);
+  const { state, blogDetail, relatedBlogs } = await hydrateBlogDetail(
+    slug,
+    locale
+  );
 
   if (!blogDetail) {
     notFound();
   }
-
-  const { blogs } = await fetchBlogs({
-    page: 1,
-    pageSize: 3,
-    locale: locale,
-  });
 
   const blogPath = getLocalizedPath(locale, 'blog', slug);
 
@@ -91,22 +85,14 @@ export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
         ]}
       />
 
-      <Section revealTrigger="load" dividerProps={{ className: 'hidden' }}>
-        <BlogDetailHero {...blogDetail} />
-      </Section>
-
-      <ContentView tableOfContent={t('tableContent')} blog={blogDetail} />
-
-      <Section>
-        <BlogList
-          blogs={blogs}
-          heading={t('BlogList.heading')}
-          subHeading={t('BlogList.subHeading')}
-          description={t('BlogList.description')}
-          buttonText={t('BlogList.buttonText')}
-          buttonUrl="/blog"
+      <HydrationBoundary state={state}>
+        <BlogDetailClient
+          slug={slug}
+          locale={locale}
+          blog={blogDetail}
+          relatedBlogs={relatedBlogs.blogs}
         />
-      </Section>
+      </HydrationBoundary>
     </>
   );
 }

@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 import Section from '@/components/customs/Section';
 import { Button } from '@/components/ui/button-custom';
@@ -12,10 +14,10 @@ interface IPropertyDetailSimilarProps {
   relatedProperties: IPropertyListing[];
 }
 
-export async function PropertyDetailSimilar({
+export function PropertyDetailSimilar({
   relatedProperties,
 }: IPropertyDetailSimilarProps) {
-  const t = await getTranslations('PropertiesDetails');
+  const t = useTranslations('PropertiesDetails');
 
   return (
     <Section>

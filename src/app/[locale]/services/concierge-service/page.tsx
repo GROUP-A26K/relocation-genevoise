@@ -70,15 +70,13 @@ export default async function Page() {
           },
         ]}
       />
-      <Section className="bg-grey-50 lg:bg-white">
-        <BookConsultation2
-          heading={t('BookConsultation.heading')}
-          subHeading={t('BookConsultation.subHeading')}
-          description={t('BookConsultation.description')}
-          buttonText1={t('BookConsultation.buttonText1')}
-          buttonText2={t('BookConsultation.buttonText2')}
-        />
-      </Section>
+      <BookConsultation2
+        heading={t('BookConsultation.heading')}
+        subHeading={t('BookConsultation.subHeading')}
+        description={t('BookConsultation.description')}
+        buttonText1={t('BookConsultation.buttonText1')}
+        buttonText2={t('BookConsultation.buttonText2')}
+      />
     </>
   );
 }

@@ -428,10 +428,12 @@ const PROPERTIES_BASE_FILTER = `
       (
         $rooms == "" ||
         ($rooms == "studio" && (
-          coalesce(facilities[typeRoom == "room" && valueType == "number"][0].numberValue, 0) +
-          coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) +
-          coalesce(facilities[typeRoom == "bathroom" && valueType == "number"][0].numberValue, 0)
-        ) <= 1) ||
+          facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 0 ||
+          (
+            !defined(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue) &&
+            facilities[typeRoom == "room" && valueType == "number"][0].numberValue <= 1.5
+          )
+        )) ||
         ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||
         ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||
         ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||

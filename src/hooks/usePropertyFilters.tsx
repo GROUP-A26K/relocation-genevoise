@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, type TransitionStartFunction } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
   parseAsBoolean,
   parseAsInteger,
@@ -47,8 +47,7 @@ export const PROPERTY_SORT_OPTIONS = [
 ] as const;
 
 export const usePropertyFilters = (
-  convertToCHF?: (amount: number, currency: string) => number,
-  startTransition?: TransitionStartFunction
+  convertToCHF?: (amount: number, currency: string) => number
 ) => {
   const [queryParams, setQueryParams] = useQueryStates(
     {
@@ -61,7 +60,7 @@ export const usePropertyFilters = (
       rooms: parseAsString.withDefault(INITIAL_PARAMS.rooms),
       availableOnly: parseAsBoolean.withDefault(INITIAL_PARAMS.availableOnly),
     },
-    { shallow: false, scroll: false, startTransition }
+    { shallow: true, scroll: false }
   );
 
   const formValues = useMemo<PropertyFilterFormValues>(

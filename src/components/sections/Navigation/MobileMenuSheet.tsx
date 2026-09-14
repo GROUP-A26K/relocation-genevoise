@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Twirl } from 'hamburger-react';
+import { Menu, X } from 'lucide';
+import { MorphIcon } from 'morphicons/react';
 
 import {
   Sheet,
@@ -23,22 +24,13 @@ const MobileMenuSheet = ({ phoneAction, children }: IMobileMenuSheetProps) => {
       <div className="flex flex-row gap-3">
         {phoneAction}
         <SheetTrigger asChild>
-          <div
-            className="relative size-10 overflow-hidden [&>.hamburger-react]:absolute [&>.hamburger-react]:-inset-1"
-            onKeyUp={(event) => {
-              if (event.key === 'Enter') {
-                setOpen((isOpen) => !isOpen);
-              }
-            }}
+          <button
+            type="button"
+            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+            className="flex size-10 cursor-pointer items-center justify-center"
           >
-            <Twirl
-              toggled={open}
-              label={open ? 'Close navigation menu' : 'Open navigation menu'}
-              duration={0.35}
-              size={22}
-              hideOutline={false}
-            />
-          </div>
+            <MorphIcon icon={open ? X : Menu} size={24} spring="snappy" />
+          </button>
         </SheetTrigger>
       </div>
       <SheetPortal forceMount>

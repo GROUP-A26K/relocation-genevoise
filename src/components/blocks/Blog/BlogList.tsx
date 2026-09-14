@@ -1,3 +1,5 @@
+'use client';
+
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import { RevealItem } from '@/components/customs/Reveal';

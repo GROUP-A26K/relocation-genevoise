@@ -1,46 +1,67 @@
 'use client';
 
-import { type FC, useTransition } from 'react';
+import { motion } from 'motion/react';
+import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'motion/react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
+import Show from '@/components/customs/Show';
 import Section from '@/components/customs/Section';
 import TabsMenu from '@/components/blocks/TabsMenu';
 import { JobCard } from '@/components/customs/Card';
 import EmptyData from '@/components/customs/EmptyData';
 import { RevealItem } from '@/components/customs/Reveal';
 import { Pagination } from '@/components/blocks/Pagination';
-import { Spinner } from '@/components/customs/Spinner/Spinner';
+import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import { normalizeCareerListFilters } from '@/features/career/career.searchParams';
+import {
+  useCareerDepartments,
+  useCareerList,
+} from '@/features/career/career.hooks';
 
 import { ContentContainer } from './ContentContainer';
+import { CareerListSkeleton } from './CareerListSkeleton';
 
 import type { Job } from '@/models/Job';
 import type { Meta } from '@/models/Meta';
 import type { AssuranceJobDepartment } from '@/sanity/types';
 
-interface Props {
+interface IPageViewProps {
   departments: AssuranceJobDepartment[];
   jobs: Job[];
   meta: Meta;
 }
 
-export const PageView: FC<Props> = (props) => {
+export const PageView: React.FC<IPageViewProps> = (props) => {
   const t = useTranslations('Career');
   const locale = useLocale();
-  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
 
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(1),
       filterBy: parseAsString.withDefault(''),
     },
-    { shallow: false, scroll: false, startTransition }
+    { shallow: true, scroll: false }
   );
 
-  const showEmpty = !isPending && props.jobs.length === 0;
-  const showList = !isPending && props.jobs.length > 0;
+  const filters = normalizeCareerListFilters({
+    locale,
+    page: queryParams.page,
+    pageSize: 5,
+    filterBy: queryParams.filterBy,
+  });
+  const listQuery = useCareerList(filters);
+  const departmentQuery = useCareerDepartments(locale);
+  const jobs = listQuery.data?.jobs ?? props.jobs;
+  const meta = listQuery.data?.meta ?? props.meta;
+  const departments = departmentQuery.data?.departments ?? props.departments;
+  const loading = listQuery.isPending || listQuery.isPlaceholderData;
+
+  const listTopRef = useScrollIntoViewOnChange<HTMLDivElement>(
+    `${queryParams.page}|${queryParams.filterBy}`
+  );
 
   return (
     <>
@@ -63,10 +84,13 @@ export const PageView: FC<Props> = (props) => {
       </Section>
 
       <ContentContainer>
-        <RevealItem className="flex flex-col items-center justify-center gap-8 lg:flex-row">
+        <RevealItem
+          ref={listTopRef}
+          className="flex scroll-mt-26 flex-col items-center justify-center gap-8 lg:flex-row"
+        >
           <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
-              category={props.departments.map((dept) => ({
+              category={departments.map((dept) => ({
                 title:
                   dept.title?.[locale as 'fr' | 'en'] || 'Unknown Department',
               }))}
@@ -79,48 +103,32 @@ export const PageView: FC<Props> = (props) => {
         </RevealItem>
 
         <RevealItem className="flex flex-col items-center justify-center">
-          <div className="mx-auto flex w-full max-w-[768px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[660px] 2xl:max-w-[768px]">
-            <AnimatePresence>
-              {isPending && (
-                <motion.div
-                  key="spinner"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Spinner />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
+          <div className="mx-auto flex w-full max-w-3xl flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-165 2xl:max-w-3xl">
             <h2 className="sr-only">Job posts</h2>
-            <AnimatePresence>
-              {showEmpty && (
+            <Show when={!loading} fallback={<CareerListSkeleton />}>
+              <Show
+                when={jobs.length > 0}
+                fallback={
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-b border-grey-100 py-12 lg:max-w-none"
+                  >
+                    <EmptyData
+                      title={t('emptyTitle')}
+                      description={t('emptyDescription')}
+                    />
+                  </motion.div>
+                }
+              >
                 <motion.div
-                  key="empty"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-b border-grey-100 py-12 lg:max-w-none"
+                  className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 py-12 lg:max-w-none"
                 >
-                  <EmptyData
-                    title={t('emptyTitle')}
-                    description={t('emptyDescription')}
-                  />
-                </motion.div>
-              )}
-              {showList && (
-                <motion.div
-                  key="jobList"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-b border-grey-100 py-12 lg:max-w-none"
-                >
-                  {props.jobs.map((job) => (
+                  {jobs.map((job) => (
                     <JobCard
                       key={job.id}
                       job={job}
@@ -128,17 +136,24 @@ export const PageView: FC<Props> = (props) => {
                     />
                   ))}
                 </motion.div>
-              )}
-            </AnimatePresence>
+              </Show>
+            </Show>
           </div>
         </RevealItem>
 
-        {showList && (
+        <Show when={!loading && jobs.length > 0}>
           <Pagination
-            meta={props.meta}
+            meta={meta}
             onClick={(page: number) => setQueryParams({ page })}
+            getPageHref={(page) => {
+              const params = new URLSearchParams();
+              if (page > 1) params.set('page', String(page));
+              if (queryParams.filterBy)
+                params.set('filterBy', queryParams.filterBy);
+              return `${pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+            }}
           />
-        )}
+        </Show>
       </ContentContainer>
     </>
   );

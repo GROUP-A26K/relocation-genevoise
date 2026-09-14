@@ -11,35 +11,47 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-import type { FC } from 'react';
 import type { Meta } from '@/models/Meta';
 
-interface Props {
+interface IPaginationProps {
   meta: Meta;
   className?: string;
   onClick: (value: number) => void;
+  getPageHref: (value: number) => string;
 }
 
 const pageItemClassName =
   'h-10 w-10 p-0 rounded-full flex items-center justify-center font-semibold';
 
-export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
+export const Pagination: React.FC<IPaginationProps> = ({
+  meta,
+  className,
+  onClick,
+  getPageHref,
+}) => {
   const currentPage = meta.pagination.page;
+
+  if (meta.pagination.pageCount <= 1) return null;
 
   const handleTabClick = (value: number) => {
     onClick(value);
   };
 
+  const linkProps = (page: number) => ({
+    href: getPageHref(page),
+    onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      handleTabClick(page);
+    },
+  });
+
   const generatePaginationLinks = (current: number, max: number) => {
     if (!current || !max) return null;
 
     const items = [
-      <PaginationItem
-        key={1}
-        onClick={() => handleTabClick(1)}
-        className="cursor-pointer"
-      >
+      <PaginationItem key={1} className="cursor-pointer">
         <PaginationLink
+          {...linkProps(1)}
           className={cn(
             pageItemClassName,
             meta.pagination.page === 1 &&
@@ -59,14 +71,11 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
     const r1: number = current - r;
     const r2: number = current + r;
 
-    for (let i = r1 > 2 ? r1 : 2; i <= Math.min(max, r2); i++) {
+    for (let i = Math.max(r1, 2); i <= Math.min(max, r2); i++) {
       items.push(
-        <PaginationItem
-          key={i}
-          onClick={() => handleTabClick(i)}
-          className="cursor-pointer"
-        >
+        <PaginationItem key={i} className="cursor-pointer">
           <PaginationLink
+            {...linkProps(i)}
             className={cn(
               pageItemClassName,
               meta.pagination.page === i &&
@@ -83,12 +92,9 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
     if (r2 + 1 < max) items.push(<PaginationEllipsis key="right" />);
     if (r2 < max)
       items.push(
-        <PaginationItem
-          key={max}
-          onClick={() => handleTabClick(max)}
-          className="cursor-pointer"
-        >
+        <PaginationItem key={max} className="cursor-pointer">
           <PaginationLink
+            {...linkProps(max)}
             className={cn(
               pageItemClassName,
               meta.pagination.page === max &&
@@ -103,14 +109,17 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
 
     return items || [];
   };
+
   return (
-    <PaginationShadcn className={cn('w-full py-12 lg:py-16', className)}>
+    <PaginationShadcn className={cn('w-full', className)}>
       {/* Desktop */}
       <PaginationContent className="hidden w-full flex-row justify-between border-t border-t-grey-100 lg:flex lg:pt-8">
         <PaginationItem>
           <PaginationPrevious
+            {...(currentPage > 1 ? linkProps(currentPage - 1) : {})}
             className={cn('cursor-pointer', currentPage === 1 && 'invisible')}
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault();
               if (currentPage > 1) {
                 handleTabClick(currentPage - 1);
               }
@@ -125,12 +134,16 @@ export const Pagination: FC<Props> = ({ meta, className, onClick }) => {
         </div>
         <PaginationItem>
           <PaginationNext
+            {...(currentPage < meta.pagination.pageCount
+              ? linkProps(currentPage + 1)
+              : {})}
             className={cn(
               'cursor-pointer',
               currentPage === meta.pagination.pageCount && 'invisible',
               meta.pagination.pageCount === 0 && 'invisible'
             )}
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault();
               if (currentPage < meta.pagination.pageCount) {
                 handleTabClick(currentPage + 1);
               }

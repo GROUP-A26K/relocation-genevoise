@@ -1,38 +1,25 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
 import { SITE_NAME } from '@/constants/seo';
 import { getLocalizedPath } from '@/utils/seo';
-import Section from '@/components/customs/Section';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
-import { ImagePreview } from '@/components/sections/PropertiesDetails/ImagePreview';
-import {
-  fetchProperties,
-  getPropertyDetail,
-} from '@/services/property.service';
-import { PropertyDetailView } from '@/components/sections/PropertiesDetails/PropertyDetailsView';
-import { PropertyDetailSimilar } from '@/components/sections/PropertiesDetails/PropertyDetailSimilar';
+import { hydratePropertyDetail } from '@/features/property/property.hydration';
+import { PropertyDetailClient } from '@/components/sections/PropertiesDetails/PropertyDetailClient';
 
-type Props = {
-  params: Promise<{ locale: string; slug: string }>;
-};
-
-export default async function PropertyDetailPage({ params }: Props) {
+export default async function PropertyDetailPage({
+  params,
+}: PageProps<'/[locale]/properties/[slug]'>) {
   const { locale, slug } = await params;
-  const property = await getPropertyDetail(slug, locale);
+  const { state, property, relatedProperties } = await hydratePropertyDetail(
+    slug,
+    locale
+  );
 
   if (!property) {
     notFound();
   }
-
-  const listRelatedProperty = await fetchProperties({
-    page: 1,
-    pageSize: 3,
-    category: property.category?.categoryName
-      ? [property.category.categoryName]
-      : [],
-    locale: locale,
-  });
 
   const tBreadcrumb = await getTranslations('Breadcrumb');
 
@@ -52,16 +39,14 @@ export default async function PropertyDetailPage({ params }: Props) {
         ]}
       />
 
-      <section className="flex w-full flex-col items-center justify-center">
-        <Section isDivider revealTrigger="load" className="w-full">
-          <ImagePreview property={property} propertySlug={slug} />
-
-          <PropertyDetailView property={property} />
-        </Section>
-        <PropertyDetailSimilar
-          relatedProperties={listRelatedProperty.properties}
+      <HydrationBoundary state={state}>
+        <PropertyDetailClient
+          property={property}
+          relatedProperties={relatedProperties.properties}
+          slug={slug}
+          locale={locale}
         />
-      </section>
+      </HydrationBoundary>
     </>
   );
 }

@@ -1,19 +1,15 @@
 import { SITE_NAME } from '@/constants/seo';
-import { ScrollToTop } from '@/components/customs/ScrollToTop';
 import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
 import {
   fetchPropertySlugBySlug,
   getPropertyDetail,
-} from '@/services/property.service';
+} from '@/features/property/property.service';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  children: React.ReactNode;
-  params: Promise<{ locale: string; slug: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: LayoutProps<'/[locale]/properties/[slug]'>
+): Promise<Metadata> {
   const { locale, slug } = await props.params;
   const property = await getPropertyDetail(slug, locale);
 
@@ -51,11 +47,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default function PropertyDetailLayout({ children }: Props) {
-  return (
-    <>
-      <ScrollToTop />
-      {children}
-    </>
-  );
+export default function PropertyDetailLayout({
+  children,
+}: React.PropsWithChildren) {
+  return children;
 }
