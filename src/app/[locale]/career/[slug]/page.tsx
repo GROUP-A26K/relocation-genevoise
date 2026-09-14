@@ -1,9 +1,11 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
 import { SITE_NAME } from '@/constants/seo';
 import { PageView } from '@/components/sections/CareerDetail';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
+import { hydrateCareerDetail } from '@/features/career/career.hydration';
 import {
   getLocalizedPath,
   getPageAlternates,
@@ -12,28 +14,21 @@ import {
 import {
   fetchCareerSlugBySlug,
   fetchJobDetailBySlug,
-  fetchFeaturedJobPosts,
-} from '@/services/career/career.service';
+} from '@/features/career/career.service';
 
 import type { Metadata } from 'next';
 
-const NUMBER_OF_FEATURED_JOBS = 5;
-
-type Props = {
-  params: Promise<{ locale: string; slug: string }>;
-};
-
-export default async function Page(props: Props) {
+export default async function Page(
+  props: PageProps<'/[locale]/career/[slug]'>
+) {
   const { slug, locale } = await props.params;
-  const jobDetail = await fetchJobDetailBySlug(slug, locale);
+  const {
+    state,
+    detail: jobDetail,
+    featuredJobs,
+  } = await hydrateCareerDetail(slug, locale);
 
   if (!jobDetail) notFound();
-
-  const { jobs: featuredJobs } = await fetchFeaturedJobPosts(slug, {
-    locale,
-    filterBy: jobDetail.department,
-    limit: NUMBER_OF_FEATURED_JOBS,
-  });
 
   const tBreadcrumb = await getTranslations('Breadcrumb');
 
@@ -53,12 +48,21 @@ export default async function Page(props: Props) {
         ]}
       />
 
-      <PageView jobDetail={jobDetail} featuredJobs={featuredJobs} />
+      <HydrationBoundary state={state}>
+        <PageView
+          jobDetail={jobDetail}
+          featuredJobs={featuredJobs.jobs}
+          slug={slug}
+          locale={locale}
+        />
+      </HydrationBoundary>
     </>
   );
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/career/[slug]'>
+): Promise<Metadata> {
   const { slug, locale } = await props.params;
   const jobDetail = await fetchJobDetailBySlug(slug, locale);
 

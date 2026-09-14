@@ -1,6 +1,6 @@
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
-import { fetchBlogs } from '@/services/blog.service';
+import { fetchBlogs } from '@/features/blog/blog.service';
 import { Card } from '@/components/sections/Navigation/Card';
 import { SubMenuLink } from '@/components/customs/SubMenuLink';
 import MotionNavItem from '@/components/sections/Navigation/MotionNavItem';
@@ -11,14 +11,14 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 
-interface MenuItem {
+type TMenuItem = {
   title: string;
   subtitle?: string;
   url: string;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  items?: MenuItem[];
-}
+  items?: TMenuItem[];
+};
 
 const MENU_LINK_STYLE = cn(
   'ml-0! inline-flex h-[72px] w-max items-center justify-center rounded-none border-0 bg-transparent px-[8px] py-2 text-[16px] leading-[150%]! font-bold text-black-500 shadow-none transition-colors',
@@ -26,7 +26,7 @@ const MENU_LINK_STYLE = cn(
   'active:bg-transparent active:text-black-500'
 );
 
-export const renderMenuItem = async (item: MenuItem, locale?: string) => {
+export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
   if (item.items) {
     const { blogs } = await fetchBlogs({
       page: 1,
@@ -56,9 +56,7 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
           )}
         >
           <div className="m-0 flex w-full justify-center">
-            <div className="flex w-full! flex-col px-[50px] md:w-[300px] md:max-w-(--breakpoint-md) lg:w-[400px] lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:flex-row xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
-              {/* SubMenuLink */}
-
+            <div className="flex w-full! flex-col px-12.5 md:w-[300px] md:max-w-(--breakpoint-md) lg:w-[400px] lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:flex-row xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
               <div className="flex w-full flex-col gap-3 p-6 pb-0 pl-0 xl:p-6 xl:pl-0">
                 <p className="px-[12px] text-subtle leading-[130%]! font-medium uppercase">
                   {item.subtitle}
@@ -74,7 +72,6 @@ export const renderMenuItem = async (item: MenuItem, locale?: string) => {
                   ))}
                 </div>
               </div>
-              {/* Blog */}
               <div className="flex flex-col gap-3 border-0 p-6 pr-0 pl-0 xl:border-l-2 xl:border-gray-50 xl:p-6 xl:pr-0">
                 <p className="px-[12px] text-subtle font-medium uppercase">
                   Blog

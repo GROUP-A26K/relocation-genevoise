@@ -1,33 +1,27 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
 import { getPageAlternates } from '@/utils/seo';
-import { RevealSection } from '@/components/customs/Reveal';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
 import PropertiesHero from '@/components/sections/Properties/PropertiesHero';
+import { hydratePropertyList } from '@/features/property/property.hydration';
 import { getExchangeRates, toCHFWithRates } from '@/utils/exchangeRate.server';
 import { SearchFilters } from '@/components/sections/Properties/SearchFilters';
-import {
-  fetchProperties,
-  fetchPropertyCategories,
-} from '@/services/property.service';
 import PropertyListingsSection from '@/components/sections/Properties/PropertyListingsSection';
 import {
   buildPropertyFilterParams,
   parsePropertySearchParams,
-} from '@/utils/propertyFilters';
+} from '@/features/property/property.searchParams';
 
 import type { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/properties'>
+): Promise<Metadata> {
   const { locale } = await props.params;
-  const t = await getTranslations('Metadata.Properties');
+  const t = await getTranslations({ locale, namespace: 'Metadata.Properties' });
 
   return {
     title: t('title'),
@@ -36,45 +30,44 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function PropertiesPage(props: Props) {
+export default async function PropertiesPage(
+  props: PageProps<'/[locale]/properties'>
+) {
   const { locale } = await props.params;
   const searchParams = await props.searchParams;
   const t = await getTranslations('Properties');
 
-  const [categories, rates] = await Promise.all([
-    fetchPropertyCategories({ locale }),
-    getExchangeRates(),
-  ]);
-
-  const { properties, meta } = await fetchProperties({
+  const rates = await getExchangeRates();
+  const propertyFilters = {
     ...buildPropertyFilterParams(
       parsePropertySearchParams(searchParams),
       (amount, currency) => toCHFWithRates(amount, currency, rates)
     ),
     locale,
-  });
+  };
+  const { state, categories, propertyList } =
+    await hydratePropertyList(propertyFilters);
 
   return (
-    <ExchangeRatesProvider>
-      <Suspense fallback={null}>
-        <section className="relative">
-          <PropertiesHero />
-          <div className="relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
-            <SearchFilters categories={categories} />
-          </div>
-        </section>
-        <PropertyListingsSection properties={properties} meta={meta} />
-        <section className="flex w-full justify-center">
-          <RevealSection className="w-full max-w-[1240px] bg-grey-50 max-md:px-4 xl:rounded-[24px]">
-            <BookConsultation2
-              heading={t('BookConsultation.heading')}
-              subHeading={t('BookConsultation.subHeading')}
-              description={t('BookConsultation.description')}
-              buttonText1={t('BookConsultation.buttonText1')}
-              buttonText2={t('BookConsultation.buttonText2')}
-            />
-          </RevealSection>
-        </section>
+    <ExchangeRatesProvider initialRates={rates}>
+      <Suspense>
+        <PropertiesHero />
+        <div className="relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
+          <SearchFilters categories={categories.categories} />
+        </div>
+        <HydrationBoundary state={state}>
+          <PropertyListingsSection
+            properties={propertyList.properties}
+            meta={propertyList.meta}
+          />
+        </HydrationBoundary>
+        <BookConsultation2
+          heading={t('BookConsultation.heading')}
+          subHeading={t('BookConsultation.subHeading')}
+          description={t('BookConsultation.description')}
+          buttonText1={t('BookConsultation.buttonText1')}
+          buttonText2={t('BookConsultation.buttonText2')}
+        />
       </Suspense>
     </ExchangeRatesProvider>
   );

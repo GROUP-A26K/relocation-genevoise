@@ -2,8 +2,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Sitemap';
-import { fetchSitemapBlogs } from '@/services/blog.service';
-import { fetchSitemapProperties } from '@/services/property.service';
+import { fetchSitemapBlogs } from '@/features/blog/blog.service';
+import { fetchSitemapProperties } from '@/features/property/property.service';
 
 import type { Metadata } from 'next';
 

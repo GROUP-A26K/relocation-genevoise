@@ -1,20 +1,22 @@
+import { HydrationBoundary } from '@tanstack/react-query';
+
 import Section from '@/components/customs/Section';
-import { getPropertyPhotoTour } from '@/services/property.service';
-import { PhotoTourView } from '@/components/sections/PhotoTour/PhotoTourView';
+import { PhotoTourClient } from '@/components/sections/PhotoTour/PhotoTourClient';
+import { hydratePropertyPhotoTour } from '@/features/property/property.hydration';
 import { PropertySectionHeader } from '@/components/blocks/PropertyDetail/SectionHeader';
 
-type Props = {
-  params: Promise<{ locale: string; slug: string }>;
-};
-
-export default async function GalleryPage({ params }: Props) {
+export default async function PhotoTourPage({
+  params,
+}: PageProps<'/[locale]/properties/[slug]/photo-tour'>) {
   const { locale, slug } = await params;
-  const areas = await getPropertyPhotoTour(slug, locale);
+  const { state, areas } = await hydratePropertyPhotoTour(slug, locale);
 
   return (
     <Section isDivider revealTrigger="load">
       <PropertySectionHeader areas={areas} slug={slug} />
-      <PhotoTourView areas={areas} />
+      <HydrationBoundary state={state}>
+        <PhotoTourClient areas={areas} slug={slug} locale={locale} />
+      </HydrationBoundary>
     </Section>
   );
 }

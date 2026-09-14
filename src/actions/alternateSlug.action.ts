@@ -1,8 +1,8 @@
 'use server';
 
-import { fetchBlogSlugBySlug } from '@/services/blog.service';
-import { fetchPropertySlugBySlug } from '@/services/property.service';
-import { fetchCareerSlugBySlug } from '@/services/career/career.service';
+import { fetchBlogSlugBySlug } from '@/features/blog/blog.service';
+import { fetchCareerSlugBySlug } from '@/features/career/career.service';
+import { fetchPropertySlugBySlug } from '@/features/property/property.service';
 
 export type AlternateContentType = 'blog' | 'career' | 'property';
 

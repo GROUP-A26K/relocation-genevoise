@@ -19,6 +19,7 @@ import SiteJsonLd from '@/components/seo/SiteJsonLd';
 import { getOgLocale, getSiteUrl } from '@/utils/seo';
 import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
 import { Navbar } from '@/components/sections/Navigation/NavBar';
+import TanstackQueryProvider from '@/components/providers/TanstackQueryProvider';
 
 import type { Metadata } from 'next';
 
@@ -115,10 +116,12 @@ export default async function LocaleLayout({
             messages={messages}
             timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
           >
-            <Navbar locale={locale} />
-            <NextTopLoader color="#f7d913" showSpinner={false} height={1} />
-            {children}
-            <Toaster />
+            <TanstackQueryProvider>
+              <Navbar locale={locale} />
+              <NextTopLoader color="#f7d913" showSpinner={false} height={1} />
+              {children}
+              <Toaster />
+            </TanstackQueryProvider>
           </NextIntlClientProvider>
         </NuqsAdapter>
       </body>

@@ -10,17 +10,17 @@ import { RevealItem } from '@/components/customs/Reveal';
 
 import type { IAreaPhotoTour } from '@/models/Property';
 
+type TImageObj = {
+  url: string;
+};
+
 interface IPhotoTourSectionProps {
   area: IAreaPhotoTour;
   index: number;
 }
 
-type ImageObj = {
-  url: string;
-};
-
 export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
-  const allImages: ImageObj[] = useMemo(
+  const allImages: TImageObj[] = useMemo(
     () => [
       { url: area.mainImageUrl },
       ...(area.galleryImages?.map((img) => ({ url: img.url })) || []),
@@ -69,7 +69,7 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
 
   return (
     <RevealItem
-      className="flex w-full flex-col gap-8 lg:flex-row lg:gap-16"
+      className="flex w-full scroll-mt-26 flex-col gap-8 lg:flex-row lg:gap-16"
       id={`area-${index}`}
     >
       <div className="flex flex-col gap-3 lg:flex-1 lg:gap-6 lg:py-6">

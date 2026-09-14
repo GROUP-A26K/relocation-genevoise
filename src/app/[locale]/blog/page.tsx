@@ -1,63 +1,66 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
-import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Blog/PageView';
+import { hydrateBlogList } from '@/features/blog/blog.hydration';
+import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
 import {
-  fetchBlogs,
-  fetchLatestBlog,
-  fetchPostCategory,
-} from '@/services/blog.service';
+  normalizeBlogListFilters,
+  parseBlogSearchParams,
+} from '@/features/blog/blog.searchParams';
 
 import type { Metadata } from 'next';
 
 const PAGE_SIZE = 9;
 
-type Props = {
-  params: Promise<{ locale: string }>;
-  searchParams: Promise<{ page?: string; filterBy?: string; search?: string }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/blog'>
+): Promise<Metadata> {
   const { locale } = await props.params;
+  const {
+    page: pageNumber,
+    filterBy,
+    search,
+  } = parseBlogSearchParams(await props.searchParams);
   const t = await getTranslations({
     locale,
     namespace: 'Metadata.Blog',
   });
 
+  const basePath = getLocalizedPath(locale, 'blog');
+  const alternates = getPageAlternates(locale, 'blog');
+  const canonical =
+    pageNumber > 1 && !filterBy && !search
+      ? `${basePath}?page=${pageNumber}`
+      : alternates.canonical;
+
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'blog'),
+    alternates: { ...alternates, canonical },
+    ...(filterBy || search ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
-export default async function Page(props: Props) {
+export default async function Page(props: PageProps<'/[locale]/blog'>) {
   const { locale } = await props.params;
-  const { page, filterBy, search } = await props.searchParams;
+  const filters = parseBlogSearchParams(await props.searchParams);
 
-  const [postCategory, newestBlog] = await Promise.all([
-    fetchPostCategory({ locale }),
-    fetchLatestBlog(locale),
-  ]);
-
-  const { blogs, meta } = await fetchBlogs({
-    locale,
-    page: Number(page) || 1,
-    pageSize: PAGE_SIZE,
-    filterBy: filterBy ?? '',
-    search: search ?? '',
-    exceptSlug: newestBlog?.slug,
-  });
+  const { state, latestBlog, postCategory, blogList } = await hydrateBlogList(
+    normalizeBlogListFilters({ locale, pageSize: PAGE_SIZE, ...filters })
+  );
 
   return (
-    <Suspense fallback={null}>
-      <PageView
-        category={postCategory.posts}
-        newestBlog={newestBlog}
-        blogs={blogs}
-        meta={meta}
-      />
+    <Suspense>
+      <HydrationBoundary state={state}>
+        <PageView
+          category={postCategory.posts}
+          newestBlog={latestBlog}
+          blogs={blogList.blogs}
+          meta={blogList.meta}
+        />
+      </HydrationBoundary>
     </Suspense>
   );
 }

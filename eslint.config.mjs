@@ -9,6 +9,7 @@ import { FlatCompat } from '@eslint/eslintrc';
 import perfectionist from 'eslint-plugin-perfectionist';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -54,6 +55,7 @@ export default defineConfig(
   {
     plugins: {
       perfectionist,
+      '@tanstack/query': pluginQuery,
     },
     rules: {
       // Sort import
@@ -101,6 +103,9 @@ export default defineConfig(
           ignoreVoid: true,
         },
       ],
+
+      // React query
+      '@tanstack/query/exhaustive-deps': 'error',
 
       // Clean code
       'no-console': [

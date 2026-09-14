@@ -8,6 +8,7 @@ import type { HTMLMotionProps } from 'motion/react';
 
 interface ISectionProps
   extends React.PropsWithChildren, React.HTMLAttributes<HTMLElement> {
+  ref?: React.Ref<HTMLElement>;
   isDivider?: boolean;
   className?: string;
   wrapperProps?: React.HTMLAttributes<HTMLElement>;
@@ -19,6 +20,7 @@ interface ISectionProps
 
 const Section: React.FC<ISectionProps> = ({
   children,
+  ref,
   isDivider,
   className,
   wrapperProps,
@@ -39,6 +41,7 @@ const Section: React.FC<ISectionProps> = ({
 
   return (
     <section
+      ref={ref}
       className={cn(
         'flex flex-col items-center justify-center text-black-500',
         className

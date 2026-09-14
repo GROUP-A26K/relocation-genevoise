@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 import {
   Building,
   Building2,
@@ -16,11 +17,11 @@ import {
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { HomeHero } from '@/components/blocks/Hero';
-import { BlogList } from '@/components/blocks/Blog';
-import { fetchBlogs } from '@/services/blog.service';
 import { StatsGrid } from '@/components/blocks/Stats';
 import { ContentWithImg } from '@/components/blocks/Content';
+import { hydrateBlogFeed } from '@/features/blog/blog.hydration';
 import { BookConsultation2 } from '@/components/blocks/Consultation';
+import { HomeBlogClient } from '@/components/blocks/Blog/HomeBlogClient';
 import {
   ContactFeature,
   Feature,
@@ -67,7 +68,11 @@ export default async function Page(props: PageProps<'/[locale]'>) {
     },
   ];
 
-  const { blogs } = await fetchBlogs({ page: 1, pageSize: 3, locale: locale });
+  const { state, blogList } = await hydrateBlogFeed({
+    page: 1,
+    pageSize: 3,
+    locale,
+  });
 
   return (
     <>
@@ -197,25 +202,25 @@ export default async function Page(props: PageProps<'/[locale]'>) {
       </Section>
 
       <Section isDivider>
-        <BlogList
-          blogs={blogs}
-          heading={t('BlogList.heading')}
-          subHeading={t('BlogList.subHeading')}
-          description={t('BlogList.description')}
-          buttonText={t('BlogList.buttonText')}
-          buttonUrl="/blog"
-        />
+        <HydrationBoundary state={state}>
+          <HomeBlogClient
+            locale={locale}
+            blogs={blogList.blogs}
+            heading={t('BlogList.heading')}
+            subHeading={t('BlogList.subHeading')}
+            description={t('BlogList.description')}
+            buttonText={t('BlogList.buttonText')}
+          />
+        </HydrationBoundary>
       </Section>
 
-      <Section className="bg-grey-50 lg:bg-white">
-        <BookConsultation2
-          heading={t('BookConsultation.heading')}
-          subHeading={t('BookConsultation.subHeading')}
-          description={t('BookConsultation.description')}
-          buttonText1={t('BookConsultation.buttonText1')}
-          buttonText2={t('BookConsultation.buttonText2')}
-        />
-      </Section>
+      <BookConsultation2
+        heading={t('BookConsultation.heading')}
+        subHeading={t('BookConsultation.subHeading')}
+        description={t('BookConsultation.description')}
+        buttonText1={t('BookConsultation.buttonText1')}
+        buttonText2={t('BookConsultation.buttonText2')}
+      />
     </>
   );
 }

@@ -36,13 +36,19 @@ const ExchangeRatesContext = createContext<ExchangeRatesContextValue>({
 
 export const useExchangeRates = () => useContext(ExchangeRatesContext);
 
-export const ExchangeRatesProvider: FC<{ children: ReactNode }> = ({
-  children,
-}) => {
-  const [rates, setRates] = useState<ExchangeRates>(FALLBACK_RATES);
+export const ExchangeRatesProvider: FC<{
+  children: ReactNode;
+  initialRates?: ExchangeRates;
+}> = ({ children, initialRates = FALLBACK_RATES }) => {
+  const [rates, setRates] = useState<ExchangeRates>(initialRates);
 
   useEffect(() => {
     // 1. Try cookie cache first
+    if (initialRates !== FALLBACK_RATES) {
+      setCachedRates(initialRates);
+      return;
+    }
+
     const cached = getCachedRates();
     if (cached) {
       setRates(cached);
@@ -59,7 +65,7 @@ export const ExchangeRatesProvider: FC<{ children: ReactNode }> = ({
       .catch(() => {
         // Keep fallback rates on network error
       });
-  }, []);
+  }, [initialRates]);
 
   const convertFromCHF = (chfAmount: number, currency: string): number => {
     const rate = rates[currency] ?? 1;
