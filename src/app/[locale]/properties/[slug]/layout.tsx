@@ -1,7 +1,10 @@
-import { Env } from '@/libs/Env';
-import { AppConfig } from '@/utils/AppConfig';
+import { SITE_NAME } from '@/constants/seo';
 import { ScrollToTop } from '@/components/customs/ScrollToTop';
-import { getPropertyDetail } from '@/services/property.service';
+import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
+import {
+  fetchPropertySlugBySlug,
+  getPropertyDetail,
+} from '@/services/property.service';
 
 import type { Metadata } from 'next';
 
@@ -18,9 +21,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {};
   }
 
-  const propertyPath = `${AppConfig.routes.properties[locale as 'fr' | 'en']}/${slug}`;
-  const propertyUrl = `${Env.NEXT_PUBLIC_SITE_URL}${locale === 'fr' ? '' : `/${locale}`}${propertyPath}`;
+  const translations = await fetchPropertySlugBySlug(property.slug.current);
+  const alternates = getPageAlternates(
+    locale,
+    'properties',
+    getSlugByLocale(locale, slug, translations)
+  );
+  const { canonical } = alternates;
   const imageUrl = property.areas[0]?.mainImageUrl;
+  const images = imageUrl ? [{ url: imageUrl, alt: property.title }] : [];
 
   return {
     title: property.title,
@@ -30,35 +39,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         : property.description,
     openGraph: {
       type: 'website',
-      locale: 'de-DE',
-      siteName: 'Relocation Genevoise',
-      url: propertyUrl,
-      images: imageUrl
-        ? [
-            {
-              url: imageUrl,
-              width: 1200,
-              height: 630,
-              alt: property.title,
-            },
-          ]
-        : [],
+      locale: getOgLocale(locale),
+      siteName: SITE_NAME,
+      url: canonical,
+      images,
     },
     twitter: {
-      images: imageUrl
-        ? [
-            {
-              url: imageUrl,
-              width: 1200,
-              height: 630,
-              alt: property.title,
-            },
-          ]
-        : [],
+      images,
     },
-    alternates: {
-      canonical: `/${locale === 'fr' ? '' : locale}${propertyPath}`,
-    },
+    alternates,
   };
 }
 

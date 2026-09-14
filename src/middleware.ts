@@ -7,6 +7,7 @@ export default createMiddleware({
   defaultLocale: routing.defaultLocale,
   localePrefix: 'as-needed',
   localeDetection: routing.localeDetection,
+  alternateLinks: routing.alternateLinks,
 });
 
 export const config = {

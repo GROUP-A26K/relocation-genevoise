@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
+import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Blog/PageView';
 import {
   fetchBlogs,
@@ -27,9 +28,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/blog`,
-    },
+    alternates: getPageAlternates(locale, 'blog'),
   };
 }
 

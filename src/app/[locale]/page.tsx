@@ -13,6 +13,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 
+import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/customs/Section';
 import { HomeHero } from '@/components/blocks/Hero';
 import { BlogList } from '@/components/blocks/Blog';
@@ -40,9 +41,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}`,
-    },
+    alternates: getPageAlternates(locale, 'home'),
   };
 }
 

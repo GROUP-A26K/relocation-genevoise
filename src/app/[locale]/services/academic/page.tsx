@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getPageAlternates } from '@/utils/seo';
 import { Hero } from '@/components/blocks/Hero';
 import Section from '@/components/customs/Section';
 import { ContentView } from '@/components/sections/ServiceDetail';
@@ -18,19 +18,10 @@ export async function generateMetadata(
     namespace: 'Metadata.AcademicService',
   });
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['academicService'][
-      locale as keyof (typeof routes)['academicService']
-    ];
-
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
-    },
+    alternates: getPageAlternates(locale, 'academicService'),
   };
 }
 

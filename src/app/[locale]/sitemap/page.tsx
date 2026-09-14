@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Sitemap';
 import { fetchSitemapBlogs } from '@/services/blog.service';
 import { fetchSitemapProperties } from '@/services/property.service';
@@ -18,9 +19,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/sitemap`,
-    },
+    alternates: getPageAlternates(locale, 'sitemap'),
   };
 }
 export default async function Page(props: PageProps<'/[locale]/sitemap'>) {

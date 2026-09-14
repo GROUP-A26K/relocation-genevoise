@@ -2,5 +2,5 @@ import { createUrlsetResponse } from '@/utils/sitemap';
 import { getCmsSitemapUrls } from '@/services/sitemap.service';
 
 export function GET() {
-  return createUrlsetResponse('blog', () => getCmsSitemapUrls('blog'));
+  return createUrlsetResponse('career', () => getCmsSitemapUrls('career'));
 }

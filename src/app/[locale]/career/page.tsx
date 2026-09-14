@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Career';
 import {
   fetchDepartments,
@@ -23,14 +23,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     namespace: 'Metadata.Career',
   });
 
-  const { routes } = AppConfig;
-  const canonical = routes['career'][locale as keyof (typeof routes)['career']];
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
-    },
+    alternates: getPageAlternates(locale, 'career'),
   };
 }
 export default async function Page(props: Props) {
