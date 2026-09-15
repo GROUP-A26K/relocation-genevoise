@@ -144,6 +144,7 @@ export type SanityImageAsset = {
   uploadId?: string;
   path?: string;
   url?: string;
+  lqip?: string;
 };
 export type SanityFileAsset = {
   _id: string;

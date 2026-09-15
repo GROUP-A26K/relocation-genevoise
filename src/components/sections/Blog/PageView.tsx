@@ -27,10 +27,10 @@ import { BlogListSkeleton } from './BlogListSkeleton';
 
 import type { Blog } from '@/models/blog';
 import type { Meta } from '@/models/meta';
-import type { BlogCategory } from '@/sanity/types';
+import type { POST_CATEGORIES_QUERY_RESULT } from '@/sanity/types';
 
 interface IPageViewProps {
-  category: BlogCategory[];
+  category: POST_CATEGORIES_QUERY_RESULT;
   newestBlog: Blog | null;
   blogs: Blog[];
   meta: Meta;

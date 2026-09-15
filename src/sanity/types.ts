@@ -12,154 +12,177 @@
  * ---------------------------------------------------------------------------------
  */
 
-// Source: schema.json
-export type SanityImagePaletteSwatch = {
-  _type: 'sanity.imagePaletteSwatch';
-  background?: string;
-  foreground?: string;
-  population?: number;
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
+// Source: src/sanity/extract.json
+export type BlockTitle = {
   title?: string;
 };
 
-export type SanityImagePalette = {
-  _type: 'sanity.imagePalette';
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
+export type WysiwygBlockBlockTitle = {
+  title?: string;
+  isStyle?: boolean;
+  content?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: 'span';
+          _key: string;
+        }>;
+        style?:
+          'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+        listItem?: 'bullet' | 'number';
+        markDefs?: Array<{
+          href?: string;
+          _type: 'link';
+          _key: string;
+        }>;
+        level?: number;
+        _type: 'block';
+        _key: string;
+      }
+    | {
+        mainPhoto?: MainPhoto;
+        _type: 'photoZone';
+        _key: string;
+      }
+    | {
+        content?: string;
+        author?: string;
+        _type: 'quote';
+        _key: string;
+      }
+    | {
+        tableTitle?: string;
+        tableData?: Table;
+        _key: string;
+      }
+    | {
+        title?: string;
+        source?: 'file' | 'url' | 'embed';
+        videoFile?: VideoFile;
+        videoUrl?: string;
+        embedUrl?: string;
+        _key: string;
+      }
+    | {
+        sectionType?: 'goodToKnow' | 'information' | 'error';
+        sectionTitle?: string;
+        sectionContent?: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: 'span';
+            _key: string;
+          }>;
+          style?:
+            'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+          listItem?: 'bullet' | 'number';
+          markDefs?: Array<{
+            href?: string;
+            _type: 'link';
+            _key: string;
+          }>;
+          level?: number;
+          _type: 'block';
+          _key: string;
+        }>;
+        _type: 'newSectionZone';
+        _key: string;
+      }
+    | {
+        photo?: QuoteImageZonePhoto;
+        author?: string;
+        authorInfo?: string;
+        content?: string;
+        _type: 'quoteImageZone';
+        _key: string;
+      }
+  >;
 };
 
-export type SanityImageDimensions = {
-  _type: 'sanity.imageDimensions';
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
+export type MainPhoto = {
+  imageTitle?: string;
+  photo?: Photo;
+  photoAlt?: string;
 };
 
-export type SanityFileAsset = {
-  _id: string;
-  _type: 'sanity.fileAsset';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+};
+
+export type Photo = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: 'image';
+};
+
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
+};
+
+export type VideoFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "videoFile.media" in schema
+  _type: 'file';
+};
+
+export type QuoteImageZonePhoto = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "photo.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: 'image';
+};
+
+export type CtaBlockBlockTitle = {
   title?: string;
   description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
+  buttonText?: string;
 };
 
-export type Geopoint = {
-  _type: 'geopoint';
-  lat?: number;
-  lng?: number;
-  alt?: number;
+export type FirstStat = {
+  value?: string;
+  label?: string;
 };
 
-export type TargetWebsite = {
-  _id: string;
-  _type: 'targetWebsite';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
+export type SecondStat = {
+  value?: string;
+  label?: string;
 };
 
-export type BlogCategory = {
-  _id: string;
-  _type: 'blogCategory';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  color?: string;
+export type ThirdStat = {
+  value?: string;
+  label?: string;
 };
 
-export type RelocationBlogCategory = {
-  _id: string;
-  _type: 'relocationBlogCategory';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  color?: string;
+export type CtaBlock = {
+  _type: 'ctaBlock';
+  blockTitle?: {
+    title?: string;
+    buttonText?: string;
+    description?: string;
+  };
 };
 
-export type Property = {
-  _id: string;
-  _type: 'property';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  charges?: number;
-  price?: number;
-  priceUnit?: '$' | 'CHF' | 'EUR';
-  rentPeriod?: 'month' | 'year';
-  location?: string;
-  numRooms?: number;
-  numBedrooms?: number;
-  size?: number;
-  floor?: string;
-  outdoorSpace?: boolean;
-  furnished?: boolean;
-  photos?: Array<{
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: 'image';
+export type FaqBlock = {
+  _type: 'faqBlock';
+  blockTitle?: BlockTitle;
+  faqs?: Array<{
+    question?: string;
+    answer?: string;
+    _type: 'faqItem';
     _key: string;
   }>;
-  description?: string;
-  agent?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'propertyAgent';
-  };
-  availability?: string;
-  category?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'propertyCategory';
-  };
-};
-
-export type PropertyCategory = {
-  _id: string;
-  _type: 'propertyCategory';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  categoryName?: string;
-};
-
-export type PropertyAgent = {
-  _id: string;
-  _type: 'propertyAgent';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  agentName?: string;
-  agentPhone?: string;
-  email?: string;
 };
 
 export type StatsBlock = {
@@ -207,12 +230,8 @@ export type WysiwygBlock = {
           mainPhoto?: {
             imageTitle?: string;
             photo?: {
-              asset?: {
-                _ref: string;
-                _type: 'reference';
-                _weak?: boolean;
-                [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-              };
+              asset?: SanityImageAssetReference;
+              media?: unknown;
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
               _type: 'image';
@@ -231,24 +250,47 @@ export type WysiwygBlock = {
       | {
           tableTitle?: string;
           tableData?: Table;
-          _type: 'tableZone';
           _key: string;
         }
       | {
           title?: string;
           source?: 'file' | 'url' | 'embed';
-          _type: 'videoZone';
-          videoFile?: {
-            asset?: {
-              _ref: string;
-              _type: 'reference';
-              _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
-            };
-            _type: 'file';
-          };
+          videoFile?: VideoFile;
           videoUrl?: string;
           embedUrl?: string;
+          _key: string;
+        }
+      | {
+          sectionType?: 'goodToKnow' | 'information' | 'error';
+          sectionTitle?: string;
+          sectionContent?: Array<{
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: 'span';
+              _key: string;
+            }>;
+            style?:
+              'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
+            listItem?: 'bullet' | 'number';
+            markDefs?: Array<{
+              href?: string;
+              _type: 'link';
+              _key: string;
+            }>;
+            level?: number;
+            _type: 'block';
+            _key: string;
+          }>;
+          _type: 'newSectionZone';
+          _key: string;
+        }
+      | {
+          photo?: QuoteImageZonePhoto;
+          author?: string;
+          authorInfo?: string;
+          content?: string;
+          _type: 'quoteImageZone';
           _key: string;
         }
     >;
@@ -259,18 +301,444 @@ export type PhotoZoneBlock = {
   _type: 'photoZoneBlock';
   mainPhoto?: {
     photo?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
+      asset?: SanityImageAssetReference;
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: 'image';
     };
     photoAlt?: string;
   };
+};
+
+export type SurroundingPlace = {
+  _type: 'surroundingPlace';
+  icon?:
+    | 'pharmacy'
+    | 'supermarket'
+    | 'school'
+    | 'publicTransport'
+    | 'hospital'
+    | 'restaurant'
+    | 'gym'
+    | 'park'
+    | 'bank'
+    | 'postOffice'
+    | 'airport'
+    | 'parking'
+    | 'university'
+    | 'library'
+    | 'mall'
+    | 'station';
+  name?: string;
+  distance?: string;
+};
+
+export type PropertyArea = {
+  _type: 'propertyArea';
+  title?: string;
+  description?: string;
+  mainImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  galleryImages?: Array<{
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+    _key: string;
+  }>;
+};
+
+export type MapLocation = {
+  _type: 'mapLocation';
+  name?: string;
+  coordinates?: Geopoint;
+};
+
+export type FacilityItem = {
+  _type: 'facilityItem';
+  typeRoom?:
+    | 'area'
+    | 'room'
+    | 'bedroom'
+    | 'bathroom'
+    | 'outdoor'
+    | 'furnished'
+    | 'floor'
+    | 'parking'
+    | 'balcony'
+    | 'garden'
+    | 'pool'
+    | 'elevator'
+    | 'heating'
+    | 'aircon'
+    | 'internet'
+    | 'laundry'
+    | 'storage'
+    | 'dishwasher'
+    | 'kitchen'
+    | 'view'
+    | 'quietNeighborhood'
+    | 'childFriendly'
+    | 'petAllowed'
+    | 'wheelchairAccess'
+    | 'smoking'
+    | 'certified'
+    | 'construction';
+  name?: string;
+  valueType?: 'number' | 'text' | 'none';
+  numberValue?: number;
+  textValue?: string;
+};
+
+export type LocalizedString = {
+  _type: 'localizedString';
+  en?: string;
+  fr?: string;
+};
+
+export type FiduciaireFribourgPage = {
+  _id: string;
+  _type: 'fiduciaireFribourgPage';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: 'fr' | 'en';
+  summary?: string;
+  mainPhoto?: {
+    imageTitle?: string;
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  metaTitle?: string;
+  metaDescription?: string;
+  publishedDate?: string;
+  publishedAt?: string;
+  body?: Array<
+    | {
+        blockTitle?: WysiwygBlockBlockTitle;
+        _type: 'wysiwygBlock';
+        _key: string;
+      }
+    | {
+        faqs?: Array<{
+          question?: string;
+          answer?: string;
+          _type: 'faqItem';
+          _key: string;
+        }>;
+        _type: 'faqBlock';
+        _key: string;
+      }
+    | {
+        blockTitle?: CtaBlockBlockTitle;
+        _type: 'ctaBlock';
+        _key: string;
+      }
+    | {
+        firstStat?: FirstStat;
+        secondStat?: SecondStat;
+        thirdStat?: ThirdStat;
+        _type: 'statsBlock';
+        _key: string;
+      }
+  >;
+};
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop';
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot';
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: 'slug';
+  current?: string;
+  source?: string;
+};
+
+export type FiduciaireFribourgBlogCategory = {
+  _id: string;
+  _type: 'fiduciaireFribourgBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type FiduciaireBaloisePage = {
+  _id: string;
+  _type: 'fiduciaireBaloisePage';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: 'fr' | 'en';
+  summary?: string;
+  mainPhoto?: {
+    imageTitle?: string;
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  metaTitle?: string;
+  metaDescription?: string;
+  publishedDate?: string;
+  publishedAt?: string;
+  body?: Array<
+    | {
+        blockTitle?: WysiwygBlockBlockTitle;
+        _type: 'wysiwygBlock';
+        _key: string;
+      }
+    | {
+        faqs?: Array<{
+          question?: string;
+          answer?: string;
+          _type: 'faqItem';
+          _key: string;
+        }>;
+        _type: 'faqBlock';
+        _key: string;
+      }
+    | {
+        blockTitle?: CtaBlockBlockTitle;
+        _type: 'ctaBlock';
+        _key: string;
+      }
+    | {
+        firstStat?: FirstStat;
+        secondStat?: SecondStat;
+        thirdStat?: ThirdStat;
+        _type: 'statsBlock';
+        _key: string;
+      }
+  >;
+};
+
+export type MedSuisseBlogCategory = {
+  _id: string;
+  _type: 'medSuisseBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type PrepassurBlogCategory = {
+  _id: string;
+  _type: 'prepassurBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type AutoMotoPlusBlogCategory = {
+  _id: string;
+  _type: 'autoMotoPlusBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type CasapicBlogCategory = {
+  _id: string;
+  _type: 'casapicBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type MedcourtageBlogCategory = {
+  _id: string;
+  _type: 'medcourtageBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type BestAccountantBlogCategory = {
+  _id: string;
+  _type: 'bestAccountantBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type FiduciaireVaudoiseBlogCategory = {
+  _id: string;
+  _type: 'fiduciaireVaudoiseBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type ImmobiliereBlogCategory = {
+  _id: string;
+  _type: 'immobiliereBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type FiduciairePage = {
+  _id: string;
+  _type: 'fiduciairePage';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: 'fr' | 'en';
+  summary?: string;
+  mainPhoto?: {
+    imageTitle?: string;
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  metaTitle?: string;
+  metaDescription?: string;
+  publishedDate?: string;
+  publishedAt?: string;
+  body?: Array<
+    | {
+        blockTitle?: WysiwygBlockBlockTitle;
+        _type: 'wysiwygBlock';
+        _key: string;
+      }
+    | {
+        faqs?: Array<{
+          question?: string;
+          answer?: string;
+          _type: 'faqItem';
+          _key: string;
+        }>;
+        _type: 'faqBlock';
+        _key: string;
+      }
+    | {
+        blockTitle?: CtaBlockBlockTitle;
+        _type: 'ctaBlock';
+        _key: string;
+      }
+    | {
+        firstStat?: FirstStat;
+        secondStat?: SecondStat;
+        thirdStat?: ThirdStat;
+        _type: 'statsBlock';
+        _key: string;
+      }
+  >;
+};
+
+export type Table = {
+  _type: 'table';
+  rows?: Array<
+    {
+      _key: string;
+    } & MyCustomRowType
+  >;
+};
+
+export type FiduciaireBlogCategory = {
+  _id: string;
+  _type: 'fiduciaireBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type GoLamalBlogCategory = {
+  _id: string;
+  _type: 'goLamalBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type TargetWebsite = {
+  _id: string;
+  _type: 'targetWebsite';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+};
+
+export type BlogCategory = {
+  _id: string;
+  _type: 'blogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+};
+
+export type RelocationBlogCategory = {
+  _id: string;
+  _type: 'relocationBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
 };
 
 export type InternationalizedArrayTextValue = {
@@ -301,29 +769,580 @@ export type TranslationMetadata = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  translations?: Array<
-    {
-      _key: string;
-    } & InternationalizedArrayReferenceValue
-  >;
+  translations?: InternationalizedArrayReference;
   schemaTypes?: Array<string>;
+};
+
+export type InternationalizedArrayReference = Array<
+  {
+    _key: string;
+  } & InternationalizedArrayReferenceValue
+>;
+
+export type PropertyReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'property';
+};
+
+export type BlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'blogPost';
+};
+
+export type RelocationBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'relocationBlogPost';
+};
+
+export type FiduciaireBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireBlogPost';
+};
+
+export type FiduciaireVaudoiseBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireVaudoiseBlogPost';
+};
+
+export type BestAccountantBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'bestAccountantBlogPost';
+};
+
+export type ImmobiliereBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'immobiliereBlogPost';
+};
+
+export type MedcourtageBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'medcourtageBlogPost';
+};
+
+export type CasapicBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'casapicBlogPost';
+};
+
+export type AutoMotoPlusBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'autoMotoPlusBlogPost';
+};
+
+export type GoLamalBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'goLamalBlogPost';
+};
+
+export type PrepassurBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'prepassurBlogPost';
+};
+
+export type MedSuisseBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'medSuisseBlogPost';
+};
+
+export type FiduciaireFribourgBlogPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireFribourgBlogPost';
+};
+
+export type AssuranceJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'assuranceJobPost';
+};
+
+export type RelocationJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'relocationJobPost';
+};
+
+export type FiduciaireJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireJobPost';
+};
+
+export type FiduciaireVaudoiseJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireVaudoiseJobPost';
+};
+
+export type FiduciaireFribourgJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireFribourgJobPost';
+};
+
+export type BestAccountantJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'bestAccountantJobPost';
+};
+
+export type ImmobiliereJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'immobiliereJobPost';
+};
+
+export type GoLamalJobPostReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'goLamalJobPost';
 };
 
 export type InternationalizedArrayReferenceValue = {
   _type: 'internationalizedArrayReferenceValue';
   value?:
-    | {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'blogPost';
-      }
-    | {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'relocationBlogPost';
-      };
+    | PropertyReference
+    | BlogPostReference
+    | RelocationBlogPostReference
+    | FiduciaireBlogPostReference
+    | FiduciaireVaudoiseBlogPostReference
+    | BestAccountantBlogPostReference
+    | ImmobiliereBlogPostReference
+    | MedcourtageBlogPostReference
+    | CasapicBlogPostReference
+    | AutoMotoPlusBlogPostReference
+    | GoLamalBlogPostReference
+    | PrepassurBlogPostReference
+    | MedSuisseBlogPostReference
+    | FiduciaireFribourgBlogPostReference
+    | AssuranceJobPostReference
+    | RelocationJobPostReference
+    | FiduciaireJobPostReference
+    | FiduciaireVaudoiseJobPostReference
+    | FiduciaireFribourgJobPostReference
+    | BestAccountantJobPostReference
+    | ImmobiliereJobPostReference
+    | GoLamalJobPostReference;
+};
+
+export type GoLamalJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'goLamalJobDepartment';
+};
+
+export type GoLamalJobPost = {
+  _id: string;
+  _type: 'goLamalJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: GoLamalJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type GoLamalJobDepartment = {
+  _id: string;
+  _type: 'goLamalJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type ImmobiliereJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'immobiliereJobDepartment';
+};
+
+export type ImmobiliereJobPost = {
+  _id: string;
+  _type: 'immobiliereJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: ImmobiliereJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type ImmobiliereJobDepartment = {
+  _id: string;
+  _type: 'immobiliereJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type BestAccountantJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'bestAccountantJobDepartment';
+};
+
+export type BestAccountantJobPost = {
+  _id: string;
+  _type: 'bestAccountantJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: BestAccountantJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type BestAccountantJobDepartment = {
+  _id: string;
+  _type: 'bestAccountantJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type FiduciaireFribourgJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireFribourgJobDepartment';
+};
+
+export type FiduciaireFribourgJobPost = {
+  _id: string;
+  _type: 'fiduciaireFribourgJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: FiduciaireFribourgJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type FiduciaireFribourgJobDepartment = {
+  _id: string;
+  _type: 'fiduciaireFribourgJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type FiduciaireVaudoiseJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireVaudoiseJobDepartment';
+};
+
+export type FiduciaireVaudoiseJobPost = {
+  _id: string;
+  _type: 'fiduciaireVaudoiseJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: FiduciaireVaudoiseJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type FiduciaireVaudoiseJobDepartment = {
+  _id: string;
+  _type: 'fiduciaireVaudoiseJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type FiduciaireJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireJobDepartment';
+};
+
+export type FiduciaireJobPost = {
+  _id: string;
+  _type: 'fiduciaireJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: FiduciaireJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type FiduciaireJobDepartment = {
+  _id: string;
+  _type: 'fiduciaireJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type RelocationJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'relocationJobDepartment';
+};
+
+export type RelocationJobPost = {
+  _id: string;
+  _type: 'relocationJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department?: RelocationJobDepartmentReference;
+  employmentType?:
+    'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
+  locationType?: 'Remote' | 'Hybrid' | 'On-site';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+};
+
+export type RelocationJobDepartment = {
+  _id: string;
+  _type: 'relocationJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+};
+
+export type AssuranceJobDepartmentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'assuranceJobDepartment';
 };
 
 export type AssuranceJobPost = {
@@ -334,12 +1353,7 @@ export type AssuranceJobPost = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  department?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'assuranceJobDepartment';
-  };
+  department?: AssuranceJobDepartmentReference;
   employmentType?:
     'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Temporary';
   locationType?: 'Remote' | 'Hybrid' | 'On-site';
@@ -349,37 +1363,18 @@ export type AssuranceJobPost = {
   currency?: 'CHF' | 'EUR';
   excerpt?: string;
   body?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: 'span';
-          _key: string;
-        }>;
-        style?:
-          'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote';
-        listItem?: 'bullet' | 'number';
-        markDefs?: Array<{
-          href?: string;
-          _type: 'link';
-          _key: string;
-        }>;
-        level?: number;
-        _type: 'block';
+    | ({
         _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: 'reference';
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: 'image';
+      } & WysiwygBlock)
+    | ({
         _key: string;
-      }
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
   >;
   publishedAt?: string;
   closingAt?: string;
@@ -397,10 +1392,854 @@ export type AssuranceJobDepartment = {
   title?: LocalizedString;
 };
 
-export type LocalizedString = {
-  _type: 'localizedString';
-  fr?: string;
-  en?: string;
+export type FiduciaireFribourgBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireFribourgBlogCategory';
+};
+
+export type FiduciaireFribourgAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireFribourgAuthor';
+};
+
+export type FiduciaireFribourgBlogPost = {
+  _id: string;
+  _type: 'fiduciaireFribourgBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & FiduciaireFribourgBlogCategoryReference
+  >;
+  author?: FiduciaireFribourgAuthorReference;
+  language?: string;
+};
+
+export type FiduciaireFribourgAuthor = {
+  _id: string;
+  _type: 'fiduciaireFribourgAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type MedSuisseBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'medSuisseBlogCategory';
+};
+
+export type MedSuisseAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'medSuisseAuthor';
+};
+
+export type MedSuisseBlogPost = {
+  _id: string;
+  _type: 'medSuisseBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & MedSuisseBlogCategoryReference
+  >;
+  author?: MedSuisseAuthorReference;
+  language?: string;
+};
+
+export type MedSuisseAuthor = {
+  _id: string;
+  _type: 'medSuisseAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type PrepassurBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'prepassurBlogCategory';
+};
+
+export type PrepassurAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'prepassurAuthor';
+};
+
+export type PrepassurBlogPost = {
+  _id: string;
+  _type: 'prepassurBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & PrepassurBlogCategoryReference
+  >;
+  author?: PrepassurAuthorReference;
+  language?: string;
+};
+
+export type PrepassurAuthor = {
+  _id: string;
+  _type: 'prepassurAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type GoLamalBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'goLamalBlogCategory';
+};
+
+export type GoLamalAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'goLamalAuthor';
+};
+
+export type GoLamalBlogPost = {
+  _id: string;
+  _type: 'goLamalBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & GoLamalBlogCategoryReference
+  >;
+  author?: GoLamalAuthorReference;
+  language?: string;
+};
+
+export type GoLamalAuthor = {
+  _id: string;
+  _type: 'goLamalAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type AutoMotoPlusBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'autoMotoPlusBlogCategory';
+};
+
+export type AutoMotoPlusAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'autoMotoPlusAuthor';
+};
+
+export type AutoMotoPlusBlogPost = {
+  _id: string;
+  _type: 'autoMotoPlusBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & AutoMotoPlusBlogCategoryReference
+  >;
+  author?: AutoMotoPlusAuthorReference;
+  language?: string;
+};
+
+export type AutoMotoPlusAuthor = {
+  _id: string;
+  _type: 'autoMotoPlusAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type CasapicBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'casapicBlogCategory';
+};
+
+export type CasapicAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'casapicAuthor';
+};
+
+export type CasapicBlogPost = {
+  _id: string;
+  _type: 'casapicBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & CasapicBlogCategoryReference
+  >;
+  author?: CasapicAuthorReference;
+  language?: string;
+};
+
+export type CasapicAuthor = {
+  _id: string;
+  _type: 'casapicAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type MedcourtageBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'medcourtageBlogCategory';
+};
+
+export type MedcourtageAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'medcourtageAuthor';
+};
+
+export type MedcourtageBlogPost = {
+  _id: string;
+  _type: 'medcourtageBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & MedcourtageBlogCategoryReference
+  >;
+  author?: MedcourtageAuthorReference;
+  language?: string;
+};
+
+export type MedcourtageAuthor = {
+  _id: string;
+  _type: 'medcourtageAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type ImmobiliereBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'immobiliereBlogCategory';
+};
+
+export type ImmobiliereAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'immobiliereAuthor';
+};
+
+export type ImmobiliereBlogPost = {
+  _id: string;
+  _type: 'immobiliereBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & ImmobiliereBlogCategoryReference
+  >;
+  author?: ImmobiliereAuthorReference;
+  language?: string;
+};
+
+export type ImmobiliereAuthor = {
+  _id: string;
+  _type: 'immobiliereAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type BestAccountantBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'bestAccountantBlogCategory';
+};
+
+export type BestAccountantAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'bestAccountantAuthor';
+};
+
+export type BestAccountantBlogPost = {
+  _id: string;
+  _type: 'bestAccountantBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & BestAccountantBlogCategoryReference
+  >;
+  author?: BestAccountantAuthorReference;
+  language?: string;
+};
+
+export type BestAccountantAuthor = {
+  _id: string;
+  _type: 'bestAccountantAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type FiduciaireVaudoiseBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireVaudoiseBlogCategory';
+};
+
+export type FiduciaireVaudoiseAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireVaudoiseAuthor';
+};
+
+export type FiduciaireVaudoiseBlogPost = {
+  _id: string;
+  _type: 'fiduciaireVaudoiseBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & FiduciaireVaudoiseBlogCategoryReference
+  >;
+  author?: FiduciaireVaudoiseAuthorReference;
+  language?: string;
+};
+
+export type FiduciaireVaudoiseAuthor = {
+  _id: string;
+  _type: 'fiduciaireVaudoiseAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type FiduciaireBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireBlogCategory';
+};
+
+export type FiduciaireAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'fiduciaireAuthor';
+};
+
+export type FiduciaireBlogPost = {
+  _id: string;
+  _type: 'fiduciaireBlogPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  summary?: string;
+  mainPhoto?: {
+    photo?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    };
+    photoAlt?: string;
+  };
+  body?: Array<
+    | ({
+        _key: string;
+      } & WysiwygBlock)
+    | ({
+        _key: string;
+      } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+  >;
+  timeToRead?: number;
+  slug?: Slug;
+  publishedDate?: string;
+  createdAt?: string;
+  category?: Array<
+    {
+      _key: string;
+    } & FiduciaireBlogCategoryReference
+  >;
+  author?: FiduciaireAuthorReference;
+  language?: string;
+};
+
+export type FiduciaireAuthor = {
+  _id: string;
+  _type: 'fiduciaireAuthor';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  authorAvatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  name?: string;
+  email?: string;
+};
+
+export type RelocationBlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'relocationBlogCategory';
+};
+
+export type RelocationAuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'relocationAuthor';
 };
 
 export type RelocationBlogPost = {
@@ -413,12 +2252,8 @@ export type RelocationBlogPost = {
   summary?: string;
   mainPhoto?: {
     photo?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
+      asset?: SanityImageAssetReference;
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: 'image';
@@ -432,24 +2267,23 @@ export type RelocationBlogPost = {
     | ({
         _key: string;
       } & StatsBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
   >;
   timeToRead?: number;
   slug?: Slug;
   publishedDate?: string;
   createdAt?: string;
-  category?: Array<{
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: 'relocationBlogCategory';
-  }>;
-  author?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'relocationAuthor';
-  };
+  category?: Array<
+    {
+      _key: string;
+    } & RelocationBlogCategoryReference
+  >;
+  author?: RelocationAuthorReference;
   language?: string;
 };
 
@@ -460,18 +2294,28 @@ export type RelocationAuthor = {
   _updatedAt: string;
   _rev: string;
   authorAvatar?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
+    asset?: SanityImageAssetReference;
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
   };
   name?: string;
   email?: string;
+};
+
+export type BlogCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'blogCategory';
+};
+
+export type AuthorReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'author';
 };
 
 export type BlogPost = {
@@ -484,12 +2328,8 @@ export type BlogPost = {
   summary?: string;
   mainPhoto?: {
     photo?: {
-      asset?: {
-        _ref: string;
-        _type: 'reference';
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-      };
+      asset?: SanityImageAssetReference;
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: 'image';
@@ -503,24 +2343,23 @@ export type BlogPost = {
     | ({
         _key: string;
       } & StatsBlock)
+    | ({
+        _key: string;
+      } & CtaBlock)
+    | ({
+        _key: string;
+      } & FaqBlock)
   >;
   timeToRead?: number;
   slug?: Slug;
   publishedDate?: string;
   createdAt?: string;
-  category?: Array<{
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: 'blogCategory';
-  }>;
-  author?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'author';
-  };
+  category?: Array<
+    {
+      _key: string;
+    } & BlogCategoryReference
+  >;
+  author?: AuthorReference;
   language?: string;
 };
 
@@ -531,12 +2370,8 @@ export type Author = {
   _updatedAt: string;
   _rev: string;
   authorAvatar?: {
-    asset?: {
-      _ref: string;
-      _type: 'reference';
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-    };
+    asset?: SanityImageAssetReference;
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: 'image';
@@ -545,20 +2380,175 @@ export type Author = {
   email?: string;
 };
 
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop';
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type PropertyCategoryReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'propertyCategory';
 };
 
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot';
-  x?: number;
-  y?: number;
+export type PropertyAgentReference = {
+  _ref: string;
+  _type: 'reference';
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: 'propertyAgent';
+};
+
+export type Property = {
+  _id: string;
+  _type: 'property';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  language?: string;
+  title?: string;
+  slug?: Slug;
+  listingType?: 'rent' | 'sale';
+  rentPeriod?: 'month' | 'year';
+  category?: PropertyCategoryReference;
+  availability?: boolean;
+  mapLocation?: MapLocation;
+  price?: number;
+  priceUnit?: 'CHF';
+  description?: string;
+  facilities?: Array<
+    {
+      _key: string;
+    } & FacilityItem
+  >;
+  areas?: Array<
+    {
+      _key: string;
+    } & PropertyArea
+  >;
+  surroundingPlaces?: Array<
+    {
+      _key: string;
+    } & SurroundingPlace
+  >;
+  agent?: PropertyAgentReference;
+};
+
+export type PropertyAgent = {
+  _id: string;
+  _type: 'propertyAgent';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  photo?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: 'image';
+  };
+  agentName?: string;
+  agentPhone?: string;
+};
+
+export type Geopoint = {
+  _type: 'geopoint';
+  lat?: number;
+  lng?: number;
+  alt?: number;
+};
+
+export type PropertyCategory = {
+  _id: string;
+  _type: 'propertyCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  categoryName?: string;
+};
+
+export type MediaTag = {
+  _id: string;
+  _type: 'media.tag';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type MyCustomRowType = {
+  _type: 'my-custom-row-type';
+  cells?: Array<string>;
+};
+
+export type GeopointRadius = {
+  _type: 'geopointRadius';
+  lat?: number;
+  lng?: number;
+  alt?: number;
+  radius?: number;
+};
+
+export type SanityImagePaletteSwatch = {
+  _type: 'sanity.imagePaletteSwatch';
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+};
+
+export type SanityImagePalette = {
+  _type: 'sanity.imagePalette';
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+  _type: 'sanity.imageDimensions';
   height?: number;
   width?: number;
+  aspectRatio?: number;
+};
+
+export type SanityImageMetadata = {
+  _type: 'sanity.imageMetadata';
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  thumbHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
+};
+
+export type SanityFileAsset = {
+  _id: string;
+  _type: 'sanity.fileAsset';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: 'sanity.assetSourceData';
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -584,94 +2574,1239 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-  _type: 'sanity.assetSourceData';
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type SanityImageMetadata = {
-  _type: 'sanity.imageMetadata';
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
-export type InternationalizedArrayReference = Array<
-  {
-    _key: string;
-  } & InternationalizedArrayReferenceValue
->;
-
-export type MediaTag = {
-  _id: string;
-  _type: 'media.tag';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: Slug;
-};
-
-export type Slug = {
-  _type: 'slug';
-  current?: string;
-  source?: string;
-};
-
-export type Table = {
-  _type: 'table';
-  rows?: Array<
-    {
-      _key: string;
-    } & MyCustomRowType
-  >;
-};
-
-export type MyCustomRowType = {
-  _type: 'my-custom-row-type';
-  cells?: Array<string>;
-};
-
 export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityFileAsset
-  | Geopoint
-  | TargetWebsite
-  | BlogCategory
-  | Property
-  | PropertyCategory
-  | PropertyAgent
+  | BlockTitle
+  | WysiwygBlockBlockTitle
+  | MainPhoto
+  | SanityImageAssetReference
+  | Photo
+  | SanityFileAssetReference
+  | VideoFile
+  | QuoteImageZonePhoto
+  | CtaBlockBlockTitle
+  | FirstStat
+  | SecondStat
+  | ThirdStat
+  | CtaBlock
+  | FaqBlock
   | StatsBlock
   | WysiwygBlock
   | PhotoZoneBlock
+  | SurroundingPlace
+  | PropertyArea
+  | MapLocation
+  | FacilityItem
+  | LocalizedString
+  | FiduciaireFribourgPage
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Slug
+  | FiduciaireFribourgBlogCategory
+  | FiduciaireBaloisePage
+  | MedSuisseBlogCategory
+  | PrepassurBlogCategory
+  | AutoMotoPlusBlogCategory
+  | CasapicBlogCategory
+  | MedcourtageBlogCategory
+  | BestAccountantBlogCategory
+  | FiduciaireVaudoiseBlogCategory
+  | ImmobiliereBlogCategory
+  | FiduciairePage
+  | Table
+  | FiduciaireBlogCategory
+  | GoLamalBlogCategory
+  | TargetWebsite
+  | BlogCategory
+  | RelocationBlogCategory
   | InternationalizedArrayTextValue
   | InternationalizedArrayStringValue
   | InternationalizedArrayText
   | InternationalizedArrayString
   | TranslationMetadata
+  | InternationalizedArrayReference
+  | PropertyReference
+  | BlogPostReference
+  | RelocationBlogPostReference
+  | FiduciaireBlogPostReference
+  | FiduciaireVaudoiseBlogPostReference
+  | BestAccountantBlogPostReference
+  | ImmobiliereBlogPostReference
+  | MedcourtageBlogPostReference
+  | CasapicBlogPostReference
+  | AutoMotoPlusBlogPostReference
+  | GoLamalBlogPostReference
+  | PrepassurBlogPostReference
+  | MedSuisseBlogPostReference
+  | FiduciaireFribourgBlogPostReference
+  | AssuranceJobPostReference
+  | RelocationJobPostReference
+  | FiduciaireJobPostReference
+  | FiduciaireVaudoiseJobPostReference
+  | FiduciaireFribourgJobPostReference
+  | BestAccountantJobPostReference
+  | ImmobiliereJobPostReference
+  | GoLamalJobPostReference
   | InternationalizedArrayReferenceValue
+  | GoLamalJobDepartmentReference
+  | GoLamalJobPost
+  | GoLamalJobDepartment
+  | ImmobiliereJobDepartmentReference
+  | ImmobiliereJobPost
+  | ImmobiliereJobDepartment
+  | BestAccountantJobDepartmentReference
+  | BestAccountantJobPost
+  | BestAccountantJobDepartment
+  | FiduciaireFribourgJobDepartmentReference
+  | FiduciaireFribourgJobPost
+  | FiduciaireFribourgJobDepartment
+  | FiduciaireVaudoiseJobDepartmentReference
+  | FiduciaireVaudoiseJobPost
+  | FiduciaireVaudoiseJobDepartment
+  | FiduciaireJobDepartmentReference
+  | FiduciaireJobPost
+  | FiduciaireJobDepartment
+  | RelocationJobDepartmentReference
+  | RelocationJobPost
+  | RelocationJobDepartment
+  | AssuranceJobDepartmentReference
   | AssuranceJobPost
   | AssuranceJobDepartment
-  | LocalizedString
+  | FiduciaireFribourgBlogCategoryReference
+  | FiduciaireFribourgAuthorReference
+  | FiduciaireFribourgBlogPost
+  | FiduciaireFribourgAuthor
+  | MedSuisseBlogCategoryReference
+  | MedSuisseAuthorReference
+  | MedSuisseBlogPost
+  | MedSuisseAuthor
+  | PrepassurBlogCategoryReference
+  | PrepassurAuthorReference
+  | PrepassurBlogPost
+  | PrepassurAuthor
+  | GoLamalBlogCategoryReference
+  | GoLamalAuthorReference
+  | GoLamalBlogPost
+  | GoLamalAuthor
+  | AutoMotoPlusBlogCategoryReference
+  | AutoMotoPlusAuthorReference
+  | AutoMotoPlusBlogPost
+  | AutoMotoPlusAuthor
+  | CasapicBlogCategoryReference
+  | CasapicAuthorReference
+  | CasapicBlogPost
+  | CasapicAuthor
+  | MedcourtageBlogCategoryReference
+  | MedcourtageAuthorReference
+  | MedcourtageBlogPost
+  | MedcourtageAuthor
+  | ImmobiliereBlogCategoryReference
+  | ImmobiliereAuthorReference
+  | ImmobiliereBlogPost
+  | ImmobiliereAuthor
+  | BestAccountantBlogCategoryReference
+  | BestAccountantAuthorReference
+  | BestAccountantBlogPost
+  | BestAccountantAuthor
+  | FiduciaireVaudoiseBlogCategoryReference
+  | FiduciaireVaudoiseAuthorReference
+  | FiduciaireVaudoiseBlogPost
+  | FiduciaireVaudoiseAuthor
+  | FiduciaireBlogCategoryReference
+  | FiduciaireAuthorReference
+  | FiduciaireBlogPost
+  | FiduciaireAuthor
+  | RelocationBlogCategoryReference
+  | RelocationAuthorReference
   | RelocationBlogPost
   | RelocationAuthor
+  | BlogCategoryReference
+  | AuthorReference
   | BlogPost
   | Author
-  | SanityImageCrop
-  | SanityImageHotspot
-  | SanityImageAsset
-  | SanityAssetSourceData
-  | SanityImageMetadata
-  | InternationalizedArrayReference
+  | PropertyCategoryReference
+  | PropertyAgentReference
+  | Property
+  | PropertyAgent
+  | Geopoint
+  | PropertyCategory
   | MediaTag
-  | Slug
-  | Table
-  | MyCustomRowType;
-export declare const internalGroqTypeReferenceTo: unique symbol;
+  | MyCustomRowType
+  | GeopointRadius
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: BLOG_LATEST_QUERY
+// Query: *[    _type == "relocationBlogPost" &&    !(_id in path("drafts.**")) &&    language == $locale  ] | order(publishedDate desc)[0] {    _id,    title,    summary,    language,    mainPhoto {      photo {        asset->{          _id,          url,          "lqip": metadata.lqip        },        hotspot,        crop      },      photoAlt    },    body[] {      ...,      blockTitle {        ...,        "content": content[] {          ...,          _type == "videoZone" => {            ...,            videoFile {              asset->{                _id,                url              }            }          },          _type == "quoteImageZone" => {            ...,            photo {              asset->{                _id,                url,                "lqip": metadata.lqip              }            }          },          _type == "photoZone" => {            ...,            mainPhoto {              imageTitle,              photo {                asset->{                  _id,                  url,                  "lqip": metadata.lqip                }              }            }          }        }      }    },    slug,    publishedDate,    timeToRead,    createdAt,    "category": category[]->{      _id,      name    },    "author": author->{      _id,      name,      email,      authorAvatar {        asset->{          _id,          url,          "lqip": metadata.lqip        }      }    }  }
+export type BLOG_LATEST_QUERY_RESULT = {
+  _id: string;
+  title: string | null;
+  summary: string | null;
+  language: string | null;
+  mainPhoto: {
+    photo: {
+      asset: {
+        _id: string;
+        url: string | null;
+        lqip: string | null;
+      } | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+    } | null;
+    photoAlt: string | null;
+  } | null;
+  body: Array<
+    | {
+        _key: string;
+        _type: 'ctaBlock';
+        blockTitle: {
+          title?: string;
+          buttonText?: string;
+          description?: string;
+          content: null;
+        } | null;
+      }
+    | {
+        _key: string;
+        _type: 'faqBlock';
+        blockTitle: {
+          title?: string;
+          content: null;
+        } | null;
+        faqs?: Array<{
+          question?: string;
+          answer?: string;
+          _type: 'faqItem';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'statsBlock';
+        firstStat?: {
+          value?: string;
+          label?: string;
+        };
+        secondStat?: {
+          value?: string;
+          label?: string;
+        };
+        thirdStat?: {
+          value?: string;
+          label?: string;
+        };
+        blockTitle: null;
+      }
+    | {
+        _key: string;
+        _type: 'wysiwygBlock';
+        blockTitle: {
+          title?: string;
+          isStyle?: boolean;
+          content: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: 'span';
+                  _key: string;
+                }>;
+                style?:
+                  | 'blockquote'
+                  | 'h1'
+                  | 'h2'
+                  | 'h3'
+                  | 'h4'
+                  | 'h5'
+                  | 'h6'
+                  | 'normal';
+                listItem?: 'bullet' | 'number';
+                markDefs?: Array<{
+                  href?: string;
+                  _type: 'link';
+                  _key: string;
+                }>;
+                level?: number;
+                _type: 'block';
+                _key: string;
+              }
+            | {
+                sectionType?: 'error' | 'goodToKnow' | 'information';
+                sectionTitle?: string;
+                sectionContent?: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: 'span';
+                    _key: string;
+                  }>;
+                  style?:
+                    | 'blockquote'
+                    | 'h1'
+                    | 'h2'
+                    | 'h3'
+                    | 'h4'
+                    | 'h5'
+                    | 'h6'
+                    | 'normal';
+                  listItem?: 'bullet' | 'number';
+                  markDefs?: Array<{
+                    href?: string;
+                    _type: 'link';
+                    _key: string;
+                  }>;
+                  level?: number;
+                  _type: 'block';
+                  _key: string;
+                }>;
+                _type: 'newSectionZone';
+                _key: string;
+              }
+            | {
+                mainPhoto: {
+                  imageTitle: string | null;
+                  photo: {
+                    asset: {
+                      _id: string;
+                      url: string | null;
+                      lqip: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                _type: 'photoZone';
+                _key: string;
+              }
+            | {
+                content?: string;
+                author?: string;
+                _type: 'quote';
+                _key: string;
+              }
+            | {
+                photo: {
+                  asset: {
+                    _id: string;
+                    url: string | null;
+                    lqip: string | null;
+                  } | null;
+                } | null;
+                author?: string;
+                authorInfo?: string;
+                content?: string;
+                _type: 'quoteImageZone';
+                _key: string;
+              }
+            | {
+                title?: string;
+                source?: 'embed' | 'file' | 'url';
+                videoFile?: VideoFile;
+                videoUrl?: string;
+                embedUrl?: string;
+                _key: string;
+              }
+            | {
+                tableTitle?: string;
+                tableData?: Table;
+                _key: string;
+              }
+          > | null;
+        } | null;
+      }
+  > | null;
+  slug: Slug | null;
+  publishedDate: string | null;
+  timeToRead: number | null;
+  createdAt: string | null;
+  category: Array<{
+    _id: string;
+    name: string | null;
+  }> | null;
+  author: {
+    _id: string;
+    name: string | null;
+    email: string | null;
+    authorAvatar: {
+      asset: {
+        _id: string;
+        url: string | null;
+        lqip: string | null;
+      } | null;
+    } | null;
+  } | null;
+} | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: BLOGS_QUERY
+// Query: {    "blogs": *[  _type == "relocationBlogPost" &&  !(_id in path("drafts.**")) &&  language == $locale &&  slug.current != $slug &&  ($category == "" || $category in category[]->name) &&  ($title == "" || title match $title)] | order(publishedDate desc)[$start...$end] {      _originalId,      _id,      title,      summary,      language,      mainPhoto {        photo {          asset->{            _id,            url,            "lqip": metadata.lqip          },          hotspot,          crop        },        photoAlt      },      body,      slug,      publishedAt,      publishedDate,      timeToRead,      createdAt,      "category": category[]->{        _id,        name      },      "author": author->{        _id,        name,        email,        authorAvatar {          asset->{            _id,            url,            "lqip": metadata.lqip          }        }      }    },    "total": count(*[  _type == "relocationBlogPost" &&  !(_id in path("drafts.**")) &&  language == $locale &&  slug.current != $slug &&  ($category == "" || $category in category[]->name) &&  ($title == "" || title match $title)])  }
+export type BLOGS_QUERY_RESULT = {
+  blogs: Array<{
+    _originalId: null;
+    _id: string;
+    title: string | null;
+    summary: string | null;
+    language: string | null;
+    mainPhoto: {
+      photo: {
+        asset: {
+          _id: string;
+          url: string | null;
+          lqip: string | null;
+        } | null;
+        hotspot: SanityImageHotspot | null;
+        crop: SanityImageCrop | null;
+      } | null;
+      photoAlt: string | null;
+    } | null;
+    body: Array<
+      | ({
+          _key: string;
+        } & CtaBlock)
+      | ({
+          _key: string;
+        } & FaqBlock)
+      | ({
+          _key: string;
+        } & StatsBlock)
+      | ({
+          _key: string;
+        } & WysiwygBlock)
+    > | null;
+    slug: Slug | null;
+    publishedAt: null;
+    publishedDate: string | null;
+    timeToRead: number | null;
+    createdAt: string | null;
+    category: Array<{
+      _id: string;
+      name: string | null;
+    }> | null;
+    author: {
+      _id: string;
+      name: string | null;
+      email: string | null;
+      authorAvatar: {
+        asset: {
+          _id: string;
+          url: string | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+    } | null;
+  }>;
+  total: number;
+};
+
+// Source: src/sanity/lib/queries.ts
+// Variable: BLOG_DETAIL_QUERY
+// Query: *[    _type == "relocationBlogPost" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0] {    _id,    _updatedAt,    title,    summary,    language,    mainPhoto {      photo {        asset->{          _id,          url,          "lqip": metadata.lqip        },        hotspot,        crop      },      photoAlt    },    body[] {      ...,      blockTitle {        ...,        "content": content[] {          ...,          _type == "videoZone" => {            ...,            videoFile {              asset->{                _id,                url              }            }          },          _type == "photoZone" => {            ...,            mainPhoto {              imageTitle,              photo {                asset->{                  _id,                  url,                  "lqip": metadata.lqip                }              }            }          },          _type == "quoteImageZone" => {            ...,            photo {              asset->{                _id,                url,                "lqip": metadata.lqip              }            }          }        }      }    },    slug,    publishedAt,    publishedDate,    timeToRead,    createdAt,    "category": category[]->{      _id,      name    },    "author": author->{      _id,      name,      email,      authorAvatar {        asset->{          _id,          url,          "lqip": metadata.lqip        }      }    }  }
+export type BLOG_DETAIL_QUERY_RESULT = {
+  _id: string;
+  _updatedAt: string;
+  title: string | null;
+  summary: string | null;
+  language: string | null;
+  mainPhoto: {
+    photo: {
+      asset: {
+        _id: string;
+        url: string | null;
+        lqip: string | null;
+      } | null;
+      hotspot: SanityImageHotspot | null;
+      crop: SanityImageCrop | null;
+    } | null;
+    photoAlt: string | null;
+  } | null;
+  body: Array<
+    | {
+        _key: string;
+        _type: 'ctaBlock';
+        blockTitle: {
+          title?: string;
+          buttonText?: string;
+          description?: string;
+          content: null;
+        } | null;
+      }
+    | {
+        _key: string;
+        _type: 'faqBlock';
+        blockTitle: {
+          title?: string;
+          content: null;
+        } | null;
+        faqs?: Array<{
+          question?: string;
+          answer?: string;
+          _type: 'faqItem';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'statsBlock';
+        firstStat?: {
+          value?: string;
+          label?: string;
+        };
+        secondStat?: {
+          value?: string;
+          label?: string;
+        };
+        thirdStat?: {
+          value?: string;
+          label?: string;
+        };
+        blockTitle: null;
+      }
+    | {
+        _key: string;
+        _type: 'wysiwygBlock';
+        blockTitle: {
+          title?: string;
+          isStyle?: boolean;
+          content: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: 'span';
+                  _key: string;
+                }>;
+                style?:
+                  | 'blockquote'
+                  | 'h1'
+                  | 'h2'
+                  | 'h3'
+                  | 'h4'
+                  | 'h5'
+                  | 'h6'
+                  | 'normal';
+                listItem?: 'bullet' | 'number';
+                markDefs?: Array<{
+                  href?: string;
+                  _type: 'link';
+                  _key: string;
+                }>;
+                level?: number;
+                _type: 'block';
+                _key: string;
+              }
+            | {
+                sectionType?: 'error' | 'goodToKnow' | 'information';
+                sectionTitle?: string;
+                sectionContent?: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: 'span';
+                    _key: string;
+                  }>;
+                  style?:
+                    | 'blockquote'
+                    | 'h1'
+                    | 'h2'
+                    | 'h3'
+                    | 'h4'
+                    | 'h5'
+                    | 'h6'
+                    | 'normal';
+                  listItem?: 'bullet' | 'number';
+                  markDefs?: Array<{
+                    href?: string;
+                    _type: 'link';
+                    _key: string;
+                  }>;
+                  level?: number;
+                  _type: 'block';
+                  _key: string;
+                }>;
+                _type: 'newSectionZone';
+                _key: string;
+              }
+            | {
+                mainPhoto: {
+                  imageTitle: string | null;
+                  photo: {
+                    asset: {
+                      _id: string;
+                      url: string | null;
+                      lqip: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                _type: 'photoZone';
+                _key: string;
+              }
+            | {
+                content?: string;
+                author?: string;
+                _type: 'quote';
+                _key: string;
+              }
+            | {
+                photo: {
+                  asset: {
+                    _id: string;
+                    url: string | null;
+                    lqip: string | null;
+                  } | null;
+                } | null;
+                author?: string;
+                authorInfo?: string;
+                content?: string;
+                _type: 'quoteImageZone';
+                _key: string;
+              }
+            | {
+                title?: string;
+                source?: 'embed' | 'file' | 'url';
+                videoFile?: VideoFile;
+                videoUrl?: string;
+                embedUrl?: string;
+                _key: string;
+              }
+            | {
+                tableTitle?: string;
+                tableData?: Table;
+                _key: string;
+              }
+          > | null;
+        } | null;
+      }
+  > | null;
+  slug: Slug | null;
+  publishedAt: null;
+  publishedDate: string | null;
+  timeToRead: number | null;
+  createdAt: string | null;
+  category: Array<{
+    _id: string;
+    name: string | null;
+  }> | null;
+  author: {
+    _id: string;
+    name: string | null;
+    email: string | null;
+    authorAvatar: {
+      asset: {
+        _id: string;
+        url: string | null;
+        lqip: string | null;
+      } | null;
+    } | null;
+  } | null;
+} | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: BLOG_SLUG_QUERY
+// Query: *[    _type == "relocationBlogPost" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0] {    "targetSlug": *[      _type == "translation.metadata" &&      references(^._id)    ][0].translations[].value->{      language,      slug    }  }
+export type BLOG_SLUG_QUERY_RESULT = {
+  targetSlug: Array<{
+    language: string | null;
+    slug: Slug | null;
+  } | null> | null;
+} | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: BLOGS_SITEMAP_QUERY
+// Query: {    "blogs": *[  _type == "relocationBlogPost" &&  !(_id in path("drafts.**")) &&  language == $locale &&  ($category == "" || $category in category[]->name) &&  ($title == "" || title match $title)] | order(publishedDate desc) {      _originalId,      _id,      publishedDate,      title,      summary,      slug    },    "total": count(*[  _type == "relocationBlogPost" &&  !(_id in path("drafts.**")) &&  language == $locale &&  ($category == "" || $category in category[]->name) &&  ($title == "" || title match $title)])  }
+export type BLOGS_SITEMAP_QUERY_RESULT = {
+  blogs: Array<{
+    _originalId: null;
+    _id: string;
+    publishedDate: string | null;
+    title: string | null;
+    summary: string | null;
+    slug: Slug | null;
+  }>;
+  total: number;
+};
+
+// Source: src/sanity/lib/queries.ts
+// Variable: PROPERTIES_SITEMAP_QUERY
+// Query: {    "properties": *[  _type == "property" &&  !(_id in path("drafts.**")) &&  language == $locale] | order(_createdAt desc) {      _id,      title,      slug    },    "total": count(*[  _type == "property" &&  !(_id in path("drafts.**")) &&  language == $locale])  }
+export type PROPERTIES_SITEMAP_QUERY_RESULT = {
+  properties: Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+  }>;
+  total: number;
+};
+
+// Source: src/sanity/lib/queries.ts
+// Variable: SITEMAP_DOCUMENTS_QUERY
+// Query: *[    _type == $type &&    !(_id in path("drafts.**")) &&    coalesce(isHidden, false) == false &&    ($requiresExplicitVisibility == false || isHidden == false) &&    language in $locales &&    defined(slug.current)  ] | order(_updatedAt desc) {    _updatedAt,    language,    "slug": slug.current,    "translations": *[      _type == "translation.metadata" &&      !(_id in path("drafts.**")) &&      references(^._id)    ][0].translations[].value->{      language,      isHidden,      "slug": slug.current    }  }
+export type SITEMAP_DOCUMENTS_QUERY_RESULT = Array<
+  | {
+      _updatedAt: string;
+      language: string | null;
+      slug: string | null;
+      translations: Array<
+        | {
+            language: string | null;
+            isHidden: null;
+            slug: string | null;
+          }
+        | {
+            language: string | null;
+            isHidden: boolean | null;
+            slug: string | null;
+          }
+        | null
+      > | null;
+    }
+  | {
+      _updatedAt: string;
+      language: 'en' | 'fr' | null;
+      slug: string | null;
+      translations: Array<
+        | {
+            language: string | null;
+            isHidden: null;
+            slug: string | null;
+          }
+        | {
+            language: string | null;
+            isHidden: boolean | null;
+            slug: string | null;
+          }
+        | null
+      > | null;
+    }
+>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: POST_CATEGORIES_QUERY
+// Query: *[    _type == "relocationBlogCategory" &&    count(*[      _type == "relocationBlogPost" &&      language == $locale &&      !(_id in path("drafts.**")) &&      references(^._id)    ]) >= 1  ]
+export type POST_CATEGORIES_QUERY_RESULT = Array<{
+  _id: string;
+  _type: 'relocationBlogCategory';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  color?: string;
+}>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: CAREERS_QUERY
+// Query: {    "jobs": *[  _type == "relocationJobPost" &&  isHidden == false &&  !(_id in path("drafts.**")) &&  ($department == "" || $department == department->title[$locale]) &&  language == $locale] | order(publishedAt desc)[$start...$end] {      ...,      _originalId,      publishedAt,      "department": department->{        title      }    },    "total": count(*[  _type == "relocationJobPost" &&  isHidden == false &&  !(_id in path("drafts.**")) &&  ($department == "" || $department == department->title[$locale]) &&  language == $locale])  }
+export type CAREERS_QUERY_RESULT = {
+  jobs: Array<{
+    _id: string;
+    _type: 'relocationJobPost';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    department: {
+      title: LocalizedString | null;
+    } | null;
+    employmentType?:
+      'Contract' | 'Full-time' | 'Internship' | 'Part-time' | 'Temporary';
+    locationType?: 'Hybrid' | 'On-site' | 'Remote';
+    location?: string;
+    salaryMin?: number;
+    salaryMax?: number;
+    currency?: 'CHF' | 'EUR';
+    excerpt?: string;
+    body?: Array<
+      | ({
+          _key: string;
+        } & CtaBlock)
+      | ({
+          _key: string;
+        } & FaqBlock)
+      | ({
+          _key: string;
+        } & StatsBlock)
+      | ({
+          _key: string;
+        } & WysiwygBlock)
+    >;
+    publishedAt: string | null;
+    closingAt?: string;
+    isFeatured?: boolean;
+    isHidden?: boolean;
+    language?: string;
+    _originalId: null;
+  }>;
+  total: number;
+};
+
+// Source: src/sanity/lib/queries.ts
+// Variable: FEATURED_CAREER_QUERY
+// Query: {    "jobs": *[      _type == "relocationJobPost" &&      !(_id in path("drafts.**")) &&      slug.current != $slug &&      language == $locale &&      isHidden == false    ] | order(      isFeatured desc,      (department->title[$locale] == $department) desc,      publishedAt desc    )[0...5] {      ...,      _originalId,      publishedAt,      "department": department->{        title      }    }  }
+export type FEATURED_CAREER_QUERY_RESULT = {
+  jobs: Array<{
+    _id: string;
+    _type: 'relocationJobPost';
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    department: {
+      title: LocalizedString | null;
+    } | null;
+    employmentType?:
+      'Contract' | 'Full-time' | 'Internship' | 'Part-time' | 'Temporary';
+    locationType?: 'Hybrid' | 'On-site' | 'Remote';
+    location?: string;
+    salaryMin?: number;
+    salaryMax?: number;
+    currency?: 'CHF' | 'EUR';
+    excerpt?: string;
+    body?: Array<
+      | ({
+          _key: string;
+        } & CtaBlock)
+      | ({
+          _key: string;
+        } & FaqBlock)
+      | ({
+          _key: string;
+        } & StatsBlock)
+      | ({
+          _key: string;
+        } & WysiwygBlock)
+    >;
+    publishedAt: string | null;
+    closingAt?: string;
+    isFeatured?: boolean;
+    isHidden?: boolean;
+    language?: string;
+    _originalId: null;
+  }>;
+};
+
+// Source: src/sanity/lib/queries.ts
+// Variable: CAREER_DETAIL_QUERY
+// Query: *[    _type == "relocationJobPost" &&    !(_id in path("drafts.**")) &&    isHidden == false &&    slug.current == $slug  ][0] {    ...,    body[] {      ...,      blockTitle {        ...,        "content": content[] {          ...,          _type == "videoZone" => {            ...,            videoFile {              asset->{                _id,                url              }            }          },          _type == "photoZone" => {            ...,            mainPhoto {              imageTitle,              photo {                asset->{                  _id,                  url,                  "lqip": metadata.lqip                }              }            }          }        }      }    },    "department": department->{      title    }  }
+export type CAREER_DETAIL_QUERY_RESULT = {
+  _id: string;
+  _type: 'relocationJobPost';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  department: {
+    title: LocalizedString | null;
+  } | null;
+  employmentType?:
+    'Contract' | 'Full-time' | 'Internship' | 'Part-time' | 'Temporary';
+  locationType?: 'Hybrid' | 'On-site' | 'Remote';
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  currency?: 'CHF' | 'EUR';
+  excerpt?: string;
+  body: Array<
+    | {
+        _key: string;
+        _type: 'ctaBlock';
+        blockTitle: {
+          title?: string;
+          buttonText?: string;
+          description?: string;
+          content: null;
+        } | null;
+      }
+    | {
+        _key: string;
+        _type: 'faqBlock';
+        blockTitle: {
+          title?: string;
+          content: null;
+        } | null;
+        faqs?: Array<{
+          question?: string;
+          answer?: string;
+          _type: 'faqItem';
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: 'statsBlock';
+        firstStat?: {
+          value?: string;
+          label?: string;
+        };
+        secondStat?: {
+          value?: string;
+          label?: string;
+        };
+        thirdStat?: {
+          value?: string;
+          label?: string;
+        };
+        blockTitle: null;
+      }
+    | {
+        _key: string;
+        _type: 'wysiwygBlock';
+        blockTitle: {
+          title?: string;
+          isStyle?: boolean;
+          content: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: 'span';
+                  _key: string;
+                }>;
+                style?:
+                  | 'blockquote'
+                  | 'h1'
+                  | 'h2'
+                  | 'h3'
+                  | 'h4'
+                  | 'h5'
+                  | 'h6'
+                  | 'normal';
+                listItem?: 'bullet' | 'number';
+                markDefs?: Array<{
+                  href?: string;
+                  _type: 'link';
+                  _key: string;
+                }>;
+                level?: number;
+                _type: 'block';
+                _key: string;
+              }
+            | {
+                sectionType?: 'error' | 'goodToKnow' | 'information';
+                sectionTitle?: string;
+                sectionContent?: Array<{
+                  children?: Array<{
+                    marks?: Array<string>;
+                    text?: string;
+                    _type: 'span';
+                    _key: string;
+                  }>;
+                  style?:
+                    | 'blockquote'
+                    | 'h1'
+                    | 'h2'
+                    | 'h3'
+                    | 'h4'
+                    | 'h5'
+                    | 'h6'
+                    | 'normal';
+                  listItem?: 'bullet' | 'number';
+                  markDefs?: Array<{
+                    href?: string;
+                    _type: 'link';
+                    _key: string;
+                  }>;
+                  level?: number;
+                  _type: 'block';
+                  _key: string;
+                }>;
+                _type: 'newSectionZone';
+                _key: string;
+              }
+            | {
+                mainPhoto: {
+                  imageTitle: string | null;
+                  photo: {
+                    asset: {
+                      _id: string;
+                      url: string | null;
+                      lqip: string | null;
+                    } | null;
+                  } | null;
+                } | null;
+                _type: 'photoZone';
+                _key: string;
+              }
+            | {
+                content?: string;
+                author?: string;
+                _type: 'quote';
+                _key: string;
+              }
+            | {
+                photo?: QuoteImageZonePhoto;
+                author?: string;
+                authorInfo?: string;
+                content?: string;
+                _type: 'quoteImageZone';
+                _key: string;
+              }
+            | {
+                title?: string;
+                source?: 'embed' | 'file' | 'url';
+                videoFile?: VideoFile;
+                videoUrl?: string;
+                embedUrl?: string;
+                _key: string;
+              }
+            | {
+                tableTitle?: string;
+                tableData?: Table;
+                _key: string;
+              }
+          > | null;
+        } | null;
+      }
+  > | null;
+  publishedAt?: string;
+  closingAt?: string;
+  isFeatured?: boolean;
+  isHidden?: boolean;
+  language?: string;
+} | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: CAREER_SLUG_QUERY
+// Query: *[    _type == "relocationJobPost" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0] {    "targetSlug": *[      _type == "translation.metadata" &&      references(^._id)    ][0].translations[].value->{      language,      slug    }  }
+export type CAREER_SLUG_QUERY_RESULT = {
+  targetSlug: Array<{
+    language: string | null;
+    slug: Slug | null;
+  } | null> | null;
+} | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: PROPERTIES_QUERY
+// Query: {    "properties": *[  _type == "property" &&  !(_id in path("drafts.**")) &&  language == $locale &&  (count($categories) == 0 || category->categoryName in $categories) &&  ($location == "" || mapLocation.name match $location) &&  ($minPrice == 0 || price >= $minPrice) &&  ($maxPrice == 0 || price <= $maxPrice) &&  (    $rooms == "" ||    (      $rooms == "studio" &&      (        facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 0 ||        (!defined(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue) && facilities[typeRoom == "room" && valueType == "number"][0].numberValue <= 1.5)      )    ) ||    ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||    ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||    ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||    ($rooms == "4plus" && coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) >= 4)  ) &&  (!$availableOnly || availability == true)] | order(      availability desc,      select($sort == "price_asc" => price) asc,      select($sort == "price_desc" => price) desc,      _createdAt desc    )[$start...$end] {      _id,      title,      slug,      price,      priceUnit,      listingType,      rentPeriod,      language,      availability,      description,      mapLocation {        name,        coordinates      },      "category": category->categoryName,      "facilities": facilities[] {        typeRoom,        name,        valueType,        numberValue,        textValue      },      "imageUrl": areas[0].mainImage.asset->url,      "imageLqip": areas[0].mainImage.asset->metadata.lqip    },    "total": count(*[  _type == "property" &&  !(_id in path("drafts.**")) &&  language == $locale &&  (count($categories) == 0 || category->categoryName in $categories) &&  ($location == "" || mapLocation.name match $location) &&  ($minPrice == 0 || price >= $minPrice) &&  ($maxPrice == 0 || price <= $maxPrice) &&  (    $rooms == "" ||    (      $rooms == "studio" &&      (        facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 0 ||        (!defined(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue) && facilities[typeRoom == "room" && valueType == "number"][0].numberValue <= 1.5)      )    ) ||    ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||    ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||    ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||    ($rooms == "4plus" && coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) >= 4)  ) &&  (!$availableOnly || availability == true)])  }
+export type PROPERTIES_QUERY_RESULT = {
+  properties: Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+    price: number | null;
+    priceUnit: 'CHF' | null;
+    listingType: 'rent' | 'sale' | null;
+    rentPeriod: 'month' | 'year' | null;
+    language: string | null;
+    availability: boolean | null;
+    description: string | null;
+    mapLocation: {
+      name: string | null;
+      coordinates: Geopoint | null;
+    } | null;
+    category: string | null;
+    facilities: Array<{
+      typeRoom:
+        | 'aircon'
+        | 'area'
+        | 'balcony'
+        | 'bathroom'
+        | 'bedroom'
+        | 'certified'
+        | 'childFriendly'
+        | 'construction'
+        | 'dishwasher'
+        | 'elevator'
+        | 'floor'
+        | 'furnished'
+        | 'garden'
+        | 'heating'
+        | 'internet'
+        | 'kitchen'
+        | 'laundry'
+        | 'outdoor'
+        | 'parking'
+        | 'petAllowed'
+        | 'pool'
+        | 'quietNeighborhood'
+        | 'room'
+        | 'smoking'
+        | 'storage'
+        | 'view'
+        | 'wheelchairAccess'
+        | null;
+      name: string | null;
+      valueType: 'none' | 'number' | 'text' | null;
+      numberValue: number | null;
+      textValue: string | null;
+    }> | null;
+    imageUrl: string | null;
+    imageLqip: string | null;
+  }>;
+  total: number;
+};
+
+// Source: src/sanity/lib/queries.ts
+// Variable: PROPERTY_CATEGORIES_QUERY
+// Query: *[    _type == "propertyCategory" &&    count(*[      _type == "property" &&      !(_id in path("drafts.**")) &&      language == $locale &&      references(^._id)    ]) > 0  ] | order(categoryName asc) {    _id,    categoryName  }
+export type PROPERTY_CATEGORIES_QUERY_RESULT = Array<{
+  _id: string;
+  categoryName: string | null;
+}>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: DEPARTMENT_QUERY
+// Query: *[    _type == "relocationJobDepartment" &&    count(*[      _type == "relocationJobPost" &&      isHidden == false &&      language == $locale &&      !(_id in path("drafts.**")) &&      references(^._id)    ]) > 0  ]
+export type DEPARTMENT_QUERY_RESULT = Array<{
+  _id: string;
+  _type: 'relocationJobDepartment';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: LocalizedString;
+}>;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: PROPERTY_DETAIL_QUERY
+// Query: *[    _type == "property" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0] {    _id,    _createdAt,    _updatedAt,    language,    title,    slug,    listingType,    price,    priceUnit,    rentPeriod,    description,    availability,    mapLocation {      name,      coordinates {        lat,        lng      }    },    facilities[] {      typeRoom,      name,      valueType,      numberValue,      textValue    },    agent->{      _id,      agentName,      agentPhone,      "photoUrl": photo.asset->url,      "photoLqip": photo.asset->metadata.lqip    },    category->{      _id,      categoryName    },    areas[] {      title,      "mainImageUrl": mainImage.asset->url,      "mainImageLqip": mainImage.asset->metadata.lqip,      "galleryImages": galleryImages[] {        "url": asset->url,        "lqip": asset->metadata.lqip      }    },    surroundingPlaces[] {      icon,      name,      distance    }  }
+export type PROPERTY_DETAIL_QUERY_RESULT = {
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  language: string | null;
+  title: string | null;
+  slug: Slug | null;
+  listingType: 'rent' | 'sale' | null;
+  price: number | null;
+  priceUnit: 'CHF' | null;
+  rentPeriod: 'month' | 'year' | null;
+  description: string | null;
+  availability: boolean | null;
+  mapLocation: {
+    name: string | null;
+    coordinates: {
+      lat: number | null;
+      lng: number | null;
+    } | null;
+  } | null;
+  facilities: Array<{
+    typeRoom:
+      | 'aircon'
+      | 'area'
+      | 'balcony'
+      | 'bathroom'
+      | 'bedroom'
+      | 'certified'
+      | 'childFriendly'
+      | 'construction'
+      | 'dishwasher'
+      | 'elevator'
+      | 'floor'
+      | 'furnished'
+      | 'garden'
+      | 'heating'
+      | 'internet'
+      | 'kitchen'
+      | 'laundry'
+      | 'outdoor'
+      | 'parking'
+      | 'petAllowed'
+      | 'pool'
+      | 'quietNeighborhood'
+      | 'room'
+      | 'smoking'
+      | 'storage'
+      | 'view'
+      | 'wheelchairAccess'
+      | null;
+    name: string | null;
+    valueType: 'none' | 'number' | 'text' | null;
+    numberValue: number | null;
+    textValue: string | null;
+  }> | null;
+  agent: {
+    _id: string;
+    agentName: string | null;
+    agentPhone: string | null;
+    photoUrl: string | null;
+    photoLqip: string | null;
+  } | null;
+  category: {
+    _id: string;
+    categoryName: string | null;
+  } | null;
+  areas: Array<{
+    title: string | null;
+    mainImageUrl: string | null;
+    mainImageLqip: string | null;
+    galleryImages: Array<{
+      url: string | null;
+      lqip: string | null;
+    }> | null;
+  }> | null;
+  surroundingPlaces: Array<{
+    icon:
+      | 'airport'
+      | 'bank'
+      | 'gym'
+      | 'hospital'
+      | 'library'
+      | 'mall'
+      | 'park'
+      | 'parking'
+      | 'pharmacy'
+      | 'postOffice'
+      | 'publicTransport'
+      | 'restaurant'
+      | 'school'
+      | 'station'
+      | 'supermarket'
+      | 'university'
+      | null;
+    name: string | null;
+    distance: string | null;
+  }> | null;
+} | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: PROPERTY_PHOTO_TOUR_QUERY
+// Query: *[    _type == "property" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0].areas[] {    title,    description,    "mainImageUrl": mainImage.asset->url,      "mainImageLqip": mainImage.asset->metadata.lqip,    "galleryImages": galleryImages[] {      "url": asset->url,      "lqip": asset->metadata.lqip    }  }
+export type PROPERTY_PHOTO_TOUR_QUERY_RESULT = Array<{
+  title: string | null;
+  description: string | null;
+  mainImageUrl: string | null;
+  mainImageLqip: string | null;
+  galleryImages: Array<{
+    url: string | null;
+    lqip: string | null;
+  }> | null;
+}> | null;
+
+// Source: src/sanity/lib/queries.ts
+// Variable: PROPERTY_SLUG_QUERY
+// Query: *[    _type == "property" &&    !(_id in path("drafts.**")) &&    slug.current == $slug  ][0] {    "targetSlug": *[      _type == "translation.metadata" &&      references(^._id)    ][0].translations[].value->{      language,      "slug": slug.current    }  }
+export type PROPERTY_SLUG_QUERY_RESULT = {
+  targetSlug: Array<{
+    language: string | null;
+    slug: string | null;
+  } | null> | null;
+} | null;
+
+// Query TypeMap
+import '@sanity/client';
+declare module '@sanity/client' {
+  interface SanityQueries {
+    '\n  *[\n    _type == "relocationBlogPost" &&\n    !(_id in path("drafts.**")) &&\n    language == $locale\n  ] | order(publishedDate desc)[0] {\n    _id,\n    title,\n    summary,\n    language,\n    mainPhoto {\n      photo {\n        asset->{\n          _id,\n          url,\n          "lqip": metadata.lqip\n        },\n        hotspot,\n        crop\n      },\n      photoAlt\n    },\n    body[] {\n      ...,\n      blockTitle {\n        ...,\n        "content": content[] {\n          ...,\n          _type == "videoZone" => {\n            ...,\n            videoFile {\n              asset->{\n                _id,\n                url\n              }\n            }\n          },\n          _type == "quoteImageZone" => {\n            ...,\n            photo {\n              asset->{\n                _id,\n                url,\n                "lqip": metadata.lqip\n              }\n            }\n          },\n          _type == "photoZone" => {\n            ...,\n            mainPhoto {\n              imageTitle,\n              photo {\n                asset->{\n                  _id,\n                  url,\n                  "lqip": metadata.lqip\n                }\n              }\n            }\n          }\n        }\n      }\n    },\n    slug,\n    publishedDate,\n    timeToRead,\n    createdAt,\n    "category": category[]->{\n      _id,\n      name\n    },\n    "author": author->{\n      _id,\n      name,\n      email,\n      authorAvatar {\n        asset->{\n          _id,\n          url,\n          "lqip": metadata.lqip\n        }\n      }\n    }\n  }\n': BLOG_LATEST_QUERY_RESULT;
+    '\n  {\n    "blogs": *[\n  _type == "relocationBlogPost" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale &&\n  slug.current != $slug &&\n  ($category == "" || $category in category[]->name) &&\n  ($title == "" || title match $title)\n] | order(publishedDate desc)[$start...$end] {\n      _originalId,\n      _id,\n      title,\n      summary,\n      language,\n      mainPhoto {\n        photo {\n          asset->{\n            _id,\n            url,\n            "lqip": metadata.lqip\n          },\n          hotspot,\n          crop\n        },\n        photoAlt\n      },\n      body,\n      slug,\n      publishedAt,\n      publishedDate,\n      timeToRead,\n      createdAt,\n      "category": category[]->{\n        _id,\n        name\n      },\n      "author": author->{\n        _id,\n        name,\n        email,\n        authorAvatar {\n          asset->{\n            _id,\n            url,\n            "lqip": metadata.lqip\n          }\n        }\n      }\n    },\n    "total": count(*[\n  _type == "relocationBlogPost" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale &&\n  slug.current != $slug &&\n  ($category == "" || $category in category[]->name) &&\n  ($title == "" || title match $title)\n])\n  }\n': BLOGS_QUERY_RESULT;
+    '\n  *[\n    _type == "relocationBlogPost" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    _id,\n    _updatedAt,\n    title,\n    summary,\n    language,\n    mainPhoto {\n      photo {\n        asset->{\n          _id,\n          url,\n          "lqip": metadata.lqip\n        },\n        hotspot,\n        crop\n      },\n      photoAlt\n    },\n    body[] {\n      ...,\n      blockTitle {\n        ...,\n        "content": content[] {\n          ...,\n          _type == "videoZone" => {\n            ...,\n            videoFile {\n              asset->{\n                _id,\n                url\n              }\n            }\n          },\n          _type == "photoZone" => {\n            ...,\n            mainPhoto {\n              imageTitle,\n              photo {\n                asset->{\n                  _id,\n                  url,\n                  "lqip": metadata.lqip\n                }\n              }\n            }\n          },\n          _type == "quoteImageZone" => {\n            ...,\n            photo {\n              asset->{\n                _id,\n                url,\n                "lqip": metadata.lqip\n              }\n            }\n          }\n        }\n      }\n    },\n    slug,\n    publishedAt,\n    publishedDate,\n    timeToRead,\n    createdAt,\n    "category": category[]->{\n      _id,\n      name\n    },\n    "author": author->{\n      _id,\n      name,\n      email,\n      authorAvatar {\n        asset->{\n          _id,\n          url,\n          "lqip": metadata.lqip\n        }\n      }\n    }\n  }\n': BLOG_DETAIL_QUERY_RESULT;
+    '\n  *[\n    _type == "relocationBlogPost" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    "targetSlug": *[\n      _type == "translation.metadata" &&\n      references(^._id)\n    ][0].translations[].value->{\n      language,\n      slug\n    }\n  }\n': BLOG_SLUG_QUERY_RESULT;
+    '\n  {\n    "blogs": *[\n  _type == "relocationBlogPost" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale &&\n  ($category == "" || $category in category[]->name) &&\n  ($title == "" || title match $title)\n] | order(publishedDate desc) {\n      _originalId,\n      _id,\n      publishedDate,\n      title,\n      summary,\n      slug\n    },\n    "total": count(*[\n  _type == "relocationBlogPost" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale &&\n  ($category == "" || $category in category[]->name) &&\n  ($title == "" || title match $title)\n])\n  }\n': BLOGS_SITEMAP_QUERY_RESULT;
+    '\n  {\n    "properties": *[\n  _type == "property" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale\n] | order(_createdAt desc) {\n      _id,\n      title,\n      slug\n    },\n    "total": count(*[\n  _type == "property" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale\n])\n  }\n': PROPERTIES_SITEMAP_QUERY_RESULT;
+    '\n  *[\n    _type == $type &&\n    !(_id in path("drafts.**")) &&\n    coalesce(isHidden, false) == false &&\n    ($requiresExplicitVisibility == false || isHidden == false) &&\n    language in $locales &&\n    defined(slug.current)\n  ] | order(_updatedAt desc) {\n    _updatedAt,\n    language,\n    "slug": slug.current,\n    "translations": *[\n      _type == "translation.metadata" &&\n      !(_id in path("drafts.**")) &&\n      references(^._id)\n    ][0].translations[].value->{\n      language,\n      isHidden,\n      "slug": slug.current\n    }\n  }\n': SITEMAP_DOCUMENTS_QUERY_RESULT;
+    '\n  *[\n    _type == "relocationBlogCategory" &&\n    count(*[\n      _type == "relocationBlogPost" &&\n      language == $locale &&\n      !(_id in path("drafts.**")) &&\n      references(^._id)\n    ]) >= 1\n  ]\n': POST_CATEGORIES_QUERY_RESULT;
+    '\n  {\n    "jobs": *[\n  _type == "relocationJobPost" &&\n  isHidden == false &&\n  !(_id in path("drafts.**")) &&\n  ($department == "" || $department == department->title[$locale]) &&\n  language == $locale\n] | order(publishedAt desc)[$start...$end] {\n      ...,\n      _originalId,\n      publishedAt,\n      "department": department->{\n        title\n      }\n    },\n    "total": count(*[\n  _type == "relocationJobPost" &&\n  isHidden == false &&\n  !(_id in path("drafts.**")) &&\n  ($department == "" || $department == department->title[$locale]) &&\n  language == $locale\n])\n  }\n': CAREERS_QUERY_RESULT;
+    '\n  {\n    "jobs": *[\n      _type == "relocationJobPost" &&\n      !(_id in path("drafts.**")) &&\n      slug.current != $slug &&\n      language == $locale &&\n      isHidden == false\n    ] | order(\n      isFeatured desc,\n      (department->title[$locale] == $department) desc,\n      publishedAt desc\n    )[0...5] {\n      ...,\n      _originalId,\n      publishedAt,\n      "department": department->{\n        title\n      }\n    }\n  }\n': FEATURED_CAREER_QUERY_RESULT;
+    '\n  *[\n    _type == "relocationJobPost" &&\n    !(_id in path("drafts.**")) &&\n    isHidden == false &&\n    slug.current == $slug\n  ][0] {\n    ...,\n    body[] {\n      ...,\n      blockTitle {\n        ...,\n        "content": content[] {\n          ...,\n          _type == "videoZone" => {\n            ...,\n            videoFile {\n              asset->{\n                _id,\n                url\n              }\n            }\n          },\n          _type == "photoZone" => {\n            ...,\n            mainPhoto {\n              imageTitle,\n              photo {\n                asset->{\n                  _id,\n                  url,\n                  "lqip": metadata.lqip\n                }\n              }\n            }\n          }\n        }\n      }\n    },\n    "department": department->{\n      title\n    }\n  }\n': CAREER_DETAIL_QUERY_RESULT;
+    '\n  *[\n    _type == "relocationJobPost" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    "targetSlug": *[\n      _type == "translation.metadata" &&\n      references(^._id)\n    ][0].translations[].value->{\n      language,\n      slug\n    }\n  }\n': CAREER_SLUG_QUERY_RESULT;
+    '\n  {\n    "properties": *[\n  _type == "property" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale &&\n  (count($categories) == 0 || category->categoryName in $categories) &&\n  ($location == "" || mapLocation.name match $location) &&\n  ($minPrice == 0 || price >= $minPrice) &&\n  ($maxPrice == 0 || price <= $maxPrice) &&\n  (\n    $rooms == "" ||\n    (\n      $rooms == "studio" &&\n      (\n        facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 0 ||\n        (!defined(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue) && facilities[typeRoom == "room" && valueType == "number"][0].numberValue <= 1.5)\n      )\n    ) ||\n    ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||\n    ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||\n    ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||\n    ($rooms == "4plus" && coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) >= 4)\n  ) &&\n  (!$availableOnly || availability == true)\n] | order(\n      availability desc,\n      select($sort == "price_asc" => price) asc,\n      select($sort == "price_desc" => price) desc,\n      _createdAt desc\n    )[$start...$end] {\n      _id,\n      title,\n      slug,\n      price,\n      priceUnit,\n      listingType,\n      rentPeriod,\n      language,\n      availability,\n      description,\n      mapLocation {\n        name,\n        coordinates\n      },\n      "category": category->categoryName,\n      "facilities": facilities[] {\n        typeRoom,\n        name,\n        valueType,\n        numberValue,\n        textValue\n      },\n      "imageUrl": areas[0].mainImage.asset->url,\n      "imageLqip": areas[0].mainImage.asset->metadata.lqip\n    },\n    "total": count(*[\n  _type == "property" &&\n  !(_id in path("drafts.**")) &&\n  language == $locale &&\n  (count($categories) == 0 || category->categoryName in $categories) &&\n  ($location == "" || mapLocation.name match $location) &&\n  ($minPrice == 0 || price >= $minPrice) &&\n  ($maxPrice == 0 || price <= $maxPrice) &&\n  (\n    $rooms == "" ||\n    (\n      $rooms == "studio" &&\n      (\n        facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 0 ||\n        (!defined(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue) && facilities[typeRoom == "room" && valueType == "number"][0].numberValue <= 1.5)\n      )\n    ) ||\n    ($rooms == "1" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 1) ||\n    ($rooms == "2" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 2) ||\n    ($rooms == "3" && facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue == 3) ||\n    ($rooms == "4plus" && coalesce(facilities[typeRoom == "bedroom" && valueType == "number"][0].numberValue, 0) >= 4)\n  ) &&\n  (!$availableOnly || availability == true)\n])\n  }\n': PROPERTIES_QUERY_RESULT;
+    '\n  *[\n    _type == "propertyCategory" &&\n    count(*[\n      _type == "property" &&\n      !(_id in path("drafts.**")) &&\n      language == $locale &&\n      references(^._id)\n    ]) > 0\n  ] | order(categoryName asc) {\n    _id,\n    categoryName\n  }\n': PROPERTY_CATEGORIES_QUERY_RESULT;
+    '\n  *[\n    _type == "relocationJobDepartment" &&\n    count(*[\n      _type == "relocationJobPost" &&\n      isHidden == false &&\n      language == $locale &&\n      !(_id in path("drafts.**")) &&\n      references(^._id)\n    ]) > 0\n  ]\n': DEPARTMENT_QUERY_RESULT;
+    '\n  *[\n    _type == "property" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    _id,\n    _createdAt,\n    _updatedAt,\n    language,\n    title,\n    slug,\n    listingType,\n    price,\n    priceUnit,\n    rentPeriod,\n    description,\n    availability,\n    mapLocation {\n      name,\n      coordinates {\n        lat,\n        lng\n      }\n    },\n    facilities[] {\n      typeRoom,\n      name,\n      valueType,\n      numberValue,\n      textValue\n    },\n    agent->{\n      _id,\n      agentName,\n      agentPhone,\n      "photoUrl": photo.asset->url,\n      "photoLqip": photo.asset->metadata.lqip\n    },\n    category->{\n      _id,\n      categoryName\n    },\n    areas[] {\n      title,\n      "mainImageUrl": mainImage.asset->url,\n      "mainImageLqip": mainImage.asset->metadata.lqip,\n      "galleryImages": galleryImages[] {\n        "url": asset->url,\n        "lqip": asset->metadata.lqip\n      }\n    },\n    surroundingPlaces[] {\n      icon,\n      name,\n      distance\n    }\n  }\n': PROPERTY_DETAIL_QUERY_RESULT;
+    '\n  *[\n    _type == "property" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0].areas[] {\n    title,\n    description,\n    "mainImageUrl": mainImage.asset->url,\n      "mainImageLqip": mainImage.asset->metadata.lqip,\n    "galleryImages": galleryImages[] {\n      "url": asset->url,\n      "lqip": asset->metadata.lqip\n    }\n  }\n': PROPERTY_PHOTO_TOUR_QUERY_RESULT;
+    '\n  *[\n    _type == "property" &&\n    !(_id in path("drafts.**")) &&\n    slug.current == $slug\n  ][0] {\n    "targetSlug": *[\n      _type == "translation.metadata" &&\n      references(^._id)\n    ][0].translations[].value->{\n      language,\n      "slug": slug.current\n    }\n  }\n': PROPERTY_SLUG_QUERY_RESULT;
+  }
+}

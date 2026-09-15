@@ -11,16 +11,14 @@ import {
 
 import type { Meta } from '@/models/meta';
 import type { Job, JobDetail } from '@/models/job';
-import type { AssuranceJobDepartment, AssuranceJobPost } from '@/sanity/types';
+import type { CAREERS_QUERY_RESULT } from '@/sanity/types';
 
-export interface JobPostProps extends Omit<AssuranceJobPost, 'department'> {
-  department: {
-    title: {
-      en: string;
-      fr: string;
-    };
-  };
-}
+type TJobPostProjection = Omit<
+  CAREERS_QUERY_RESULT['jobs'][number],
+  '_originalId' | 'body' | 'publishedAt'
+> & {
+  publishedAt?: string | null;
+};
 
 export interface ParamsProps {
   page?: number;
@@ -32,7 +30,7 @@ export interface ParamsProps {
   limit?: number;
 }
 
-const toJob = (job: JobPostProps, locale?: string): Job => ({
+const toJob = (job: TJobPostProjection, locale?: string): Job => ({
   id: job._id,
   title: job.title || 'Untitled',
   href: `/career/${(job?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
@@ -59,10 +57,7 @@ export const fetchJobPosts = async (
   const end = (params?.page || 1) * pageSize;
   const start = end - pageSize;
 
-  const response = await sanityFetch<{
-    jobs: JobPostProps[];
-    total: number;
-  }>(
+  const response = await sanityFetch(
     CAREERS_QUERY,
     {
       start: start,
@@ -91,9 +86,7 @@ export const fetchFeaturedJobPosts = async (
   slug: string,
   params?: ParamsProps
 ): Promise<{ jobs: Job[] }> => {
-  const response = await sanityFetch<{
-    jobs: JobPostProps[];
-  }>(
+  const response = await sanityFetch(
     FEATURED_CAREER_QUERY,
     {
       slug: `${params?.locale ?? 'fr'}-${slug}`,
@@ -112,7 +105,7 @@ export const fetchJobDetailBySlug = async (
   slug: string,
   locale: string = 'en'
 ): Promise<JobDetail | null> => {
-  const response = await sanityFetch<JobPostProps | null>(
+  const response = await sanityFetch(
     CAREER_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
     { tags: ['job-detail'] }
@@ -130,7 +123,7 @@ export const fetchJobDetailBySlug = async (
 };
 
 export const fetchDepartments = async (params?: ParamsProps) => {
-  const departments = await sanityFetch<AssuranceJobDepartment[]>(
+  const departments = await sanityFetch(
     DEPARTMENT_QUERY,
     { locale: params?.locale ?? 'en' },
     { tags: ['departments'] }
@@ -142,22 +135,25 @@ export const fetchDepartments = async (params?: ParamsProps) => {
 };
 
 export const fetchCareerSlugBySlug = async (slug: string) => {
-  const response = await sanityFetch<{
-    targetSlug: {
-      language: string;
-      slug: {
-        current: string;
-      };
-    }[];
-  } | null>(CAREER_SLUG_QUERY, { slug }, { tags: ['job-detail'] });
+  const response = await sanityFetch(
+    CAREER_SLUG_QUERY,
+    { slug },
+    { tags: ['job-detail'] }
+  );
 
-  if (!response?.targetSlug) {
-    return [];
-  }
+  return (response?.targetSlug ?? []).flatMap((item) => {
+    const current = item?.slug?.current;
 
-  return response.targetSlug.map((item) => ({
-    locale: item.language,
-    slug: item.slug.current,
-    href: `/carriere/${item.slug.current.replace(/^[a-z]{2}-/i, '')}`,
-  }));
+    if (!item?.language || !current) {
+      return [];
+    }
+
+    return [
+      {
+        locale: item.language,
+        slug: current,
+        href: `/carriere/${current.replace(/^[a-z]{2}-/i, '')}`,
+      },
+    ];
+  });
 };

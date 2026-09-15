@@ -31,6 +31,7 @@ export interface IPropertyListing {
   facilities: PropertyFacility[];
   description: string;
   imageUrl: string;
+  imageLqip?: string;
   availability: boolean;
 }
 
@@ -89,6 +90,7 @@ export interface PropertyAgent {
   agentName: string;
   agentPhone: string;
   photoUrl: string;
+  photoLqip?: string;
 }
 
 export interface PropertySimilar {
@@ -104,7 +106,13 @@ export interface PropertySimilar {
 export interface PropertyArea {
   title: string;
   mainImageUrl: string;
-  galleryImages: { url: string }[] | null;
+  mainImageLqip?: string;
+  galleryImages: IPropertyGalleryImage[] | null;
+}
+
+export interface IPropertyGalleryImage {
+  url: string;
+  lqip?: string;
 }
 
 export interface SurroundingPlace {
@@ -128,5 +136,6 @@ export interface IAreaPhotoTour {
   title: string;
   description: string;
   mainImageUrl: string;
-  galleryImages: { url: string }[] | null;
+  mainImageLqip?: string;
+  galleryImages: IPropertyGalleryImage[] | null;
 }

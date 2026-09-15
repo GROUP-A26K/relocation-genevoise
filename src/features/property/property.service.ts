@@ -8,7 +8,7 @@ import {
   PROPERTY_DEFAULT_SORT,
 } from '@/constants/property';
 import {
-  buildPropertiesQuery,
+  PROPERTIES_QUERY,
   PROPERTIES_SITEMAP_QUERY,
   PROPERTY_CATEGORIES_QUERY,
   PROPERTY_DETAIL_QUERY,
@@ -18,14 +18,19 @@ import {
 
 import type {
   IPropertiesResponse,
-  IPropertyCategoryDocument,
   IPropertyCategoryParams,
   IPropertyParams,
-  ISanityPropertyResponse,
 } from '@/types';
+import type {
+  PROPERTIES_QUERY_RESULT,
+  PROPERTY_CATEGORIES_QUERY_RESULT,
+  PROPERTY_DETAIL_QUERY_RESULT,
+  PROPERTY_PHOTO_TOUR_QUERY_RESULT,
+} from '@/sanity/types';
 import type {
   IAreaPhotoTour,
   IPropertyCategory,
+  IPropertyGalleryImage,
   PropertyDetail,
   PropertyFacility,
   IPropertyListing,
@@ -47,7 +52,91 @@ const getPaginationRange = (page: number, pageSize: number) => {
   return { start, end };
 };
 
-const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
+const mapFacility = (facility: {
+  typeRoom: string | null;
+  name: string | null;
+  valueType: PropertyFacility['valueType'] | null;
+  numberValue: number | null;
+  textValue: string | null;
+}): PropertyFacility => ({
+  typeRoom: facility.typeRoom || '',
+  name: facility.name || '',
+  valueType: facility.valueType || 'none',
+  numberValue: facility.numberValue ?? undefined,
+  textValue: facility.textValue ?? undefined,
+});
+
+const mapGalleryImage = (image: {
+  url: string | null;
+  lqip: string | null;
+}): IPropertyGalleryImage => ({
+  url: image.url || '',
+  lqip: image.lqip ?? undefined,
+});
+
+const mapAreaPhotoTour = (
+  area: NonNullable<PROPERTY_PHOTO_TOUR_QUERY_RESULT>[number]
+): IAreaPhotoTour => ({
+  title: area.title || '',
+  description: area.description || '',
+  mainImageUrl: area.mainImageUrl || '',
+  mainImageLqip: area.mainImageLqip ?? undefined,
+  galleryImages: area.galleryImages?.map(mapGalleryImage) ?? null,
+});
+
+const mapPropertyDetail = (
+  property: NonNullable<PROPERTY_DETAIL_QUERY_RESULT>
+): PropertyDetail => ({
+  _id: property._id,
+  _createdAt: property._createdAt,
+  _updatedAt: property._updatedAt,
+  language: property.language || '',
+  title: property.title || '',
+  slug: {
+    _type: property.slug?._type || 'slug',
+    current: property.slug?.current || '',
+  },
+  listingType: property.listingType || '',
+  price: property.price || 0,
+  priceUnit: property.priceUnit || '',
+  rentPeriod: property.rentPeriod || '',
+  description: property.description || '',
+  availability: Boolean(property.availability),
+  mapLocation: {
+    name: property.mapLocation?.name || '',
+    coordinates: {
+      lat: property.mapLocation?.coordinates?.lat ?? 0,
+      lng: property.mapLocation?.coordinates?.lng ?? 0,
+    },
+  },
+  facilities: (property.facilities || []).map(mapFacility),
+  agent: {
+    _id: property.agent?._id || '',
+    agentName: property.agent?.agentName || '',
+    agentPhone: property.agent?.agentPhone || '',
+    photoUrl: property.agent?.photoUrl || '',
+    photoLqip: property.agent?.photoLqip ?? undefined,
+  },
+  category: {
+    id: property.category?._id || '',
+    categoryName: property.category?.categoryName || '',
+  },
+  areas: (property.areas || []).map((area) => ({
+    title: area.title || '',
+    mainImageUrl: area.mainImageUrl || '',
+    mainImageLqip: area.mainImageLqip ?? undefined,
+    galleryImages: area.galleryImages?.map(mapGalleryImage) ?? null,
+  })),
+  surroundingPlaces: (property.surroundingPlaces || []).map((place) => ({
+    icon: place.icon || '',
+    name: place.name || '',
+    distance: place.distance || '',
+  })),
+});
+
+const mapProperty = (
+  property: PROPERTIES_QUERY_RESULT['properties'][number]
+): IPropertyListing => ({
   id: property._id,
   title: property.title || 'Untitled Property',
   slug: property.slug?.current || '',
@@ -62,20 +151,15 @@ const mapProperty = (property: ISanityPropertyResponse): IPropertyListing => ({
     lng: property.mapLocation?.coordinates?.lng,
   },
   category: property.category || '',
-  facilities: (property.facilities || []).map((facility): PropertyFacility => ({
-    typeRoom: facility.typeRoom || '',
-    name: facility.name || '',
-    valueType: facility.valueType || 'none',
-    numberValue: facility.numberValue,
-    textValue: facility.textValue,
-  })),
+  facilities: (property.facilities || []).map(mapFacility),
   description: property.description || '',
   imageUrl: property.imageUrl || '',
+  imageLqip: property.imageLqip ?? undefined,
   availability: Boolean(property.availability),
 });
 
 const mapPropertyCategory = (
-  category: IPropertyCategoryDocument
+  category: PROPERTY_CATEGORIES_QUERY_RESULT[number]
 ): IPropertyCategory => ({
   id: category._id,
   categoryName: category.categoryName || '',
@@ -94,14 +178,13 @@ export const fetchProperties = async (
 
   const availableOnly = params?.availableOnly ?? false;
 
-  const response = await sanityFetch<{
-    properties: ISanityPropertyResponse[];
-    total: number;
-  }>(
-    buildPropertiesQuery(sort, availableOnly),
+  const response = await sanityFetch(
+    PROPERTIES_QUERY,
     {
       start,
       end,
+      sort,
+      availableOnly,
       locale,
       categories,
       location: params?.location || '',
@@ -128,7 +211,7 @@ export const fetchProperties = async (
 export const fetchPropertyCategories = async (
   params?: IPropertyCategoryParams
 ): Promise<IPropertyCategory[]> => {
-  const response = await sanityFetch<IPropertyCategoryDocument[]>(
+  const response = await sanityFetch(
     PROPERTY_CATEGORIES_QUERY,
     {
       locale: getLocale(params?.locale),
@@ -143,33 +226,32 @@ export async function getPropertyDetail(
   slug: string,
   locale: string = 'en'
 ): Promise<PropertyDetail | null> {
-  const response = await sanityFetch<PropertyDetail | null>(
+  const response = await sanityFetch(
     PROPERTY_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
     { tags: ['property'] }
   );
 
-  return response ?? null;
+  return response ? mapPropertyDetail(response) : null;
 }
 
 export async function getPropertyPhotoTour(
   slug: string,
   locale: string = 'en'
 ): Promise<IAreaPhotoTour[]> {
-  return sanityFetch<IAreaPhotoTour[]>(
+  const response = await sanityFetch(
     PROPERTY_PHOTO_TOUR_QUERY,
     { slug: `${locale}-${slug}` },
     { tags: ['property'] }
   );
+
+  return (response ?? []).map(mapAreaPhotoTour);
 }
 
 export const fetchSitemapProperties = async (
   params?: IPropertyParams
 ): Promise<{ properties: PropertySitemap[]; meta: { total: number } }> => {
-  const response = await sanityFetch<{
-    properties: ISanityPropertyResponse[];
-    total: number;
-  }>(
+  const response = await sanityFetch(
     PROPERTIES_SITEMAP_QUERY,
     {
       locale: getLocale(params?.locale),
@@ -189,20 +271,23 @@ export const fetchSitemapProperties = async (
 };
 
 export const fetchPropertySlugBySlug = async (slug: string) => {
-  const response = await sanityFetch<{
-    targetSlug: {
-      language: string;
-      slug: string;
-    }[];
-  } | null>(PROPERTY_SLUG_QUERY, { slug }, { tags: ['property'] });
+  const response = await sanityFetch(
+    PROPERTY_SLUG_QUERY,
+    { slug },
+    { tags: ['property'] }
+  );
 
-  if (!response?.targetSlug) {
-    return [];
-  }
+  return (response?.targetSlug ?? []).flatMap((item) => {
+    if (!item?.language || !item.slug) {
+      return [];
+    }
 
-  return response.targetSlug.map((item) => ({
-    locale: item.language,
-    slug: item.slug,
-    href: `/properties/${item.slug.replace(/^[a-z]{2}-/i, '')}`,
-  }));
+    return [
+      {
+        locale: item.language,
+        slug: item.slug,
+        href: `/properties/${item.slug.replace(/^[a-z]{2}-/i, '')}`,
+      },
+    ];
+  });
 };
