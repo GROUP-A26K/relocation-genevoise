@@ -63,8 +63,7 @@ This project follows a well-defined structure for better scalability and maintai
 
    - Configuring Tailwind with Next.js: [Tailwind Docs](https://tailwindcss.com/docs/guides/nextjs)
 
-4. **Zustand and Zod**:
-   - Zustand for state management: [Zustand Docs](https://github.com/pmndrs/zustand)
+4. **Zod**:
    - Zod for schema validation: [Zod Docs](https://github.com/colinhacks/zod)
 
 ---

@@ -4,8 +4,6 @@
       "heading": "Home",
       "subHeading": "Relocation Agency in ((Geneva))",
       "description": "Your trusted partner in Geneva for a smooth relocation : housing and tenant search, corporate services, and personalized support at every stage of your journey.",
-      "experience": "25 years of experience",
-      "customer": "2500+ satisfied clients",
       "buttonText": "Contact us",
       "buttonText2": "Find accommodation"
     },
@@ -32,9 +30,6 @@
           "description": "Bank account opening, home insurance, rent guarantee, or any other specific request, our concierge service is here to simplify your procedures and lighten your daily load."
         }
       ]
-    },
-    "Logos": {
-      "heading": "A network of trusted partners"
     },
     "StatsGrid": {
       "heading": "Availability & Transparency",
@@ -547,13 +542,6 @@
         },
         "submit": "Submit"
       }
-    },
-    "BookConsultation": {
-      "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our ((expertise and services ?))",
-      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact us",
-      "buttonText2": "Find accommodation"
     }
   },
   "RemindMe": {
@@ -645,7 +633,6 @@
         "placeholder": "Company"
       },
       "subject": {
-        "name": "help",
         "label": "How we can help you ?",
         "placeholder": "Choose from the list",
         "options": [
@@ -1149,9 +1136,7 @@
         "placeholder": "Enter your expected"
       },
       "resume": {
-        "label": "Your resume",
-        "placeholder": "Upload your resume",
-        "fileType": "DOCX, PDF (max. 500MB)"
+        "label": "Your resume"
       },
       "accept": "By checking this box, I agree that the information entered will be used as part of the contact.",
       "send": "Send"
@@ -1300,12 +1285,6 @@
     "Error404": {
       "title": "Relocation Genevoise – Page not found (404)",
       "description": "The page you are looking for does not exist or has been moved. Return to the Relocation Genevoise homepage to continue browsing."
-    },
-    "Error403": {
-      "title": "Relocation Genevoise – Access denied (403)"
-    },
-    "Error500": {
-      "title": "Relocation Genevoise – Server error (500)"
     }
   },
   "Breadcrumb": {
@@ -1364,9 +1343,6 @@
       "subTitle": "Get our latest news and stay informed at all times.",
       "buttonText": "Subscribe",
       "inputPlaceholder": "Email address"
-    },
-    "logo": {
-      "title": "Shadcnblocks.com"
     },
     "tagline": "Relocation Genevoise provides customized solutions with integrity, professionalism, and a focus on your needs in Switzerland.",
     "googleRating": {
@@ -1456,7 +1432,6 @@
   },
   "Validation": {
     "Contact": {
-      "roleRequired": "Please select your role",
       "firstNameMinLength": "First name must have at least 2 characters.",
       "firstNameMaxLength": "First name can have a maximum of 50 characters.",
       "lastNameMinLength": "Last name must have at least 2 characters.",
@@ -1474,7 +1449,6 @@
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
       "experienceYearsRequired": "Please select your experience in years.",
-      "expectedSalaryInvalid": "Expected salary must be a number.",
       "expectedCtcRequired": "Expected CTC must be a valid number.",
       "resumeInvalidType": "Invalid file type! Please upload a PDF, DOC, or DOCX file.",
       "resumeTooLarge": "File size exceeds the limit of 5MB. Please upload a smaller file.",
@@ -1526,7 +1500,6 @@
       "showing": "Show",
       "ofTotal": "of total",
       "results": "results",
-      "sortBy": "Sort by",
       "showAvailableOnly": "Show available only"
     },
     "sort": {
@@ -1550,13 +1523,6 @@
     "emptyData": {
       "title": "No properties found",
       "description": "Try adjusting your search filters to find what you're looking for."
-    },
-    "cooperate": {
-      "tagline": "Cooperate",
-      "title": "Would you like to benefit from our expertise and services?",
-      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
-      "contactButton": "Contact us",
-      "findButton": "Find accommodation"
     },
     "BookConsultation": {
       "heading": "Cooperate",
@@ -1587,9 +1553,6 @@
     },
     "imagePreview": {
       "viewAllButton": "Show all photos"
-    },
-    "map": {
-      "viewOnMap": "View on map"
     },
     "agent": {
       "title": "Agent details",
