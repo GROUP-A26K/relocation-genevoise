@@ -48,6 +48,8 @@ export async function PropertySectionHeader({
             <div className="relative aspect-[224.4/167] shrink-0 overflow-hidden rounded-2xl">
               <Image
                 src={area.mainImageUrl}
+                placeholder={area.mainImageLqip ? 'blur' : 'empty'}
+                blurDataURL={area.mainImageLqip}
                 fill
                 alt={area.title}
                 title={area.title}

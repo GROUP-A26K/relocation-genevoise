@@ -51,7 +51,7 @@ export default async function Page(props: PageProps<'/[locale]/faq'>) {
           subHeading={t('BookConsultation.subHeading')}
           description={t('BookConsultation.description')}
           buttonText1={t('BookConsultation.buttonText1')}
-          imgSrc={GroupAvatar.src}
+          imgSrc={GroupAvatar}
         />
       </Section>
     </>

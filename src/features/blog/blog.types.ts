@@ -1,6 +1,6 @@
 import type { Meta } from '@/models/meta';
 import type { Blog } from '@/models/blog';
-import type { BlogCategory } from '@/sanity/types';
+import type { POST_CATEGORIES_QUERY_RESULT } from '@/sanity/types';
 
 export interface BlogListFilters {
   locale: string;
@@ -17,7 +17,7 @@ export interface BlogListResponse {
 }
 
 export interface BlogCategoriesResponse {
-  posts: BlogCategory[];
+  posts: POST_CATEGORIES_QUERY_RESULT;
 }
 
 export type { Blog };

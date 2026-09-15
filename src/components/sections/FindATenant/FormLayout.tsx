@@ -63,6 +63,7 @@ export default function FormLayout({
           >
             <Image
               src={image.src}
+              placeholder="blur"
               alt={image.alt}
               title={image.alt}
               fill

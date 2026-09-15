@@ -217,6 +217,7 @@ export const renderContent = (content: Content) => {
           content={content.content}
           authorInfo={content.authorInfo}
           photoUrl={content.photo?.asset?.url}
+          photoLqip={content.photo?.asset?.lqip}
         />
       );
 
@@ -225,6 +226,7 @@ export const renderContent = (content: Content) => {
         <ImageTitle
           title={content.mainPhoto?.imageTitle || 'Photo'}
           imgUrl={content.mainPhoto?.photo?.asset?.url}
+          imgLqip={content.mainPhoto?.photo?.asset?.lqip}
         />
       );
 

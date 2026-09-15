@@ -1,6 +1,6 @@
 import type { Job } from '@/models/job';
 import type { Meta } from '@/models/meta';
-import type { AssuranceJobDepartment } from '@/sanity/types';
+import type { DEPARTMENT_QUERY_RESULT } from '@/sanity/types';
 
 export interface CareerListFilters {
   locale: string;
@@ -16,7 +16,7 @@ export interface CareerListResponse {
 }
 
 export interface CareerDepartmentsResponse {
-  departments: AssuranceJobDepartment[];
+  departments: DEPARTMENT_QUERY_RESULT;
 }
 
 export interface CareerFeaturedFilters {

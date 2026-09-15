@@ -30,7 +30,7 @@ interface IHeroProps {
   primaryCta: TCta;
   secondaryCta: TCta;
   image: {
-    src: string | StaticImageData;
+    src: StaticImageData;
     alt: string;
   };
   stats: TStat[];
@@ -106,6 +106,7 @@ export default function Hero({
           <RevealItem className="relative aspect-572/420 w-full flex-1">
             <Image
               src={image.src}
+              placeholder="blur"
               alt={image.alt}
               title={image.alt}
               fill

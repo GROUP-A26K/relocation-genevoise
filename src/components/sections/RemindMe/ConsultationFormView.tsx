@@ -317,6 +317,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
         <RevealItem className="relative aspect-556/284 w-full overflow-hidden rounded-2xl">
           <Image
             src={ConsultationBG}
+            placeholder="blur"
             alt="Relocation Genevoise, courtier en relocation à Genève"
             title="Relocation Genevoise, courtier en relocation à Genève"
             fill

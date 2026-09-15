@@ -1,9 +1,5 @@
 import type { Meta } from '@/models/meta';
-import type {
-  IPropertyListing,
-  PropertyPriceUnit,
-  PropertyRentPeriod,
-} from '@/models/property';
+import type { IPropertyListing } from '@/models/property';
 
 export interface IPropertyParams {
   page?: number;
@@ -21,39 +17,6 @@ export interface IPropertyParams {
 
 export interface IPropertyCategoryParams {
   locale?: string;
-}
-
-export interface ISanityPropertyFacility {
-  typeRoom?: string;
-  name?: string;
-  valueType?: 'number' | 'text' | 'none';
-  numberValue?: number;
-  textValue?: string;
-}
-
-export interface ISanityPropertyResponse {
-  _id: string;
-  title?: string;
-  slug?: { current?: string };
-  price?: number;
-  priceUnit?: PropertyPriceUnit;
-  listingType?: 'rent' | 'sale';
-  rentPeriod?: PropertyRentPeriod;
-  language?: string;
-  availability?: boolean;
-  description?: string;
-  mapLocation?: {
-    name?: string;
-    coordinates?: { lat?: number; lng?: number };
-  };
-  category?: string;
-  facilities?: ISanityPropertyFacility[];
-  imageUrl?: string;
-}
-
-export interface IPropertyCategoryDocument {
-  _id: string;
-  categoryName?: string;
 }
 
 export interface IPropertiesResponse {

@@ -12,6 +12,7 @@ import type { IAreaPhotoTour } from '@/models/property';
 
 type TImageObj = {
   url: string;
+  lqip?: string;
 };
 
 interface IPhotoTourSectionProps {
@@ -22,10 +23,10 @@ interface IPhotoTourSectionProps {
 export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
   const allImages: TImageObj[] = useMemo(
     () => [
-      { url: area.mainImageUrl },
-      ...(area.galleryImages?.map((img) => ({ url: img.url })) || []),
+      { url: area.mainImageUrl, lqip: area.mainImageLqip },
+      ...(area.galleryImages ?? []),
     ],
-    [area.mainImageUrl, area.galleryImages]
+    [area.mainImageUrl, area.mainImageLqip, area.galleryImages]
   );
   const hasMultipleImages = allImages.length > 1;
 
@@ -89,6 +90,8 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                 <div key={i} className="relative h-full w-full shrink-0">
                   <Image
                     src={img.url}
+                    placeholder={img.lqip ? 'blur' : 'empty'}
+                    blurDataURL={img.lqip}
                     alt={`${area.title} - ${i + 1}`}
                     title={`${area.title} - ${i + 1}`}
                     fill
@@ -140,6 +143,8 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
               >
                 <Image
                   src={img.url}
+                  placeholder={img.lqip ? 'blur' : 'empty'}
+                  blurDataURL={img.lqip}
                   alt={`${area.title} thumbnail ${i + 1}`}
                   title={`${area.title} thumbnail ${i + 1}`}
                   fill

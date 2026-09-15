@@ -87,6 +87,7 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
                     blogs[0]?.imageUrl ??
                     'https://shadcnblocks.com/images/block/placeholder-dark-1.svg'
                   }
+                  imageLqip={blogs[0]?.imageLqip}
                   url={blogs[0]?.href ?? '#'}
                 />
               </div>

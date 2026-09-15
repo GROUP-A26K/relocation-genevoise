@@ -36,6 +36,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
   category,
   facilities,
   imageUrl,
+  imageLqip,
   availability,
   displayCurrency,
 }) => {
@@ -68,6 +69,8 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
             alt={title}
             title={title}
             src={imageUrl || FALLBACK_IMAGE}
+            placeholder={imageLqip ? 'blur' : 'empty'}
+            blurDataURL={imageLqip}
             width={392}
             height={250}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 392px"

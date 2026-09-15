@@ -36,6 +36,8 @@ const BlogDetailHero: React.FC<Blog> = (blog) => {
       <RevealItem className="relative aspect-1240/620 w-full overflow-hidden rounded-3xl">
         <Image
           src={blog.imageUrl}
+          placeholder={blog.imageLqip ? 'blur' : 'empty'}
+          blurDataURL={blog.imageLqip}
           alt={blog.title}
           title={blog.title}
           fill

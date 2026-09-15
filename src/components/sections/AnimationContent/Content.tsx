@@ -15,12 +15,14 @@ import {
 
 import { StepContent } from './StepContent';
 
+import type { StaticImageData } from 'next/image';
+
 export interface IContentProps {
   position?: string;
   items: {
     title: string;
     description: string;
-    image: string;
+    image: StaticImageData;
   }[];
 }
 

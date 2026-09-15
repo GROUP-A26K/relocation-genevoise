@@ -2,19 +2,25 @@ import 'server-only';
 
 import { client } from './client';
 
+import type { ClientReturn, QueryParams } from '@sanity/client';
+
 interface SanityFetchOptions {
   tags?: string[];
+}
+
+export interface SanityTypesOutOfDate {
+  readonly __error: 'Query missing from src/sanity/types.ts — run `npm run typegen`';
 }
 
 const REVALIDATE_TAGGED_SECONDS = 86400;
 
 const REVALIDATE_FALLBACK_SECONDS = 300;
 
-export const sanityFetch = async <T>(
-  query: string,
-  params: Record<string, unknown> = {},
+export const sanityFetch = async <const Q extends string>(
+  query: Q,
+  params: QueryParams = {},
   options: SanityFetchOptions = {}
-): Promise<T> => {
+): Promise<ClientReturn<Q, SanityTypesOutOfDate>> => {
   if (!client.config().token) {
     throw new Error(
       'Sanity read token is missing. Against a private dataset this would ' +
@@ -23,7 +29,7 @@ export const sanityFetch = async <T>(
     );
   }
 
-  return client.fetch<T>(query, params, {
+  return client.fetch(query, params, {
     next: {
       revalidate: options.tags?.length
         ? REVALIDATE_TAGGED_SECONDS

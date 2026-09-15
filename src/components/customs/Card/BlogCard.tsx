@@ -12,6 +12,7 @@ export const BlogCard: React.FC<Blog> = ({
   title,
   description,
   imageUrl,
+  imageLqip,
   category,
   href,
   author,
@@ -28,6 +29,8 @@ export const BlogCard: React.FC<Blog> = ({
             alt={title}
             title={title}
             src={imageUrl}
+            placeholder={imageLqip ? 'blur' : 'empty'}
+            blurDataURL={imageLqip}
             fill
             sizes="(min-width: 1440px) 392px, (min-width: 1024px) 33vw, 100vw"
             className="object-cover"
@@ -66,6 +69,8 @@ export const BlogCard: React.FC<Blog> = ({
                 alt="Author Image"
                 title="Author Image"
                 src={author.imageUrl}
+                placeholder={author.imageLqip ? 'blur' : 'empty'}
+                blurDataURL={author.imageLqip}
                 width={40}
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"

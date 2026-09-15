@@ -6,6 +6,7 @@ type QuoteImageProps = {
   author?: string;
   authorInfo?: string;
   photoUrl?: string;
+  photoLqip?: string;
 };
 
 const QuoteImage: React.FC<QuoteImageProps> = ({
@@ -13,6 +14,7 @@ const QuoteImage: React.FC<QuoteImageProps> = ({
   author = 'Author Name',
   authorInfo = 'Author Information',
   photoUrl = '',
+  photoLqip,
 }) => {
   return (
     <div className={cn('py-4', 'lg:py-6')}>
@@ -28,6 +30,8 @@ const QuoteImage: React.FC<QuoteImageProps> = ({
         <div className="flex w-full flex-col items-center gap-3">
           <Image
             src={photoUrl}
+            placeholder={photoLqip ? 'blur' : 'empty'}
+            blurDataURL={photoLqip}
             alt="Author image"
             title="Author image"
             width={40}

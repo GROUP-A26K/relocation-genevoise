@@ -5,6 +5,7 @@ import { HydrationBoundary } from '@tanstack/react-query';
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Career';
 import { hydrateCareerList } from '@/features/career/career.hydration';
+import { CareerPageSkeleton } from '@/components/sections/Career/CareerPageSkeleton';
 import {
   normalizeCareerListFilters,
   parseCareerSearchParams,
@@ -39,7 +40,7 @@ export default async function Page(props: PageProps<'/[locale]/career'>) {
   );
 
   return (
-    <Suspense>
+    <Suspense fallback={<CareerPageSkeleton />}>
       <HydrationBoundary state={state}>
         <PageView
           departments={departments.departments}

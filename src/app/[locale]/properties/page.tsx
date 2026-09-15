@@ -10,6 +10,7 @@ import { hydratePropertyList } from '@/features/property/property.hydration';
 import { getExchangeRates, toCHFWithRates } from '@/utils/exchangeRate.server';
 import { SearchFilters } from '@/components/sections/Properties/SearchFilters';
 import PropertyListingsSection from '@/components/sections/Properties/PropertyListingsSection';
+import { PropertiesPageSkeleton } from '@/components/sections/Properties/PropertiesPageSkeleton';
 import {
   buildPropertyFilterParams,
   parsePropertySearchParams,
@@ -45,12 +46,13 @@ export default async function PropertiesPage(
     ),
     locale,
   };
+
   const { state, categories, propertyList } =
     await hydratePropertyList(propertyFilters);
 
   return (
-    <ExchangeRatesProvider initialRates={rates}>
-      <Suspense>
+    <Suspense fallback={<PropertiesPageSkeleton />}>
+      <ExchangeRatesProvider initialRates={rates}>
         <PropertiesHero />
         <div className="relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
           <SearchFilters categories={categories.categories} />
@@ -68,7 +70,7 @@ export default async function PropertiesPage(
           buttonText1={t('BookConsultation.buttonText1')}
           buttonText2={t('BookConsultation.buttonText2')}
         />
-      </Suspense>
-    </ExchangeRatesProvider>
+      </ExchangeRatesProvider>
+    </Suspense>
   );
 }

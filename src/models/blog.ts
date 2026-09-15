@@ -7,6 +7,7 @@ export interface Blog {
   timeToRead: number;
   publishedDate: string;
   imageUrl: string;
+  imageLqip?: string;
   time: string;
   category: {
     title: string;
@@ -18,6 +19,7 @@ export interface Blog {
     href: string;
     email: string;
     imageUrl: string;
+    imageLqip?: string;
   };
 }
 
@@ -179,6 +181,7 @@ export type SanityImageAsset = {
   uploadId?: string;
   path?: string;
   url?: string;
+  lqip?: string;
 };
 export type SanityFileAsset = {
   _id: string;

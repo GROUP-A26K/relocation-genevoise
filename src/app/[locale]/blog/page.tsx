@@ -5,6 +5,7 @@ import { HydrationBoundary } from '@tanstack/react-query';
 import { PageView } from '@/components/sections/Blog/PageView';
 import { hydrateBlogList } from '@/features/blog/blog.hydration';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
+import { BlogPageSkeleton } from '@/components/sections/Blog/BlogPageSkeleton';
 import {
   normalizeBlogListFilters,
   parseBlogSearchParams,
@@ -52,7 +53,7 @@ export default async function Page(props: PageProps<'/[locale]/blog'>) {
   );
 
   return (
-    <Suspense>
+    <Suspense fallback={<BlogPageSkeleton />}>
       <HydrationBoundary state={state}>
         <PageView
           category={postCategory.posts}

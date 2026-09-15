@@ -55,6 +55,7 @@ export const ContentWithImg: React.FC<IContentWithImgProps> = ({
       <div className="relative aspect-588/440 w-full overflow-hidden rounded-3xl">
         <Image
           src={ContentWithImgBG}
+          placeholder="blur"
           alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
           title="Relocation Genevoise, votre partenaire de confiance en Suisse"
           fill

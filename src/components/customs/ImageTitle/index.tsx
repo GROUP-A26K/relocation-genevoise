@@ -4,9 +4,10 @@ import { Link } from 'lucide-react';
 import type { FC } from 'react';
 interface Props {
   imgUrl?: string;
+  imgLqip?: string;
   title: string;
 }
-export const ImageTitle: FC<Props> = ({ imgUrl, title }) => {
+export const ImageTitle: FC<Props> = ({ imgUrl, imgLqip, title }) => {
   return (
     <article className="relative flex flex-col items-start justify-between gap-4 py-6">
       <div className="w-full">
@@ -17,6 +18,8 @@ export const ImageTitle: FC<Props> = ({ imgUrl, title }) => {
             imgUrl ??
             'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80'
           }
+          placeholder={imgLqip ? 'blur' : 'empty'}
+          blurDataURL={imgLqip}
           width={720}
           height={480}
           className="aspect-video w-full max-w-[720px] rounded-2xl bg-gray-100 object-cover lg:h-[480px] lg:max-h-[480px]"

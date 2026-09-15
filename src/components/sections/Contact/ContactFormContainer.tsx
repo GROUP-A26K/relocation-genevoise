@@ -37,6 +37,7 @@ export const ContactContainer: React.FC<IContactContainerProps> = (props) => {
         <RevealItem className="relative hidden aspect-1920/2483 w-full overflow-hidden rounded-3xl xl:block">
           <Image
             src={ContactBG}
+            placeholder="blur"
             alt="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
             title="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
             fill

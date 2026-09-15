@@ -12,12 +12,20 @@ interface BaseProps {
   title: string;
   summary: string;
   image: string;
+  imageLqip?: string;
   url: string;
   variant: 'lg' | 'md';
 }
 
 type Props = BaseProps;
-export const Card: FC<Props> = ({ title, summary, image, url, variant }) => {
+export const Card: FC<Props> = ({
+  title,
+  summary,
+  image,
+  imageLqip,
+  url,
+  variant,
+}) => {
   const STYLE_CARD: Record<'lg' | 'md', string> = {
     lg: cn('text-[14px]'),
     md: cn('text-subtle'),
@@ -34,6 +42,8 @@ export const Card: FC<Props> = ({ title, summary, image, url, variant }) => {
           <div className="flex">
             <Image
               src={image}
+              placeholder={imageLqip ? 'blur' : 'empty'}
+              blurDataURL={imageLqip}
               alt={title}
               width={256}
               height={160}

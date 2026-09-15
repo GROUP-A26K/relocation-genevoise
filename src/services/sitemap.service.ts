@@ -12,19 +12,6 @@ import {
   type TRouteKey,
 } from '@/utils/seo';
 
-type TSitemapTranslation = {
-  language?: string;
-  slug?: string;
-  isHidden?: boolean | null;
-} | null;
-
-type TSitemapDocument = {
-  _updatedAt: string;
-  language: string;
-  slug: string;
-  translations: TSitemapTranslation[] | null;
-};
-
 type TCmsSitemapSource = {
   type: string;
   routeKey: TRouteKey;
@@ -84,7 +71,7 @@ export const getCmsSitemapUrls = async (
   const { type, routeKey, tag, priority, requiresExplicitVisibility } =
     CMS_SITEMAPS[name];
 
-  const documents = await sanityFetch<TSitemapDocument[]>(
+  const documents = await sanityFetch(
     SITEMAP_DOCUMENTS_QUERY,
     { type, locales: AppConfig.locales, requiresExplicitVisibility },
     { tags: [tag] }
@@ -93,7 +80,11 @@ export const getCmsSitemapUrls = async (
   const toPath = (locale: string, slug: string) =>
     getLocalizedPath(locale, routeKey, stripLocalePrefix(slug));
 
-  return documents.map(({ _updatedAt, language, slug, translations }) => {
+  return documents.flatMap(({ _updatedAt, language, slug, translations }) => {
+    if (!language || !slug) {
+      return [];
+    }
+
     const pathByLocale = Object.fromEntries([
       [language, toPath(language, slug)],
       ...(translations ?? []).flatMap((translation): [string, string][] =>
@@ -112,11 +103,13 @@ export const getCmsSitemapUrls = async (
       ),
     ]);
 
-    return {
-      loc: getAbsoluteUrl(toPath(language, slug)),
-      lastModified: toIsoDate(_updatedAt),
-      priority,
-      alternates: getAlternates(pathByLocale),
-    };
+    return [
+      {
+        loc: getAbsoluteUrl(toPath(language, slug)),
+        lastModified: toIsoDate(_updatedAt),
+        priority,
+        alternates: getAlternates(pathByLocale),
+      },
+    ];
   });
 };
