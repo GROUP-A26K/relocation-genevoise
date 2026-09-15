@@ -15,28 +15,21 @@
       "reasonItems": [
         {
           "title": "Recherche de propriétés",
-          "description": "À la suite d’un premier rendez-vous de découverte, nous prenons le temps de sélectionner avec soins des propriétés parfaitement adaptées à votre besoins, vos souhaits et vos critères.",
-          "icon": "Search"
+          "description": "À la suite d’un premier rendez-vous de découverte, nous prenons le temps de sélectionner avec soins des propriétés parfaitement adaptées à votre besoins, vos souhaits et vos critères."
         },
         {
           "title": "Visites accompagnées et visites à distance",
-          "description": "Nous organisons vos visites et vous accompagnons pour vous apporter un regard professionnel. Si vous êtes à distance, nous réalisons également des visites virtuelles détaillées.",
-          "icon": "House"
+          "description": "Nous organisons vos visites et vous accompagnons pour vous apporter un regard professionnel. Si vous êtes à distance, nous réalisons également des visites virtuelles détaillées."
         },
         {
           "title": "Support administratif et suivi",
-          "description": "Nous assurons avec vous la préparation de votre dossier de candidature afin de maximiser vos chances, et restons à vos côtés jusqu’à la signature définitive du bail.",
-          "icon": "Users"
+          "description": "Nous assurons avec vous la préparation de votre dossier de candidature afin de maximiser vos chances, et restons à vos côtés jusqu’à la signature définitive du bail."
         },
         {
           "title": "Services de conciergerie",
-          "description": "Ouverture de compte bancaire, assurance habitation, garantie de loyer ou toute autre demande spécifique : notre conciergerie vous accompagne pour simplifier vos démarches et alléger votre quotidien.",
-          "icon": "Grid"
+          "description": "Ouverture de compte bancaire, assurance habitation, garantie de loyer ou toute autre demande spécifique : notre conciergerie vous accompagne pour simplifier vos démarches et alléger votre quotidien."
         }
       ]
-    },
-    "Logos": {
-      "heading": "Un réseau de partenaires reconnus"
     },
     "StatsGrid": {
       "heading": "Disponibilité & Transparence",
@@ -66,23 +59,19 @@
       "reasonItems": [
         {
           "title": "Engagement",
-          "description": "Un accompagnement dédié et une volonté de satisfaire vos besoins à chaque étape.",
-          "icon": "Handshake"
+          "description": "Un accompagnement dédié et une volonté de satisfaire vos besoins à chaque étape."
         },
         {
           "title": "Expertise",
-          "description": "Des conseils adaptés et des solutions précises, pour une installation réussie.",
-          "icon": "Lightbulb"
+          "description": "Des conseils adaptés et des solutions précises, pour une installation réussie."
         },
         {
           "title": "Transparence",
-          "description": "Des relations de confiance avec nos clients et partenaires.",
-          "icon": "Target"
+          "description": "Des relations de confiance avec nos clients et partenaires."
         },
         {
           "title": "Excellence",
-          "description": "Des services personnalisés et un suivi constant pour vous garantir un excellent résultat.",
-          "icon": "Award"
+          "description": "Des services personnalisés et un suivi constant pour vous garantir un excellent résultat."
         }
       ]
     },
@@ -562,13 +551,6 @@
         },
         "submit": "Envoyer"
       }
-    },
-    "BookConsultation": {
-      "heading": "Vous accompagner",
-      "subHeading": "Vous souhaitez bénéficier de notre ((expertise et de nos services)) ?",
-      "description": "Nous sommes à votre disposition pour échanger sur votre situation et vous guider vers des solutions adaptées à vos besoins et votre activité.",
-      "buttonText1": "Contactez-nous",
-      "buttonText2": "Trouver un logement"
     }
   },
   "RemindMe": {
@@ -1163,9 +1145,7 @@
         "placeholder": "Indiquez vos attentes salariales"
       },
       "resume": {
-        "label": "Votre CV",
-        "placeholder": "Téléversez votre CV",
-        "fileType": "DOCX, PDF (max. 500 Mo)"
+        "label": "Votre CV"
       },
       "accept": "En cochant cette case, j’accepte que les informations saisies soient utilisées dans le cadre du contact.",
       "send": "Send"
@@ -1314,12 +1294,6 @@
     "Error404": {
       "title": "Relocation Genevoise – Page introuvable (404)",
       "description": "La page que vous recherchez n’existe pas ou a été déplacée. Retournez à l’accueil de Relocation Genevoise pour poursuivre votre visite."
-    },
-    "Error403": {
-      "title": "Relocation Genevoise – Accès refusé (403)"
-    },
-    "Error500": {
-      "title": "Relocation Genevoise – Erreur serveur (500)"
     }
   },
   "Breadcrumb": {
@@ -1378,9 +1352,6 @@
       "subTitle": "Nos conseils et actus pour rester toujours bien informé.",
       "buttonText": "S’abonner",
       "inputPlaceholder": "Adresse Email"
-    },
-    "logo": {
-      "title": "Shadcnblocks.com"
     },
     "tagline": "Relocation Genevoise vous propose des solutions sur mesure, avec intégrité, professionnalisme et une approche centrée sur vos besoins en Suisse.",
     "googleRating": {
@@ -1470,7 +1441,6 @@
   },
   "Validation": {
     "Contact": {
-      "roleRequired": "Veuillez sélectionner votre rôle",
       "firstNameMinLength": "Le prénom doit comporter au moins 2 caractères.",
       "firstNameMaxLength": "Le prénom peut comporter un maximum de 50 caractères.",
       "lastNameMinLength": "Le nom de famille doit comporter au moins 2 caractères.",
@@ -1488,7 +1458,6 @@
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
       "experienceYearsRequired": "Veuillez indiquer vos années d'expérience.",
-      "expectedSalaryInvalid": "Veuillez indiquer un salaire attendu valide.",
       "expectedCtcRequired": "La rémunération prévue doit être un nombre valide.",
       "resumeInvalidType": "Veuillez uploader un fichier PDF ou DOCX.",
       "resumeRequired": "Veuillez uploader votre CV.",
@@ -1540,7 +1509,6 @@
       "showing": "Affichage",
       "ofTotal": "sur un total de",
       "results": "résultats",
-      "sortBy": "Trier par",
       "showAvailableOnly": "Disponibles uniquement"
     },
     "sort": {
@@ -1564,13 +1532,6 @@
     "emptyData": {
       "title": "Aucune propriété trouvée",
       "description": "Essayez d'ajuster vos filtres de recherche pour trouver ce que vous cherchez."
-    },
-    "cooperate": {
-      "tagline": "Coopérer",
-      "title": "Souhaitez-vous bénéficier de notre expertise et de nos services ?",
-      "description": "Nous sommes à votre disposition pour répondre à vos questions et vous accompagner dans l'intégration de nos solutions adaptées à vos activités.",
-      "contactButton": "Contactez-nous",
-      "findButton": "Trouver un logement"
     },
     "BookConsultation": {
       "heading": "Trouver votre bien",
@@ -1601,9 +1562,6 @@
     },
     "imagePreview": {
       "viewAllButton": "Voir toutes les photos"
-    },
-    "map": {
-      "viewOnMap": "Voir sur la carte"
     },
     "agent": {
       "title": "Détails de l'agent",
