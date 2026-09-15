@@ -1,7 +1,7 @@
 import { PrismaClient as MysqlPrismaClient } from '@prisma/mysql-client';
 import { PrismaClient as SupabasePrismaClient } from '@prisma/supabase-client';
 
-import { Env } from './Env';
+import { Env } from './env';
 
 type GlobalPrismaCache = typeof globalThis & {
   mysqlPrisma?: MysqlPrismaClient;

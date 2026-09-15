@@ -9,7 +9,7 @@ import { useBlogDetail, useBlogList } from '@/features/blog/blog.hooks';
 
 import { ContentView } from './ContentView';
 
-import type { Blog, BlogDetail } from '@/models/BLog';
+import type { Blog, BlogDetail } from '@/models/blog';
 
 interface IBlogDetailClientProps {
   slug: string;

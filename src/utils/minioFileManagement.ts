@@ -1,4 +1,4 @@
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { createBucketIfNotExists, minio } from '@/libs/minio';
 
 import type internal from 'node:stream';

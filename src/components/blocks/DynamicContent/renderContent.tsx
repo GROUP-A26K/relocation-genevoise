@@ -13,7 +13,7 @@ import {
   VideoWithTitle,
 } from '@/components/customs/Media';
 
-import type { Content } from '@/models/Block';
+import type { Content } from '@/models/block';
 
 export const getMarkClasses = (marks?: string[]): string => {
   if (!marks || marks.length === 0) return '';

@@ -1,11 +1,11 @@
 import { nanoid } from 'nanoid';
 import { NextResponse } from 'next/server';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
 import { executeWithReplication } from '@/libs/prisma';
 import Application from '@/templates/Email/Application';
-import { saveFileInBucket } from '@/utils/minio-file-management';
+import { saveFileInBucket } from '@/utils/minioFileManagement';
 import ApplicationInformation from '@/templates/Email/ApplicationInformation';
 import {
   type ApplicationFormInput,

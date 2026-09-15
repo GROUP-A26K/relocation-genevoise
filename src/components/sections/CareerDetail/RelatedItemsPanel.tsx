@@ -6,7 +6,7 @@ import { JobCard } from '@/components/customs/Card';
 import { RevealItem } from '@/components/customs/Reveal';
 
 import type { FC } from 'react';
-import type { Job } from '@/models/Job';
+import type { Job } from '@/models/job';
 
 interface Props {
   jobs: Job[];

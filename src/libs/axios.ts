@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Env } from './Env';
+import { Env } from './env';
 
 const axiosInstance = axios.create({
   baseURL: Env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
 import { executeWithReplication } from '@/libs/prisma';
 import { tenantFormSchema } from '@/validations/findATenant.validation';

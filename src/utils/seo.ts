@@ -1,5 +1,5 @@
-import { Env } from '@/libs/Env';
-import { AppConfig } from '@/utils/AppConfig';
+import { Env } from '@/libs/env';
+import { AppConfig } from '@/utils/appConfig';
 import { LANGUAGE_TAGS, OG_LOCALES } from '@/constants/seo';
 
 import type { TLocale } from '@/constants/locale';

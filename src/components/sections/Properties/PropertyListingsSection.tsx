@@ -11,8 +11,8 @@ import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
 import PropertyResultsHeader from './PropertyResultsHeader';
 import PropertyResultsContent from './PropertyResultsContent';
 
-import type { Meta } from '@/models/Meta';
-import type { IPropertyListing } from '@/models/Property';
+import type { Meta } from '@/models/meta';
+import type { IPropertyListing } from '@/models/property';
 
 interface IPropertyListingsSectionProps {
   properties: IPropertyListing[];

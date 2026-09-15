@@ -15,9 +15,9 @@ import {
 import { Content } from './Content';
 import { PageContainer } from './PageContainer';
 
-import type { Meta } from '@/models/Meta';
-import type { BlogSitemap } from '@/models/BLog';
-import type { PropertySitemap } from '@/models/Property';
+import type { Meta } from '@/models/meta';
+import type { BlogSitemap } from '@/models/blog';
+import type { PropertySitemap } from '@/models/property';
 
 export interface MenuItem {
   id?: string;

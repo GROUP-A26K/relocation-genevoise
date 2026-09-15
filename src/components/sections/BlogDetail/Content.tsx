@@ -7,7 +7,7 @@ import { Copy } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
 import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
@@ -16,7 +16,7 @@ import { StatsList } from '@/components/blocks/Stats';
 import { RevealItem } from '@/components/customs/Reveal';
 import { FaqBlock } from '@/components/blocks/Faq/FaqBlock';
 import { DynamicContent } from '@/components/blocks/DynamicContent';
-import { type Block, BLOG_BODY_BLOCKS, type BlogDetail } from '@/models/BLog';
+import { type Block, BLOG_BODY_BLOCKS, type BlogDetail } from '@/models/blog';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
 

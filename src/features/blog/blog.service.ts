@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { formatDate } from '@/utils/Helpers';
+import { formatDate } from '@/utils/helpers';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import {
   POST_CATEGORIES_QUERY,
@@ -11,8 +11,8 @@ import {
   BLOG_LATEST_QUERY,
 } from '@/sanity/lib/queries';
 
-import type { Meta } from '@/models/Meta';
-import type { Blog, BlogDetail, BlogSitemap } from '@/models/BLog';
+import type { Meta } from '@/models/meta';
+import type { Blog, BlogDetail, BlogSitemap } from '@/models/blog';
 import type {
   Author,
   BlogCategory,

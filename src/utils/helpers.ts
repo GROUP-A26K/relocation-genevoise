@@ -1,5 +1,5 @@
-import { Env } from '@/libs/Env';
-import { AppConfig } from '@/utils/AppConfig';
+import { Env } from '@/libs/env';
+import { AppConfig } from '@/utils/appConfig';
 import { routing } from '@/libs/i18nNavigation';
 
 export const getBaseUrl = () => {

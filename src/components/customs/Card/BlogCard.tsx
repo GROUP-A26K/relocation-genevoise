@@ -6,7 +6,7 @@ import { useLocale } from 'next-intl';
 import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
 
-import type { Blog } from '@/models/BLog';
+import type { Blog } from '@/models/blog';
 
 export const BlogCard: React.FC<Blog> = ({
   title,

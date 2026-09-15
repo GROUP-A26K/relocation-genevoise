@@ -9,8 +9,8 @@ import {
   FEATURED_CAREER_QUERY,
 } from '@/sanity/lib/queries';
 
-import type { Meta } from '@/models/Meta';
-import type { Job, JobDetail } from '@/models/Job';
+import type { Meta } from '@/models/meta';
+import type { Job, JobDetail } from '@/models/job';
 import type { AssuranceJobDepartment, AssuranceJobPost } from '@/sanity/types';
 
 export interface JobPostProps extends Omit<AssuranceJobPost, 'department'> {

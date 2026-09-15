@@ -6,7 +6,7 @@ import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { BlogCard } from '@/components/customs/Card/BlogCard';
 
-import type { Blog } from '@/models/BLog';
+import type { Blog } from '@/models/blog';
 
 interface IBlogListProps {
   tagline?: string;

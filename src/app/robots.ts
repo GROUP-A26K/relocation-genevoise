@@ -1,5 +1,5 @@
-import { Env } from '@/libs/Env';
-import { getBaseUrl } from '@/utils/Helpers';
+import { Env } from '@/libs/env';
+import { getBaseUrl } from '@/utils/helpers';
 
 import type { MetadataRoute } from 'next';
 

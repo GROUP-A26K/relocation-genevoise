@@ -1,5 +1,5 @@
-import type { Meta } from '@/models/Meta';
-import type { Blog } from '@/models/BLog';
+import type { Meta } from '@/models/meta';
+import type { Blog } from '@/models/blog';
 import type { BlogCategory } from '@/sanity/types';
 
 export interface BlogListFilters {
@@ -21,4 +21,4 @@ export interface BlogCategoriesResponse {
 }
 
 export type { Blog };
-export type { BlogDetail } from '@/models/BLog';
+export type { BlogDetail } from '@/models/blog';

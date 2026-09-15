@@ -6,7 +6,7 @@ import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import BackgroundSVG from '@/assets/img/bg/agent-background.svg';
 
-import type { PropertyAgent } from '@/models/Property';
+import type { PropertyAgent } from '@/models/property';
 
 interface IAgentDetailsProps {
   agent: PropertyAgent;

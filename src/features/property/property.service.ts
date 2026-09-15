@@ -31,7 +31,7 @@ import type {
   IPropertyListing,
   PropertyListingType,
   PropertySitemap,
-} from '@/models/Property';
+} from '@/models/property';
 
 const DEFAULT_PROPERTY_PAGE = 1;
 const DEFAULT_PROPERTY_PAGE_SIZE = 15;

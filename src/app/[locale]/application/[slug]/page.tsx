@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { HydrationBoundary } from '@tanstack/react-query';
 
-import { getI18nPath } from '@/utils/Helpers';
+import { getI18nPath } from '@/utils/helpers';
 import { PageView } from '@/components/sections/Application';
 import { fetchJobDetailBySlug } from '@/features/career/career.service';
 import { hydrateCareerDetail } from '@/features/career/career.hydration';

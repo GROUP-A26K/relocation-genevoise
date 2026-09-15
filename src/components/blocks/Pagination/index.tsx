@@ -11,7 +11,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-import type { Meta } from '@/models/Meta';
+import type { Meta } from '@/models/meta';
 
 interface IPaginationProps {
   meta: Meta;

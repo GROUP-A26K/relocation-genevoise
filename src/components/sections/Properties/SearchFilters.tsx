@@ -15,7 +15,7 @@ import {
   RoomsSelectField,
 } from '@/components/customs/Form';
 
-import type { IPropertyCategory } from '@/models/Property';
+import type { IPropertyCategory } from '@/models/property';
 
 const FILTER_LABEL_CLASSNAME =
   'text-body font-semibold text-black-500 leading-[130%]!';

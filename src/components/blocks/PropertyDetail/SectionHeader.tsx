@@ -5,7 +5,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 
 import { RevealItem } from '@/components/customs/Reveal';
 
-import type { IAreaPhotoTour } from '@/models/Property';
+import type { IAreaPhotoTour } from '@/models/property';
 
 interface IPropertySectionHeaderProps {
   areas: IAreaPhotoTour[];

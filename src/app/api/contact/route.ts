@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
 import { Contact } from '@/templates/Email/Contact';
 import { executeWithReplication } from '@/libs/prisma';

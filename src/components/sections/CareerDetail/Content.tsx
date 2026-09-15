@@ -7,18 +7,18 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { CircleDollarSign, Clock, MapPin, Share2 } from 'lucide-react';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
 import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
 import CtaBlock from '@/components/customs/CtaBlock';
 import { StatsList } from '@/components/blocks/Stats';
-import { type Block, BODY_BLOCKS } from '@/models/Block';
+import { type Block, BODY_BLOCKS } from '@/models/block';
 import { RevealItem } from '@/components/customs/Reveal';
 import { FaqBlock } from '@/components/blocks/Faq/FaqBlock';
 import { DynamicContent } from '@/components/blocks/DynamicContent';
 
-import type { JobDetail } from '@/models/Job';
+import type { JobDetail } from '@/models/job';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
 

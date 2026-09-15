@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from '@/utils/appConfig';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { SITEMAP_DOCUMENTS_QUERY } from '@/sanity/lib/queries';
 import { getAlternates, type TSitemapUrl } from '@/utils/sitemap';

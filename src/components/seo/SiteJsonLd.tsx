@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import JsonLd from '@/components/seo/JsonLd';
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from '@/utils/appConfig';
 import { OG_IMAGE, ORGANIZATION, SITE_NAME } from '@/constants/seo';
 import {
   getAbsoluteUrl,

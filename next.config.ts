@@ -1,7 +1,7 @@
 import { withSentryConfig } from '@sentry/nextjs';
 import createNextIntlPlugin from 'next-intl/plugin';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from '@/utils/appConfig';
 
 import sentryWebpackPluginOptions from './sentry.config';
 

@@ -1,6 +1,6 @@
 import { PhotoTourSection } from '@/components/blocks/PhotoTour/PhotoTourSection';
 
-import type { IAreaPhotoTour } from '@/models/Property';
+import type { IAreaPhotoTour } from '@/models/property';
 
 interface IPhotoTourViewProps {
   areas: IAreaPhotoTour[];

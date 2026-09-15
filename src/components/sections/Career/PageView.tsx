@@ -23,8 +23,8 @@ import {
 import { ContentContainer } from './ContentContainer';
 import { CareerListSkeleton } from './CareerListSkeleton';
 
-import type { Job } from '@/models/Job';
-import type { Meta } from '@/models/Meta';
+import type { Job } from '@/models/job';
+import type { Meta } from '@/models/meta';
 import type { AssuranceJobDepartment } from '@/sanity/types';
 
 interface IPageViewProps {

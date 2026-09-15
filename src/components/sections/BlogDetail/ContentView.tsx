@@ -16,7 +16,7 @@ import {
   BLOG_BODY_BLOCKS,
   type BlogDetail,
   type WysiwygBlock,
-} from '@/models/BLog';
+} from '@/models/blog';
 
 import { Content } from './Content';
 

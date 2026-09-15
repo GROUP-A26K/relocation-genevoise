@@ -12,7 +12,7 @@ import {
 } from 'next-intl/server';
 
 import '@/styles/globals.css';
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { routing } from '@/libs/i18nNavigation';
 import { Toaster } from '@/components/ui/sonner';
 import SiteJsonLd from '@/components/seo/SiteJsonLd';
