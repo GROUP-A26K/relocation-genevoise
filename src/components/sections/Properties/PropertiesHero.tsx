@@ -12,6 +12,7 @@ export default function PropertiesHero() {
       <div className="absolute inset-0">
         <Image
           src={PropertyListingImg}
+          placeholder="blur"
           alt=""
           fill
           priority

@@ -90,7 +90,7 @@ export default async function Page(
     t.raw('Landlords.Testimonials.items') as TTestimonial[]
   ).map((item, index) => ({
     ...item,
-    avatar: TESTIMONIAL_AVATARS[index]?.src,
+    avatar: TESTIMONIAL_AVATARS[index],
   }));
 
   return (
@@ -112,7 +112,7 @@ export default async function Page(
           href: '/find-a-tenant/landlords#services',
         }}
         image={{
-          src: HeroImage.src,
+          src: HeroImage,
           alt: t('Landlords.Hero.heading'),
         }}
         stats={[
@@ -143,7 +143,7 @@ export default async function Page(
         eyebrow={t('Landlords.OurRentalProcess.eyebrow')}
         heading={t('Landlords.OurRentalProcess.heading')}
         image={{
-          src: RentalProcessImage.src,
+          src: RentalProcessImage,
           alt: t('Landlords.OurRentalProcess.heading'),
         }}
         steps={rentalProcessSteps}
@@ -161,7 +161,7 @@ export default async function Page(
           }[]
         }
         image={{
-          src: WhyChooseUsImage.src,
+          src: WhyChooseUsImage,
           alt: t('Landlords.WhyChooseUs.heading'),
         }}
       />

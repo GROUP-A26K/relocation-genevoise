@@ -33,7 +33,7 @@ export default async function Page() {
       <Section revealTrigger="load" className="relative">
         <Hero
           heroImage={{
-            src: HeroImage.src,
+            src: HeroImage,
             alt: t('subHeading'),
             title: t('subHeading'),
           }}

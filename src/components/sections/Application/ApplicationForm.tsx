@@ -258,6 +258,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
         {/* illustration */}
         <Image
           src={ConsultationBG}
+          placeholder="blur"
           alt="Assurance Genevoise, courtier en assurance à Genève"
           title="Assurance Genevoise, courtier en assurance à Genève"
           width={556}

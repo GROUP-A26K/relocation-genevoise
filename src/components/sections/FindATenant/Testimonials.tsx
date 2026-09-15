@@ -18,7 +18,7 @@ export type TTestimonial = {
   quote: string;
   name: string;
   role: string;
-  avatar?: string | StaticImageData;
+  avatar?: StaticImageData;
 };
 
 interface ITestimonialsProps {
@@ -151,6 +151,7 @@ export default function Testimonials({
                     {item.avatar ? (
                       <Image
                         src={item.avatar}
+                        placeholder="blur"
                         alt={item.name}
                         title={item.name}
                         width={48}

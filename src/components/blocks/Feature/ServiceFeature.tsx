@@ -57,6 +57,7 @@ const ServiceFeature = ({
           alt="Agence de Relocation à Genève"
           title="Agence de Relocation à Genève"
           src={HeroImage}
+          placeholder="blur"
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"

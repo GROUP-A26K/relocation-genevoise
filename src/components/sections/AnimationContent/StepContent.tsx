@@ -1,14 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import { motion, useReducedMotion } from 'motion/react';
+import Image, { type StaticImageData } from 'next/image';
 import { Content as AccordionContent } from '@radix-ui/react-accordion';
 
 interface IStepContentProps {
   isActive: boolean;
   title: string;
   description: string;
-  image: string;
+  image: StaticImageData;
 }
 
 export const StepContent = ({
@@ -34,6 +34,7 @@ export const StepContent = ({
           <div className="relative mt-8 aspect-560/280 w-full overflow-hidden rounded-2xl">
             <Image
               src={image}
+              placeholder="blur"
               alt={title}
               title={description}
               fill

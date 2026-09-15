@@ -17,7 +17,7 @@ interface IOurRentalProcessProps {
   eyebrow: string;
   heading: string;
   image: {
-    src: string | StaticImageData;
+    src: StaticImageData;
     alt: string;
   };
   steps: TRentalStep[];
@@ -58,6 +58,7 @@ export default function OurRentalProcess({
           <div className="relative aspect-572/420 w-full overflow-hidden rounded-3xl">
             <Image
               src={image.src}
+              placeholder="blur"
               alt={image.alt}
               title={image.alt}
               fill

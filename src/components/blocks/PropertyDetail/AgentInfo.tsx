@@ -14,7 +14,7 @@ interface IAgentDetailsProps {
 
 export function PropertyAgentDetails(props: IAgentDetailsProps) {
   const t = useTranslations('PropertiesDetails');
-  const { agentName, agentPhone, photoUrl } = props.agent;
+  const { agentName, agentPhone, photoUrl, photoLqip } = props.agent;
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-yellow-100 bg-yellow-25 p-6">
@@ -34,6 +34,8 @@ export function PropertyAgentDetails(props: IAgentDetailsProps) {
         <div className="flex items-center gap-6">
           <Image
             src={photoUrl}
+            placeholder={photoLqip ? 'blur' : 'empty'}
+            blurDataURL={photoLqip}
             alt="Agent photo"
             width={80}
             height={80}

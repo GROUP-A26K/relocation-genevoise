@@ -13,6 +13,7 @@ export const BlogBGCard: React.FC<Blog> = ({
   title,
   description,
   imageUrl,
+  imageLqip,
   category,
   timeToRead,
   publishedDate,
@@ -66,6 +67,8 @@ export const BlogBGCard: React.FC<Blog> = ({
                 alt="Article author"
                 title="Article author"
                 src={author.imageUrl}
+                placeholder={author.imageLqip ? 'blur' : 'empty'}
+                blurDataURL={author.imageLqip}
                 width={40}
                 height={40}
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
@@ -89,6 +92,8 @@ export const BlogBGCard: React.FC<Blog> = ({
         <div className="relative order-1 aspect-776/495 w-full overflow-hidden rounded-2xl lg:order-2">
           <Image
             src={imageUrl}
+            placeholder={imageLqip ? 'blur' : 'empty'}
+            blurDataURL={imageLqip}
             alt={title}
             title={title}
             fill

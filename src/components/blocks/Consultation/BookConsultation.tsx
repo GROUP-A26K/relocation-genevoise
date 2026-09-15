@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { Phone } from 'lucide-react';
+import Image, { type StaticImageData } from 'next/image';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
@@ -16,14 +16,14 @@ interface Props {
   description?: string;
   buttonText1?: string;
   buttonUrl?: string;
-  imgSrc?: string;
+  imgSrc?: StaticImageData;
 }
 
 export const BookConsultation: FC<Props> = ({
   subHeading = 'A question ? Our advisors are here to guide you',
   description = 'Benefit from personalized advice and support that meets your needs.',
   buttonText1 = 'Call me',
-  imgSrc = GroupAvatar.src,
+  imgSrc = GroupAvatar,
 }) => {
   return (
     <div className="flex flex-col gap-12 rounded-xl bg-grey-50 py-12 lg:gap-16">
@@ -36,6 +36,7 @@ export const BookConsultation: FC<Props> = ({
               height={64}
               width={128}
               src={imgSrc}
+              placeholder="blur"
             />
           </RevealItem>
           <RevealItem className="flex flex-col gap-3">

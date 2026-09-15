@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import Image, { type StaticImageData } from 'next/image';
 
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
@@ -13,7 +13,7 @@ interface IHeroProps {
   subHeading?: string;
   description?: string;
   heroImage: {
-    src: string;
+    src: StaticImageData;
     alt: string;
     title: string;
   };
@@ -83,6 +83,7 @@ export const Hero: React.FC<IHeroProps> = ({
           alt={getText(heroImage.alt)}
           title={getText(heroImage.title)}
           src={heroImage.src}
+          placeholder="blur"
           fill
           sizes="(min-width: 1440px) 1240px, 100vw"
           className="object-cover"

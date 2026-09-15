@@ -18,7 +18,7 @@ interface IWhyChooseUsProps {
   highlights: string[];
   metrics: TMetric[];
   image: {
-    src: string | StaticImageData;
+    src: StaticImageData;
     alt: string;
   };
 }
@@ -73,6 +73,7 @@ export default function WhyChooseUs({
         <RevealItem className="relative aspect-572/420 w-full overflow-hidden rounded-3xl lg:flex-1">
           <Image
             src={image.src}
+            placeholder="blur"
             alt={image.alt}
             title={image.alt}
             fill

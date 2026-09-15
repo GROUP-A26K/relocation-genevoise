@@ -115,6 +115,8 @@ export const Content = (blog: BlogDetail) => {
             alt="Author image"
             title="Author image"
             src={blog.author.imageUrl}
+            placeholder={blog.author.imageLqip ? 'blur' : 'empty'}
+            blurDataURL={blog.author.imageLqip}
             width={48}
             height={48}
             className="size-12 rounded-full bg-gray-100 object-cover"

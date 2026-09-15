@@ -13,6 +13,7 @@ import type { PropertyDetail } from '@/models/property';
 
 type ImageObj = {
   url: string;
+  lqip?: string;
   title: string;
 };
 interface IImagePreviewProps {
@@ -30,6 +31,7 @@ export const ImagePreview = ({
 
   const images: ImageObj[] = property.areas.map((area) => ({
     url: area.mainImageUrl,
+    lqip: area.mainImageLqip,
     title: `${property.title} - ${area.title}`,
   }));
 
@@ -38,6 +40,7 @@ export const ImagePreview = ({
       (area) =>
         area.galleryImages?.map((img, index) => ({
           url: img.url,
+          lqip: img.lqip,
           title: `${property.title} - ${area.title} ${index + 1}`,
         })) || []
     )
@@ -67,6 +70,8 @@ export const ImagePreview = ({
         )}
         <Image
           src={mainImageObj?.url}
+          placeholder={mainImageObj?.lqip ? 'blur' : 'empty'}
+          blurDataURL={mainImageObj?.lqip}
           alt={mainImageObj?.title || property.title}
           title={mainImageObj?.title || property.title}
           fill
@@ -84,6 +89,8 @@ export const ImagePreview = ({
             )}
             <Image
               src={img.url}
+              placeholder={img.lqip ? 'blur' : 'empty'}
+              blurDataURL={img.lqip}
               alt={img.title}
               title={img.title}
               fill

@@ -42,7 +42,7 @@ export default async function Page() {
       <Section revealTrigger="load" className="relative">
         <Hero
           heroImage={{
-            src: HeroImage.src,
+            src: HeroImage,
             alt: t('Hero.subHeading'),
             title: t('Hero.subHeading'),
           }}
@@ -58,47 +58,47 @@ export default async function Page() {
             {
               title: t('Content.items.0.title'),
               description: t('Content.items.0.description'),
-              image: ContentImage1.src,
+              image: ContentImage1,
             },
             {
               title: t('Content.items.1.title'),
               description: t('Content.items.1.description'),
-              image: ContentImage2.src,
+              image: ContentImage2,
             },
             {
               title: t('Content.items.2.title'),
               description: t('Content.items.2.description'),
-              image: ContentImage3.src,
+              image: ContentImage3,
             },
             {
               title: t('Content.items.3.title'),
               description: t('Content.items.3.description'),
-              image: ContentImage4.src,
+              image: ContentImage4,
             },
             {
               title: t('Content.items.4.title'),
               description: t('Content.items.4.description'),
-              image: ContentImage5.src,
+              image: ContentImage5,
             },
             {
               title: t('Content.items.5.title'),
               description: t('Content.items.5.description'),
-              image: ContentImage6.src,
+              image: ContentImage6,
             },
             {
               title: t('Content.items.6.title'),
               description: t('Content.items.6.description'),
-              image: ContentImage7.src,
+              image: ContentImage7,
             },
             {
               title: t('Content.items.7.title'),
               description: t('Content.items.7.description'),
-              image: ContentImage8.src,
+              image: ContentImage8,
             },
             {
               title: t('Content.items.8.title'),
               description: t('Content.items.8.description'),
-              image: ContentImage9.src,
+              image: ContentImage9,
             },
           ]}
         />

@@ -68,6 +68,7 @@ const StatsGrid: React.FC<IStatsGridProps> = ({
         <div className="relative aspect-616/380 w-full overflow-hidden rounded-2xl">
           <Image
             src={StatsBG}
+            placeholder="blur"
             alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
             title="Relocation Genevoise, votre partenaire de confiance en Suisse"
             fill
