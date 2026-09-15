@@ -1,5 +1,5 @@
-import type { Job } from '@/models/Job';
-import type { Meta } from '@/models/Meta';
+import type { Job } from '@/models/job';
+import type { Meta } from '@/models/meta';
 import type { AssuranceJobDepartment } from '@/sanity/types';
 
 export interface CareerListFilters {
@@ -30,4 +30,4 @@ export interface CareerFeaturedResponse {
 }
 
 export type { Job };
-export type { JobDetail } from '@/models/Job';
+export type { JobDetail } from '@/models/job';

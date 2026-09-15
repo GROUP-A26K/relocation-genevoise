@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 import { type AbstractIntlMessages, NextIntlClientProvider } from 'next-intl';
 
 import '@/styles/globals.css';
-import { Env } from '@/libs/Env';
-import { AppConfig } from '@/utils/AppConfig';
+import { Env } from '@/libs/env';
+import { AppConfig } from '@/utils/appConfig';
 import ErrorPage from '@/components/sections/ErrorPage';
 
 import type { TLocale } from '@/constants/locale';

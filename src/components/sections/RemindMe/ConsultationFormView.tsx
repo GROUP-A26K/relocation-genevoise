@@ -9,7 +9,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { CalendarDays, Phone, PhoneIncoming } from 'lucide-react';
 
 import axios from '@/libs/axios';
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
 import { Form } from '@/components/ui/form';
 import { Link } from '@/libs/i18nNavigation';

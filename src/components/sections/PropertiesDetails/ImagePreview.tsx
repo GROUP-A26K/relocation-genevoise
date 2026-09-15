@@ -9,7 +9,7 @@ import Button from '@/components/customs/Button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { RevealItem } from '@/components/customs/Reveal';
 
-import type { PropertyDetail } from '@/models/Property';
+import type { PropertyDetail } from '@/models/property';
 
 type ImageObj = {
   url: string;

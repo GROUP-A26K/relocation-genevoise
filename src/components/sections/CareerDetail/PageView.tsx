@@ -9,7 +9,7 @@ import { Content } from './Content';
 import { ContentContainer } from './ContentContainer';
 import { RelatedItemsPanel } from './RelatedItemsPanel';
 
-import type { Job, JobDetail } from '@/models/Job';
+import type { Job, JobDetail } from '@/models/job';
 
 interface IPageViewProps {
   jobDetail: JobDetail;

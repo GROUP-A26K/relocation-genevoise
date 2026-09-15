@@ -16,7 +16,7 @@ import {
   SurroundingPlaceIconMap,
 } from './PropertiesDetailIcon';
 
-import type { PropertyDetail } from '@/models/Property';
+import type { PropertyDetail } from '@/models/property';
 
 interface IPropertyDetailViewProps {
   property: PropertyDetail;

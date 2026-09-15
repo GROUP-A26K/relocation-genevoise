@@ -10,7 +10,7 @@ import { PROPERTY_DEFAULT_CURRENCY } from '@/constants/property';
 import { useExchangeRates } from '@/context/ExchangeRatesContext';
 import { formatAreaValue, formatFacilityValue } from '@/utils/format';
 
-import type { PropertyFacility, IPropertyListing } from '@/models/Property';
+import type { PropertyFacility, IPropertyListing } from '@/models/property';
 
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80';

@@ -1,9 +1,9 @@
-import type { Meta } from '@/models/Meta';
+import type { Meta } from '@/models/meta';
 import type {
   IPropertyListing,
   PropertyPriceUnit,
   PropertyRentPeriod,
-} from '@/models/Property';
+} from '@/models/property';
 
 export interface IPropertyParams {
   page?: number;

@@ -12,8 +12,8 @@ import { usePropertyFilters } from '@/hooks/usePropertyFilters';
 
 import { PropertyListSkeleton } from './PropertyListSkeleton';
 
-import type { Meta } from '@/models/Meta';
-import type { IPropertyListing } from '@/models/Property';
+import type { Meta } from '@/models/meta';
+import type { IPropertyListing } from '@/models/property';
 
 interface IPropertyResultsContentProps {
   properties: IPropertyListing[];

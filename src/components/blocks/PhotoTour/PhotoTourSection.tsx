@@ -8,7 +8,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/libs/utils';
 import { RevealItem } from '@/components/customs/Reveal';
 
-import type { IAreaPhotoTour } from '@/models/Property';
+import type { IAreaPhotoTour } from '@/models/property';
 
 type TImageObj = {
   url: string;

@@ -10,7 +10,7 @@ import { ImagePreview } from './ImagePreview';
 import { PropertyDetailView } from './PropertyDetailsView';
 import { PropertyDetailSimilar } from './PropertyDetailSimilar';
 
-import type { IPropertyListing, PropertyDetail } from '@/models/Property';
+import type { IPropertyListing, PropertyDetail } from '@/models/property';
 
 interface IPropertyDetailClientProps {
   slug: string;

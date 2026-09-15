@@ -1,7 +1,7 @@
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 
 const ALL_TAGS = [
   'blogs',

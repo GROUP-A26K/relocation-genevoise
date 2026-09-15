@@ -25,7 +25,7 @@ import {
   applicationSchema,
 } from '@/validations/application.validation';
 
-import type { JobDetail } from '@/models/Job';
+import type { JobDetail } from '@/models/job';
 
 const buildOptions = (t: ReturnType<typeof useTranslations>) =>
   [...Array(5).keys()].map((i) => {

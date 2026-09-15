@@ -25,8 +25,8 @@ import {
 
 import { BlogListSkeleton } from './BlogListSkeleton';
 
-import type { Blog } from '@/models/BLog';
-import type { Meta } from '@/models/Meta';
+import type { Blog } from '@/models/blog';
+import type { Meta } from '@/models/meta';
 import type { BlogCategory } from '@/sanity/types';
 
 interface IPageViewProps {

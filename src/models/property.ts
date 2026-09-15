@@ -1,4 +1,4 @@
-import type { Meta } from './Meta';
+import type { Meta } from './meta';
 
 export interface PropertySitemap {
   id: string;

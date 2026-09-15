@@ -4,7 +4,7 @@ import { BlogBGCard } from '@/components/customs/Card';
 import { RevealItem } from '@/components/customs/Reveal';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 
-import type { Blog } from '@/models/BLog';
+import type { Blog } from '@/models/blog';
 
 interface IBlogHeroProps {
   tagline?: string;

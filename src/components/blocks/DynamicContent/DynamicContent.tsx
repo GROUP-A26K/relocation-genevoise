@@ -4,7 +4,7 @@ import { RevealItem } from '@/components/customs/Reveal';
 import { ANCHOR_SCROLL_MARGIN } from './constants';
 import { renderGroupedContent } from './renderContent';
 
-import type { WysiwygBlock } from '@/models/Block';
+import type { WysiwygBlock } from '@/models/block';
 
 export interface ContentProps extends WysiwygBlock {
   _key: string;

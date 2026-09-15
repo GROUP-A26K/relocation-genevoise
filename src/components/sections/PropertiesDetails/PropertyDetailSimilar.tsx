@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button-custom';
 import { PropertyCard } from '@/components/customs/Card';
 import { RevealItem } from '@/components/customs/Reveal';
 
-import type { IPropertyListing } from '@/models/Property';
+import type { IPropertyListing } from '@/models/property';
 
 interface IPropertyDetailSimilarProps {
   relatedProperties: IPropertyListing[];

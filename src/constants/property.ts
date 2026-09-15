@@ -1,4 +1,4 @@
-import type { PropertyPriceUnit, PropertyRentPeriod } from '@/models/Property';
+import type { PropertyPriceUnit, PropertyRentPeriod } from '@/models/property';
 
 export const PROPERTY_SORT = {
   newest: 'newest',

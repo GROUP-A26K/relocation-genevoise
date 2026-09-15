@@ -4,7 +4,7 @@ import { usePropertyPhotoTour } from '@/features/property/property.hooks';
 
 import { PhotoTourView } from './PhotoTourView';
 
-import type { IAreaPhotoTour } from '@/models/Property';
+import type { IAreaPhotoTour } from '@/models/property';
 
 interface Props {
   slug: string;

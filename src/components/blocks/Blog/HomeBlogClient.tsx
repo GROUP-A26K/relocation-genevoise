@@ -4,7 +4,7 @@ import { useBlogList } from '@/features/blog/blog.hooks';
 
 import { BlogList } from './BlogList';
 
-import type { Blog } from '@/models/BLog';
+import type { Blog } from '@/models/blog';
 
 interface IHomeBlogClientProps {
   locale: string;

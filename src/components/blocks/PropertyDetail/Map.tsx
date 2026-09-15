@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { GoogleMapsEmbed } from '@next/third-parties/google';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 
-import type { ICoordinates } from '@/models/Property';
+import type { ICoordinates } from '@/models/property';
 
 interface IPropertyMapProps {
   coordinates: ICoordinates;

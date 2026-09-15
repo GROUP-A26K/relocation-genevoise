@@ -7,7 +7,7 @@ import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
 import Button from '@/components/customs/Button';
 
-import type { Job } from '@/models/Job';
+import type { Job } from '@/models/job';
 
 export type EmploymentType = 'Full-time' | 'Part-time' | 'Contract' | 'Intern';
 interface Options {

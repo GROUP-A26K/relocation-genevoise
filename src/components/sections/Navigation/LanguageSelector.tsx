@@ -7,7 +7,7 @@ import { type FC, useEffect, useState } from 'react';
 
 import { cn } from '@/libs/utils';
 import Button from '@/components/customs/Button';
-import { getAlternatePath } from '@/utils/Helpers';
+import { getAlternatePath } from '@/utils/helpers';
 import { usePathname } from '@/libs/i18nNavigation';
 import {
   resolveAlternateSlug,

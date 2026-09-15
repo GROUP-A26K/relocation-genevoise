@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { RevealItem } from '@/components/customs/Reveal';
 
-import type { Blog } from '@/models/BLog';
+import type { Blog } from '@/models/blog';
 
 const BlogDetailHero: React.FC<Blog> = (blog) => {
   return (

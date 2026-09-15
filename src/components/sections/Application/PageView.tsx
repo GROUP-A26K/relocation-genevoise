@@ -5,7 +5,7 @@ import { useCareerDetail } from '@/features/career/career.hooks';
 import ApplicationForm from './ApplicationForm';
 import ContentContainer from './ContentContainer';
 
-import type { JobDetail } from '@/models/Job';
+import type { JobDetail } from '@/models/job';
 
 export const PageView = ({
   jobDetail: initialJobDetail,

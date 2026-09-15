@@ -7,7 +7,7 @@ import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
 
-import type { Blog } from '@/models/BLog';
+import type { Blog } from '@/models/blog';
 
 export const BlogBGCard: React.FC<Blog> = ({
   title,

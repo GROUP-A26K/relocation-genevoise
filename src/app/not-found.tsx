@@ -2,7 +2,7 @@
 
 import NextError from 'next/error';
 
-import { AppConfig } from '@/utils/AppConfig';
+import { AppConfig } from '@/utils/appConfig';
 
 export default function NotFound() {
   return (

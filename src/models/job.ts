@@ -1,4 +1,4 @@
-import type { Block } from './Block';
+import type { Block } from './block';
 
 export interface Job {
   id: string;

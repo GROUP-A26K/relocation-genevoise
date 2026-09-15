@@ -1,7 +1,7 @@
 import 'server-only';
 import { createClient } from 'next-sanity';
 
-import { Env } from '@/libs/Env';
+import { Env } from '@/libs/env';
 
 export const client = createClient({
   projectId: Env.SANITY_PROJECT_ID,
