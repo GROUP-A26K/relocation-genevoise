@@ -3,12 +3,11 @@
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
+import { useCallback, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
-import { useCallback, useMemo, useState } from 'react';
 import { CalendarDays, Phone, PhoneIncoming } from 'lucide-react';
 
-import axios from '@/libs/axios';
 import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
 import { Form } from '@/components/ui/form';
@@ -18,6 +17,7 @@ import Button from '@/components/customs/Button';
 import { useOpenStatus } from '@/hooks/use-open-status';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
 import { PhoneInputField } from '@/components/customs/Form';
+import { useSubmitBooking } from '@/features/booking/booking.hooks';
 import { RevealItem, RevealSection } from '@/components/customs/Reveal';
 import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 import ConsultationBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
@@ -83,8 +83,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
     closeHour: TIME_CLOSE,
     interval: RESET_OPEN_STATUS_TIME,
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const { mutate, isPending } = useSubmitBooking();
   const form = useForm<BookingFormInput>({
     resolver: zodResolver(bookingSchema(formT)),
     defaultValues: {
@@ -126,31 +125,21 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   );
 
   const onSubmit = useCallback(
-    async (values: BookingFormInput) => {
-      if (hasSubmitted) return;
-
-      setIsLoading(true);
-
-      try {
-        const response = await axios.post(`api/booking?locale=${locale}`, {
-          accept: values.accept,
-          phone: values.phone,
-          contactVia: values.contactVia,
-        });
-
-        if (response.status === 201) {
-          setHasSubmitted(true);
-          showToast('success');
+    (values: BookingFormInput) =>
+      mutate(
+        { values, locale },
+        {
+          onSuccess: () => {
+            form.reset();
+            showToast('success');
+          },
+          onError: (error) => {
+            showToast('danger');
+            console.error('Error submitting form:', error);
+          },
         }
-      } catch (error) {
-        setHasSubmitted(true);
-        showToast('danger');
-        console.error('Error submitting form:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [hasSubmitted, locale, showToast]
+      ),
+    [form, locale, mutate, showToast]
   );
 
   const handleFormSubmit = form.handleSubmit(onSubmit);
@@ -296,7 +285,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
                     variant="md"
                     type="primary"
                     className="w-full lg:h-12 xl:w-fit"
-                    disabled={isLoading || hasSubmitted}
+                    disabled={isPending}
                   >
                     {cardContent.buttonText}
                   </Button>

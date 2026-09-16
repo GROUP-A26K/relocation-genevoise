@@ -1,5 +1,6 @@
 'use client';
 
+import { isNil } from 'lodash-es';
 import { useCallback, useMemo } from 'react';
 import {
   parseAsBoolean,
@@ -83,10 +84,9 @@ export const usePropertyFilters = (
   const applyFilters = useCallback(
     (filters: Partial<PropertyAppliedFilters> = {}) => {
       const nextLocation = (filters.location ?? queryParams.location).trim();
-      const nextCategories =
-        filters.categories !== undefined
-          ? categoriesToParam(filters.categories)
-          : queryParams.categories;
+      const nextCategories = !isNil(filters.categories)
+        ? categoriesToParam(filters.categories)
+        : queryParams.categories;
       const nextPriceRange = filters.priceRange ?? queryParams.priceRange;
       const nextCurrency =
         filters.currency ?? queryParams.currency ?? PROPERTY_DEFAULT_CURRENCY;

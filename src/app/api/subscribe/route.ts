@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
+import { prisma } from '@/libs/prisma';
 import { Subscribe } from '@/templates/Email/Subscribe';
-import { executeWithReplication, prisma } from '@/libs/prisma';
 import {
   type SubscribeFormInput,
   subscribeSchema,
@@ -43,22 +43,9 @@ const createSubscribe = async (data: SubscribeFormInput) => {
     created_at: new Date(),
   };
 
-  const { mysql } = await executeWithReplication(
-    (client) => client.subscribe.create({ data: subscribeData }),
-    (client) =>
-      client.subscribe.upsert({
-        where: { email: subscribeData.email },
-        update: { created_at: subscribeData.created_at },
-        create: subscribeData,
-      }),
-    {
-      rollback: async (client, mysqlResult) => {
-        await client.subscribe.delete({ where: { id: mysqlResult.id } });
-      },
-    }
-  );
+  const subscribe = await prisma.subscribe.create({ data: subscribeData });
 
-  return { alreadyExists: false, email: mysql.email };
+  return { alreadyExists: false, email: subscribe.email };
 };
 
 const sendEmail = async (

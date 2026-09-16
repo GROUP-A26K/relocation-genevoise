@@ -1,7 +1,6 @@
 'use client';
 
 import { toast } from 'sonner';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
@@ -13,12 +12,12 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 
-import axios from '@/libs/axios';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
 import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
+import { useSubmitLandlordsInquiry } from '@/features/findATenant/findATenant.hooks';
 import {
   landlordsFormSchema,
   type LandlordsFormInput,
@@ -43,8 +42,7 @@ export default function LandlordsForm() {
   const toastT = useTranslations('ToastMessage.FindATenant');
   const roomsT = useTranslations('Properties');
   const locale = useLocale();
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const { mutate, isPending } = useSubmitLandlordsInquiry();
 
   const form = useForm<LandlordsFormInput>({
     resolver: zodResolver(landlordsFormSchema(formT)),
@@ -74,14 +72,10 @@ export default function LandlordsForm() {
     label: roomsT(option.labelKey as Parameters<typeof roomsT>[0]),
   }));
 
-  const onSubmit = async (values: LandlordsFormInput) => {
-    if (submitted) return;
-    setLoading(true);
-
-    try {
-      const response = await axios.post(
-        `api/find-a-tenant/landlords?locale=${locale}`,
-        {
+  const onSubmit = (values: LandlordsFormInput) =>
+    mutate(
+      {
+        values: {
           ...values,
           property_type:
             propertyTypeOptions.find(
@@ -91,39 +85,38 @@ export default function LandlordsForm() {
             roomOptions.find(
               (option) => option.value === values.number_of_rooms
             )?.label ?? values.number_of_rooms,
-        }
-      );
-
-      if (response.status !== 201) return;
-
-      setSubmitted(true);
-      toast.custom((id) => (
-        <Alert
-          type="success"
-          title={toastT('successTitle')}
-          as="solid"
-          onClick={() => toast.dismiss(id)}
-        >
-          {toastT('success')}
-        </Alert>
-      ));
-      form.reset();
-    } catch (error) {
-      toast.custom((id) => (
-        <Alert
-          type="danger"
-          title={toastT('errorTitle')}
-          as="solid"
-          onClick={() => toast.dismiss(id)}
-        >
-          {toastT('error')}
-        </Alert>
-      ));
-      console.error('Error submitting landlords form:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+        },
+        locale,
+      },
+      {
+        onSuccess: () => {
+          form.reset();
+          toast.custom((id) => (
+            <Alert
+              type="success"
+              title={toastT('successTitle')}
+              as="solid"
+              onClick={() => toast.dismiss(id)}
+            >
+              {toastT('success')}
+            </Alert>
+          ));
+        },
+        onError: (error) => {
+          toast.custom((id) => (
+            <Alert
+              type="danger"
+              title={toastT('errorTitle')}
+              as="solid"
+              onClick={() => toast.dismiss(id)}
+            >
+              {toastT('error')}
+            </Alert>
+          ));
+          console.error('Error submitting landlords form:', error);
+        },
+      }
+    );
 
   return (
     <Form {...form}>
@@ -224,7 +217,7 @@ export default function LandlordsForm() {
             type="secondary"
             iconEnd={ArrowRight}
             className="w-full rounded-full"
-            disabled={loading || submitted}
+            disabled={isPending}
           >
             {t('submit')}
           </Button>

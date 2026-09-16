@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import { isNil } from 'lodash-es';
 
 import { useScroll } from '@/hooks/useScroll';
 import Section from '@/components/customs/Section';
@@ -35,7 +36,7 @@ export const ContentView = ({ blog, tableOfContent }: IContentViewProps) => {
     () =>
       blog.body.filter(
         (item): item is Block & { _key: string } & (WysiwygBlock | FaqBlock) =>
-          item !== null &&
+          !isNil(item) &&
           typeof item === 'object' &&
           '_key' in item &&
           '_type' in item &&

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { isNil } from 'lodash-es';
 import { useTranslations } from 'next-intl';
 import { useDropzone } from 'react-dropzone';
 import { CloudUpload, X } from 'lucide-react';
@@ -148,7 +149,7 @@ function FileCard({
 
   return (
     <div className="relative flex w-full gap-2 p-2 pr-4">
-      {progress !== undefined && (
+      {!isNil(progress) && (
         <div
           className={cn(
             'absolute inset-0 rounded-l-[12px] bg-grey-50 transition-all duration-300',
@@ -173,7 +174,7 @@ function FileCard({
           </p>
           <div className="flex items-center text-sm text-gray-500">
             <span>{formatSize(file.size)}</span>
-            {progress !== undefined && (
+            {!isNil(progress) && (
               <>
                 <span className="mx-1 h-[3px] w-[3px] rounded-full bg-gray-300" />
                 <span>
@@ -185,11 +186,11 @@ function FileCard({
         </div>
       </div>
 
-      {progress !== undefined ? (
+      {!isNil(progress) ? (
         <CircularProgressBar value={pct} size={32} strokeWidth={16} />
       ) : null}
 
-      {progress === undefined && (
+      {isNil(progress) && (
         <button
           onClick={onRemove}
           className="ml-2 text-gray-500 hover:text-red-500"

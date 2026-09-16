@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
+import { prisma } from '@/libs/prisma';
 import { Contact } from '@/templates/Email/Contact';
-import { executeWithReplication } from '@/libs/prisma';
 import ContactCustomer from '@/templates/Email/ContactCustomer';
 import {
   type ContactFormInput,
@@ -37,12 +37,7 @@ const createContact = async (data: ContactFormInput) => {
     created_at: new Date(),
   };
 
-  const { mysql } = await executeWithReplication(
-    (client) => client.contact.create({ data: contactData }),
-    (client) => client.contact.create({ data: contactData })
-  );
-
-  return mysql;
+  return await prisma.contact.create({ data: contactData });
 };
 
 const sendEmail = async (

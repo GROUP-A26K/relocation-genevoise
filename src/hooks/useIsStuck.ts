@@ -1,3 +1,4 @@
+import { isNil } from 'lodash-es';
 import { useEffect, useState } from 'react';
 
 export function useIsStuck(offsetTop: number) {
@@ -10,7 +11,7 @@ export function useIsStuck(offsetTop: number) {
     let frame: number | null = null;
 
     const check = () => {
-      if (frame !== null) return;
+      if (!isNil(frame)) return;
 
       frame = requestAnimationFrame(() => {
         frame = null;
@@ -23,7 +24,7 @@ export function useIsStuck(offsetTop: number) {
     window.addEventListener('resize', check, { passive: true });
 
     return () => {
-      if (frame !== null) cancelAnimationFrame(frame);
+      if (!isNil(frame)) cancelAnimationFrame(frame);
       window.removeEventListener('scroll', check);
       window.removeEventListener('resize', check);
     };

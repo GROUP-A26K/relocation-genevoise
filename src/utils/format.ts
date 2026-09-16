@@ -1,7 +1,9 @@
+import { isNil } from 'lodash-es';
+
 import type { PropertyFacility, PropertyPriceUnit } from '@/models/property';
 
 export const formatFacilityValue = (facility: PropertyFacility): string => {
-  if (facility.valueType === 'number' && facility.numberValue !== undefined) {
+  if (facility.valueType === 'number' && !isNil(facility.numberValue)) {
     return `${facility.numberValue}`;
   }
 

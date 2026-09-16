@@ -1,14 +1,15 @@
 'use client';
+
 import { toast } from 'sonner';
+import React, { type FC } from 'react';
 import { useForm } from 'react-hook-form';
-import React, { type FC, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
 
-import axios from '@/libs/axios';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
+import { useSubmitContact } from '@/features/contact/contact.hooks';
 import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
 import {
   type ContactFormInput,
@@ -25,9 +26,8 @@ export const ContactForm: FC = () => {
   const t = useTranslations('Contact.ContactForm');
   const formT = useTranslations('Validation.Contact');
   const toastT = useTranslations('ToastMessage.Contact');
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const locale = useLocale();
+  const { mutate, isPending } = useSubmitContact();
   const form = useForm<ContactFormInput>({
     resolver: zodResolver(contactSchema(formT)),
     defaultValues: {
@@ -42,52 +42,38 @@ export const ContactForm: FC = () => {
     },
   });
 
-  const onSubmit = async (values: ContactFormInput) => {
-    if (submitted) return;
-    setLoading(true);
-
-    try {
-      const response = await axios.post(`api/contact?locale=${locale}`, {
-        first_name: values.first_name,
-        last_name: values.last_name,
-        email: values.email,
-        subject: values.subject,
-        message: values.message,
-        accept: values.accept,
-        phone: values.phone,
-        company: values.company,
-      });
-
-      if (response.status === 201) {
-        setSubmitted(true);
-        toast.custom((t) => (
-          <Alert
-            type="success"
-            title={toastT('successTitle')}
-            as="solid"
-            onClick={() => toast.dismiss(t)}
-          >
-            {toastT('success')}
-          </Alert>
-        ));
+  const onSubmit = (values: ContactFormInput) =>
+    mutate(
+      { values, locale },
+      {
+        onSuccess: () => {
+          form.reset();
+          toast.custom((t) => (
+            <Alert
+              type="success"
+              title={toastT('successTitle')}
+              as="solid"
+              onClick={() => toast.dismiss(t)}
+            >
+              {toastT('success')}
+            </Alert>
+          ));
+        },
+        onError: (error) => {
+          toast.custom((t) => (
+            <Alert
+              type="danger"
+              title={toastT('errorTitle')}
+              as="solid"
+              onClick={() => toast.dismiss(t)}
+            >
+              {toastT('error')}
+            </Alert>
+          ));
+          console.error('Error submitting form:', error);
+        },
       }
-    } catch (error) {
-      setSubmitted(true);
-      toast.custom((t) => (
-        <Alert
-          type="danger"
-          title={toastT('errorTitle')}
-          as="solid"
-          onClick={() => toast.dismiss(t)}
-        >
-          {toastT('error')}
-        </Alert>
-      ));
-      console.error('Error submitting form:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    );
 
   return (
     <Form {...form}>
@@ -190,7 +176,7 @@ export const ContactForm: FC = () => {
           variant="md"
           type="secondary"
           className="w-full"
-          disabled={loading || submitted}
+          disabled={isPending}
         >
           {t('send')}
         </Button>

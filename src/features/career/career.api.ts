@@ -1,4 +1,4 @@
-import { getJson } from '@/libs/apiClient';
+import { get } from '@/libs/axios';
 
 import type {
   CareerDepartmentsResponse,
@@ -13,7 +13,7 @@ export function fetchCareerListApi(
   filters: CareerListFilters,
   signal?: AbortSignal
 ) {
-  return getJson<CareerListResponse>(
+  return get<CareerListResponse>(
     '/api/career',
     {
       locale: filters.locale,
@@ -31,18 +31,14 @@ export function fetchCareerDetailApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return getJson<JobDetail | null>(
-    '/api/career/detail',
-    { slug, locale },
-    signal
-  );
+  return get<JobDetail | null>('/api/career/detail', { slug, locale }, signal);
 }
 
 export function fetchCareerDepartmentsApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return getJson<CareerDepartmentsResponse>(
+  return get<CareerDepartmentsResponse>(
     '/api/career/departments',
     { locale },
     signal
@@ -53,7 +49,7 @@ export function fetchCareerFeaturedApi(
   filters: CareerFeaturedFilters,
   signal?: AbortSignal
 ) {
-  return getJson<CareerFeaturedResponse>(
+  return get<CareerFeaturedResponse>(
     '/api/career/featured',
     {
       slug: filters.slug,

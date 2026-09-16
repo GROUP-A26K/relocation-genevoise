@@ -1,4 +1,4 @@
-import { getJson } from '@/libs/apiClient';
+import { get } from '@/libs/axios';
 
 import type {
   IPropertiesResponse,
@@ -12,7 +12,7 @@ export function fetchPropertiesApi(
   filters: PropertyListFilters,
   signal?: AbortSignal
 ) {
-  return getJson<IPropertiesResponse>(
+  return get<IPropertiesResponse>(
     '/api/property',
     {
       locale: filters.locale,
@@ -35,7 +35,7 @@ export function fetchPropertyCategoriesApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return getJson<PropertyCategoriesResponse>(
+  return get<PropertyCategoriesResponse>(
     '/api/property/categories',
     { locale },
     signal
@@ -47,7 +47,7 @@ export function fetchPropertyDetailApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return getJson<PropertyDetail | null>(
+  return get<PropertyDetail | null>(
     '/api/property/detail',
     { slug, locale },
     signal
@@ -59,7 +59,7 @@ export function fetchPropertyPhotoTourApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return getJson<PropertyPhotoTourResponse>(
+  return get<PropertyPhotoTourResponse>(
     '/api/property/photo-tour',
     { slug, locale },
     signal

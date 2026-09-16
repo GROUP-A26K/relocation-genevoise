@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
-import { executeWithReplication } from '@/libs/prisma';
+import { prisma } from '@/libs/prisma';
 import Application from '@/templates/Email/Application';
 import { saveFileInBucket } from '@/utils/minioFileManagement';
 import ApplicationInformation from '@/templates/Email/ApplicationInformation';
@@ -132,15 +132,7 @@ export async function POST(request: Request) {
       created_at: new Date(),
     };
 
-    await executeWithReplication(
-      (client) => client.application.create({ data: applicationData }),
-      (client) => client.application.create({ data: applicationData }),
-      {
-        rollback: async (client, mysqlResult) => {
-          await client.application.delete({ where: { id: mysqlResult.id } });
-        },
-      }
-    );
+    await prisma.application.create({ data: applicationData });
 
     await sendEmail(data.email, { ...data, resume_url: file.url }, locale);
 

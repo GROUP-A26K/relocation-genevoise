@@ -1,3 +1,5 @@
+import { isNil } from 'lodash-es';
+
 import { getAbsoluteUrl, getHreflangPaths } from '@/utils/seo';
 
 export type TSitemapAlternate = {
@@ -29,9 +31,7 @@ const escapeXml = (value: string) =>
   value.replace(/[&<>"']/g, (char) => XML_ENTITIES[char] ?? char);
 
 const toTag = (name: string, value?: number | string) =>
-  value === undefined
-    ? ''
-    : `\n    <${name}>${escapeXml(String(value))}</${name}>`;
+  isNil(value) ? '' : `\n    <${name}>${escapeXml(String(value))}</${name}>`;
 
 export const getAlternates = (
   pathByLocale: Partial<Record<string, string>>

@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
+import { prisma } from '@/libs/prisma';
 import CallMeBack from '@/templates/Email/CallMeBack';
-import { executeWithReplication, prisma } from '@/libs/prisma';
 import {
   type BookingFormInput,
   bookingSchema,
@@ -43,12 +43,9 @@ const createBooking = async (data: BookingFormInput) => {
       created_at: new Date(),
     };
 
-    const { mysql } = await executeWithReplication(
-      (client) => client.booking.create({ data: bookingData }),
-      (client) => client.booking.create({ data: bookingData })
-    );
+    const booking = await prisma.booking.create({ data: bookingData });
 
-    return { booking: mysql, isNew: true } as const;
+    return { booking, isNew: true } as const;
   } catch (error) {
     console.error('Error creating booking:', error);
     throw new Error('Failed to create booking');

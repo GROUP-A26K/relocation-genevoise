@@ -1,3 +1,4 @@
+import { isNil } from 'lodash-es';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
@@ -33,7 +34,7 @@ const readDocumentType = async (request: Request): Promise<string | null> => {
   try {
     const payload: unknown = await request.json();
 
-    if (typeof payload !== 'object' || payload === null) return null;
+    if (typeof payload !== 'object' || isNil(payload)) return null;
 
     const { _type, type } = payload as Record<string, unknown>;
 

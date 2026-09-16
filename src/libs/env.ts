@@ -18,8 +18,6 @@ export const Env = createEnv({
     MINIO_BUCKET: z.string().min(1),
     RESEND_SENDER_NAME: z.string().min(1),
     RESEND_RECEIVER_EMAIL: z.string().min(1),
-    SUPABASE_DATABASE_URL: z.string().min(1),
-    SUPABASE_DIRECT_URL: z.string().min(1),
     REVALIDATE_SECRET: z.string().min(1),
   },
   client: {
@@ -33,8 +31,6 @@ export const Env = createEnv({
   },
   runtimeEnv: {
     NEXT_APP_ENV: process.env.NEXT_APP_ENV,
-    SUPABASE_DATABASE_URL: process.env.SUPABASE_DATABASE_URL,
-    SUPABASE_DIRECT_URL: process.env.SUPABASE_DIRECT_URL,
     REVALIDATE_SECRET: process.env.REVALIDATE_SECRET,
     MINIO_BUCKET: process.env.MINIO_BUCKET,
     MINIO_ENDPOINT: process.env.MINIO_ENDPOINT,
