@@ -1,9 +1,9 @@
 import { ArrowRight } from 'lucide-react';
 
-import Button from '@/components/customs/Button';
-import Section from '@/components/customs/Section';
+import Button from '@/components/common/Button';
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
 import { Link, type THref } from '@/libs/i18nNavigation';
-import { RevealItem } from '@/components/customs/Reveal';
 
 type TCta = {
   text: string;

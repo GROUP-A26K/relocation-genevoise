@@ -11,16 +11,16 @@ import {
 } from './career.service';
 
 import type {
-  CareerFeaturedFilters,
-  CareerListFilters,
-  CareerDepartmentsResponse,
-  CareerFeaturedResponse,
-  CareerListResponse,
+  TCareerFeaturedFilters,
+  TCareerListFilters,
+  ICareerDepartmentsResponse,
+  ICareerFeaturedResponse,
+  ICareerListResponse,
 } from './career.types';
 
 const ignore = () => undefined;
 
-export async function hydrateCareerList(filters: CareerListFilters) {
+export async function hydrateCareerList(filters: TCareerListFilters) {
   const queryClient = makeQueryClient();
 
   await Promise.all([
@@ -38,10 +38,10 @@ export async function hydrateCareerList(filters: CareerListFilters) {
 
   return {
     state: dehydrate(queryClient),
-    departments: queryClient.getQueryData<CareerDepartmentsResponse>(
+    departments: queryClient.getQueryData<ICareerDepartmentsResponse>(
       qkCareer.departments(filters.locale)
     ) ?? { departments: [] },
-    careerList: queryClient.getQueryData<CareerListResponse>(
+    careerList: queryClient.getQueryData<ICareerListResponse>(
       qkCareer.list(filters)
     ) ?? {
       jobs: [],
@@ -60,7 +60,7 @@ export async function hydrateCareerList(filters: CareerListFilters) {
 export async function hydrateCareerDetail(
   slug: string,
   locale: string,
-  featured?: CareerFeaturedFilters
+  featured?: TCareerFeaturedFilters
 ) {
   const queryClient = makeQueryClient();
   const detail = await fetchJobDetailBySlug(slug, locale);
@@ -84,7 +84,7 @@ export async function hydrateCareerDetail(
     state: dehydrate(queryClient),
     detail: detail,
     featuredJobs: featuredFilters
-      ? (queryClient.getQueryData<CareerFeaturedResponse>(
+      ? (queryClient.getQueryData<ICareerFeaturedResponse>(
           qkCareer.featured(featuredFilters)
         ) ?? { jobs: [] })
       : { jobs: [] },

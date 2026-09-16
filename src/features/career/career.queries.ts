@@ -8,53 +8,54 @@ import {
 } from './career.api';
 
 import type {
-  CareerDepartmentsResponse,
-  CareerFeaturedFilters,
-  CareerFeaturedResponse,
-  CareerListFilters,
-  CareerListResponse,
-  JobDetail,
+  ICareerDepartmentsResponse,
+  TCareerFeaturedFilters,
+  ICareerFeaturedResponse,
+  TCareerListFilters,
+  ICareerListResponse,
+  IJobDetail,
 } from './career.types';
 
 export const qkCareer = {
   root: ['career'] as const,
   lists: () => [...qkCareer.root, 'list'] as const,
-  list: (filters: CareerListFilters) => [...qkCareer.lists(), filters] as const,
+  list: (filters: TCareerListFilters) =>
+    [...qkCareer.lists(), filters] as const,
   details: () => [...qkCareer.root, 'detail'] as const,
   detail: (slug: string, locale: string) =>
     [...qkCareer.details(), { slug, locale }] as const,
   departments: (locale: string) =>
     [...qkCareer.root, 'departments', { locale }] as const,
-  featured: (filters: CareerFeaturedFilters) =>
+  featured: (filters: TCareerFeaturedFilters) =>
     [...qkCareer.root, 'featured', filters] as const,
 };
 
-type CareerQueryContext = QueryFunctionContext<readonly unknown[]>;
+type TCareerQueryContext = QueryFunctionContext<readonly unknown[]>;
 
-export const careerListQueryOptions = (filters: CareerListFilters) =>
-  queryOptions<CareerListResponse>({
+export const careerListQueryOptions = (filters: TCareerListFilters) =>
+  queryOptions<ICareerListResponse>({
     queryKey: qkCareer.list(filters),
-    queryFn: ({ signal }: CareerQueryContext) =>
+    queryFn: ({ signal }: TCareerQueryContext) =>
       fetchCareerListApi(filters, signal),
   });
 
 export const careerDetailQueryOptions = (slug: string, locale: string) =>
-  queryOptions<JobDetail | null>({
+  queryOptions<IJobDetail | null>({
     queryKey: qkCareer.detail(slug, locale),
-    queryFn: ({ signal }: CareerQueryContext) =>
+    queryFn: ({ signal }: TCareerQueryContext) =>
       fetchCareerDetailApi(slug, locale, signal),
   });
 
 export const careerDepartmentsQueryOptions = (locale: string) =>
-  queryOptions<CareerDepartmentsResponse>({
+  queryOptions<ICareerDepartmentsResponse>({
     queryKey: qkCareer.departments(locale),
-    queryFn: ({ signal }: CareerQueryContext) =>
+    queryFn: ({ signal }: TCareerQueryContext) =>
       fetchCareerDepartmentsApi(locale, signal),
   });
 
-export const careerFeaturedQueryOptions = (filters: CareerFeaturedFilters) =>
-  queryOptions<CareerFeaturedResponse>({
+export const careerFeaturedQueryOptions = (filters: TCareerFeaturedFilters) =>
+  queryOptions<ICareerFeaturedResponse>({
     queryKey: qkCareer.featured(filters),
-    queryFn: ({ signal }: CareerQueryContext) =>
+    queryFn: ({ signal }: TCareerQueryContext) =>
       fetchCareerFeaturedApi(filters, signal),
   });

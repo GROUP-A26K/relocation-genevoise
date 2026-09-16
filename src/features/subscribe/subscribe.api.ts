@@ -1,15 +1,15 @@
 import { post } from '@/libs/axios';
 
 import type {
-  SubscribeSubmitResponse,
-  SubscribeSubmitVariables,
+  ISubscribeSubmitResponse,
+  TSubscribeSubmitVariables,
 } from './subscribe.types';
 
 export function submitSubscribeApi({
   values,
   locale,
-}: SubscribeSubmitVariables) {
-  return post<SubscribeSubmitResponse>(
+}: TSubscribeSubmitVariables) {
+  return post<ISubscribeSubmitResponse>(
     '/api/subscribe',
     { email: values.email },
     { locale }

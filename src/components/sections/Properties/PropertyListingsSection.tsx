@@ -2,7 +2,7 @@
 
 import { useLocale } from 'next-intl';
 
-import Section from '@/components/customs/Section';
+import Section from '@/components/common/Section';
 import { usePropertyFilters } from '@/hooks/usePropertyFilters';
 import { useExchangeRates } from '@/context/ExchangeRatesContext';
 import { usePropertyList } from '@/features/property/property.hooks';
@@ -11,12 +11,12 @@ import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
 import PropertyResultsHeader from './PropertyResultsHeader';
 import PropertyResultsContent from './PropertyResultsContent';
 
-import type { Meta } from '@/models/meta';
+import type { IMeta } from '@/models/meta';
 import type { IPropertyListing } from '@/models/property';
 
 interface IPropertyListingsSectionProps {
   properties: IPropertyListing[];
-  meta: Meta;
+  meta: IMeta;
 }
 
 export default function PropertyListingsSection({

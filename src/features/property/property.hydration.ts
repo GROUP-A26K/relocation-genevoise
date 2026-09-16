@@ -12,13 +12,13 @@ import {
 
 import type { IPropertiesResponse } from '@/types';
 import type {
-  PropertyListFilters,
-  PropertyCategoriesResponse,
+  TPropertyListFilters,
+  IPropertyCategoriesResponse,
 } from './property.types';
 
 const ignore = () => undefined;
 
-export async function hydratePropertyList(filters: PropertyListFilters) {
+export async function hydratePropertyList(filters: TPropertyListFilters) {
   const queryClient = makeQueryClient();
 
   await Promise.all([
@@ -40,7 +40,7 @@ export async function hydratePropertyList(filters: PropertyListFilters) {
 
   return {
     state: dehydrate(queryClient),
-    categories: queryClient.getQueryData<PropertyCategoriesResponse>(
+    categories: queryClient.getQueryData<IPropertyCategoriesResponse>(
       qkProperty.categories(filters.locale ?? 'fr')
     ) ?? { categories: [] },
     propertyList: queryClient.getQueryData<IPropertiesResponse>(
@@ -62,7 +62,7 @@ export async function hydratePropertyList(filters: PropertyListFilters) {
 export async function hydratePropertyDetail(slug: string, locale: string) {
   const queryClient = makeQueryClient();
   const property = await getPropertyDetail(slug, locale);
-  const relatedFilters: PropertyListFilters = {
+  const relatedFilters: TPropertyListFilters = {
     page: 1,
     pageSize: 3,
     locale,

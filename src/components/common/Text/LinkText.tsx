@@ -1,0 +1,15 @@
+import Link from 'next/link';
+
+interface ILinkTextProps {
+  link?: string;
+  children?: React.ReactNode;
+}
+export const LinkText: React.FC<ILinkTextProps> = ({ children, link }) => {
+  return (
+    <span className="p-0 leading-[130%]! font-semibold text-secondary-600">
+      <Link href={link ?? ''} target="_blank" rel="noopener noreferrer">
+        {children}
+      </Link>
+    </span>
+  );
+};

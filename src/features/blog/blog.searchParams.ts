@@ -1,8 +1,8 @@
-import type { BlogListFilters } from './blog.types';
+import type { TBlogListFilters } from './blog.types';
 
 export function normalizeBlogListFilters(
-  filters: Partial<BlogListFilters> & Pick<BlogListFilters, 'locale'>
-): BlogListFilters {
+  filters: Partial<TBlogListFilters> & Pick<TBlogListFilters, 'locale'>
+): TBlogListFilters {
   return {
     locale: filters.locale,
     page: Math.max(1, filters.page ?? 1),
@@ -15,7 +15,7 @@ export function normalizeBlogListFilters(
 
 export function parseBlogSearchParams(
   searchParams: Record<string, string | string[] | undefined>
-): Pick<BlogListFilters, 'page' | 'filterBy' | 'search'> {
+): Pick<TBlogListFilters, 'page' | 'filterBy' | 'search'> {
   const read = (key: string): string => {
     const value = searchParams[key];
     return (Array.isArray(value) ? value[0] : value) ?? '';

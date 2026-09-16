@@ -9,8 +9,8 @@ import {
   FEATURED_CAREER_QUERY,
 } from '@/sanity/lib/queries';
 
-import type { Meta } from '@/models/meta';
-import type { Job, JobDetail } from '@/models/job';
+import type { IMeta } from '@/models/meta';
+import type { IJob, IJobDetail } from '@/models/job';
 import type { CAREERS_QUERY_RESULT } from '@/sanity/types';
 
 type TJobPostProjection = Omit<
@@ -20,7 +20,7 @@ type TJobPostProjection = Omit<
   publishedAt?: string | null;
 };
 
-export interface ParamsProps {
+export type TCareerParams = {
   page?: number;
   filterBy?: string;
   search?: string;
@@ -28,9 +28,9 @@ export interface ParamsProps {
   locale?: string;
   start?: number;
   limit?: number;
-}
+};
 
-const toJob = (job: TJobPostProjection, locale?: string): Job => ({
+const toJob = (job: TJobPostProjection, locale?: string): IJob => ({
   id: job._id,
   title: job.title || 'Untitled',
   href: {
@@ -54,8 +54,8 @@ const toJob = (job: TJobPostProjection, locale?: string): Job => ({
 });
 
 export const fetchJobPosts = async (
-  params?: ParamsProps
-): Promise<{ jobs: Job[]; meta: Meta }> => {
+  params?: TCareerParams
+): Promise<{ jobs: IJob[]; meta: IMeta }> => {
   const pageSize = params?.pageSize || 10;
   const end = (params?.page || 1) * pageSize;
   const start = end - pageSize;
@@ -87,8 +87,8 @@ export const fetchJobPosts = async (
 
 export const fetchFeaturedJobPosts = async (
   slug: string,
-  params?: ParamsProps
-): Promise<{ jobs: Job[] }> => {
+  params?: TCareerParams
+): Promise<{ jobs: IJob[] }> => {
   const response = await sanityFetch(
     FEATURED_CAREER_QUERY,
     {
@@ -107,7 +107,7 @@ export const fetchFeaturedJobPosts = async (
 export const fetchJobDetailBySlug = async (
   slug: string,
   locale: string = 'en'
-): Promise<JobDetail | null> => {
+): Promise<IJobDetail | null> => {
   const response = await sanityFetch(
     CAREER_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
@@ -125,7 +125,7 @@ export const fetchJobDetailBySlug = async (
   };
 };
 
-export const fetchDepartments = async (params?: ParamsProps) => {
+export const fetchDepartments = async (params?: TCareerParams) => {
   const departments = await sanityFetch(
     DEPARTMENT_QUERY,
     { locale: params?.locale ?? 'en' },

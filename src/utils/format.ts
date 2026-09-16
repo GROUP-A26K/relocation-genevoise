@@ -1,8 +1,8 @@
 import { isNil } from 'lodash-es';
 
-import type { PropertyFacility, PropertyPriceUnit } from '@/models/property';
+import type { IPropertyFacility, TPropertyPriceUnit } from '@/models/property';
 
-export const formatFacilityValue = (facility: PropertyFacility): string => {
+export const formatFacilityValue = (facility: IPropertyFacility): string => {
   if (facility.valueType === 'number' && !isNil(facility.numberValue)) {
     return `${facility.numberValue}`;
   }
@@ -14,7 +14,7 @@ export const formatFacilityValue = (facility: PropertyFacility): string => {
   return '';
 };
 
-export const formatPriceUnit = (priceUnit: PropertyPriceUnit): string => {
+export const formatPriceUnit = (priceUnit: TPropertyPriceUnit): string => {
   return priceUnit;
 };
 

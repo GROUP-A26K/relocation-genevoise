@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 
 import { getPageAlternates } from '@/utils/seo';
-import Section from '@/components/customs/Section';
-import { CompaniesInfo } from '@/components/blocks/Info';
+import Section from '@/components/common/Section';
+import { CompaniesInfo } from '@/components/sections/Companies/CompaniesInfo';
 
 import type { Metadata } from 'next';
 

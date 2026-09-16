@@ -1,9 +1,9 @@
 import { HydrationBoundary } from '@tanstack/react-query';
 
-import Section from '@/components/customs/Section';
+import Section from '@/components/common/Section';
 import { PhotoTourClient } from '@/components/sections/PhotoTour/PhotoTourClient';
 import { hydratePropertyPhotoTour } from '@/features/property/property.hydration';
-import { PropertySectionHeader } from '@/components/blocks/PropertyDetail/SectionHeader';
+import { PropertySectionHeader } from '@/components/sections/PropertiesDetail/Block/PropertySectionHeader';
 
 export default async function PhotoTourPage({
   params,

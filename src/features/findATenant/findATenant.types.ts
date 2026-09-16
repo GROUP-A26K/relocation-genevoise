@@ -1,22 +1,22 @@
 import type {
-  LandlordsFormInput,
-  TenantFormInput,
+  TLandlordsFormInput,
+  TTenantFormInput,
 } from '@/validations/findATenant.validation';
 
-export interface TenantSubmitVariables {
-  values: TenantFormInput;
+export type TTenantSubmitVariables = {
+  values: TTenantFormInput;
   locale: string;
-}
+};
 
-export interface LandlordsSubmitVariables {
-  values: LandlordsFormInput;
+export type TLandlordsSubmitVariables = {
+  values: TLandlordsFormInput;
   locale: string;
-}
+};
 
-export interface FindATenantSubmitResponse {
+export interface IFindATenantSubmitResponse {
   id: number;
   full_name: string;
   email: string;
 }
 
-export type { LandlordsFormInput, TenantFormInput };
+export type { TLandlordsFormInput, TTenantFormInput };

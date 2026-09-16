@@ -12,25 +12,25 @@ import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
 import { Form } from '@/components/ui/form';
 import { Link } from '@/libs/i18nNavigation';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
-import { useOpenStatus } from '@/hooks/use-open-status';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { useOpenStatus } from '@/hooks/useOpenStatus';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
-import { PhoneInputField } from '@/components/customs/Form';
+import { PhoneInputField } from '@/components/common/Form';
 import { useSubmitBooking } from '@/features/booking/booking.hooks';
-import { RevealItem, RevealSection } from '@/components/customs/Reveal';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
-import ConsultationBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
+import { TextWithStrong } from '@/components/common/Text/TextWithStrong';
 import {
-  type BookingFormInput,
+  type TBookingFormInput,
   bookingSchema,
 } from '@/validations/booking.validation';
+import ConsultationBG from '@/assets/images/shared/relocation-genevoise-geneve-courtage.webp';
 
 const TIME_OPEN = 9;
 const TIME_CLOSE = 18;
 const RESET_OPEN_STATUS_TIME = 60000;
 
-type ContactChannel = BookingFormInput['contactVia'];
+type TContactChannel = TBookingFormInput['contactVia'];
 
 interface IConsultationFormViewProps {
   heading?: string;
@@ -84,7 +84,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
     interval: RESET_OPEN_STATUS_TIME,
   });
   const { mutate, isPending } = useSubmitBooking();
-  const form = useForm<BookingFormInput>({
+  const form = useForm<TBookingFormInput>({
     resolver: zodResolver(bookingSchema(formT)),
     defaultValues: {
       phone: '',
@@ -115,7 +115,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   );
 
   const handleContactViaChange = useCallback(
-    (value: ContactChannel) => {
+    (value: TContactChannel) => {
       form.setValue('contactVia', value, {
         shouldDirty: true,
         shouldTouch: true,
@@ -125,7 +125,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   );
 
   const onSubmit = useCallback(
-    (values: BookingFormInput) =>
+    (values: TBookingFormInput) =>
       mutate(
         { values, locale },
         {
@@ -322,10 +322,10 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
 
 interface IContactChannelButtonProps {
   icon: React.ReactNode;
-  value: ContactChannel;
+  value: TContactChannel;
   isActive: boolean;
   label?: string;
-  onSelect: (value: ContactChannel) => void;
+  onSelect: (value: TContactChannel) => void;
 }
 
 const ContactChannelButton = ({

@@ -6,7 +6,7 @@ import { SITE_NAME } from '@/constants/seo';
 import { getLocalizedPath, toHref } from '@/utils/seo';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { hydratePropertyDetail } from '@/features/property/property.hydration';
-import { PropertyDetailClient } from '@/components/sections/PropertiesDetails/PropertyDetailClient';
+import { PropertyDetailClient } from '@/components/sections/PropertiesDetail/PropertyDetailClient';
 
 export default async function PropertyDetailPage({
   params,

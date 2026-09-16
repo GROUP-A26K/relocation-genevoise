@@ -7,15 +7,15 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
-import Show from '@/components/customs/Show';
-import Input from '@/components/customs/Input';
-import Section from '@/components/customs/Section';
-import TabsMenu from '@/components/blocks/TabsMenu';
-import { BlogHero } from '@/components/blocks/Hero';
-import { BlogCard } from '@/components/customs/Card';
-import EmptyData from '@/components/customs/EmptyData';
-import { RevealItem } from '@/components/customs/Reveal';
-import { Pagination } from '@/components/blocks/Pagination';
+import Show from '@/components/common/Show';
+import Input from '@/components/common/Input';
+import Section from '@/components/common/Section';
+import TabsMenu from '@/components/common/TabsMenu';
+import { BlogCard } from '@/components/common/Card';
+import EmptyData from '@/components/common/EmptyData';
+import { RevealItem } from '@/components/common/Reveal';
+import { Pagination } from '@/components/common/Pagination';
+import { BlogHero } from '@/components/sections/Blog/BlogHero';
 import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
 import {
   useBlogCategories,
@@ -25,15 +25,15 @@ import {
 
 import { BlogListSkeleton } from './BlogListSkeleton';
 
-import type { Blog } from '@/models/blog';
-import type { Meta } from '@/models/meta';
+import type { IBlog } from '@/models/blog';
+import type { IMeta } from '@/models/meta';
 import type { POST_CATEGORIES_QUERY_RESULT } from '@/sanity/types';
 
 interface IPageViewProps {
   category: POST_CATEGORIES_QUERY_RESULT;
-  newestBlog: Blog | null;
-  blogs: Blog[];
-  meta: Meta;
+  newestBlog: IBlog | null;
+  blogs: IBlog[];
+  meta: IMeta;
 }
 
 export const PageView: React.FC<IPageViewProps> = (props) => {

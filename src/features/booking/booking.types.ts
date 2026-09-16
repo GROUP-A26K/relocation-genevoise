@@ -1,14 +1,14 @@
-import type { BookingFormInput } from '@/validations/booking.validation';
+import type { TBookingFormInput } from '@/validations/booking.validation';
 
-export interface BookingSubmitVariables {
-  values: BookingFormInput;
+export type TBookingSubmitVariables = {
+  values: TBookingFormInput;
   locale: string;
-}
+};
 
-export interface BookingSubmitResponse {
+export interface IBookingSubmitResponse {
   id: number;
   phone: string;
   contact_via: string;
 }
 
-export type { BookingFormInput };
+export type { TBookingFormInput };

@@ -2,7 +2,6 @@
 
 import {
   createContext,
-  type FC,
   type ReactNode,
   useContext,
   useEffect,
@@ -11,22 +10,22 @@ import {
 
 import { CURRENCIES } from '@/constants/property';
 import {
-  type ExchangeRates,
+  type IExchangeRates,
   FALLBACK_RATES,
   getCachedRates,
   setCachedRates,
 } from '@/utils/exchangeRate';
 
-interface ExchangeRatesContextValue {
-  rates: ExchangeRates;
+type TExchangeRatesContextValue = {
+  rates: IExchangeRates;
   /** Convert a CHF amount to the target currency using live rates */
   convertFromCHF: (chfAmount: number, currency: string) => number;
   /** Convert a display-currency amount back to CHF (for Sanity queries) */
   convertToCHF: (amount: number, currency: string) => number;
   getCurrencySymbol: (currency: string) => string;
-}
+};
 
-const ExchangeRatesContext = createContext<ExchangeRatesContextValue>({
+const ExchangeRatesContext = createContext<TExchangeRatesContextValue>({
   rates: FALLBACK_RATES,
   convertFromCHF: (amount) => amount,
   convertToCHF: (amount) => amount,
@@ -36,11 +35,16 @@ const ExchangeRatesContext = createContext<ExchangeRatesContextValue>({
 
 export const useExchangeRates = () => useContext(ExchangeRatesContext);
 
-export const ExchangeRatesProvider: FC<{
+interface IExchangeRatesProviderProps {
   children: ReactNode;
-  initialRates?: ExchangeRates;
-}> = ({ children, initialRates = FALLBACK_RATES }) => {
-  const [rates, setRates] = useState<ExchangeRates>(initialRates);
+  initialRates?: IExchangeRates;
+}
+
+export const ExchangeRatesProvider: React.FC<IExchangeRatesProviderProps> = ({
+  children,
+  initialRates = FALLBACK_RATES,
+}) => {
+  const [rates, setRates] = useState<IExchangeRates>(initialRates);
 
   useEffect(() => {
     // 1. Try cookie cache first
@@ -58,7 +62,7 @@ export const ExchangeRatesProvider: FC<{
     // 2. Fetch from our API route (server-cached for 30 days on the backend)
     fetch('/api/exchange-rates')
       .then((res) => res.json())
-      .then((data: { rates: ExchangeRates }) => {
+      .then((data: { rates: IExchangeRates }) => {
         setRates(data.rates);
         setCachedRates(data.rates);
       })

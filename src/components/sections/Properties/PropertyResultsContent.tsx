@@ -4,20 +4,20 @@ import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 
-import Show from '@/components/customs/Show';
-import EmptyData from '@/components/customs/EmptyData';
-import { PropertyCard } from '@/components/customs/Card';
-import { Pagination } from '@/components/blocks/Pagination';
+import Show from '@/components/common/Show';
+import EmptyData from '@/components/common/EmptyData';
+import { PropertyCard } from '@/components/common/Card';
+import { Pagination } from '@/components/common/Pagination';
 import { usePropertyFilters } from '@/hooks/usePropertyFilters';
 
 import { PropertyListSkeleton } from './PropertyListSkeleton';
 
-import type { Meta } from '@/models/meta';
+import type { IMeta } from '@/models/meta';
 import type { IPropertyListing } from '@/models/property';
 
 interface IPropertyResultsContentProps {
   properties: IPropertyListing[];
-  meta: Meta;
+  meta: IMeta;
   loading: boolean;
 }
 

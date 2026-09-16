@@ -1,18 +1,18 @@
-import type { Meta } from './meta';
+import type { IMeta } from './meta';
 import type { THref } from '@/libs/i18nNavigation';
 
-export interface PropertySitemap {
+export interface IPropertySitemap {
   id: string;
   title: string;
   href: THref;
   slug: string;
 }
 
-export type PropertyPriceUnit = 'CHF';
+export type TPropertyPriceUnit = 'CHF';
 
-export type PropertyRentPeriod = 'month' | 'year';
+export type TPropertyRentPeriod = 'month' | 'year';
 
-export type PropertyListingType = 'rent' | 'sale';
+export type TPropertyListingType = 'rent' | 'sale';
 
 export interface IPropertyListing {
   id: string;
@@ -20,28 +20,28 @@ export interface IPropertyListing {
   slug: string;
   href: THref;
   price: number;
-  priceUnit: PropertyPriceUnit;
-  listingType: PropertyListingType;
-  rentPeriod: PropertyRentPeriod;
+  priceUnit: TPropertyPriceUnit;
+  listingType: TPropertyListingType;
+  rentPeriod: TPropertyRentPeriod;
   location: {
     name: string;
     lat?: number;
     lng?: number;
   };
   category: string;
-  facilities: PropertyFacility[];
+  facilities: IPropertyFacility[];
   description: string;
   imageUrl: string;
   imageLqip?: string;
   availability: boolean;
 }
 
-export interface PropertyPagination {
+export interface IPropertyPagination {
   properties: IPropertyListing[];
-  meta: Meta;
+  meta: IMeta;
 }
 
-export interface PropertyFacility {
+export interface IPropertyFacility {
   typeRoom: string;
   name: string;
   valueType: 'number' | 'text' | 'none';
@@ -59,7 +59,7 @@ export interface ICoordinates {
   lng: number;
 }
 
-export interface PropertyDetail {
+export interface IPropertyDetail {
   _id: string;
   _createdAt: string;
   _updatedAt: string;
@@ -69,24 +69,24 @@ export interface PropertyDetail {
     _type: string;
     current: string;
   };
-  listingType: PropertyListingType;
+  listingType: TPropertyListingType;
   price: number;
   priceUnit: string;
-  rentPeriod: PropertyRentPeriod;
+  rentPeriod: TPropertyRentPeriod;
   description: string;
   availability: boolean;
   mapLocation: {
     coordinates: ICoordinates;
     name: string;
   };
-  facilities: PropertyFacility[];
-  agent: PropertyAgent;
+  facilities: IPropertyFacility[];
+  agent: IPropertyAgent;
   category: IPropertyCategory;
-  areas: PropertyArea[];
-  surroundingPlaces: SurroundingPlace[];
+  areas: IPropertyArea[];
+  surroundingPlaces: ISurroundingPlace[];
 }
 
-export interface PropertyAgent {
+export interface IPropertyAgent {
   _id: string;
   agentName: string;
   agentPhone: string;
@@ -94,7 +94,7 @@ export interface PropertyAgent {
   photoLqip?: string;
 }
 
-export interface PropertySimilar {
+export interface IPropertySimilar {
   _id: string;
   _createdAt: string;
   _updatedAt: string;
@@ -104,7 +104,7 @@ export interface PropertySimilar {
   mainImage?: { asset?: { _id: string; url: string } };
 }
 
-export interface PropertyArea {
+export interface IPropertyArea {
   title: string;
   mainImageUrl: string;
   mainImageLqip?: string;
@@ -116,7 +116,7 @@ export interface IPropertyGalleryImage {
   lqip?: string;
 }
 
-export interface SurroundingPlace {
+export interface ISurroundingPlace {
   icon: string;
   name: string;
   distance: string;

@@ -1,12 +1,12 @@
 import { post } from '@/libs/axios';
 
 import type {
-  BookingSubmitResponse,
-  BookingSubmitVariables,
+  IBookingSubmitResponse,
+  TBookingSubmitVariables,
 } from './booking.types';
 
-export function submitBookingApi({ values, locale }: BookingSubmitVariables) {
-  return post<BookingSubmitResponse>(
+export function submitBookingApi({ values, locale }: TBookingSubmitVariables) {
+  return post<IBookingSubmitResponse>(
     '/api/booking',
     {
       accept: values.accept,

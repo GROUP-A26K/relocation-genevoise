@@ -1,4 +1,7 @@
-import type { PropertyPriceUnit, PropertyRentPeriod } from '@/models/property';
+import type {
+  TPropertyPriceUnit,
+  TPropertyRentPeriod,
+} from '@/models/property';
 
 export const PROPERTY_SORT = {
   newest: 'newest',
@@ -19,15 +22,15 @@ export type TPropertyCurrency =
 
 export const PROPERTY_PRICE_UNIT = {
   chf: 'CHF',
-} as const satisfies Record<'chf', PropertyPriceUnit>;
+} as const satisfies Record<'chf', TPropertyPriceUnit>;
 
 export const PROPERTY_RENT_PERIOD = {
   month: 'month',
   year: 'year',
-} as const satisfies Record<'month' | 'year', PropertyRentPeriod>;
+} as const satisfies Record<'month' | 'year', TPropertyRentPeriod>;
 
 export const PROPERTY_DEFAULT_SORT = PROPERTY_SORT.newest;
-export const PROPERTY_DEFAULT_PRICE_UNIT: PropertyPriceUnit = 'CHF';
+export const PROPERTY_DEFAULT_PRICE_UNIT: TPropertyPriceUnit = 'CHF';
 export const PROPERTY_DEFAULT_RENT_PERIOD = PROPERTY_RENT_PERIOD.month;
 export const PROPERTY_DEFAULT_CURRENCY = PROPERTY_CURRENCY.chf;
 

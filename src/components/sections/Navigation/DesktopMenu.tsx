@@ -1,17 +1,22 @@
 import { Phone } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
-import Button from '@/components/customs/Button';
+import { ORGANIZATION } from '@/constants/seo';
+import Button from '@/components/common/Button';
 import LogoIcon from '@/components/icons/LogoIcon';
-import { renderMenuItem } from '@/components/blocks/MenuItem';
+import { LanguageSelector } from '@/components/common/Language/LanguageSelector';
 
 import PhoneButton from './PhoneButton';
-import { LanguageSelector } from './LanguageSelector';
+import { renderMenuItem } from './MenuItem';
 import MotionNavigationMenu from './MotionNavigationMenu';
 
-import type { INavbarProps } from './NavbarContainer';
+import type { INavbarContainerProps } from './NavbarContainer';
 
-const DesktopMenu = async ({ menu, callButton, locale }: INavbarProps) => {
+const DesktopMenu = async ({
+  menu,
+  callButton,
+  locale,
+}: INavbarContainerProps) => {
   const menuItems = await Promise.all(
     menu.map((item) => renderMenuItem(item, locale))
   );
@@ -39,7 +44,7 @@ const DesktopMenu = async ({ menu, callButton, locale }: INavbarProps) => {
           </MotionNavigationMenu>
         </div>
         <div className="flex items-center gap-2">
-          <PhoneButton phoneNumber="+41 22 715 17 48" />
+          <PhoneButton phoneNumber={ORGANIZATION.telephone} />
           <LanguageSelector />
           <Link
             href={callButton?.url ?? '/call-me-back'}

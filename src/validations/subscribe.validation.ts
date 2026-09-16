@@ -14,4 +14,4 @@ export function subscribeSchema(t?: TValidationTranslator) {
   });
 }
 
-export type SubscribeFormInput = z.infer<ReturnType<typeof subscribeSchema>>;
+export type TSubscribeFormInput = z.infer<ReturnType<typeof subscribeSchema>>;

@@ -1,4 +1,4 @@
-import JobCardSkeleton from '@/components/customs/Card/JobCardSkeleton';
+import JobCardSkeleton from '@/components/common/Card/JobCardSkeleton';
 
 interface ICareerListSkeletonProps {
   count?: number;

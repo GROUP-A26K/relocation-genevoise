@@ -15,7 +15,9 @@ import {
   Text,
 } from '@react-email/components';
 
-interface SubscribeProps {
+import { ORGANIZATION } from '@/constants/seo';
+
+interface ISubscribeProps {
   subject: string;
   baseUrl: string;
   locale: 'en' | 'fr';
@@ -40,8 +42,7 @@ const copy = {
     welcomeAgain: 'Welcome again, and stay tuned!',
     regards: 'Warm regards,',
     team: 'The Relocation Genevoise Team',
-    footer:
-      'This email was sent to <strong>contact@relocation-genevoise.ch</strong> because you signed up to receive newsletter from Relocation Genevoise',
+    footer: `This email was sent to <strong>${ORGANIZATION.email}</strong> because you signed up to receive newsletter from Relocation Genevoise`,
     contactUs: 'Contact us',
     privacy: 'Privacy policy',
     unsubscribe: 'Unsubscribe',
@@ -63,8 +64,7 @@ const copy = {
     welcomeAgain: 'Encore une fois bienvenue, restez connecté !',
     regards: 'Cordialement,',
     team: 'L’équipe Relocation Genevoise',
-    footer:
-      'Cet e-mail a été envoyé à <strong>contact@relocation-genevoise.ch</strong> car vous vous êtes inscrit pour recevoir la newsletter d’Relocation Genevoise',
+    footer: `Cet e-mail a été envoyé à <strong>${ORGANIZATION.email}</strong> car vous vous êtes inscrit pour recevoir la newsletter d’Relocation Genevoise`,
     contactUs: 'Nous contacter',
     privacy: 'Politique de confidentialité',
     unsubscribe: 'Se désabonner',
@@ -76,7 +76,7 @@ export const Subscribe = ({
   subject,
   baseUrl,
   locale = 'en',
-}: SubscribeProps) => {
+}: ISubscribeProps) => {
   const t = copy[locale];
 
   return (
@@ -288,5 +288,5 @@ Subscribe.PreviewProps = {
   subject: 'Vous êtes à présent bien inscrit.',
   baseUrl: 'http://localhost:3000/',
   locale: 'fr',
-} as SubscribeProps;
+} as ISubscribeProps;
 export default Subscribe;

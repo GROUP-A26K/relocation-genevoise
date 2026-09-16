@@ -89,6 +89,6 @@ export function applicationSchema(t?: TValidationTranslator) {
   });
 }
 
-export type ApplicationFormInput = z.infer<
+export type TApplicationFormInput = z.infer<
   ReturnType<typeof applicationSchema>
 >;

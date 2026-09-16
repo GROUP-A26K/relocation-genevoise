@@ -5,8 +5,8 @@ import Image, { type StaticImageData } from 'next/image';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
-import Section from '@/components/customs/Section';
-import { RevealItem } from '@/components/customs/Reveal';
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
 import {
   type CarouselApi,
   Carousel,

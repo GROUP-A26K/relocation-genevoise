@@ -1,4 +1,4 @@
-import { RevealSection } from '@/components/customs/Reveal';
+import { RevealSection } from '@/components/common/Reveal';
 
 interface IContentContainerProps {
   children: React.ReactNode;

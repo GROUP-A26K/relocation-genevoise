@@ -3,7 +3,7 @@ import { createBucketIfNotExists, minio } from '@/libs/minio';
 
 import type internal from 'node:stream';
 
-interface SaveParams {
+type TSaveParams = {
   bucketName: string;
   fileName: string;
   file: Buffer | internal.Readable;
@@ -12,9 +12,9 @@ interface SaveParams {
    * If `false`, return a public URL built from MINIO_PUBLIC_ENDPOINT.   */
   signedUrl?: boolean;
   expiry?: number; // seconds, default 1 day
-}
+};
 
-interface SaveResult {
+interface ISaveResult {
   fileName: string;
   url: string;
 }
@@ -25,7 +25,7 @@ export async function saveFileInBucket({
   file,
   signedUrl = false,
   expiry = 24 * 60 * 60,
-}: SaveParams): Promise<SaveResult> {
+}: TSaveParams): Promise<ISaveResult> {
   await createBucketIfNotExists(bucketName);
 
   const already = await checkFileExistsInBucket({ bucketName, fileName });

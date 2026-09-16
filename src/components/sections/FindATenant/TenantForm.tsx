@@ -13,21 +13,21 @@ import {
 } from 'lucide-react';
 
 import { Form } from '@/components/ui/form';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
-import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
+import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import { useSubmitTenantInquiry } from '@/features/findATenant/findATenant.hooks';
 import {
   tenantFormSchema,
-  type TenantFormInput,
+  type TTenantFormInput,
 } from '@/validations/findATenant.validation';
 import {
   ChipSelectField,
   InputField,
   PhoneInputField,
   SelectField,
-} from '@/components/customs/Form';
+} from '@/components/common/Form';
 
 import FormSectionHeader from './FormSectionHeader';
 
@@ -43,7 +43,7 @@ export default function TenantForm() {
   const locale = useLocale();
   const { mutate, isPending } = useSubmitTenantInquiry();
 
-  const form = useForm<TenantFormInput>({
+  const form = useForm<TTenantFormInput>({
     resolver: zodResolver(tenantFormSchema(formT)),
     defaultValues: {
       full_name: '',
@@ -70,7 +70,7 @@ export default function TenantForm() {
     label: roomsT(option.labelKey as Parameters<typeof roomsT>[0]),
   }));
 
-  const onSubmit = (values: TenantFormInput) =>
+  const onSubmit = (values: TTenantFormInput) =>
     mutate(
       {
         values: {

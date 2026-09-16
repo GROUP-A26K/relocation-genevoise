@@ -1,13 +1,13 @@
-import type { ContactFormInput } from '@/validations/contact.validation';
+import type { TContactFormInput } from '@/validations/contact.validation';
 
-export interface ContactSubmitVariables {
-  values: ContactFormInput;
+export type TContactSubmitVariables = {
+  values: TContactFormInput;
   locale: string;
-}
+};
 
-export interface ContactSubmitResponse {
+export interface IContactSubmitResponse {
   id: number;
   email: string;
 }
 
-export type { ContactFormInput };
+export type { TContactFormInput };

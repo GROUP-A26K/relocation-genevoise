@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { getPageAlternates } from '@/utils/seo';
 import FormLayout from '@/components/sections/FindATenant/FormLayout';
 import TenantForm from '@/components/sections/FindATenant/TenantForm';
-import FormImage from '@/assets/img/find-a-tenant/tenant/form-image.webp';
+import FormImage from '@/assets/images/find-a-tenant/tenant/form-image.webp';
 
 import type { Metadata } from 'next';
 

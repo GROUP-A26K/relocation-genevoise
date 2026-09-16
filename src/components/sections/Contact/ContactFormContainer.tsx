@@ -3,15 +3,17 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-import Section from '@/components/customs/Section';
-import { RevealItem } from '@/components/customs/Reveal';
-import ContactBG from '@/assets/img/bg/relocation-genevoise-contact.webp';
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
+import ContactBG from '@/assets/images/contact/relocation-genevoise-contact.webp';
 
-interface IContactContainerProps {
+interface IContactFormContainerProps {
   children: React.ReactNode;
 }
 
-export const ContactContainer: React.FC<IContactContainerProps> = (props) => {
+export const ContactFormContainer: React.FC<IContactFormContainerProps> = (
+  props
+) => {
   const t = useTranslations('Contact.ContactContainer');
 
   return (

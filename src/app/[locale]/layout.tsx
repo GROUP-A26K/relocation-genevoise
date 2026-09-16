@@ -14,7 +14,7 @@ import { Toaster } from '@/components/ui/sonner';
 import SiteJsonLd from '@/components/seo/SiteJsonLd';
 import { getOgLocale, getSiteUrl } from '@/utils/seo';
 import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
-import { Navbar } from '@/components/sections/Navigation/NavBar';
+import { NavBar } from '@/components/sections/Navigation/NavBar';
 import TanstackQueryProvider from '@/components/providers/TanstackQueryProvider';
 
 import type { Metadata } from 'next';
@@ -47,19 +47,7 @@ export async function generateMetadata(
     title: t('title'),
     description: t('description'),
     applicationName: SITE_NAME,
-    manifest: '/site.webmanifest',
-    icons: {
-      icon: [
-        { url: '/favicon.ico', sizes: 'any' },
-        { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
-        {
-          url: '/android-chrome-192x192.png',
-          type: 'image/png',
-          sizes: '192x192',
-        },
-      ],
-      apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
-    },
+    appleWebApp: { title: SITE_NAME },
     openGraph: {
       type: 'website',
       siteName: SITE_NAME,
@@ -110,7 +98,7 @@ export default async function LocaleLayout({
             timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
           >
             <TanstackQueryProvider>
-              <Navbar locale={locale} />
+              <NavBar locale={locale} />
               <NextTopLoader color="#f7d913" showSpinner={false} height={1} />
               {children}
               <Toaster />

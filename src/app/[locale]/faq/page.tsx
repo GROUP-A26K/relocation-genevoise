@@ -1,11 +1,12 @@
+import { Phone } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
-import { Faq } from '@/components/blocks/Faq';
-import Section from '@/components/customs/Section';
-import GroupAvatar from '@/assets/img/avt/group-avt-1.webp';
+import { Faq } from '@/components/sections/Faq';
+import Section from '@/components/common/Section';
+import GroupAvatar from '@/assets/images/faq/advisors-group.webp';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
-import { BookConsultation } from '@/components/blocks/Consultation';
 import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
 
@@ -51,7 +52,13 @@ export default async function Page(props: PageProps<'/[locale]/faq'>) {
           subHeading={t('BookConsultation.subHeading')}
           description={t('BookConsultation.description')}
           buttonText1={t('BookConsultation.buttonText1')}
+          buttonIcon={Phone}
           imgSrc={GroupAvatar}
+          withSection={false}
+          className="lg:py-12"
+          contentClassName="max-w-none items-stretch"
+          titleClassName="text-wrap lg:text-2xl"
+          descriptionClassName="text-wrap"
         />
       </Section>
     </>

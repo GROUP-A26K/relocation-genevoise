@@ -15,10 +15,10 @@ import {
   Text,
 } from '@react-email/components';
 
-import type { ContactFormInput } from '@/validations/contact.validation';
+import type { TContactFormInput } from '@/validations/contact.validation';
 
-interface ContactProps {
-  userInfo: ContactFormInput;
+interface IContactCustomerProps {
+  userInfo: TContactFormInput;
   baseUrl: string;
   locale: 'en' | 'fr';
 }
@@ -48,7 +48,7 @@ export const ContactCustomer = ({
   userInfo,
   baseUrl,
   locale = 'en',
-}: ContactProps) => {
+}: IContactCustomerProps) => {
   const t = copy[locale];
 
   return (
@@ -142,5 +142,5 @@ ContactCustomer.PreviewProps = {
   },
   baseUrl: 'http://localhost:3000/',
   locale: 'fr',
-} as ContactProps;
+} as IContactCustomerProps;
 export default ContactCustomer;

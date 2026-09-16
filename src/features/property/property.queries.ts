@@ -9,13 +9,13 @@ import {
 
 import type {
   IPropertiesResponse,
-  PropertyCategoriesResponse,
-  PropertyDetail,
-  PropertyListFilters,
-  PropertyPhotoTourResponse,
+  IPropertyCategoriesResponse,
+  IPropertyDetail,
+  TPropertyListFilters,
+  IPropertyPhotoTourResponse,
 } from './property.types';
 
-const normalizePropertyFilters = (filters: PropertyListFilters) => ({
+const normalizePropertyFilters = (filters: TPropertyListFilters) => ({
   page: filters.page ?? 1,
   pageSize: filters.pageSize ?? 12,
   locale: filters.locale ?? 'fr',
@@ -32,7 +32,7 @@ const normalizePropertyFilters = (filters: PropertyListFilters) => ({
 export const qkProperty = {
   root: ['property'] as const,
   lists: () => [...qkProperty.root, 'list'] as const,
-  list: (filters: PropertyListFilters) =>
+  list: (filters: TPropertyListFilters) =>
     [...qkProperty.lists(), normalizePropertyFilters(filters)] as const,
   details: () => [...qkProperty.root, 'detail'] as const,
   detail: (slug: string, locale: string) =>
@@ -43,32 +43,32 @@ export const qkProperty = {
     [...qkProperty.root, 'photo-tour', { slug, locale }] as const,
 };
 
-type PropertyQueryContext = QueryFunctionContext<readonly unknown[]>;
+type TPropertyQueryContext = QueryFunctionContext<readonly unknown[]>;
 
-export const propertyListQueryOptions = (filters: PropertyListFilters) =>
+export const propertyListQueryOptions = (filters: TPropertyListFilters) =>
   queryOptions<IPropertiesResponse>({
     queryKey: qkProperty.list(filters),
-    queryFn: ({ signal }: PropertyQueryContext) =>
+    queryFn: ({ signal }: TPropertyQueryContext) =>
       fetchPropertiesApi(normalizePropertyFilters(filters), signal),
   });
 
 export const propertyCategoriesQueryOptions = (locale: string) =>
-  queryOptions<PropertyCategoriesResponse>({
+  queryOptions<IPropertyCategoriesResponse>({
     queryKey: qkProperty.categories(locale),
-    queryFn: ({ signal }: PropertyQueryContext) =>
+    queryFn: ({ signal }: TPropertyQueryContext) =>
       fetchPropertyCategoriesApi(locale, signal),
   });
 
 export const propertyDetailQueryOptions = (slug: string, locale: string) =>
-  queryOptions<PropertyDetail | null>({
+  queryOptions<IPropertyDetail | null>({
     queryKey: qkProperty.detail(slug, locale),
-    queryFn: ({ signal }: PropertyQueryContext) =>
+    queryFn: ({ signal }: TPropertyQueryContext) =>
       fetchPropertyDetailApi(slug, locale, signal),
   });
 
 export const propertyPhotoTourQueryOptions = (slug: string, locale: string) =>
-  queryOptions<PropertyPhotoTourResponse>({
+  queryOptions<IPropertyPhotoTourResponse>({
     queryKey: qkProperty.photoTour(slug, locale),
-    queryFn: ({ signal }: PropertyQueryContext) =>
+    queryFn: ({ signal }: TPropertyQueryContext) =>
       fetchPropertyPhotoTourApi(slug, locale, signal),
   });

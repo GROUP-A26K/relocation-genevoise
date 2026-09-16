@@ -1,0 +1,105 @@
+import {
+  Controller,
+  type Control,
+  type FieldValues,
+  type Path,
+  type RegisterOptions,
+} from 'react-hook-form';
+
+import { cn } from '@/libs/utils';
+import { PhoneInput } from '@/components/ui/phone-input';
+
+import { FormField } from './FormField';
+
+import type { ComponentPropsWithoutRef } from 'react';
+import type { Country } from 'react-phone-number-input';
+
+interface IPhoneInputFieldBaseProps<TFieldValues extends FieldValues> {
+  name: Path<TFieldValues>;
+  label?: string;
+  placeholder?: string;
+  isRequired?: boolean;
+  error?: string;
+  className?: string;
+  inputClassName?: string;
+  countrySelectClassName?: string;
+  defaultCountry?: Country;
+  control: Control<TFieldValues>;
+  rules?: RegisterOptions<TFieldValues, Path<TFieldValues>>;
+}
+
+interface IPhoneInputFieldProps<TFieldValues extends FieldValues = FieldValues>
+  extends
+    IPhoneInputFieldBaseProps<TFieldValues>,
+    Omit<
+      ComponentPropsWithoutRef<typeof PhoneInput>,
+      | 'name'
+      | 'value'
+      | 'defaultValue'
+      | 'onChange'
+      | 'onBlur'
+      | 'ref'
+      | 'placeholder'
+      | 'inputClassName'
+      | 'countrySelectClassName'
+      | 'defaultCountry'
+    > {}
+
+export function PhoneInputField<
+  TFieldValues extends FieldValues = FieldValues,
+>({
+  name,
+  label,
+  placeholder,
+  isRequired,
+  error,
+  className,
+  inputClassName,
+  countrySelectClassName,
+  defaultCountry = 'CH',
+  control,
+  rules,
+  ...phoneInputProps
+}: IPhoneInputFieldProps<TFieldValues>) {
+  return (
+    <FormField
+      isRequired={isRequired}
+      label={label}
+      message={error}
+      className={className}
+      htmlFor={name}
+    >
+      <Controller
+        name={name}
+        control={control}
+        rules={rules}
+        render={({ field }) => (
+          <PhoneInput
+            {...phoneInputProps}
+            id={name}
+            name={field.name}
+            value={field.value ?? ''}
+            onChange={(value) => field.onChange(value ?? '')}
+            onBlur={field.onBlur}
+            placeholder={placeholder}
+            className="mt-0"
+            inputClassName={cn(
+              'text-sm h-10 mt-0',
+              'shadow-none placeholder:text-black-50 text-black-50 border-gray-200',
+              'group-hover:border-black-50',
+              error &&
+                'border-red-500 group-hover:border-red-500 group-has-[input:hover]:border-red-500 group-focus-within:border-red-500! group-data-[country-open]:border-red-500',
+              inputClassName
+            )}
+            countrySelectClassName={cn(
+              error &&
+                'border-red-500 group-hover:border-red-500 group-has-[input:hover]:border-red-500 group-focus-within:border-red-500! group-data-[country-open]:border-red-500',
+              countrySelectClassName
+            )}
+            defaultCountry={defaultCountry}
+          />
+        )}
+      />
+    </FormField>
+  );
+}

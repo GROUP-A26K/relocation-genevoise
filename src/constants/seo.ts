@@ -1,3 +1,5 @@
+import { getMailToHref, getTelHref } from '@/utils/contact';
+
 import type { TLocale } from '@/utils/appConfig';
 
 export const SITE_NAME = 'Relocation Genevoise';
@@ -17,7 +19,7 @@ export const ORGANIZATION = {
   areaServed: 'Genève',
   availableLanguage: ['French', 'English'],
   logo: {
-    path: '/android-chrome-512x512.png',
+    path: '/web-app-manifest-512x512.png',
     width: 512,
     height: 512,
   },
@@ -27,6 +29,10 @@ export const ORGANIZATION = {
     'https://www.instagram.com/relocationgenevoise/',
   ],
 } as const;
+
+export const CONTACT_EMAIL_HREF = getMailToHref(ORGANIZATION.email);
+
+export const CONTACT_PHONE_HREF = getTelHref(ORGANIZATION.telephone);
 
 export const OG_IMAGE = {
   path: '/relocation-genevoise-preview.png',

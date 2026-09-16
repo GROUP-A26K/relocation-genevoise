@@ -1,12 +1,12 @@
 import { post } from '@/libs/axios';
 
 import type {
-  ContactSubmitResponse,
-  ContactSubmitVariables,
+  IContactSubmitResponse,
+  TContactSubmitVariables,
 } from './contact.types';
 
-export function submitContactApi({ values, locale }: ContactSubmitVariables) {
-  return post<ContactSubmitResponse>(
+export function submitContactApi({ values, locale }: TContactSubmitVariables) {
+  return post<IContactSubmitResponse>(
     '/api/contact',
     {
       first_name: values.first_name,

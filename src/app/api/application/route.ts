@@ -8,7 +8,7 @@ import Application from '@/templates/Email/Application';
 import { saveFileInBucket } from '@/utils/minioFileManagement';
 import ApplicationInformation from '@/templates/Email/ApplicationInformation';
 import {
-  type ApplicationFormInput,
+  type TApplicationFormInput,
   applicationSchema,
 } from '@/validations/application.validation';
 const senderEmail = Env.RESEND_EMAIL;
@@ -26,17 +26,17 @@ const applicationInformationSubjectTitle = {
   fr: 'Soumission de candidature reçue',
 } as const;
 
-interface UserInfo extends Omit<
-  ApplicationFormInput,
+type TUserInfo = Omit<
+  TApplicationFormInput,
   'resume_file ' | 'accept ' | 'expected_ctc'
-> {
+> & {
   resume_url: string;
   expected_ctc: number | undefined;
-}
+};
 
 const sendEmail = async (
   email: string,
-  userInfo: UserInfo,
+  userInfo: TUserInfo,
   locale: 'fr' | 'en'
 ) => {
   try {

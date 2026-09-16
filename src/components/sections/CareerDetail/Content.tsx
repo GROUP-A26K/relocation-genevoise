@@ -9,24 +9,24 @@ import { CircleDollarSign, Clock, MapPin, Share2 } from 'lucide-react';
 
 import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
-import CtaBlock from '@/components/customs/CtaBlock';
-import { StatsList } from '@/components/blocks/Stats';
-import { type Block, BODY_BLOCKS } from '@/models/block';
-import { RevealItem } from '@/components/customs/Reveal';
-import { FaqBlock } from '@/components/blocks/Faq/FaqBlock';
-import { DynamicContent } from '@/components/blocks/DynamicContent';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { RevealItem } from '@/components/common/Reveal';
+import { type TBlock, BODY_BLOCKS } from '@/models/block';
+import CtaBlock from '@/components/common/Sanity/Block/CtaBlock';
+import { FaqBlock } from '@/components/common/Sanity/Block/FaqBlock';
+import { StatsList } from '@/components/common/Sanity/Block/StatsList';
+import DynamicContent from '@/components/common/Sanity/DynamicContent';
 
-import type { JobDetail } from '@/models/job';
+import type { IJobDetail } from '@/models/job';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
 
-interface Props {
-  jobDetail: JobDetail;
+interface IContentProps {
+  jobDetail: IJobDetail;
 }
 
-function renderListBlocks(blocks: Block[]) {
+function renderListBlocks(blocks: TBlock[]) {
   return blocks.map((block) => {
     if (!block || typeof block !== 'object' || !('_type' in block)) return null;
 
@@ -71,7 +71,7 @@ function renderListBlocks(blocks: Block[]) {
   });
 }
 
-export const Content: React.FC<Props> = ({ jobDetail }) => {
+export const Content: React.FC<IContentProps> = ({ jobDetail }) => {
   const pathname = usePathname();
   const toastT = useTranslations('ToastMessage.Link');
   const buttonT = useTranslations('Button&Text');

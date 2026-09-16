@@ -1,5 +1,5 @@
 export {
   buildPropertyFilterParams,
   parsePropertySearchParams,
-  type IPropertyFilterQueryParams,
+  type TPropertyFilterQueryParams,
 } from '@/utils/propertyFilters';

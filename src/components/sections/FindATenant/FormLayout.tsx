@@ -1,7 +1,7 @@
 import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/libs/utils';
-import { RevealItem, RevealSection } from '@/components/customs/Reveal';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
 
 const CONTAINER =
   'container w-full max-w-(--breakpoint-2xl) mx-auto px-4 lg:px-[48px] 2xl:px-[100px]';

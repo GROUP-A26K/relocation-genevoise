@@ -1,7 +1,11 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import JobCardSkeleton from '@/components/customs/Card/JobCardSkeleton';
+import JobCardSkeleton from '@/components/common/Card/JobCardSkeleton';
 
-const ContentBlockSkeleton = ({ lines }: { lines: number }) => (
+interface IContentBlockSkeletonProps {
+  lines: number;
+}
+
+const ContentBlockSkeleton = ({ lines }: IContentBlockSkeletonProps) => (
   <div className="flex w-full flex-col gap-4">
     <Skeleton className="h-7 w-1/2" />
     <div className="flex flex-col gap-2.5">

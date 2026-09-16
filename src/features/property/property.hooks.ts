@@ -9,9 +9,9 @@ import {
   propertyPhotoTourQueryOptions,
 } from './property.queries';
 
-import type { PropertyListFilters } from './property.types';
+import type { TPropertyListFilters } from './property.types';
 
-export const usePropertyList = (filters: PropertyListFilters) =>
+export const usePropertyList = (filters: TPropertyListFilters) =>
   useQuery({
     ...propertyListQueryOptions(filters),
     placeholderData: keepPreviousData,

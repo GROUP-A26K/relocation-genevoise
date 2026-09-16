@@ -1,10 +1,14 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import BlogCardSkeleton from '@/components/customs/Card/BlogCardSkeleton';
-import SectionSkeleton from '@/components/customs/Section/SectionSkeleton';
+import BlogCardSkeleton from '@/components/common/Card/BlogCardSkeleton';
+import SectionSkeleton from '@/components/common/Section/SectionSkeleton';
 
 const TOC_WIDTHS = ['w-full', 'w-4/5', 'w-11/12', 'w-3/4', 'w-full', 'w-2/3'];
 
-const ContentBlockSkeleton = ({ lines }: { lines: number }) => (
+interface IContentBlockSkeletonProps {
+  lines: number;
+}
+
+const ContentBlockSkeleton = ({ lines }: IContentBlockSkeletonProps) => (
   <div className="flex flex-col gap-4">
     <Skeleton className="h-8 w-2/3" />
     <div className="flex flex-col gap-2.5">

@@ -1,8 +1,8 @@
-import type { CareerListFilters } from './career.types';
+import type { TCareerListFilters } from './career.types';
 
 export function normalizeCareerListFilters(
-  filters: Partial<CareerListFilters> & Pick<CareerListFilters, 'locale'>
-): CareerListFilters {
+  filters: Partial<TCareerListFilters> & Pick<TCareerListFilters, 'locale'>
+): TCareerListFilters {
   return {
     locale: filters.locale,
     page: Math.max(1, filters.page ?? 1),
@@ -14,7 +14,7 @@ export function normalizeCareerListFilters(
 
 export function parseCareerSearchParams(
   searchParams: Record<string, string | string[] | undefined>
-): Pick<CareerListFilters, 'page' | 'filterBy'> {
+): Pick<TCareerListFilters, 'page' | 'filterBy'> {
   const read = (key: string): string => {
     const value = searchParams[key];
     return (Array.isArray(value) ? value[0] : value) ?? '';

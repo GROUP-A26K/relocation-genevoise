@@ -2,17 +2,18 @@
 
 import { useTranslations } from 'next-intl';
 
-import { JobCard } from '@/components/customs/Card';
-import { RevealItem } from '@/components/customs/Reveal';
+import { JobCard } from '@/components/common/Card';
+import { RevealItem } from '@/components/common/Reveal';
 
-import type { FC } from 'react';
-import type { Job } from '@/models/job';
+import type { IJob } from '@/models/job';
 
-interface Props {
-  jobs: Job[];
+interface IRelatedItemsPanelProps {
+  jobs: IJob[];
 }
 
-export const RelatedItemsPanel: FC<Props> = ({ jobs }) => {
+export const RelatedItemsPanel: React.FC<IRelatedItemsPanelProps> = ({
+  jobs,
+}) => {
   const t = useTranslations('CareerDetail.FeaturedJob');
 
   return (

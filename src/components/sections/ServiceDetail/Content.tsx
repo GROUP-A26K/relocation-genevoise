@@ -1,22 +1,18 @@
 'use client';
-import {
-  ContentDescriptive,
-  ContentIntroductory,
-} from '@/components/blocks/Content';
+import { ContentDescriptive } from '@/components/sections/ServiceDetail/ContentDescriptive';
+import { ContentIntroductory } from '@/components/sections/ServiceDetail/ContentIntroductory';
 
-import type { FC } from 'react';
-
-type ParagraphType = 'introductory' | 'descriptive';
-interface Section {
+type TParagraphType = 'introductory' | 'descriptive';
+type TSection = {
   title?: string;
-  paragraphType?: ParagraphType;
+  paragraphType?: TParagraphType;
   content: { paragraph: string; title?: string }[];
-}
-export interface ContentProps {
-  section: Section[];
+};
+export interface IContentProps {
+  section: TSection[];
 }
 
-function renderListSection(sections: Section[]) {
+function renderListSection(sections: TSection[]) {
   return sections.map((section, index) => {
     switch (section.paragraphType) {
       case 'introductory':
@@ -29,7 +25,7 @@ function renderListSection(sections: Section[]) {
   });
 }
 
-export const Content: FC<ContentProps> = ({ section }) => {
+export const Content: React.FC<IContentProps> = ({ section }) => {
   return (
     <div className="top-0 flex flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">

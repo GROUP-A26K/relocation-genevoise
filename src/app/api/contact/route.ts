@@ -6,7 +6,7 @@ import { prisma } from '@/libs/prisma';
 import { Contact } from '@/templates/Email/Contact';
 import ContactCustomer from '@/templates/Email/ContactCustomer';
 import {
-  type ContactFormInput,
+  type TContactFormInput,
   contactSchema,
 } from '@/validations/contact.validation';
 
@@ -24,7 +24,7 @@ const contactCustomerSubjectTitle = {
   en: 'Contact Form Submission Received',
   fr: 'Formulaire de contact soumis reçu',
 } as const;
-const createContact = async (data: ContactFormInput) => {
+const createContact = async (data: TContactFormInput) => {
   const contactData = {
     first_name: data.first_name,
     last_name: data.last_name,
@@ -42,7 +42,7 @@ const createContact = async (data: ContactFormInput) => {
 
 const sendEmail = async (
   email: string,
-  userInfo: ContactFormInput,
+  userInfo: TContactFormInput,
   locale: 'fr' | 'en'
 ) => {
   try {

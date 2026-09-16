@@ -1,5 +1,5 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import PaginationSkeleton from '@/components/blocks/Pagination/PaginationSkeleton';
+import PaginationSkeleton from '@/components/common/Pagination/PaginationSkeleton';
 
 import { PropertyListSkeleton } from './PropertyListSkeleton';
 

@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 import { Phone, PhoneCall } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import { getTelHref } from '@/utils/contact';
 
 interface IPhoneButtonProps {
   phoneNumber: string;
@@ -17,7 +18,7 @@ const PhoneButton = ({ phoneNumber, className }: IPhoneButtonProps) => {
 
   return (
     <Link
-      href={`tel:${phoneNumber.replace(/\s/g, '')}`}
+      href={getTelHref(phoneNumber)}
       className={cn(
         'flex w-fit items-center gap-2 rounded-3xl px-4 py-5 text-[16px] leading-md font-semibold text-black-500 no-underline hover:text-black-500',
         className

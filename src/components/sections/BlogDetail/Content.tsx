@@ -9,18 +9,18 @@ import { usePathname } from 'next/navigation';
 
 import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
-import CtaBlock from '@/components/customs/CtaBlock';
-import { StatsList } from '@/components/blocks/Stats';
-import { RevealItem } from '@/components/customs/Reveal';
-import { FaqBlock } from '@/components/blocks/Faq/FaqBlock';
-import { DynamicContent } from '@/components/blocks/DynamicContent';
-import { type Block, BLOG_BODY_BLOCKS, type BlogDetail } from '@/models/blog';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { RevealItem } from '@/components/common/Reveal';
+import CtaBlock from '@/components/common/Sanity/Block/CtaBlock';
+import { FaqBlock } from '@/components/common/Sanity/Block/FaqBlock';
+import { StatsList } from '@/components/common/Sanity/Block/StatsList';
+import DynamicContent from '@/components/common/Sanity/DynamicContent';
+import { type TBlock, BLOG_BODY_BLOCKS, type IBlogDetail } from '@/models/blog';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
 
-function renderListBlocks(blocks: Block[]) {
+function renderListBlocks(blocks: TBlock[]) {
   return blocks.map((block) => {
     if (!block || typeof block !== 'object' || !('_type' in block)) return null;
 
@@ -65,7 +65,7 @@ function renderListBlocks(blocks: Block[]) {
   });
 }
 
-export const Content = (blog: BlogDetail) => {
+export const Content = (blog: IBlogDetail) => {
   const t = useTranslations('BlogDetail');
   const toastT = useTranslations('ToastMessage.Link');
 

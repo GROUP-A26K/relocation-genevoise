@@ -1,20 +1,20 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
-import { Hero } from '@/components/blocks/Hero';
-import Section from '@/components/customs/Section';
-import { BookConsultation2 } from '@/components/blocks/Consultation';
+import Section from '@/components/common/Section';
+import { Hero } from '@/components/common/Hero/Hero';
 import { Content } from '@/components/sections/AnimationContent/Content';
-import HeroImage from '@/assets/img/bg/relocation-genevoise-trouver-un-iogement.webp';
-import ContentImage3 from '@/assets/img/bg/trouver-un-logement/analyse-du-marche.webp';
-import ContentImage8 from '@/assets/img/bg/trouver-un-logement/aide-a-lemmenagement.webp';
-import ContentImage4 from '@/assets/img/bg/trouver-un-logement/propositions-de-biens.webp';
-import ContentImage1 from '@/assets/img/bg/trouver-un-logement/entretien-de-decouverte.webp';
-import ContentImage5 from '@/assets/img/bg/trouver-un-logement/organisation-des-visites.webp';
-import ContentImage7 from '@/assets/img/bg/trouver-un-logement/formalites-administratives.webp';
-import ContentImage9 from '@/assets/img/bg/trouver-un-logement/support-apres-linstallation.webp';
-import ContentImage2 from '@/assets/img/bg/trouver-un-logement/constitution-de-votre-dossier.webp';
-import ContentImage6 from '@/assets/img/bg/trouver-un-logement/envoi-et-suivi-de-votre-dossier.webp';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
+import ContentImage3 from '@/assets/images/find-accommodation/steps/analyse-du-marche.webp';
+import ContentImage8 from '@/assets/images/find-accommodation/steps/aide-a-l-emmenagement.webp';
+import ContentImage4 from '@/assets/images/find-accommodation/steps/propositions-de-biens.webp';
+import ContentImage1 from '@/assets/images/find-accommodation/steps/entretien-de-decouverte.webp';
+import ContentImage5 from '@/assets/images/find-accommodation/steps/organisation-des-visites.webp';
+import ContentImage7 from '@/assets/images/find-accommodation/steps/formalites-administratives.webp';
+import ContentImage9 from '@/assets/images/find-accommodation/steps/support-apres-l-installation.webp';
+import ContentImage2 from '@/assets/images/find-accommodation/steps/constitution-de-votre-dossier.webp';
+import HeroImage from '@/assets/images/find-accommodation/relocation-genevoise-trouver-un-logement.webp';
+import ContentImage6 from '@/assets/images/find-accommodation/steps/envoi-et-suivi-de-votre-dossier.webp';
 
 import type { Metadata } from 'next';
 
@@ -104,7 +104,7 @@ export default async function Page() {
         />
       </Section>
 
-      <BookConsultation2
+      <BookConsultation
         heading={t('BookConsultation.heading')}
         subHeading={t('BookConsultation.subHeading')}
         description={t('BookConsultation.description')}

@@ -8,10 +8,10 @@ import {
   toIsoDate,
 } from '@/utils/seo';
 
-import type { BlogDetail } from '@/models/blog';
+import type { IBlogDetail } from '@/models/blog';
 
 interface IBlogJsonLdProps {
-  blog: BlogDetail;
+  blog: IBlogDetail;
   locale: string;
   path: string;
 }

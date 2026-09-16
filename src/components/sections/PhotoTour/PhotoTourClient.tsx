@@ -6,13 +6,17 @@ import { PhotoTourView } from './PhotoTourView';
 
 import type { IAreaPhotoTour } from '@/models/property';
 
-interface Props {
+interface IPhotoTourClientProps {
   slug: string;
   locale: string;
   areas: IAreaPhotoTour[];
 }
 
-export function PhotoTourClient({ slug, locale, areas: initialAreas }: Props) {
+export function PhotoTourClient({
+  slug,
+  locale,
+  areas: initialAreas,
+}: IPhotoTourClientProps) {
   const query = usePropertyPhotoTour(slug, locale);
   return <PhotoTourView areas={query.data?.areas ?? initialAreas} />;
 }

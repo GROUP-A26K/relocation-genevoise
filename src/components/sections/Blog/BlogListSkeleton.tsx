@@ -1,4 +1,4 @@
-import BlogCardSkeleton from '@/components/customs/Card/BlogCardSkeleton';
+import BlogCardSkeleton from '@/components/common/Card/BlogCardSkeleton';
 
 interface IBlogListSkeletonProps {
   count?: number;

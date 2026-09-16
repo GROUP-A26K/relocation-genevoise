@@ -1,11 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
-import { Hero } from '@/components/blocks/Hero';
-import Section from '@/components/customs/Section';
+import Section from '@/components/common/Section';
+import { Hero } from '@/components/common/Hero/Hero';
 import { ContentView } from '@/components/sections/ServiceDetail';
-import { BookConsultation2 } from '@/components/blocks/Consultation';
-import HeroImage from '@/assets/img/hero/service/scolarite-hero-image.webp';
+import HeroImage from '@/assets/images/services/scolarite-hero.webp';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
 
@@ -93,7 +93,7 @@ export default async function Page() {
           },
         ]}
       />
-      <BookConsultation2
+      <BookConsultation
         heading={t('BookConsultation.heading')}
         subHeading={t('BookConsultation.subHeading')}
         description={t('BookConsultation.description')}

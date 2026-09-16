@@ -3,9 +3,9 @@ import {
   getPriceRangeByValue,
 } from '@/constants/property';
 
-import type { IPropertyParams } from '@/types';
+import type { TPropertyParams } from '@/types';
 
-export interface IPropertyFilterQueryParams {
+export type TPropertyFilterQueryParams = {
   page: number;
   categories: string;
   location: string;
@@ -14,11 +14,11 @@ export interface IPropertyFilterQueryParams {
   sort: string;
   rooms: string;
   availableOnly: boolean;
-}
+};
 
 export const PROPERTY_PAGE_SIZE = 12;
 
-export const INITIAL_PROPERTY_QUERY_PARAMS: IPropertyFilterQueryParams = {
+export const INITIAL_PROPERTY_QUERY_PARAMS: TPropertyFilterQueryParams = {
   page: 1,
   categories: '',
   location: '',
@@ -36,9 +36,9 @@ export const paramToCategories = (param: string): string[] =>
   param ? param.split(',').filter(Boolean) : [];
 
 export const buildPropertyFilterParams = (
-  query: IPropertyFilterQueryParams,
+  query: TPropertyFilterQueryParams,
   toCHF: (amount: number, currency: string) => number
-): IPropertyParams => {
+): TPropertyParams => {
   const range = getPriceRangeByValue(query.priceRange);
   const currency = query.currency || PROPERTY_DEFAULT_CURRENCY;
 
@@ -58,8 +58,8 @@ export const buildPropertyFilterParams = (
 
 export const parsePropertySearchParams = (
   searchParams: Record<string, string | string[] | undefined>
-): IPropertyFilterQueryParams => {
-  const read = (key: keyof IPropertyFilterQueryParams): string => {
+): TPropertyFilterQueryParams => {
+  const read = (key: keyof TPropertyFilterQueryParams): string => {
     const value = searchParams[key];
     return (Array.isArray(value) ? value[0] : value) ?? '';
   };

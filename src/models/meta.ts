@@ -1,4 +1,4 @@
-export interface Meta {
+export interface IMeta {
   pagination: {
     total: number;
     page: number;

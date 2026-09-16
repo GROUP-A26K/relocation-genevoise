@@ -1,35 +1,35 @@
 'use client';
 
+import React from 'react';
 import { toast } from 'sonner';
-import React, { type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { Form } from '@/components/ui/form';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
-import { InputField } from '@/components/customs/Form';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { InputField } from '@/components/common/Form';
 import { useSubmitSubscribe } from '@/features/subscribe/subscribe.hooks';
 import {
-  type SubscribeFormInput,
+  type TSubscribeFormInput,
   subscribeSchema,
 } from '@/validations/subscribe.validation';
 
-export const SubscribeForm: FC = () => {
+export const SubscribeForm: React.FC = () => {
   const t = useTranslations('Footer');
   const formT = useTranslations('Validation.Subscribe');
   const toastT = useTranslations('ToastMessage.Subscribe');
   const locale = useLocale();
   const { mutate, isPending } = useSubmitSubscribe();
-  const form = useForm<SubscribeFormInput>({
+  const form = useForm<TSubscribeFormInput>({
     resolver: zodResolver(subscribeSchema(formT)),
     defaultValues: {
       email: '',
     },
   });
 
-  const onSubmit = (values: SubscribeFormInput) =>
+  const onSubmit = (values: TSubscribeFormInput) =>
     mutate(
       { values, locale },
       {

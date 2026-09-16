@@ -57,4 +57,4 @@ export function contactSchema(t?: TValidationTranslator) {
   });
 }
 
-export type ContactFormInput = z.infer<ReturnType<typeof contactSchema>>;
+export type TContactFormInput = z.infer<ReturnType<typeof contactSchema>>;

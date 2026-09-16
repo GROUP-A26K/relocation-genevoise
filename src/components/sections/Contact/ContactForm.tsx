@@ -1,18 +1,18 @@
 'use client';
 
+import React from 'react';
 import { toast } from 'sonner';
-import React, { type FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { Form } from '@/components/ui/form';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
 import { useSubmitContact } from '@/features/contact/contact.hooks';
-import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
+import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import {
-  type ContactFormInput,
+  type TContactFormInput,
   contactSchema,
 } from '@/validations/contact.validation';
 import {
@@ -20,15 +20,15 @@ import {
   InputField,
   TextareaField,
   PhoneInputField,
-} from '@/components/customs/Form';
+} from '@/components/common/Form';
 
-export const ContactForm: FC = () => {
+export const ContactForm: React.FC = () => {
   const t = useTranslations('Contact.ContactForm');
   const formT = useTranslations('Validation.Contact');
   const toastT = useTranslations('ToastMessage.Contact');
   const locale = useLocale();
   const { mutate, isPending } = useSubmitContact();
-  const form = useForm<ContactFormInput>({
+  const form = useForm<TContactFormInput>({
     resolver: zodResolver(contactSchema(formT)),
     defaultValues: {
       first_name: '',
@@ -42,7 +42,7 @@ export const ContactForm: FC = () => {
     },
   });
 
-  const onSubmit = (values: ContactFormInput) =>
+  const onSubmit = (values: TContactFormInput) =>
     mutate(
       { values, locale },
       {
