@@ -13,14 +13,14 @@ import {
 } from 'lucide-react';
 
 import { Form } from '@/components/ui/form';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
-import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
+import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import { useSubmitLandlordsInquiry } from '@/features/findATenant/findATenant.hooks';
 import {
   landlordsFormSchema,
-  type LandlordsFormInput,
+  type TLandlordsFormInput,
 } from '@/validations/findATenant.validation';
 import {
   ChipSelectField,
@@ -28,7 +28,7 @@ import {
   PhoneInputField,
   SelectField,
   TextareaField,
-} from '@/components/customs/Form';
+} from '@/components/common/Form';
 
 import FormSectionHeader from './FormSectionHeader';
 
@@ -44,7 +44,7 @@ export default function LandlordsForm() {
   const locale = useLocale();
   const { mutate, isPending } = useSubmitLandlordsInquiry();
 
-  const form = useForm<LandlordsFormInput>({
+  const form = useForm<TLandlordsFormInput>({
     resolver: zodResolver(landlordsFormSchema(formT)),
     defaultValues: {
       full_name: '',
@@ -72,7 +72,7 @@ export default function LandlordsForm() {
     label: roomsT(option.labelKey as Parameters<typeof roomsT>[0]),
   }));
 
-  const onSubmit = (values: LandlordsFormInput) =>
+  const onSubmit = (values: TLandlordsFormInput) =>
     mutate(
       {
         values: {

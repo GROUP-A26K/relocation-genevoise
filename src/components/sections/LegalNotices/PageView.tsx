@@ -1,8 +1,8 @@
 'use client';
 import { useTranslations } from 'next-intl';
 
-import { RevealItem } from '@/components/customs/Reveal';
-import { FormattedText } from '@/components/customs/Text';
+import { RevealItem } from '@/components/common/Reveal';
+import { FormattedText } from '@/components/common/Text';
 
 import { Content } from './Content';
 import { PageContainer } from './PageContainer';

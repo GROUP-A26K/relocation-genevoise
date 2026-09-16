@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-import { RevealItem, RevealSection } from '@/components/customs/Reveal';
-import PropertyListingImg from '@/assets/img/bg/properties-listing-bg.webp';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
+import PropertyListingImg from '@/assets/images/properties/hero-background.webp';
 
 export default function PropertiesHero() {
   const t = useTranslations('Properties');

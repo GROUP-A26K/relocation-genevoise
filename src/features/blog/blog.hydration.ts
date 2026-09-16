@@ -11,15 +11,15 @@ import {
 } from './blog.service';
 
 import type {
-  BlogListFilters,
-  BlogCategoriesResponse,
-  BlogDetail,
-  BlogListResponse,
+  TBlogListFilters,
+  IBlogCategoriesResponse,
+  IBlogDetail,
+  IBlogListResponse,
 } from './blog.types';
 
 const ignore = () => undefined;
 
-export async function hydrateBlogFeed(filters: BlogListFilters) {
+export async function hydrateBlogFeed(filters: TBlogListFilters) {
   const queryClient = makeQueryClient();
   await queryClient
     .query({
@@ -30,7 +30,7 @@ export async function hydrateBlogFeed(filters: BlogListFilters) {
 
   return {
     state: dehydrate(queryClient),
-    blogList: queryClient.getQueryData<BlogListResponse>(
+    blogList: queryClient.getQueryData<IBlogListResponse>(
       qkBlog.list(filters)
     ) ?? {
       blogs: [],
@@ -46,7 +46,7 @@ export async function hydrateBlogFeed(filters: BlogListFilters) {
   };
 }
 
-export async function hydrateBlogList(filters: BlogListFilters) {
+export async function hydrateBlogList(filters: TBlogListFilters) {
   const queryClient = makeQueryClient();
   const latest = await fetchLatestBlog(filters.locale).catch(() => null);
 
@@ -74,13 +74,13 @@ export async function hydrateBlogList(filters: BlogListFilters) {
     state: dehydrate(queryClient),
     listFilters,
     latestBlog:
-      queryClient.getQueryData<BlogDetail | null>(
+      queryClient.getQueryData<IBlogDetail | null>(
         qkBlog.latest(filters.locale)
       ) ?? null,
-    postCategory: queryClient.getQueryData<BlogCategoriesResponse>(
+    postCategory: queryClient.getQueryData<IBlogCategoriesResponse>(
       qkBlog.categories(filters.locale)
     ) ?? { posts: [] },
-    blogList: queryClient.getQueryData<BlogListResponse>(
+    blogList: queryClient.getQueryData<IBlogListResponse>(
       qkBlog.list(listFilters)
     ) ?? {
       blogs: [],
@@ -99,7 +99,7 @@ export async function hydrateBlogList(filters: BlogListFilters) {
 export async function hydrateBlogDetail(slug: string, locale: string) {
   const queryClient = makeQueryClient();
   const detail = await fetchBlogBySlug(slug, locale);
-  const relatedFilters: BlogListFilters = {
+  const relatedFilters: TBlogListFilters = {
     locale,
     page: 1,
     pageSize: 3,
@@ -117,10 +117,10 @@ export async function hydrateBlogDetail(slug: string, locale: string) {
   return {
     state: dehydrate(queryClient),
     blogDetail:
-      queryClient.getQueryData<BlogDetail | null>(
+      queryClient.getQueryData<IBlogDetail | null>(
         qkBlog.detail(slug, locale)
       ) ?? null,
-    relatedBlogs: queryClient.getQueryData<BlogListResponse>(
+    relatedBlogs: queryClient.getQueryData<IBlogListResponse>(
       qkBlog.list(relatedFilters)
     ) ?? {
       blogs: [],

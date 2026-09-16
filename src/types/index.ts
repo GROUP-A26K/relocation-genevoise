@@ -1,7 +1,7 @@
-import type { Meta } from '@/models/meta';
+import type { IMeta } from '@/models/meta';
 import type { IPropertyListing } from '@/models/property';
 
-export interface IPropertyParams {
+export type TPropertyParams = {
   page?: number;
   pageSize?: number;
   locale?: string;
@@ -13,18 +13,18 @@ export interface IPropertyParams {
   sort?: string;
   rooms?: string;
   availableOnly?: boolean;
-}
+};
 
-export interface IPropertyCategoryParams {
+export type TPropertyCategoryParams = {
   locale?: string;
-}
+};
 
 export interface IPropertiesResponse {
   properties: IPropertyListing[];
-  meta: Meta;
+  meta: IMeta;
 }
 
-export type Property = {
+export type TProperty = {
   id: string;
   title: string;
   type: string;
@@ -64,15 +64,15 @@ export type Property = {
   updatedAt: string;
 };
 
-export type ImageObj = {
+export type TImageObj = {
   id: string;
   url: string;
   isPrimary?: boolean;
 };
 
-export type GalleryMap = {
+export type TGalleryMap = {
   [key: string]: {
-    images: ImageObj[];
+    images: TImageObj[];
     description: string;
   };
 };

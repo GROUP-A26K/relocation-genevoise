@@ -2,14 +2,14 @@ import { get } from '@/libs/axios';
 
 import type {
   IPropertiesResponse,
-  PropertyCategoriesResponse,
-  PropertyDetail,
-  PropertyListFilters,
-  PropertyPhotoTourResponse,
+  IPropertyCategoriesResponse,
+  IPropertyDetail,
+  TPropertyListFilters,
+  IPropertyPhotoTourResponse,
 } from './property.types';
 
 export function fetchPropertiesApi(
-  filters: PropertyListFilters,
+  filters: TPropertyListFilters,
   signal?: AbortSignal
 ) {
   return get<IPropertiesResponse>(
@@ -35,7 +35,7 @@ export function fetchPropertyCategoriesApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return get<PropertyCategoriesResponse>(
+  return get<IPropertyCategoriesResponse>(
     '/api/property/categories',
     { locale },
     signal
@@ -47,7 +47,7 @@ export function fetchPropertyDetailApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return get<PropertyDetail | null>(
+  return get<IPropertyDetail | null>(
     '/api/property/detail',
     { slug, locale },
     signal
@@ -59,7 +59,7 @@ export function fetchPropertyPhotoTourApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return get<PropertyPhotoTourResponse>(
+  return get<IPropertyPhotoTourResponse>(
     '/api/property/photo-tour',
     { slug, locale },
     signal

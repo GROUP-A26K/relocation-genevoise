@@ -1,7 +1,7 @@
-import type { Block } from './block';
+import type { TBlock } from './block';
 import type { THref } from '@/libs/i18nNavigation';
 
-export interface Job {
+export interface IJob {
   id: string;
   title: string;
   href: THref;
@@ -22,6 +22,6 @@ export interface Job {
   language: string;
 }
 
-export interface JobDetail extends Job {
-  body: Block[];
+export interface IJobDetail extends IJob {
+  body: TBlock[];
 }

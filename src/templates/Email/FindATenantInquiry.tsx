@@ -15,9 +15,11 @@ import {
   Text,
 } from '@react-email/components';
 
+import { ORGANIZATION } from '@/constants/seo';
+
 type TInquiryAudience = 'landlord' | 'tenant';
 
-interface InquiryUserInfo {
+type TInquiryUserInfo = {
   full_name: string;
   email: string;
   phone: string;
@@ -25,11 +27,11 @@ interface InquiryUserInfo {
   property_type: string;
   number_of_rooms: string;
   additional_info?: string;
-}
+};
 
-interface FindATenantInquiryProps {
+interface IFindATenantInquiryProps {
   audience: TInquiryAudience;
-  userInfo: InquiryUserInfo;
+  userInfo: TInquiryUserInfo;
   baseUrl: string;
   locale: 'en' | 'fr';
 }
@@ -64,7 +66,7 @@ export const FindATenantInquiry = ({
   userInfo,
   baseUrl,
   locale = 'en',
-}: FindATenantInquiryProps) => {
+}: IFindATenantInquiryProps) => {
   const t = copy[locale];
   const heading = audience === 'landlord' ? t.landlord : t.tenant;
 
@@ -147,7 +149,7 @@ FindATenantInquiry.PreviewProps = {
   userInfo: {
     full_name: 'Gavin Tran',
     email: '2Kw7M@example.com',
-    phone: '+41 22 715 17 48',
+    phone: ORGANIZATION.telephone,
     property_address: 'Rue du Rhône 1, Genève',
     property_type: 'apartment',
     number_of_rooms: '3',
@@ -155,6 +157,6 @@ FindATenantInquiry.PreviewProps = {
   },
   baseUrl: 'http://localhost:3000',
   locale: 'fr',
-} as FindATenantInquiryProps;
+} as IFindATenantInquiryProps;
 
 export default FindATenantInquiry;

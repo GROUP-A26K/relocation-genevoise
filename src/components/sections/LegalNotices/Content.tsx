@@ -1,17 +1,15 @@
-import { RevealItem } from '@/components/customs/Reveal';
-import { FormattedText, Paragraph } from '@/components/customs/Text';
+import { RevealItem } from '@/components/common/Reveal';
+import { FormattedText, Paragraph } from '@/components/common/Text';
 
-import type { FC } from 'react';
-
-interface Section {
+type TSection = {
   title: string;
   content: { paragraph: string; title?: string }[];
-}
-interface ContentProps {
-  section: Section[];
+};
+interface IContentProps {
+  section: TSection[];
 }
 
-export const Content: FC<ContentProps> = ({ section }) => {
+export const Content: React.FC<IContentProps> = ({ section }) => {
   return (
     <div className="top-0 flex flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">

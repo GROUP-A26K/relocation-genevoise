@@ -4,7 +4,7 @@ import { fetchBlogSlugBySlug } from '@/features/blog/blog.service';
 import { fetchCareerSlugBySlug } from '@/features/career/career.service';
 import { fetchPropertySlugBySlug } from '@/features/property/property.service';
 
-export type AlternateContentType = 'blog' | 'career' | 'property';
+export type TAlternateContentType = 'blog' | 'career' | 'property';
 
 const RESOLVERS = {
   blog: fetchBlogSlugBySlug,
@@ -13,7 +13,7 @@ const RESOLVERS = {
 } as const;
 
 export const resolveAlternateSlug = async (
-  type: AlternateContentType,
+  type: TAlternateContentType,
   slug: string,
   targetLocale: string
 ): Promise<string | null> => {

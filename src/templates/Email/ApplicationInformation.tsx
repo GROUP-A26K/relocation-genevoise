@@ -15,17 +15,17 @@ import {
   Text,
 } from '@react-email/components';
 
-import type { ApplicationFormInput } from '@/validations/application.validation';
+import type { TApplicationFormInput } from '@/validations/application.validation';
 
-interface UserInfo extends Omit<
-  ApplicationFormInput,
+type TUserInfo = Omit<
+  TApplicationFormInput,
   'resume_file ' | 'accept ' | 'expected_ctc'
-> {
+> & {
   resume_url: string;
   expected_ctc: number | undefined;
-}
-interface ApplicationProps {
-  userInfo: UserInfo;
+};
+interface IApplicationInformationProps {
+  userInfo: TUserInfo;
   baseUrl: string;
   locale: 'en' | 'fr';
 }
@@ -61,7 +61,7 @@ export const ApplicationInformation = ({
   userInfo,
   baseUrl,
   locale = 'en',
-}: ApplicationProps) => {
+}: IApplicationInformationProps) => {
   const t = copy[locale];
 
   return (
@@ -164,5 +164,5 @@ ApplicationInformation.PreviewProps = {
   },
   baseUrl: 'https://relocation-genevoise.vercel.app/',
   locale: 'en',
-} as ApplicationProps;
+} as IApplicationInformationProps;
 export default ApplicationInformation;

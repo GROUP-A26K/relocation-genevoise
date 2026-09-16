@@ -1,10 +1,10 @@
 import { useRef, useState, useCallback, useLayoutEffect } from 'react';
 
-interface IScrollOptions {
+type TScrollOptions = {
   headerSelector?: string;
   preserveScrollPosition?: boolean;
   lockActiveDuringScroll?: boolean;
-}
+};
 
 export const useScroll = (
   ids: string[],
@@ -13,7 +13,7 @@ export const useScroll = (
     headerSelector,
     preserveScrollPosition = false,
     lockActiveDuringScroll = false,
-  }: IScrollOptions = {}
+  }: TScrollOptions = {}
 ) => {
   const [activeId, setActiveId] = useState(ids[0] ?? '');
   const activeIdRef = useRef(activeId);
@@ -28,20 +28,20 @@ export const useScroll = (
 
   const scheduleUnlock = useCallback(() => {
     if (unlockTimer.current) clearTimeout(unlockTimer.current);
-    // Debounce scroll events instead of guessing the duration of a smooth scroll.
     unlockTimer.current = setTimeout(releaseManualScroll, 200);
   }, [releaseManualScroll]);
   const pendingAnchor = useRef<{ element: HTMLElement; top: number } | null>(
     null
   );
+  const hasCompletedInitialSync = useRef(false);
 
   const handleSetActiveId = useCallback(
-    (id: string) => {
+    (id: string, shouldPreservePosition = true) => {
       if (id === activeIdRef.current) return;
 
       const element = document.getElementById(id);
       pendingAnchor.current =
-        preserveScrollPosition && element
+        preserveScrollPosition && shouldPreservePosition && element
           ? { element, top: element.getBoundingClientRect().top }
           : null;
       activeIdRef.current = id;
@@ -87,7 +87,8 @@ export const useScroll = (
         }
       }
 
-      handleSetActiveId(nextId);
+      handleSetActiveId(nextId, hasCompletedInitialSync.current);
+      hasCompletedInitialSync.current = true;
     };
 
     const listener = () => {

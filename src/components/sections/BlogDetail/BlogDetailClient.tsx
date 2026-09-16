@@ -2,20 +2,20 @@
 
 import { useTranslations } from 'next-intl';
 
-import Section from '@/components/customs/Section';
-import { BlogList } from '@/components/blocks/Blog';
-import { BlogDetailHero } from '@/components/blocks/Hero';
+import Section from '@/components/common/Section';
+import RelatedBlogs from '@/components/common/RelatedBlogs';
 import { useBlogDetail, useBlogList } from '@/features/blog/blog.hooks';
+import { BlogDetailHero } from '@/components/sections/BlogDetail/BlogDetailHero';
 
 import { ContentView } from './ContentView';
 
-import type { Blog, BlogDetail } from '@/models/blog';
+import type { IBlog, IBlogDetail } from '@/models/blog';
 
 interface IBlogDetailClientProps {
   slug: string;
   locale: string;
-  blog: BlogDetail;
-  relatedBlogs: Blog[];
+  blog: IBlogDetail;
+  relatedBlogs: IBlog[];
 }
 
 export function BlogDetailClient({
@@ -39,7 +39,7 @@ export function BlogDetailClient({
       <ContentView tableOfContent={t('tableContent')} blog={blog} />
 
       <Section>
-        <BlogList
+        <RelatedBlogs
           blogs={relatedBlogs}
           heading={t('BlogList.heading')}
           subHeading={t('BlogList.subHeading')}

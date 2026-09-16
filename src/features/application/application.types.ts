@@ -1,13 +1,13 @@
-import type { ApplicationFormInput } from '@/validations/application.validation';
+import type { TApplicationFormInput } from '@/validations/application.validation';
 
-export interface ApplicationSubmitVariables {
-  values: ApplicationFormInput;
+export type TApplicationSubmitVariables = {
+  values: TApplicationFormInput;
   locale: string;
-}
+};
 
-export interface ApplicationSubmitResponse {
+export interface IApplicationSubmitResponse {
   status: string;
   message: string;
 }
 
-export type { ApplicationFormInput };
+export type { TApplicationFormInput };

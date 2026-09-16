@@ -1,4 +1,4 @@
-import PropertyCardSkeleton from '@/components/customs/Card/PropertyCardSkeleton';
+import PropertyCardSkeleton from '@/components/common/Card/PropertyCardSkeleton';
 
 interface IPropertyListSkeletonProps {
   count?: number;

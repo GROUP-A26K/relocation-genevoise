@@ -1,9 +1,10 @@
 'use client';
 import { ContentContainer } from './ContentContainer';
-import { Content, type ContentProps } from './Content';
+import { Content, type IContentProps } from './Content';
 
-import type { FC } from 'react';
-export const ContentView: FC<ContentProps> = ({ section }) => {
+interface IContentViewProps extends IContentProps {}
+
+export const ContentView: React.FC<IContentViewProps> = ({ section }) => {
   return (
     <ContentContainer>
       <Content section={section} />

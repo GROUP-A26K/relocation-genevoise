@@ -4,26 +4,26 @@ import { useMemo } from 'react';
 import { isNil } from 'lodash-es';
 
 import { useScroll } from '@/hooks/useScroll';
-import Section from '@/components/customs/Section';
+import Section from '@/components/common/Section';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { ContentMenu } from '@/components/blocks/DynamicContent';
+import { ContentMenu } from '@/components/common/ContentMenu';
 import {
   DESKTOP_MENU_OFFSET,
   MOBILE_MENU_OFFSET,
-} from '@/components/blocks/DynamicContent/constants';
+} from '@/components/common/ContentMenu/constants';
 import {
-  type Block,
-  type FaqBlock,
+  type TBlock,
+  type TFaqBlock,
   BLOG_BODY_BLOCKS,
-  type BlogDetail,
-  type WysiwygBlock,
+  type IBlogDetail,
+  type TWysiwygBlock,
 } from '@/models/blog';
 
 import { Content } from './Content';
 
 interface IContentViewProps {
   tableOfContent?: string;
-  blog: BlogDetail;
+  blog: IBlogDetail;
 }
 
 const allowedBlockTypes = [
@@ -35,7 +35,9 @@ export const ContentView = ({ blog, tableOfContent }: IContentViewProps) => {
   const listBlock = useMemo(
     () =>
       blog.body.filter(
-        (item): item is Block & { _key: string } & (WysiwygBlock | FaqBlock) =>
+        (
+          item
+        ): item is TBlock & { _key: string } & (TWysiwygBlock | TFaqBlock) =>
           !isNil(item) &&
           typeof item === 'object' &&
           '_key' in item &&

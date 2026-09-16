@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from 'motion/react';
 
 import { cn } from '@/libs/utils';
 import { useScroll } from '@/hooks/useScroll';
-import { RevealItem } from '@/components/customs/Reveal';
+import { RevealItem } from '@/components/common/Reveal';
 import {
   Accordion,
   AccordionItem,

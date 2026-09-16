@@ -2,9 +2,9 @@ import { Fragment } from 'react';
 import { Check } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
 
-import Section from '@/components/customs/Section';
-import CountUp from '@/components/customs/CountUp';
-import { RevealItem } from '@/components/customs/Reveal';
+import Section from '@/components/common/Section';
+import CountUp from '@/components/common/CountUp';
+import { RevealItem } from '@/components/common/Reveal';
 
 type TMetric = {
   value: string;

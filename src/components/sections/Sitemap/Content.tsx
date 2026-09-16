@@ -1,13 +1,17 @@
 'use client';
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
-import { RevealItem } from '@/components/customs/Reveal';
-import { List, ListItem } from '@/components/customs/Text';
-import { ANCHOR_SCROLL_MARGIN } from '@/components/blocks/DynamicContent/constants';
+import { RevealItem } from '@/components/common/Reveal';
+import { List, ListItem } from '@/components/common/Text';
+import { ANCHOR_SCROLL_MARGIN } from '@/components/common/ContentMenu/constants';
 
-import type { NavbarProps } from './PageView';
+import type { TSitemap } from './PageView';
 
-export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
+interface IContentProps {
+  sitemap: TSitemap;
+}
+
+export const Content = ({ sitemap }: IContentProps) => {
   return (
     <div className="top-0 flex flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[470px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">

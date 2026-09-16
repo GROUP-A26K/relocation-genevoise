@@ -15,10 +15,10 @@ import {
   Text,
 } from '@react-email/components';
 
-import type { BookingFormInput } from '@/validations/booking.validation';
+import type { TBookingFormInput } from '@/validations/booking.validation';
 
-interface ContactProps {
-  userInfo: BookingFormInput;
+interface ICallMeBackProps {
+  userInfo: TBookingFormInput;
   baseUrl: string;
   locale: 'en' | 'fr';
 }
@@ -40,7 +40,7 @@ export const CallMeBack = ({
   userInfo,
   baseUrl,
   locale = 'en',
-}: ContactProps) => {
+}: ICallMeBackProps) => {
   const t = copy[locale];
 
   return (
@@ -116,5 +116,5 @@ CallMeBack.PreviewProps = {
   },
   baseUrl: 'http://localhost:3000/',
   locale: 'fr',
-} as ContactProps;
+} as ICallMeBackProps;
 export default CallMeBack;

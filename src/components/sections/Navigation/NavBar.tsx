@@ -7,14 +7,18 @@ import {
   House,
 } from 'lucide-react';
 
-import { NavbarContainer, type INavbarProps } from './NavbarContainer';
+import { NavbarContainer, type INavbarContainerProps } from './NavbarContainer';
 
-const Navbar: React.FC<{ locale: string }> = async ({ locale }) => {
+interface INavBarProps {
+  locale: string;
+}
+
+const NavBar: React.FC<INavBarProps> = async ({ locale }) => {
   const tNav = await getTranslations({
     locale,
     namespace: 'Navbar',
   });
-  const navLinks: INavbarProps = {
+  const navLinks: INavbarContainerProps = {
     menu: [
       {
         title: tNav('menu.0.title'),
@@ -81,4 +85,4 @@ const Navbar: React.FC<{ locale: string }> = async ({ locale }) => {
   );
 };
 
-export { Navbar };
+export { NavBar };

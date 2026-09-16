@@ -2,18 +2,23 @@ import NextLink from 'next/link';
 import { Phone, PhoneCall } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
-import Button from '@/components/customs/Button';
+import Button from '@/components/common/Button';
 import LogoIcon from '@/components/icons/LogoIcon';
 import { Accordion } from '@/components/ui/accordion-custom';
+import { CONTACT_PHONE_HREF, ORGANIZATION } from '@/constants/seo';
 import { SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { renderMobileMenuItem } from '@/components/blocks/MenuItem/MobileMenuItem';
+import { LanguageSelector } from '@/components/common/Language/LanguageSelector';
 
+import { renderMobileMenuItem } from './MenuItem';
 import { MobileMenuSheet } from './MobileMenuSheet';
-import { LanguageSelector } from './LanguageSelector';
 
-import type { INavbarProps } from './NavbarContainer';
+import type { INavbarContainerProps } from './NavbarContainer';
 
-const MobileMenu = ({ menu, callButton, contactButton }: INavbarProps) => {
+const MobileMenu = ({
+  menu,
+  callButton,
+  contactButton,
+}: INavbarContainerProps) => {
   return (
     <nav className="z-20 h-18 w-full bg-white px-4 md:px-4 nav:hidden">
       <div className="relative flex h-full w-full min-w-51.25 items-center justify-between">
@@ -22,7 +27,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: INavbarProps) => {
         </Link>
         <MobileMenuSheet
           phoneAction={
-            <NextLink href="tel:+41227151748">
+            <NextLink href={CONTACT_PHONE_HREF}>
               <SheetClose asChild>
                 <Button
                   as="ghost"
@@ -31,7 +36,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: INavbarProps) => {
                   className="pointer-events-auto w-full border-2 border-white whitespace-normal"
                   iconStart={PhoneCall}
                 >
-                  <div className="line-clamp-1">+41 22 715 17 48</div>
+                  <div className="line-clamp-1">{ORGANIZATION.telephone}</div>
                 </Button>
               </SheetClose>
             </NextLink>

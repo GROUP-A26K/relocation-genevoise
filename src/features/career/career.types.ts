@@ -1,33 +1,33 @@
-import type { Job } from '@/models/job';
-import type { Meta } from '@/models/meta';
+import type { IJob } from '@/models/job';
+import type { IMeta } from '@/models/meta';
 import type { DEPARTMENT_QUERY_RESULT } from '@/sanity/types';
 
-export interface CareerListFilters {
+export type TCareerListFilters = {
   locale: string;
   page: number;
   pageSize: number;
   filterBy?: string;
   search?: string;
+};
+
+export interface ICareerListResponse {
+  jobs: IJob[];
+  meta: IMeta;
 }
 
-export interface CareerListResponse {
-  jobs: Job[];
-  meta: Meta;
-}
-
-export interface CareerDepartmentsResponse {
+export interface ICareerDepartmentsResponse {
   departments: DEPARTMENT_QUERY_RESULT;
 }
 
-export interface CareerFeaturedFilters {
+export type TCareerFeaturedFilters = {
   slug: string;
   locale: string;
   filterBy?: string;
+};
+
+export interface ICareerFeaturedResponse {
+  jobs: IJob[];
 }
 
-export interface CareerFeaturedResponse {
-  jobs: Job[];
-}
-
-export type { Job };
-export type { JobDetail } from '@/models/job';
+export type { IJob };
+export type { IJobDetail } from '@/models/job';

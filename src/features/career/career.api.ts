@@ -1,19 +1,19 @@
 import { get } from '@/libs/axios';
 
 import type {
-  CareerDepartmentsResponse,
-  CareerFeaturedFilters,
-  CareerFeaturedResponse,
-  CareerListFilters,
-  CareerListResponse,
-  JobDetail,
+  ICareerDepartmentsResponse,
+  TCareerFeaturedFilters,
+  ICareerFeaturedResponse,
+  TCareerListFilters,
+  ICareerListResponse,
+  IJobDetail,
 } from './career.types';
 
 export function fetchCareerListApi(
-  filters: CareerListFilters,
+  filters: TCareerListFilters,
   signal?: AbortSignal
 ) {
-  return get<CareerListResponse>(
+  return get<ICareerListResponse>(
     '/api/career',
     {
       locale: filters.locale,
@@ -31,14 +31,14 @@ export function fetchCareerDetailApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return get<JobDetail | null>('/api/career/detail', { slug, locale }, signal);
+  return get<IJobDetail | null>('/api/career/detail', { slug, locale }, signal);
 }
 
 export function fetchCareerDepartmentsApi(
   locale: string,
   signal?: AbortSignal
 ) {
-  return get<CareerDepartmentsResponse>(
+  return get<ICareerDepartmentsResponse>(
     '/api/career/departments',
     { locale },
     signal
@@ -46,10 +46,10 @@ export function fetchCareerDepartmentsApi(
 }
 
 export function fetchCareerFeaturedApi(
-  filters: CareerFeaturedFilters,
+  filters: TCareerFeaturedFilters,
   signal?: AbortSignal
 ) {
-  return get<CareerFeaturedResponse>(
+  return get<ICareerFeaturedResponse>(
     '/api/career/featured',
     {
       slug: filters.slug,

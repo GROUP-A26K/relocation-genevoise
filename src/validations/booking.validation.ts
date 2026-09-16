@@ -25,4 +25,4 @@ export function bookingSchema(t?: TValidationTranslator) {
   });
 }
 
-export type BookingFormInput = z.infer<ReturnType<typeof bookingSchema>>;
+export type TBookingFormInput = z.infer<ReturnType<typeof bookingSchema>>;

@@ -22,10 +22,10 @@ import {
 
 export {
   PROPERTY_PAGE_SIZE,
-  type IPropertyFilterQueryParams,
+  type TPropertyFilterQueryParams,
 } from '@/utils/propertyFilters';
 
-type PropertyAppliedFilters = {
+type TPropertyAppliedFilters = {
   categories: string[];
   location: string;
   priceRange: string;
@@ -33,7 +33,7 @@ type PropertyAppliedFilters = {
   rooms: string;
 };
 
-export type PropertyFilterFormValues = {
+export type TPropertyFilterFormValues = {
   categories: string[];
   location: string;
   priceRange: string;
@@ -64,7 +64,7 @@ export const usePropertyFilters = (
     { shallow: true, scroll: false }
   );
 
-  const formValues = useMemo<PropertyFilterFormValues>(
+  const formValues = useMemo<TPropertyFilterFormValues>(
     () => ({
       location: queryParams.location,
       categories: paramToCategories(queryParams.categories),
@@ -82,7 +82,7 @@ export const usePropertyFilters = (
   );
 
   const applyFilters = useCallback(
-    (filters: Partial<PropertyAppliedFilters> = {}) => {
+    (filters: Partial<TPropertyAppliedFilters> = {}) => {
       const nextLocation = (filters.location ?? queryParams.location).trim();
       const nextCategories = !isNil(filters.categories)
         ? categoriesToParam(filters.categories)

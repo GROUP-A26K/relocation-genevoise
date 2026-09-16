@@ -13,18 +13,18 @@ import { getPageAlternates } from '@/utils/seo';
 import Hero from '@/components/sections/FindATenant/Hero';
 import CtaBanner from '@/components/sections/FindATenant/CtaBanner';
 import WhyChooseUs from '@/components/sections/FindATenant/WhyChooseUs';
-import HeroImage from '@/assets/img/find-a-tenant/tenant/hero-image.webp';
-import TestimonialAva1 from '@/assets/img/find-a-tenant/tenant/testimonials-ava-1.webp';
-import TestimonialAva2 from '@/assets/img/find-a-tenant/tenant/testimonials-ava-2.webp';
-import TestimonialAva3 from '@/assets/img/find-a-tenant/tenant/testimonials-ava-3.webp';
-import TestimonialAva4 from '@/assets/img/find-a-tenant/tenant/testimonials-ava-4.webp';
-import TestimonialAva5 from '@/assets/img/find-a-tenant/tenant/testimonials-ava-5.webp';
-import TestimonialAva6 from '@/assets/img/find-a-tenant/tenant/testimonials-ava-6.webp';
-import WhyChooseUsImage from '@/assets/img/find-a-tenant/tenant/why-choose-us-image.webp';
+import HeroImage from '@/assets/images/find-a-tenant/tenant/hero-image.webp';
 import Services, {
   type TServiceItem,
 } from '@/components/sections/FindATenant/Services';
-import RentalProcessImage from '@/assets/img/find-a-tenant/tenant/rental-process-image.webp';
+import TestimonialAva1 from '@/assets/images/find-a-tenant/tenant/testimonial-avatar-1.webp';
+import TestimonialAva2 from '@/assets/images/find-a-tenant/tenant/testimonial-avatar-2.webp';
+import TestimonialAva3 from '@/assets/images/find-a-tenant/tenant/testimonial-avatar-3.webp';
+import TestimonialAva4 from '@/assets/images/find-a-tenant/tenant/testimonial-avatar-4.webp';
+import TestimonialAva5 from '@/assets/images/find-a-tenant/tenant/testimonial-avatar-5.webp';
+import TestimonialAva6 from '@/assets/images/find-a-tenant/tenant/testimonial-avatar-6.webp';
+import WhyChooseUsImage from '@/assets/images/find-a-tenant/tenant/why-choose-us-image.webp';
+import RentalProcessImage from '@/assets/images/find-a-tenant/tenant/rental-process-image.webp';
 import Testimonials, {
   type TTestimonial,
 } from '@/components/sections/FindATenant/Testimonials';

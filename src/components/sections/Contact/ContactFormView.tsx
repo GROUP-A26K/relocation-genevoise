@@ -1,10 +1,10 @@
 import ContactForm from './ContactForm';
-import { ContactContainer } from './ContactFormContainer';
+import { ContactFormContainer } from './ContactFormContainer';
 
 export const ContactFormView = () => {
   return (
-    <ContactContainer>
+    <ContactFormContainer>
       <ContactForm />
-    </ContactContainer>
+    </ContactFormContainer>
   );
 };

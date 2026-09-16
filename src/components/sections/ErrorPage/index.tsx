@@ -5,18 +5,18 @@ import { useTranslations } from 'next-intl';
 
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
-import Button from '@/components/customs/Button';
-import Content403 from '@/assets/img/illustrations/content-403.svg';
-import Content404 from '@/assets/img/illustrations/content-404.svg';
-import Content500 from '@/assets/img/illustrations/content-500.svg';
-import { RevealItem, RevealSection } from '@/components/customs/Reveal';
+import Button from '@/components/common/Button';
+import Content403 from '@/assets/icons/errors/error-403.svg';
+import Content404 from '@/assets/icons/errors/error-404.svg';
+import Content500 from '@/assets/icons/errors/error-500.svg';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
 
-interface ErrorPageProps {
+interface IErrorPageProps {
   errorCode: number;
   message?: string;
 }
 
-const ErrorPage: React.FC<ErrorPageProps> = ({ errorCode, message }) => {
+const ErrorPage: React.FC<IErrorPageProps> = ({ errorCode, message }) => {
   const t = useTranslations('Error');
 
   const renderErrorMessage = () => {

@@ -15,7 +15,9 @@ import {
   Text,
 } from '@react-email/components';
 
-interface Props {
+import { ORGANIZATION } from '@/constants/seo';
+
+interface IApplicationProps {
   username: string;
   baseUrl: string;
   locale: 'en' | 'fr';
@@ -34,8 +36,7 @@ const copy = {
     appreciate: 'We appreciate your interest in joining us!',
     regards: 'Best regards,',
     team: 'The Relocation Genevoise Recruitment Team',
-    footer:
-      'This email was sent to <strong>contact@relocation-genevoise.ch</strong> because you submitted a job application to Relocation Genevoise.',
+    footer: `This email was sent to <strong>${ORGANIZATION.email}</strong> because you submitted a job application to Relocation Genevoise.`,
     contactUs: 'Contact us',
     privacy: 'Privacy policy',
     unsubscribe: 'Unsubscribe',
@@ -53,15 +54,18 @@ const copy = {
     appreciate: 'Merci pour l’intérêt que vous portez à notre entreprise !',
     regards: 'Cordialement,',
     team: 'L’équipe de recrutement d’Assurance Genevoise',
-    footer:
-      'Cet e-mail a été envoyé à <strong>contact@relocation-genevoise.ch</strong> car vous avez soumis une candidature à Relocation Genevoise.',
+    footer: `Cet e-mail a été envoyé à <strong>${ORGANIZATION.email}</strong> car vous avez soumis une candidature à Relocation Genevoise.`,
     contactUs: 'Nous contacter',
     privacy: 'Politique de confidentialité',
     unsubscribe: 'Se désabonner',
   },
 } as const;
 
-export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
+export const Application = ({
+  username,
+  baseUrl,
+  locale = 'en',
+}: IApplicationProps) => {
   const t = copy[locale];
 
   return (
@@ -243,5 +247,5 @@ Application.PreviewProps = {
   username: 'Gavin',
   baseUrl: 'https://relocation-genevoise.vercel.app/',
   locale: 'en',
-} as Props;
+} as IApplicationProps;
 export default Application;

@@ -1,7 +1,7 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import TabsSkeleton from '@/components/blocks/TabsMenu/TabsSkeleton';
-import SectionSkeleton from '@/components/customs/Section/SectionSkeleton';
-import PaginationSkeleton from '@/components/blocks/Pagination/PaginationSkeleton';
+import TabsSkeleton from '@/components/common/TabsMenu/TabsSkeleton';
+import SectionSkeleton from '@/components/common/Section/SectionSkeleton';
+import PaginationSkeleton from '@/components/common/Pagination/PaginationSkeleton';
 
 import { BlogListSkeleton } from './BlogListSkeleton';
 

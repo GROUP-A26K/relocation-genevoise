@@ -1,16 +1,16 @@
-import type { IPropertyParams } from '@/types';
+import type { TPropertyParams } from '@/types';
 import type { IAreaPhotoTour, IPropertyCategory } from '@/models/property';
 
-export type PropertyListFilters = IPropertyParams;
+export type TPropertyListFilters = TPropertyParams;
 
-export interface PropertyCategoriesResponse {
+export interface IPropertyCategoriesResponse {
   categories: IPropertyCategory[];
 }
 
-export interface PropertyPhotoTourResponse {
+export interface IPropertyPhotoTourResponse {
   areas: IAreaPhotoTour[];
 }
 
 export type { IAreaPhotoTour, IPropertyCategory };
 export type { IPropertiesResponse } from '@/types';
-export type { PropertyDetail } from '@/models/property';
+export type { IPropertyDetail } from '@/models/property';

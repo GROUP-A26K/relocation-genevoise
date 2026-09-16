@@ -3,11 +3,11 @@ import { ArrowRight } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/libs/utils';
-import Button from '@/components/customs/Button';
-import CountUp from '@/components/customs/CountUp';
-import Section from '@/components/customs/Section';
+import Button from '@/components/common/Button';
+import CountUp from '@/components/common/CountUp';
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
 import { Link, type THref } from '@/libs/i18nNavigation';
-import { RevealItem } from '@/components/customs/Reveal';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
 import HeroTabs, { type TFindATenantAudience } from './HeroTabs';

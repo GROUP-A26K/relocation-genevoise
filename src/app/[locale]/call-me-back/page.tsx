@@ -2,8 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 import { getPageAlternates } from '@/utils/seo';
-import Section from '@/components/customs/Section';
-import { ContactInfo } from '@/components/blocks/Info';
+import Section from '@/components/common/Section';
+import { ContactInfo } from '@/components/common/Info/ContactInfo';
 import { ConsultationFormView } from '@/components/sections/RemindMe';
 
 import type { Metadata } from 'next';

@@ -5,15 +5,15 @@ import { Home, MapPin } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { Form } from '@/components/ui/form';
-import Button from '@/components/customs/Button';
+import Button from '@/components/common/Button';
 import { usePropertyFilters } from '@/hooks/usePropertyFilters';
-import { RevealItem, RevealSection } from '@/components/customs/Reveal';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
 import {
   InputField,
   MultiSelectField,
   PriceRangeField,
   RoomsSelectField,
-} from '@/components/customs/Form';
+} from '@/components/common/Form';
 
 import type { IPropertyCategory } from '@/models/property';
 

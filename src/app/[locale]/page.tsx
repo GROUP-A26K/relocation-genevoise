@@ -15,21 +15,19 @@ import {
 } from 'lucide-react';
 
 import { getPageAlternates } from '@/utils/seo';
-import Section from '@/components/customs/Section';
-import { HomeHero } from '@/components/blocks/Hero';
-import { StatsGrid } from '@/components/blocks/Stats';
-import { ContentWithImg } from '@/components/blocks/Content';
+import Section from '@/components/common/Section';
+import { Feature } from '@/components/sections/Home/Feature';
+import { HomeHero } from '@/components/sections/Home/HomeHero';
+import { StatsGrid } from '@/components/sections/Home/StatsGrid';
 import { hydrateBlogFeed } from '@/features/blog/blog.hydration';
-import { BookConsultation2 } from '@/components/blocks/Consultation';
-import { HomeBlogClient } from '@/components/blocks/Blog/HomeBlogClient';
-import {
-  ContactFeature,
-  Feature,
-  ServiceFeature,
-} from '@/components/blocks/Feature';
+import { ContentWithImg } from '@/components/sections/Home/ContentWithImg';
+import { ContactFeature } from '@/components/sections/Home/ContactFeature';
+import { ServiceFeature } from '@/components/sections/Home/ServiceFeature';
+import RelatedBlogsClient from '@/components/sections/Home/RelatedBlogsClient';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
-import type { TFeature } from '@/components/blocks/Feature/ServiceFeature';
+import type { TFeature } from '@/components/sections/Home/ServiceFeature';
 
 export async function generateMetadata(
   props: PageProps<'/[locale]'>
@@ -204,7 +202,7 @@ export default async function Page(props: PageProps<'/[locale]'>) {
 
       <Section isDivider>
         <HydrationBoundary state={state}>
-          <HomeBlogClient
+          <RelatedBlogsClient
             locale={locale}
             blogs={blogList.blogs}
             heading={t('BlogList.heading')}
@@ -215,7 +213,7 @@ export default async function Page(props: PageProps<'/[locale]'>) {
         </HydrationBoundary>
       </Section>
 
-      <BookConsultation2
+      <BookConsultation
         heading={t('BookConsultation.heading')}
         subHeading={t('BookConsultation.subHeading')}
         description={t('BookConsultation.description')}

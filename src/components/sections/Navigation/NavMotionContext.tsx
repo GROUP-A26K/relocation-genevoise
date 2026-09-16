@@ -2,15 +2,15 @@
 
 import { createContext, useContext } from 'react';
 
-interface INavMotionContext {
+type TNavMotionContext = {
   activeKey: string | null;
   routeActiveKey: string | null;
   indicatorKey: string | null;
   shouldGrow: boolean;
   setHoveredKey: (key: string | null) => void;
-}
+};
 
-const NavMotionContext = createContext<INavMotionContext | null>(null);
+const NavMotionContext = createContext<TNavMotionContext | null>(null);
 
 const useNavMotion = () => {
   const context = useContext(NavMotionContext);
@@ -23,4 +23,4 @@ const useNavMotion = () => {
 };
 
 export { NavMotionContext, useNavMotion };
-export type { INavMotionContext };
+export type { TNavMotionContext };

@@ -11,8 +11,8 @@ import {
   BLOG_LATEST_QUERY,
 } from '@/sanity/lib/queries';
 
-import type { Meta } from '@/models/meta';
-import type { Blog, BlogDetail, BlogSitemap } from '@/models/blog';
+import type { IMeta } from '@/models/meta';
+import type { IBlog, IBlogDetail, IBlogSitemap } from '@/models/blog';
 
 const FALLBACK_IMAGE =
   'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80';
@@ -25,7 +25,7 @@ type TBlogPostProjection = {
   slug: { current?: string } | null;
   timeToRead: number | null;
   publishedDate: string | null;
-  body?: BlogDetail['body'] | null;
+  body?: IBlogDetail['body'] | null;
   mainPhoto: {
     photo: {
       asset: { url: string | null; lqip: string | null } | null;
@@ -41,7 +41,7 @@ type TBlogPostProjection = {
   } | null;
 };
 
-export interface ParamsProps {
+export type TBlogParams = {
   page?: number;
   filterBy?: string;
   search?: string;
@@ -50,9 +50,9 @@ export interface ParamsProps {
   start?: number;
   limit?: number;
   exceptSlug?: string;
-}
+};
 
-const toBlog = (post: TBlogPostProjection, publishedDate: string): Blog => ({
+const toBlog = (post: TBlogPostProjection, publishedDate: string): IBlog => ({
   id: post._id,
   title: post.title || 'Untitled Post',
   href: {
@@ -79,15 +79,15 @@ const toBlog = (post: TBlogPostProjection, publishedDate: string): Blog => ({
   },
 });
 
-const toBlogDetail = (post: TBlogPostProjection): BlogDetail => ({
+const toBlogDetail = (post: TBlogPostProjection): IBlogDetail => ({
   ...toBlog(post, post?.publishedDate || 'Unknown Date'),
   body: post?.body || [],
   updatedAt: post?._updatedAt,
 });
 
 export const fetchBlogs = async (
-  params?: ParamsProps
-): Promise<{ blogs: Blog[]; meta: Meta }> => {
+  params?: TBlogParams
+): Promise<{ blogs: IBlog[]; meta: IMeta }> => {
   const pageSize = params?.pageSize || 10;
   const end = (params?.page || 1) * pageSize;
   const start = end - pageSize;
@@ -128,7 +128,7 @@ export const fetchBlogs = async (
 export const fetchBlogBySlug = async (
   slug: string,
   locale: string = 'en'
-): Promise<BlogDetail | null> => {
+): Promise<IBlogDetail | null> => {
   const response = await sanityFetch(
     BLOG_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
@@ -139,8 +139,8 @@ export const fetchBlogBySlug = async (
 };
 
 export const fetchSitemapBlogs = async (
-  params?: ParamsProps
-): Promise<{ blogs: BlogSitemap[]; meta: Meta }> => {
+  params?: TBlogParams
+): Promise<{ blogs: IBlogSitemap[]; meta: IMeta }> => {
   const response = await sanityFetch(
     BLOGS_SITEMAP_QUERY,
     {
@@ -176,7 +176,7 @@ export const fetchSitemapBlogs = async (
 
 export const fetchLatestBlog = async (
   locale: string = 'fr'
-): Promise<BlogDetail | null> => {
+): Promise<IBlogDetail | null> => {
   const response = await sanityFetch(
     BLOG_LATEST_QUERY,
     { locale },
@@ -186,7 +186,7 @@ export const fetchLatestBlog = async (
   return response ? toBlogDetail(response) : null;
 };
 
-export async function fetchPostCategory(params?: ParamsProps) {
+export async function fetchPostCategory(params?: TBlogParams) {
   const posts = await sanityFetch(
     POST_CATEGORIES_QUERY,
     { locale: params?.locale ?? 'en' },

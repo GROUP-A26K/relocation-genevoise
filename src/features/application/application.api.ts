@@ -3,11 +3,11 @@ import { isNil } from 'lodash-es';
 import { post } from '@/libs/axios';
 
 import type {
-  ApplicationSubmitResponse,
-  ApplicationSubmitVariables,
+  IApplicationSubmitResponse,
+  TApplicationSubmitVariables,
 } from './application.types';
 
-const toFormData = (values: ApplicationSubmitVariables['values']) => {
+const toFormData = (values: TApplicationSubmitVariables['values']) => {
   const formData = new FormData();
 
   formData.append('resume_file', values.resume_file);
@@ -24,8 +24,8 @@ const toFormData = (values: ApplicationSubmitVariables['values']) => {
 export function submitApplicationApi({
   values,
   locale,
-}: ApplicationSubmitVariables) {
-  return post<ApplicationSubmitResponse>(
+}: TApplicationSubmitVariables) {
+  return post<IApplicationSubmitResponse>(
     '/api/application',
     toFormData(values),
     { locale }

@@ -1,5 +1,5 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import SectionSkeleton from '@/components/customs/Section/SectionSkeleton';
+import SectionSkeleton from '@/components/common/Section/SectionSkeleton';
 
 const HeaderSkeleton = () => (
   <div className="flex flex-col gap-8 lg:pb-16">

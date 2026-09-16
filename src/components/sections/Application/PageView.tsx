@@ -5,17 +5,19 @@ import { useCareerDetail } from '@/features/career/career.hooks';
 import ApplicationForm from './ApplicationForm';
 import ContentContainer from './ContentContainer';
 
-import type { JobDetail } from '@/models/job';
+import type { IJobDetail } from '@/models/job';
+
+interface IPageViewProps {
+  jobDetail: IJobDetail;
+  slug: string;
+  locale: string;
+}
 
 export const PageView = ({
   jobDetail: initialJobDetail,
   slug,
   locale,
-}: {
-  jobDetail: JobDetail;
-  slug: string;
-  locale: string;
-}) => {
+}: IPageViewProps) => {
   const query = useCareerDetail(slug, locale);
   const jobDetail = query.data ?? initialJobDetail;
 

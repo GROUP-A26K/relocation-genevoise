@@ -64,7 +64,7 @@ export function tenantFormSchema(t?: TFormTranslator) {
   });
 }
 
-export type LandlordsFormInput = z.infer<
+export type TLandlordsFormInput = z.infer<
   ReturnType<typeof landlordsFormSchema>
 >;
-export type TenantFormInput = z.infer<ReturnType<typeof tenantFormSchema>>;
+export type TTenantFormInput = z.infer<ReturnType<typeof tenantFormSchema>>;

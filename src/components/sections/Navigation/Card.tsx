@@ -6,9 +6,7 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
 import { Link, type THref } from '@/libs/i18nNavigation';
 
-import type { FC } from 'react';
-
-interface BaseProps {
+interface ICardProps {
   title: string;
   summary: string;
   image: string;
@@ -17,8 +15,7 @@ interface BaseProps {
   variant: 'lg' | 'md';
 }
 
-type Props = BaseProps;
-export const Card: FC<Props> = ({
+export const Card: React.FC<ICardProps> = ({
   title,
   summary,
   image,

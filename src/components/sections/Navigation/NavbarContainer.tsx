@@ -13,7 +13,7 @@ export type TMenuItem = {
   items?: TMenuItem[];
 };
 
-export interface INavbarProps {
+export interface INavbarContainerProps {
   menu: TMenuItem[];
   contactButton?: {
     text: string;
@@ -32,7 +32,7 @@ const NavbarContainer = ({
   callButton,
   locale,
   contactButton,
-}: INavbarProps) => {
+}: INavbarContainerProps) => {
   return (
     <NavigationHeader>
       <nav className="container px-12 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-2xl) xl:px-15 2xl:max-w-(--breakpoint-2xl) 2xl:px-25">

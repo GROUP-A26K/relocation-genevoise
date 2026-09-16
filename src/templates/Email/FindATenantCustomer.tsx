@@ -15,7 +15,9 @@ import {
   Text,
 } from '@react-email/components';
 
-interface FindATenantCustomerProps {
+import { CONTACT_PHONE_HREF, ORGANIZATION } from '@/constants/seo';
+
+interface IFindATenantCustomerProps {
   username: string;
   baseUrl: string;
   locale: 'en' | 'fr';
@@ -35,8 +37,7 @@ const copy = {
     appreciate: 'We appreciate you getting in touch!',
     regards: 'Best regards,',
     team: 'The Relocation Genevoise Customer Support',
-    footer:
-      'This email was sent to <strong>contact@relocation-genevoise.ch</strong> because you signed up to receive newsletter from Relocation Genevoise',
+    footer: `This email was sent to <strong>${ORGANIZATION.email}</strong> because you signed up to receive newsletter from Relocation Genevoise`,
     contactUs: 'Contact us',
     privacy: 'Privacy policy',
     unsubscribe: 'Unsubscribe',
@@ -53,8 +54,7 @@ const copy = {
     appreciate: 'Nous vous remercions de nous avoir contactés !',
     regards: 'Cordialement,',
     team: 'Le service client d’Relocation Genevoise',
-    footer:
-      'Cet e-mail a été envoyé à <strong>contact@relocation-genevoise.ch</strong> car vous vous êtes inscrit pour recevoir la newsletter d’Relocation Genevoise',
+    footer: `Cet e-mail a été envoyé à <strong>${ORGANIZATION.email}</strong> car vous vous êtes inscrit pour recevoir la newsletter d’Relocation Genevoise`,
     contactUs: 'Nous contacter',
     privacy: 'Politique de confidentialité',
     unsubscribe: 'Se désabonner',
@@ -65,7 +65,7 @@ export const FindATenantCustomer = ({
   username,
   baseUrl,
   locale = 'en',
-}: FindATenantCustomerProps) => {
+}: IFindATenantCustomerProps) => {
   const t = copy[locale];
 
   return (
@@ -129,8 +129,11 @@ export const FindATenantCustomer = ({
 
             <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.urgent}
-              <Link href="telto:41227151748">
-                <strong className="text-[#D7BC12]">+41 (022) 715 17 48</strong>.
+              <Link href={CONTACT_PHONE_HREF}>
+                <strong className="text-[#D7BC12]">
+                  {ORGANIZATION.telephone}
+                </strong>
+                .
               </Link>
               <br />
               {t.explore}
@@ -170,7 +173,7 @@ export const FindATenantCustomer = ({
                 {/* Left column: icons + info */}
                 <Column colSpan={4}>
                   {/* phone */}
-                  <Link href="telto:41227151748">
+                  <Link href={CONTACT_PHONE_HREF}>
                     <div style={{ display: 'flex' }}>
                       <Img
                         src={`${baseUrl}/phone-call-lucid.png`}
@@ -180,7 +183,7 @@ export const FindATenantCustomer = ({
                         alt="Phone"
                       />
                       <Text className="my-0 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
-                        +41 (022) 715 17 48
+                        {ORGANIZATION.telephone}
                       </Text>
                     </div>
                   </Link>
@@ -245,5 +248,5 @@ FindATenantCustomer.PreviewProps = {
   username: 'Gavin',
   baseUrl: 'http://localhost:3000/',
   locale: 'fr',
-} as FindATenantCustomerProps;
+} as IFindATenantCustomerProps;
 export default FindATenantCustomer;

@@ -3,12 +3,12 @@ import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
 
 import { getPageAlternates } from '@/utils/seo';
-import { BookConsultation2 } from '@/components/blocks/Consultation';
 import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
 import PropertiesHero from '@/components/sections/Properties/PropertiesHero';
 import { hydratePropertyList } from '@/features/property/property.hydration';
 import { getExchangeRates, toCHFWithRates } from '@/utils/exchangeRate.server';
 import { SearchFilters } from '@/components/sections/Properties/SearchFilters';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 import PropertyListingsSection from '@/components/sections/Properties/PropertyListingsSection';
 import { PropertiesPageSkeleton } from '@/components/sections/Properties/PropertiesPageSkeleton';
 import {
@@ -63,7 +63,7 @@ export default async function PropertiesPage(
             meta={propertyList.meta}
           />
         </HydrationBoundary>
-        <BookConsultation2
+        <BookConsultation
           heading={t('BookConsultation.heading')}
           subHeading={t('BookConsultation.subHeading')}
           description={t('BookConsultation.description')}

@@ -9,9 +9,12 @@ import {
   careerListQueryOptions,
 } from './career.queries';
 
-import type { CareerFeaturedFilters, CareerListFilters } from './career.types';
+import type {
+  TCareerFeaturedFilters,
+  TCareerListFilters,
+} from './career.types';
 
-export const useCareerList = (filters: CareerListFilters) =>
+export const useCareerList = (filters: TCareerListFilters) =>
   useQuery({
     ...careerListQueryOptions(filters),
     placeholderData: keepPreviousData,
@@ -23,5 +26,5 @@ export const useCareerDetail = (slug: string, locale: string) =>
 export const useCareerDepartments = (locale: string) =>
   useQuery(careerDepartmentsQueryOptions(locale));
 
-export const useCareerFeatured = (filters: CareerFeaturedFilters) =>
+export const useCareerFeatured = (filters: TCareerFeaturedFilters) =>
   useQuery(careerFeaturedQueryOptions(filters));

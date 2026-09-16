@@ -1,13 +1,13 @@
-import type { SubscribeFormInput } from '@/validations/subscribe.validation';
+import type { TSubscribeFormInput } from '@/validations/subscribe.validation';
 
-export interface SubscribeSubmitVariables {
-  values: SubscribeFormInput;
+export type TSubscribeSubmitVariables = {
+  values: TSubscribeFormInput;
   locale: string;
-}
+};
 
-export interface SubscribeSubmitResponse {
+export interface ISubscribeSubmitResponse {
   alreadyExists: boolean;
   email: string;
 }
 
-export type { SubscribeFormInput };
+export type { TSubscribeFormInput };

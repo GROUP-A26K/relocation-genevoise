@@ -5,15 +5,15 @@ import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
-import Show from '@/components/customs/Show';
-import Section from '@/components/customs/Section';
-import TabsMenu from '@/components/blocks/TabsMenu';
-import { JobCard } from '@/components/customs/Card';
-import EmptyData from '@/components/customs/EmptyData';
-import { RevealItem } from '@/components/customs/Reveal';
-import { Pagination } from '@/components/blocks/Pagination';
+import Show from '@/components/common/Show';
+import Section from '@/components/common/Section';
+import { JobCard } from '@/components/common/Card';
+import TabsMenu from '@/components/common/TabsMenu';
+import EmptyData from '@/components/common/EmptyData';
+import { RevealItem } from '@/components/common/Reveal';
+import { Pagination } from '@/components/common/Pagination';
+import { TextWithStrong } from '@/components/common/Text/TextWithStrong';
 import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
 import { normalizeCareerListFilters } from '@/features/career/career.searchParams';
 import {
   useCareerDepartments,
@@ -23,14 +23,14 @@ import {
 import { ContentContainer } from './ContentContainer';
 import { CareerListSkeleton } from './CareerListSkeleton';
 
-import type { Job } from '@/models/job';
-import type { Meta } from '@/models/meta';
+import type { IJob } from '@/models/job';
+import type { IMeta } from '@/models/meta';
 import type { DEPARTMENT_QUERY_RESULT } from '@/sanity/types';
 
 interface IPageViewProps {
   departments: DEPARTMENT_QUERY_RESULT;
-  jobs: Job[];
-  meta: Meta;
+  jobs: IJob[];
+  meta: IMeta;
 }
 
 export const PageView: React.FC<IPageViewProps> = (props) => {

@@ -8,16 +8,16 @@ import {
 } from './blog.api';
 
 import type {
-  BlogCategoriesResponse,
-  BlogDetail,
-  BlogListFilters,
-  BlogListResponse,
+  IBlogCategoriesResponse,
+  IBlogDetail,
+  TBlogListFilters,
+  IBlogListResponse,
 } from './blog.types';
 
 export const qkBlog = {
   root: ['blog'] as const,
   lists: () => [...qkBlog.root, 'list'] as const,
-  list: (filters: BlogListFilters) => [...qkBlog.lists(), filters] as const,
+  list: (filters: TBlogListFilters) => [...qkBlog.lists(), filters] as const,
   details: () => [...qkBlog.root, 'detail'] as const,
   detail: (slug: string, locale: string) =>
     [...qkBlog.details(), { slug, locale }] as const,
@@ -26,31 +26,31 @@ export const qkBlog = {
     [...qkBlog.root, 'categories', { locale }] as const,
 };
 
-type BlogQueryContext = QueryFunctionContext<readonly unknown[]>;
+type TBlogQueryContext = QueryFunctionContext<readonly unknown[]>;
 
-export const blogListQueryOptions = (filters: BlogListFilters) =>
-  queryOptions<BlogListResponse>({
+export const blogListQueryOptions = (filters: TBlogListFilters) =>
+  queryOptions<IBlogListResponse>({
     queryKey: qkBlog.list(filters),
-    queryFn: ({ signal }: BlogQueryContext) => fetchBlogsApi(filters, signal),
+    queryFn: ({ signal }: TBlogQueryContext) => fetchBlogsApi(filters, signal),
   });
 
 export const blogDetailQueryOptions = (slug: string, locale: string) =>
-  queryOptions<BlogDetail | null>({
+  queryOptions<IBlogDetail | null>({
     queryKey: qkBlog.detail(slug, locale),
-    queryFn: ({ signal }: BlogQueryContext) =>
+    queryFn: ({ signal }: TBlogQueryContext) =>
       fetchBlogBySlugApi(slug, locale, signal),
   });
 
 export const blogLatestQueryOptions = (locale: string) =>
-  queryOptions<BlogDetail | null>({
+  queryOptions<IBlogDetail | null>({
     queryKey: qkBlog.latest(locale),
-    queryFn: ({ signal }: BlogQueryContext) =>
+    queryFn: ({ signal }: TBlogQueryContext) =>
       fetchLatestBlogApi(locale, signal),
   });
 
 export const blogCategoriesQueryOptions = (locale: string) =>
-  queryOptions<BlogCategoriesResponse>({
+  queryOptions<IBlogCategoriesResponse>({
     queryKey: qkBlog.categories(locale),
-    queryFn: ({ signal }: BlogQueryContext) =>
+    queryFn: ({ signal }: TBlogQueryContext) =>
       fetchBlogCategoriesApi(locale, signal),
   });

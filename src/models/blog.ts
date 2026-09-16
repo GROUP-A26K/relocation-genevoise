@@ -1,6 +1,6 @@
 import type { THref } from '@/libs/i18nNavigation';
 
-export interface Blog {
+export interface IBlog {
   id: string;
   title: string;
   href: THref;
@@ -23,43 +23,43 @@ export interface Blog {
   };
 }
 
-export interface BlogSitemap {
+export interface IBlogSitemap {
   id: string;
   title: string;
   href: THref;
   slug: string;
 }
 
-export interface BlogDetail extends Blog {
-  body: Block[];
+export interface IBlogDetail extends IBlog {
+  body: TBlock[];
   updatedAt?: string;
 }
 
-export type Block =
+export type TBlock =
   | ({
       _key: string;
-    } & WysiwygBlock)
+    } & TWysiwygBlock)
   | ({
       _key: string;
-    } & StatsBlock)
+    } & TStatsBlock)
   | ({
       _key: string;
-    } & FaqBlock)
+    } & TFaqBlock)
   | ({
       _key: string;
-    } & CtaBlock)
+    } & TCtaBlock)
   | object;
 
-export type WysiwygBlock = {
+export type TWysiwygBlock = {
   _type: 'wysiwygBlock';
   blockTitle?: {
     title?: string;
     isStyle?: boolean;
-    content?: Content[];
+    content?: TContent[];
   };
 };
 
-export type Content =
+export type TContent =
   | {
       children?: Array<{
         marks?: string[];
@@ -82,9 +82,9 @@ export type Content =
       mainPhoto?: {
         imageTitle?: string;
         photo?: {
-          asset?: SanityImageAsset;
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
+          asset?: TSanityImageAsset;
+          hotspot?: TSanityImageHotspot;
+          crop?: TSanityImageCrop;
           _type: 'image';
         };
         photoAlt?: string;
@@ -100,7 +100,7 @@ export type Content =
     }
   | {
       tableTitle?: string;
-      tableData?: Table;
+      tableData?: TTable;
       _type: 'tableZone';
       _key: string;
     }
@@ -109,7 +109,7 @@ export type Content =
       _type: 'videoZone';
       source?: 'file' | 'url' | 'embed';
       videoFile?: {
-        asset?: SanityFileAsset;
+        asset?: TSanityFileAsset;
         _type: 'file';
       };
       videoUrl?: string;
@@ -118,9 +118,9 @@ export type Content =
     }
   | {
       photo?: {
-        asset: SanityImageAsset;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
+        asset: TSanityImageAsset;
+        hotspot?: TSanityImageHotspot;
+        crop?: TSanityImageCrop;
         _type: 'image';
       };
       author?: string;
@@ -155,14 +155,14 @@ export type Content =
       _key: string;
     };
 
-export type Table = {
+export type TTable = {
   _type: 'table';
   rows?: Array<{
     _key: string;
     cells?: Array<string>;
   }>;
 };
-export type SanityImageAsset = {
+export type TSanityImageAsset = {
   _id: string;
   _type: 'sanity.imageAsset';
   _createdAt: string;
@@ -183,7 +183,7 @@ export type SanityImageAsset = {
   url?: string;
   lqip?: string;
 };
-export type SanityFileAsset = {
+export type TSanityFileAsset = {
   _id: string;
   _type: 'sanity.fileAsset';
   _createdAt: string;
@@ -203,7 +203,7 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
 };
-export type SanityImageHotspot = {
+export type TSanityImageHotspot = {
   _type: 'sanity.imageHotspot';
   x?: number;
   y?: number;
@@ -211,7 +211,7 @@ export type SanityImageHotspot = {
   width?: number;
 };
 
-export type SanityImageCrop = {
+export type TSanityImageCrop = {
   _type: 'sanity.imageCrop';
   top?: number;
   bottom?: number;
@@ -219,7 +219,7 @@ export type SanityImageCrop = {
   right?: number;
 };
 
-export type StatsBlock = {
+export type TStatsBlock = {
   _type: 'statsBlock';
   firstStat?: {
     value?: string;
@@ -235,7 +235,7 @@ export type StatsBlock = {
   };
 };
 
-export type FaqBlock = {
+export type TFaqBlock = {
   _type: 'faqBlock';
   faqs: Array<{
     question: string;
@@ -243,7 +243,7 @@ export type FaqBlock = {
   }>;
 };
 
-export type CtaBlock = {
+export type TCtaBlock = {
   _type: 'ctaBlock';
   blockTitle?: {
     title?: string;
@@ -258,5 +258,5 @@ export const BLOG_BODY_BLOCKS = {
   FAQ_BLOCK: 'faqBlock',
   CTA_BLOCK: 'ctaBlock',
 } as const;
-export type BlogBodyBlocks =
+export type TBlogBodyBlocks =
   (typeof BLOG_BODY_BLOCKS)[keyof typeof BLOG_BODY_BLOCKS];

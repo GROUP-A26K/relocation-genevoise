@@ -1,12 +1,12 @@
-import { RevealSection } from '@/components/customs/Reveal';
+import { RevealSection } from '@/components/common/Reveal';
 
-import type { FC } from 'react';
-
-interface Props {
+interface IContentContainerProps {
   children: React.ReactNode;
 }
 
-export const ContentContainer: FC<Props> = ({ children }) => {
+export const ContentContainer: React.FC<IContentContainerProps> = ({
+  children,
+}) => {
   return (
     <section className="relative flex flex-col items-center justify-center text-black-500">
       <RevealSection

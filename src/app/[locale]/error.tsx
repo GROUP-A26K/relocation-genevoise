@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 
 import ErrorPage from '@/components/sections/ErrorPage';
 
-export default function Error({
-  error,
-}: {
+interface IErrorProps {
   error: Error & { digest?: string };
-}) {
+}
+
+export default function Error({ error }: IErrorProps) {
   useEffect(() => {
     console.error(error);
   }, [error]);

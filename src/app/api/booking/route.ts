@@ -5,7 +5,7 @@ import { resend } from '@/libs/resend';
 import { prisma } from '@/libs/prisma';
 import CallMeBack from '@/templates/Email/CallMeBack';
 import {
-  type BookingFormInput,
+  type TBookingFormInput,
   bookingSchema,
 } from '@/validations/booking.validation';
 
@@ -19,7 +19,7 @@ const subjectTitle = {
   fr: 'Rappelez-moi',
 };
 
-const createBooking = async (data: BookingFormInput) => {
+const createBooking = async (data: TBookingFormInput) => {
   try {
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
 
@@ -52,7 +52,7 @@ const createBooking = async (data: BookingFormInput) => {
   }
 };
 
-const sendEmail = async (userInfo: BookingFormInput, locale: 'fr' | 'en') => {
+const sendEmail = async (userInfo: TBookingFormInput, locale: 'fr' | 'en') => {
   try {
     await resend.emails.send({
       from: `"${senderName}" <${senderEmail}>`,

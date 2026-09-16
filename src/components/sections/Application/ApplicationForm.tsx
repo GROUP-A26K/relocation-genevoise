@@ -4,28 +4,24 @@ import Image from 'next/image';
 import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
+import { useCallback, useMemo, useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Clock, MapPin, CircleDollarSign } from 'lucide-react';
-import { type FC, useCallback, useMemo, useState } from 'react';
 
 import { Form } from '@/components/ui/form';
-import Alert from '@/components/customs/Alert';
-import Button from '@/components/customs/Button';
-import { RevealItem } from '@/components/customs/Reveal';
-import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { RevealItem } from '@/components/common/Reveal';
+import { CheckboxField } from '@/components/common/Form/CheckboxField';
+import ConsultationBG from '@/assets/images/application/form-image.webp';
 import { useSubmitApplication } from '@/features/application/application.hooks';
-import ConsultationBG from '@/assets/img/bg/assurance-genevoise-career-form.webp';
+import { InputField, SelectField, UploadField } from '@/components/common/Form';
 import {
-  InputField,
-  SelectField,
-  UploadField,
-} from '@/components/customs/Form';
-import {
-  type ApplicationFormInput,
+  type TApplicationFormInput,
   applicationSchema,
 } from '@/validations/application.validation';
 
-import type { JobDetail } from '@/models/job';
+import type { IJobDetail } from '@/models/job';
 
 const buildOptions = (t: ReturnType<typeof useTranslations>) =>
   [...Array(5).keys()].map((i) => {
@@ -35,26 +31,28 @@ const buildOptions = (t: ReturnType<typeof useTranslations>) =>
 
 const Divider = () => <div className="h-4 w-px bg-slate-200" />;
 
-const InfoChip: FC<{
-  icon: FC<{ className?: string }>;
+interface IInfoChipProps {
+  icon: React.FC<{ className?: string }>;
   label: string | number;
-}> = ({ icon: Icon, label }) => (
+}
+
+const InfoChip: React.FC<IInfoChipProps> = ({ icon: Icon, label }) => (
   <li className="flex items-center gap-1.5 text-sm font-medium text-black-200">
     <Icon className="size-4 text-black-50" />
     {label}
   </li>
 );
 
-interface Props {
-  jobDetail: JobDetail;
+interface IApplicationFormProps {
+  jobDetail: IJobDetail;
 }
 
-const ApplicationForm: FC<Props> = ({ jobDetail }) => {
+const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
   const t = useTranslations('Application.ApplyForm');
   const formT = useTranslations('Validation.Application');
   const toastT = useTranslations('ToastMessage.Application');
   const locale = useLocale();
-  const form = useForm<ApplicationFormInput>({
+  const form = useForm<TApplicationFormInput>({
     resolver: zodResolver(applicationSchema(formT)),
     defaultValues: {
       expected_ctc: '',
@@ -68,7 +66,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
   const { mutate, isPending } = useSubmitApplication();
   const experienceOptions = useMemo(() => buildOptions(t), [t]);
 
-  const onSubmit: SubmitHandler<ApplicationFormInput> = useCallback(
+  const onSubmit: SubmitHandler<TApplicationFormInput> = useCallback(
     (values) =>
       mutate(
         { values, locale },

@@ -1,7 +1,11 @@
 import { Footer } from '@/components/sections/Footer';
-import { Whatsapp } from '@/components/blocks/Whatsapp';
+import { Whatsapp } from '@/components/common/Whatsapp';
 
-export default function Template({ children }: { children: React.ReactNode }) {
+interface ITemplateProps {
+  children: React.ReactNode;
+}
+
+export default function Template({ children }: ITemplateProps) {
   return (
     <>
       <main>

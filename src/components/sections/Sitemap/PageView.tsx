@@ -4,42 +4,41 @@ import { useTranslations } from 'next-intl';
 
 import { useScroll } from '@/hooks/useScroll';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { RevealItem } from '@/components/customs/Reveal';
-import { FormattedText } from '@/components/customs/Text';
-import { ContentMenu } from '@/components/blocks/DynamicContent';
+import { RevealItem } from '@/components/common/Reveal';
+import { FormattedText } from '@/components/common/Text';
+import { ContentMenu } from '@/components/common/ContentMenu';
 import {
   DESKTOP_MENU_OFFSET,
   MOBILE_MENU_OFFSET,
-} from '@/components/blocks/DynamicContent/constants';
+} from '@/components/common/ContentMenu/constants';
 
 import { Content } from './Content';
 import { PageContainer } from './PageContainer';
 
-import type { Meta } from '@/models/meta';
-import type { BlogSitemap } from '@/models/blog';
+import type { IMeta } from '@/models/meta';
+import type { IBlogSitemap } from '@/models/blog';
 import type { THref } from '@/libs/i18nNavigation';
-import type { PropertySitemap } from '@/models/property';
+import type { IPropertySitemap } from '@/models/property';
 
-export interface MenuItem {
+export type TSitemapMenuItem = {
   id?: string;
   url?: THref;
   title: string;
   description?: string;
-  items?: MenuItem[];
-}
-export interface NavbarProps {
-  menu: MenuItem[];
-}
+  items?: TSitemapMenuItem[];
+};
+export type TSitemap = {
+  menu: TSitemapMenuItem[];
+};
 
 const SECTION_IDS = ['general', 'services', 'blog', 'properties'];
 
-export const PageView = ({
-  blogSitemap,
-  propertySitemap,
-}: {
-  blogSitemap: { blogs: BlogSitemap[]; meta: Meta };
-  propertySitemap: { properties: PropertySitemap[]; meta: { total: number } };
-}) => {
+interface IPageViewProps {
+  blogSitemap: { blogs: IBlogSitemap[]; meta: IMeta };
+  propertySitemap: { properties: IPropertySitemap[]; meta: { total: number } };
+}
+
+export const PageView = ({ blogSitemap, propertySitemap }: IPageViewProps) => {
   const t = useTranslations('SiteMap');
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const { activeId, setActiveId } = useScroll(
@@ -48,7 +47,7 @@ export const PageView = ({
     { lockActiveDuringScroll: true }
   );
 
-  const sitemap: NavbarProps = {
+  const sitemap: TSitemap = {
     menu: [
       {
         title: t('sections.0.title'),

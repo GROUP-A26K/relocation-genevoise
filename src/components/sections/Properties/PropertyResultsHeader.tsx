@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { RevealItem } from '@/components/customs/Reveal';
+import { RevealItem } from '@/components/common/Reveal';
 import {
   PROPERTY_SORT_OPTIONS,
   usePropertyFilters,

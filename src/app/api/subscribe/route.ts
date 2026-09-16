@@ -5,7 +5,7 @@ import { resend } from '@/libs/resend';
 import { prisma } from '@/libs/prisma';
 import { Subscribe } from '@/templates/Email/Subscribe';
 import {
-  type SubscribeFormInput,
+  type TSubscribeFormInput,
   subscribeSchema,
 } from '@/validations/subscribe.validation';
 
@@ -29,7 +29,7 @@ const subjectTitle = {
   fr: 'Bienvenue dans notre service!',
 } as const;
 
-const createSubscribe = async (data: SubscribeFormInput) => {
+const createSubscribe = async (data: TSubscribeFormInput) => {
   const existing = await prisma.subscribe.findUnique({
     where: { email: data.email },
   });

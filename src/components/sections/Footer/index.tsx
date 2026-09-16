@@ -3,14 +3,14 @@ import { getTranslations } from 'next-intl/server';
 import Image, { type StaticImageData } from 'next/image';
 
 import GGLogo from '@/components/icons/GGLogo';
-import Section from '@/components/customs/Section';
+import Section from '@/components/common/Section';
 import LogoIcon from '@/components/icons/LogoIcon';
+import { RevealItem } from '@/components/common/Reveal';
 import { Link, type THref } from '@/libs/i18nNavigation';
-import { RevealItem } from '@/components/customs/Reveal';
-import Facebook from '@/assets/img/logos/social/facebook.svg';
-import Linkedin from '@/assets/img/logos/social/linkedin.svg';
-import Instagram from '@/assets/img/logos/social/instagram.svg';
-import { GoogleRating } from '@/components/blocks/GoogleRating';
+import Facebook from '@/assets/icons/social/facebook.svg';
+import Linkedin from '@/assets/icons/social/linkedin.svg';
+import Instagram from '@/assets/icons/social/instagram.svg';
+import { GoogleRating } from '@/components/sections/Footer/GoogleRating';
 
 import { SubscribeForm } from './SubscribeForm';
 

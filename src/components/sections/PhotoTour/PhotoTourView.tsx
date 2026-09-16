@@ -1,4 +1,4 @@
-import { PhotoTourSection } from '@/components/blocks/PhotoTour/PhotoTourSection';
+import { PhotoTourSection } from './PhotoTourSection';
 
 import type { IAreaPhotoTour } from '@/models/property';
 

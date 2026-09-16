@@ -18,8 +18,8 @@ import {
 
 import type {
   IPropertiesResponse,
-  IPropertyCategoryParams,
-  IPropertyParams,
+  TPropertyCategoryParams,
+  TPropertyParams,
 } from '@/types';
 import type {
   PROPERTIES_QUERY_RESULT,
@@ -31,11 +31,11 @@ import type {
   IAreaPhotoTour,
   IPropertyCategory,
   IPropertyGalleryImage,
-  PropertyDetail,
-  PropertyFacility,
+  IPropertyDetail,
+  IPropertyFacility,
   IPropertyListing,
-  PropertyListingType,
-  PropertySitemap,
+  TPropertyListingType,
+  IPropertySitemap,
 } from '@/models/property';
 
 const DEFAULT_PROPERTY_PAGE = 1;
@@ -55,10 +55,10 @@ const getPaginationRange = (page: number, pageSize: number) => {
 const mapFacility = (facility: {
   typeRoom: string | null;
   name: string | null;
-  valueType: PropertyFacility['valueType'] | null;
+  valueType: IPropertyFacility['valueType'] | null;
   numberValue: number | null;
   textValue: string | null;
-}): PropertyFacility => ({
+}): IPropertyFacility => ({
   typeRoom: facility.typeRoom || '',
   name: facility.name || '',
   valueType: facility.valueType || 'none',
@@ -86,7 +86,7 @@ const mapAreaPhotoTour = (
 
 const mapPropertyDetail = (
   property: NonNullable<PROPERTY_DETAIL_QUERY_RESULT>
-): PropertyDetail => ({
+): IPropertyDetail => ({
   _id: property._id,
   _createdAt: property._createdAt,
   _updatedAt: property._updatedAt,
@@ -148,7 +148,7 @@ const mapProperty = (
   },
   price: property.price || 0,
   priceUnit: property.priceUnit || PROPERTY_DEFAULT_PRICE_UNIT,
-  listingType: (property.listingType as PropertyListingType) || 'rent',
+  listingType: (property.listingType as TPropertyListingType) || 'rent',
   rentPeriod: property.rentPeriod || PROPERTY_DEFAULT_RENT_PERIOD,
   location: {
     name: property.mapLocation?.name || '',
@@ -171,7 +171,7 @@ const mapPropertyCategory = (
 });
 
 export const fetchProperties = async (
-  params?: IPropertyParams
+  params?: TPropertyParams
 ): Promise<IPropertiesResponse> => {
   const page = params?.page ?? DEFAULT_PROPERTY_PAGE;
   const pageSize = params?.pageSize ?? DEFAULT_PROPERTY_PAGE_SIZE;
@@ -214,7 +214,7 @@ export const fetchProperties = async (
 };
 
 export const fetchPropertyCategories = async (
-  params?: IPropertyCategoryParams
+  params?: TPropertyCategoryParams
 ): Promise<IPropertyCategory[]> => {
   const response = await sanityFetch(
     PROPERTY_CATEGORIES_QUERY,
@@ -230,7 +230,7 @@ export const fetchPropertyCategories = async (
 export async function getPropertyDetail(
   slug: string,
   locale: string = 'en'
-): Promise<PropertyDetail | null> {
+): Promise<IPropertyDetail | null> {
   const response = await sanityFetch(
     PROPERTY_DETAIL_QUERY,
     { slug: `${locale}-${slug}` },
@@ -254,8 +254,8 @@ export async function getPropertyPhotoTour(
 }
 
 export const fetchSitemapProperties = async (
-  params?: IPropertyParams
-): Promise<{ properties: PropertySitemap[]; meta: { total: number } }> => {
+  params?: TPropertyParams
+): Promise<{ properties: IPropertySitemap[]; meta: { total: number } }> => {
   const response = await sanityFetch(
     PROPERTIES_SITEMAP_QUERY,
     {

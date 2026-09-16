@@ -9,9 +9,9 @@ import {
   blogListQueryOptions,
 } from './blog.queries';
 
-import type { BlogListFilters } from './blog.types';
+import type { TBlogListFilters } from './blog.types';
 
-export const useBlogList = (filters: BlogListFilters) =>
+export const useBlogList = (filters: TBlogListFilters) =>
   useQuery({
     ...blogListQueryOptions(filters),
     placeholderData: keepPreviousData,

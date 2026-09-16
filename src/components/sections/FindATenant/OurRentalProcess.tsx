@@ -4,9 +4,9 @@ import Image, { type StaticImageData } from 'next/image';
 import { motion, useTransform, type MotionValue } from 'motion/react';
 
 import { cn } from '@/libs/utils';
-import Section from '@/components/customs/Section';
+import Section from '@/components/common/Section';
 import useProgressSteps from '@/hooks/useProgressSteps';
-import { RevealItem } from '@/components/customs/Reveal';
+import { RevealItem } from '@/components/common/Reveal';
 
 export type TRentalStep = {
   title: string;
@@ -161,7 +161,7 @@ export default function OurRentalProcess({
   );
 }
 
-interface StepFillProps {
+interface IStepFillProps {
   progress: MotionValue<number>;
   index: number;
   label: string;
@@ -169,7 +169,7 @@ interface StepFillProps {
 
 // Filled copy of the rail laid over the grey one and revealed top-down, so the
 // fill runs through the marker and its line as one continuous stroke.
-function StepFill({ progress, index, label }: StepFillProps) {
+function StepFill({ progress, index, label }: IStepFillProps) {
   const clipPath = useTransform(progress, (value) => {
     const filled = Math.min(Math.max(value - index, 0), 1);
 
