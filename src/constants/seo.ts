@@ -1,4 +1,4 @@
-import type { TLocale } from '@/constants/locale';
+import type { TLocale } from '@/utils/appConfig';
 
 export const SITE_NAME = 'Relocation Genevoise';
 

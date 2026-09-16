@@ -5,10 +5,12 @@ import { FormattedText } from '@/components/customs/Text';
 import { FeatureRowCard2 } from '@/components/customs/Card';
 import HeroImage from '@/assets/img/bg/trouvez-facilement-votre-nouveau-chez-vous-geneve.webp';
 
-type TFeature = {
+import type { THref } from '@/libs/i18nNavigation';
+
+export type TFeature = {
   title: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  link: string;
+  link: THref;
 };
 
 interface IServiceFeatureProps {

@@ -1,7 +1,7 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
 import GoogleLogo from '@/assets/img/logos/gg-logo.svg';
 import StarIcon from '@/assets/img/icons/star-icon.svg';
 

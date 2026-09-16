@@ -19,7 +19,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'findATenantTenantForm'),
+    alternates: getPageAlternates(locale, '/find-a-tenant/tenant/form'),
   };
 }
 

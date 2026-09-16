@@ -65,7 +65,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'findATenantTenant'),
+    alternates: getPageAlternates(locale, '/find-a-tenant/tenant'),
   };
 }
 
@@ -109,7 +109,7 @@ export default async function Page(
         }}
         secondaryCta={{
           text: t('Tenant.Hero.secondaryCta'),
-          href: '/find-a-tenant/tenant#services',
+          href: { pathname: '/find-a-tenant/tenant', hash: '#services' },
         }}
         image={{
           src: HeroImage,

@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
 
 import { SITE_NAME } from '@/constants/seo';
-import { getLocalizedPath } from '@/utils/seo';
+import { getLocalizedPath, toHref } from '@/utils/seo';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { hydratePropertyDetail } from '@/features/property/property.hydration';
 import { PropertyDetailClient } from '@/components/sections/PropertiesDetails/PropertyDetailClient';
@@ -27,14 +27,14 @@ export default async function PropertyDetailPage({
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: SITE_NAME, path: getLocalizedPath(locale, 'home') },
+          { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
           {
             name: tBreadcrumb('properties'),
-            path: getLocalizedPath(locale, 'properties'),
+            path: getLocalizedPath(locale, '/properties'),
           },
           {
             name: property.title,
-            path: getLocalizedPath(locale, 'properties', slug),
+            path: getLocalizedPath(locale, toHref('/properties/[slug]', slug)),
           },
         ]}
       />

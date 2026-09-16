@@ -20,7 +20,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'callMeBack'),
+    alternates: getPageAlternates(locale, '/call-me-back'),
   };
 }
 

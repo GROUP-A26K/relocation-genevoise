@@ -1,7 +1,9 @@
+import type { THref } from '@/libs/i18nNavigation';
+
 export interface Blog {
   id: string;
   title: string;
-  href: string;
+  href: THref;
   slug: string;
   description: string;
   timeToRead: number;
@@ -11,12 +13,10 @@ export interface Blog {
   time: string;
   category: {
     title: string;
-    href: string;
   }[];
   author: {
     name: string;
     role: string;
-    href: string;
     email: string;
     imageUrl: string;
     imageLqip?: string;
@@ -26,7 +26,7 @@ export interface Blog {
 export interface BlogSitemap {
   id: string;
   title: string;
-  href: string;
+  href: THref;
   slug: string;
 }
 

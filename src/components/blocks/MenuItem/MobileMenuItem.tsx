@@ -1,5 +1,5 @@
-import { Link } from '@/libs/i18nNavigation';
 import { SheetClose } from '@/components/ui/sheet';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { SubMenuLink } from '@/components/customs/SubMenuLink';
 import {
   AccordionContent,
@@ -9,7 +9,7 @@ import {
 
 export interface MenuItem {
   title: string;
-  url: string;
+  url?: THref;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   items?: MenuItem[];
@@ -28,7 +28,7 @@ export const renderMobileMenuItem = (item: MenuItem) => {
         </AccordionTrigger>
         <AccordionContent className="mt-2 pb-0">
           {item.items.map((subItem) => (
-            <Link href={subItem.url} key={subItem.title}>
+            <Link href={subItem.url ?? '/'} key={subItem.title}>
               <SheetClose asChild>
                 <SubMenuLink key={subItem.title} {...subItem} variant="md" />
               </SheetClose>
@@ -40,7 +40,7 @@ export const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <Link href={item.url} key={item.title}>
+    <Link href={item.url ?? '/'} key={item.title}>
       <SheetClose asChild>
         <div className="text-md p-[16px] font-semibold">{item.title}</div>
       </SheetClose>

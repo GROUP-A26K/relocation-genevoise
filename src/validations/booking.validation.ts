@@ -1,10 +1,16 @@
 import { z } from 'zod';
 
+import type { useTranslations } from 'next-intl';
+
+type TValidationTranslator = ReturnType<
+  typeof useTranslations<'Validation.Booking'>
+>;
+
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 );
 
-export function bookingSchema(t?: (key: string) => string) {
+export function bookingSchema(t?: TValidationTranslator) {
   return z.object({
     phone: z.string().regex(phoneRegex, {
       message:

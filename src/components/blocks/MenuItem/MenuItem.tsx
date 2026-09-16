@@ -1,5 +1,5 @@
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { fetchBlogs } from '@/features/blog/blog.service';
 import { Card } from '@/components/sections/Navigation/Card';
 import { SubMenuLink } from '@/components/customs/SubMenuLink';
@@ -14,7 +14,7 @@ import {
 type TMenuItem = {
   title: string;
   subtitle?: string;
-  url: string;
+  url?: THref;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   items?: TMenuItem[];
@@ -64,7 +64,7 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
 
                 <div className="grid grid-cols-3 gap-x-[48px] gap-y-3 xl:grid-cols-2">
                   {item.items.map((subItem) => (
-                    <Link href={subItem.url} key={subItem.title}>
+                    <Link href={subItem.url ?? '/'} key={subItem.title}>
                       <NavigationMenuLink asChild className="flex">
                         <SubMenuLink {...subItem} variant="lg" />
                       </NavigationMenuLink>
@@ -88,7 +88,7 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
                     'https://shadcnblocks.com/images/block/placeholder-dark-1.svg'
                   }
                   imageLqip={blogs[0]?.imageLqip}
-                  url={blogs[0]?.href ?? '#'}
+                  url={blogs[0]?.href ?? '/blog'}
                 />
               </div>
             </div>
@@ -101,7 +101,7 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
   return (
     <li key={item.title}>
       <MotionNavItem itemKey={item.title}>
-        <Link className={cn('group', MENU_LINK_STYLE)} href={item.url}>
+        <Link className={cn('group', MENU_LINK_STYLE)} href={item.url ?? '/'}>
           {item.title}
         </Link>
       </MotionNavItem>

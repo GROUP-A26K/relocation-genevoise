@@ -19,7 +19,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'sitemap'),
+    alternates: getPageAlternates(locale, '/sitemap'),
   };
 }
 export default async function Page(props: PageProps<'/[locale]/sitemap'>) {

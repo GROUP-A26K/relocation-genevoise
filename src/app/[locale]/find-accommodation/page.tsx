@@ -30,7 +30,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'findAccommodation'),
+    alternates: getPageAlternates(locale, '/find-accommodation'),
   };
 }
 

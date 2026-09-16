@@ -20,5 +20,5 @@ export const resolveAlternateSlug = async (
   const translations = await RESOLVERS[type](slug);
   const match = translations.find((item) => item.locale === targetLocale);
 
-  return match?.href ? `/${targetLocale}${match.href}` : null;
+  return match?.slug ? match.slug.replace(/^[a-z]{2}-/i, '') : null;
 };

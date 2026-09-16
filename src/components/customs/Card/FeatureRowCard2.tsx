@@ -1,11 +1,11 @@
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
+import { Link, type THref } from '@/libs/i18nNavigation';
 
 interface Props {
   title: string;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  link: string;
+  link: THref;
 }
 
 export const FeatureRowCard2: React.FC<Props> = ({

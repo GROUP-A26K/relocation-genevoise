@@ -2,14 +2,10 @@ import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import NextTopLoader from 'nextjs-toploader';
-import { NextIntlClientProvider } from 'next-intl';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { GoogleTagManager } from '@next/third-parties/google';
-import {
-  getMessages,
-  getTranslations,
-  setRequestLocale,
-} from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import '@/styles/globals.css';
 import { Env } from '@/libs/env';
@@ -83,13 +79,11 @@ export default async function LocaleLayout({
 }: LayoutProps<'/[locale]'>) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
-
-  const messages = await getMessages();
 
   return (
     <html
@@ -113,7 +107,6 @@ export default async function LocaleLayout({
         <NuqsAdapter>
           <NextIntlClientProvider
             locale={locale}
-            messages={messages}
             timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
           >
             <TanstackQueryProvider>

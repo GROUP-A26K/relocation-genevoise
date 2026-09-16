@@ -17,7 +17,10 @@ const DesktopMenu = async ({ menu, callButton, locale }: INavbarProps) => {
   );
   const routeItems = menu.map((item) => ({
     key: item.title,
-    paths: [item.url, ...(item.items?.map((subItem) => subItem.url) ?? [])],
+    paths: [
+      item.url,
+      ...(item.items?.map((subItem) => subItem.url) ?? []),
+    ].filter((path) => typeof path === 'string'),
   }));
 
   return (

@@ -35,7 +35,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'companies'),
+    alternates: getPageAlternates(locale, '/companies'),
   };
 }
 

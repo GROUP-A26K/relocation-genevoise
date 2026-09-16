@@ -1,6 +1,4 @@
 import { Env } from '@/libs/env';
-import { AppConfig } from '@/utils/appConfig';
-import { routing } from '@/libs/i18nNavigation';
 
 export const getBaseUrl = () => {
   if (Env.NEXT_PUBLIC_SITE_URL) {
@@ -8,14 +6,6 @@ export const getBaseUrl = () => {
   }
 
   return 'http://localhost:3000';
-};
-
-export const getI18nPath = (url: string, locale: string) => {
-  if (locale === routing.defaultLocale) {
-    return url;
-  }
-
-  return `/${locale}${url}`;
 };
 
 export const formatDate = (dateString: string, locale: string) => {
@@ -27,23 +17,4 @@ export const formatDate = (dateString: string, locale: string) => {
   };
 
   return date.toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-GB', options);
-};
-
-export const getAlternatePath = (currentPath: string): string => {
-  const { routes } = AppConfig;
-  if (!currentPath.startsWith('/')) currentPath = `/${currentPath}`;
-
-  const [, locale, ...rest] = currentPath.split('/');
-  const slug = `/${rest.join('/')}`;
-  const otherLocale = locale === 'fr' ? 'en' : 'fr';
-
-  const match = Object.values(routes).find(
-    (entry) => entry[locale as 'fr' | 'en'] === slug
-  );
-
-  if (match) {
-    return `/${otherLocale}${match[otherLocale]}`;
-  }
-
-  return `/${otherLocale}${slug}`;
 };

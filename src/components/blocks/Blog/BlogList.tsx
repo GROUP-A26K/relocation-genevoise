@@ -1,7 +1,7 @@
 'use client';
 
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { BlogCard } from '@/components/customs/Card/BlogCard';
@@ -14,7 +14,7 @@ interface IBlogListProps {
   subHeading?: string;
   description?: string;
   buttonText?: string;
-  buttonUrl?: string;
+  buttonUrl?: THref;
   blogs: Blog[];
 }
 

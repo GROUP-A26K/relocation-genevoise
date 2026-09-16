@@ -3,10 +3,10 @@ import { ArrowRight } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import CountUp from '@/components/customs/CountUp';
 import Section from '@/components/customs/Section';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
@@ -14,7 +14,7 @@ import HeroTabs, { type TFindATenantAudience } from './HeroTabs';
 
 type TCta = {
   text: string;
-  href: string;
+  href: THref;
 };
 
 type TStat = {

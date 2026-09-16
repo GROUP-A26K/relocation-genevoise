@@ -20,7 +20,7 @@ export async function generateMetadata(
   const translations = await fetchPropertySlugBySlug(property.slug.current);
   const alternates = getPageAlternates(
     locale,
-    'properties',
+    '/properties/[slug]',
     getSlugByLocale(locale, slug, translations)
   );
   const { canonical } = alternates;

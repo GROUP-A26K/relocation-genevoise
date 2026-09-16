@@ -10,7 +10,7 @@ import { Env } from '@/libs/env';
 import { AppConfig } from '@/utils/appConfig';
 import ErrorPage from '@/components/sections/ErrorPage';
 
-import type { TLocale } from '@/constants/locale';
+import type { TLocale } from '@/utils/appConfig';
 
 interface IGlobalErrorProps {
   error: Error & { digest?: string };
@@ -40,9 +40,9 @@ const MESSAGES: Record<TLocale, AbstractIntlMessages> = {
 };
 
 const getLocaleFromPathname = (pathname: string) =>
-  (AppConfig.locales.find(
+  AppConfig.locales.find(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
-  ) ?? AppConfig.defaultLocale) as TLocale;
+  ) ?? AppConfig.defaultLocale;
 
 export default function GlobalError({ error }: IGlobalErrorProps) {
   const locale = getLocaleFromPathname(usePathname());

@@ -65,7 +65,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'findATenantLandlords'),
+    alternates: getPageAlternates(locale, '/find-a-tenant/landlords'),
   };
 }
 
@@ -109,7 +109,7 @@ export default async function Page(
         }}
         secondaryCta={{
           text: t('Landlords.Hero.secondaryCta'),
-          href: '/find-a-tenant/landlords#services',
+          href: { pathname: '/find-a-tenant/landlords', hash: '#services' },
         }}
         image={{
           src: HeroImage,

@@ -16,6 +16,7 @@ import {
   getOgLocale,
   getPageAlternates,
   getSlugByLocale,
+  toHref,
   toIsoDate,
 } from '@/utils/seo';
 
@@ -32,7 +33,7 @@ export async function generateMetadata(
   const translations = await fetchBlogSlugBySlug(blogDetail.slug);
   const alternates = getPageAlternates(
     locale,
-    'blog',
+    '/blog/[slug]',
     getSlugByLocale(locale, slug, translations)
   );
   const { canonical } = alternates;
@@ -72,15 +73,18 @@ export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
     notFound();
   }
 
-  const blogPath = getLocalizedPath(locale, 'blog', slug);
+  const blogPath = getLocalizedPath(locale, toHref('/blog/[slug]', slug));
 
   return (
     <>
       <BlogJsonLd blog={blogDetail} locale={locale} path={blogPath} />
       <BreadcrumbJsonLd
         items={[
-          { name: SITE_NAME, path: getLocalizedPath(locale, 'home') },
-          { name: tBreadcrumb('blog'), path: getLocalizedPath(locale, 'blog') },
+          { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
+          {
+            name: tBreadcrumb('blog'),
+            path: getLocalizedPath(locale, '/blog'),
+          },
           { name: blogDetail.title, path: blogPath },
         ]}
       />

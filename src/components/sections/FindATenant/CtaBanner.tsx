@@ -1,13 +1,13 @@
 import { ArrowRight } from 'lucide-react';
 
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import Section from '@/components/customs/Section';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 
 type TCta = {
   text: string;
-  href: string;
+  href: THref;
 };
 
 interface ICtaBannerProps {

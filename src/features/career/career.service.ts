@@ -33,7 +33,10 @@ export interface ParamsProps {
 const toJob = (job: TJobPostProjection, locale?: string): Job => ({
   id: job._id,
   title: job.title || 'Untitled',
-  href: `/career/${(job?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+  href: {
+    pathname: '/career/[slug]',
+    params: { slug: (job?.slug?.current || '').replace(/^[a-z]{2}-/i, '') },
+  },
   slug: job.slug?.current || '',
   employmentType: job.employmentType || 'Full-time',
   locationType: job.locationType || 'Remote',
@@ -152,7 +155,10 @@ export const fetchCareerSlugBySlug = async (slug: string) => {
       {
         locale: item.language,
         slug: current,
-        href: `/carriere/${current.replace(/^[a-z]{2}-/i, '')}`,
+        href: {
+          pathname: '/career/[slug]',
+          params: { slug: current.replace(/^[a-z]{2}-/i, '') },
+        },
       },
     ];
   });

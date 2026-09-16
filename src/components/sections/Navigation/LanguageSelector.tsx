@@ -1,96 +1,63 @@
 'use client';
 
 import { Globe } from 'lucide-react';
-import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
-import { type FC, useEffect, useState } from 'react';
 
 import { cn } from '@/libs/utils';
-import Button from '@/components/customs/Button';
-import { getAlternatePath } from '@/utils/helpers';
-import { usePathname } from '@/libs/i18nNavigation';
-import {
-  resolveAlternateSlug,
-  type AlternateContentType,
-} from '@/actions/alternateSlug.action';
 
-interface LanguageSelectorProps {
+import { useLanguageSwitcher } from './hooks';
+
+const WRAPPER_STYLE = cn(
+  'inline-flex h-9 w-fit items-center justify-center gap-2 whitespace-nowrap',
+  'rounded-3xl bg-grey-50 px-[16px] py-[20px] shadow-none',
+  'lineHeight-md text-[16px] font-semibold text-primary-500',
+  '[&_svg]:pointer-events-none [&_svg]:shrink-0'
+);
+
+interface ILanguageSelectorProps {
   className?: string;
 }
 
-const CONTENT_ROUTES: { prefixes: string[]; type: AlternateContentType }[] = [
-  { prefixes: ['/blog/'], type: 'blog' },
-  { prefixes: ['/carriere/', '/career/'], type: 'career' },
-  { prefixes: ['/properties/', '/proprietes/'], type: 'property' },
-];
-
-const [english, french]: string[] = ['en', 'fr'];
-
-const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
-  const router = useRouter();
-  const pathname = usePathname();
-  const locale = useLocale();
-  const [isRotated, setIsRotated] = useState(false);
-
-  const handleChange = async () => {
-    const targetLocale = locale === 'fr' ? 'en' : 'fr';
-
-    const route = CONTENT_ROUTES.find(({ prefixes }) =>
-      prefixes.some((prefix) => pathname?.startsWith(prefix))
-    );
-
-    if (route) {
-      const currentSlug = pathname.split('/')[2];
-
-      const translatedUrl = await resolveAlternateSlug(
-        route.type,
-        `${locale}-${currentSlug}`,
-        targetLocale
-      ).catch(() => null);
-
-      if (translatedUrl) {
-        router.push(
-          pathname.endsWith('/photo-tour')
-            ? `${translatedUrl}/photo-tour`
-            : translatedUrl
-        );
-        router.refresh();
-        return;
-      }
-    }
-
-    router.push(getAlternatePath(`/${locale}${pathname}`));
-    router.refresh();
-  };
-
-  useEffect(() => {
-    setIsRotated((prev) => !prev);
-  }, [locale]);
+const LanguageSelector: React.FC<ILanguageSelectorProps> = ({ className }) => {
+  const { locales, locale, isRotated, pendingLocale, switchTo } =
+    useLanguageSwitcher();
 
   return (
-    <Button
-      aria-label="Switch language"
-      onClick={handleChange}
-      as="ghost"
-      variant="md"
-      type="primary"
-      className={className}
-    >
+    <div className={cn(WRAPPER_STYLE, className)}>
       <Globe
-        className={cn(
-          'h-5! w-5! transition-transform duration-500',
-          isRotated && 'rotate-180'
-        )}
+        className={cn('size-5 transition-transform duration-500', {
+          'rotate-180': isRotated,
+        })}
       />
       <div className="flex divide-x-2 divide-grey-200">
-        <div className={cn(locale === english && 'text-grey-500', 'pr-2')}>
-          FR
-        </div>
-        <div className={cn(locale === french && 'text-grey-500', 'pl-2')}>
-          EN
-        </div>
+        {locales.map((item, index) => {
+          const isActive = item === locale;
+          const isDisabled = isActive || Boolean(pendingLocale);
+
+          return (
+            <button
+              key={item}
+              type="button"
+              aria-label={`Switch language to ${item.toUpperCase()}`}
+              aria-current={isActive}
+              disabled={isDisabled}
+              onClick={() => switchTo(item)}
+              className={cn(
+                'transition-colors duration-200',
+                'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-hidden',
+                index > 0 ? 'pl-2' : 'pr-2',
+                isDisabled ? 'cursor-default' : 'cursor-pointer',
+                isActive
+                  ? 'text-primary-500'
+                  : 'text-grey-500 hover:text-primary-400',
+                { 'text-primary-400': pendingLocale === item }
+              )}
+            >
+              {item.toUpperCase()}
+            </button>
+          );
+        })}
       </div>
-    </Button>
+    </div>
   );
 };
 

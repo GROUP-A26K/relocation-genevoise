@@ -10,6 +10,7 @@ import {
   getLocalizedPath,
   getPageAlternates,
   getSlugByLocale,
+  toHref,
 } from '@/utils/seo';
 import {
   fetchCareerSlugBySlug,
@@ -36,14 +37,17 @@ export default async function Page(
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: SITE_NAME, path: getLocalizedPath(locale, 'home') },
+          { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
           {
             name: tBreadcrumb('career'),
-            path: getLocalizedPath(locale, 'career'),
+            path: getLocalizedPath(locale, '/career'),
           },
           {
             name: jobDetail.title,
-            path: getLocalizedPath(locale, 'career', jobDetail.slug),
+            path: getLocalizedPath(
+              locale,
+              toHref('/career/[slug]', jobDetail.slug)
+            ),
           },
         ]}
       />
@@ -75,7 +79,7 @@ export async function generateMetadata(
     description: jobDetail.excerpt,
     alternates: getPageAlternates(
       locale,
-      'career',
+      '/career/[slug]',
       getSlugByLocale(locale, jobDetail.slug, translations)
     ),
   };

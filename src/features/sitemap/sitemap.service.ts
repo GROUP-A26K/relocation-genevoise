@@ -8,13 +8,15 @@ import {
   getAbsoluteUrl,
   getLocalizedPath,
   stripLocalePrefix,
+  toHref,
   toIsoDate,
-  type TRouteKey,
 } from '@/utils/seo';
+
+import type { TPathname, TSitemapPathname } from '@/utils/appConfig';
 
 type TCmsSitemapSource = {
   type: string;
-  routeKey: TRouteKey;
+  pathname: TPathname;
   tag: string;
   priority: number;
   requiresExplicitVisibility: boolean;
@@ -23,21 +25,21 @@ type TCmsSitemapSource = {
 const CMS_SITEMAPS = {
   blog: {
     type: 'relocationBlogPost',
-    routeKey: 'blog',
+    pathname: '/blog/[slug]',
     tag: 'sitemap-blogs',
     priority: 0.7,
     requiresExplicitVisibility: false,
   },
   properties: {
     type: 'property',
-    routeKey: 'properties',
+    pathname: '/properties/[slug]',
     tag: 'sitemap-properties',
     priority: 0.6,
     requiresExplicitVisibility: false,
   },
   career: {
     type: 'relocationJobPost',
-    routeKey: 'career',
+    pathname: '/career/[slug]',
     tag: 'jobs',
     priority: 0.6,
     requiresExplicitVisibility: true,
@@ -49,26 +51,28 @@ export type TCmsSitemap = keyof typeof CMS_SITEMAPS;
 export const CMS_SITEMAP_NAMES = Object.keys(CMS_SITEMAPS) as TCmsSitemap[];
 
 export const getStaticSitemapUrls = (): TSitemapUrl[] =>
-  (Object.keys(AppConfig.routes) as TRouteKey[]).flatMap((routeKey) => {
-    const pathByLocale = Object.fromEntries(
-      AppConfig.locales.map((locale): [string, string] => [
-        locale,
-        getLocalizedPath(locale, routeKey),
-      ])
-    );
-    const alternates = getAlternates(pathByLocale);
+  (Object.keys(AppConfig.sitemapPriorities) as TSitemapPathname[]).flatMap(
+    (pathname) => {
+      const pathByLocale = Object.fromEntries(
+        AppConfig.locales.map((locale): [string, string] => [
+          locale,
+          getLocalizedPath(locale, toHref(pathname)),
+        ])
+      );
+      const alternates = getAlternates(pathByLocale);
 
-    return AppConfig.locales.map((locale) => ({
-      loc: getAbsoluteUrl(pathByLocale[locale]),
-      priority: AppConfig.routes[routeKey].priority,
-      alternates,
-    }));
-  });
+      return AppConfig.locales.map((locale) => ({
+        loc: getAbsoluteUrl(pathByLocale[locale]),
+        priority: AppConfig.sitemapPriorities[pathname],
+        alternates,
+      }));
+    }
+  );
 
 export const getCmsSitemapUrls = async (
   name: TCmsSitemap
 ): Promise<TSitemapUrl[]> => {
-  const { type, routeKey, tag, priority, requiresExplicitVisibility } =
+  const { type, pathname, tag, priority, requiresExplicitVisibility } =
     CMS_SITEMAPS[name];
 
   const documents = await sanityFetch(
@@ -78,7 +82,7 @@ export const getCmsSitemapUrls = async (
   );
 
   const toPath = (locale: string, slug: string) =>
-    getLocalizedPath(locale, routeKey, stripLocalePrefix(slug));
+    getLocalizedPath(locale, toHref(pathname, stripLocalePrefix(slug)));
 
   return documents.flatMap(({ _updatedAt, language, slug, translations }) => {
     if (!language || !slug) {

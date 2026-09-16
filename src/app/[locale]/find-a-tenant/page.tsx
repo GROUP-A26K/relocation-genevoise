@@ -7,5 +7,5 @@ export default async function Page(
 ) {
   const { locale } = await props.params;
 
-  redirect(getLocalizedPath(locale, 'findATenantLandlords'));
+  redirect(getLocalizedPath(locale, '/find-a-tenant/landlords'));
 }

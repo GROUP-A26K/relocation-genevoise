@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import Image from 'next/image';
 
-import { Link } from '@/libs/i18nNavigation';
 import WhatsappIcon from '@/assets/img/logos/social/whatsapp.svg';
 
 interface IWhatsappProps {
