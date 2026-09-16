@@ -1,5 +1,5 @@
 import { getAbsoluteUrl } from '@/utils/seo';
-import { CMS_SITEMAP_NAMES } from '@/services/sitemap.service';
+import { CMS_SITEMAP_NAMES } from '@/features/sitemap/sitemap.service';
 import { buildSitemapIndexXml, createXmlResponse } from '@/utils/sitemap';
 
 export function GET() {

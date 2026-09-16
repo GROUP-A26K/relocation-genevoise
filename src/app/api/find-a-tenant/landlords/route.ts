@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { Env } from '@/libs/env';
 import { resend } from '@/libs/resend';
-import { executeWithReplication } from '@/libs/prisma';
+import { prisma } from '@/libs/prisma';
 import { FindATenantInquiry } from '@/templates/Email/FindATenantInquiry';
 import { landlordsFormSchema } from '@/validations/findATenant.validation';
 import { FindATenantCustomer } from '@/templates/Email/FindATenantCustomer';
@@ -46,21 +46,19 @@ export async function POST(request: Request) {
 
     const data = parsedData.data;
 
-    const { mysql } = await executeWithReplication((client) =>
-      client.landlord_inquiry.create({
-        data: {
-          full_name: data.full_name,
-          email: data.email,
-          phone: data.phone,
-          property_address: data.property_address,
-          property_type: data.property_type,
-          number_of_rooms: data.number_of_rooms,
-          additional_info: data.additional_info ?? null,
-          accept: data.accept,
-          created_at: new Date(),
-        },
-      })
-    );
+    const landlordInquiry = await prisma.landlord_inquiry.create({
+      data: {
+        full_name: data.full_name,
+        email: data.email,
+        phone: data.phone,
+        property_address: data.property_address,
+        property_type: data.property_type,
+        number_of_rooms: data.number_of_rooms,
+        additional_info: data.additional_info ?? null,
+        accept: data.accept,
+        created_at: new Date(),
+      },
+    });
 
     await resend.emails.send({
       from: `"${senderName}" <${senderEmail}>`,
@@ -81,7 +79,7 @@ export async function POST(request: Request) {
       }),
     });
 
-    return NextResponse.json(mysql, { status: 201 });
+    return NextResponse.json(landlordInquiry, { status: 201 });
   } catch (error) {
     console.error('Error creating landlord inquiry:', error);
     return NextResponse.json(

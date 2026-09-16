@@ -1,3 +1,5 @@
+import { isNil } from 'lodash-es';
+
 export interface IParsedValue {
   end: number;
   prefix: string;
@@ -87,5 +89,5 @@ export function formatNumber(
     ? intPart.replace(/\B(?=(\d{3})+(?!\d))/g, separator)
     : intPart;
 
-  return fracPart == null ? grouped : `${grouped}${decimal}${fracPart}`;
+  return isNil(fracPart) ? grouped : `${grouped}${decimal}${fracPart}`;
 }

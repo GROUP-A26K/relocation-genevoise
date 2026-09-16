@@ -30,6 +30,10 @@ type PhoneInputProps = Omit<
     countrySelectClassName?: string;
   };
 
+const PhoneFieldWidthContext = React.createContext<number | undefined>(
+  undefined
+);
+
 function PhoneInput({
   className,
   inputClassName,
@@ -39,41 +43,77 @@ function PhoneInput({
   defaultCountry = 'CH',
   ...props
 }: PhoneInputProps) {
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [isCountryOpen, setIsCountryOpen] = React.useState(false);
+  const [fieldWidth, setFieldWidth] = React.useState<number>();
+
+  const measureFieldWidth = React.useCallback(() => {
+    setFieldWidth(wrapperRef.current?.getBoundingClientRect().width);
+  }, []);
+
+  const handleCountryOpenChange = React.useCallback(
+    (open: boolean) => {
+      if (open) measureFieldWidth();
+      setIsCountryOpen(open);
+    },
+    [measureFieldWidth]
+  );
+
+  React.useEffect(() => {
+    measureFieldWidth();
+    window.addEventListener('resize', measureFieldWidth);
+
+    return () => window.removeEventListener('resize', measureFieldWidth);
+  }, [measureFieldWidth]);
+
   const CountrySelectWithClassName = React.useMemo(() => {
     const Component = (selectProps: CountrySelectProps) => (
       <CountrySelect
         {...selectProps}
         className={countrySelectClassName ?? inputClassName}
+        onOpenChange={handleCountryOpenChange}
       />
     );
 
     Component.displayName = 'CountrySelectWithClassName';
     return Component;
-  }, [countrySelectClassName, inputClassName]);
+  }, [countrySelectClassName, inputClassName, handleCountryOpenChange]);
 
   return (
-    <RPNInput.default
+    <div
+      ref={wrapperRef}
       data-slot="phone-input"
-      className={cn('flex w-full', className)}
-      flagComponent={FlagComponent}
-      countrySelectComponent={CountrySelectWithClassName}
-      inputComponent={InputComponent}
-      smartCaret={false}
-      value={value || undefined}
-      defaultCountry={defaultCountry}
-      inputClassName={inputClassName}
-      /**
-       * Handles the onChange event.
-       *
-       * react-phone-number-input might trigger the onChange event as undefined
-       * when a valid phone number is not entered. To prevent this,
-       * the value is coerced to an empty string.
-       *
-       * @param {E164Number | undefined} value - The entered value
-       */
-      onChange={(value) => onChange?.(value || ('' as RPNInput.Value))}
-      {...props}
-    />
+      data-country-open={isCountryOpen || undefined}
+      className={cn(
+        'group flex w-full rounded-3xl',
+        'focus-within:ring-2 focus-within:ring-yellow-50 data-[country-open]:ring-2 data-[country-open]:ring-yellow-50',
+        className
+      )}
+    >
+      <PhoneFieldWidthContext.Provider value={fieldWidth}>
+        <RPNInput.default
+          className="flex w-full"
+          flagComponent={FlagComponent}
+          countrySelectComponent={CountrySelectWithClassName}
+          inputComponent={InputComponent}
+          smartCaret={false}
+          value={value || undefined}
+          defaultCountry={defaultCountry}
+          inputClassName={inputClassName}
+          /**
+           * Handles the onChange event.
+           *
+           * react-phone-number-input might trigger the onChange event as undefined
+           * when a valid phone number is not entered. To prevent this,
+           * the value is coerced to an empty string.
+           *
+           * @param {E164Number | undefined} value - The entered value
+           */
+          onChange={(value) => onChange?.(value || ('' as RPNInput.Value))}
+          {...props}
+        />
+      </PhoneFieldWidthContext.Provider>
+    </div>
   );
 }
 
@@ -92,7 +132,10 @@ function InputComponent({
       data-slot="input-component"
       className={cn(
         'h-10 rounded-s-none rounded-e-3xl border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50',
-        'hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0',
+        'group-hover:border-black-50 group-has-[input:hover]:border-black-50',
+        'disabled:group-hover:border-gray-200 disabled:group-has-[input:hover]:border-gray-200',
+        'group-focus-within:border-yellow-500! group-focus-within:text-black-50 group-data-[country-open]:border-yellow-500',
+        'focus-visible:ring-0 focus-visible:outline-none',
         className,
         inputClassName
       )}
@@ -119,6 +162,7 @@ type CountrySelectProps = {
   className?: string;
   options: CountryEntry[];
   onChange: (country: RPNInput.Country) => void;
+  onOpenChange?: (open: boolean) => void;
 };
 
 const CountrySelect = ({
@@ -127,8 +171,10 @@ const CountrySelect = ({
   options: countryList,
   className,
   onChange,
+  onOpenChange,
 }: CountrySelectProps) => {
   const scrollAreaRef = React.useRef<HTMLDivElement>(null);
+  const fieldWidth = React.useContext(PhoneFieldWidthContext);
   const orderedCountryList = React.useMemo(() => {
     const prioritySet = new Set(PRIORITY_COUNTRY_CODES);
     const prioritized = PRIORITY_COUNTRY_CODES.flatMap((code) => {
@@ -150,6 +196,7 @@ const CountrySelect = ({
       modal
       onOpenChange={(open) => {
         setIsOpen(open);
+        onOpenChange?.(open);
         if (open) setSearchValue('');
       }}
     >
@@ -158,9 +205,12 @@ const CountrySelect = ({
           type="button"
           variant="outline"
           className={cn(
-            'flex h-10 items-center gap-2 rounded-s-3xl rounded-e-none border border-r-0 border-gray-200 bg-white px-3 text-sm text-black-50 shadow-none',
-            'hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0',
-            disabled && 'bg-black-25 text-black-200',
+            'flex h-10 cursor-pointer items-center gap-2 rounded-s-3xl rounded-e-none border border-r-0 border-gray-200 bg-white px-3 text-sm text-black-50 shadow-none',
+            'group-hover:border-black-50 group-has-[input:hover]:border-black-50 hover:bg-white hover:text-black-50',
+            'group-focus-within:border-yellow-500! group-focus-within:text-black-50 group-data-[country-open]:border-yellow-500',
+            'focus-visible:ring-0 focus-visible:outline-none',
+            disabled &&
+              'bg-black-25 cursor-not-allowed text-black-200 group-hover:border-gray-200 group-has-[input:hover]:border-gray-200',
             className
           )}
           disabled={disabled}
@@ -177,7 +227,12 @@ const CountrySelect = ({
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] rounded-2xl border border-gray-100 p-0">
+      <PopoverContent
+        align="start"
+        sideOffset={8}
+        style={{ width: fieldWidth }}
+        className="rounded-2xl border border-gray-100 p-0"
+      >
         <Command>
           <CommandInput
             value={searchValue}
@@ -208,7 +263,10 @@ const CountrySelect = ({
                       countryName={label}
                       selectedCountry={selectedCountry}
                       onChange={onChange}
-                      onSelectComplete={() => setIsOpen(false)}
+                      onSelectComplete={() => {
+                        setIsOpen(false);
+                        onOpenChange?.(false);
+                      }}
                     />
                   ) : null
                 )}

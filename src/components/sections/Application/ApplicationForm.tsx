@@ -8,12 +8,12 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Clock, MapPin, CircleDollarSign } from 'lucide-react';
 import { type FC, useCallback, useMemo, useState } from 'react';
 
-import axios from '@/libs/axios';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/customs/Alert';
 import Button from '@/components/customs/Button';
 import { RevealItem } from '@/components/customs/Reveal';
 import { CheckboxField } from '@/components/customs/Form/CheckboxStyleField';
+import { useSubmitApplication } from '@/features/application/application.hooks';
 import ConsultationBG from '@/assets/img/bg/assurance-genevoise-career-form.webp';
 import {
   InputField,
@@ -64,60 +64,45 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
       accept: false,
     },
   });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [uploadKey, setUploadKey] = useState(0);
+  const { mutate, isPending } = useSubmitApplication();
   const experienceOptions = useMemo(() => buildOptions(t), [t]);
 
   const onSubmit: SubmitHandler<ApplicationFormInput> = useCallback(
-    async (values) => {
-      if (submitted) return;
-      setLoading(true);
-
-      try {
-        const fd = new FormData();
-        fd.append('resume_file', values.resume_file);
-        Object.entries(values).forEach(([k, v]) => {
-          if (k === 'resume_file' || v === undefined) return;
-          fd.append(k, v instanceof File ? v : String(v));
-        });
-
-        const { status } = await axios.post(
-          `api/application?locale=${locale}`,
-          fd,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
-        );
-
-        if (status === 201) {
-          setSubmitted(true);
-          toast.custom((t) => (
-            <Alert
-              type="success"
-              title={toastT('successTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(t)}
-            >
-              {toastT('success')}
-            </Alert>
-          ));
+    (values) =>
+      mutate(
+        { values, locale },
+        {
+          onSuccess: () => {
+            form.reset();
+            setUploadKey((key) => key + 1);
+            toast.custom((t) => (
+              <Alert
+                type="success"
+                title={toastT('successTitle')}
+                as="solid"
+                onClick={() => toast.dismiss(t)}
+              >
+                {toastT('success')}
+              </Alert>
+            ));
+          },
+          onError: (error) => {
+            toast.custom((t) => (
+              <Alert
+                type="danger"
+                title={toastT('errorTitle')}
+                as="solid"
+                onClick={() => toast.dismiss(t)}
+              >
+                {toastT('error')}
+              </Alert>
+            ));
+            console.error('Error submitting form:', error);
+          },
         }
-      } catch (error) {
-        setSubmitted(true);
-        toast.custom((t) => (
-          <Alert
-            type="danger"
-            title={toastT('errorTitle')}
-            as="solid"
-            onClick={() => toast.dismiss(t)}
-          >
-            {toastT('error')}
-          </Alert>
-        ));
-        console.error('Error submitting form:', error);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [locale, toastT, submitted]
+      ),
+    [form, locale, mutate, toastT]
   );
 
   const { title, employmentType, location, salaryMin, salaryMax, currency } =
@@ -223,6 +208,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
 
               {/* file upload */}
               <UploadField
+                key={uploadKey}
                 name="resume_file"
                 label={t('resume.label', { default: 'Resume' })}
                 onChange={(file) =>
@@ -247,7 +233,7 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
                 variant="md"
                 type="secondary"
                 className="w-full"
-                disabled={loading || submitted}
+                disabled={isPending}
               >
                 {t('send')}
               </Button>

@@ -85,13 +85,14 @@ export function PhoneInputField<
             inputClassName={cn(
               'text-sm h-10 mt-0',
               'shadow-none placeholder:text-black-50 text-black-50 border-gray-200',
-              'hover:border-black-50 hover:text-back-100',
-              'focus-visible:text-black-50 focus-visible:border-yellow-500 focus-visible:ring-2 focus-visible:ring-yellow-50',
-              error && 'border-red-500 hover:border-red-500',
+              'group-hover:border-black-50',
+              error &&
+                'border-red-500 group-hover:border-red-500 group-has-[input:hover]:border-red-500 group-focus-within:border-red-500! group-data-[country-open]:border-red-500',
               inputClassName
             )}
             countrySelectClassName={cn(
-              error && 'border-red-500 hover:border-red-500',
+              error &&
+                'border-red-500 group-hover:border-red-500 group-has-[input:hover]:border-red-500 group-focus-within:border-red-500! group-data-[country-open]:border-red-500',
               countrySelectClassName
             )}
             defaultCountry={defaultCountry}

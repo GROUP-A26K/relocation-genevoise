@@ -19,9 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@prisma/mysql-client": ["./node_modules/@prisma/mysql-client"],
-      "@prisma/supabase-client": ["./node_modules/@prisma/supabase-client"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
