@@ -35,7 +35,6 @@ export const JobCard: React.FC<Props> = ({
               {options?.isButtonLink && (
                 <Button
                   as="link"
-                  href={job.href}
                   variant="md"
                   type="primary"
                   className="h-fit p-0 text-xs font-semibold text-black-500 lg:text-base"

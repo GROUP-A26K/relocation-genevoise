@@ -2,10 +2,12 @@ import { MobileMenu } from './MobileMenu';
 import { DesktopMenu } from './DesktopMenu';
 import NavigationHeader from './NavigationHeader';
 
+import type { THref } from '@/libs/i18nNavigation';
+
 export type TMenuItem = {
   title: string;
   subtitle?: string;
-  url: string;
+  url?: THref;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   items?: TMenuItem[];
@@ -15,11 +17,11 @@ export interface INavbarProps {
   menu: TMenuItem[];
   contactButton?: {
     text: string;
-    url: string;
+    url: THref;
   };
   callButton?: {
     text: string;
-    url: string;
+    url: THref;
   };
 
   locale?: string;

@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { Phone, PhoneCall } from 'lucide-react';
 
 import { Link } from '@/libs/i18nNavigation';
@@ -21,7 +22,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: INavbarProps) => {
         </Link>
         <MobileMenuSheet
           phoneAction={
-            <Link href="tel:+41227151748">
+            <NextLink href="tel:+41227151748">
               <SheetClose asChild>
                 <Button
                   as="ghost"
@@ -33,7 +34,7 @@ const MobileMenu = ({ menu, callButton, contactButton }: INavbarProps) => {
                   <div className="line-clamp-1">+41 22 715 17 48</div>
                 </Button>
               </SheetClose>
-            </Link>
+            </NextLink>
           }
         >
           <SheetHeader>

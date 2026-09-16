@@ -1,13 +1,13 @@
 import { ArrowRight } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
+import { Link, type THref } from '@/libs/i18nNavigation';
 
 interface Props {
   title: string;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  link?: string;
+  link?: THref;
   info?: string;
 }
 

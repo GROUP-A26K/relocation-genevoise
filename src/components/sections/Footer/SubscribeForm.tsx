@@ -17,7 +17,7 @@ import {
 } from '@/validations/subscribe.validation';
 
 export const SubscribeForm: FC = () => {
-  const t = useTranslations('Footer.contact');
+  const t = useTranslations('Footer');
   const formT = useTranslations('Validation.Subscribe');
   const toastT = useTranslations('ToastMessage.Subscribe');
   const locale = useLocale();
@@ -75,7 +75,7 @@ export const SubscribeForm: FC = () => {
       >
         <InputField
           name="email"
-          placeholder={t('inputPlaceholder')}
+          placeholder={t('contact.inputPlaceholder')}
           register={form.register}
           error={form.formState.errors.email?.message}
           className="h-fit w-full text-base lg:w-[340px]"
@@ -87,7 +87,7 @@ export const SubscribeForm: FC = () => {
           className="w-full lg:w-fit"
           disabled={isPending}
         >
-          {t('buttonText')}
+          {t('contact.buttonText')}
         </Button>
       </form>
     </Form>

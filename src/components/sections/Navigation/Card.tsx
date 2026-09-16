@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
+import { Link, type THref } from '@/libs/i18nNavigation';
 
 import type { FC } from 'react';
 
@@ -13,7 +13,7 @@ interface BaseProps {
   summary: string;
   image: string;
   imageLqip?: string;
-  url: string;
+  url: THref;
   variant: 'lg' | 'md';
 }
 
@@ -30,7 +30,7 @@ export const Card: FC<Props> = ({
     lg: cn('text-[14px]'),
     md: cn('text-subtle'),
   };
-  const t = useTranslations('Navbar.blogButton');
+  const t = useTranslations('Navbar');
 
   return (
     <div className="card">
@@ -69,7 +69,7 @@ export const Card: FC<Props> = ({
             {summary}
           </div>
           <div className="flex items-center text-[14px] leading-[130%]! font-semibold text-primary-500">
-            {t('text')}
+            {t('blogButton.text')}
             <ArrowRight
               strokeWidth={3}
               height={12}

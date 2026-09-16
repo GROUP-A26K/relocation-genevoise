@@ -27,7 +27,6 @@ const Navbar: React.FC<{ locale: string }> = async ({ locale }) => {
       {
         title: tNav('menu.2.title'),
         subtitle: tNav('menu.2.subtitle'),
-        url: '#',
         items: [
           {
             title: tNav('menu.2.items.0.title'),

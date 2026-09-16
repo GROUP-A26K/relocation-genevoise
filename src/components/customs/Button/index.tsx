@@ -34,7 +34,7 @@ interface GhostProps extends React.AnchorHTMLAttributes<HTMLButtonElement> {
 }
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
+  href?: never;
   iconStart?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   iconEnd?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   target?: string;

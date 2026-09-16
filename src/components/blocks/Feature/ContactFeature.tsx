@@ -1,7 +1,7 @@
 import { Clock3, CloudUpload, MessagesSquare } from 'lucide-react';
 
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { FeatureColCard } from '@/components/customs/Card';
@@ -20,7 +20,7 @@ interface Props {
   description?: string;
   reasonItems?: Reason[];
   buttonText?: string;
-  buttonUrl?: string;
+  buttonUrl?: THref;
 }
 
 const ContactFeature: FC<Props> = ({

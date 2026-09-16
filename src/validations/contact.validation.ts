@@ -1,16 +1,18 @@
 import { z } from 'zod';
 
-import type { TranslationValues } from 'next-intl'; // Make sure to import this if using next-intl
+import type { useTranslations } from 'next-intl';
 
 // Phone regex for validation
+type TValidationTranslator = ReturnType<
+  typeof useTranslations<'Validation.Contact'>
+>;
+
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 );
 
 // Contact form validation schema
-export function contactSchema(
-  t?: (key: string, object?: TranslationValues) => string
-) {
+export function contactSchema(t?: TValidationTranslator) {
   return z.object({
     first_name: z
       .string()

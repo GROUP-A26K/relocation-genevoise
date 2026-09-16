@@ -1,9 +1,10 @@
 import type { Meta } from './meta';
+import type { THref } from '@/libs/i18nNavigation';
 
 export interface PropertySitemap {
   id: string;
   title: string;
-  href: string;
+  href: THref;
   slug: string;
 }
 
@@ -17,7 +18,7 @@ export interface IPropertyListing {
   id: string;
   title: string;
   slug: string;
-  href: string;
+  href: THref;
   price: number;
   priceUnit: PropertyPriceUnit;
   listingType: PropertyListingType;
@@ -68,10 +69,10 @@ export interface PropertyDetail {
     _type: string;
     current: string;
   };
-  listingType: string;
+  listingType: PropertyListingType;
   price: number;
   priceUnit: string;
-  rentPeriod: string;
+  rentPeriod: PropertyRentPeriod;
   description: string;
   availability: boolean;
   mapLocation: {

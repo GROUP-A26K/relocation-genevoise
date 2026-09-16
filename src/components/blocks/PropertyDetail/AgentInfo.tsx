@@ -1,8 +1,8 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { Phone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import BackgroundSVG from '@/assets/img/bg/agent-background.svg';
 

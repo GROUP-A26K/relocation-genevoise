@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import ContentWithImgBG from '@/assets/img/bg/relocation-genevoise-geneve-courtage.webp';
@@ -11,7 +11,7 @@ interface IContentWithImgProps {
   subHeading?: string;
   description?: { paragraph: string }[];
   buttonText?: string;
-  buttonUrl?: string;
+  buttonUrl?: THref;
 }
 
 export const ContentWithImg: React.FC<IContentWithImgProps> = ({

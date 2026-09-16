@@ -1,9 +1,10 @@
 import type { Block } from './block';
+import type { THref } from '@/libs/i18nNavigation';
 
 export interface Job {
   id: string;
   title: string;
-  href: string;
+  href: THref;
   slug: string;
   department: string;
   employmentType:

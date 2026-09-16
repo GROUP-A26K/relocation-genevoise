@@ -1,11 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, PhoneCall } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
 
 interface IPhoneButtonProps {
   phoneNumber: string;

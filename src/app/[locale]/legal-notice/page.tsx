@@ -17,7 +17,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'legalNotices'),
+    alternates: getPageAlternates(locale, '/legal-notice'),
   };
 }
 export default function Page() {

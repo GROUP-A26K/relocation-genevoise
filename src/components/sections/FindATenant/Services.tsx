@@ -1,13 +1,13 @@
-import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/customs/Button';
 import Section from '@/components/customs/Section';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 
 import type { LucideIcon } from 'lucide-react';
 
 type TCta = {
   text: string;
-  href: string;
+  href: THref;
 };
 
 export type TServiceItem = {

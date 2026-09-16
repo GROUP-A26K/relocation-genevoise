@@ -1,19 +1,20 @@
 import { Env } from '@/libs/env';
 import { AppConfig } from '@/utils/appConfig';
+import { getPathname } from '@/libs/i18nNavigation';
 import { LANGUAGE_TAGS, OG_LOCALES } from '@/constants/seo';
 
-import type { TLocale } from '@/constants/locale';
+import type { TLocale, TPathname } from '@/utils/appConfig';
 
-export type TRouteKey = keyof typeof AppConfig.routes;
+type TPathnameHref = Parameters<typeof getPathname>[0]['href'];
 
 type TSchemaNode = 'organization' | 'website';
 
 const DATE_ONLY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 const toLocale = (locale: string): TLocale =>
-  (AppConfig.locales.includes(locale)
-    ? locale
-    : AppConfig.defaultLocale) as TLocale;
+  (AppConfig.locales as readonly string[]).includes(locale)
+    ? (locale as TLocale)
+    : AppConfig.defaultLocale;
 
 export const getSiteUrl = () => Env.NEXT_PUBLIC_SITE_URL.replace(/\/+$/, '');
 
@@ -27,19 +28,11 @@ export const getAbsoluteUrl = (path: string) => {
 
 export const getSchemaId = (node: TSchemaNode) => `${getSiteUrl()}/#${node}`;
 
-export const getLocalizedPath = (
-  locale: string,
-  routeKey: TRouteKey,
-  slug?: string
-) => {
-  const currentLocale = toLocale(locale);
-  const route = AppConfig.routes[routeKey][currentLocale];
-  const prefix =
-    currentLocale === AppConfig.defaultLocale ? '' : `/${currentLocale}`;
-  const pathname = `${prefix}${route === '/' ? '' : route}${slug ? `/${slug}` : ''}`;
+export const getLocalizedPath = (locale: string, href: TPathnameHref) =>
+  getPathname({ locale: toLocale(locale), href });
 
-  return pathname || '/';
-};
+export const toHref = (pathname: TPathname, slug?: string) =>
+  (slug ? { pathname, params: { slug } } : pathname) as TPathnameHref;
 
 export const stripLocalePrefix = (slug: string) =>
   slug.replace(/^[a-z]{2}-/i, '');
@@ -66,13 +59,15 @@ export const getHreflangPaths = (
 
 export const getPageAlternates = (
   locale: string,
-  routeKey: TRouteKey,
+  pathname: TPathname,
   slugByLocale?: Partial<Record<string, string>>
 ) => {
   const pathByLocale = Object.fromEntries(
     AppConfig.locales.flatMap((currentLocale): [string, string][] => {
       if (!slugByLocale) {
-        return [[currentLocale, getLocalizedPath(currentLocale, routeKey)]];
+        return [
+          [currentLocale, getLocalizedPath(currentLocale, toHref(pathname))],
+        ];
       }
 
       const slug = slugByLocale[currentLocale];
@@ -83,8 +78,7 @@ export const getPageAlternates = (
               currentLocale,
               getLocalizedPath(
                 currentLocale,
-                routeKey,
-                stripLocalePrefix(slug)
+                toHref(pathname, stripLocalePrefix(slug))
               ),
             ],
           ]

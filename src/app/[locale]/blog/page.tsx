@@ -29,8 +29,8 @@ export async function generateMetadata(
     namespace: 'Metadata.Blog',
   });
 
-  const basePath = getLocalizedPath(locale, 'blog');
-  const alternates = getPageAlternates(locale, 'blog');
+  const basePath = getLocalizedPath(locale, '/blog');
+  const alternates = getPageAlternates(locale, '/blog');
   const canonical =
     pageNumber > 1 && !filterBy && !search
       ? `${basePath}?page=${pageNumber}`

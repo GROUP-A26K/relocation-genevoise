@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { sanityFetch } from '@/sanity/lib/fetch';
-import { LOCALE, type TLocale } from '@/constants/locale';
+import { AppConfig, type TLocale } from '@/utils/appConfig';
 import {
   PROPERTY_DEFAULT_PRICE_UNIT,
   PROPERTY_DEFAULT_RENT_PERIOD,
@@ -40,9 +40,9 @@ import type {
 
 const DEFAULT_PROPERTY_PAGE = 1;
 const DEFAULT_PROPERTY_PAGE_SIZE = 15;
-const DEFAULT_PROPERTY_LOCALE = LOCALE.fr;
+const DEFAULT_PROPERTY_LOCALE = AppConfig.defaultLocale;
 const getLocale = (locale?: string): TLocale => {
-  return locale === LOCALE.en ? LOCALE.en : DEFAULT_PROPERTY_LOCALE;
+  return locale === 'en' ? 'en' : DEFAULT_PROPERTY_LOCALE;
 };
 
 const getPaginationRange = (page: number, pageSize: number) => {
@@ -96,10 +96,10 @@ const mapPropertyDetail = (
     _type: property.slug?._type || 'slug',
     current: property.slug?.current || '',
   },
-  listingType: property.listingType || '',
+  listingType: property.listingType || 'rent',
   price: property.price || 0,
   priceUnit: property.priceUnit || '',
-  rentPeriod: property.rentPeriod || '',
+  rentPeriod: property.rentPeriod || 'month',
   description: property.description || '',
   availability: Boolean(property.availability),
   mapLocation: {
@@ -140,7 +140,12 @@ const mapProperty = (
   id: property._id,
   title: property.title || 'Untitled Property',
   slug: property.slug?.current || '',
-  href: `/properties/${(property.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+  href: {
+    pathname: '/properties/[slug]',
+    params: {
+      slug: (property.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+    },
+  },
   price: property.price || 0,
   priceUnit: property.priceUnit || PROPERTY_DEFAULT_PRICE_UNIT,
   listingType: (property.listingType as PropertyListingType) || 'rent',
@@ -264,7 +269,12 @@ export const fetchSitemapProperties = async (
       id: property._id,
       title: property.title || 'Untitled Property',
       slug: property.slug?.current || '',
-      href: `/properties/${(property.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+      href: {
+        pathname: '/properties/[slug]',
+        params: {
+          slug: (property.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+        },
+      },
     })),
     meta: { total: response.total },
   };
@@ -286,7 +296,10 @@ export const fetchPropertySlugBySlug = async (slug: string) => {
       {
         locale: item.language,
         slug: item.slug,
-        href: `/properties/${item.slug.replace(/^[a-z]{2}-/i, '')}`,
+        href: {
+          pathname: '/properties/[slug]',
+          params: { slug: item.slug.replace(/^[a-z]{2}-/i, '') },
+        },
       },
     ];
   });

@@ -1,12 +1,16 @@
 import { z } from 'zod';
 
-import type { TranslationValues } from 'next-intl';
+import type { useTranslations } from 'next-intl';
+
+type TValidationTranslator = ReturnType<
+  typeof useTranslations<'Validation.FindATenant'>
+>;
 
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 );
 
-type TFormTranslator = (key: string, object?: TranslationValues) => string;
+type TFormTranslator = TValidationTranslator;
 
 const baseLeadShape = (t?: TFormTranslator) => ({
   full_name: z

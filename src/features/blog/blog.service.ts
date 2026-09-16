@@ -55,7 +55,10 @@ export interface ParamsProps {
 const toBlog = (post: TBlogPostProjection, publishedDate: string): Blog => ({
   id: post._id,
   title: post.title || 'Untitled Post',
-  href: `/blog/${(post?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+  href: {
+    pathname: '/blog/[slug]',
+    params: { slug: (post?.slug?.current || '').replace(/^[a-z]{2}-/i, '') },
+  },
   description: post?.summary || 'No summary available',
   timeToRead: post?.timeToRead || 0,
   publishedDate,
@@ -66,12 +69,10 @@ const toBlog = (post: TBlogPostProjection, publishedDate: string): Blog => ({
   category:
     post?.category?.map((cat) => ({
       title: cat?.name || 'Unknown Category',
-      href: `/blog/category/${cat?.name || ''}`,
     })) || [],
   author: {
     name: post.author?.name || 'Unknown Author',
     role: 'Author',
-    href: `/blog/author/${post?.author?.name || ''}`,
     email: post.author?.email || 'Unknown Email',
     imageUrl: post.author?.authorAvatar?.asset?.url || FALLBACK_IMAGE,
     imageLqip: post.author?.authorAvatar?.asset?.lqip ?? undefined,
@@ -155,7 +156,12 @@ export const fetchSitemapBlogs = async (
       id: post._id,
       title: post.title || 'Untitled Post',
       slug: post?.slug?.current || '',
-      href: `/blog/${(post?.slug?.current || '').replace(/^[a-z]{2}-/i, '')}`,
+      href: {
+        pathname: '/blog/[slug]',
+        params: {
+          slug: (post?.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+        },
+      },
     })),
     meta: {
       pagination: {
@@ -210,7 +216,10 @@ export const fetchBlogSlugBySlug = async (slug: string) => {
       {
         locale: item.language,
         slug: current,
-        href: `/blog/${current.replace(/^[a-z]{2}-/i, '')}`,
+        href: {
+          pathname: '/blog/[slug]',
+          params: { slug: current.replace(/^[a-z]{2}-/i, '') },
+        },
       },
     ];
   });

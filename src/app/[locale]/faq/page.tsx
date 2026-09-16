@@ -21,7 +21,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'faq'),
+    alternates: getPageAlternates(locale, '/faq'),
   };
 }
 
@@ -36,7 +36,7 @@ export default async function Page(props: PageProps<'/[locale]/faq'>) {
       <FaqJsonLd
         items={faqs}
         locale={locale}
-        path={getLocalizedPath(locale, 'faq')}
+        path={getLocalizedPath(locale, '/faq')}
       />
 
       <Section revealTrigger="load">

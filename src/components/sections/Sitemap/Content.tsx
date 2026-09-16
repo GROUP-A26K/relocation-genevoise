@@ -24,16 +24,20 @@ export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
               {section.items &&
                 section.items.map((item) => (
                   <ListItem dotColor="#F7D913" key={item.title}>
-                    <Link key={item.title} href={item.url ?? ''}>
-                      {item.title}
-                    </Link>
+                    {item.url && (
+                      <Link key={item.title} href={item.url}>
+                        {item.title}
+                      </Link>
+                    )}
                     {item.items && (
                       <List className="flex flex-col gap-4 pt-4">
                         {item.items.map((subitem) => (
                           <ListItem key={subitem.title} dotColor="#F7D913">
-                            <Link key={subitem.title} href={subitem.url ?? ''}>
-                              {subitem.title}
-                            </Link>
+                            {subitem.url && (
+                              <Link key={subitem.title} href={subitem.url}>
+                                {subitem.title}
+                              </Link>
+                            )}
                           </ListItem>
                         ))}
                       </List>

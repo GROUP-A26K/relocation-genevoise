@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
-import { Link } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 import { FormattedText } from '@/components/customs/Text';
 import { InfoContactCard } from '@/components/customs/Card';

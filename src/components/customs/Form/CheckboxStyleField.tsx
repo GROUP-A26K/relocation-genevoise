@@ -51,7 +51,7 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
           >
             {label}
           </FormLabel>{' '}
-          <Link href="/legal-notices" className="font-semibold text-black-500">
+          <Link href="/legal-notice" className="font-semibold text-black-500">
             {policy}
           </Link>
         </div>

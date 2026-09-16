@@ -17,11 +17,12 @@ import { PageContainer } from './PageContainer';
 
 import type { Meta } from '@/models/meta';
 import type { BlogSitemap } from '@/models/blog';
+import type { THref } from '@/libs/i18nNavigation';
 import type { PropertySitemap } from '@/models/property';
 
 export interface MenuItem {
   id?: string;
-  url?: string;
+  url?: THref;
   title: string;
   description?: string;
   items?: MenuItem[];

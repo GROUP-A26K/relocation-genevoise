@@ -1,101 +1,38 @@
 import { withSentryConfig } from '@sentry/nextjs';
 import createNextIntlPlugin from 'next-intl/plugin';
 
-import { AppConfig } from '@/utils/appConfig';
-
 import sentryWebpackPluginOptions from './sentry.config';
 
 import type { NextConfig } from 'next';
 
 const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
 
-type LocaleMap = Record<string, string | number>;
-
-function buildRewrites() {
-  const { locales, routes } = AppConfig;
-  const en = 'en';
-
-  return Object.values(routes).flatMap((localeMap: LocaleMap) => {
-    return locales.map((locale) => ({
-      source: `/${locale}${localeMap[locale]}`,
-      destination: `/${locale}${localeMap[en]}`,
-    }));
-  });
-}
-
-function buildRedirects() {
-  const { defaultLocale, routes, locales } = AppConfig;
-  const en = 'en';
-
-  return Object.values(routes).flatMap((localeMap: LocaleMap) => {
-    if (localeMap[en] === localeMap[defaultLocale]) {
-      return [];
-    }
-
-    return locales.map((locale) => {
-      if (locale === defaultLocale) {
-        return {
-          source: `${localeMap[en]}`,
-          destination: `/${defaultLocale}${localeMap[defaultLocale]}`,
-          permanent: true,
-        };
-      }
-      return {
-        source: `/${en}${localeMap[defaultLocale]}`,
-        destination: `/${en}${localeMap[en]}`,
-        permanent: true,
-      };
-    });
-  });
-}
+// Public URLs that changed when localized pathnames moved into next-intl.
+// Safe to delete once Search Console reports no crawls on them (~2027-09).
+const legacyRedirects = [
+  { source: '/donnes-personnelles', destination: '/donnees-personnelles' },
+  { source: '/sitemap', destination: '/plan-du-site' },
+  {
+    source: '/find-a-tenant',
+    destination: '/trouver-un-locataire/bailleurs',
+  },
+].map((redirect) => ({ ...redirect, permanent: true }));
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'cdn.sanity.io', 'randomuser.me'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
+      { protocol: 'https', hostname: 'randomuser.me' },
+    ],
   },
   productionBrowserSourceMaps: false,
   sentry: {
     hideSourceMaps: true,
     widenClientFileUpload: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/fr/carriere/:slug*',
-        destination: '/fr/career/:slug*',
-      },
-      {
-        source: '/fr/proprietes/:slug*',
-        destination: '/fr/properties/:slug*',
-      },
-      ...buildRewrites(),
-    ];
-  },
-
   async redirects() {
-    return [
-      {
-        source: '/en/carriere/:slug*',
-        destination: '/en/career/:slug*',
-        permanent: true,
-      },
-      {
-        source: '/career/:slug*',
-        destination: '/carriere/:slug*',
-        permanent: true,
-      },
-      {
-        source: '/en/proprietes/:slug*',
-        destination: '/en/properties/:slug*',
-        permanent: true,
-      },
-      {
-        source: '/properties/:slug*',
-        destination: '/proprietes/:slug*',
-        permanent: true,
-      },
-      ...buildRedirects(),
-    ];
+    return legacyRedirects;
   },
 };
 

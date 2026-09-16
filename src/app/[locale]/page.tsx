@@ -29,6 +29,7 @@ import {
 } from '@/components/blocks/Feature';
 
 import type { Metadata } from 'next';
+import type { TFeature } from '@/components/blocks/Feature/ServiceFeature';
 
 export async function generateMetadata(
   props: PageProps<'/[locale]'>
@@ -42,7 +43,7 @@ export async function generateMetadata(
   return {
     title: t('title'),
     description: t('description'),
-    alternates: getPageAlternates(locale, 'home'),
+    alternates: getPageAlternates(locale, '/'),
   };
 }
 
@@ -50,7 +51,7 @@ export default async function Page(props: PageProps<'/[locale]'>) {
   const { locale } = await props.params;
   const t = await getTranslations('HomePage');
 
-  const features = [
+  const features: TFeature[] = [
     {
       title: t('ServiceFeature.reasons.0.reasonItems.0.title'),
       icon: SearchSlash,

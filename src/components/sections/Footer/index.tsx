@@ -1,10 +1,11 @@
+import NextLink from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import Image, { type StaticImageData } from 'next/image';
 
-import { Link } from '@/libs/i18nNavigation';
 import GGLogo from '@/components/icons/GGLogo';
 import Section from '@/components/customs/Section';
 import LogoIcon from '@/components/icons/LogoIcon';
+import { Link, type THref } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/customs/Reveal';
 import Facebook from '@/assets/img/logos/social/facebook.svg';
 import Linkedin from '@/assets/img/logos/social/linkedin.svg';
@@ -17,8 +18,17 @@ type TMenuItem = {
   title: string;
   links: {
     text: string;
-    url: string;
+    url: THref;
     icon?: string | StaticImageData;
+  }[];
+};
+
+type TSocialMenu = {
+  title: string;
+  links: {
+    text: string;
+    url: string;
+    icon: string | StaticImageData;
   }[];
 };
 
@@ -38,11 +48,11 @@ type TFooterData = {
   service: TMenuItem;
   company: TMenuItem;
   support: TMenuItem;
-  social: TMenuItem;
+  social: TSocialMenu;
   copyright: string;
   bottomLinks: {
     text: string;
-    url: string;
+    url: THref;
   }[];
 };
 
@@ -244,7 +254,7 @@ const Footer = async () => {
                 <ul className="flex flex-col gap-3 lg:flex-col lg:gap-0 lg:space-y-3">
                   {social.links.map((link, linkIdx) => (
                     <li key={linkIdx}>
-                      <Link
+                      <NextLink
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -262,7 +272,7 @@ const Footer = async () => {
                         )}
 
                         {link.text}
-                      </Link>
+                      </NextLink>
                     </li>
                   ))}
                 </ul>
@@ -274,14 +284,14 @@ const Footer = async () => {
 
       <section className="relative flex flex-col items-center justify-center bg-grey-50 text-black-500">
         <div className="w-full px-4 py-8 lg:px-12 2xl:max-w-(--breakpoint-2xl) 2xl:px-25">
-          <Link
+          <NextLink
             href="https://groupe-genevoise.ch/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-fit items-center"
           >
             <GGLogo className="mb-4" />
-          </Link>
+          </NextLink>
 
           <div className="flex w-full flex-col justify-between gap-4 text-xs leading-[130%]! font-normal text-black-300 md:flex-row md:items-center">
             <p>{copyright}</p>

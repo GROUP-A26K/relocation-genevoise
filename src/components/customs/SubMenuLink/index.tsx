@@ -1,8 +1,10 @@
 import { cn } from '@/libs/utils';
 
+import type { THref } from '@/libs/i18nNavigation';
+
 interface MenuItem {
   title: string;
-  url: string;
+  url?: THref;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   variant: 'lg' | 'md';
