@@ -1,10 +1,12 @@
 'use client';
-
 import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+import { cn } from '@/libs/utils';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { PropertyMap } from '@/components/sections/PropertiesDetail/Block/PropertyMap';
 import { PropertyDetailTable } from '@/components/sections/PropertiesDetail/Block/PropertyDetailTable';
 import { PropertyDescription } from '@/components/sections/PropertiesDetail/Block/PropertyDescription';
@@ -66,42 +68,65 @@ export const PropertyDetailView = ({ property }: IPropertyDetailViewProps) => {
               <span
                 className={`h-4 w-4 rounded-full ${property.availability ? 'border-[3px] border-green-200 bg-green-500' : 'border-[3px] border-grey-100 bg-grey-300'}`}
               />
-              <span>
-                {property.availability
-                  ? t('status.available')
-                  : t('status.notAvailable')}
-              </span>
+              <BodyText
+                asChild
+                className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+              >
+                <span>
+                  {property.availability
+                    ? t('status.available')
+                    : t('status.notAvailable')}
+                </span>
+              </BodyText>
               <div className="flex items-center gap-2">
-                <span
-                  className={`w-fit rounded-[6px] px-3 py-1 text-xs leading-[130%]! font-medium shadow-none ${
-                    property.listingType === 'sale'
-                      ? 'bg-yellow-50 text-yellow-800'
-                      : 'bg-blue-50 text-blue-500'
-                  }`}
+                <BodyText
+                  variant="xs"
+                  asChild
+                  className={cn(
+                    `w-fit rounded-[6px] px-3 py-1 text-xs leading-[130%] font-medium shadow-none ${
+                      property.listingType === 'sale'
+                        ? 'bg-yellow-50 text-yellow-800'
+                        : 'bg-blue-50 text-blue-500'
+                    }`
+                  )}
                 >
-                  {t(`listingType.${property.listingType || 'rent'}`)}
-                </span>
-                <span className="w-fit rounded-[6px] bg-grey-100 px-3 py-1 text-xs leading-[130%]! font-medium text-black-500 shadow-none">
-                  {property.category.categoryName}
-                </span>
+                  <span>
+                    {t(`listingType.${property.listingType || 'rent'}`)}
+                  </span>
+                </BodyText>
+                <BodyText
+                  variant="xs"
+                  asChild
+                  className="w-fit rounded-[6px] bg-grey-100 px-3 py-1 font-medium text-black-500 shadow-none"
+                >
+                  <span>{property.category.categoryName}</span>
+                </BodyText>
               </div>
             </div>
-            <h1 className="text-3xl leading-[130%]! font-semibold tracking-normal text-primary-500">
+            <HeadingText
+              as="h1"
+              className="text-3xl font-semibold tracking-normal text-primary-500"
+            >
               {property.title}
-            </h1>
-            <div className="flex gap-1.5 text-sm leading-[130%]! font-normal text-black-200">
+            </HeadingText>
+            <div className="flex gap-1.5 text-sm leading-[130%] font-normal text-black-200">
               <MapPin className="h-4 w-4" />
-              <p>{property.mapLocation.name}</p>
+              <BodyText className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit">
+                {property.mapLocation.name}
+              </BodyText>
             </div>
           </div>
           <div className="items-baseline">
-            <span className="py-0 text-3xl leading-[130%]! font-semibold text-blue-500">
-              CHF{property.price}
-            </span>
+            <BodyText
+              asChild
+              className="py-0 text-3xl font-semibold text-blue-500"
+            >
+              <span>CHF{property.price}</span>
+            </BodyText>
             {property.listingType !== 'sale' && (
-              <span className="relative text-lg leading-[130%]! font-semibold text-black-200">
-                {t(`rentPeriod.${property.rentPeriod || 'month'}`)}
-              </span>
+              <BodyText variant="lg" asChild className="relative font-semibold">
+                <span>{t(`rentPeriod.${property.rentPeriod || 'month'}`)}</span>
+              </BodyText>
             )}
           </div>
         </RevealItem>

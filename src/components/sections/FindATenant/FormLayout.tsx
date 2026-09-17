@@ -1,6 +1,8 @@
 import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { RevealItem, RevealSection } from '@/components/common/Reveal';
 
 const CONTAINER =
@@ -33,16 +35,19 @@ export default function FormLayout({
           className={cn(CONTAINER, 'pt-12 pb-24 lg:pt-16 lg:pb-32')}
         >
           <RevealItem className="flex max-w-[760px] flex-col gap-3">
-            <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
+            <BodyText variant="sm" className="font-semibold text-yellow-600">
               {eyebrow}
-            </p>
+            </BodyText>
             <div className="flex flex-col gap-4">
-              <h1 className="text-[32px] leading-[130%]! font-bold text-pretty whitespace-pre-line lg:text-5xl">
+              <HeadingText
+                as="h1"
+                className="text-[32px] text-pretty whitespace-pre-line text-inherit lg:text-5xl"
+              >
                 {heading}
-              </h1>
-              <p className="text-base leading-[150%]! font-normal text-black-300">
+              </HeadingText>
+              <BodyText variant="md" className="leading-[150%] text-black-300">
                 {description}
-              </p>
+              </BodyText>
             </div>
           </RevealItem>
         </RevealSection>

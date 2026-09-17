@@ -1,5 +1,4 @@
 'use client';
-
 import { useId, useMemo } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import { motion, useReducedMotion } from 'motion/react';
@@ -7,6 +6,8 @@ import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '@/libs/utils';
 import { useScroll } from '@/hooks/useScroll';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import {
   Accordion,
   AccordionItem,
@@ -85,32 +86,41 @@ export const Content: React.FC<IContentProps> = ({ items }) => {
                         />
                       </div>
                     </div>
-                    <span
-                      aria-current={index === activeStep ? 'step' : undefined}
-                      className={cn(
-                        'absolute top-0 -left-10 flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-grey-100 bg-background text-center transition-colors duration-200 motion-reduce:transition-none md:grid lg:-left-16 lg:size-12',
-                        index <= activeStep
-                          ? 'border-yellow-500 bg-yellow-500'
-                          : ''
-                      )}
+                    <BodyText
+                      asChild
+                      className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
                     >
-                      {index + 1}
-                    </span>
+                      <span
+                        aria-current={index === activeStep ? 'step' : undefined}
+                        className={cn(
+                          'absolute top-0 -left-10 flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-grey-100 bg-background text-center transition-colors duration-200 motion-reduce:transition-none md:grid lg:-left-16 lg:size-12',
+                          index <= activeStep
+                            ? 'border-yellow-500 bg-yellow-500'
+                            : ''
+                        )}
+                      >
+                        {index + 1}
+                      </span>
+                    </BodyText>
 
                     <div className="flex max-w-fit flex-col">
                       <AccordionTrigger className="flex flex-col gap-4 text-left lg:gap-3">
                         <div className="flex max-w-140 flex-col gap-4 text-left lg:gap-3">
                           <div className="flex flex-col gap-3">
-                            <h2
-                              className="text-lg leading-[130%]! font-semibold lg:text-xl"
+                            <HeadingText
+                              as="h2"
+                              className="text-lg font-semibold text-inherit lg:text-xl"
                               id={itemIds[index]}
                             >
                               {item.title}
-                            </h2>
+                            </HeadingText>
                           </div>
-                          <h3 className="text-sm leading-[130%]! font-normal text-black-200">
+                          <HeadingText
+                            as="h3"
+                            className="text-sm font-normal text-black-200"
+                          >
                             {item.description}
-                          </h3>
+                          </HeadingText>
                         </div>
                       </AccordionTrigger>
                       <StepContent

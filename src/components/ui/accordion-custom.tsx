@@ -1,10 +1,10 @@
 'use client';
-
 import * as React from 'react';
 import { CircleMinus, CirclePlus } from 'lucide-react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
 import { cn } from '@/libs/utils';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -30,8 +30,12 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          'group flex w-full flex-1 items-start justify-between py-4 text-left text-sm font-medium text-black-500 transition-all',
-          className
+          bodyTextVariants(),
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          cn(
+            'group flex w-full flex-1 items-start justify-between py-4 text-left text-sm font-medium text-black-500 transition-all',
+            className
+          )
         )}
         {...props}
       >
@@ -59,7 +63,11 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+      className={cn(
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        'overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down'
+      )}
       {...props}
     >
       <div className={cn('pt-0 pb-4', className)}>{children}</div>

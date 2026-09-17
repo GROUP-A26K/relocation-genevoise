@@ -1,11 +1,12 @@
 'use client';
-
 import { ArrowUpRight, CircleDollarSign, MapPin } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
 import Button from '@/components/common/Button';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { IJob } from '@/models/job';
 
@@ -28,11 +29,14 @@ export const JobCard: React.FC<IJobCardProps> = ({
     <Link href={job.href}>
       <div className="flex h-full w-full cursor-pointer flex-col gap-4 rounded-2xl border border-grey-200 p-6">
         <div className="flex w-full flex-col">
-          <div className="flex flex-col gap-1 text-left leading-[130%]!">
+          <div className="flex flex-col gap-1 text-left leading-[130%]">
             <div className="flex flex-row flex-wrap justify-between gap-2">
-              <p className="line-clamp-1 text-sm font-semibold text-secondary-600">
+              <BodyText
+                variant="sm"
+                className="line-clamp-1 leading-5 font-semibold text-secondary-600"
+              >
                 {job.department}
-              </p>
+              </BodyText>
               {options?.isButtonLink && (
                 <Button
                   as="link"
@@ -47,9 +51,9 @@ export const JobCard: React.FC<IJobCardProps> = ({
             </div>
 
             <div className="flex flex-row flex-wrap gap-2">
-              <h3 className="line-clamp-1 text-lg font-semibold text-black-500">
+              <HeadingText as="h3" className="line-clamp-1 text-lg leading-7">
                 {job.title}
-              </h3>
+              </HeadingText>
 
               <Badge
                 className={cn(
@@ -66,28 +70,35 @@ export const JobCard: React.FC<IJobCardProps> = ({
           </div>
         </div>
 
-        <p
+        <BodyText
+          variant="sm"
           title={job.excerpt || 'No description available.'}
-          className="line-clamp-2 text-sm leading-[130%]! font-normal text-black-200 lg:text-sm"
+          className="line-clamp-2 lg:text-sm"
         >
           {job.excerpt || 'No description available.'}
-        </p>
+        </BodyText>
 
         <div className="flex flex-row flex-wrap">
-          <div className="flex items-center gap-1.5 pr-6!">
+          <div className="flex items-center gap-1.5 pr-6">
             <div className="w-4 min-w-4">
               <MapPin className="size-4 text-black-50" />
             </div>
-            <p className="line-clamp-1 text-sm text-black-200">
+            <BodyText
+              variant="sm"
+              className="line-clamp-1 leading-5 font-[number:inherit]"
+            >
               {job.location}
-            </p>
+            </BodyText>
           </div>
 
           <div className="flex items-center gap-1.5">
             <div className="w-4 min-w-4">
               <CircleDollarSign className="size-4 text-black-50" />
             </div>
-            <p className="truncate text-sm text-black-200">{`${job.salaryMin} - ${job.salaryMax} ${job.currency}`}</p>
+            <BodyText
+              variant="sm"
+              className="truncate leading-5 font-[number:inherit] text-nowrap"
+            >{`${job.salaryMin} - ${job.salaryMax} ${job.currency}`}</BodyText>
           </div>
         </div>
       </div>

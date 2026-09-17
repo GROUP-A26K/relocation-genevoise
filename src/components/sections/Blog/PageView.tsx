@@ -1,5 +1,4 @@
 'use client';
-
 import { motion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { useDebounceValue } from 'usehooks-ts';
@@ -15,6 +14,7 @@ import { BlogCard } from '@/components/common/Card';
 import EmptyData from '@/components/common/EmptyData';
 import { RevealItem } from '@/components/common/Reveal';
 import { Pagination } from '@/components/common/Pagination';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { BlogHero } from '@/components/sections/Blog/BlogHero';
 import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
 import {
@@ -95,7 +95,14 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
   return (
     <>
       <Section isDivider revealTrigger="load">
-        <Show when={newestBlog}>
+        <Show
+          when={newestBlog}
+          fallback={
+            <HeadingText as="h1" className="sr-only">
+              {t('heading')}
+            </HeadingText>
+          }
+        >
           {(blog) => (
             <BlogHero
               heading={t('heading')}
@@ -134,7 +141,12 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
           />
         </RevealItem>
 
-        <h2 className="sr-only">Blog posts</h2>
+        <HeadingText
+          as="h2"
+          className="sr-only text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit"
+        >
+          Blog posts
+        </HeadingText>
 
         <Show when={!loading} fallback={<BlogListSkeleton />}>
           <Show

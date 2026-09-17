@@ -7,7 +7,9 @@ import Button from '@/components/common/Button';
 import CountUp from '@/components/common/CountUp';
 import Section from '@/components/common/Section';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
 import HeroTabs, { type TFindATenantAudience } from './HeroTabs';
@@ -69,12 +71,18 @@ export default function Hero({
 
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <h1 className="text-center text-4xl leading-[130%]! font-bold text-pretty whitespace-pre-line text-black-500 lg:text-left lg:text-5xl">
+                <HeadingText
+                  as="h1"
+                  className="text-center text-4xl text-pretty whitespace-pre-line lg:text-left lg:text-5xl"
+                >
                   {heading}
-                </h1>
-                <p className="text-center text-base leading-[150%]! font-normal text-pretty text-black-300 lg:text-left">
+                </HeadingText>
+                <BodyText
+                  variant="md"
+                  className="text-center leading-[150%] text-pretty text-black-300 lg:text-left"
+                >
                   {description}
-                </p>
+                </BodyText>
               </div>
 
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
@@ -126,11 +134,11 @@ export default function Hero({
               <div className="flex w-full flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
                 <CountUp
                   value={stat.value}
-                  className="text-4xl leading-[130%]! font-bold text-black-500 lg:text-[40px]"
+                  className="text-4xl leading-[130%] font-bold text-black-500 lg:text-[40px]"
                 />
-                <p className="text-base leading-[130%]! font-semibold text-black-200 lg:text-lg">
+                <BodyText variant="md" className="font-semibold lg:text-lg">
                   {stat.label}
-                </p>
+                </BodyText>
               </div>
 
               {index < stats.length - 1 && (

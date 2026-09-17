@@ -1,10 +1,12 @@
 'use client';
-
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { cn as typographyCn } from '@/components/common/Text/utils';
 
 const Sheet = SheetPrimitive.Root;
 
@@ -105,11 +107,16 @@ function SheetTitle({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Title>) {
   return (
-    <SheetPrimitive.Title
-      data-slot="sheet-title"
-      className={cn('text-lg font-semibold text-foreground', className)}
-      {...props}
-    />
+    <HeadingText
+      as="h5"
+      asChild
+      className={typographyCn(
+        'text-[length:inherit] leading-[calc(1.75/1.125)] font-[number:inherit] text-inherit',
+        typographyCn('text-lg font-semibold text-foreground', className)
+      )}
+    >
+      <SheetPrimitive.Title data-slot="sheet-title" {...props} />
+    </HeadingText>
   );
 }
 function SheetDescription({
@@ -117,11 +124,15 @@ function SheetDescription({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Description>) {
   return (
-    <SheetPrimitive.Description
-      data-slot="sheet-description"
-      className={cn('text-sm text-muted-foreground', className)}
-      {...props}
-    />
+    <BodyText
+      asChild
+      className={typographyCn(
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        typographyCn('text-sm text-muted-foreground', className)
+      )}
+    >
+      <SheetPrimitive.Description data-slot="sheet-description" {...props} />
+    </BodyText>
   );
 }
 export {

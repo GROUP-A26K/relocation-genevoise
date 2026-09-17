@@ -1,6 +1,8 @@
 'use client';
 import { cn } from '@/libs/utils';
 
+import BodyText from './BodyText';
+
 interface IListItemProps {
   children?: React.ReactNode;
   className?: string;
@@ -13,18 +15,15 @@ export const ListItem: React.FC<IListItemProps> = ({
   dotColor,
 }) => {
   return (
-    <li
-      className={cn(
-        'text-sm leading-[130%]! font-normal text-black-200 lg:text-base',
-        className
-      )}
-    >
-      <style jsx>{`
-        li::marker {
-          color: ${dotColor || '#4e5561'};
-        }
-      `}</style>
-      {children}
-    </li>
+    <BodyText asChild variant="sm" className={cn('lg:text-base', className)}>
+      <li>
+        <style jsx>{`
+          li::marker {
+            color: ${dotColor || '#4e5561'};
+          }
+        `}</style>
+        {children}
+      </li>
+    </BodyText>
   );
 };

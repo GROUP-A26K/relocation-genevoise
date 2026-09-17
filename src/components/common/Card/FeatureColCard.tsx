@@ -1,7 +1,9 @@
 import { ArrowRight } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 interface IFeatureColCardProps {
   title: string;
@@ -33,39 +35,50 @@ export const FeatureColCard: React.FC<IFeatureColCardProps> = ({
         </div>
       </div>
       <div className="flex h-full flex-col justify-between">
-        <div className={cn('flex flex-col gap-1 text-black-500 lg:gap-2')}>
-          <h3 className="text-xl leading-[130%]! font-semibold">{title}</h3>
-          {description && (
-            <p
-              className={cn(
-                'text-sm leading-[130%]! font-normal text-black-200 lg:text-sm'
-              )}
-            >
-              {description}
-            </p>
-          )}
-        </div>
+        <BodyText
+          asChild
+          className="flex flex-col gap-1 text-[length:inherit] leading-[inherit] font-[number:inherit] text-black-500 lg:gap-2"
+        >
+          <div>
+            <HeadingText as="h3" className="text-xl text-inherit">
+              {title}
+            </HeadingText>
+            {description && (
+              <BodyText variant="sm" className="lg:text-sm">
+                {description}
+              </BodyText>
+            )}
+          </div>
+        </BodyText>
 
         {link && (
           <Link href={link}>
-            <div className="flex items-center pt-4 text-[14px] leading-[130%]! font-semibold text-primary-500">
-              Discover our offers
-              <ArrowRight
-                strokeWidth={3}
-                height={12}
-                width={12}
-                className={cn(
-                  'ml-1.5 transition-transform group-hover:translate-x-1'
-                )}
-              />
-            </div>
+            <BodyText
+              variant="sm"
+              asChild
+              className="flex items-center pt-4 font-semibold text-primary-500"
+            >
+              <div>
+                Discover our offers
+                <ArrowRight
+                  strokeWidth={3}
+                  height={12}
+                  width={12}
+                  className="ml-1.5 transition-transform group-hover:translate-x-1"
+                />
+              </div>
+            </BodyText>
           </Link>
         )}
 
         {info && (
-          <div className="flex items-center pt-4 text-xl leading-[130%]! font-semibold text-primary-500">
-            {info}
-          </div>
+          <BodyText
+            variant="xl"
+            asChild
+            className="flex items-center pt-4 font-semibold text-primary-500"
+          >
+            <div>{info}</div>
+          </BodyText>
         )}
       </div>
     </div>

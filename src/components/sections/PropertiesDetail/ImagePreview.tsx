@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Button from '@/components/common/Button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 
 import type { IPropertyDetail } from '@/models/property';
 
@@ -101,12 +102,14 @@ export const ImagePreview = ({
             />
             {i === 3 && remainingCount > 0 && (
               <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#000000]/50 lg:hidden">
-                <span
-                  className="text-base leading-[130%] font-semibold text-white"
+                <BodyText
+                  variant="md"
+                  asChild
+                  className="font-semibold text-white"
                   onClick={handleNavigateToPhotoTour}
                 >
-                  +{remainingCount}
-                </span>
+                  <span>+{remainingCount}</span>
+                </BodyText>
               </div>
             )}
           </div>

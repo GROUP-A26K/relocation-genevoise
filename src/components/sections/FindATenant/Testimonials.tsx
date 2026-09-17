@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
@@ -7,6 +6,8 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { cn } from '@/libs/utils';
 import Section from '@/components/common/Section';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import {
   type CarouselApi,
   Carousel,
@@ -106,17 +107,20 @@ export default function Testimonials({
   return (
     <Section className="bg-white">
       <RevealItem className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
+        <BodyText variant="sm" className="font-semibold text-yellow-600">
           {eyebrow}
-        </p>
+        </BodyText>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-[32px] leading-[130%]! font-bold text-pretty text-black-500 lg:text-[40px]">
+          <HeadingText
+            as="h2"
+            className="text-[32px] text-pretty lg:text-[40px]"
+          >
             {heading}
-          </h2>
-          <p className="text-base leading-[150%]! font-normal text-black-300">
+          </HeadingText>
+          <BodyText variant="md" className="leading-[150%] text-black-300">
             {description}
-          </p>
+          </BodyText>
         </div>
       </RevealItem>
 
@@ -142,9 +146,12 @@ export default function Testimonials({
                         />
                       ))}
                     </div>
-                    <p className="text-base leading-[150%]! font-normal text-black-300">
+                    <BodyText
+                      variant="md"
+                      className="leading-[150%] text-black-300"
+                    >
                       {item.quote}
-                    </p>
+                    </BodyText>
                   </div>
 
                   <div className="flex items-center gap-3">
@@ -160,17 +167,24 @@ export default function Testimonials({
                         draggable={false}
                       />
                     ) : (
-                      <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-grey-200 text-sm font-semibold text-black-300">
-                        {getInitials(item.name)}
-                      </div>
+                      <BodyText
+                        variant="sm"
+                        asChild
+                        className="flex size-12 shrink-0 items-center justify-center rounded-full bg-grey-200 leading-5 font-semibold text-black-300"
+                      >
+                        <div>{getInitials(item.name)}</div>
+                      </BodyText>
                     )}
                     <div className="flex flex-col gap-0.5">
-                      <p className="text-base leading-[130%]! font-semibold text-black-500">
+                      <BodyText
+                        variant="md"
+                        className="font-semibold text-black-500"
+                      >
                         {item.name}
-                      </p>
-                      <p className="text-sm leading-[150%]! font-normal text-black-200">
+                      </BodyText>
+                      <BodyText variant="sm" className="leading-[150%]">
                         {item.role}
-                      </p>
+                      </BodyText>
                     </div>
                   </div>
                 </article>

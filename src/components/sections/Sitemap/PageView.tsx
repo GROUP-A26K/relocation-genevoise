@@ -1,12 +1,13 @@
 'use client';
-
 import { useTranslations } from 'next-intl';
 
 import { useScroll } from '@/hooks/useScroll';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { FormattedText } from '@/components/common/Text';
 import { ContentMenu } from '@/components/common/ContentMenu';
+import HeadingText from '@/components/common/Text/HeadingText';
 import {
   DESKTOP_MENU_OFFSET,
   MOBILE_MENU_OFFSET,
@@ -114,12 +115,18 @@ export const PageView = ({ blogSitemap, propertySitemap }: IPageViewProps) => {
     <PageContainer>
       <RevealItem className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
         <div className="flex flex-col gap-3">
-          <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600">
+          <BodyText
+            variant="sm"
+            className="text-center font-semibold text-secondary-600"
+          >
             {t('heading')}
-          </p>
-          <h1 className="text-center text-4xl leading-[100%]! font-bold text-pretty lg:text-5xl lg:leading-[130%]!">
+          </BodyText>
+          <HeadingText
+            as="h1"
+            className="text-center text-4xl leading-[100%] text-pretty text-inherit lg:text-5xl lg:leading-[130%]"
+          >
             <FormattedText text={t('subHeading')} />
-          </h1>
+          </HeadingText>
         </div>
       </RevealItem>
 

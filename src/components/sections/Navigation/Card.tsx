@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import { cn } from '@/libs/utils';
+import { BodyText } from '@/components/common/Text';
 import { Link, type THref } from '@/libs/i18nNavigation';
 
 interface ICardProps {
@@ -23,10 +24,6 @@ export const Card: React.FC<ICardProps> = ({
   url,
   variant,
 }) => {
-  const STYLE_CARD: Record<'lg' | 'md', string> = {
-    lg: cn('text-[14px]'),
-    md: cn('text-subtle'),
-  };
   const t = useTranslations('Navbar');
 
   return (
@@ -49,23 +46,24 @@ export const Card: React.FC<ICardProps> = ({
           </div>
         </div>
         <div className="flex w-[296px] flex-col justify-center gap-[8px]">
-          <div
+          <BodyText
             title={title}
-            className="line-clamp-1 text-[14px] leading-[130%]! font-semibold wrap-break-word"
+            variant="sm"
+            className="line-clamp-1 font-semibold wrap-break-word text-inherit"
           >
             {title}
-          </div>
-          <div
+          </BodyText>
+          <BodyText
             title={summary}
-            className={cn(
-              'line-clamp-2 font-normal text-black-200',
-              STYLE_CARD[variant],
-              'leading-[130%]'
-            )}
+            variant={variant === 'lg' ? 'sm' : 'xs'}
+            className={cn('line-clamp-2', variant === 'md' && 'text-inherit')}
           >
             {summary}
-          </div>
-          <div className="flex items-center text-[14px] leading-[130%]! font-semibold text-primary-500">
+          </BodyText>
+          <BodyText
+            variant="sm"
+            className="flex items-center font-semibold text-primary-500"
+          >
             {t('blogButton.text')}
             <ArrowRight
               strokeWidth={3}
@@ -75,7 +73,7 @@ export const Card: React.FC<ICardProps> = ({
                 'ml-1.5 transition-transform group-hover:translate-x-1'
               )}
             />
-          </div>
+          </BodyText>
         </div>
       </Link>
     </div>

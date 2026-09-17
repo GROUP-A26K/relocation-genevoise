@@ -1,13 +1,18 @@
 import * as React from 'react';
 
 import { cn } from '@/libs/utils';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 function Table({ className, ...props }: React.ComponentProps<'table'>) {
   return (
     <div data-slot="table-container" className="relative w-full overflow-auto">
       <table
         data-slot="table"
-        className={cn('w-full caption-bottom text-sm', className)}
+        className={cn(
+          bodyTextVariants(),
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          cn('w-full caption-bottom text-sm', className)
+        )}
         {...props}
       />
     </div>
@@ -86,7 +91,11 @@ function TableCaption({
   return (
     <caption
       data-slot="table-caption"
-      className={cn('mt-4 text-sm text-muted-foreground', className)}
+      className={cn(
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        cn('mt-4 text-sm text-muted-foreground', className)
+      )}
       {...props}
     />
   );

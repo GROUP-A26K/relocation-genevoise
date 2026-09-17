@@ -1,7 +1,9 @@
 import Button from '@/components/common/Button';
 import Section from '@/components/common/Section';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { LucideIcon } from 'lucide-react';
 
@@ -34,17 +36,20 @@ export default function Services({
   return (
     <Section id="services" className="bg-white">
       <RevealItem className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
+        <BodyText variant="sm" className="font-semibold text-yellow-600">
           {eyebrow}
-        </p>
+        </BodyText>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-[32px] leading-[130%]! font-bold whitespace-pre-line text-black-500 lg:text-[40px]">
+          <HeadingText
+            as="h2"
+            className="text-[32px] whitespace-pre-line lg:text-[40px]"
+          >
             {heading}
-          </h2>
-          <p className="text-base leading-[150%]! font-normal text-black-300">
+          </HeadingText>
+          <BodyText variant="md" className="leading-[150%] text-black-300">
             {description}
-          </p>
+          </BodyText>
         </div>
       </RevealItem>
 
@@ -59,12 +64,12 @@ export default function Services({
             </div>
 
             <div className="flex flex-col gap-1 lg:gap-2">
-              <h3 className="text-xl leading-[130%]! font-semibold text-black-500">
+              <HeadingText as="h3" className="text-xl">
                 {title}
-              </h3>
-              <p className="text-base leading-[150%]! font-normal text-black-300">
+              </HeadingText>
+              <BodyText variant="md" className="leading-[150%] text-black-300">
                 {description}
-              </p>
+              </BodyText>
             </div>
           </div>
         ))}

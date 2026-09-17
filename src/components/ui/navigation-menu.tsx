@@ -4,6 +4,7 @@ import { cva } from 'class-variance-authority';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 
 import { cn } from '@/libs/utils';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 function NavigationMenu({
   className,
@@ -42,7 +43,11 @@ function NavigationMenuList({
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent'
+  cn(
+    bodyTextVariants(),
+    'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+    'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent'
+  )
 );
 
 function NavigationMenuTrigger({
@@ -91,7 +96,7 @@ function NavigationMenuViewport({
       <NavigationMenuPrimitive.Viewport
         data-slot="navigation-menu-viewport"
         className={cn(
-          'relative mt-0 h-(--radix-navigation-menu-viewport-height) w-full origin-top overflow-hidden border-t-[0.5px]! bg-popover text-popover-foreground shadow-lg transition-[height] duration-300 ease-out data-[state=closed]:nav-viewport-slide-up data-[state=open]:nav-viewport-slide-down md:w-(--radix-navigation-menu-viewport-width)',
+          'relative mt-0 h-(--radix-navigation-menu-viewport-height) w-full origin-top overflow-hidden border-t-[0.5px] bg-popover text-popover-foreground shadow-lg transition-[height] duration-300 ease-out data-[state=closed]:nav-viewport-slide-up data-[state=open]:nav-viewport-slide-down md:w-(--radix-navigation-menu-viewport-width)',
           className
         )}
         {...props}

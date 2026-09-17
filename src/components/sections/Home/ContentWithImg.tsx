@@ -2,8 +2,10 @@ import Image from 'next/image';
 
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
 import { FormattedText } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
 import ContentWithImgBG from '@/assets/images/shared/relocation-genevoise-geneve-courtage.webp';
 
 interface IContentWithImgProps {
@@ -26,18 +28,21 @@ export const ContentWithImg: React.FC<IContentWithImgProps> = ({
       <div className="flex flex-col items-start gap-6 text-left lg:justify-center xl:max-w-140">
         <div className="flex flex-col gap-4 lg:gap-6">
           <div className="flex flex-col gap-3">
-            <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
+            <BodyText variant="sm" className="font-semibold text-secondary-600">
               {heading}
-            </p>
-            <h2 className="text-3xl leading-[130%]! font-semibold">
+            </BodyText>
+            <HeadingText
+              as="h2"
+              className="text-3xl font-semibold text-inherit"
+            >
               <FormattedText text={subHeading} />
-            </h2>
+            </HeadingText>
           </div>
-          <p className="flex flex-col gap-4 text-sm leading-[130%]! font-normal text-black-200 lg:text-base">
+          <BodyText variant="sm" className="flex flex-col gap-4 lg:text-base">
             {description?.map((item, index) => (
               <span key={index}>{item.paragraph}</span>
             ))}
-          </p>
+          </BodyText>
         </div>
         {buttonText && (
           <Link href={buttonUrl} className="w-full">

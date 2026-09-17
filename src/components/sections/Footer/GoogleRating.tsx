@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { cn } from '@/libs/utils';
 import StarIcon from '@/assets/icons/star.svg';
 import GoogleLogo from '@/assets/icons/google.svg';
+import BodyText from '@/components/common/Text/BodyText';
 
 interface IGoogleRatingProps {
   point: number;
@@ -30,9 +31,13 @@ export const GoogleRating: React.FC<IGoogleRatingProps> = ({
           />
         </div>
         <div className={cn('flex flex-col gap-0.5 text-black-500')}>
-          <div className="text-xs leading-[15.11px] font-bold text-grey-400">
-            {title}
-          </div>
+          <BodyText
+            variant="xs"
+            asChild
+            className="leading-[15.11px] font-bold text-grey-400"
+          >
+            <div>{title}</div>
+          </BodyText>
           <div className="flex items-center gap-1.5">
             {/* <div className="text-base font-bold leading-[150%] text-yellow-910">
               {point}
@@ -51,9 +56,14 @@ export const GoogleRating: React.FC<IGoogleRatingProps> = ({
             </div>
           </div>
 
-          <p className={cn('text-xs leading-[100%] font-normal text-grey-400')}>
+          <BodyText
+            variant="xs"
+            className={cn(
+              cn('text-xs leading-[100%] font-normal text-grey-400')
+            )}
+          >
             {subTitle}
-          </p>
+          </BodyText>
         </div>
       </div>
     </Link>

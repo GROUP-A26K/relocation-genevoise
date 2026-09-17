@@ -1,5 +1,4 @@
 'use client';
-
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import {
@@ -13,6 +12,8 @@ import {
 
 import { cn } from '@/libs/utils';
 import { Label } from '@/components/ui/label';
+import BodyText from '@/components/common/Text/BodyText';
+import { cn as typographyCn } from '@/components/common/Text/utils';
 
 import type * as LabelPrimitive from '@radix-ui/react-label';
 
@@ -122,10 +123,13 @@ function FormDescription({ className, ...props }: React.ComponentProps<'p'>) {
   const { formDescriptionId } = useFormField();
 
   return (
-    <p
+    <BodyText
       data-slot="form-description"
       id={formDescriptionId}
-      className={cn('text-[0.8rem] text-muted-foreground', className)}
+      className={typographyCn(
+        'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+        typographyCn('text-[0.8rem] text-muted-foreground', className)
+      )}
       {...props}
     />
   );
@@ -143,14 +147,17 @@ function FormMessage({
   }
 
   return (
-    <p
+    <BodyText
       data-slot="form-message"
       id={formMessageId}
-      className={cn('text-[0.8rem] font-medium text-destructive', className)}
+      className={typographyCn(
+        'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+        typographyCn('text-[0.8rem] font-medium text-destructive', className)
+      )}
       {...props}
     >
       {body}
-    </p>
+    </BodyText>
   );
 }
 export {

@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import { isNil } from 'lodash-es';
 import { useTranslations } from 'next-intl';
@@ -11,6 +10,8 @@ import { Controller, type FieldPath, type FieldValues } from 'react-hook-form';
 import { cn } from '@/libs/utils';
 import { Input } from '@/components/ui/input';
 import PDFIcon from '@/assets/icons/file-pdf.svg';
+import { cn as typographyCn } from '@/components/common/Text/utils';
+import BodyText, { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { CircularProgressBar } from '@/components/common/Progress/CircularProgressBar';
 
 import { FormField } from './FormField';
@@ -167,17 +168,40 @@ function FileCard({ file, progress, onRemove }: IFileCardProps) {
         />
 
         <div className="flex w-full flex-col gap-1">
-          <p className="max-w-[300px] truncate text-base leading-none font-medium text-gray-900">
+          <BodyText
+            className={typographyCn(
+              'text-[length:inherit] leading-[150%] font-[number:inherit] text-nowrap text-inherit',
+              'max-w-[300px] truncate text-base leading-none font-medium text-gray-900'
+            )}
+          >
             {file.name}
-          </p>
-          <div className="flex items-center text-sm text-gray-500">
-            <span>{formatSize(file.size)}</span>
+          </BodyText>
+          <div
+            className={cn(
+              bodyTextVariants(),
+              'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+              'flex items-center text-sm text-gray-500'
+            )}
+          >
+            <BodyText
+              asChild
+              className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+            >
+              <span>{formatSize(file.size)}</span>
+            </BodyText>
             {!isNil(progress) && (
               <>
                 <span className="mx-1 h-[3px] w-[3px] rounded-full bg-gray-300" />
-                <span>
-                  {pct < COMPLETED_PROGRESS ? `Uploading ${pct}%` : 'Uploaded'}
-                </span>
+                <BodyText
+                  asChild
+                  className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+                >
+                  <span>
+                    {pct < COMPLETED_PROGRESS
+                      ? `Uploading ${pct}%`
+                      : 'Uploaded'}
+                  </span>
+                </BodyText>
               </>
             )}
           </div>
@@ -207,12 +231,33 @@ function EmptyState() {
       <div className="flex size-12 items-center justify-center rounded-lg bg-grey-50">
         <CloudUpload className="size-6 text-blue-500" />
       </div>
-      <p className="text-center text-sm text-black-400">
-        <span className="font-semibold text-black-500">{textT('title')}</span>{' '}
+      <BodyText
+        className={typographyCn(
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          'text-center text-sm text-black-400'
+        )}
+      >
+        <BodyText
+          asChild
+          className={typographyCn(
+            'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+            'font-semibold text-black-500'
+          )}
+        >
+          <span>{textT('title')}</span>
+        </BodyText>{' '}
         {textT('description')}
         <br />
-        <span className="text-xs">DOCX, PDF&nbsp;(max&nbsp;500&nbsp;MB)</span>
-      </p>
+        <BodyText
+          asChild
+          className={typographyCn(
+            'text-[length:inherit] leading-[calc(1/0.75)] font-[number:inherit] text-inherit',
+            'text-xs'
+          )}
+        >
+          <span>DOCX, PDF&nbsp;(max&nbsp;500&nbsp;MB)</span>
+        </BodyText>
+      </BodyText>
     </div>
   );
 }

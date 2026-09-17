@@ -1,9 +1,9 @@
 'use client';
-
 import { useReducedMotion } from 'motion/react';
 
 import { cn } from '@/libs/utils';
 import { useIsStuck } from '@/hooks/useIsStuck';
+import BodyText from '@/components/common/Text/BodyText';
 import {
   Select,
   SelectContent,
@@ -49,12 +49,15 @@ const MobileMenu: React.FC<IContentMenuProps> = ({
       <Select value={activeItem.id} onValueChange={handleValueChange}>
         <SelectTrigger
           aria-label={title || 'Menu'}
-          className="h-10 w-full gap-2 rounded-full border-grey-100 bg-white px-3 py-2 text-sm leading-[130%]! font-normal text-black-500 shadow-none focus:ring-2 focus:ring-primary-100 focus:ring-offset-0 data-[state=open]:ring-2 data-[state=open]:ring-primary-100"
+          className="h-10 w-full gap-2 rounded-full border-grey-100 bg-white px-3 py-2 text-sm leading-[130%] font-normal text-black-500 shadow-none focus:ring-2 focus:ring-primary-100 focus:ring-offset-0 data-[state=open]:ring-2 data-[state=open]:ring-primary-100"
         >
           <SelectValue>
-            <span className="line-clamp-1 text-left text-wrap">
-              {activeItem.title}
-            </span>
+            <BodyText
+              asChild
+              className="line-clamp-1 text-left text-[length:inherit] leading-[inherit] font-[number:inherit] text-wrap text-inherit"
+            >
+              <span>{activeItem.title}</span>
+            </BodyText>
           </SelectValue>
         </SelectTrigger>
         <SelectContent className="max-w-[calc(100vw-2rem)]">
@@ -62,7 +65,7 @@ const MobileMenu: React.FC<IContentMenuProps> = ({
             <SelectItem
               key={`menu-item-${item.id}`}
               value={item.id}
-              className="text-sm leading-[130%]!"
+              className="text-sm leading-[130%]"
             >
               {item.title}
             </SelectItem>

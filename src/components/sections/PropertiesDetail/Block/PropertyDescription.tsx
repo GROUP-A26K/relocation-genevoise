@@ -1,8 +1,10 @@
 'use client';
-
 import { useBoolean } from 'usehooks-ts';
 import { useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+
+import { cn } from '@/libs/utils';
+import BodyText, { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 interface IPropertyDescriptionProps {
   content: string;
@@ -16,7 +18,7 @@ export const PropertyDescription = ({ content }: IPropertyDescriptionProps) => {
 
   useEffect(() => {
     if (textRef.current) {
-      const lineHeight = parseInt(
+      const lineHeight = Number.parseInt(
         window.getComputedStyle(textRef.current).lineHeight
       );
       const height = textRef.current.scrollHeight;
@@ -30,18 +32,25 @@ export const PropertyDescription = ({ content }: IPropertyDescriptionProps) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <p
+      <BodyText
+        variant="sm"
+        className={cn(
+          'font-[number:inherit]',
+          `text-sm leading-[130%] whitespace-pre-wrap text-black-200 ${
+            !isExpanded.value && showReadMore.value ? 'line-clamp-4' : ''
+          }`
+        )}
         ref={textRef}
-        className={`text-sm leading-[130%]! whitespace-pre-wrap text-black-200 ${
-          !isExpanded.value && showReadMore.value ? 'line-clamp-4' : ''
-        }`}
       >
         {content}
-      </p>
+      </BodyText>
       {showReadMore.value && (
         <button
           onClick={isExpanded.toggle}
-          className="self-start text-base font-semibold text-black-500 hover:underline"
+          className={cn(
+            bodyTextVariants({ variant: 'md' }),
+            'self-start text-base leading-6 font-semibold text-black-500 hover:underline'
+          )}
         >
           {isExpanded.value
             ? t('description.readLess')

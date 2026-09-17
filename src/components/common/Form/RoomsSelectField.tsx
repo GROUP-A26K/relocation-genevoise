@@ -1,5 +1,4 @@
 'use client';
-
 import { useBoolean } from 'usehooks-ts';
 import { useTranslations } from 'next-intl';
 import { Controller, useFormContext } from 'react-hook-form';
@@ -7,6 +6,8 @@ import { Check, ChevronDown, ChevronUp, X } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
+import { cn as typographyCn } from '@/components/common/Text/utils';
+import BodyText, { bodyTextVariants } from '@/components/common/Text/BodyText';
 import {
   Popover,
   PopoverContent,
@@ -60,32 +61,46 @@ export const RoomsSelectField: React.FC<IRoomsSelectFieldProps> = ({
         return (
           <div className={cn('flex w-full flex-col gap-1.5', className)}>
             {label && (
-              <span className={cn('text-sm leading-[130%]!', labelClassName)}>
-                {label}
-              </span>
+              <BodyText
+                asChild
+                className={typographyCn(
+                  'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+                  typographyCn('text-sm leading-[130%]', labelClassName)
+                )}
+              >
+                <span>{label}</span>
+              </BodyText>
             )}
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <button
                   type="button"
                   className={cn(
-                    'group relative flex h-10 w-full items-center justify-between rounded-full text-sm',
-                    'border bg-white px-3',
-                    'border-grey-100',
-                    'hover:border-black-50',
-                    'focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50 focus:outline-hidden',
-                    'data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
-                    triggerClassName
+                    bodyTextVariants(),
+                    'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+                    cn(
+                      'group relative flex h-10 w-full items-center justify-between rounded-full text-sm',
+                      'border bg-white px-3',
+                      'border-grey-100',
+                      'hover:border-black-50',
+                      'focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50 focus:outline-hidden',
+                      'data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
+                      triggerClassName
+                    )
                   )}
                 >
-                  <span
-                    className={cn(
-                      'truncate text-sm font-medium',
-                      hasValue ? 'text-black-500' : 'text-black-50'
+                  <BodyText
+                    asChild
+                    className={typographyCn(
+                      'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-nowrap text-inherit',
+                      typographyCn(
+                        'truncate text-sm font-medium',
+                        hasValue ? 'text-black-500' : 'text-black-50'
+                      )
                     )}
                   >
-                    {displayText}
-                  </span>
+                    <span>{displayText}</span>
+                  </BodyText>
                   <div className="ml-2 flex shrink-0 items-center gap-1">
                     {hasValue && (
                       <X
@@ -115,15 +130,24 @@ export const RoomsSelectField: React.FC<IRoomsSelectFieldProps> = ({
                         key={option.value || '__any__'}
                         type="button"
                         className={cn(
-                          'flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-black-500',
-                          'hover:bg-grey-50',
-                          isSelected && 'bg-grey-50'
+                          bodyTextVariants(),
+                          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+                          cn(
+                            'flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-black-500',
+                            'hover:bg-grey-50',
+                            isSelected && 'bg-grey-50'
+                          )
                         )}
                         onClick={() => handleSelect(option.value)}
                       >
-                        <span>
-                          {t(option.labelKey as Parameters<typeof t>[0])}
-                        </span>
+                        <BodyText
+                          asChild
+                          className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+                        >
+                          <span>
+                            {t(option.labelKey as Parameters<typeof t>[0])}
+                          </span>
+                        </BodyText>
                         {isSelected && (
                           <Check className="h-5 w-5 shrink-0 text-secondary-500" />
                         )}

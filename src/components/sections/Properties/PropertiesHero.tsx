@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
+import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { RevealItem, RevealSection } from '@/components/common/Reveal';
 import PropertyListingImg from '@/assets/images/properties/hero-background.webp';
 
@@ -28,16 +32,27 @@ export default function PropertiesHero() {
       >
         <article className="flex max-w-[720px] flex-col items-center gap-4 lg:gap-6">
           <RevealItem className="flex w-full flex-col items-center gap-3">
-            <span className="text-body leading-[1.3]! font-semibold text-yellow-500">
-              {t('hero.tagline')}
-            </span>
-            <h1 className="text-center text-3xl leading-[1.3]! font-bold text-balance text-white lg:text-h1">
+            <BodyText
+              variant="sm"
+              asChild
+              className="font-semibold text-yellow-500"
+            >
+              <span>{t('hero.tagline')}</span>
+            </BodyText>
+            <HeadingText
+              as="h1"
+              className="text-center text-3xl text-balance text-white lg:text-[48px]"
+            >
               {t('hero.title')}
-            </h1>
+            </HeadingText>
           </RevealItem>
           <RevealItem
             as="p"
-            className="text-center text-body leading-[1.3]! font-normal text-pretty text-white"
+            className={cn(
+              bodyTextVariants(),
+              'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+              'text-center text-[14px] leading-[130%] font-normal text-pretty text-white'
+            )}
           >
             {t('hero.description')}
           </RevealItem>

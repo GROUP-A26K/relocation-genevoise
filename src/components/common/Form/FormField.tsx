@@ -31,7 +31,7 @@ export const FormField: React.FC<IFormFieldProps> = ({
     <FormItem className={cn('flex w-full flex-col gap-1.5', className)}>
       {label && (
         <FormLabel
-          className={cn('flex gap-0.5 text-sm leading-[130%]!', labelClassName)}
+          className={cn('flex gap-0.5 text-sm leading-[130%]', labelClassName)}
           {...(htmlFor ? { htmlFor } : {})}
         >
           {label}
@@ -39,7 +39,7 @@ export const FormField: React.FC<IFormFieldProps> = ({
         </FormLabel>
       )}
       <FormControl className="mt-0 rounded-full">{children}</FormControl>
-      {message && <FormMessage className="mt-0!">{message}</FormMessage>}
+      {message && <FormMessage className="mt-0">{message}</FormMessage>}
     </FormItem>
   );
 };

@@ -1,4 +1,5 @@
-import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 interface ICompanyCardProps {
   title: string;
@@ -19,18 +20,21 @@ export const CompanyCard: React.FC<ICompanyCardProps> = ({
         </div>
       </div>
       <div className="flex h-full flex-col justify-between">
-        <div className={cn('flex flex-col gap-1 text-black-500 lg:gap-3')}>
-          <h3 className="text-xl leading-[130%]! font-semibold">{title}</h3>
-          {description && (
-            <p
-              className={cn(
-                'text-sm leading-[130%]! font-normal text-black-200 lg:text-sm'
-              )}
-            >
-              {description}
-            </p>
-          )}
-        </div>
+        <BodyText
+          asChild
+          className="flex flex-col gap-1 text-[length:inherit] leading-[inherit] font-[number:inherit] text-black-500 lg:gap-3"
+        >
+          <div>
+            <HeadingText as="h3" className="text-xl text-inherit">
+              {title}
+            </HeadingText>
+            {description && (
+              <BodyText variant="sm" className="lg:text-sm">
+                {description}
+              </BodyText>
+            )}
+          </div>
+        </BodyText>
       </div>
     </div>
   );

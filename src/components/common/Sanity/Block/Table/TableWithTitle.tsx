@@ -1,3 +1,5 @@
+import BodyText from '@/components/common/Text/BodyText';
+
 import { MobileTable } from './MobileTable';
 import { DesktopTable } from './DesktopTable';
 
@@ -21,7 +23,13 @@ export const TableWithTitle: React.FC<ITableWithTitleProps> = ({
       <DesktopTable {...tableContent} />
       <MobileTable {...tableContent} />
 
-      <span className="text-xs font-medium text-gray-500">{title}</span>
+      <BodyText
+        variant="xs"
+        asChild
+        className="leading-4 font-medium text-gray-500"
+      >
+        <span>{title}</span>
+      </BodyText>
     </div>
   );
 };

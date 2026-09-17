@@ -1,4 +1,5 @@
 import { cn } from '@/libs/utils';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { Button as ShadcnButton } from '@/components/ui/button-custom';
 
 type TButtonType = 'primary' | 'secondary';
@@ -67,19 +68,26 @@ const Button: React.FC<TButtonProps> = ({
   iconEnd: IconEnd,
   onClick,
 }) => {
-  // Define button size styles for different variants (lg, md, sm, xs)
   const STYLE_BTN: Record<TButtonVariant, string> = {
     lg: cn(
-      'px-[24px] py-[22px] rounded-3xl text-large text-white font-semibold lineHeight-large w-fit'
+      bodyTextVariants({ variant: 'lg' }),
+      'text-nowrap',
+      'px-[24px] py-[22px] rounded-3xl text-[18px]/[1.5] text-white font-semibold w-fit'
     ),
     md: cn(
-      'px-[16px] py-[20px] rounded-3xl text-[16px] text-white font-semibold lineHeight-md w-fit'
+      bodyTextVariants({ variant: 'md' }),
+      'text-nowrap',
+      'px-[16px] py-[20px] rounded-3xl text-[16px]/[1.5] text-white font-semibold w-fit'
     ),
     sm: cn(
-      'px-[12px] py-[17px] rounded-3xl text-[14px] text-white font-semibold lineHeight-sm w-fit'
+      bodyTextVariants({ variant: 'sm' }),
+      'text-nowrap',
+      'px-[12px] py-[17px] rounded-3xl text-[14px]/[1.5] text-white font-semibold w-fit'
     ),
     xs: cn(
-      'px-[10px] py-[10px] rounded-3xl text-subtle text-white font-semibold lineHeight-xs w-fit'
+      bodyTextVariants({ variant: 'xs' }),
+      'text-nowrap',
+      'px-[10px] py-[10px] rounded-3xl text-[12px]/[1.5] text-white font-semibold w-fit'
     ),
   };
 
@@ -94,16 +102,10 @@ const Button: React.FC<TButtonProps> = ({
   };
 
   const STYLE_OUTLINE: Record<string, string> = {
-    primary: cn(
-      'bg-white border border-indigo-600 border-primary-500 text-primary-500',
-      'hover:bg-grey-100 hover:border-primary-400 hover:text-primary-400',
-      'active:bg-grey-200 active:border-primary-500 active:text-primary-500 active:text-primary-500'
-    ),
-    secondary: cn(
-      'bg-white border border-indigo-600 border-secondary-500 text-secondary-600',
-      'hover:bg-secondary-50 hover:border-secondary-400 hover:text-secondary-400',
-      'active:bg-secondary-50 active:border-secondary-600 active:text-secondary-600 '
-    ),
+    primary:
+      'bg-white border border-primary-500 text-primary-500 hover:bg-grey-100 hover:border-primary-400 hover:text-primary-400 active:bg-grey-200 active:border-primary-500 active:text-primary-500',
+    secondary:
+      'bg-white border border-secondary-500 text-secondary-600 hover:bg-secondary-50 hover:border-secondary-400 hover:text-secondary-400 active:bg-secondary-50 active:border-secondary-600 active:text-secondary-600',
     disabled:
       type === 'primary'
         ? 'bg-white border border-indigo-600 border-primary-200 text-primary-200 text-base font-bold leading-6 pointer-events-none select-none'
@@ -111,16 +113,10 @@ const Button: React.FC<TButtonProps> = ({
   };
 
   const STYLE_GHOST: Record<string, string> = {
-    primary: cn(
-      'bg-grey-50 text-primary-500',
-      'hover:bg-grey-50 hover:text-primary-400',
-      'active:bg-grey-100 active:text-primary-600'
-    ),
-    secondary: cn(
-      'bg-secondary-50 text-secondary-600',
-      'hover:bg-secondary-50 hover:text-secondary-400',
-      'active:bg-secondary-100 active:text-secondary-600'
-    ),
+    primary:
+      'bg-grey-50 text-primary-500 hover:bg-grey-50 hover:text-primary-400 active:bg-grey-100 active:text-primary-600',
+    secondary:
+      'bg-secondary-50 text-secondary-600 hover:bg-secondary-50 hover:text-secondary-400 active:bg-secondary-100 active:text-secondary-600',
     disabled:
       type === 'primary'
         ? 'border-indigo-600 border-primary-200 text-primary-200 text-base font-bold leading-6 pointer-events-none select-none'
@@ -128,28 +124,22 @@ const Button: React.FC<TButtonProps> = ({
   };
 
   const STYLE_LINK: Record<string, string> = {
-    primary: cn(
-      'bg-none text-primary-500',
-      'hover:bg-none hover:text-primary-400',
-      'active:bg-none active:text-primary-600'
-    ),
-    secondary: cn(
-      'bg-none text-secondary-600',
-      'hover:none hover:text-secondary-400',
-      'active:none active:text-secondary-600'
-    ),
+    primary:
+      'bg-none text-primary-500 hover:bg-none hover:text-primary-400 active:bg-none active:text-primary-600',
+    secondary:
+      'bg-none text-secondary-600 hover:none hover:text-secondary-400 active:none active:text-secondary-600',
     disabled:
       type === 'primary'
         ? 'border-indigo-600 border-primary-200 text-primary-200 text-base font-bold leading-6 pointer-events-none select-none'
         : 'border-indigo-600 border-secondary-200 text-secondary-200 text-base font-bold leading-6 pointer-events-none select-none',
   };
 
-  // Define icon size for each variant
+  // Non-default sizes must outrank the primitive’s [&_svg]:size-4 selector.
   const STYLE_ICON: Record<TButtonVariant, string> = {
-    lg: cn('w-[20px]! h-[20px]!'),
-    md: cn('w-[16px]! h-[16px]!'),
-    sm: cn('w-[12px]! h-[12px]!'),
-    xs: cn('w-[10px]! h-[10px]!'),
+    lg: 'w-[20px]! h-[20px]!',
+    md: 'w-[16px] h-[16px]',
+    sm: 'w-[12px]! h-[12px]!',
+    xs: 'w-[10px]! h-[10px]!',
   };
 
   const renderButtonContent = () => (
@@ -164,7 +154,6 @@ const Button: React.FC<TButtonProps> = ({
     </>
   );
 
-  // Switch based on the 'as' prop (button type)
   switch (as) {
     case 'solid':
       return (

@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,6 +11,8 @@ import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import ConsultationBG from '@/assets/images/application/form-image.webp';
 import { useSubmitApplication } from '@/features/application/application.hooks';
@@ -24,7 +25,7 @@ import {
 import type { IJobDetail } from '@/models/job';
 
 const buildOptions = (t: ReturnType<typeof useTranslations>) =>
-  [...Array(5).keys()].map((i) => {
+  [...new Array(5).keys()].map((i) => {
     const label = t(`experienceYears.options.${i}.label`);
     return { value: label, label };
   });
@@ -110,10 +111,18 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
     <div className="container w-full gap-8 px-4 pt-8 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
       <RevealItem as="section" className="flex w-full">
         <div className="flex flex-col gap-4 lg:gap-6">
-          <p className="text-sm font-semibold text-secondary-600">
+          <BodyText
+            variant="sm"
+            className="leading-5 font-semibold text-secondary-600"
+          >
             Application
-          </p>
-          <h1 className="text-3xl font-semibold">{title}</h1>
+          </BodyText>
+          <HeadingText
+            as="h1"
+            className="text-3xl leading-9 font-semibold text-inherit"
+          >
+            {title}
+          </HeadingText>
 
           <ul className="inline-flex flex-wrap items-center gap-3">
             <InfoChip icon={Clock} label={employmentType} />
@@ -133,9 +142,12 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
         className="mt-8 flex flex-col gap-12 rounded-xl bg-white p-4 pt-6 shadow-xl lg:flex-row lg:gap-16 lg:p-8"
       >
         <div className="flex w-full flex-col gap-6 lg:gap-8">
-          <h2 className="text-xl font-semibold">
+          <HeadingText
+            as="h2"
+            className="text-xl leading-7 font-semibold text-inherit"
+          >
             {t('formTitle', { default: 'Application Forms' })}
-          </h2>
+          </HeadingText>
 
           <Form {...form}>
             <form

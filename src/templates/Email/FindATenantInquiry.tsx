@@ -100,7 +100,7 @@ export const FindATenantInquiry = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="ml-1 text-xs leading-[100%]! font-semibold text-[#7C6C06]">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -110,7 +110,7 @@ export const FindATenantInquiry = ({
               </Row>
             </Section>
 
-            <Heading className="m-8 mb-6 text-start text-3xl leading-[130%]! font-semibold text-[#7C6C06]">
+            <Heading className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#7C6C06]">
               {heading}
             </Heading>
 

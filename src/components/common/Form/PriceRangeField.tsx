@@ -1,5 +1,4 @@
 'use client';
-
 import { useBoolean } from 'usehooks-ts';
 import { useTranslations } from 'next-intl';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
@@ -13,6 +12,8 @@ import {
 
 import { cn } from '@/libs/utils';
 import { useExchangeRates } from '@/context/ExchangeRatesContext';
+import { cn as typographyCn } from '@/components/common/Text/utils';
+import BodyText, { bodyTextVariants } from '@/components/common/Text/BodyText';
 import {
   Popover,
   PopoverContent,
@@ -93,22 +94,33 @@ export const PriceRangeField: React.FC<IPriceRangeFieldProps> = ({
   return (
     <div className={cn('flex w-full flex-col gap-1.5', className)}>
       {label && (
-        <span className={cn('text-sm leading-[130%]!', labelClassName)}>
-          {label}
-        </span>
+        <BodyText
+          asChild
+          className={typographyCn(
+            'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+            typographyCn('text-sm leading-[130%]', labelClassName)
+          )}
+        >
+          <span>{label}</span>
+        </BodyText>
       )}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <div
             className={cn(
-              'group relative flex h-10 w-full cursor-pointer items-center rounded-full text-sm select-none',
-              'border bg-white px-3',
-              'border-grey-100',
-              'hover:border-black-50',
-              'focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50 focus:outline-hidden',
-              'data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
-              currencyOpen && 'border-secondary-500! ring-2 ring-secondary-50',
-              triggerClassName
+              bodyTextVariants(),
+              'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+              cn(
+                'group relative flex h-10 w-full cursor-pointer items-center rounded-full text-sm select-none',
+                'border bg-white px-3',
+                'border-grey-100',
+                'hover:border-black-50',
+                'focus:border-secondary-500 focus:ring-2 focus:ring-secondary-50 focus:outline-hidden',
+                'data-[state=open]:border-secondary-500 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
+                currencyOpen &&
+                  'border-secondary-500 ring-2 ring-secondary-50 hover:border-secondary-500',
+                triggerClassName
+              )
             )}
           >
             {/* Static icon when currency is hidden */}
@@ -171,14 +183,18 @@ export const PriceRangeField: React.FC<IPriceRangeFieldProps> = ({
             )}
 
             {/* Price range display */}
-            <span
-              className={cn(
-                'flex-1 truncate text-left text-sm font-medium',
-                hasValue ? 'text-black-500' : 'text-black-50'
+            <BodyText
+              asChild
+              className={typographyCn(
+                'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-nowrap text-inherit',
+                typographyCn(
+                  'flex-1 truncate text-left text-sm font-medium',
+                  hasValue ? 'text-black-500' : 'text-black-50'
+                )
               )}
             >
-              {displayLabel}
-            </span>
+              <span>{displayLabel}</span>
+            </BodyText>
 
             {/* Clear button (visible on hover) */}
             {hasValue && (
@@ -212,13 +228,22 @@ export const PriceRangeField: React.FC<IPriceRangeFieldProps> = ({
                 key={option.value || '__any__'}
                 type="button"
                 className={cn(
-                  'flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-black-500',
-                  'hover:bg-grey-50',
-                  isSelected && 'bg-grey-50'
+                  bodyTextVariants(),
+                  'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+                  cn(
+                    'flex w-full items-center justify-between rounded-md px-3 py-2.5 text-sm font-medium text-black-500',
+                    'hover:bg-grey-50',
+                    isSelected && 'bg-grey-50'
+                  )
                 )}
                 onClick={() => handleSelectRange(option.value)}
               >
-                <span>{optionLabel}</span>
+                <BodyText
+                  asChild
+                  className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+                >
+                  <span>{optionLabel}</span>
+                </BodyText>
                 {isSelected && (
                   <Check className="h-5 w-5 shrink-0 text-secondary-500" />
                 )}

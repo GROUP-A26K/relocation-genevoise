@@ -1,3 +1,4 @@
+import BodyText from '@/components/common/Text/BodyText';
 interface IMobileTableProps {
   rows: { cells: string[] }[];
 }
@@ -14,23 +15,33 @@ export const MobileTable: React.FC<IMobileTableProps> = ({ rows }) => {
           <div key={i} className="border-b border-gray-200">
             {row.cells.map((cell, c) =>
               c === 0 ? (
-                <div
+                <BodyText
+                  variant="xs"
                   key={c}
-                  className="bg-gray-50 px-4 py-3 text-xs font-semibold text-black-200"
+                  asChild
+                  className="bg-gray-50 px-4 py-3 leading-4 font-semibold"
                 >
-                  {row.cells[0]}
-                </div>
+                  <div>{row.cells[0]}</div>
+                </BodyText>
               ) : (
                 <div
                   key={c}
                   className="flex items-start border-t border-gray-200"
                 >
-                  <span className="line-clamp-6 flex w-1/3 px-4 py-3 text-xs font-semibold text-black-200">
-                    {headerRow.cells[c]}
-                  </span>
-                  <span className="line-clamp-6 w-2/3 px-4 py-3 text-xs font-medium text-black-200">
-                    {row.cells[c]}
-                  </span>
+                  <BodyText
+                    variant="xs"
+                    asChild
+                    className="line-clamp-6 flex w-1/3 px-4 py-3 leading-4 font-semibold"
+                  >
+                    <span>{headerRow.cells[c]}</span>
+                  </BodyText>
+                  <BodyText
+                    variant="xs"
+                    asChild
+                    className="line-clamp-6 w-2/3 px-4 py-3 leading-4 font-medium"
+                  >
+                    <span>{row.cells[c]}</span>
+                  </BodyText>
                 </div>
               )
             )}

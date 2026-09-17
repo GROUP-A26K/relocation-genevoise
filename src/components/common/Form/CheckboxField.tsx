@@ -3,6 +3,7 @@ import { Controller, type FieldPath, type FieldValues } from 'react-hook-form';
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import { Checkbox } from '@/components/ui/checkbox';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import {
   FormControl,
   FormItem,
@@ -44,7 +45,13 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
             />
           </FormControl>
         </div>
-        <div className="text-sm leading-[150%]">
+        <div
+          className={cn(
+            bodyTextVariants(),
+            'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+            'text-sm leading-[150%]'
+          )}
+        >
           <FormLabel
             htmlFor={name}
             className="inline cursor-pointer font-normal"

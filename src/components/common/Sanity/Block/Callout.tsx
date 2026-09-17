@@ -2,25 +2,26 @@ import React from 'react';
 import { Book, Siren, SunMedium } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 type TCalloutType = 'goodToKnow' | 'information' | 'error';
 
 const STYLE_SECTION: Record<TCalloutType, string> = {
-  goodToKnow: cn('bg-green-50 text-green-600 border-green-100'),
-  information: cn('bg-cyan-50 text-cyan-600 border-cyan-100'),
-  error: cn('bg-red-50 text-red-600 border-red-100'),
+  goodToKnow: 'bg-green-50 text-green-600 border-green-100',
+  information: 'bg-cyan-50 text-cyan-600 border-cyan-100',
+  error: 'bg-red-50 text-red-600 border-red-100',
 };
 
 const STYLE_ICON: Record<TCalloutType, string> = {
-  goodToKnow: cn('bg-green-100 text-green-600'),
-  information: cn('bg-cyan-100 text-cyan-600'),
-  error: cn('bg-red-100 text-red-600'),
+  goodToKnow: 'bg-green-100 text-green-600',
+  information: 'bg-cyan-100 text-cyan-600',
+  error: 'bg-red-100 text-red-600',
 };
 
 const STYLE_TITLE: Record<TCalloutType, string> = {
-  goodToKnow: cn('text-green-600'),
-  information: cn('text-cyan-600'),
-  error: cn('text-red-600'),
+  goodToKnow: 'text-green-600',
+  information: 'text-cyan-600',
+  error: 'text-red-600',
 };
 
 interface ICalloutProps {
@@ -37,7 +38,7 @@ const Callout: React.FC<ICalloutProps> = ({ sectionType, content, title }) => {
   }[sectionType];
 
   return (
-    <div className={cn('w-full py-4', 'lg:py-6')}>
+    <div className="w-full py-4 lg:py-6">
       <div
         className={cn(
           'flex flex-col items-start justify-start gap-2 rounded-2xl border border-solid p-4',
@@ -53,14 +54,18 @@ const Callout: React.FC<ICalloutProps> = ({ sectionType, content, title }) => {
               <Icon className="h-4 w-4" />
             </div>
           )}
-          <h3
+          <HeadingText
+            as="h3"
             className={cn(
-              'text-lg leading-[130%]! font-semibold',
-              STYLE_TITLE[sectionType]
+              'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+              cn(
+                'text-lg leading-[130%] font-semibold',
+                STYLE_TITLE[sectionType]
+              )
             )}
           >
             {title}
-          </h3>
+          </HeadingText>
         </div>
         {content}
       </div>

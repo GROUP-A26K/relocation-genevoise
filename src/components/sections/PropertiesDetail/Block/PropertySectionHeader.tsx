@@ -4,6 +4,8 @@ import { ChevronLeft } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { IAreaPhotoTour } from '@/models/property';
 
@@ -29,13 +31,16 @@ export async function PropertySectionHeader({
           className="flex items-center gap-2"
         >
           <ChevronLeft width={18} height={18} className="text-yellow-600" />
-          <p className="!leading[130%] text-base font-semibold text-yellow-600">
+          <BodyText
+            variant="md"
+            className="leading-6 font-semibold text-yellow-600"
+          >
             {title}
-          </p>
+          </BodyText>
         </Link>
-        <h1 className="!leading[130%] text-3xl font-semibold text-black-500">
+        <HeadingText as="h1" className="text-3xl leading-9 font-semibold">
           {subheading}
-        </h1>
+        </HeadingText>
       </RevealItem>
 
       <RevealItem className="hidden w-full gap-8 lg:grid lg:grid-cols-4 xl:grid-cols-5">
@@ -56,9 +61,9 @@ export async function PropertySectionHeader({
                 sizes="(max-width:640px) 210px, (max-width:1280px) 210px, 224px"
               />
             </div>
-            <h2 className="!leading[130%] text-xl font-semibold text-black-500">
+            <HeadingText as="h2" className="text-xl leading-7 font-semibold">
               {area.title}
-            </h2>
+            </HeadingText>
           </a>
         ))}
       </RevealItem>

@@ -1,5 +1,4 @@
 'use client';
-
 import { motion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
@@ -11,7 +10,9 @@ import { JobCard } from '@/components/common/Card';
 import TabsMenu from '@/components/common/TabsMenu';
 import EmptyData from '@/components/common/EmptyData';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Pagination } from '@/components/common/Pagination';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { TextWithStrong } from '@/components/common/Text/TextWithStrong';
 import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
 import { normalizeCareerListFilters } from '@/features/career/career.searchParams';
@@ -69,16 +70,20 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
         <RevealItem className="flex w-full items-center justify-center">
           <div className="flex w-full max-w-4xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
-              <div className="text-center text-sm leading-[130%]! font-semibold text-secondary-500">
-                {t('heading')}
-              </div>
-              <h1 className="text-center text-5xl leading-[130%]! font-bold">
+              <BodyText
+                variant="sm"
+                asChild
+                className="text-center font-semibold text-secondary-500"
+              >
+                <div>{t('heading')}</div>
+              </BodyText>
+              <HeadingText as="h1" className="text-center text-inherit">
                 {TextWithStrong(t('subHeading'))}
-              </h1>
+              </HeadingText>
             </div>
-            <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
+            <BodyText variant="sm" className="text-center text-balance">
               {t('description')}
-            </p>
+            </BodyText>
           </div>
         </RevealItem>
       </Section>
@@ -104,7 +109,12 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
 
         <RevealItem className="flex flex-col items-center justify-center">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-165 2xl:max-w-3xl">
-            <h2 className="sr-only">Job posts</h2>
+            <HeadingText
+              as="h2"
+              className="sr-only text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit"
+            >
+              Job posts
+            </HeadingText>
             <Show when={!loading} fallback={<CareerListSkeleton />}>
               <Show
                 when={jobs.length > 0}

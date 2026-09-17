@@ -1,9 +1,9 @@
 'use client';
-
 import { useId, useRef, useEffect } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 
 import { DESKTOP_MENU_OFFSET } from './constants';
 import { scrollToContent } from './scrollToContent';
@@ -61,9 +61,13 @@ const DesktopMenu: React.FC<IContentMenuProps> = ({
     >
       <div className="flex max-h-[inherit] w-full flex-col gap-8">
         {isTableContent && title && (
-          <div className="shrink-0 text-xl leading-[130%]! font-semibold text-black-500">
-            {title}
-          </div>
+          <BodyText
+            variant="xl"
+            asChild
+            className="shrink-0 font-semibold text-black-500"
+          >
+            <div>{title}</div>
+          </BodyText>
         )}
         <motion.ul
           ref={listRef}
@@ -103,11 +107,16 @@ const DesktopMenu: React.FC<IContentMenuProps> = ({
                     scrollToContent(item.id, !!shouldReduceMotion);
                   }}
                   className={cn(
-                    'relative block px-4 py-3 text-base leading-[130%]! text-black-200 transition-colors duration-200 motion-reduce:transition-none',
+                    'relative block px-4 py-3 text-base leading-[130%] text-black-200 transition-colors duration-200 motion-reduce:transition-none',
                     isActive && 'font-semibold text-primary-500'
                   )}
                 >
-                  <span className="line-clamp-4">{item.title}</span>
+                  <BodyText
+                    asChild
+                    className="line-clamp-4 text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+                  >
+                    <span>{item.title}</span>
+                  </BodyText>
                 </a>
               </li>
             );

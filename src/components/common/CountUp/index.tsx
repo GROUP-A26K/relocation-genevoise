@@ -1,11 +1,13 @@
 'use client';
-
 import { useCallback } from 'react';
 import ReactCountUp from 'react-countup';
 import {
   useInView,
   type IntersectionOptions,
 } from 'react-intersection-observer';
+
+import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 
 import { formatNumber, parseValue } from './utils';
 
@@ -62,9 +64,17 @@ export default function CountUp({
 
   if (!parsed) {
     return (
-      <span ref={setRefs} className={className} {...props}>
-        {value}
-      </span>
+      <BodyText
+        asChild
+        className={cn(
+          'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+          className
+        )}
+      >
+        <span ref={setRefs} {...props}>
+          {value}
+        </span>
+      </BodyText>
     );
   }
 
@@ -78,21 +88,29 @@ export default function CountUp({
   };
 
   return (
-    <span ref={setRefs} className={className} {...props}>
-      {inView ? (
-        <ReactCountUp
-          start={start}
-          end={config.end}
-          duration={duration}
-          separator={config.separator}
-          decimal={config.decimal}
-          decimals={config.decimals}
-          prefix={config.prefix}
-          suffix={config.suffix}
-        />
-      ) : (
-        `${config.prefix}${formatNumber(start, config)}${config.suffix}`
+    <BodyText
+      asChild
+      className={cn(
+        'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+        className
       )}
-    </span>
+    >
+      <span ref={setRefs} {...props}>
+        {inView ? (
+          <ReactCountUp
+            start={start}
+            end={config.end}
+            duration={duration}
+            separator={config.separator}
+            decimal={config.decimal}
+            decimals={config.decimals}
+            prefix={config.prefix}
+            suffix={config.suffix}
+          />
+        ) : (
+          `${config.prefix}${formatNumber(start, config)}${config.suffix}`
+        )}
+      </span>
+    </BodyText>
   );
 }
