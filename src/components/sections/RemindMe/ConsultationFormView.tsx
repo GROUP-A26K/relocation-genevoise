@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
@@ -15,9 +14,12 @@ import { Link } from '@/libs/i18nNavigation';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
 import { useOpenStatus } from '@/hooks/useOpenStatus';
+import BodyText from '@/components/common/Text/BodyText';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
 import { PhoneInputField } from '@/components/common/Form';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { useSubmitBooking } from '@/features/booking/booking.hooks';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { RevealItem, RevealSection } from '@/components/common/Reveal';
 import { TextWithStrong } from '@/components/common/Text/TextWithStrong';
 import {
@@ -152,7 +154,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
         icon: (
           <div className="rounded-full bg-yellow-500 p-[6.17px] text-center">
             <Phone
-              className="h-[11.67px]! w-[11.67px]! text-white"
+              className="h-[11.67px] w-[11.67px] text-white"
               strokeWidth={2.5}
             />
           </div>
@@ -161,7 +163,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
       {
         value: 'whatsapp' as const,
         label: cardContent.whatsappLabel,
-        icon: <WhatsappIcon className="h-6! w-6!" />,
+        icon: <WhatsappIcon className="h-6 w-6" />,
       },
     ],
     [cardContent.telephoneLabel, cardContent.whatsappLabel]
@@ -186,16 +188,23 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
           )}
         >
           <RevealItem className="flex flex-col gap-3">
-            <p className="text-sm leading-[130%]! font-semibold text-primary-500">
+            <BodyText variant="sm" className="font-semibold text-primary-500">
               {heading}
-            </p>
-            <h1 className="text-3xl leading-[130%]! font-semibold">
+            </BodyText>
+            <HeadingText
+              as="h1"
+              className="text-3xl font-semibold text-inherit"
+            >
               {TextWithStrong(subHeading)}
-            </h1>
+            </HeadingText>
           </RevealItem>
           <RevealItem
             as="p"
-            className="text-sm leading-[130%]! font-normal text-black-200"
+            className={cn(
+              bodyTextVariants(),
+              'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+              'text-sm leading-[130%] font-normal text-black-200'
+            )}
           >
             {description}
           </RevealItem>
@@ -212,22 +221,28 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
       >
         <RevealItem className={cn('flex w-full flex-col gap-6', 'lg:p-8')}>
           <div className="flex flex-col gap-3">
-            <h2 className="max-w-112.5 text-xl leading-[130%]! font-semibold lg:text-2xl">
+            <HeadingText
+              as="h2"
+              className="max-w-112.5 text-xl font-semibold text-inherit lg:text-2xl"
+            >
               {cardContent.title}
-            </h2>
+            </HeadingText>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <PhoneIncoming className="h-4 w-4 text-primary-500" />
-                <h3 className="text-sm leading-[130%]! font-normal text-black-500">
+                <HeadingText as="h3" className="text-sm font-normal">
                   {cardContent.callTitle}
-                </h3>
+                </HeadingText>
               </div>
 
               <div className="flex items-center gap-2">
                 <CalendarDays className="h-4 w-4 text-primary-500" />
-                <h3 className="flex text-center text-sm leading-[130%]! text-black-500">
+                <HeadingText
+                  as="h3"
+                  className="flex text-center text-sm font-[number:inherit]"
+                >
                   {cardContent.calendarTitle}
-                </h3>
+                </HeadingText>
               </div>
             </div>
           </div>
@@ -237,11 +252,11 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
               <div
                 className={`h-2 w-2 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'}`}
               />
-              <h3 className="text-sm leading-[130%]! text-black-500">
+              <HeadingText as="h3" className="text-sm font-[number:inherit]">
                 {isOpen
                   ? cardContent.openStatusTitle
                   : cardContent.closeStatusTitle}
-              </h3>
+              </HeadingText>
             </div>
             <div className="flex flex-col gap-3">
               <Form {...form}>
@@ -292,14 +307,14 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
                 </form>
               </Form>
             </div>
-            <h3 className="w-full text-sm leading-[130%]! font-normal text-black-500">
+            <HeadingText as="h3" className="w-full text-sm font-normal">
               {cardContent.noteTitle}{' '}
               <Link href="/legal-notice">
-                <strong className="w-full cursor-pointer text-sm leading-[130%]! font-semibold">
+                <strong className="w-full cursor-pointer text-sm leading-[130%] font-semibold">
                   {cardContent.policyTitle}
                 </strong>
               </Link>
-            </h3>
+            </HeadingText>
           </div>
         </RevealItem>
 
@@ -346,8 +361,8 @@ const ContactChannelButton = ({
     )}
   >
     {icon}
-    <span className="text-sm leading-[130%]! font-normal text-black-500">
-      {label}
-    </span>
+    <BodyText variant="sm" asChild className="text-black-500">
+      <span>{label}</span>
+    </BodyText>
   </button>
 );

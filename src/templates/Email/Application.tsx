@@ -99,7 +99,7 @@ export const Application = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -111,7 +111,7 @@ export const Application = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="m-8 mb-6 text-start text-3xl leading-[130%]! font-semibold text-[#605204]"
+              className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#605204]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
@@ -177,7 +177,7 @@ export const Application = ({
                         height="13"
                         alt="Phone"
                       />
-                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         +41 (022) 715 17 45
                       </Text>
                     </div>
@@ -193,7 +193,7 @@ export const Application = ({
                         height="13"
                         alt="Globe"
                       />
-                      <Text className="my-3 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
+                      <Text className="my-3 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         https://relocation-genevoise/ch
                       </Text>
                     </div>
@@ -209,7 +209,7 @@ export const Application = ({
                         height="13"
                         alt="Building"
                       />
-                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         Rue des Alpes 5, 1201 Geneva
                       </Text>
                     </div>
@@ -219,18 +219,18 @@ export const Application = ({
                 {/* Right column: links */}
                 <Column colSpan={4}>
                   <Link href="https://relocation-genevoise.ch/contact">
-                    <Text className="mr-5 ml-auto text-xs leading-[100%]! font-semibold text-[#605204]">
+                    <Text className="mr-5 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                       {t.contactUs}
                     </Text>
                   </Link>
 
                   <Link href="https://relocation-genevoise.ch/mentions-legales">
-                    <Text className="my-3 ml-auto text-xs leading-[100%]! font-semibold text-[#605204]">
+                    <Text className="my-3 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                       {t.privacy}
                     </Text>
                   </Link>
 
-                  <Text className="mr-2 ml-auto text-xs leading-[100%]! font-semibold text-[#605204]">
+                  <Text className="mr-2 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                     {t.unsubscribe}
                   </Text>
                 </Column>

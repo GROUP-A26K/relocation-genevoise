@@ -1,8 +1,10 @@
 import Image from 'next/image';
 
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { FormattedText } from '@/components/common/Text';
 import { FeatureRowCard } from '@/components/common/Card';
+import HeadingText from '@/components/common/Text/HeadingText';
 import HeroImage from '@/assets/images/home/trouvez-facilement-votre-nouveau-chez-vous-geneve.webp';
 
 import type { THref } from '@/libs/i18nNavigation';
@@ -31,16 +33,25 @@ const ServiceFeature = ({
       <RevealItem className="flex w-full items-center justify-center">
         <div className="flex max-w-3xl flex-col gap-4 text-center lg:items-center lg:gap-6">
           <div className="flex flex-col gap-3">
-            <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
+            <BodyText
+              variant="sm"
+              className="text-center font-semibold text-secondary-600 lg:text-center"
+            >
               {heading}
-            </p>
-            <h2 className="text-center text-3xl leading-[130%]! font-semibold text-balance lg:text-center">
+            </BodyText>
+            <HeadingText
+              as="h2"
+              className="text-center text-3xl font-semibold text-balance text-inherit lg:text-center"
+            >
               <FormattedText text={subHeading} />
-            </h2>
+            </HeadingText>
           </div>
-          <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200 lg:text-center">
+          <BodyText
+            variant="sm"
+            className="text-center text-balance lg:text-center"
+          >
             {description}
-          </p>
+          </BodyText>
         </div>
       </RevealItem>
       <RevealItem

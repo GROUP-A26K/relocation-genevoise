@@ -5,7 +5,9 @@ import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { FormattedText } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
 import HeroImage from '@/assets/images/home/agence-de-relocation-a-geneve.webp';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
@@ -54,16 +56,22 @@ export const HomeHero: React.FC<IHomeHeroProps> = ({
         <div className="flex flex-col gap-6">
           <RevealItem className="flex w-full max-w-xl flex-col gap-4 text-center lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
-              <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
+              <BodyText
+                variant="sm"
+                className="text-center font-semibold text-secondary-600 lg:text-center"
+              >
                 {heading}
-              </p>
-              <h1 className="text-center text-4xl leading-[130%]! font-bold text-balance lg:text-5xl">
+              </BodyText>
+              <HeadingText
+                as="h1"
+                className="text-center text-4xl text-balance text-inherit lg:text-5xl"
+              >
                 <FormattedText text={subHeading} />
-              </h1>
+              </HeadingText>
             </div>
-            <p className="text-center text-sm leading-[130%]! font-normal text-balance text-black-200">
+            <BodyText variant="sm" className="text-center text-balance">
               {description}
-            </p>
+            </BodyText>
           </RevealItem>
 
           <RevealItem className="flex w-full flex-col items-center justify-center gap-2 lg:flex-row">

@@ -2,14 +2,18 @@ import NextLink from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import Image, { type StaticImageData } from 'next/image';
 
+import { cn } from '@/libs/utils';
 import GGLogo from '@/components/icons/GGLogo';
 import Section from '@/components/common/Section';
 import LogoIcon from '@/components/icons/LogoIcon';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
 import Facebook from '@/assets/icons/social/facebook.svg';
 import Linkedin from '@/assets/icons/social/linkedin.svg';
 import Instagram from '@/assets/icons/social/instagram.svg';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { GoogleRating } from '@/components/sections/Footer/GoogleRating';
 
 import { SubscribeForm } from './SubscribeForm';
@@ -155,18 +159,20 @@ const Footer = async () => {
 
   return (
     <footer>
-      <h2 id="footer-heading" className="sr-only">
+      <HeadingText
+        as="h2"
+        className="sr-only text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit"
+        id="footer-heading"
+      >
         Footer
-      </h2>
+      </HeadingText>
       <Section isDivider>
         <RevealItem className="grid grid-cols-1 items-start justify-between gap-y-4 lg:grid-cols-2">
           <div className="flex max-w-xl flex-col justify-start gap-2">
-            <h3 className="text-lg leading-[130%]! font-semibold">
+            <HeadingText as="h3" className="text-lg text-inherit">
               {contact.title}
-            </h3>
-            <p className="text-xs leading-[130%]! font-normal text-black-200">
-              {contact.subTitle}
-            </p>
+            </HeadingText>
+            <BodyText variant="xs">{contact.subTitle}</BodyText>
           </div>
           <SubscribeForm />
         </RevealItem>
@@ -180,7 +186,9 @@ const Footer = async () => {
                 <LogoIcon height={32} />
               </Link>
             </div>
-            <p className="text-sm leading-[130%]! text-black-200">{tagline}</p>
+            <BodyText variant="sm" className="font-[number:inherit]">
+              {tagline}
+            </BodyText>
             <GoogleRating
               googleUrl={googleRating.googleUrl}
               point={5}
@@ -196,7 +204,7 @@ const Footer = async () => {
                   {service.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="flex items-center gap-1.5 leading-[130%]! font-medium hover:text-primary"
+                      className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                     >
                       {link?.icon && (
                         <Image
@@ -205,7 +213,16 @@ const Footer = async () => {
                           className="h-3 w-3"
                         />
                       )}
-                      <Link href={link.url}>{link.text}</Link>
+                      <Link
+                        href={link.url}
+                        className={cn(
+                          bodyTextVariants(),
+                          'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                          ''
+                        )}
+                      >
+                        {link.text}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -215,7 +232,7 @@ const Footer = async () => {
                   {company.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="flex items-center gap-1.5 leading-[130%]! font-medium hover:text-primary"
+                      className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                     >
                       {link?.icon && (
                         <Image
@@ -224,7 +241,16 @@ const Footer = async () => {
                           className="h-3 w-3"
                         />
                       )}
-                      <Link href={link.url}>{link.text}</Link>
+                      <Link
+                        href={link.url}
+                        className={cn(
+                          bodyTextVariants(),
+                          'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                          ''
+                        )}
+                      >
+                        {link.text}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -236,7 +262,7 @@ const Footer = async () => {
                   {support.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="flex items-center gap-1.5 leading-[130%]! font-medium hover:text-primary"
+                      className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                     >
                       {link?.icon && (
                         <Image
@@ -245,7 +271,16 @@ const Footer = async () => {
                           className="h-3 w-3"
                         />
                       )}
-                      <Link href={link.url}>{link.text}</Link>
+                      <Link
+                        href={link.url}
+                        className={cn(
+                          bodyTextVariants(),
+                          'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                          ''
+                        )}
+                      >
+                        {link.text}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -258,7 +293,7 @@ const Footer = async () => {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 leading-[130%]! font-medium hover:text-primary"
+                        className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                       >
                         {link?.icon && (
                           <Image
@@ -293,12 +328,23 @@ const Footer = async () => {
             <GGLogo className="mb-4" />
           </NextLink>
 
-          <div className="flex w-full flex-col justify-between gap-4 text-xs leading-[130%]! font-normal text-black-300 md:flex-row md:items-center">
-            <p>{copyright}</p>
+          <div className="flex w-full flex-col justify-between gap-4 text-xs leading-[130%] font-normal text-black-300 md:flex-row md:items-center">
+            <BodyText className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit">
+              {copyright}
+            </BodyText>
             <ul className="flex gap-4">
               {bottomLinks.map((link, linkIdx) => (
                 <li key={linkIdx} className="hover:text-primary">
-                  <Link href={link.url}>{link.text}</Link>
+                  <Link
+                    href={link.url}
+                    className={cn(
+                      bodyTextVariants(),
+                      'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                      ''
+                    )}
+                  >
+                    {link.text}
+                  </Link>
                 </li>
               ))}
             </ul>

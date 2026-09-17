@@ -12,7 +12,9 @@ import { cn } from '@/libs/utils';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { type TBlock, BODY_BLOCKS } from '@/models/block';
+import HeadingText from '@/components/common/Text/HeadingText';
 import CtaBlock from '@/components/common/Sanity/Block/CtaBlock';
 import { FaqBlock } from '@/components/common/Sanity/Block/FaqBlock';
 import { StatsList } from '@/components/common/Sanity/Block/StatsList';
@@ -125,35 +127,56 @@ export const Content: React.FC<IContentProps> = ({ jobDetail }) => {
                   data-type="Primary"
                   className="inline-flex items-center justify-center gap-1.5"
                 >
-                  <div className="justify-start font-sans text-sm leading-tight font-semibold text-secondary-600">
-                    {jobDetail.department}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-semibold text-secondary-600"
+                  >
+                    <div>{jobDetail.department}</div>
+                  </BodyText>
                 </div>
-                <h1 className="justify-start self-stretch font-sans text-3xl leading-10 font-semibold text-gray-900">
+                <HeadingText
+                  as="h1"
+                  className="justify-start self-stretch font-sans text-3xl leading-10 font-semibold text-gray-900"
+                >
                   {jobDetail.title}
-                </h1>
+                </HeadingText>
               </div>
               <div className="inline-flex flex-wrap items-center justify-start gap-3 self-stretch">
                 <div className="flex items-center justify-start gap-1.5">
                   <Clock className="size-4 text-black-50" />
-                  <div className="justify-start font-sans text-sm leading-tight font-medium text-black-200">
-                    {jobDetail.employmentType}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-medium"
+                  >
+                    <div>{jobDetail.employmentType}</div>
+                  </BodyText>
                 </div>
                 <div className="h-4 w-px bg-slate-200" />
                 <div className="flex items-center justify-start gap-1.5">
                   <MapPin className="size-4 text-black-50" />
-                  <div className="justify-start font-sans text-sm leading-tight font-medium text-black-200">
-                    {jobDetail.location}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-medium"
+                  >
+                    <div>{jobDetail.location}</div>
+                  </BodyText>
                 </div>
                 <div className="h-4 w-px bg-slate-200" />
                 <div className="flex items-center justify-start gap-1.5">
                   <CircleDollarSign className="size-4 text-black-50" />
-                  <div className="justify-start font-sans text-sm leading-tight font-medium text-black-200">
-                    {jobDetail.salaryMin} - {jobDetail.salaryMax}{' '}
-                    {jobDetail.currency}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-medium"
+                  >
+                    <div>
+                      {jobDetail.salaryMin} - {jobDetail.salaryMax}{' '}
+                      {jobDetail.currency}
+                    </div>
+                  </BodyText>
                 </div>
               </div>
             </div>

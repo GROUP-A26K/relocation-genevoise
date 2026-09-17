@@ -1,5 +1,4 @@
 'use client';
-
 import { toast } from 'sonner';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -12,6 +11,7 @@ import { cn } from '@/libs/utils';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import CtaBlock from '@/components/common/Sanity/Block/CtaBlock';
 import { FaqBlock } from '@/components/common/Sanity/Block/FaqBlock';
 import { StatsList } from '@/components/common/Sanity/Block/StatsList';
@@ -121,11 +121,13 @@ export const Content = (blog: IBlogDetail) => {
             height={48}
             className="size-12 rounded-full bg-gray-100 object-cover"
           />
-          <div className="gap-0.5 text-base leading-[130%]!">
-            <p className="font-semibold text-gray-700">{blog.author.name}</p>
-            <p className="text-sm leading-[130%]! font-normal text-gray-700">
+          <div className="gap-0.5 text-base leading-[130%]">
+            <BodyText className="text-[length:inherit] leading-[inherit] font-semibold text-gray-700">
+              {blog.author.name}
+            </BodyText>
+            <BodyText variant="sm" className="text-gray-700">
               {blog.author.email}
-            </p>
+            </BodyText>
           </div>
         </div>
 

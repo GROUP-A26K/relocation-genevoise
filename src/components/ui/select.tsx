@@ -1,10 +1,10 @@
 'use client';
-
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 const Select = SelectPrimitive.Root;
 
@@ -21,8 +21,12 @@ function SelectTrigger({
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        'flex h-9 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs ring-offset-background focus:ring-1 focus:ring-ring focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 data-placeholder:text-muted-foreground [&>span]:line-clamp-1',
-        className
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        cn(
+          'flex h-9 w-full items-center justify-between rounded-md border border-input bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs ring-offset-background focus:ring-1 focus:ring-ring focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 data-placeholder:text-muted-foreground [&>span]:line-clamp-1',
+          className
+        )
       )}
       {...props}
     >
@@ -108,7 +112,11 @@ function SelectLabel({
   return (
     <SelectPrimitive.Label
       data-slot="select-label"
-      className={cn('px-2 py-1.5 text-sm font-semibold', className)}
+      className={cn(
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        cn('px-2 py-1.5 text-sm font-semibold', className)
+      )}
       {...props}
     />
   );
@@ -122,8 +130,12 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        'relative flex w-full cursor-default items-center rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
-        className
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        cn(
+          'relative flex w-full cursor-default items-center rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50',
+          className
+        )
       )}
       {...props}
     >

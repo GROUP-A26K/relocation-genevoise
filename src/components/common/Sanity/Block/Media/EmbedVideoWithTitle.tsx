@@ -1,4 +1,6 @@
 'use client';
+import BodyText from '@/components/common/Text/BodyText';
+
 interface IEmbedVideoWithTitleProps {
   title?: string;
   videoUrl?: string;
@@ -20,9 +22,13 @@ export const EmbedVideoWithTitle: React.FC<IEmbedVideoWithTitleProps> = ({
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         />
-        <div className="flex items-center gap-2 text-xs leading-[130%]! font-medium text-gray-500">
-          {title}
-        </div>
+        <BodyText
+          variant="xs"
+          asChild
+          className="flex items-center gap-2 font-medium text-gray-500"
+        >
+          <div>{title}</div>
+        </BodyText>
       </div>
     </div>
   );

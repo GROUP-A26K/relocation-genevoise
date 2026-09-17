@@ -6,7 +6,9 @@ import { CheckIcon, ChevronsUpDown } from 'lucide-react';
 import { cn } from '@/libs/utils';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import BodyText from '@/components/common/Text/BodyText';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn as typographyCn } from '@/components/common/Text/utils';
 import {
   Popover,
   PopoverContent,
@@ -134,6 +136,7 @@ function InputComponent({
         'h-10 rounded-s-none rounded-e-3xl border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50',
         'group-hover:border-black-50 group-has-[input:hover]:border-black-50',
         'disabled:group-hover:border-gray-200 disabled:group-has-[input:hover]:border-gray-200',
+        // Focus must outrank the more specific group-has-[input:hover] border.
         'group-focus-within:border-yellow-500! group-focus-within:text-black-50 group-data-[country-open]:border-yellow-500',
         'focus-visible:ring-0 focus-visible:outline-none',
         className,
@@ -207,6 +210,7 @@ const CountrySelect = ({
           className={cn(
             'flex h-10 cursor-pointer items-center gap-2 rounded-s-3xl rounded-e-none border border-r-0 border-gray-200 bg-white px-3 text-sm text-black-50 shadow-none',
             'group-hover:border-black-50 group-has-[input:hover]:border-black-50 hover:bg-white hover:text-black-50',
+            // Focus must outrank the more specific group-has-[input:hover] border.
             'group-focus-within:border-yellow-500! group-focus-within:text-black-50 group-data-[country-open]:border-yellow-500',
             'focus-visible:ring-0 focus-visible:outline-none',
             disabled &&
@@ -300,8 +304,24 @@ const CountrySelectOption = ({
   return (
     <CommandItem className="gap-2" onSelect={handleSelect}>
       <FlagComponent country={country} countryName={countryName} />
-      <span className="flex-1 text-sm">{countryName}</span>
-      <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+      <BodyText
+        asChild
+        className={typographyCn(
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          'flex-1 text-sm'
+        )}
+      >
+        <span>{countryName}</span>
+      </BodyText>
+      <BodyText
+        asChild
+        className={typographyCn(
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          'text-sm text-foreground/50'
+        )}
+      >
+        <span>{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+      </BodyText>
       <CheckIcon
         className={`ml-auto size-4 ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
       />

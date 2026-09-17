@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import EmptyJobImage from '@/assets/icons/empty-states/empty-data.svg';
 
 interface IEmptyDataProps {
@@ -21,12 +23,12 @@ const EmptyData: React.FC<IEmptyDataProps> = ({
         height={232.73}
       />
       <div className="flex max-w-[720px] flex-col items-center justify-center gap-6">
-        <h3 className="font-playfair text-center text-2xl leading-[130%]! font-semibold text-black-500">
+        <HeadingText as="h3" className="font-playfair text-center">
           {title}
-        </h3>
-        <p className="text-center text-sm leading-[130%]! font-normal text-black-200">
+        </HeadingText>
+        <BodyText variant="sm" className="text-center">
           {description}
-        </p>
+        </BodyText>
       </div>
     </div>
   );

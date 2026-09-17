@@ -1,11 +1,11 @@
 'use client';
-
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 
-import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { IBlog } from '@/models/blog';
 
@@ -23,42 +23,34 @@ export const BlogBGCard: React.FC<IBlog> = ({
   const locale = useLocale();
   return (
     <Link href={href}>
-      <article
-        className={cn(
-          'grid grid-cols-1 items-start gap-5 rounded-2xl',
-          'lg:grid-cols-[432fr_776fr] lg:items-center lg:gap-8 lg:bg-grey-50'
-        )}
-      >
-        <div
-          className={cn(
-            'order-2 flex w-full flex-col justify-between gap-6',
-            'lg:order-1 lg:p-8'
-          )}
-        >
+      <article className="grid grid-cols-1 items-start gap-5 rounded-2xl lg:grid-cols-[432fr_776fr] lg:items-center lg:gap-8 lg:bg-grey-50">
+        <div className="order-2 flex w-full flex-col justify-between gap-6 lg:order-1 lg:p-8">
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap gap-2">
               {category.map((cat) => (
                 <Badge
                   key={cat.title}
-                  className="bg-blue-50 text-sm leading-[130%]! font-medium text-blue-500 shadow-none hover:bg-blue-50"
+                  className="bg-blue-50 text-sm leading-[130%] font-medium text-blue-500 shadow-none hover:bg-blue-50"
                 >
                   {cat.title}
                 </Badge>
               ))}
             </div>
             <div className="flex flex-col gap-2">
-              <h2
+              <HeadingText
+                as="h2"
                 title={title}
-                className="text-xl leading-[130%]! font-semibold text-black-500 group-hover:text-black-600 lg:text-3xl"
+                className="text-xl font-semibold group-hover:text-black-600 lg:text-3xl"
               >
                 {title}
-              </h2>
-              <p
+              </HeadingText>
+              <BodyText
+                variant="sm"
                 title={description}
-                className="text-sm leading-[130%]! font-normal text-black-200 lg:text-base"
+                className="lg:text-base"
               >
                 {description}
-              </p>
+              </BodyText>
             </div>
           </div>
           <div className="flex justify-between">
@@ -74,18 +66,24 @@ export const BlogBGCard: React.FC<IBlog> = ({
                 className="size-10 rounded-full bg-gray-100 object-cover object-center"
               />
               <div className="flex flex-col gap-0.5">
-                <p className="text-base leading-[130%]! font-semibold text-grey-700">
+                <BodyText className="font-semibold text-grey-700">
                   {author.name}
-                </p>
-                <p className="text-sm leading-[130%]! font-normal text-grey-700">
+                </BodyText>
+                <BodyText variant="sm" className="text-grey-700">
                   {publishedDate}
-                </p>
+                </BodyText>
               </div>
             </div>
-            <div className="flex items-end text-xs leading-[130%]! font-medium text-black-100 lg:text-sm">
-              {timeToRead}{' '}
-              {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
-            </div>
+            <BodyText
+              variant="xs"
+              asChild
+              className="flex items-end font-medium text-black-100 lg:text-sm"
+            >
+              <div>
+                {timeToRead}{' '}
+                {locale === 'fr' ? 'minutes de lecture' : 'minutes read'}
+              </div>
+            </BodyText>
           </div>
         </div>
 

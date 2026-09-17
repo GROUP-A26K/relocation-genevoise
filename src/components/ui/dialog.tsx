@@ -1,10 +1,12 @@
 'use client';
-
 import * as React from 'react';
 import { X } from 'lucide-react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { cn as typographyCn } from '@/components/common/Text/utils';
 
 const Dialog = DialogPrimitive.Root;
 
@@ -87,14 +89,19 @@ function DialogTitle({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Title>) {
   return (
-    <DialogPrimitive.Title
-      data-slot="dialog-title"
-      className={cn(
-        'text-lg leading-none font-semibold tracking-tight',
-        className
+    <HeadingText
+      as="h5"
+      asChild
+      className={typographyCn(
+        'text-[length:inherit] leading-[calc(1.75/1.125)] font-[number:inherit] text-inherit',
+        typographyCn(
+          'text-lg leading-none font-semibold tracking-tight',
+          className
+        )
       )}
-      {...props}
-    />
+    >
+      <DialogPrimitive.Title data-slot="dialog-title" {...props} />
+    </HeadingText>
   );
 }
 function DialogDescription({
@@ -102,11 +109,15 @@ function DialogDescription({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Description>) {
   return (
-    <DialogPrimitive.Description
-      data-slot="dialog-description"
-      className={cn('text-sm text-muted-foreground', className)}
-      {...props}
-    />
+    <BodyText
+      asChild
+      className={typographyCn(
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        typographyCn('text-sm text-muted-foreground', className)
+      )}
+    >
+      <DialogPrimitive.Description data-slot="dialog-description" {...props} />
+    </BodyText>
   );
 }
 export {

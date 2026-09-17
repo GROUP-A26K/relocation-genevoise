@@ -1,5 +1,6 @@
-import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 interface IFeatureRowCardProps {
   title: string;
@@ -22,22 +23,17 @@ export const FeatureRowCard: React.FC<IFeatureRowCardProps> = ({
             {Icon && <Icon className="h-5 w-5 text-black-500 lg:h-6 lg:w-6" />}
           </div>
         </div>
-        <div
-          className={cn(
-            'flex flex-col justify-center gap-1 text-black-500 lg:gap-2'
-          )}
+        <BodyText
+          asChild
+          className="flex flex-col justify-center gap-1 text-[length:inherit] leading-[inherit] font-[number:inherit] text-black-500 lg:gap-2"
         >
-          <h3 className="text-xl leading-[130%]! font-semibold">{title}</h3>
-          {description && (
-            <p
-              className={cn(
-                'text-base leading-[130%]! font-normal text-black-200'
-              )}
-            >
-              {description}
-            </p>
-          )}
-        </div>
+          <div>
+            <HeadingText as="h3" className="text-xl text-inherit">
+              {title}
+            </HeadingText>
+            {description && <BodyText>{description}</BodyText>}
+          </div>
+        </BodyText>
       </div>
     </Link>
   );

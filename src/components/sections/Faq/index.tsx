@@ -1,5 +1,7 @@
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { FormattedText } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
 import {
   Accordion,
   AccordionContent,
@@ -61,16 +63,22 @@ export const Faq: React.FC<IFaqProps> = ({
       <RevealItem className="flex w-full items-center justify-start lg:justify-center">
         <div className="flex max-w-3xl flex-col gap-4 text-left lg:items-center lg:gap-6">
           <div className="flex flex-col gap-3">
-            <p className="text-left text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
+            <BodyText
+              variant="sm"
+              className="text-left font-semibold text-secondary-600 lg:text-center"
+            >
               {heading}
-            </p>
-            <h2 className="text-left text-5xl leading-[130%]! font-semibold lg:text-center">
+            </BodyText>
+            <HeadingText
+              as="h2"
+              className="text-left text-5xl font-semibold text-inherit lg:text-center"
+            >
               <FormattedText text={subHeading} />
-            </h2>
+            </HeadingText>
           </div>
-          <p className="text-left text-sm leading-[130%]! font-normal text-black-200 lg:text-center">
+          <BodyText variant="sm" className="text-left lg:text-center">
             {description}
-          </p>
+          </BodyText>
         </div>
       </RevealItem>
 
@@ -82,13 +90,13 @@ export const Faq: React.FC<IFaqProps> = ({
               value={`item-${index}`}
               className="border-b border-gray-900/10 py-8 duration-500 first:pt-0 last:border-b-0 last:pb-0"
             >
-              <AccordionTrigger className="py-0 text-lg leading-[130%]! font-semibold">
+              <AccordionTrigger className="py-0 text-lg leading-[130%] font-semibold">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="max-w-180 py-0 pt-2 text-sm leading-[130%]! text-black-200">
-                <p>
+              <AccordionContent className="max-w-180 py-0 pt-2 text-sm leading-[130%] text-black-200">
+                <BodyText className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit">
                   <FormattedText text={item.answer} />
-                </p>
+                </BodyText>
               </AccordionContent>
             </AccordionItem>
           ))}

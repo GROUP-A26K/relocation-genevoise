@@ -1,4 +1,5 @@
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 
 type TItem = {
   label?: string;
@@ -51,14 +52,20 @@ export const PropertyDetailTable = ({
                         strokeWidth={2.5}
                       />
                     )}
-                    <span className="text-base leading-[130%] font-normal">
-                      {item.label}
-                    </span>
+                    <BodyText variant="md" asChild className="text-inherit">
+                      <span>{item.label}</span>
+                    </BodyText>
                   </div>
-                  <span className="text-base leading-[130%] font-semibold text-black-500">
-                    {item.value}
-                    {item.unit ? ` ${item.unit}` : ''}
-                  </span>
+                  <BodyText
+                    variant="md"
+                    asChild
+                    className="font-semibold text-black-500"
+                  >
+                    <span>
+                      {item.value}
+                      {item.unit ? ` ${item.unit}` : ''}
+                    </span>
+                  </BodyText>
                 </div>
               )}
             </div>

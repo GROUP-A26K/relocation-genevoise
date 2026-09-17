@@ -3,6 +3,7 @@ import { useLocale } from 'next-intl';
 import { ArrowLeft, ArrowRight, MoreHorizontal } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 import {
   type ButtonProps,
   buttonVariants,
@@ -71,13 +72,18 @@ const PaginationPrevious = ({
       aria-label="Go to previous page"
       size="default"
       className={cn(
-        'gap-1 pl-2.5 leading-[130%]! font-semibold text-black-500',
+        'gap-1 pl-2.5 leading-[130%] font-semibold text-black-500 [&_svg]:size-3',
         className
       )}
       {...props}
     >
-      <ArrowLeft strokeWidth={3} className="h-3! w-3!" />
-      <span>{locale === 'en' ? 'Previous' : 'Anterior'}</span>
+      <ArrowLeft strokeWidth={3} className="size-3" />
+      <BodyText
+        asChild
+        className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+      >
+        <span>{locale === 'en' ? 'Previous' : 'Anterior'}</span>
+      </BodyText>
     </PaginationLink>
   );
 };
@@ -93,13 +99,18 @@ const PaginationNext = ({
       aria-label="Go to next page"
       size="default"
       className={cn(
-        'gap-1 pr-2.5 leading-[130%]! font-semibold text-black-500',
+        'gap-1 pr-2.5 leading-[130%] font-semibold text-black-500 [&_svg]:size-3',
         className
       )}
       {...props}
     >
-      <span>{locale === 'en' ? 'Next' : 'Siguiente'}</span>
-      <ArrowRight strokeWidth={3} className="h-3! w-3!" />
+      <BodyText
+        asChild
+        className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
+      >
+        <span>{locale === 'en' ? 'Next' : 'Siguiente'}</span>
+      </BodyText>
+      <ArrowRight strokeWidth={3} className="size-3" />
     </PaginationLink>
   );
 };
@@ -114,7 +125,7 @@ const PaginationEllipsis = ({
     className={cn('flex size-9 items-center justify-center', className)}
     {...props}
   >
-    <MoreHorizontal className="h-3! w-3!" />
+    <MoreHorizontal className="size-3" />
     <span className="sr-only">More pages</span>
   </span>
 );

@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -7,6 +6,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { cn } from '@/libs/utils';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { IAreaPhotoTour } from '@/models/property';
 
@@ -74,12 +75,12 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
       id={`area-${index}`}
     >
       <div className="flex flex-col gap-3 lg:flex-1 lg:gap-6 lg:py-6">
-        <h2 className="text-3xl leading-[130%] font-semibold text-black-500">
+        <HeadingText as="h2" className="text-3xl font-semibold">
           {area.title}
-        </h2>
-        <p className="text-sm leading-[130%] text-black-200">
+        </HeadingText>
+        <BodyText variant="sm" className="font-[number:inherit]">
           {area.description}
-        </p>
+        </BodyText>
       </div>
 
       <div className="flex min-w-0 flex-col gap-4 lg:flex-2">

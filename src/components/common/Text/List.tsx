@@ -1,6 +1,8 @@
 'use client';
 import { cn } from '@/libs/utils';
 
+import BodyText from './BodyText';
+
 interface IListProps {
   format?: string;
   children?: React.ReactNode;
@@ -10,23 +12,21 @@ export const List: React.FC<IListProps> = ({ children, format, className }) => {
   return (
     <div>
       {format === 'ordered' ? (
-        <ol
-          className={cn(
-            'list-decimal pl-5 text-sm leading-[130%]! font-normal text-black-200 lg:text-base',
-            className
-          )}
+        <BodyText
+          asChild
+          variant="sm"
+          className={cn('list-decimal pl-5 lg:text-base', className)}
         >
-          {children}
-        </ol>
+          <ol>{children}</ol>
+        </BodyText>
       ) : (
-        <ul
-          className={cn(
-            'list-disc pl-5 text-sm leading-4! font-normal text-black-200 lg:text-base',
-            className
-          )}
+        <BodyText
+          asChild
+          variant="sm"
+          className={cn('list-disc pl-5 leading-4 lg:text-base', className)}
         >
-          {children}
-        </ul>
+          <ul>{children}</ul>
+        </BodyText>
       )}
     </div>
   );

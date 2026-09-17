@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 import {
   VideoPlayer,
   VideoPlayerContent,
@@ -38,21 +38,11 @@ export const VideoWithTitle: React.FC<IVideoWithTitleProps> = ({
             crossOrigin=""
             className="w-full"
           />
-          <VideoPlayerControlBar
-            className={cn(
-              'relative z-20',
-              '[--media-control-padding:2.25px] lg:[--media-control-padding:3.75px]'
-            )}
-          >
+          <VideoPlayerControlBar className="relative z-20 [--media-control-padding:2.25px] lg:[--media-control-padding:3.75px]">
             <div className="flex w-full flex-col items-center">
               <div className="flex h-8 w-full items-center justify-between lg:h-10">
                 <div className="flex h-8 lg:h-10">
-                  <VideoPlayerPlayButton
-                    className={cn(
-                      'size-8 bg-transparent text-white lg:size-10',
-                      '[--media-icon-color:#FFFFFF]'
-                    )}
-                  />
+                  <VideoPlayerPlayButton className="size-8 bg-transparent text-white [--media-icon-color:#FFFFFF] lg:size-10" />
                   <VideoPlayerTimeDisplay
                     showDuration
                     className="bg-transparent px-2 text-white"
@@ -60,43 +50,22 @@ export const VideoWithTitle: React.FC<IVideoWithTitleProps> = ({
                 </div>
 
                 <div className="flex h-8 lg:h-10">
-                  <VideoPlayerMuteButton
-                    className={cn(
-                      'size-8 bg-transparent pr-0 text-sm leading-[130%]! font-normal text-white lg:size-10',
-                      '[--media-icon-color:#FFFFFF]'
-                    )}
-                  />
-                  <VideoPlayerVolumeRange
-                    className={cn(
-                      'mx-0 h-8 w-14 max-w-14 bg-transparent px-0 text-white lg:h-10',
-                      '[--media-range-bar-color:#FFFFFF]',
-                      '[--media-range-track-background:#94a3b8]',
-                      '[--media-range-thumb-background:#FFFFFF]',
-                      '[--media-icon-color:#FFFFFF]'
-                    )}
-                  />
-                  <VideoPlayerFullscreenButton
-                    className={cn(
-                      'size-8 bg-transparent text-white lg:size-10',
-                      '[--media-icon-color:#FFFFFF]'
-                    )}
-                  />
+                  <VideoPlayerMuteButton className="size-8 bg-transparent pr-0 text-sm leading-[130%] font-normal text-white [--media-icon-color:#FFFFFF] lg:size-10" />
+                  <VideoPlayerVolumeRange className="mx-0 h-8 w-14 max-w-14 bg-transparent px-0 text-white [--media-icon-color:#FFFFFF] [--media-range-bar-color:#FFFFFF] [--media-range-thumb-background:#FFFFFF] [--media-range-track-background:#94a3b8] lg:h-10" />
+                  <VideoPlayerFullscreenButton className="size-8 bg-transparent text-white [--media-icon-color:#FFFFFF] lg:size-10" />
                 </div>
               </div>
-              <VideoPlayerTimeRange
-                className={cn(
-                  'h-fit w-full bg-transparent py-0 pb-4 text-white',
-                  '[--media-range-bar-color:#F7D913]',
-                  '[--media-range-track-background:#94a3b8]',
-                  '[--media-range-thumb-background:transparent]'
-                )}
-              />
+              <VideoPlayerTimeRange className="h-fit w-full bg-transparent py-0 pb-4 text-white [--media-range-bar-color:#F7D913] [--media-range-thumb-background:transparent] [--media-range-track-background:#94a3b8]" />
             </div>
           </VideoPlayerControlBar>
         </VideoPlayer>
-        <div className="flex items-center gap-2 text-xs leading-[130%]! font-medium text-gray-500">
-          {title}
-        </div>
+        <BodyText
+          variant="xs"
+          asChild
+          className="flex items-center gap-2 font-medium text-gray-500"
+        >
+          <div>{title}</div>
+        </BodyText>
       </div>
     </div>
   );

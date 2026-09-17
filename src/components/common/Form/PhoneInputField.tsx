@@ -87,11 +87,13 @@ export function PhoneInputField<
               'text-sm h-10 mt-0',
               'shadow-none placeholder:text-black-50 text-black-50 border-gray-200',
               'group-hover:border-black-50',
+              // Match the primitive's important focus border so errors remain red.
               error &&
                 'border-red-500 group-hover:border-red-500 group-has-[input:hover]:border-red-500 group-focus-within:border-red-500! group-data-[country-open]:border-red-500',
               inputClassName
             )}
             countrySelectClassName={cn(
+              // Match the primitive's important focus border so errors remain red.
               error &&
                 'border-red-500 group-hover:border-red-500 group-has-[input:hover]:border-red-500 group-focus-within:border-red-500! group-data-[country-open]:border-red-500',
               countrySelectClassName

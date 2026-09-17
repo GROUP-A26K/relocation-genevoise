@@ -1,5 +1,4 @@
 'use client';
-
 import Image, { type StaticImageData } from 'next/image';
 import { motion, useTransform, type MotionValue } from 'motion/react';
 
@@ -7,6 +6,8 @@ import { cn } from '@/libs/utils';
 import Section from '@/components/common/Section';
 import useProgressSteps from '@/hooks/useProgressSteps';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 export type TRentalStep = {
   title: string;
@@ -27,7 +28,7 @@ const MARKER_CLASS_NAME =
   'flex size-9 items-center justify-center rounded-[10px] lg:size-11';
 
 const MARKER_LABEL_CLASS_NAME =
-  'text-lg leading-[130%]! font-semibold lg:text-2xl';
+  'text-lg leading-[130%] font-semibold lg:text-2xl';
 
 export default function OurRentalProcess({
   eyebrow,
@@ -47,12 +48,15 @@ export default function OurRentalProcess({
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-24">
         <RevealItem className="flex flex-col gap-12 lg:flex-1 lg:self-start">
           <div className="flex flex-col gap-3">
-            <p className="text-sm leading-[130%]! font-semibold text-yellow-600">
+            <BodyText variant="sm" className="font-semibold text-yellow-600">
               {eyebrow}
-            </p>
-            <h2 className="text-[32px] leading-[130%]! font-bold text-pretty text-black-500 lg:text-[40px]">
+            </BodyText>
+            <HeadingText
+              as="h2"
+              className="text-[32px] text-pretty lg:text-[40px]"
+            >
               {heading}
-            </h2>
+            </HeadingText>
           </div>
 
           <div className="relative aspect-572/420 w-full overflow-hidden rounded-3xl">
@@ -98,14 +102,14 @@ export default function OurRentalProcess({
                         'cursor-pointer border border-grey-200 bg-transparent transition-colors duration-300 hover:border-secondary-500'
                       )}
                     >
-                      <span
+                      <BodyText
+                        asChild
                         className={cn(
-                          MARKER_LABEL_CLASS_NAME,
-                          'text-black-100'
+                          cn(MARKER_LABEL_CLASS_NAME, 'text-black-100')
                         )}
                       >
-                        {label}
-                      </span>
+                        <span>{label}</span>
+                      </BodyText>
                     </button>
 
                     <div
@@ -133,23 +137,29 @@ export default function OurRentalProcess({
                       onClick={() => selectStep(index)}
                       className="flex min-h-9 cursor-pointer items-center text-left lg:min-h-11"
                     >
-                      <h3
+                      <HeadingText
+                        as="h3"
                         className={cn(
-                          'text-2xl leading-[130%]! font-semibold transition-colors duration-300',
-                          isReached ? 'text-black-500' : 'text-black-100'
+                          cn(
+                            'text-2xl leading-[130%] font-semibold transition-colors duration-300',
+                            isReached ? 'text-black-500' : 'text-black-100'
+                          )
                         )}
                       >
                         {step.title}
-                      </h3>
+                      </HeadingText>
                     </button>
-                    <p
+                    <BodyText
+                      variant="md"
                       className={cn(
-                        'text-base leading-[150%]! font-normal transition-colors duration-300',
-                        isReached ? 'text-black-300' : 'text-black-100'
+                        cn(
+                          'text-base leading-[150%] font-normal transition-colors duration-300',
+                          isReached ? 'text-black-300' : 'text-black-100'
+                        )
                       )}
                     >
                       {step.description}
-                    </p>
+                    </BodyText>
                   </div>
                 </li>
               );
@@ -183,9 +193,12 @@ function StepFill({ progress, index, label }: IStepFillProps) {
       className="pointer-events-none absolute inset-0 flex flex-col items-center"
     >
       <span className={cn(MARKER_CLASS_NAME, 'bg-secondary-500')}>
-        <span className={cn(MARKER_LABEL_CLASS_NAME, 'text-black-500')}>
-          {label}
-        </span>
+        <BodyText
+          asChild
+          className={cn(cn(MARKER_LABEL_CLASS_NAME, 'text-black-500'))}
+        >
+          <span>{label}</span>
+        </BodyText>
       </span>
       <span className="w-px flex-1 bg-secondary-500" />
     </motion.div>

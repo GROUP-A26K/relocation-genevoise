@@ -3,6 +3,8 @@ import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/common/Reveal';
 import { List, ListItem } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { ANCHOR_SCROLL_MARGIN } from '@/components/common/ContentMenu/constants';
 
 import type { TSitemap } from './PageView';
@@ -21,15 +23,23 @@ export const Content = ({ sitemap }: IContentProps) => {
             className={cn('flex flex-col gap-4', ANCHOR_SCROLL_MARGIN)}
             key={section.id}
           >
-            <h2 className="text-xl leading-[130%]! font-bold lg:text-2xl">
+            <HeadingText as="h2" className="text-xl text-inherit lg:text-2xl">
               {section.title}
-            </h2>
+            </HeadingText>
             <List className="flex flex-col gap-4">
               {section.items &&
                 section.items.map((item) => (
                   <ListItem dotColor="#F7D913" key={item.title}>
                     {item.url && (
-                      <Link key={item.title} href={item.url}>
+                      <Link
+                        key={item.title}
+                        href={item.url}
+                        className={cn(
+                          bodyTextVariants(),
+                          'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                          ''
+                        )}
+                      >
                         {item.title}
                       </Link>
                     )}
@@ -38,7 +48,15 @@ export const Content = ({ sitemap }: IContentProps) => {
                         {item.items.map((subitem) => (
                           <ListItem key={subitem.title} dotColor="#F7D913">
                             {subitem.url && (
-                              <Link key={subitem.title} href={subitem.url}>
+                              <Link
+                                key={subitem.title}
+                                href={subitem.url}
+                                className={cn(
+                                  bodyTextVariants(),
+                                  'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                                  ''
+                                )}
+                              >
                                 {subitem.title}
                               </Link>
                             )}

@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { Faq } from '@/components/sections/Faq';
 import Section from '@/components/common/Section';
+import HeadingText from '@/components/common/Text/HeadingText';
 import GroupAvatar from '@/assets/images/faq/advisors-group.webp';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
 import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
@@ -41,7 +42,9 @@ export default async function Page(props: PageProps<'/[locale]/faq'>) {
       />
 
       <Section revealTrigger="load">
-        <h1 className="sr-only">{t('heading')}</h1>
+        <HeadingText as="h1" className="sr-only">
+          {t('heading')}
+        </HeadingText>
         <Faq
           heading={t('heading')}
           subHeading={t('subHeading')}

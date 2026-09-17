@@ -1,11 +1,11 @@
 'use client';
-
 import { useId } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, useReducedMotion } from 'motion/react';
 
 import { cn } from '@/libs/utils';
 import Button from '@/components/common/Button';
+import BodyText from '@/components/common/Text/BodyText';
 
 export type TTabsMenuVariant = 'primary' | 'secondary';
 
@@ -72,7 +72,12 @@ const TabsMenu: React.FC<ITabsMenuProps> = ({
                 )}
               />
             )}
-            <span className="relative z-10">{title}</span>
+            <BodyText
+              asChild
+              className="relative z-10 text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit"
+            >
+              <span>{title}</span>
+            </BodyText>
           </Button>
         );
       })}

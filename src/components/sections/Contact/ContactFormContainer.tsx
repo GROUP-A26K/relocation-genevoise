@@ -1,10 +1,11 @@
 'use client';
-
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 import Section from '@/components/common/Section';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import ContactBG from '@/assets/images/contact/relocation-genevoise-contact.webp';
 
 interface IContactFormContainerProps {
@@ -23,15 +24,21 @@ export const ContactFormContainer: React.FC<IContactFormContainerProps> = (
         <div className="flex w-full flex-col items-center lg:justify-start xl:justify-center">
           <RevealItem className="flex flex-col items-start gap-12 lg:gap-8">
             <div className="flex flex-col gap-3">
-              <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
+              <BodyText
+                variant="sm"
+                className="font-semibold text-secondary-600"
+              >
                 {t('title')}
-              </p>
-              <h2 className="text-3xl leading-[130%]! font-semibold">
+              </BodyText>
+              <HeadingText
+                as="h2"
+                className="text-3xl font-semibold text-inherit"
+              >
                 {t('subTitle')}
-              </h2>
-              <p className="max-w-2xl text-sm leading-[130%]! font-normal text-black-200">
+              </HeadingText>
+              <BodyText variant="sm" className="max-w-2xl">
                 {t('description')}
-              </p>
+              </BodyText>
             </div>
             {props.children}
           </RevealItem>

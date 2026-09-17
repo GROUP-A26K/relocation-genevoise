@@ -1,6 +1,8 @@
 import { cn } from '@/libs/utils';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { FormattedText } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { ANCHOR_SCROLL_MARGIN } from '@/components/common/ContentMenu/constants';
 import {
   Accordion,
@@ -66,9 +68,12 @@ export const FaqBlock: React.FC<IFaqBlockProps> = ({
         ANCHOR_SCROLL_MARGIN
       )}
     >
-      <h2 className="text-left text-2xl leading-[130%]! font-semibold text-primary-500">
+      <HeadingText
+        as="h2"
+        className="text-left text-2xl font-semibold text-primary-500"
+      >
         {heading}
-      </h2>
+      </HeadingText>
       <Accordion
         defaultValue={faqs.length > 0 ? 'item-0' : ''}
         type="single"
@@ -85,20 +90,13 @@ export const FaqBlock: React.FC<IFaqBlockProps> = ({
               { 'pt-6': index !== 0 }
             )}
           >
-            <AccordionTrigger
-              className={cn('py-0 text-lg leading-[130%]! font-semibold')}
-            >
+            <AccordionTrigger className="py-0 text-lg leading-[130%] font-semibold">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent
-              className={cn(
-                'max-w-[720px] py-0 pt-2 text-sm leading-[130%]! text-black-200',
-                'lg:max-w-[672px]'
-              )}
-            >
-              <p>
+            <AccordionContent className="max-w-[720px] py-0 pt-2 text-sm leading-[130%] text-black-200 lg:max-w-[672px]">
+              <BodyText className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit">
                 <FormattedText text={item.answer} />
-              </p>
+              </BodyText>
             </AccordionContent>
           </AccordionItem>
         ))}

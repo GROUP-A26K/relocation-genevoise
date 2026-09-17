@@ -2,6 +2,7 @@ import { House, KeyRound } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 export type TFindATenantAudience = 'landlords' | 'tenant';
 
@@ -27,10 +28,14 @@ export default function HeroTabs({ active, labels }: IHeroTabsProps) {
             href={href}
             aria-current={isActive ? 'page' : undefined}
             className={cn(
-              'group flex items-center gap-2 rounded-full px-3 py-2 text-base leading-[130%]! font-semibold transition-colors',
-              isActive
-                ? 'bg-black-500 text-white shadow-xs'
-                : 'text-black-200 hover:text-black-500'
+              bodyTextVariants(),
+              'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+              cn(
+                'group flex items-center gap-2 rounded-full px-3 py-2 text-base leading-[130%] font-semibold transition-colors',
+                isActive
+                  ? 'bg-black-500 text-white shadow-xs'
+                  : 'text-black-200 hover:text-black-500'
+              )
             )}
           >
             <Icon

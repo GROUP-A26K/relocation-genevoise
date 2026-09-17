@@ -1,11 +1,11 @@
 'use client';
-
 import * as React from 'react';
 import { Search } from 'lucide-react';
 import { Command as CommandPrimitive } from 'cmdk';
 
 import { cn } from '@/libs/utils';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
 import type { DialogProps } from '@radix-ui/react-dialog';
 
@@ -46,8 +46,12 @@ function CommandInput({
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          'flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
-          className
+          bodyTextVariants(),
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          cn(
+            'flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
+            className
+          )
         )}
         {...props}
       />
@@ -75,7 +79,11 @@ function CommandEmpty(
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className="py-6 text-center text-sm"
+      className={cn(
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        'py-6 text-center text-sm'
+      )}
       {...props}
     />
   );
@@ -88,8 +96,12 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        'overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground',
-        className
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+        cn(
+          'overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground',
+          className
+        )
       )}
       {...props}
     />
@@ -115,8 +127,12 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        'relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
-        className
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+        cn(
+          'relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+          className
+        )
       )}
       {...props}
     />
@@ -129,8 +145,9 @@ const CommandShortcut = ({
   return (
     <span
       className={cn(
-        'ml-auto text-xs tracking-widest text-muted-foreground',
-        className
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[calc(1/0.75)] font-[number:inherit] text-inherit',
+        cn('ml-auto text-xs tracking-widest text-muted-foreground', className)
       )}
       {...props}
     />

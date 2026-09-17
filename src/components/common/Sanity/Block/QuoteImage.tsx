@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 
 interface IQuoteImageProps {
   content?: string;
@@ -18,16 +18,11 @@ const QuoteImage: React.FC<IQuoteImageProps> = ({
   photoLqip,
 }) => {
   return (
-    <div className={cn('py-4', 'lg:py-6')}>
-      <div
-        className={cn(
-          'flex w-full flex-col items-start justify-start gap-5 rounded-2xl bg-white py-0',
-          'lg:bg-grey-50 lg:p-6'
-        )}
-      >
-        <blockquote className="text-center text-base leading-[130%]! font-normal text-black-500 italic">
-          {content}
-        </blockquote>
+    <div className="py-4 lg:py-6">
+      <div className="flex w-full flex-col items-start justify-start gap-5 rounded-2xl bg-white py-0 lg:bg-grey-50 lg:p-6">
+        <BodyText asChild className="text-center text-black-500 italic">
+          <blockquote>{content}</blockquote>
+        </BodyText>
         <div className="flex w-full flex-col items-center gap-3">
           <Image
             src={photoUrl}
@@ -40,12 +35,10 @@ const QuoteImage: React.FC<IQuoteImageProps> = ({
             className="h-10 w-10 rounded-full object-contain"
           />
           <div className="flex w-full flex-col items-center justify-center">
-            <p className="text-base leading-[130%]! font-semibold text-black-500">
+            <BodyText className="font-semibold text-black-500">
               {author}
-            </p>
-            <p className="text-sm leading-[130%]! font-normal text-black-200">
-              {authorInfo}
-            </p>
+            </BodyText>
+            <BodyText variant="sm">{authorInfo}</BodyText>
           </div>
         </div>
       </div>

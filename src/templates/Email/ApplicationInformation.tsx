@@ -95,7 +95,7 @@ export const ApplicationInformation = ({
                           height="13"
                           alt="Globe icon"
                         />
-                        <Text className="ml-1 text-xs leading-[100%]! font-semibold text-[#605204]">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -107,7 +107,7 @@ export const ApplicationInformation = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="m-8 mb-6 text-start text-3xl leading-[130%]! font-semibold text-[#605204]"
+              className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#605204]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 

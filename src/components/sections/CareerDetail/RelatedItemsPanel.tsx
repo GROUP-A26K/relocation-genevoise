@@ -1,9 +1,9 @@
 'use client';
-
 import { useTranslations } from 'next-intl';
 
 import { JobCard } from '@/components/common/Card';
 import { RevealItem } from '@/components/common/Reveal';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { IJob } from '@/models/job';
 
@@ -18,9 +18,12 @@ export const RelatedItemsPanel: React.FC<IRelatedItemsPanelProps> = ({
 
   return (
     <RevealItem as="aside" className="flex flex-1 flex-col gap-8">
-      <h2 className="text-xl leading-relaxed font-semibold text-black">
+      <HeadingText
+        as="h2"
+        className="text-xl leading-relaxed font-semibold text-black"
+      >
         {t('title')}
-      </h2>
+      </HeadingText>
 
       <ul className="flex w-full flex-col gap-6 lg:max-w-[350px] lg:min-w-[350px] xl:max-w-[408px] xl:min-w-[408px]">
         {jobs.map((job) => (

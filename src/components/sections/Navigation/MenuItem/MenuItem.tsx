@@ -2,6 +2,7 @@ import { cn } from '@/libs/utils';
 import { Link, type THref } from '@/libs/i18nNavigation';
 import { fetchBlogs } from '@/features/blog/blog.service';
 import { Card } from '@/components/sections/Navigation/Card';
+import { BodyText, bodyTextVariants } from '@/components/common/Text';
 import MotionNavItem from '@/components/sections/Navigation/MotionNavItem';
 import { SubMenuLink } from '@/components/sections/Navigation/MenuItem/SubMenuLink';
 import {
@@ -21,7 +22,8 @@ type TMenuItem = {
 };
 
 const MENU_LINK_STYLE = cn(
-  'ml-0! inline-flex h-[72px] w-max items-center justify-center rounded-none border-0 bg-transparent px-[8px] py-2 text-[16px] leading-[150%]! font-bold text-black-500 shadow-none transition-colors',
+  bodyTextVariants({ variant: 'md' }),
+  'ml-0 inline-flex h-[72px] w-max items-center justify-center rounded-none border-0 bg-transparent px-[8px] py-2 text-[16px] leading-[150%] font-bold text-black-500 shadow-none transition-colors',
   'hover:bg-transparent hover:text-black-500 focus:bg-transparent focus:text-black-500 focus:outline-hidden',
   'active:bg-transparent active:text-black-500'
 );
@@ -52,15 +54,18 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
         </MotionNavItem>
         <NavigationMenuContent
           className={cn(
-            'right-0! m-0! w-screen! items-center! justify-center!'
+            'right-0 m-0 w-screen items-center justify-center md:w-screen'
           )}
         >
           <div className="m-0 flex w-full justify-center">
-            <div className="flex w-full! flex-col px-12.5 md:w-[300px] md:max-w-(--breakpoint-md) lg:w-[400px] lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:flex-row xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
+            <div className="flex w-full flex-col px-12.5 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:flex-row xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
               <div className="flex w-full flex-col gap-3 p-6 pb-0 pl-0 xl:p-6 xl:pl-0">
-                <p className="px-[12px] text-subtle leading-[130%]! font-medium uppercase">
+                <BodyText
+                  variant="xs"
+                  className="px-[12px] font-medium text-inherit uppercase"
+                >
                   {item.subtitle}
-                </p>
+                </BodyText>
 
                 <div className="grid grid-cols-3 gap-x-[48px] gap-y-3 xl:grid-cols-2">
                   {item.items.map((subItem) => (
@@ -73,9 +78,12 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
                 </div>
               </div>
               <div className="flex flex-col gap-3 border-0 p-6 pr-0 pl-0 xl:border-l-2 xl:border-gray-50 xl:p-6 xl:pr-0">
-                <p className="px-[12px] text-subtle font-medium uppercase">
+                <BodyText
+                  variant="xs"
+                  className="px-[12px] leading-[150%] font-medium text-inherit uppercase"
+                >
                   Blog
-                </p>
+                </BodyText>
                 <Card
                   title={blogs[0]?.title ?? 'Our Latest Blog'}
                   variant="lg"

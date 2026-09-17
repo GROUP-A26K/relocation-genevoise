@@ -55,7 +55,7 @@ export const InputField = <TFieldValues extends FieldValues = FieldValues>({
         <Input
           id={name}
           className={cn(
-            'mt-0! h-10 text-sm',
+            'mt-0 h-10 text-sm',
             'rounded-3xl border-gray-200 text-black-50 shadow-none placeholder:text-black-50',
             'hover:text-back-100 hover:border-black-50',
             'focus-visible:border-secondary-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-secondary-50',

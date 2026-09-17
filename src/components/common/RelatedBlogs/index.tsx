@@ -1,10 +1,11 @@
 'use client';
-
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
 import { FormattedText } from '@/components/common/Text';
 import { BlogCard } from '@/components/common/Card/BlogCard';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { IBlog } from '@/models/blog';
 
@@ -31,16 +32,19 @@ const RelatedBlogs: React.FC<IRelatedBlogsProps> = ({
       <RevealItem className="flex flex-row items-end justify-between">
         <div className="flex max-w-xl flex-col gap-4 lg:gap-6">
           <div className="flex flex-col gap-3">
-            <p className="text-sm leading-[130%]! font-semibold text-secondary-600">
+            <BodyText variant="sm" className="font-semibold text-secondary-600">
               {heading}
-            </p>
-            <h2 className="text-3xl leading-[130%]! font-semibold">
+            </BodyText>
+            <HeadingText
+              as="h2"
+              className="text-3xl font-semibold text-inherit"
+            >
               <FormattedText text={subHeading} />
-            </h2>
+            </HeadingText>
           </div>
-          <p className="text-sm leading-[130%]! text-black-200">
+          <BodyText variant="sm" className="font-[number:inherit]">
             {description}
-          </p>
+          </BodyText>
         </div>
         <Link href={buttonUrl}>
           <Button

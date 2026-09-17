@@ -1,4 +1,5 @@
-import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 interface IInfoContactCardProps {
   title: string;
@@ -21,23 +22,21 @@ export const InfoContactCard: React.FC<IInfoContactCardProps> = ({
         </div>
       </div>
 
-      <div
-        className={cn(
-          'flex flex-col gap-1 text-center text-black-500 lg:gap-1.5'
-        )}
-      >
-        <h2 className="text-xl leading-[130%]! font-semibold">{title}</h2>
-        <p
+      <div className="flex flex-col gap-1 text-center text-black-500 lg:gap-1.5">
+        <HeadingText as="h2" className="text-xl font-semibold text-inherit">
+          {title}
+        </HeadingText>
+        <BodyText
           title={description ?? '\u00A0'}
-          className="line-clamp-1 text-base leading-[130%]! font-normal text-black-200 lg:text-sm"
+          className="line-clamp-1 lg:text-sm"
         >
           {description ?? '\u00A0'}
-        </p>
+        </BodyText>
       </div>
 
-      <p className="text-center text-base leading-[130%]! font-semibold text-yellow-600">
+      <BodyText className="text-center font-semibold text-yellow-600">
         {info}
-      </p>
+      </BodyText>
     </div>
   );
 };

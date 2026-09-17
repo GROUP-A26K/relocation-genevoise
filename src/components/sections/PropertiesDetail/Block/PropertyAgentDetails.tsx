@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
 import { getTelHref } from '@/utils/contact';
 import Button from '@/components/common/Button';
+import BodyText from '@/components/common/Text/BodyText';
 import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
 import type { IPropertyAgent } from '@/models/property';
@@ -36,9 +37,12 @@ export function PropertyAgentDetails({ agent }: IPropertyAgentDetailsProps) {
       </div>
 
       <div className="relative flex flex-col gap-4 lg:gap-6">
-        <p className="text-xl font-semibold text-black-500 lg:text-2xl">
+        <BodyText
+          variant="xl"
+          className="leading-7 font-semibold text-black-500 lg:text-2xl lg:leading-8"
+        >
           {t('agent.title')}
-        </p>
+        </BodyText>
 
         <div className="flex items-center gap-6">
           <Image
@@ -52,8 +56,18 @@ export function PropertyAgentDetails({ agent }: IPropertyAgentDetailsProps) {
           />
 
           <div className="flex min-w-0 flex-col gap-2 lg:gap-3">
-            <p className="text-lg font-semibold text-black-500">{agentName}</p>
-            <p className="text-xl font-semibold text-blue-500">{agentPhone}</p>
+            <BodyText
+              variant="lg"
+              className="leading-7 font-semibold text-black-500"
+            >
+              {agentName}
+            </BodyText>
+            <BodyText
+              variant="xl"
+              className="leading-7 font-semibold text-blue-500"
+            >
+              {agentPhone}
+            </BodyText>
           </div>
         </div>
 
@@ -63,7 +77,7 @@ export function PropertyAgentDetails({ agent }: IPropertyAgentDetailsProps) {
             variant="md"
             type="secondary"
             iconStart={Phone}
-            className="h-auto! w-full px-4 py-3 leading-[130%]!"
+            className="h-auto w-full px-4 py-3 leading-[130%]"
           >
             {t('agent.contactButton')}
           </Button>

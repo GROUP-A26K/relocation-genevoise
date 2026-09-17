@@ -1,5 +1,4 @@
 'use client';
-
 import {
   useFormContext,
   useWatch,
@@ -9,6 +8,8 @@ import {
 
 import { cn } from '@/libs/utils';
 import { Textarea } from '@/components/ui/textarea';
+import BodyText from '@/components/common/Text/BodyText';
+import { cn as typographyCn } from '@/components/common/Text/utils';
 
 import { FormField } from './FormField';
 
@@ -46,7 +47,7 @@ export const TextareaField = <TFieldValues extends FieldValues = FieldValues>({
         <Textarea
           id={name}
           className={cn(
-            'mt-0! rounded-xl text-sm leading-[130%]!',
+            'mt-0 rounded-xl text-sm leading-[130%]',
             'border-gray-200 text-black-50 shadow-none placeholder:text-black-50',
             'hover:text-back-100 hover:border-black-50',
             'focus-visible:border-secondary-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-secondary-50',
@@ -60,9 +61,17 @@ export const TextareaField = <TFieldValues extends FieldValues = FieldValues>({
           {...register(name)}
         />
         {!!maxLength && (
-          <span className="pointer-events-none absolute right-3 bottom-2.5 text-sm leading-[130%]! text-black-50">
-            {length}/{maxLength}
-          </span>
+          <BodyText
+            asChild
+            className={typographyCn(
+              'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+              'pointer-events-none absolute right-3 bottom-2.5 text-sm leading-[130%] text-black-50'
+            )}
+          >
+            <span>
+              {length}/{maxLength}
+            </span>
+          </BodyText>
         )}
       </div>
     </FormField>

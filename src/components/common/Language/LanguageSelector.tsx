@@ -1,17 +1,13 @@
 'use client';
-
 import { Globe } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 
 import { useLanguageSwitcher } from './hooks';
 
-const WRAPPER_STYLE = cn(
-  'inline-flex h-9 w-fit items-center justify-center gap-2 whitespace-nowrap',
-  'rounded-3xl bg-grey-50 px-[16px] py-[20px] shadow-none',
-  'lineHeight-md text-[16px] font-semibold text-primary-500',
-  '[&_svg]:pointer-events-none [&_svg]:shrink-0'
-);
+const WRAPPER_STYLE =
+  'inline-flex h-9 w-fit items-center justify-center gap-2 whitespace-nowrap rounded-3xl bg-grey-50 px-[16px] py-[20px] shadow-none lineHeight-md text-[16px] font-semibold text-primary-500 [&_svg]:pointer-events-none [&_svg]:shrink-0';
 
 interface ILanguageSelectorProps {
   className?: string;
@@ -34,26 +30,33 @@ const LanguageSelector: React.FC<ILanguageSelectorProps> = ({ className }) => {
           const isDisabled = isActive || Boolean(pendingLocale);
 
           return (
-            <button
+            <BodyText
+              asChild
               key={item}
-              type="button"
-              aria-label={`Switch language to ${item.toUpperCase()}`}
-              aria-current={isActive}
-              disabled={isDisabled}
-              onClick={() => switchTo(item)}
               className={cn(
-                'transition-colors duration-200',
-                'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-hidden',
-                index > 0 ? 'pl-2' : 'pr-2',
-                isDisabled ? 'cursor-default' : 'cursor-pointer',
-                isActive
-                  ? 'text-primary-500'
-                  : 'text-grey-500 hover:text-primary-400',
-                { 'text-primary-400': pendingLocale === item }
+                'text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit',
+                cn(
+                  'transition-colors duration-200',
+                  'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-hidden',
+                  index > 0 ? 'pl-2' : 'pr-2',
+                  isDisabled ? 'cursor-default' : 'cursor-pointer',
+                  isActive
+                    ? 'text-primary-500'
+                    : 'text-grey-500 hover:text-primary-400',
+                  { 'text-primary-400': pendingLocale === item }
+                )
               )}
             >
-              {item.toUpperCase()}
-            </button>
+              <button
+                type="button"
+                aria-label={`Switch language to ${item.toUpperCase()}`}
+                aria-current={isActive}
+                disabled={isDisabled}
+                onClick={() => switchTo(item)}
+              >
+                {item.toUpperCase()}
+              </button>
+            </BodyText>
           );
         })}
       </div>

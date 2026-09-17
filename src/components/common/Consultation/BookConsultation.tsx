@@ -6,7 +6,9 @@ import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/common/Button';
 import Section from '@/components/common/Section';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { FormattedText } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 interface IBookConsultationProps {
   heading?: string;
@@ -68,26 +70,36 @@ export const BookConsultation: React.FC<IBookConsultationProps> = ({
             )}
           >
             {heading && (
-              <p className="text-center text-sm leading-[130%]! font-semibold text-secondary-600 lg:text-center">
+              <BodyText
+                variant="sm"
+                className="text-center font-semibold text-secondary-600 lg:text-center"
+              >
                 {heading}
-              </p>
+              </BodyText>
             )}
-            <h2
+            <HeadingText
+              as="h2"
               className={cn(
-                'text-center text-2xl leading-[130%]! font-semibold text-balance text-black-500 lg:text-3xl',
-                titleClassName
+                'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                cn(
+                  'text-center text-2xl leading-[130%] font-semibold text-balance text-black-500 lg:text-3xl',
+                  titleClassName
+                )
               )}
             >
               <FormattedText text={subHeading} />
-            </h2>
-            <p
+            </HeadingText>
+            <BodyText
               className={cn(
-                'text-center text-sm leading-[130%]! font-normal text-balance text-black-200',
-                descriptionClassName
+                'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                cn(
+                  'text-center text-sm leading-[130%] font-normal text-balance text-black-200',
+                  descriptionClassName
+                )
               )}
             >
               {description}
-            </p>
+            </BodyText>
           </RevealItem>
 
           <RevealItem

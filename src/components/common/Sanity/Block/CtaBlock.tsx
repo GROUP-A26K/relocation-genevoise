@@ -1,7 +1,8 @@
-import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 interface ICtaBlockProps {
   id: string;
@@ -17,26 +18,16 @@ const CtaBlock: React.FC<ICtaBlockProps> = ({
   buttonText = 'Contact Us',
 }) => {
   return (
-    <RevealItem className={cn('w-full py-4', 'lg:py-6')}>
+    <RevealItem className="w-full py-4 lg:py-6">
       <div
         id={id}
-        className={cn(
-          'flex flex-col gap-6 rounded-2xl bg-grey-50 p-6',
-          'lg:p-8'
-        )}
+        className="flex flex-col gap-6 rounded-2xl bg-grey-50 p-6 lg:p-8"
       >
         <div className="flex flex-col gap-4">
-          <h2
-            className={cn(
-              'text-xl leading-[130%]! font-semibold text-black-500',
-              'lg:text-2xl'
-            )}
-          >
+          <HeadingText as="h2" className="text-xl font-semibold lg:text-2xl">
             {title}
-          </h2>
-          <p className="text-sm leading-[130%]! font-normal text-black-200">
-            {description}
-          </p>
+          </HeadingText>
+          <BodyText variant="sm">{description}</BodyText>
         </div>
         <Link href="/contact" className="w-fit">
           <Button

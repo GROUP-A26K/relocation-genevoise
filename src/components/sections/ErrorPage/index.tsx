@@ -6,9 +6,11 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
 import Button from '@/components/common/Button';
+import BodyText from '@/components/common/Text/BodyText';
 import Content403 from '@/assets/icons/errors/error-403.svg';
 import Content404 from '@/assets/icons/errors/error-404.svg';
 import Content500 from '@/assets/icons/errors/error-500.svg';
+import HeadingText from '@/components/common/Text/HeadingText';
 import { RevealItem, RevealSection } from '@/components/common/Reveal';
 
 interface IErrorPageProps {
@@ -60,15 +62,22 @@ const ErrorPage: React.FC<IErrorPageProps> = ({ errorCode, message }) => {
           className="grid grid-cols-1 items-center justify-between gap-12 lg:grid-cols-12"
         >
           <RevealItem className="col-span-6 flex flex-col justify-start gap-4 lg:justify-center lg:gap-6">
-            <h1 className="text-[120px] leading-[131.2px] font-semibold text-grey-200 lg:text-[164px]">
-              {errorCode}
-            </h1>
-            <h1 className="text-3xl font-bold text-black-500 lg:text-h1 lg:leading-[130%]!">
+            <HeadingText
+              as="h1"
+              asChild
+              className="text-[120px] leading-[131.2px] font-semibold text-grey-200 lg:text-[164px]"
+            >
+              <span>{errorCode}</span>
+            </HeadingText>
+            <HeadingText
+              as="h1"
+              className="text-3xl leading-9 lg:text-[48px] lg:leading-[130%]"
+            >
               {title}
-            </h1>
-            <p className="text-[14px] leading-[18.2px] font-normal text-black-200">
+            </HeadingText>
+            <BodyText variant="sm" className="leading-[18.2px]">
               {description}
-            </p>
+            </BodyText>
 
             <div className="md:flex lg:justify-start">
               <Link href="/">

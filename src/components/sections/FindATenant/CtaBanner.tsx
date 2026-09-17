@@ -3,7 +3,9 @@ import { ArrowRight } from 'lucide-react';
 import Button from '@/components/common/Button';
 import Section from '@/components/common/Section';
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import { Link, type THref } from '@/libs/i18nNavigation';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 type TCta = {
   text: string;
@@ -29,12 +31,15 @@ export default function CtaBanner({
     >
       <RevealItem className="flex flex-col items-center gap-8 bg-grey-50 px-4 py-12 text-center lg:rounded-3xl lg:p-16">
         <div className="flex max-w-[720px] flex-col gap-4">
-          <h2 className="text-[32px] leading-[130%]! font-bold text-pretty text-black-500 lg:text-[40px]">
+          <HeadingText
+            as="h2"
+            className="text-[32px] text-pretty lg:text-[40px]"
+          >
             {heading}
-          </h2>
-          <p className="text-base leading-[150%]! font-normal text-black-300">
+          </HeadingText>
+          <BodyText variant="md" className="leading-[150%] text-black-300">
             {description}
-          </p>
+          </BodyText>
         </div>
 
         <Link href={cta.href} className="max-lg:w-full">

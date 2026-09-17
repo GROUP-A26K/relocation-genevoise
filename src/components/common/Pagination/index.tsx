@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
 import {
   Pagination as PaginationShadcn,
   PaginationContent,
@@ -55,7 +56,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
           className={cn(
             pageItemClassName,
             meta.pagination.page === 1 &&
-              'border-0 bg-secondary-500 text-black-500! hover:bg-secondary-500 active:bg-secondary-500'
+              'border-0 bg-secondary-500 text-black-500 hover:bg-secondary-500 hover:text-black-500 active:bg-secondary-500'
           )}
           isActive={meta.pagination.page === 1}
         >
@@ -79,7 +80,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
             className={cn(
               pageItemClassName,
               meta.pagination.page === i &&
-                'border-0 bg-secondary-500 text-black-500! hover:bg-secondary-500 active:bg-secondary-500'
+                'border-0 bg-secondary-500 text-black-500 hover:bg-secondary-500 hover:text-black-500 active:bg-secondary-500'
             )}
             isActive={meta.pagination.page === i}
           >
@@ -98,7 +99,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
             className={cn(
               pageItemClassName,
               meta.pagination.page === max &&
-                'border-0 bg-secondary-500 text-black-500! hover:bg-secondary-500 active:bg-secondary-500'
+                'border-0 bg-secondary-500 text-black-500 hover:bg-secondary-500 hover:text-black-500 active:bg-secondary-500'
             )}
             isActive={meta.pagination.page === max}
           >
@@ -166,9 +167,15 @@ export const Pagination: React.FC<IPaginationProps> = ({
             <ChevronLeft className="h-5 w-5 text-black-500" />
           </div>
         </PaginationItem>
-        <div className="flex items-center justify-center text-sm leading-[130%]! font-normal text-black-200">
-          Page {currentPage} of {meta.pagination.pageCount}
-        </div>
+        <BodyText
+          variant="sm"
+          asChild
+          className="flex items-center justify-center"
+        >
+          <div>
+            Page {currentPage} of {meta.pagination.pageCount}
+          </div>
+        </BodyText>
         <PaginationItem>
           <div
             className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border p-2 lg:p-3"

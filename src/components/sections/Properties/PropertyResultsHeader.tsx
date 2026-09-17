@@ -1,8 +1,8 @@
 'use client';
-
 import { useTranslations } from 'next-intl';
 
 import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import {
   PROPERTY_SORT_OPTIONS,
   usePropertyFilters,
@@ -38,14 +38,16 @@ export default function PropertyResultsHeader({
 
   return (
     <RevealItem className="flex gap-4 max-md:flex-col-reverse md:items-center md:justify-between">
-      <div className="text-p leading-[130%]! font-normal text-black-500">
-        {t('results.showing')}{' '}
-        <span className="font-bold">
-          {startItem}-{endItem}
-        </span>{' '}
-        {t('results.ofTotal')} <span className="font-bold">{total}</span>{' '}
-        {t('results.results')}
-      </div>
+      <BodyText variant="md" asChild className="text-black-500">
+        <div>
+          {t('results.showing')}{' '}
+          <span className="font-bold">
+            {startItem}-{endItem}
+          </span>{' '}
+          {t('results.ofTotal')} <span className="font-bold">{total}</span>{' '}
+          {t('results.results')}
+        </div>
+      </BodyText>
 
       <div className="flex flex-wrap items-center gap-3 max-md:justify-between">
         <button
@@ -65,13 +67,17 @@ export default function PropertyResultsHeader({
               }`}
             />
           </div>
-          <span className="text-p leading-[130%]! font-normal whitespace-nowrap text-black-500">
-            {t('results.showAvailableOnly')}
-          </span>
+          <BodyText
+            variant="md"
+            asChild
+            className="whitespace-nowrap text-black-500"
+          >
+            <span>{t('results.showAvailableOnly')}</span>
+          </BodyText>
         </button>
 
         <Select value={currentSort} onValueChange={handleSortChange}>
-          <SelectTrigger className="h-10 w-auto gap-2 rounded-full border-0 bg-grey-100 px-4 py-3 text-p leading-[130%]! font-semibold text-black-500 shadow-none transition-colors hover:bg-grey-200 focus:ring-0 [&>svg]:opacity-100">
+          <SelectTrigger className="h-10 w-auto gap-2 rounded-full border-0 bg-grey-100 px-4 py-3 text-sm leading-[130%] font-semibold text-black-500 shadow-none transition-colors hover:bg-grey-200 focus:ring-0 [&>svg]:opacity-100">
             <SelectValue />
           </SelectTrigger>
           <SelectContent
@@ -83,7 +89,7 @@ export default function PropertyResultsHeader({
               <SelectItem
                 key={option.value}
                 value={option.value}
-                className="cursor-pointer rounded-md px-4 py-2 text-p leading-[130%]! font-normal text-black-300 focus:bg-grey-50 focus:text-black-500 data-[state=checked]:font-semibold data-[state=checked]:text-black-500 [&>span:first-child]:hidden"
+                className="cursor-pointer rounded-md px-4 py-2 text-sm leading-[130%] font-normal text-black-300 focus:bg-grey-50 focus:text-black-500 data-[state=checked]:font-semibold data-[state=checked]:text-black-500 [&>span:first-child]:hidden"
               >
                 {t(option.labelKey)}
               </SelectItem>

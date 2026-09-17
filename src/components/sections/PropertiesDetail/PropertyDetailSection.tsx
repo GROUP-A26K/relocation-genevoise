@@ -1,5 +1,6 @@
 'use client';
 import { RevealItem } from '@/components/common/Reveal';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 import type { ReactNode } from 'react';
 
@@ -15,7 +16,9 @@ export const PropertyDetailSection = ({
   return (
     <RevealItem className="flex flex-col gap-6">
       {title && (
-        <h2 className="text-2xl leading-[130%]! font-semibold">{title}</h2>
+        <HeadingText as="h2" className="text-2xl font-semibold text-inherit">
+          {title}
+        </HeadingText>
       )}
       <div className="w-full">{content}</div>
     </RevealItem>

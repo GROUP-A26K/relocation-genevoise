@@ -72,11 +72,11 @@ export const SelectField = <TFieldValues extends FieldValues = FieldValues>({
                 <SelectTrigger
                   id={name}
                   className={cn(
-                    'mt-0! h-10 rounded-full text-sm',
+                    'mt-0 h-10 rounded-full text-sm',
                     'rounded-3xl border-gray-200 shadow-none placeholder:font-medium data-placeholder:text-black-50',
                     'hover:text-back-100 hover:border-black-50',
-                    'focus:border-secondary-500! focus:text-black-50! focus:ring-2! focus:ring-secondary-50!',
-                    'data-[state=open]:border-secondary-500! data-[state=open]:text-black-50! data-[state=open]:ring-2! data-[state=open]:ring-secondary-50!',
+                    'focus:border-secondary-500 focus:text-black-50 focus:ring-2 focus:ring-secondary-50',
+                    'data-[state=open]:border-secondary-500 data-[state=open]:text-black-50 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
                     icon && 'pl-10',
                     error && 'border-red-500 hover:border-red-500',
                     triggerClassName
