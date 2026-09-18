@@ -13,6 +13,7 @@ import { Form } from '@/components/ui/form';
 import { Link } from '@/libs/i18nNavigation';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
 import { useOpenStatus } from '@/hooks/useOpenStatus';
 import BodyText from '@/components/common/Text/BodyText';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
@@ -86,7 +87,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
     closeHour: TIME_CLOSE,
     interval: RESET_OPEN_STATUS_TIME,
   });
-  const { mutate, isPending } = useSubmitBooking();
+  const { mutateAsync, isPending } = useSubmitBooking();
   const form = useForm<TBookingFormInput>({
     resolver: zodResolver(bookingSchema(formT)),
     defaultValues: {
@@ -95,6 +96,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
       contactVia: 'telephone',
     },
   });
+  const draft = useFormDraft('consultation', form, { restoreKey: locale });
   const contactVia = form.watch('contactVia');
 
   const showToast = useCallback(
@@ -128,21 +130,19 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   );
 
   const onSubmit = useCallback(
-    (values: TBookingFormInput) =>
-      mutate(
-        { values, locale },
-        {
-          onSuccess: () => {
-            form.reset();
-            showToast('success');
-          },
-          onError: (error) => {
-            showToast('danger');
-            console.error('Error submitting form:', error);
-          },
-        }
-      ),
-    [form, locale, mutate, showToast]
+    async (values: TBookingFormInput) => {
+      const submission = draft.beginSubmission(values);
+
+      try {
+        await mutateAsync({ values, locale });
+        draft.completeSubmission(submission);
+        showToast('success');
+      } catch (error) {
+        showToast('danger');
+        console.error('Error submitting form:', error);
+      }
+    },
+    [draft, locale, mutateAsync, showToast]
   );
 
   const handleFormSubmit = form.handleSubmit(onSubmit);

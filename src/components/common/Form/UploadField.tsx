@@ -1,11 +1,17 @@
 'use client';
+
 import Image from 'next/image';
 import { isNil } from 'lodash-es';
 import { useTranslations } from 'next-intl';
-import { useDropzone } from 'react-dropzone';
 import { CloudUpload, X } from 'lucide-react';
-import { useCallback, useState } from 'react';
-import { Controller, type FieldPath, type FieldValues } from 'react-hook-form';
+import { useDropzone, type DropzoneInputProps } from 'react-dropzone';
+import { useCallback, useEffect, useRef, useState, type Ref } from 'react';
+import {
+  useController,
+  useFormContext,
+  type FieldPath,
+  type FieldValues,
+} from 'react-hook-form';
 
 import { cn } from '@/libs/utils';
 import { Input } from '@/components/ui/input';
@@ -18,11 +24,7 @@ import { FormField } from './FormField';
 
 const COMPLETED_PROGRESS = 100;
 
-type TUploadState = {
-  file: File;
-  progress: number;
-  timerId: NodeJS.Timeout;
-};
+type TUploadState = { file: File; progress: number };
 
 interface IUploadFieldProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -30,7 +32,7 @@ interface IUploadFieldProps<
   name: FieldPath<TFieldValues>;
   label?: string;
   placeholder?: string;
-  onChange: (file: File | null) => void;
+  onChange?: (file: File | null) => void;
   isRequired?: boolean;
   error?: string;
 }
@@ -38,6 +40,7 @@ interface IUploadFieldProps<
 const formatSize = (bytes: number) => `${Math.round(bytes / 1000)} KB`;
 
 export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
+  name,
   label,
   isRequired,
   error,
@@ -46,34 +49,65 @@ export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
   ...props
 }: IUploadFieldProps<TFieldValues>) => {
   const [upload, setUpload] = useState<TUploadState | null>(null);
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const { control } = useFormContext<TFieldValues>();
+  const { field } = useController({ name, control });
 
-  const simulateUpload = (file: File) => {
-    const timer = setInterval(() => {
-      setUpload((curr) => {
-        if (!curr) return curr;
-        const next = Math.min(
-          curr.progress + Math.floor(Math.random() * 15) + 5,
-          COMPLETED_PROGRESS
-        );
-        if (next === COMPLETED_PROGRESS) {
-          clearInterval(curr.timerId);
-          setUploadedFile(file);
-          return null;
-        }
-        return { ...curr, progress: next };
-      });
-    }, 180);
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
 
-    setUpload({ file, progress: 0, timerId: timer });
-  };
+  useEffect(() => clearTimer, [clearTimer]);
+
+  useEffect(() => {
+    if (field.value == null && upload) {
+      clearTimer();
+      setUpload(null);
+    }
+
+    if (field.value == null && inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, [clearTimer, field.value, upload]);
+
+  const simulateUpload = useCallback(
+    (file: File) => {
+      clearTimer();
+      setUpload({ file, progress: 0 });
+      timerRef.current = setInterval(() => {
+        setUpload((current) => {
+          if (!current) return current;
+          const next = Math.min(
+            current.progress + Math.floor(Math.random() * 15) + 5,
+            COMPLETED_PROGRESS
+          );
+
+          if (next === COMPLETED_PROGRESS) {
+            clearTimer();
+            return null;
+          }
+
+          return { ...current, progress: next };
+        });
+      }, 180);
+    },
+    [clearTimer]
+  );
 
   const onDrop = useCallback(
     (files: File[]) => {
-      if (files[0]) onChange(files[0]);
-      simulateUpload(files[0]);
+      const file = files[0];
+      if (!file) return;
+
+      field.onChange(file);
+      onChange?.(file);
+      simulateUpload(file);
     },
-    [onChange]
+    [field, onChange, simulateUpload]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -86,12 +120,37 @@ export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
     },
   });
 
+  const inputPropsWithRef: DropzoneInputProps & {
+    ref?: Ref<HTMLInputElement>;
+  } = getInputProps();
+  const { ref: dropzoneInputRef, ...inputProps } = inputPropsWithRef;
+  const setInputRef = useCallback(
+    (node: HTMLInputElement | null) => {
+      inputRef.current = node;
+
+      if (typeof dropzoneInputRef === 'function') {
+        dropzoneInputRef(node);
+      } else if (dropzoneInputRef) {
+        dropzoneInputRef.current = node;
+      }
+    },
+    [dropzoneInputRef]
+  );
+
   const clearFile = () => {
-    if (upload) clearInterval(upload.timerId);
+    clearTimer();
     setUpload(null);
-    onChange(null);
-    setUploadedFile(null);
+    field.onChange(null);
+    onChange?.(null);
+    if (inputRef.current) inputRef.current.value = '';
   };
+
+  const fieldValue: unknown = field.value;
+  const currentFile =
+    upload?.file ??
+    (typeof File !== 'undefined' && fieldValue instanceof File
+      ? fieldValue
+      : null);
 
   return (
     <FormField
@@ -100,39 +159,30 @@ export const UploadField = <TFieldValues extends FieldValues = FieldValues>({
       message={error}
       className={className}
     >
-      <Controller
-        name={props.name}
-        render={() => (
-          <div className="w-full">
-            <label
-              {...getRootProps()}
-              className="flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border border-gray-200 hover:border-black-50"
-            >
-              {upload && (
-                <FileCard
-                  file={upload.file}
-                  progress={upload.progress}
-                  onRemove={clearFile}
-                />
-              )}
-
-              {uploadedFile && !upload && (
-                <FileCard file={uploadedFile} onRemove={clearFile} />
-              )}
-
-              {!upload && !uploadedFile && <EmptyState />}
-            </label>
-
-            <Input
-              {...getInputProps()}
-              type="file"
-              className="hidden"
-              {...props}
-              id="upload-input"
+      <div className="w-full">
+        <label
+          {...getRootProps()}
+          className="flex w-full cursor-pointer flex-col items-center justify-center rounded-[12px] border border-gray-200 hover:border-black-50"
+        >
+          {currentFile && (
+            <FileCard
+              file={currentFile}
+              progress={upload?.progress}
+              onRemove={clearFile}
             />
-          </div>
-        )}
-      />
+          )}
+          {!currentFile && <EmptyState />}
+        </label>
+
+        <Input
+          {...inputProps}
+          type="file"
+          className="hidden"
+          {...props}
+          id={props.id ?? String(name)}
+          ref={setInputRef}
+        />
+      </div>
     </FormField>
   );
 };
@@ -210,13 +260,18 @@ function FileCard({ file, progress, onRemove }: IFileCardProps) {
         </div>
       </div>
 
-      {!isNil(progress) ? (
+      {!isNil(progress) && (
         <CircularProgressBar value={pct} size={32} strokeWidth={16} />
-      ) : null}
+      )}
 
       {isNil(progress) && (
         <button
-          onClick={onRemove}
+          type="button"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            onRemove();
+          }}
           className="ml-2 text-gray-500 hover:text-red-500"
         >
           <X size={18} />

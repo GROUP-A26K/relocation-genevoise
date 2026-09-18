@@ -25,15 +25,7 @@ export {
   type TPropertyFilterQueryParams,
 } from '@/utils/propertyFilters';
 
-type TPropertyAppliedFilters = {
-  categories: string[];
-  location: string;
-  priceRange: string;
-  currency: string;
-  rooms: string;
-};
-
-export type TPropertyFilterFormValues = {
+export type TPropertyAppliedFilters = {
   categories: string[];
   location: string;
   priceRange: string;
@@ -64,7 +56,25 @@ export const usePropertyFilters = (
     { shallow: true, scroll: false }
   );
 
-  const formValues = useMemo<TPropertyFilterFormValues>(
+  const filterAnchor = useMemo(
+    () =>
+      JSON.stringify({
+        categories: queryParams.categories,
+        location: queryParams.location,
+        priceRange: queryParams.priceRange,
+        currency: queryParams.currency,
+        rooms: queryParams.rooms,
+      }),
+    [
+      queryParams.categories,
+      queryParams.currency,
+      queryParams.location,
+      queryParams.priceRange,
+      queryParams.rooms,
+    ]
+  );
+
+  const formValues = useMemo(
     () => ({
       location: queryParams.location,
       categories: paramToCategories(queryParams.categories),
@@ -140,6 +150,7 @@ export const usePropertyFilters = (
   return {
     queryParams,
     formValues,
+    filterAnchor,
     setQueryParams,
     handlePageChange,
     handleSortChange,

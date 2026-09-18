@@ -6,7 +6,8 @@ import { useParams } from 'next/navigation';
 import { useTopLoader } from 'nextjs-toploader';
 
 import { AppConfig } from '@/utils/appConfig';
-import { usePathname, useRouter } from '@/libs/i18nNavigation';
+import { getPathname, usePathname, useRouter } from '@/libs/i18nNavigation';
+import { useFormDraftContext } from '@/components/providers/FormDraftProvider';
 import {
   resolveAlternateSlug,
   type TAlternateContentType,
@@ -32,6 +33,8 @@ export const useLanguageSwitcher = () => {
   const params = useParams();
   const locale = useLocale();
   const loader = useTopLoader();
+  const { preserveForLanguageSwitch, cancelLanguageSwitch } =
+    useFormDraftContext();
 
   const [isRotated, setIsRotated] = useState(false);
   const [pendingLocale, setPendingLocale] = useState<TLocale | null>(null);
@@ -60,14 +63,22 @@ export const useLanguageSwitcher = () => {
             ).catch(() => null)
           : null;
 
-      router.push(
-        {
-          pathname,
-          params: translatedSlug ? { ...params, slug: translatedSlug } : params,
-        } as TPushHref,
-        { locale: targetLocale, scroll: false }
+      const href = {
+        pathname,
+        params: translatedSlug ? { ...params, slug: translatedSlug } : params,
+        // Keep the applied filters so the form draft still matches its URL.
+        query: Object.fromEntries(new URLSearchParams(window.location.search)),
+      } as TPushHref;
+
+      preserveForLanguageSwitch(
+        new URL(
+          getPathname({ href, locale: targetLocale }),
+          window.location.origin
+        ).pathname
       );
+      router.push(href, { locale: targetLocale, scroll: false });
     } catch {
+      cancelLanguageSwitch();
       loader.done();
       setPendingLocale(null);
     }

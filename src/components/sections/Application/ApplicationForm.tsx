@@ -1,15 +1,16 @@
 'use client';
 import Image from 'next/image';
 import { toast } from 'sonner';
+import { useCallback, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
-import { useCallback, useMemo, useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Clock, MapPin, CircleDollarSign } from 'lucide-react';
 
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
 import { RevealItem } from '@/components/common/Reveal';
 import BodyText from '@/components/common/Text/BodyText';
 import HeadingText from '@/components/common/Text/HeadingText';
@@ -23,12 +24,21 @@ import {
 } from '@/validations/application.validation';
 
 import type { IJobDetail } from '@/models/job';
+import type { TApplicationDraftKey } from '@/features/formDraft';
+
+const EXPERIENCE_CODES = [
+  'zero_to_one',
+  'two_to_three',
+  'four_to_five',
+  'six_plus',
+  'other',
+] as const;
 
 const buildOptions = (t: ReturnType<typeof useTranslations>) =>
-  [...new Array(5).keys()].map((i) => {
-    const label = t(`experienceYears.options.${i}.label`);
-    return { value: label, label };
-  });
+  EXPERIENCE_CODES.map((value, i) => ({
+    value,
+    label: t(`experienceYears.options.${i}.label`),
+  }));
 
 const Divider = () => <div className="h-4 w-px bg-slate-200" />;
 
@@ -46,9 +56,13 @@ const InfoChip: React.FC<IInfoChipProps> = ({ icon: Icon, label }) => (
 
 interface IApplicationFormProps {
   jobDetail: IJobDetail;
+  draftKey: TApplicationDraftKey;
 }
 
-const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
+const ApplicationForm: React.FC<IApplicationFormProps> = ({
+  jobDetail,
+  draftKey,
+}) => {
   const t = useTranslations('Application.ApplyForm');
   const formT = useTranslations('Validation.Application');
   const toastT = useTranslations('ToastMessage.Application');
@@ -64,45 +78,61 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
       accept: false,
     },
   });
-  const [uploadKey, setUploadKey] = useState(0);
-  const { mutate, isPending } = useSubmitApplication();
+  const { mutateAsync, isPending } = useSubmitApplication();
   const experienceOptions = useMemo(() => buildOptions(t), [t]);
+  const draft = useFormDraft(draftKey, form, {
+    restoreKey: locale,
+    restore: (values) => ({
+      ...values,
+      department: jobDetail.department,
+      position: jobDetail.title,
+    }),
+  });
 
   const onSubmit: SubmitHandler<TApplicationFormInput> = useCallback(
-    (values) =>
-      mutate(
-        { values, locale },
-        {
-          onSuccess: () => {
-            form.reset();
-            setUploadKey((key) => key + 1);
-            toast.custom((t) => (
-              <Alert
-                type="success"
-                title={toastT('successTitle')}
-                as="solid"
-                onClick={() => toast.dismiss(t)}
-              >
-                {toastT('success')}
-              </Alert>
-            ));
+    async (values) => {
+      const submission = draft.beginSubmission(values);
+      const experience = experienceOptions.find(
+        (option) => option.value === values.experience_years
+      );
+
+      try {
+        await mutateAsync({
+          values: {
+            ...values,
+            experience_years: experience?.label ?? values.experience_years,
+            department: jobDetail.department,
+            position: jobDetail.title,
           },
-          onError: (error) => {
-            toast.custom((t) => (
-              <Alert
-                type="danger"
-                title={toastT('errorTitle')}
-                as="solid"
-                onClick={() => toast.dismiss(t)}
-              >
-                {toastT('error')}
-              </Alert>
-            ));
-            console.error('Error submitting form:', error);
-          },
-        }
-      ),
-    [form, locale, mutate, toastT]
+          locale,
+        });
+
+        draft.completeSubmission(submission);
+        toast.custom((t) => (
+          <Alert
+            type="success"
+            title={toastT('successTitle')}
+            as="solid"
+            onClick={() => toast.dismiss(t)}
+          >
+            {toastT('success')}
+          </Alert>
+        ));
+      } catch (error) {
+        toast.custom((t) => (
+          <Alert
+            type="danger"
+            title={toastT('errorTitle')}
+            as="solid"
+            onClick={() => toast.dismiss(t)}
+          >
+            {toastT('error')}
+          </Alert>
+        ));
+        console.error('Error submitting form:', error);
+      }
+    },
+    [draft, experienceOptions, jobDetail, locale, mutateAsync, toastT]
   );
 
   const { title, employmentType, location, salaryMin, salaryMax, currency } =
@@ -203,7 +233,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
                 placeholder={t('experienceYears.placeholder')}
                 options={experienceOptions}
                 isRequired
-                register={form.register}
+                control={form.control}
                 error={form.formState.errors.experience_years?.message}
               />
 
@@ -219,16 +249,8 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
 
               {/* file upload */}
               <UploadField
-                key={uploadKey}
                 name="resume_file"
                 label={t('resume.label', { default: 'Resume' })}
-                onChange={(file) =>
-                  file
-                    ? form.setValue('resume_file', file, {
-                        shouldValidate: true,
-                      })
-                    : form.resetField('resume_file')
-                }
                 error={form.formState.errors.resume_file?.message}
               />
 

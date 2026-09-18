@@ -15,6 +15,7 @@ import {
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import { useSubmitTenantInquiry } from '@/features/findATenant/findATenant.hooks';
@@ -41,7 +42,7 @@ export default function TenantForm() {
   const toastT = useTranslations('ToastMessage.FindATenant');
   const roomsT = useTranslations('Properties');
   const locale = useLocale();
-  const { mutate, isPending } = useSubmitTenantInquiry();
+  const { mutateAsync, isPending } = useSubmitTenantInquiry();
 
   const form = useForm<TTenantFormInput>({
     resolver: zodResolver(tenantFormSchema(formT)),
@@ -70,51 +71,48 @@ export default function TenantForm() {
     label: roomsT(option.labelKey as Parameters<typeof roomsT>[0]),
   }));
 
-  const onSubmit = (values: TTenantFormInput) =>
-    mutate(
-      {
-        values: {
-          ...values,
-          property_type:
-            propertyTypeOptions.find(
-              (option) => option.value === values.property_type
-            )?.label ?? values.property_type,
-          number_of_rooms:
-            roomOptions.find(
-              (option) => option.value === values.number_of_rooms
-            )?.label ?? values.number_of_rooms,
-        },
-        locale,
-      },
-      {
-        onSuccess: () => {
-          form.reset();
-          toast.custom((id) => (
-            <Alert
-              type="success"
-              title={toastT('successTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(id)}
-            >
-              {toastT('success')}
-            </Alert>
-          ));
-        },
-        onError: (error) => {
-          toast.custom((id) => (
-            <Alert
-              type="danger"
-              title={toastT('errorTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(id)}
-            >
-              {toastT('error')}
-            </Alert>
-          ));
-          console.error('Error submitting tenant form:', error);
-        },
-      }
-    );
+  const draft = useFormDraft('tenant', form, { restoreKey: locale });
+
+  const onSubmit = async (values: TTenantFormInput) => {
+    const submission = draft.beginSubmission(values);
+    const submitValues = {
+      ...values,
+      property_type:
+        propertyTypeOptions.find(
+          (option) => option.value === values.property_type
+        )?.label ?? values.property_type,
+      number_of_rooms:
+        roomOptions.find((option) => option.value === values.number_of_rooms)
+          ?.label ?? values.number_of_rooms,
+    };
+
+    try {
+      await mutateAsync({ values: submitValues, locale });
+      draft.completeSubmission(submission);
+      toast.custom((id) => (
+        <Alert
+          type="success"
+          title={toastT('successTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(id)}
+        >
+          {toastT('success')}
+        </Alert>
+      ));
+    } catch (error) {
+      toast.custom((id) => (
+        <Alert
+          type="danger"
+          title={toastT('errorTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(id)}
+        >
+          {toastT('error')}
+        </Alert>
+      ));
+      console.error('Error submitting tenant form:', error);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -185,7 +183,7 @@ export default function TenantForm() {
               placeholder={t('rental.numberOfRooms.placeholder')}
               isRequired
               options={roomOptions}
-              register={form.register}
+              control={form.control}
               error={form.formState.errors.number_of_rooms?.message}
             />
           </div>

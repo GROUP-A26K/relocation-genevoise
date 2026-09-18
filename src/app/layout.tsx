@@ -1,3 +1,5 @@
+import { FormDraftProvider } from '@/components/providers/FormDraftProvider';
+
 import type { ReactNode } from 'react';
 
 interface IRootLayoutProps {
@@ -5,5 +7,5 @@ interface IRootLayoutProps {
 }
 
 export default function RootLayout({ children }: IRootLayoutProps) {
-  return children;
+  return <FormDraftProvider>{children}</FormDraftProvider>;
 }

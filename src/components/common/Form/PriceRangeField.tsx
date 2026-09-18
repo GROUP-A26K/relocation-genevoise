@@ -144,7 +144,11 @@ export const PriceRangeField: React.FC<IPriceRangeFieldProps> = ({
                     render={({ field }) => (
                       <Select
                         onOpenChange={setCurrencyOpen}
-                        onValueChange={field.onChange}
+                        onValueChange={(value) => {
+                          // Ignore the hidden select's empty mount event when
+                          // restoring the currency from a form draft.
+                          if (value !== '') field.onChange(value);
+                        }}
                         value={
                           (field.value as string | undefined) ||
                           PROPERTY_DEFAULT_CURRENCY
