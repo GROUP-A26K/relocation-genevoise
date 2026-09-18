@@ -91,7 +91,7 @@ export default async function LocaleLayout({
       )}
 
       <body>
-        <SiteJsonLd locale={locale} />
+        <SiteJsonLd />
         <NuqsAdapter>
           <NextIntlClientProvider
             locale={locale}

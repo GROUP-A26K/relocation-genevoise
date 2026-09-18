@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import {
   BadgeCheck,
   CalendarCheck2,
@@ -73,8 +73,10 @@ export default async function Page(
   props: PageProps<'/[locale]/find-a-tenant/landlords'>
 ) {
   const { locale } = await props.params;
-  const t = await getTranslations({ locale, namespace: 'FindATenant' });
-  const imageT = await getTranslations({ locale, namespace: 'Images' });
+  setRequestLocale(locale);
+
+  const t = await getTranslations('FindATenant');
+  const imageT = await getTranslations('Images');
 
   const serviceItems: TServiceItem[] = (
     t.raw('Landlords.Services.items') as Omit<TServiceItem, 'Icon'>[]
