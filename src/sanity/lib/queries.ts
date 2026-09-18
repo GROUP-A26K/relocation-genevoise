@@ -62,6 +62,7 @@ export const BLOG_LATEST_QUERY = defineQuery(`
             ...,
             mainPhoto {
               imageTitle,
+              photoAlt,
               photo {
                 asset->{
                   _id,
@@ -195,6 +196,7 @@ export const BLOG_DETAIL_QUERY = defineQuery(`
             ...,
             mainPhoto {
               imageTitle,
+              photoAlt,
               photo {
                 asset->{
                   _id,
@@ -404,6 +406,7 @@ export const CAREER_DETAIL_QUERY = defineQuery(`
             ...,
             mainPhoto {
               imageTitle,
+              photoAlt,
               photo {
                 asset->{
                   _id,

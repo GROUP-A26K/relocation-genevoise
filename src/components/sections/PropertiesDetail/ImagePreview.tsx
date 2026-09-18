@@ -16,6 +16,7 @@ type TImageObj = {
   url: string;
   lqip?: string;
   title: string;
+  thumbnailTitle: string;
 };
 interface IImagePreviewProps {
   property: IPropertyDetail;
@@ -27,13 +28,23 @@ export const ImagePreview = ({
   propertySlug,
 }: IImagePreviewProps) => {
   const t = useTranslations('PropertiesDetails');
+  const imageT = useTranslations('Images');
   const router = useRouter();
   const locale = useLocale();
 
-  const images: TImageObj[] = property.areas.map((area) => ({
+  const images: TImageObj[] = property.areas.map((area, index) => ({
     url: area.mainImageUrl,
     lqip: area.mainImageLqip,
-    title: `${property.title} - ${area.title}`,
+    title: imageT('property.photo', {
+      property: property.title || imageT('property.listing'),
+      area: area.title || imageT('common.photo'),
+      index: String(index + 1),
+    }),
+    thumbnailTitle: imageT('property.thumbnail', {
+      property: property.title || imageT('property.listing'),
+      area: area.title || imageT('common.photo'),
+      index: String(index + 1),
+    }),
   }));
 
   const galleryImages: TImageObj[] = property.areas
@@ -42,7 +53,16 @@ export const ImagePreview = ({
         area.galleryImages?.map((img, index) => ({
           url: img.url,
           lqip: img.lqip,
-          title: `${property.title} - ${area.title} ${index + 1}`,
+          title: imageT('property.photo', {
+            property: property.title || imageT('property.listing'),
+            area: area.title || imageT('common.photo'),
+            index: String(index + 2),
+          }),
+          thumbnailTitle: imageT('property.thumbnail', {
+            property: property.title || imageT('property.listing'),
+            area: area.title || imageT('common.photo'),
+            index: String(index + 2),
+          }),
         })) || []
     )
     .flat();
@@ -73,8 +93,8 @@ export const ImagePreview = ({
           src={mainImageObj?.url}
           placeholder={mainImageObj?.lqip ? 'blur' : 'empty'}
           blurDataURL={mainImageObj?.lqip}
-          alt={mainImageObj?.title || property.title}
-          title={mainImageObj?.title || property.title}
+          alt={mainImageObj?.title || imageT('property.listing')}
+          title={mainImageObj?.title || imageT('property.listing')}
           fill
           sizes="(min-width: 1440px) 616px, (min-width: 1024px) 50vw, 100vw"
           className="transition-brightness rounded-2xl object-cover duration-300 hover:cursor-pointer hover:brightness-70 lg:rounded-none"
@@ -92,8 +112,8 @@ export const ImagePreview = ({
               src={img.url}
               placeholder={img.lqip ? 'blur' : 'empty'}
               blurDataURL={img.lqip}
-              alt={img.title}
-              title={img.title}
+              alt={img.thumbnailTitle}
+              title={img.thumbnailTitle}
               fill
               sizes="(min-width: 1440px) 304px, 25vw"
               className="transition-brightness rounded-lg object-cover duration-300 hover:cursor-pointer hover:brightness-70 lg:rounded-none"

@@ -20,6 +20,7 @@ interface IErrorPageProps {
 
 const ErrorPage: React.FC<IErrorPageProps> = ({ errorCode, message }) => {
   const t = useTranslations('Error');
+  const imageT = useTranslations('Images');
 
   const renderErrorMessage = () => {
     switch (errorCode) {
@@ -90,7 +91,8 @@ const ErrorPage: React.FC<IErrorPageProps> = ({ errorCode, message }) => {
           <RevealItem className="col-span-6 flex justify-center lg:justify-end">
             <Image
               src={image.src}
-              alt="error illustration"
+              alt={imageT('common.error')}
+              title={imageT('common.error')}
               width={588}
               height={640}
               className={cn(

@@ -17,6 +17,7 @@ interface IPropertyAgentDetailsProps {
 
 export function PropertyAgentDetails({ agent }: IPropertyAgentDetailsProps) {
   const t = useTranslations('PropertiesDetails');
+  const imageT = useTranslations('Images');
 
   const { agentName, agentPhone, photoUrl, photoLqip } = agent;
 
@@ -49,7 +50,8 @@ export function PropertyAgentDetails({ agent }: IPropertyAgentDetailsProps) {
             src={photoUrl}
             placeholder={photoLqip ? 'blur' : 'empty'}
             blurDataURL={photoLqip}
-            alt="Agent photo"
+            alt={photoUrl ? imageT('common.agent') : imageT('common.photo')}
+            title={photoUrl ? imageT('common.agent') : imageT('common.photo')}
             width={80}
             height={80}
             className="h-[60px] w-[60px] rounded-full object-cover lg:h-20 lg:w-20"

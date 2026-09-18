@@ -12,13 +12,16 @@ import type { IAreaPhotoTour } from '@/models/property';
 interface IPropertySectionHeaderProps {
   areas: IAreaPhotoTour[];
   slug: string;
+  propertyTitle?: string;
 }
 
 export async function PropertySectionHeader({
   areas,
   slug,
+  propertyTitle,
 }: IPropertySectionHeaderProps) {
   const t = await getTranslations('PhotoTour');
+  const imageT = await getTranslations('Images');
   const locale = await getLocale();
   const title = t('title');
   const subheading = t('subheading');
@@ -56,8 +59,16 @@ export async function PropertySectionHeader({
                 placeholder={area.mainImageLqip ? 'blur' : 'empty'}
                 blurDataURL={area.mainImageLqip}
                 fill
-                alt={area.title}
-                title={area.title}
+                alt={imageT('property.photo', {
+                  property: propertyTitle || imageT('property.listing'),
+                  area: area.title || imageT('common.photo'),
+                  index: String(index + 1),
+                })}
+                title={imageT('property.photo', {
+                  property: propertyTitle || imageT('property.listing'),
+                  area: area.title || imageT('common.photo'),
+                  index: String(index + 1),
+                })}
                 sizes="(max-width:640px) 210px, (max-width:1280px) 210px, 224px"
               />
             </div>

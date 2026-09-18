@@ -16,6 +16,7 @@ import {
 } from '@react-email/components';
 
 import { ORGANIZATION } from '@/constants/seo';
+import { getImageMessages } from '@/utils/imageMessages';
 
 interface ISubscribeProps {
   subject: string;
@@ -78,9 +79,10 @@ export const Subscribe = ({
   locale = 'en',
 }: ISubscribeProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{t.thanks}</Preview>
       <Tailwind>
@@ -94,7 +96,8 @@ export const Subscribe = ({
                     src={`${baseUrl}/rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="Logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
                 <Column align="right">
@@ -106,7 +109,7 @@ export const Subscribe = ({
                           width="13"
                           height="13"
                           className="my-auto ml-auto"
-                          alt="Globe"
+                          alt=""
                         />
                         <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
@@ -216,7 +219,7 @@ export const Subscribe = ({
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Phone"
+                        alt=""
                       />
                       <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         +1 (555) 000-0000
@@ -232,7 +235,7 @@ export const Subscribe = ({
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Globe"
+                        alt=""
                       />
                       <Text className="my-3 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         https://relocation-genevoise/ch
@@ -248,7 +251,7 @@ export const Subscribe = ({
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Building"
+                        alt=""
                       />
                       <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         Rue des Alpes 5, 1201 Geneva

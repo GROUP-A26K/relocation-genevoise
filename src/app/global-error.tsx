@@ -18,6 +18,11 @@ interface IGlobalErrorProps {
 
 const MESSAGES: Record<TLocale, AbstractIntlMessages> = {
   fr: {
+    Images: {
+      common: {
+        error: 'Illustration d’erreur',
+      },
+    },
     Error: {
       500: {
         title: "Quelque chose s'est mal passé !",
@@ -28,6 +33,11 @@ const MESSAGES: Record<TLocale, AbstractIntlMessages> = {
     },
   },
   en: {
+    Images: {
+      common: {
+        error: 'Error illustration',
+      },
+    },
     Error: {
       500: {
         title: 'Something went wrong!',

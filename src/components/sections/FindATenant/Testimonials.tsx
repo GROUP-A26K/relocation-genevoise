@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Image, { type StaticImageData } from 'next/image';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
@@ -44,6 +45,7 @@ export default function Testimonials({
   description,
   items,
 }: ITestimonialsProps) {
+  const imageT = useTranslations('Images');
   const [api, setApi] = useState<CarouselApi>();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [snaps, setSnaps] = useState<number[]>([]);
@@ -159,8 +161,12 @@ export default function Testimonials({
                       <Image
                         src={item.avatar}
                         placeholder="blur"
-                        alt={item.name}
-                        title={item.name}
+                        alt={imageT('findATenant.testimonial', {
+                          name: item.name,
+                        })}
+                        title={imageT('findATenant.testimonial', {
+                          name: item.name,
+                        })}
                         width={48}
                         height={48}
                         className="size-12 shrink-0 rounded-full object-cover"

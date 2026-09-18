@@ -31,13 +31,18 @@ export default async function Page(
     locale,
     namespace: 'FindATenant.Landlords.Form',
   });
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
 
   return (
     <FormLayout
       eyebrow={t('eyebrow')}
       heading={t('heading')}
       description={t('description')}
-      image={{ src: FormImage, alt: t('heading') }}
+      image={{
+        src: FormImage,
+        alt: imageT('findATenant.landlords.form'),
+        title: imageT('findATenant.landlords.form'),
+      }}
     >
       <LandlordsForm />
     </FormLayout>

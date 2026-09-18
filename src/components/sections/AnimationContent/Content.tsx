@@ -1,5 +1,6 @@
 'use client';
 import { useId, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import { useMediaQuery } from 'usehooks-ts';
 import { motion, useReducedMotion } from 'motion/react';
 
@@ -29,6 +30,7 @@ export interface IContentProps {
 
 export const Content: React.FC<IContentProps> = ({ items }) => {
   const id = useId();
+  const imageT = useTranslations('Images');
 
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
@@ -126,8 +128,13 @@ export const Content: React.FC<IContentProps> = ({ items }) => {
                       <StepContent
                         isActive={index === activeStep}
                         title={item.title}
-                        description={item.description}
                         image={item.image}
+                        imageAlt={imageT('findAccommodation.step', {
+                          title: item.title,
+                        })}
+                        imageTitle={imageT('findAccommodation.step', {
+                          title: item.title,
+                        })}
                       />
                     </div>
                   </AccordionItem>

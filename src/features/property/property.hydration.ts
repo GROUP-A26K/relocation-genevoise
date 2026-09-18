@@ -94,9 +94,16 @@ export async function hydratePropertyDetail(slug: string, locale: string) {
 
 export async function hydratePropertyPhotoTour(slug: string, locale: string) {
   const queryClient = makeQueryClient();
-  const areas = await getPropertyPhotoTour(slug, locale);
+  const [areas, property] = await Promise.all([
+    getPropertyPhotoTour(slug, locale),
+    getPropertyDetail(slug, locale),
+  ]);
 
   queryClient.setQueryData(qkProperty.photoTour(slug, locale), { areas });
 
-  return { state: dehydrate(queryClient), areas };
+  return {
+    state: dehydrate(queryClient),
+    areas,
+    propertyTitle: property?.title || '',
+  };
 }

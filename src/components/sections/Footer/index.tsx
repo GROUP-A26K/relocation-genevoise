@@ -62,6 +62,7 @@ type TFooterData = {
 
 const Footer = async () => {
   const t = await getTranslations('Footer');
+  const imageT = await getTranslations('Images');
 
   const footerData: TFooterData = {
     contact: {
@@ -182,8 +183,8 @@ const Footer = async () => {
         <div className="flex flex-col gap-0 lg:flex-row lg:gap-16">
           <RevealItem className="mb-8 flex w-full flex-col gap-6 lg:mb-0 lg:max-w-84">
             <div className="flex items-center lg:justify-start">
-              <Link href="/">
-                <LogoIcon height={32} />
+              <Link href="/" aria-label={imageT('common.logo')}>
+                <LogoIcon height={32} aria-hidden="true" focusable="false" />
               </Link>
             </div>
             <BodyText variant="sm" className="font-[number:inherit]">
@@ -207,11 +208,7 @@ const Footer = async () => {
                       className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                     >
                       {link?.icon && (
-                        <Image
-                          src={link.icon}
-                          alt={link.text}
-                          className="h-3 w-3"
-                        />
+                        <Image src={link.icon} alt="" className="h-3 w-3" />
                       )}
                       <Link
                         href={link.url}
@@ -235,11 +232,7 @@ const Footer = async () => {
                       className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                     >
                       {link?.icon && (
-                        <Image
-                          src={link.icon}
-                          alt={link.text}
-                          className="h-3 w-3"
-                        />
+                        <Image src={link.icon} alt="" className="h-3 w-3" />
                       )}
                       <Link
                         href={link.url}
@@ -265,11 +258,7 @@ const Footer = async () => {
                       className="flex items-center gap-1.5 leading-[130%] font-medium hover:text-primary"
                     >
                       {link?.icon && (
-                        <Image
-                          src={link.icon}
-                          alt={link.text}
-                          className="h-3 w-3"
-                        />
+                        <Image src={link.icon} alt="" className="h-3 w-3" />
                       )}
                       <Link
                         href={link.url}
@@ -298,8 +287,7 @@ const Footer = async () => {
                         {link?.icon && (
                           <Image
                             src={link.icon}
-                            alt={link.text}
-                            title={link.text}
+                            alt=""
                             width={12}
                             height={12}
                             className="flex size-3"
@@ -324,8 +312,9 @@ const Footer = async () => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-fit items-center"
+            aria-label={imageT('common.groupeGenevoise')}
           >
-            <GGLogo className="mb-4" />
+            <GGLogo className="mb-4" aria-hidden="true" focusable="false" />
           </NextLink>
 
           <div className="flex w-full flex-col justify-between gap-4 text-xs leading-[130%] font-normal text-black-300 md:flex-row md:items-center">

@@ -22,6 +22,7 @@ interface IWhyChooseUsProps {
   image: {
     src: StaticImageData;
     alt: string;
+    title?: string;
   };
 }
 
@@ -84,7 +85,7 @@ export default function WhyChooseUs({
             src={image.src}
             placeholder="blur"
             alt={image.alt}
-            title={image.alt}
+            title={image.title || image.alt}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"

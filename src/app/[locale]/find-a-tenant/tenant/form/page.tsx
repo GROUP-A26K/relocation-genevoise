@@ -31,13 +31,18 @@ export default async function Page(
     locale,
     namespace: 'FindATenant.Tenant.Form',
   });
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
 
   return (
     <FormLayout
       eyebrow={t('eyebrow')}
       heading={t('heading')}
       description={t('description')}
-      image={{ src: FormImage, alt: t('heading') }}
+      image={{
+        src: FormImage,
+        alt: imageT('findATenant.tenant.form'),
+        title: imageT('findATenant.tenant.form'),
+      }}
       imageWrapperClassname="aspect-556/668"
     >
       <TenantForm />

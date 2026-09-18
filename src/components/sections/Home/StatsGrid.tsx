@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import CountUp from '@/components/common/CountUp';
 import { RevealItem } from '@/components/common/Reveal';
@@ -50,6 +51,8 @@ const StatsGrid: React.FC<IStatsGridProps> = ({
     label: 'Establishments in Switzerland',
   },
 }) => {
+  const imageT = useTranslations('Images');
+
   return (
     <div className="flex flex-col gap-14 lg:gap-16">
       <RevealItem className="flex max-w-3xl flex-col gap-4 lg:gap-6">
@@ -69,8 +72,8 @@ const StatsGrid: React.FC<IStatsGridProps> = ({
           <Image
             src={StatsBG}
             placeholder="blur"
-            alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
-            title="Relocation Genevoise, votre partenaire de confiance en Suisse"
+            alt={imageT('home.stats')}
+            title={imageT('home.stats')}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="order-2 object-cover lg:order-1"

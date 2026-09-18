@@ -15,6 +15,7 @@ import {
   Text,
 } from '@react-email/components';
 
+import { getImageMessages } from '@/utils/imageMessages';
 import { CONTACT_PHONE_HREF, ORGANIZATION } from '@/constants/seo';
 
 interface IContactProps {
@@ -67,9 +68,10 @@ export const Contact = ({
   locale = 'en',
 }: IContactProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{t.preview}</Preview>
 
@@ -84,7 +86,8 @@ export const Contact = ({
                     src={`${baseUrl}/rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="React Email logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
@@ -97,7 +100,7 @@ export const Contact = ({
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
                         <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
@@ -178,7 +181,7 @@ export const Contact = ({
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Phone"
+                        alt=""
                       />
                       <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         {ORGANIZATION.telephone}
@@ -194,7 +197,7 @@ export const Contact = ({
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Globe"
+                        alt=""
                       />
                       <Text className="my-3 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         https://relocation-genevoise/ch
@@ -210,7 +213,7 @@ export const Contact = ({
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Building"
+                        alt=""
                       />
                       <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         Rue des Alpes 5, 1201 Geneva

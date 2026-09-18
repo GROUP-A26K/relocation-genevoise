@@ -1,7 +1,12 @@
+'use client';
+
 import * as React from 'react';
+import { useLocale } from 'next-intl';
 import flags from 'react-phone-number-input/flags';
 import * as RPNInput from 'react-phone-number-input';
 import { CheckIcon, ChevronsUpDown } from 'lucide-react';
+import enCountryLabels from 'react-phone-number-input/locale/en.json';
+import frCountryLabels from 'react-phone-number-input/locale/fr.json';
 
 import { cn } from '@/libs/utils';
 import { Input } from '@/components/ui/input';
@@ -45,6 +50,8 @@ function PhoneInput({
   defaultCountry = 'CH',
   ...props
 }: PhoneInputProps) {
+  const locale = useLocale();
+  const countryLabels = locale === 'fr' ? frCountryLabels : enCountryLabels;
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [isCountryOpen, setIsCountryOpen] = React.useState(false);
   const [fieldWidth, setFieldWidth] = React.useState<number>();
@@ -99,6 +106,7 @@ function PhoneInput({
           countrySelectComponent={CountrySelectWithClassName}
           inputComponent={InputComponent}
           smartCaret={false}
+          labels={countryLabels}
           value={value || undefined}
           defaultCountry={defaultCountry}
           inputClassName={inputClassName}
@@ -176,6 +184,9 @@ const CountrySelect = ({
   onChange,
   onOpenChange,
 }: CountrySelectProps) => {
+  const selectedCountryName =
+    countryList.find(({ value }) => value === selectedCountry)?.label ||
+    selectedCountry;
   const scrollAreaRef = React.useRef<HTMLDivElement>(null);
   const fieldWidth = React.useContext(PhoneFieldWidthContext);
   const orderedCountryList = React.useMemo(() => {
@@ -221,7 +232,7 @@ const CountrySelect = ({
         >
           <FlagComponent
             country={selectedCountry}
-            countryName={selectedCountry}
+            countryName={selectedCountryName}
           />
           <ChevronsUpDown
             className={cn(

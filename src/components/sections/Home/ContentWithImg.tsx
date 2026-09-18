@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
@@ -23,6 +24,8 @@ export const ContentWithImg: React.FC<IContentWithImgProps> = ({
   description,
   buttonUrl = '/',
 }) => {
+  const imageT = useTranslations('Images');
+
   return (
     <RevealItem className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
       <div className="flex flex-col items-start gap-6 text-left lg:justify-center xl:max-w-140">
@@ -61,8 +64,8 @@ export const ContentWithImg: React.FC<IContentWithImgProps> = ({
         <Image
           src={ContentWithImgBG}
           placeholder="blur"
-          alt="Relocation Genevoise, votre partenaire de confiance en Suisse"
-          title="Relocation Genevoise, votre partenaire de confiance en Suisse"
+          alt={imageT('home.partner')}
+          title={imageT('home.partner')}
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover"

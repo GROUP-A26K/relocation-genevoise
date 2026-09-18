@@ -36,6 +36,7 @@ interface IPageViewProps {
 
 export const PageView: React.FC<IPageViewProps> = (props) => {
   const t = useTranslations('Career');
+  const imageT = useTranslations('Images');
   const locale = useLocale();
   const pathname = usePathname();
 
@@ -128,6 +129,7 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
                     <EmptyData
                       title={t('emptyTitle')}
                       description={t('emptyDescription')}
+                      imageAlt={imageT('common.empty.career')}
                     />
                   </motion.div>
                 }

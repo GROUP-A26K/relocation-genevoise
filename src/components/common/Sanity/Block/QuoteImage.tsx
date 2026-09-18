@@ -1,4 +1,6 @@
+'use client';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import BodyText from '@/components/common/Text/BodyText';
 
@@ -17,6 +19,11 @@ const QuoteImage: React.FC<IQuoteImageProps> = ({
   photoUrl = '',
   photoLqip,
 }) => {
+  const imageT = useTranslations('Images');
+  const authorImageAlt = photoUrl
+    ? imageT('common.author')
+    : imageT('common.photo');
+
   return (
     <div className="py-4 lg:py-6">
       <div className="flex w-full flex-col items-start justify-start gap-5 rounded-2xl bg-white py-0 lg:bg-grey-50 lg:p-6">
@@ -28,8 +35,8 @@ const QuoteImage: React.FC<IQuoteImageProps> = ({
             src={photoUrl}
             placeholder={photoLqip ? 'blur' : 'empty'}
             blurDataURL={photoLqip}
-            alt="Author image"
-            title="Author image"
+            alt={authorImageAlt}
+            title={authorImageAlt}
             width={40}
             height={40}
             className="h-10 w-10 rounded-full object-contain"

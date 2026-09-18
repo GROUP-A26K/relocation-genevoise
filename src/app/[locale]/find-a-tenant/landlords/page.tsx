@@ -74,6 +74,7 @@ export default async function Page(
 ) {
   const { locale } = await props.params;
   const t = await getTranslations({ locale, namespace: 'FindATenant' });
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
 
   const serviceItems: TServiceItem[] = (
     t.raw('Landlords.Services.items') as Omit<TServiceItem, 'Icon'>[]
@@ -113,7 +114,8 @@ export default async function Page(
         }}
         image={{
           src: HeroImage,
-          alt: t('Landlords.Hero.heading'),
+          alt: imageT('findATenant.landlords.hero'),
+          title: imageT('findATenant.landlords.hero'),
         }}
         stats={[
           {
@@ -144,7 +146,8 @@ export default async function Page(
         heading={t('Landlords.OurRentalProcess.heading')}
         image={{
           src: RentalProcessImage,
-          alt: t('Landlords.OurRentalProcess.heading'),
+          alt: imageT('findATenant.landlords.rentalProcess'),
+          title: imageT('findATenant.landlords.rentalProcess'),
         }}
         steps={rentalProcessSteps}
       />
@@ -162,7 +165,8 @@ export default async function Page(
         }
         image={{
           src: WhyChooseUsImage,
-          alt: t('Landlords.WhyChooseUs.heading'),
+          alt: imageT('findATenant.landlords.whyChooseUs'),
+          title: imageT('findATenant.landlords.whyChooseUs'),
         }}
       />
 

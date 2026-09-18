@@ -27,6 +27,7 @@ export default function PropertyResultsContent({
   loading,
 }: IPropertyResultsContentProps) {
   const t = useTranslations('Properties');
+  const imageT = useTranslations('Images');
   const { handlePageChange, queryParams } = usePropertyFilters();
   const pathname = usePathname();
   const displayCurrency = queryParams.currency || undefined;
@@ -44,6 +45,7 @@ export default function PropertyResultsContent({
             <EmptyData
               title={t('emptyData.title')}
               description={t('emptyData.description')}
+              imageAlt={imageT('common.empty.property')}
             />
           </motion.div>
         }

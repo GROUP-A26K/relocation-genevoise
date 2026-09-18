@@ -42,6 +42,7 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
   displayCurrency,
 }) => {
   const t = useTranslations('Properties.card');
+  const imageT = useTranslations('Images');
   const { convertFromCHF, getCurrencySymbol } = useExchangeRates();
 
   const currency = displayCurrency || PROPERTY_DEFAULT_CURRENCY;
@@ -67,8 +68,8 @@ export const PropertyCard: React.FC<IPropertyCardProps> = ({
       <article className="group flex h-full cursor-pointer flex-col items-start gap-5 rounded-xl">
         <div className="relative w-full">
           <Image
-            alt={title}
-            title={title}
+            alt={imageUrl ? title : imageT('common.photo')}
+            title={imageUrl ? title : imageT('common.photo')}
             src={imageUrl || FALLBACK_IMAGE}
             placeholder={imageLqip ? 'blur' : 'empty'}
             blurDataURL={imageLqip}

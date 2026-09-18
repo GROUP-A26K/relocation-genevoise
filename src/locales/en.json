@@ -1072,6 +1072,15 @@
     "emptyData": {
       "title": "No blog found!",
       "description": "We couldn't find any blog"
+    },
+    "fallback": {
+      "title": "Untitled Post",
+      "summary": "No summary available",
+      "category": "Unknown Category",
+      "author": "Unknown Author",
+      "role": "Author",
+      "email": "Unknown Email",
+      "date": "Unknown Date"
     }
   },
   "BlogDetail": {
@@ -1609,6 +1618,76 @@
       "errorTitle": "Error",
       "success": "You have successfully subscribed to our newsletter!",
       "error": "Error subscribing to the newsletter. Please try again later."
+    }
+  },
+  "Images": {
+    "common": {
+      "author": "Author photo",
+      "whatsapp": "WhatsApp logo",
+      "pdf": "PDF file",
+      "agent": "Property agent photo",
+      "error": "Error illustration",
+      "google": "Google logo",
+      "star": "Star rating",
+      "logo": "Relocation Genevoise logo",
+      "groupeGenevoise": "Groupe Genevoise logo",
+      "website": "Relocation Genevoise website",
+      "phone": "Phone number",
+      "building": "Office location",
+      "photo": "Photo",
+      "latestBlog": "Latest blog post",
+      "empty": {
+        "blog": "No blog posts available",
+        "career": "No job offers available",
+        "property": "No properties available"
+      }
+    },
+    "home": {
+      "hero": "Relocation agency in Geneva",
+      "services": "Relocation services in Geneva",
+      "partner": "Relocation Genevoise, your trusted partner in Switzerland",
+      "stats": "Relocation Genevoise, your trusted partner in Switzerland"
+    },
+    "services": {
+      "academic": "Academic relocation services in Geneva",
+      "concierge": "Relocation concierge services in Geneva",
+      "discover": "Discover Geneva with Relocation Genevoise"
+    },
+    "contact": "Relocation Genevoise contact support in Geneva",
+    "application": "Relocation Genevoise application support",
+    "booking": "Relocation Genevoise consultation support",
+    "faq": "Relocation Genevoise advisors",
+    "findAccommodation": {
+      "hero": "Find accommodation in Geneva",
+      "step": "Relocation step: {title}"
+    },
+    "findATenant": {
+      "hero": "Find a tenant with Relocation Genevoise",
+      "form": "Relocation Genevoise tenant service form",
+      "rentalProcess": "Relocation Genevoise rental process",
+      "whyChooseUs": "Why choose Relocation Genevoise",
+      "testimonial": "Testimonial from {name}",
+      "tenant": {
+        "hero": "Tenant search support in Geneva",
+        "form": "Tenant search service form",
+        "rentalProcess": "Tenant rental process",
+        "whyChooseUs": "Why choose our tenant search service"
+      },
+      "landlords": {
+        "hero": "Find a tenant for your property in Geneva",
+        "form": "Landlord service form",
+        "rentalProcess": "Landlord rental process",
+        "whyChooseUs": "Why choose our landlord service"
+      }
+    },
+    "property": {
+      "listing": "Property listing in Geneva",
+      "photo": "{property} - {area} {index}",
+      "thumbnail": "{property} - {area} thumbnail {index}"
+    },
+    "email": {
+      "logo": "Relocation Genevoise logo",
+      "newsletterImage": "Newsletter illustration"
     }
   },
   "Button&Text": {

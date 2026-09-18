@@ -37,7 +37,12 @@ export async function generateMetadata(
     getSlugByLocale(locale, slug, translations)
   );
   const { canonical } = alternates;
-  const images = [{ url: blogDetail.imageUrl, alt: blogDetail.title }];
+  const images = [
+    {
+      url: blogDetail.imageUrl,
+      alt: blogDetail.imageAlt || blogDetail.title,
+    },
+  ];
 
   return {
     title: blogDetail.title,

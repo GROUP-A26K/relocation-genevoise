@@ -10,13 +10,20 @@ interface IPhotoTourClientProps {
   slug: string;
   locale: string;
   areas: IAreaPhotoTour[];
+  propertyTitle?: string;
 }
 
 export function PhotoTourClient({
   slug,
   locale,
   areas: initialAreas,
+  propertyTitle,
 }: IPhotoTourClientProps) {
   const query = usePropertyPhotoTour(slug, locale);
-  return <PhotoTourView areas={query.data?.areas ?? initialAreas} />;
+  return (
+    <PhotoTourView
+      areas={query.data?.areas ?? initialAreas}
+      propertyTitle={propertyTitle}
+    />
+  );
 }
