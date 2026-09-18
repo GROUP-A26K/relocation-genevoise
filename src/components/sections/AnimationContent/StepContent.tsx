@@ -7,15 +7,17 @@ import { Content as AccordionContent } from '@radix-ui/react-accordion';
 interface IStepContentProps {
   isActive: boolean;
   title: string;
-  description: string;
   image: StaticImageData;
+  imageAlt?: string;
+  imageTitle?: string;
 }
 
 export const StepContent = ({
   isActive,
   title,
-  description,
   image,
+  imageAlt,
+  imageTitle,
 }: IStepContentProps) => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -35,8 +37,8 @@ export const StepContent = ({
             <Image
               src={image}
               placeholder="blur"
-              alt={title}
-              title={description}
+              alt={imageAlt || title}
+              title={imageTitle || imageAlt || title}
               fill
               sizes="(min-width: 640px) 560px, 100vw"
               className="object-cover"

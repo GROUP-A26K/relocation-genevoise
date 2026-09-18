@@ -16,6 +16,7 @@ const DesktopMenu = async ({
   menu,
   callButton,
   locale,
+  logoLabel,
 }: INavbarContainerProps) => {
   const menuItems = await Promise.all(
     menu.map((item) => renderMenuItem(item, locale))
@@ -32,8 +33,8 @@ const DesktopMenu = async ({
     <nav className="hidden justify-between nav:flex">
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href="/">
-            <LogoIcon height={27} />
+          <Link href="/" aria-label={logoLabel}>
+            <LogoIcon height={27} aria-hidden="true" focusable="false" />
           </Link>
           <MotionNavigationMenu
             className="static nav:block"

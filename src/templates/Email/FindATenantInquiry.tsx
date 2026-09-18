@@ -16,6 +16,7 @@ import {
 } from '@react-email/components';
 
 import { ORGANIZATION } from '@/constants/seo';
+import { getImageMessages } from '@/utils/imageMessages';
 
 type TInquiryAudience = 'landlord' | 'tenant';
 
@@ -68,10 +69,11 @@ export const FindATenantInquiry = ({
   locale = 'en',
 }: IFindATenantInquiryProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
   const heading = audience === 'landlord' ? t.landlord : t.tenant;
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{heading}</Preview>
 
@@ -85,7 +87,8 @@ export const FindATenantInquiry = ({
                     src={`${baseUrl}/rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="Relocation Genevoise logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
@@ -98,7 +101,7 @@ export const FindATenantInquiry = ({
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
                         <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch

@@ -38,6 +38,7 @@ interface IPageViewProps {
 
 export const PageView: React.FC<IPageViewProps> = (props) => {
   const t = useTranslations('Blog');
+  const imageT = useTranslations('Images');
 
   const [queryParams, setQueryParams] = useQueryStates(
     {
@@ -123,7 +124,7 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
           <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
               category={category.map((cat) => ({
-                title: cat.name || 'Unknown Category',
+                title: cat.name || t('fallback.category'),
               }))}
               activeValue={queryParams.filterBy}
               onClick={(filterBy: string) =>
@@ -160,6 +161,7 @@ export const PageView: React.FC<IPageViewProps> = (props) => {
                 <EmptyData
                   title={t('emptyData.title')}
                   description={t('emptyData.description')}
+                  imageAlt={imageT('common.empty.blog')}
                 />
               </motion.div>
             }

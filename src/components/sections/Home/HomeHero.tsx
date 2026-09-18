@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
@@ -34,6 +35,8 @@ export const HomeHero: React.FC<IHomeHeroProps> = ({
   heading,
   button2,
 }) => {
+  const imageT = useTranslations('Images');
+
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[511px] overflow-hidden lg:h-[1216px]">
@@ -107,8 +110,8 @@ export const HomeHero: React.FC<IHomeHeroProps> = ({
       <RevealItem className="relative flex flex-col items-start justify-between">
         <div className="w-full">
           <Image
-            alt="Agence de Relocation à Genève"
-            title="Agence de Relocation à Genève"
+            alt={imageT('home.hero')}
+            title={imageT('home.hero')}
             src={HeroImage}
             placeholder="blur"
             width={1240}

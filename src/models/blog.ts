@@ -9,6 +9,7 @@ export interface IBlog {
   timeToRead: number;
   publishedDate: string;
   imageUrl: string;
+  imageAlt?: string;
   imageLqip?: string;
   time: string;
   category: {
@@ -19,6 +20,7 @@ export interface IBlog {
     role: string;
     email: string;
     imageUrl: string;
+    imageAlt?: string;
     imageLqip?: string;
   };
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import WhatsappIcon from '@/assets/icons/social/whatsapp.svg';
 
@@ -8,6 +9,8 @@ interface IWhatsappProps {
 }
 
 export const Whatsapp: React.FC<IWhatsappProps> = ({ phoneNumber }) => {
+  const imageT = useTranslations('Images');
+
   return (
     <Link
       href={`https://wa.me/${phoneNumber.replace(/\D/g, '')}`}
@@ -17,8 +20,8 @@ export const Whatsapp: React.FC<IWhatsappProps> = ({ phoneNumber }) => {
     >
       <Image
         src={WhatsappIcon}
-        alt="Whatsapp logo"
-        title="Whatsapp logo"
+        alt={imageT('common.whatsapp')}
+        title={imageT('common.whatsapp')}
         width={100}
         height={100}
         priority

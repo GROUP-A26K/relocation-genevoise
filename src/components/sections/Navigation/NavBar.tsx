@@ -14,10 +14,8 @@ interface INavBarProps {
 }
 
 const NavBar: React.FC<INavBarProps> = async ({ locale }) => {
-  const tNav = await getTranslations({
-    locale,
-    namespace: 'Navbar',
-  });
+  const tNav = await getTranslations('Navbar');
+  const tImages = await getTranslations('Images');
   const navLinks: INavbarContainerProps = {
     menu: [
       {
@@ -81,6 +79,7 @@ const NavBar: React.FC<INavBarProps> = async ({ locale }) => {
       callButton={navLinks.callButton}
       contactButton={navLinks.contactButton}
       locale={locale}
+      logoLabel={tImages('common.logo')}
     />
   );
 };

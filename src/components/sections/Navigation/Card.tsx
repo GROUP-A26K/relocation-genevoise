@@ -11,6 +11,7 @@ interface ICardProps {
   title: string;
   summary: string;
   image: string;
+  imageAlt?: string;
   imageLqip?: string;
   url: THref;
   variant: 'lg' | 'md';
@@ -20,6 +21,7 @@ export const Card: React.FC<ICardProps> = ({
   title,
   summary,
   image,
+  imageAlt,
   imageLqip,
   url,
   variant,
@@ -38,7 +40,8 @@ export const Card: React.FC<ICardProps> = ({
               src={image}
               placeholder={imageLqip ? 'blur' : 'empty'}
               blurDataURL={imageLqip}
-              alt={title}
+              alt={imageAlt || title}
+              title={imageAlt || title}
               width={256}
               height={160}
               className="h-[90px] w-[144px] rounded-xl object-cover object-center xl:h-[160px] xl:w-[256px]"

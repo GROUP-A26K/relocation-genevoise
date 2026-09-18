@@ -18,12 +18,13 @@ const MobileMenu = ({
   menu,
   callButton,
   contactButton,
+  logoLabel,
 }: INavbarContainerProps) => {
   return (
     <nav className="z-20 h-18 w-full bg-white px-4 md:px-4 nav:hidden">
       <div className="relative flex h-full w-full min-w-51.25 items-center justify-between">
-        <Link href="/">
-          <LogoIcon height={22} />
+        <Link href="/" aria-label={logoLabel}>
+          <LogoIcon height={22} aria-hidden="true" focusable="false" />
         </Link>
         <MobileMenuSheet
           phoneAction={

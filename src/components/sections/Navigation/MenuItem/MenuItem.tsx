@@ -1,3 +1,5 @@
+import { getTranslations } from 'next-intl/server';
+
 import { cn } from '@/libs/utils';
 import { Link, type THref } from '@/libs/i18nNavigation';
 import { fetchBlogs } from '@/features/blog/blog.service';
@@ -30,6 +32,7 @@ const MENU_LINK_STYLE = cn(
 
 export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
   if (item.items) {
+    const imageT = await getTranslations('Images');
     const { blogs } = await fetchBlogs({
       page: 1,
       pageSize: 1,
@@ -85,15 +88,16 @@ export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
                   Blog
                 </BodyText>
                 <Card
-                  title={blogs[0]?.title ?? 'Our Latest Blog'}
+                  title={blogs[0]?.title ?? imageT('common.latestBlog')}
                   variant="lg"
-                  summary={
-                    blogs[0]?.description ??
-                    'Discover the latest insights and updates from our blog.'
-                  }
+                  summary={blogs[0]?.description ?? ''}
                   image={
                     blogs[0]?.imageUrl ??
                     'https://shadcnblocks.com/images/block/placeholder-dark-1.svg'
+                  }
+                  imageAlt={
+                    blogs[0]?.imageAlt ||
+                    (!blogs[0] ? imageT('common.photo') : undefined)
                   }
                   imageLqip={blogs[0]?.imageLqip}
                   url={blogs[0]?.href ?? '/blog'}

@@ -10,12 +10,8 @@ import {
   getSiteUrl,
 } from '@/utils/seo';
 
-interface ISiteJsonLdProps {
-  locale: string;
-}
-
-export default async function SiteJsonLd({ locale }: ISiteJsonLdProps) {
-  const t = await getTranslations({ locale, namespace: 'Metadata.Home' });
+export default async function SiteJsonLd() {
+  const t = await getTranslations('Metadata.Home');
   const homeUrl = `${getSiteUrl()}/`;
   const { address, logo } = ORGANIZATION;
 

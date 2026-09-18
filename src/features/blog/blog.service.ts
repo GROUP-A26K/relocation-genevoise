@@ -2,6 +2,7 @@ import 'server-only';
 
 import { formatDate } from '@/utils/helpers';
 import { sanityFetch } from '@/sanity/lib/fetch';
+import { getBlogMessages, getImageMessages } from '@/utils/imageMessages';
 import {
   POST_CATEGORIES_QUERY,
   BLOGS_QUERY,
@@ -12,6 +13,7 @@ import {
 } from '@/sanity/lib/queries';
 
 import type { IMeta } from '@/models/meta';
+import type { TLocale } from '@/utils/appConfig';
 import type { IBlog, IBlogDetail, IBlogSitemap } from '@/models/blog';
 
 const FALLBACK_IMAGE =
@@ -27,6 +29,7 @@ type TBlogPostProjection = {
   publishedDate: string | null;
   body?: IBlogDetail['body'] | null;
   mainPhoto: {
+    photoAlt?: string | null;
     photo: {
       asset: { url: string | null; lqip: string | null } | null;
     } | null;
@@ -52,35 +55,59 @@ export type TBlogParams = {
   exceptSlug?: string;
 };
 
-const toBlog = (post: TBlogPostProjection, publishedDate: string): IBlog => ({
-  id: post._id,
-  title: post.title || 'Untitled Post',
-  href: {
-    pathname: '/blog/[slug]',
-    params: { slug: (post?.slug?.current || '').replace(/^[a-z]{2}-/i, '') },
-  },
-  description: post?.summary || 'No summary available',
-  timeToRead: post?.timeToRead || 0,
-  publishedDate,
-  slug: post?.slug?.current || '',
-  imageUrl: post.mainPhoto?.photo?.asset?.url || FALLBACK_IMAGE,
-  imageLqip: post.mainPhoto?.photo?.asset?.lqip ?? undefined,
-  time: '3',
-  category:
-    post?.category?.map((cat) => ({
-      title: cat?.name || 'Unknown Category',
-    })) || [],
-  author: {
-    name: post.author?.name || 'Unknown Author',
-    role: 'Author',
-    email: post.author?.email || 'Unknown Email',
-    imageUrl: post.author?.authorAvatar?.asset?.url || FALLBACK_IMAGE,
-    imageLqip: post.author?.authorAvatar?.asset?.lqip ?? undefined,
-  },
-});
+const toBlog = (
+  post: TBlogPostProjection,
+  publishedDate: string,
+  locale: TLocale
+): IBlog => {
+  const imageT = getImageMessages(locale);
+  const blogT = getBlogMessages(locale);
+  const title = post.title || blogT.fallback.title;
+  const imageUrl = post.mainPhoto?.photo?.asset?.url || FALLBACK_IMAGE;
 
-const toBlogDetail = (post: TBlogPostProjection): IBlogDetail => ({
-  ...toBlog(post, post?.publishedDate || 'Unknown Date'),
+  return {
+    id: post._id,
+    title,
+    href: {
+      pathname: '/blog/[slug]',
+      params: { slug: (post?.slug?.current || '').replace(/^[a-z]{2}-/i, '') },
+    },
+    description: post?.summary || blogT.fallback.summary,
+    timeToRead: post?.timeToRead || 0,
+    publishedDate,
+    slug: post?.slug?.current || '',
+    imageUrl,
+    imageAlt: post.mainPhoto?.photo?.asset?.url
+      ? post.mainPhoto.photoAlt || title
+      : imageT.common.photo,
+    imageLqip: post.mainPhoto?.photo?.asset?.lqip ?? undefined,
+    time: '3',
+    category:
+      post?.category?.map((cat) => ({
+        title: cat?.name || blogT.fallback.category,
+      })) || [],
+    author: {
+      name: post.author?.name || blogT.fallback.author,
+      role: blogT.fallback.role,
+      email: post.author?.email || blogT.fallback.email,
+      imageUrl: post.author?.authorAvatar?.asset?.url || FALLBACK_IMAGE,
+      imageAlt: post.author?.authorAvatar?.asset?.url
+        ? imageT.common.author
+        : imageT.common.photo,
+      imageLqip: post.author?.authorAvatar?.asset?.lqip ?? undefined,
+    },
+  };
+};
+
+const toBlogDetail = (
+  post: TBlogPostProjection,
+  locale: TLocale
+): IBlogDetail => ({
+  ...toBlog(
+    post,
+    post?.publishedDate || getBlogMessages(locale).fallback.date,
+    locale
+  ),
   body: post?.body || [],
   updatedAt: post?._updatedAt,
 });
@@ -89,6 +116,8 @@ export const fetchBlogs = async (
   params?: TBlogParams
 ): Promise<{ blogs: IBlog[]; meta: IMeta }> => {
   const pageSize = params?.pageSize || 10;
+  const locale: TLocale = params?.locale === 'fr' ? 'fr' : 'en';
+  const blogT = getBlogMessages(locale);
   const end = (params?.page || 1) * pageSize;
   const start = end - pageSize;
 
@@ -97,7 +126,7 @@ export const fetchBlogs = async (
     {
       start: start,
       end: end,
-      locale: params?.locale ?? 'en',
+      locale,
       category: params?.filterBy ?? '',
       title: params?.search ? `*${params?.search}*` : '',
       slug: params?.exceptSlug ?? '',
@@ -110,8 +139,9 @@ export const fetchBlogs = async (
       toBlog(
         post,
         post?.publishedDate
-          ? formatDate(post.publishedDate, params?.locale ?? 'en')
-          : 'Unknown Date'
+          ? formatDate(post.publishedDate, locale)
+          : blogT.fallback.date,
+        locale
       )
     ),
     meta: {
@@ -129,13 +159,14 @@ export const fetchBlogBySlug = async (
   slug: string,
   locale: string = 'en'
 ): Promise<IBlogDetail | null> => {
+  const normalizedLocale: TLocale = locale === 'fr' ? 'fr' : 'en';
   const response = await sanityFetch(
     BLOG_DETAIL_QUERY,
-    { slug: `${locale}-${slug}` },
+    { slug: `${normalizedLocale}-${slug}` },
     { tags: ['blog'] }
   );
 
-  return response ? toBlogDetail(response) : null;
+  return response ? toBlogDetail(response, normalizedLocale) : null;
 };
 
 export const fetchSitemapBlogs = async (
@@ -154,7 +185,9 @@ export const fetchSitemapBlogs = async (
   return {
     blogs: response.blogs.map((post) => ({
       id: post._id,
-      title: post.title || 'Untitled Post',
+      title:
+        post.title ||
+        getBlogMessages(params?.locale === 'fr' ? 'fr' : 'en').fallback.title,
       slug: post?.slug?.current || '',
       href: {
         pathname: '/blog/[slug]',
@@ -177,13 +210,14 @@ export const fetchSitemapBlogs = async (
 export const fetchLatestBlog = async (
   locale: string = 'fr'
 ): Promise<IBlogDetail | null> => {
+  const normalizedLocale: TLocale = locale === 'fr' ? 'fr' : 'en';
   const response = await sanityFetch(
     BLOG_LATEST_QUERY,
-    { locale },
+    { locale: normalizedLocale },
     { tags: ['blog'] }
   );
 
-  return response ? toBlogDetail(response) : null;
+  return response ? toBlogDetail(response, normalizedLocale) : null;
 };
 
 export async function fetchPostCategory(params?: TBlogParams) {

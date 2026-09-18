@@ -1,24 +1,34 @@
+'use client';
 import Image from 'next/image';
 import { Link } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import BodyText from '@/components/common/Text/BodyText';
 
 interface IImageTitleProps {
   imgUrl?: string;
   imgLqip?: string;
-  title: string;
+  title?: string;
+  alt?: string;
 }
 export const ImageTitle: React.FC<IImageTitleProps> = ({
   imgUrl,
   imgLqip,
   title,
+  alt,
 }) => {
+  const imageT = useTranslations('Images');
+  const resolvedTitle = title || imageT('common.photo');
+  const resolvedImageLabel = imgUrl
+    ? alt || resolvedTitle
+    : imageT('common.photo');
+
   return (
     <article className="relative flex flex-col items-start justify-between gap-4 py-6">
       <div className="w-full">
         <Image
-          alt={title}
-          title={title}
+          alt={resolvedImageLabel}
+          title={resolvedImageLabel}
           src={
             imgUrl ??
             'https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&auto=format&fit=crop&w=3603&q=80'
@@ -37,7 +47,7 @@ export const ImageTitle: React.FC<IImageTitleProps> = ({
       >
         <div>
           <Link className="h-4 w-4" />
-          {title}
+          {resolvedTitle}
         </div>
       </BodyText>
     </article>

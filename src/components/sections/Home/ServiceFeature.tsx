@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { RevealItem } from '@/components/common/Reveal';
 import BodyText from '@/components/common/Text/BodyText';
@@ -28,6 +29,8 @@ const ServiceFeature = ({
   features,
   description,
 }: IServiceFeatureProps) => {
+  const imageT = useTranslations('Images');
+
   return (
     <div className="flex flex-col gap-12 lg:gap-16">
       <RevealItem className="flex w-full items-center justify-center">
@@ -67,8 +70,8 @@ const ServiceFeature = ({
       </RevealItem>
       <RevealItem className="relative aspect-1240/380 w-full overflow-hidden rounded-3xl">
         <Image
-          alt="Agence de Relocation à Genève"
-          title="Agence de Relocation à Genève"
+          alt={imageT('home.services')}
+          title={imageT('home.services')}
           src={HeroImage}
           placeholder="blur"
           fill

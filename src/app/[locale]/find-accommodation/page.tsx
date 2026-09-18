@@ -36,6 +36,7 @@ export async function generateMetadata(
 
 export default async function Page() {
   const t = await getTranslations('FindAccommodation');
+  const imageT = await getTranslations('Images');
 
   return (
     <>
@@ -43,8 +44,8 @@ export default async function Page() {
         <Hero
           heroImage={{
             src: HeroImage,
-            alt: t('Hero.subHeading'),
-            title: t('Hero.subHeading'),
+            alt: imageT('findAccommodation.hero'),
+            title: imageT('findAccommodation.hero'),
           }}
           heading={t('Hero.heading')}
           subHeading={t('Hero.subHeading')}

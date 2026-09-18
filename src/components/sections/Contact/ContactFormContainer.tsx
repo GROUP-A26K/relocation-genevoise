@@ -16,6 +16,7 @@ export const ContactFormContainer: React.FC<IContactFormContainerProps> = (
   props
 ) => {
   const t = useTranslations('Contact.ContactContainer');
+  const imageT = useTranslations('Images');
 
   return (
     <Section wrapperProps={{ className: 'pt-0 2xl:pt-0' }}>
@@ -47,8 +48,8 @@ export const ContactFormContainer: React.FC<IContactFormContainerProps> = (
           <Image
             src={ContactBG}
             placeholder="blur"
-            alt="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
-            title="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
+            alt={imageT('contact')}
+            title={imageT('contact')}
             fill
             sizes="(max-width: 1240px) 50vw, 100vw"
             className="object-cover"

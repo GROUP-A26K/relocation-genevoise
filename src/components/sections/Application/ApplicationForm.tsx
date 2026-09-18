@@ -52,6 +52,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
   const t = useTranslations('Application.ApplyForm');
   const formT = useTranslations('Validation.Application');
   const toastT = useTranslations('ToastMessage.Application');
+  const imageT = useTranslations('Images');
   const locale = useLocale();
   const form = useForm<TApplicationFormInput>({
     resolver: zodResolver(applicationSchema(formT)),
@@ -255,8 +256,8 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({ jobDetail }) => {
         <Image
           src={ConsultationBG}
           placeholder="blur"
-          alt="Assurance Genevoise, courtier en assurance à Genève"
-          title="Assurance Genevoise, courtier en assurance à Genève"
+          alt={imageT('application')}
+          title={imageT('application')}
           width={556}
           height={724}
           className="max-h-[180px] rounded-2xl object-cover lg:max-h-[724px] lg:min-w-[400px] 2xl:min-w-[556px]"

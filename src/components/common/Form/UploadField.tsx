@@ -145,6 +145,7 @@ interface IFileCardProps {
 
 function FileCard({ file, progress, onRemove }: IFileCardProps) {
   const pct = progress ?? COMPLETED_PROGRESS;
+  const imageT = useTranslations('Images');
 
   return (
     <div className="relative flex w-full gap-2 p-2 pr-4">
@@ -163,7 +164,8 @@ function FileCard({ file, progress, onRemove }: IFileCardProps) {
           src={PDFIcon.src}
           width={40}
           height={40}
-          alt="PDF"
+          alt={imageT('common.pdf')}
+          title={imageT('common.pdf')}
           className="size-10"
         />
 

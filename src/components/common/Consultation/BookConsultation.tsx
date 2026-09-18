@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Image, { type StaticImageData } from 'next/image';
 
 import { cn } from '@/libs/utils';
@@ -39,6 +40,7 @@ export const BookConsultation: React.FC<IBookConsultationProps> = ({
   titleClassName,
   descriptionClassName,
 }) => {
+  const imageT = useTranslations('Images');
   const hasSecondaryButton = Boolean(buttonText2);
 
   const content = (
@@ -53,8 +55,8 @@ export const BookConsultation: React.FC<IBookConsultationProps> = ({
           {imgSrc && (
             <RevealItem className="flex justify-center">
               <Image
-                alt="Support de Relocation Genevoise, contactez-nous par telephone."
-                title="Support de Relocation Genevoise, contactez-nous par telephone."
+                alt={imageT('faq')}
+                title={imageT('faq')}
                 height={64}
                 width={128}
                 src={imgSrc}

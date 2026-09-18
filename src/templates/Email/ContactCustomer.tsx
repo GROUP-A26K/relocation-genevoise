@@ -15,6 +15,8 @@ import {
   Text,
 } from '@react-email/components';
 
+import { getImageMessages } from '@/utils/imageMessages';
+
 import type { TContactFormInput } from '@/validations/contact.validation';
 
 interface IContactCustomerProps {
@@ -50,9 +52,10 @@ export const ContactCustomer = ({
   locale = 'en',
 }: IContactCustomerProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{t.heading}</Preview>
 
@@ -67,7 +70,8 @@ export const ContactCustomer = ({
                     src={`${baseUrl}/rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="React Email logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
@@ -80,7 +84,7 @@ export const ContactCustomer = ({
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
                         <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch

@@ -77,6 +77,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
 }) => {
   const formT = useTranslations('Validation.Booking');
   const toastT = useTranslations('ToastMessage.Booking');
+  const imageT = useTranslations('Images');
   const locale = useLocale();
   const timezone = Env.NEXT_PUBLIC_SERVER_TIMEZONE;
   const isOpen = useOpenStatus({
@@ -163,7 +164,13 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
       {
         value: 'whatsapp' as const,
         label: cardContent.whatsappLabel,
-        icon: <WhatsappIcon className="h-6 w-6" />,
+        icon: (
+          <WhatsappIcon
+            className="h-6 w-6"
+            aria-hidden="true"
+            focusable="false"
+          />
+        ),
       },
     ],
     [cardContent.telephoneLabel, cardContent.whatsappLabel]
@@ -322,8 +329,8 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
           <Image
             src={ConsultationBG}
             placeholder="blur"
-            alt="Relocation Genevoise, courtier en relocation à Genève"
-            title="Relocation Genevoise, courtier en relocation à Genève"
+            alt={imageT('booking')}
+            title={imageT('booking')}
             fill
             sizes="(min-width: 1240px) 488px, (min-width: 1024px) 380px, 100vw"
             priority

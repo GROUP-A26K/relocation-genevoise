@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -14,20 +15,62 @@ import type { IAreaPhotoTour } from '@/models/property';
 type TImageObj = {
   url: string;
   lqip?: string;
+  title: string;
+  thumbnailTitle: string;
 };
 
 interface IPhotoTourSectionProps {
   area: IAreaPhotoTour;
   index: number;
+  propertyTitle?: string;
 }
 
-export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
+export const PhotoTourSection = ({
+  area,
+  index,
+  propertyTitle,
+}: IPhotoTourSectionProps) => {
+  const imageT = useTranslations('Images');
+  const resolvedPropertyTitle = propertyTitle || imageT('property.listing');
+  const resolvedAreaTitle = area.title || imageT('common.photo');
   const allImages: TImageObj[] = useMemo(
     () => [
-      { url: area.mainImageUrl, lqip: area.mainImageLqip },
-      ...(area.galleryImages ?? []),
+      {
+        url: area.mainImageUrl,
+        lqip: area.mainImageLqip,
+        title: imageT('property.photo', {
+          property: resolvedPropertyTitle,
+          area: resolvedAreaTitle,
+          index: '1',
+        }),
+        thumbnailTitle: imageT('property.thumbnail', {
+          property: resolvedPropertyTitle,
+          area: resolvedAreaTitle,
+          index: '1',
+        }),
+      },
+      ...(area.galleryImages ?? []).map((image, imageIndex) => ({
+        ...image,
+        title: imageT('property.photo', {
+          property: resolvedPropertyTitle,
+          area: resolvedAreaTitle,
+          index: String(imageIndex + 2),
+        }),
+        thumbnailTitle: imageT('property.thumbnail', {
+          property: resolvedPropertyTitle,
+          area: resolvedAreaTitle,
+          index: String(imageIndex + 2),
+        }),
+      })),
     ],
-    [area.mainImageUrl, area.mainImageLqip, area.galleryImages]
+    [
+      area.mainImageUrl,
+      area.mainImageLqip,
+      area.galleryImages,
+      imageT,
+      resolvedAreaTitle,
+      resolvedPropertyTitle,
+    ]
   );
   const hasMultipleImages = allImages.length > 1;
 
@@ -93,8 +136,8 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                     src={img.url}
                     placeholder={img.lqip ? 'blur' : 'empty'}
                     blurDataURL={img.lqip}
-                    alt={`${area.title} - ${i + 1}`}
-                    title={`${area.title} - ${i + 1}`}
+                    alt={img.title}
+                    title={img.title}
                     fill
                     className="cursor-pointer object-cover"
                     sizes="(max-width: 784px) 100vw, 784px"
@@ -146,8 +189,8 @@ export const PhotoTourSection = ({ area, index }: IPhotoTourSectionProps) => {
                   src={img.url}
                   placeholder={img.lqip ? 'blur' : 'empty'}
                   blurDataURL={img.lqip}
-                  alt={`${area.title} thumbnail ${i + 1}`}
-                  title={`${area.title} thumbnail ${i + 1}`}
+                  alt={img.thumbnailTitle}
+                  title={img.thumbnailTitle}
                   fill
                   sizes="(max-width:640px) 120px, (max-width:1024px) 140px, 168px"
                   className="object-cover"

@@ -15,6 +15,7 @@ interface IFormLayoutProps extends React.PropsWithChildren {
   image: {
     src: StaticImageData;
     alt: string;
+    title?: string;
   };
   imageWrapperClassname?: string;
 }
@@ -70,7 +71,7 @@ export default function FormLayout({
               src={image.src}
               placeholder="blur"
               alt={image.alt}
-              title={image.alt}
+              title={image.title || image.alt}
               fill
               sizes="50vw"
               className="object-cover"

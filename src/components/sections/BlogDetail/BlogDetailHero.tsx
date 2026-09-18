@@ -46,8 +46,8 @@ const BlogDetailHero: React.FC<IBlog> = (blog) => {
           src={blog.imageUrl}
           placeholder={blog.imageLqip ? 'blur' : 'empty'}
           blurDataURL={blog.imageLqip}
-          alt={blog.title}
-          title={blog.title}
+          alt={blog.imageAlt || blog.title}
+          title={blog.imageAlt || blog.title}
           fill
           sizes="(min-width: 1440px) 1240px, 100vw"
           priority

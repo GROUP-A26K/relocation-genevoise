@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { sanityFetch } from '@/sanity/lib/fetch';
+import { getImageMessages } from '@/utils/imageMessages';
 import { AppConfig, type TLocale } from '@/utils/appConfig';
 import {
   PROPERTY_DEFAULT_PRICE_UNIT,
@@ -135,10 +136,11 @@ const mapPropertyDetail = (
 });
 
 const mapProperty = (
-  property: PROPERTIES_QUERY_RESULT['properties'][number]
+  property: PROPERTIES_QUERY_RESULT['properties'][number],
+  locale: TLocale
 ): IPropertyListing => ({
   id: property._id,
-  title: property.title || 'Untitled Property',
+  title: property.title || getImageMessages(locale).property.listing,
   slug: property.slug?.current || '',
   href: {
     pathname: '/properties/[slug]',
@@ -201,7 +203,9 @@ export const fetchProperties = async (
   );
 
   return {
-    properties: response.properties.map(mapProperty),
+    properties: response.properties.map((property) =>
+      mapProperty(property, locale)
+    ),
     meta: {
       pagination: {
         total: response.total,

@@ -68,6 +68,7 @@ function renderListBlocks(blocks: TBlock[]) {
 export const Content = (blog: IBlogDetail) => {
   const t = useTranslations('BlogDetail');
   const toastT = useTranslations('ToastMessage.Link');
+  const imageT = useTranslations('Images');
 
   const pathname = usePathname();
 
@@ -112,8 +113,8 @@ export const Content = (blog: IBlogDetail) => {
       <RevealItem className="flex flex-col justify-between gap-y-6 border-t border-grey-100 pt-6 lg:flex-row">
         <div className="flex items-center gap-3">
           <Image
-            alt="Author image"
-            title="Author image"
+            alt={blog.author.imageAlt || imageT('common.author')}
+            title={blog.author.imageAlt || imageT('common.author')}
             src={blog.author.imageUrl}
             placeholder={blog.author.imageLqip ? 'blur' : 'empty'}
             blurDataURL={blog.author.imageLqip}

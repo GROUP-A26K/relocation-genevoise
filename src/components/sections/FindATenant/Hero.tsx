@@ -34,6 +34,7 @@ interface IHeroProps {
   image: {
     src: StaticImageData;
     alt: string;
+    title?: string;
   };
   stats: TStat[];
 }
@@ -116,7 +117,7 @@ export default function Hero({
               src={image.src}
               placeholder="blur"
               alt={image.alt}
-              title={image.alt}
+              title={image.title || image.alt}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="rounded-3xl object-cover"

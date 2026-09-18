@@ -25,13 +25,6 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const PREVIEW_IMAGE = {
-  url: OG_IMAGE.path,
-  width: OG_IMAGE.width,
-  height: OG_IMAGE.height,
-  alt: OG_IMAGE.alt,
-};
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -41,6 +34,13 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ locale, namespace: 'Metadata.Home' });
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
+  const previewImage = {
+    url: OG_IMAGE.path,
+    width: OG_IMAGE.width,
+    height: OG_IMAGE.height,
+    alt: imageT('common.logo'),
+  };
 
   return {
     metadataBase: new URL(getSiteUrl()),
@@ -52,11 +52,11 @@ export async function generateMetadata(
       type: 'website',
       siteName: SITE_NAME,
       locale: getOgLocale(locale),
-      images: [PREVIEW_IMAGE],
+      images: [previewImage],
     },
     twitter: {
       card: 'summary_large_image',
-      images: [PREVIEW_IMAGE],
+      images: [previewImage],
     },
   };
 }
@@ -91,7 +91,7 @@ export default async function LocaleLayout({
       )}
 
       <body>
-        <SiteJsonLd locale={locale} />
+        <SiteJsonLd />
         <NuqsAdapter>
           <NextIntlClientProvider
             locale={locale}

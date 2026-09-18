@@ -1081,6 +1081,15 @@
     "emptyData": {
       "title": "Aucun blog trouvé!",
       "description": "Nous n'avons trouvé aucun blog"
+    },
+    "fallback": {
+      "title": "Article sans titre",
+      "summary": "Aucun résumé disponible",
+      "category": "Catégorie inconnue",
+      "author": "Auteur inconnu",
+      "role": "Auteur",
+      "email": "E-mail inconnu",
+      "date": "Date inconnue"
     }
   },
   "BlogDetail": {
@@ -1618,6 +1627,76 @@
       "errorTitle": "Erreur",
       "success": "Vous vous êtes abonné à notre newsletter avec succès !",
       "error": "Erreur lors de l'abonnement à la newsletter. Veuillez réessayer plus tard."
+    }
+  },
+  "Images": {
+    "common": {
+      "author": "Photo de l’auteur",
+      "whatsapp": "Logo WhatsApp",
+      "pdf": "Fichier PDF",
+      "agent": "Photo de l’agent immobilier",
+      "error": "Illustration d’erreur",
+      "google": "Logo Google",
+      "star": "Étoile d’évaluation",
+      "logo": "Logo Relocation Genevoise",
+      "groupeGenevoise": "Logo Groupe Genevoise",
+      "website": "Site internet de Relocation Genevoise",
+      "phone": "Numéro de téléphone",
+      "building": "Adresse de nos bureaux",
+      "photo": "Photo",
+      "latestBlog": "Dernier article du blog",
+      "empty": {
+        "blog": "Aucun article de blog disponible",
+        "career": "Aucune offre d’emploi disponible",
+        "property": "Aucun bien immobilier disponible"
+      }
+    },
+    "home": {
+      "hero": "Agence de relocation à Genève",
+      "services": "Services de relocation à Genève",
+      "partner": "Relocation Genevoise, votre partenaire de confiance en Suisse",
+      "stats": "Relocation Genevoise, votre partenaire de confiance en Suisse"
+    },
+    "services": {
+      "academic": "Services de relocation académique à Genève",
+      "concierge": "Services de conciergerie de relocation à Genève",
+      "discover": "Découvrir Genève avec Relocation Genevoise"
+    },
+    "contact": "Accompagnement de Relocation Genevoise à Genève",
+    "application": "Accompagnement aux candidatures de Relocation Genevoise",
+    "booking": "Accompagnement pour votre consultation avec Relocation Genevoise",
+    "faq": "Conseillers de Relocation Genevoise",
+    "findAccommodation": {
+      "hero": "Trouver un logement à Genève",
+      "step": "Étape de relocation : {title}"
+    },
+    "findATenant": {
+      "hero": "Trouver un locataire avec Relocation Genevoise",
+      "form": "Formulaire du service locataire de Relocation Genevoise",
+      "rentalProcess": "Processus de location de Relocation Genevoise",
+      "whyChooseUs": "Pourquoi choisir Relocation Genevoise",
+      "testimonial": "Témoignage de {name}",
+      "tenant": {
+        "hero": "Accompagnement pour trouver un logement à Genève",
+        "form": "Formulaire du service de recherche de logement",
+        "rentalProcess": "Processus de location pour les locataires",
+        "whyChooseUs": "Pourquoi choisir notre service de recherche de logement"
+      },
+      "landlords": {
+        "hero": "Trouver un locataire pour votre bien à Genève",
+        "form": "Formulaire du service propriétaire",
+        "rentalProcess": "Processus de location pour les propriétaires",
+        "whyChooseUs": "Pourquoi choisir notre service propriétaire"
+      }
+    },
+    "property": {
+      "listing": "Annonce immobilière à Genève",
+      "photo": "{property} - {area} {index}",
+      "thumbnail": "{property} - {area} miniature {index}"
+    },
+    "email": {
+      "logo": "Logo Relocation Genevoise",
+      "newsletterImage": "Illustration de la newsletter"
     }
   },
   "Button&Text": {

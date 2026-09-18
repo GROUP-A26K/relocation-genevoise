@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { cn } from '@/libs/utils';
 import StarIcon from '@/assets/icons/star.svg';
@@ -18,14 +19,16 @@ export const GoogleRating: React.FC<IGoogleRatingProps> = ({
   subTitle,
   googleUrl,
 }) => {
+  const imageT = useTranslations('Images');
+
   return (
     <Link href={googleUrl} target="_blank" rel="noopener noreferrer">
       <div className="flex w-full flex-row gap-[11.33px] outline-hidden select-none">
         <div className="flex justify-center">
           <Image
             src={GoogleLogo}
-            alt="Google Logo"
-            title="Google Logo"
+            alt={imageT('common.google')}
+            title={imageT('common.google')}
             width={53}
             height={53}
           />
@@ -47,8 +50,7 @@ export const GoogleRating: React.FC<IGoogleRatingProps> = ({
                 <Image
                   key={i}
                   src={StarIcon}
-                  alt="Star icon"
-                  title="star icon"
+                  alt=""
                   width={19.73}
                   height={19.73}
                 />

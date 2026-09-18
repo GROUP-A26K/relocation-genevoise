@@ -223,7 +223,8 @@ export const renderContent = (content: TContent) => {
     case 'photoZone':
       return (
         <ImageTitle
-          title={content.mainPhoto?.imageTitle || 'Photo'}
+          title={content.mainPhoto?.imageTitle}
+          alt={content.mainPhoto?.photoAlt}
           imgUrl={content.mainPhoto?.photo?.asset?.url}
           imgLqip={content.mainPhoto?.photo?.asset?.lqip}
         />

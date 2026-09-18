@@ -9,13 +9,25 @@ export default async function PhotoTourPage({
   params,
 }: PageProps<'/[locale]/properties/[slug]/photo-tour'>) {
   const { locale, slug } = await params;
-  const { state, areas } = await hydratePropertyPhotoTour(slug, locale);
+  const { state, areas, propertyTitle } = await hydratePropertyPhotoTour(
+    slug,
+    locale
+  );
 
   return (
     <Section isDivider revealTrigger="load">
-      <PropertySectionHeader areas={areas} slug={slug} />
+      <PropertySectionHeader
+        areas={areas}
+        slug={slug}
+        propertyTitle={propertyTitle}
+      />
       <HydrationBoundary state={state}>
-        <PhotoTourClient areas={areas} slug={slug} locale={locale} />
+        <PhotoTourClient
+          areas={areas}
+          slug={slug}
+          locale={locale}
+          propertyTitle={propertyTitle}
+        />
       </HydrationBoundary>
     </Section>
   );

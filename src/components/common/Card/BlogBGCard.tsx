@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Link } from '@/libs/i18nNavigation';
 import { Badge } from '@/components/ui/badge';
@@ -13,6 +13,7 @@ export const BlogBGCard: React.FC<IBlog> = ({
   title,
   description,
   imageUrl,
+  imageAlt,
   imageLqip,
   category,
   timeToRead,
@@ -21,6 +22,7 @@ export const BlogBGCard: React.FC<IBlog> = ({
   author,
 }) => {
   const locale = useLocale();
+  const imageT = useTranslations('Images');
   return (
     <Link href={href}>
       <article className="grid grid-cols-1 items-start gap-5 rounded-2xl lg:grid-cols-[432fr_776fr] lg:items-center lg:gap-8 lg:bg-grey-50">
@@ -56,8 +58,8 @@ export const BlogBGCard: React.FC<IBlog> = ({
           <div className="flex justify-between">
             <div className="flex items-center gap-3">
               <Image
-                alt="Article author"
-                title="Article author"
+                alt={author.imageAlt || imageT('common.author')}
+                title={author.imageAlt || imageT('common.author')}
                 src={author.imageUrl}
                 placeholder={author.imageLqip ? 'blur' : 'empty'}
                 blurDataURL={author.imageLqip}
@@ -92,8 +94,8 @@ export const BlogBGCard: React.FC<IBlog> = ({
             src={imageUrl}
             placeholder={imageLqip ? 'blur' : 'empty'}
             blurDataURL={imageLqip}
-            alt={title}
-            title={title}
+            alt={imageAlt || title || imageT('common.photo')}
+            title={imageAlt || title || imageT('common.photo')}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority

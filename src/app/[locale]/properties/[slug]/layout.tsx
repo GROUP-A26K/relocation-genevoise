@@ -1,4 +1,6 @@
-import { SITE_NAME } from '@/constants/seo';
+import { getTranslations } from 'next-intl/server';
+
+import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
 import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
 import {
   fetchPropertySlugBySlug,
@@ -24,8 +26,18 @@ export async function generateMetadata(
     getSlugByLocale(locale, slug, translations)
   );
   const { canonical } = alternates;
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
   const imageUrl = property.areas[0]?.mainImageUrl;
-  const images = imageUrl ? [{ url: imageUrl, alt: property.title }] : [];
+  const images = imageUrl
+    ? [{ url: imageUrl, alt: property.title || imageT('property.listing') }]
+    : [
+        {
+          url: OG_IMAGE.path,
+          width: OG_IMAGE.width,
+          height: OG_IMAGE.height,
+          alt: imageT('common.logo'),
+        },
+      ];
 
   return {
     title: property.title,
