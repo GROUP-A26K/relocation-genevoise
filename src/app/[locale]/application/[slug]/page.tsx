@@ -4,7 +4,9 @@ import { HydrationBoundary } from '@tanstack/react-query';
 import { getLocalizedPath, toHref } from '@/utils/seo';
 import { PageView } from '@/components/sections/Application';
 import { fetchJobDetailBySlug } from '@/features/career/career.service';
+import { fetchCareerSlugBySlug } from '@/features/career/career.service';
 import { hydrateCareerDetail } from '@/features/career/career.hydration';
+import { getApplicationDraftKey } from '@/features/application/application.draft';
 
 import type { Metadata } from 'next';
 
@@ -38,9 +40,18 @@ export default async function Page(
     notFound();
   }
 
+  const fullSlug = /^[a-z]{2}-/i.test(slug) ? slug : `${locale}-${slug}`;
+  const translatedSlugs = await fetchCareerSlugBySlug(fullSlug).catch(() => []);
+  const draftKey = getApplicationDraftKey(jobDetail.id, translatedSlugs);
+
   return (
     <HydrationBoundary state={state}>
-      <PageView jobDetail={jobDetail} slug={slug} locale={locale} />
+      <PageView
+        jobDetail={jobDetail}
+        slug={slug}
+        locale={locale}
+        draftKey={draftKey}
+      />
     </HydrationBoundary>
   );
 }

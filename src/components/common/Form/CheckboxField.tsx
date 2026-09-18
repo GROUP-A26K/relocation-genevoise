@@ -37,9 +37,11 @@ export const CheckboxField = <TFieldValues extends FieldValues = FieldValues>({
                 <Checkbox
                   id={name}
                   className="border border-black-50"
-                  {...field}
+                  name={field.name}
+                  ref={field.ref}
+                  checked={Boolean(field.value)}
+                  onBlur={field.onBlur}
                   onCheckedChange={field.onChange}
-                  value={field.value}
                 />
               )}
             />

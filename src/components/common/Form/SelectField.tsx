@@ -1,6 +1,6 @@
 import {
   Controller,
-  type UseFormRegister,
+  type Control,
   type FieldPath,
   type FieldValues,
 } from 'react-hook-form';
@@ -30,7 +30,7 @@ interface ISelectFieldProps<TFieldValues extends FieldValues = FieldValues> {
   labelClassName?: string;
   triggerClassName?: string;
   icon?: ReactNode;
-  register: UseFormRegister<TFieldValues>;
+  control: Control<TFieldValues>;
 }
 
 export const SelectField = <TFieldValues extends FieldValues = FieldValues>({
@@ -44,6 +44,7 @@ export const SelectField = <TFieldValues extends FieldValues = FieldValues>({
   labelClassName,
   triggerClassName,
   icon,
+  control,
 }: ISelectFieldProps<TFieldValues>) => {
   return (
     <FormField
@@ -61,39 +62,54 @@ export const SelectField = <TFieldValues extends FieldValues = FieldValues>({
           </div>
         )}
         <Controller
+          control={control}
           name={name}
-          render={({ field }) => (
-            <Select
-              {...field}
-              onValueChange={field.onChange}
-              value={field.value || undefined}
-            >
-              <FormControl>
-                <SelectTrigger
-                  id={name}
-                  className={cn(
-                    'mt-0 h-10 rounded-full text-sm',
-                    'rounded-3xl border-gray-200 shadow-none placeholder:font-medium data-placeholder:text-black-50',
-                    'hover:text-back-100 hover:border-black-50',
-                    'focus:border-secondary-500 focus:text-black-50 focus:ring-2 focus:ring-secondary-50',
-                    'data-[state=open]:border-secondary-500 data-[state=open]:text-black-50 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
-                    icon && 'pl-10',
-                    error && 'border-red-500 hover:border-red-500',
-                    triggerClassName
-                  )}
-                >
-                  <SelectValue placeholder={placeholder} />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                {options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
+          render={({ field }) => {
+            const selectedOption = options.find(
+              (option) => option.value === field.value
+            );
+
+            return (
+              <Select
+                name={field.name}
+                onValueChange={(value) => {
+                  // Radix's hidden select can emit an empty value while a
+                  // restored draft mounts, before its options are registered.
+                  if (value !== '') field.onChange(value);
+                }}
+                value={field.value ?? ''}
+              >
+                <FormControl>
+                  <SelectTrigger
+                    id={name}
+                    ref={field.ref}
+                    onBlur={field.onBlur}
+                    className={cn(
+                      'mt-0 h-10 rounded-full text-sm',
+                      'rounded-3xl border-gray-200 shadow-none placeholder:font-medium data-placeholder:text-black-50',
+                      'hover:text-back-100 hover:border-black-50',
+                      'focus:border-secondary-500 focus:text-black-50 focus:ring-2 focus:ring-secondary-50',
+                      'data-[state=open]:border-secondary-500 data-[state=open]:text-black-50 data-[state=open]:ring-2 data-[state=open]:ring-secondary-50',
+                      icon && 'pl-10',
+                      error && 'border-red-500 hover:border-red-500',
+                      triggerClassName
+                    )}
+                  >
+                    <SelectValue placeholder={placeholder}>
+                      {selectedOption?.label}
+                    </SelectValue>
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {options.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            );
+          }}
         />
       </div>
     </FormField>

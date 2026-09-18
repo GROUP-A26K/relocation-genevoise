@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { toast } from 'sonner';
+import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
 import { useSubmitContact } from '@/features/contact/contact.hooks';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import {
@@ -27,7 +28,7 @@ export const ContactForm: React.FC = () => {
   const formT = useTranslations('Validation.Contact');
   const toastT = useTranslations('ToastMessage.Contact');
   const locale = useLocale();
-  const { mutate, isPending } = useSubmitContact();
+  const { mutateAsync, isPending } = useSubmitContact();
   const form = useForm<TContactFormInput>({
     resolver: zodResolver(contactSchema(formT)),
     defaultValues: {
@@ -42,38 +43,55 @@ export const ContactForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (values: TContactFormInput) =>
-    mutate(
-      { values, locale },
-      {
-        onSuccess: () => {
-          form.reset();
-          toast.custom((t) => (
-            <Alert
-              type="success"
-              title={toastT('successTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(t)}
-            >
-              {toastT('success')}
-            </Alert>
-          ));
-        },
-        onError: (error) => {
-          toast.custom((t) => (
-            <Alert
-              type="danger"
-              title={toastT('errorTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(t)}
-            >
-              {toastT('error')}
-            </Alert>
-          ));
-          console.error('Error submitting form:', error);
-        },
-      }
+  const draft = useFormDraft('contact', form, { restoreKey: locale });
+  const subjectOptions = useMemo(
+    () =>
+      ['accommodation', 'tenant', 'corporate', 'concierge'].map(
+        (value, index) => ({
+          value,
+          label: t(`subject.options.${index}.label`),
+        })
+      ),
+    [t]
+  );
+
+  const onSubmit = async (values: TContactFormInput) => {
+    const submission = draft.beginSubmission(values);
+    const subject = subjectOptions.find(
+      (option) => option.value === values.subject
     );
+
+    try {
+      await mutateAsync({
+        values: { ...values, subject: subject?.label ?? values.subject },
+        locale,
+      });
+
+      draft.completeSubmission(submission);
+      toast.custom((t) => (
+        <Alert
+          type="success"
+          title={toastT('successTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(t)}
+        >
+          {toastT('success')}
+        </Alert>
+      ));
+    } catch (error) {
+      toast.custom((t) => (
+        <Alert
+          type="danger"
+          title={toastT('errorTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(t)}
+        >
+          {toastT('error')}
+        </Alert>
+      ));
+      console.error('Error submitting form:', error);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -139,25 +157,8 @@ export const ContactForm: React.FC = () => {
           label={t('subject.label')}
           placeholder={t('subject.placeholder')}
           isRequired={true}
-          options={[
-            {
-              value: t('subject.options.0.label'),
-              label: t('subject.options.0.label'),
-            },
-            {
-              value: t('subject.options.1.label'),
-              label: t('subject.options.1.label'),
-            },
-            {
-              value: t('subject.options.2.label'),
-              label: t('subject.options.2.label'),
-            },
-            {
-              value: t('subject.options.3.label'),
-              label: t('subject.options.3.label'),
-            },
-          ]}
-          register={form.register}
+          options={subjectOptions}
+          control={form.control}
           error={form.formState.errors.subject?.message}
         />
         <TextareaField

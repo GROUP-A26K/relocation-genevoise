@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
 import { InputField } from '@/components/common/Form';
 import { useSubmitSubscribe } from '@/features/subscribe/subscribe.hooks';
 import {
@@ -21,7 +22,7 @@ export const SubscribeForm: React.FC = () => {
   const formT = useTranslations('Validation.Subscribe');
   const toastT = useTranslations('ToastMessage.Subscribe');
   const locale = useLocale();
-  const { mutate, isPending } = useSubmitSubscribe();
+  const { mutateAsync, isPending } = useSubmitSubscribe();
   const form = useForm<TSubscribeFormInput>({
     resolver: zodResolver(subscribeSchema(formT)),
     defaultValues: {
@@ -29,38 +30,38 @@ export const SubscribeForm: React.FC = () => {
     },
   });
 
-  const onSubmit = (values: TSubscribeFormInput) =>
-    mutate(
-      { values, locale },
-      {
-        onSuccess: () => {
-          form.reset();
-          toast.custom((t) => (
-            <Alert
-              type="success"
-              title={toastT('successTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(t)}
-            >
-              {toastT('success')}
-            </Alert>
-          ));
-        },
-        onError: (error) => {
-          toast.custom((t) => (
-            <Alert
-              type="danger"
-              title={toastT('errorTitle')}
-              as="solid"
-              onClick={() => toast.dismiss(t)}
-            >
-              {toastT('error')}
-            </Alert>
-          ));
-          console.error('Error submitting form:', error);
-        },
-      }
-    );
+  const draft = useFormDraft('subscribe', form, { restoreKey: locale });
+
+  const onSubmit = async (values: TSubscribeFormInput) => {
+    const submission = draft.beginSubmission(values);
+
+    try {
+      await mutateAsync({ values, locale });
+      draft.completeSubmission(submission);
+      toast.custom((t) => (
+        <Alert
+          type="success"
+          title={toastT('successTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(t)}
+        >
+          {toastT('success')}
+        </Alert>
+      ));
+    } catch (error) {
+      toast.custom((t) => (
+        <Alert
+          type="danger"
+          title={toastT('errorTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(t)}
+        >
+          {toastT('error')}
+        </Alert>
+      ));
+      console.error('Error submitting form:', error);
+    }
+  };
 
   return (
     <Form {...form}>
