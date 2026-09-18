@@ -14,14 +14,8 @@ interface INavBarProps {
 }
 
 const NavBar: React.FC<INavBarProps> = async ({ locale }) => {
-  const tNav = await getTranslations({
-    locale,
-    namespace: 'Navbar',
-  });
-  const tImages = await getTranslations({
-    locale,
-    namespace: 'Images',
-  });
+  const tNav = await getTranslations('Navbar');
+  const tImages = await getTranslations('Images');
   const navLinks: INavbarContainerProps = {
     menu: [
       {

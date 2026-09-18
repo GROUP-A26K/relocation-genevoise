@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import FormLayout from '@/components/sections/FindATenant/FormLayout';
@@ -27,11 +27,10 @@ export default async function Page(
   props: PageProps<'/[locale]/find-a-tenant/tenant/form'>
 ) {
   const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'FindATenant.Tenant.Form',
-  });
-  const imageT = await getTranslations({ locale, namespace: 'Images' });
+  setRequestLocale(locale);
+
+  const t = await getTranslations('FindATenant.Tenant.Form');
+  const imageT = await getTranslations('Images');
 
   return (
     <FormLayout

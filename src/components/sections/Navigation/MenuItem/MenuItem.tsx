@@ -32,10 +32,7 @@ const MENU_LINK_STYLE = cn(
 
 export const renderMenuItem = async (item: TMenuItem, locale?: string) => {
   if (item.items) {
-    const imageT = await getTranslations({
-      locale: locale === 'fr' ? 'fr' : 'en',
-      namespace: 'Images',
-    });
+    const imageT = await getTranslations('Images');
     const { blogs } = await fetchBlogs({
       page: 1,
       pageSize: 1,
