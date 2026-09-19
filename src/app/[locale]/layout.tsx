@@ -35,6 +35,7 @@ const SERVER_ONLY_NAMESPACES = [
   'RemindMe',
   'Breadcrumb',
   'PhotoTour',
+  'StructuredData',
 ];
 
 const inter = Inter({
