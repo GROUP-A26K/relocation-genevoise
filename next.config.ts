@@ -2,6 +2,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 import sentryWebpackPluginOptions from './sentry.config';
+import { getSecurityHeaders } from './src/libs/securityHeaders';
 
 import type { NextConfig } from 'next';
 
@@ -38,6 +39,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return legacyRedirects;
+  },
+  async headers() {
+    return [{ source: '/:path*', headers: getSecurityHeaders() }];
   },
 };
 
