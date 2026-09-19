@@ -1,31 +1,36 @@
-"use client";
-import { DynamicContent } from "@/components/blocks/DynamicContent";
-import { StatsList } from "@/components/blocks/Stats";
-import Button from "@/components/customs/Button";
-import { Env } from "@/libs/Env";
-import { cn } from "@/libs/utils";
-import { Block, BODY_BLOCKS } from "@/models/Block";
-import { JobDetail } from "@/models/Job";
-import { CircleDollarSign, Clock, MapPin, Share2 } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import { toast } from "sonner";
-import Alert from "@/components/customs/Alert";
-import { useTranslations } from "next-intl";
-import { useLocale } from "next-intl";
-import { FAQBlog } from "@/components/blocks/FAQ/FAQBlog";
-import CtaBlock from "@/components/customs/CtaBlock";
+'use client';
+import Link from 'next/link';
+import { toast } from 'sonner';
+import { useState } from 'react';
+import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import { CircleDollarSign, Clock, MapPin, Share2 } from 'lucide-react';
+
+import { Env } from '@/libs/env';
+import { cn } from '@/libs/utils';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import { type TBlock, BODY_BLOCKS } from '@/models/block';
+import HeadingText from '@/components/common/Text/HeadingText';
+import CtaBlock from '@/components/common/Sanity/Block/CtaBlock';
+import { FaqBlock } from '@/components/common/Sanity/Block/FaqBlock';
+import { StatsList } from '@/components/common/Sanity/Block/StatsList';
+import DynamicContent from '@/components/common/Sanity/DynamicContent';
+
+import type { IJobDetail } from '@/models/job';
 
 const domainURL = Env.NEXT_PUBLIC_SITE_URL;
 
-interface Props {
-  jobDetail: JobDetail;
+interface IContentProps {
+  jobDetail: IJobDetail;
 }
 
-function renderListBlocks(blocks: Block[]) {
+function renderListBlocks(blocks: TBlock[]) {
   return blocks.map((block) => {
-    if (!block || typeof block !== "object" || !("_type" in block)) return null;
+    if (!block || typeof block !== 'object' || !('_type' in block)) return null;
 
     const { _type, _key } = block;
 
@@ -45,21 +50,21 @@ function renderListBlocks(blocks: Block[]) {
             key={_key}
             {...block}
             className={cn(
-              block.blockTitle?.isStyle && "p-8 bg-grey-50 rounded-xl"
+              block.blockTitle?.isStyle && 'rounded-xl bg-grey-50 p-8'
             )}
-            titleClassName={cn("lg:text-xl")}
+            titleClassName={cn('lg:text-xl')}
           />
         );
       case BODY_BLOCKS.FAQ_BLOCK:
-        return <FAQBlog key={_key} id={_key} faqs={block.faqs} />;
+        return <FaqBlock key={_key} id={_key} faqs={block.faqs} />;
       case BODY_BLOCKS.CTA_BLOCK:
         return (
           <CtaBlock
             key={_key}
             id={_key}
-            title={block.blockTitle?.title || ""}
-            description={block.blockTitle?.description || ""}
-            buttonText={block.blockTitle?.buttonText || "Contact Us"}
+            title={block.blockTitle?.title || ''}
+            description={block.blockTitle?.description || ''}
+            buttonText={block.blockTitle?.buttonText || 'Contact Us'}
           />
         );
       default:
@@ -68,10 +73,10 @@ function renderListBlocks(blocks: Block[]) {
   });
 }
 
-export const Content: React.FC<Props> = ({ jobDetail }) => {
+export const Content: React.FC<IContentProps> = ({ jobDetail }) => {
   const pathname = usePathname();
-  const toastT = useTranslations("ToastMessage.Link");
-  const buttonT = useTranslations("Button&Text");
+  const toastT = useTranslations('ToastMessage.Link');
+  const buttonT = useTranslations('Button&Text');
 
   const [copied, setCopied] = useState(false);
   const locale = useLocale();
@@ -85,11 +90,11 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
         toast.custom((t) => (
           <Alert
             type="success"
-            title={toastT("successTitle")}
+            title={toastT('successTitle')}
             as="ghost"
             onClick={() => toast.dismiss(t)}
           >
-            {toastT("success")}
+            {toastT('success')}
           </Alert>
         ));
       })
@@ -98,74 +103,95 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
         toast.custom((t) => (
           <Alert
             type="danger"
-            title={toastT("errorTitle")}
+            title={toastT('errorTitle')}
             as="ghost"
             onClick={() => toast.dismiss(t)}
           >
-            {toastT("error")}
+            {toastT('error')}
           </Alert>
         ));
       });
   };
   return (
-    <div className="top-0 flex flex-col items-start justify-center w-full">
-      <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] lg:max-w-[570px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
-        <div className="inline-flex flex-col justify-start items-start">
-          <div className="pb-8 bg-white flex flex-col justify-start items-start gap-6 w-full">
-            <div className="w-full flex flex-col justify-start items-start gap-6">
-              <div className="self-stretch flex flex-col justify-start items-start gap-3">
+    <div className="top-0 flex w-full flex-col items-start justify-center">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[570px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
+        <div className="inline-flex flex-col items-start justify-start">
+          <RevealItem className="flex w-full flex-col items-start justify-start gap-6 bg-white pb-8">
+            <div className="flex w-full flex-col items-start justify-start gap-6">
+              <div className="flex flex-col items-start justify-start gap-3 self-stretch">
                 <div
                   data-left-icon="false"
                   data-right-icon="false"
                   data-size="Small"
                   data-state="Default"
                   data-type="Primary"
-                  className="inline-flex justify-center items-center gap-1.5"
+                  className="inline-flex items-center justify-center gap-1.5"
                 >
-                  <div className="justify-start text-secondary-600 text-sm font-semibold font-['Inter'] leading-tight">
-                    {jobDetail.department}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-semibold text-secondary-600"
+                  >
+                    <div>{jobDetail.department}</div>
+                  </BodyText>
                 </div>
-                <h1 className="self-stretch justify-start text-gray-900 text-3xl font-semibold font-['Inter'] leading-10">
+                <HeadingText
+                  as="h1"
+                  className="justify-start self-stretch font-sans text-3xl leading-10 font-semibold text-gray-900"
+                >
                   {jobDetail.title}
-                </h1>
+                </HeadingText>
               </div>
-              <div className="self-stretch inline-flex justify-start items-center gap-3 flex-wrap">
-                <div className="flex justify-start items-center gap-1.5">
+              <div className="inline-flex flex-wrap items-center justify-start gap-3 self-stretch">
+                <div className="flex items-center justify-start gap-1.5">
                   <Clock className="size-4 text-black-50" />
-                  <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
-                    {jobDetail.employmentType}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-medium"
+                  >
+                    <div>{jobDetail.employmentType}</div>
+                  </BodyText>
                 </div>
-                <div className="w-px h-4 bg-slate-200" />
-                <div className="flex justify-start items-center gap-1.5">
+                <div className="h-4 w-px bg-slate-200" />
+                <div className="flex items-center justify-start gap-1.5">
                   <MapPin className="size-4 text-black-50" />
-                  <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
-                    {jobDetail.location}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-medium"
+                  >
+                    <div>{jobDetail.location}</div>
+                  </BodyText>
                 </div>
-                <div className="w-px h-4 bg-slate-200" />
-                <div className="flex justify-start items-center gap-1.5">
+                <div className="h-4 w-px bg-slate-200" />
+                <div className="flex items-center justify-start gap-1.5">
                   <CircleDollarSign className="size-4 text-black-50" />
-                  <div className="justify-start text-black-200 text-sm font-medium font-['Inter'] leading-tight">
-                    {jobDetail.salaryMin} - {jobDetail.salaryMax}{" "}
-                    {jobDetail.currency}
-                  </div>
+                  <BodyText
+                    variant="sm"
+                    asChild
+                    className="justify-start font-sans leading-tight font-medium"
+                  >
+                    <div>
+                      {jobDetail.salaryMin} - {jobDetail.salaryMax}{' '}
+                      {jobDetail.currency}
+                    </div>
+                  </BodyText>
                 </div>
               </div>
             </div>
-            <div className="inline-flex justify-start items-center gap-2">
+            <div className="inline-flex items-center justify-start gap-2">
               <Link
                 href={`/${locale}/application/${jobDetail.slug}`}
-                className="sm:w-fit w-full"
+                className="w-full sm:w-fit"
               >
                 <Button
                   as="solid"
                   variant="md"
                   type="primary"
-                  className="sm:w-fit w-full"
+                  className="w-full sm:w-fit"
                 >
-                  {buttonT("applyNow")}
+                  {buttonT('applyNow')}
                 </Button>
               </Link>
               <Button
@@ -175,17 +201,17 @@ export const Content: React.FC<Props> = ({ jobDetail }) => {
                 type="primary"
                 disabled={copied}
                 iconStart={Share2}
-                className="sm:w-fit w-full"
+                className="w-full sm:w-fit"
               >
-                {buttonT("share")}
+                {buttonT('share')}
               </Button>
             </div>
-          </div>
-          <div className="self-stretch flex flex-col justify-start items-start gap-16">
-            <div className="self-stretch flex flex-col justify-start items-start gap-8">
-              <div className="self-stretch h-px bg-slate-200" />
-              <div className="self-stretch inline-flex justify-start items-start gap-8">
-                <div className="flex-1 max-w-[720px] w-full inline-flex flex-col justify-start items-start gap-8">
+          </RevealItem>
+          <div className="flex flex-col items-start justify-start gap-16 self-stretch">
+            <div className="flex flex-col items-start justify-start gap-8 self-stretch">
+              <div className="h-px self-stretch bg-slate-200" />
+              <div className="inline-flex items-start justify-start gap-8 self-stretch">
+                <div className="inline-flex w-full max-w-[720px] flex-1 flex-col items-start justify-start gap-8">
                   {renderListBlocks(jobDetail.body)}
                 </div>
               </div>

@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-import { Env } from "@/libs/Env";
-import { executeWithReplication, prisma } from "@/libs/prisma";
-import { resend } from "@/libs/resend";
+import { Env } from '@/libs/env';
+import { resend } from '@/libs/resend';
+import { prisma } from '@/libs/prisma';
+import CallMeBack from '@/templates/Email/CallMeBack';
 import {
-  BookingFormInput,
+  type TBookingFormInput,
   bookingSchema,
-} from "@/validations/booking.validation";
-import CallMeBack from "@/templates/Email/CallMeBack";
+} from '@/validations/booking.validation';
 
 const senderEmail = Env.RESEND_EMAIL;
 const senderReceiverEmail = Env.RESEND_RECEIVER_EMAIL;
@@ -15,11 +15,11 @@ const senderName = Env.RESEND_SENDER_NAME;
 const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 
 const subjectTitle = {
-  en: "Call Me Back",
-  fr: "Rappelez-moi",
+  en: 'Call Me Back',
+  fr: 'Rappelez-moi',
 };
 
-const createBooking = async (data: BookingFormInput) => {
+const createBooking = async (data: TBookingFormInput) => {
   try {
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
 
@@ -43,19 +43,16 @@ const createBooking = async (data: BookingFormInput) => {
       created_at: new Date(),
     };
 
-    const { mysql } = await executeWithReplication(
-      (client) => client.booking.create({ data: bookingData }),
-      (client) => client.booking.create({ data: bookingData })
-    );
+    const booking = await prisma.booking.create({ data: bookingData });
 
-    return { booking: mysql, isNew: true } as const;
+    return { booking, isNew: true } as const;
   } catch (error) {
-    console.error("Error creating booking:", error);
-    throw new Error("Failed to create booking");
+    console.error('Error creating booking:', error);
+    throw new Error('Failed to create booking');
   }
 };
 
-const sendEmail = async (userInfo: BookingFormInput, locale: "fr" | "en") => {
+const sendEmail = async (userInfo: TBookingFormInput, locale: 'fr' | 'en') => {
   try {
     await resend.emails.send({
       from: `"${senderName}" <${senderEmail}>`,
@@ -68,26 +65,24 @@ const sendEmail = async (userInfo: BookingFormInput, locale: "fr" | "en") => {
       }),
     });
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email");
+    console.error('Error sending email:', error);
+    throw new Error('Failed to send email');
   }
 };
 
 export async function POST(request: Request) {
   try {
     const url = new URL(request.url);
-    const locale = (url.searchParams.get("locale") === "en" ? "en" : "fr") as
-      | "fr"
-      | "en";
+    const locale = url.searchParams.get('locale') === 'en' ? 'en' : 'fr';
 
-    if (!request.headers.get("Content-Type")?.includes("application/json")) {
+    if (!request.headers.get('Content-Type')?.includes('application/json')) {
       return NextResponse.json(
-        { error: "Content-Type must be application/json" },
+        { error: 'Content-Type must be application/json' },
         { status: 400 }
       );
     }
 
-    const body = await request.json();
+    const body: unknown = await request.json();
 
     const parsedData = bookingSchema().safeParse(body);
     if (!parsedData.success) {
@@ -105,9 +100,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(booking, { status: 201 });
   } catch (error) {
-    console.error("Error creating contact:", error);
+    console.error('Error creating contact:', error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

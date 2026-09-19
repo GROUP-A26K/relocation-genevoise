@@ -1,148 +1,96 @@
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetOverlay,
-  SheetPortal,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet-custom';
-import { Phone, PhoneCall, X } from 'lucide-react';
-import MenuIcon from '@/assets/img/icons/menu-icon.webp';
-import { Accordion } from '@/components/ui/accordion-custom';
-import { renderMobileMenuItem } from '@/components/blocks/MenuItem/MobileMenuItem';
-import { NavbarProps } from './NavbarContainer';
+import NextLink from 'next/link';
+import { Phone, PhoneCall } from 'lucide-react';
+
 import { Link } from '@/libs/i18nNavigation';
-import Image from 'next/image';
-import Logo from '@/assets/img/logos/rg-logo.svg';
-import IconButton from '@/components/customs/IconButton';
-import Button from '@/components/customs/Button';
-import { LanguageSelector } from './LanguageSelector';
+import Button from '@/components/common/Button';
+import LogoIcon from '@/components/icons/LogoIcon';
+import { Accordion } from '@/components/ui/accordion-custom';
+import { CONTACT_PHONE_HREF, ORGANIZATION } from '@/constants/seo';
+import { SheetClose, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { LanguageSelector } from '@/components/common/Language/LanguageSelector';
 
-const MobileMenu = ({ menu, callButton, contactButton }: NavbarProps) => {
+import { renderMobileMenuItem } from './MenuItem';
+import { MobileMenuSheet } from './MobileMenuSheet';
+
+import type { INavbarContainerProps } from './NavbarContainer';
+
+const MobileMenu = ({
+  menu,
+  callButton,
+  contactButton,
+  logoLabel,
+}: INavbarContainerProps) => {
   return (
-    <nav className="bg-white z-20 h-[72px] w-full md:px-4 px-4 nav:hidden">
-      <div className="flex h-full w-full min-w-[205px] items-center justify-between relative">
-        <Link
-          href={'/'}
-          className="flex items-center gap-2 pointer-events-auto"
-        >
-          <Image
-            src={Logo.src}
-            alt="Relocation Genevoise, courtier en Relocation à Genève"
-            title="Relocation Genevoise, courtier en Relocation à Genève"
-            width={57}
-            height={21.97}
-            className="min-w-[57px]"
-          />
+    <nav className="z-20 h-18 w-full bg-white px-4 md:px-4 nav:hidden">
+      <div className="relative flex h-full w-full min-w-51.25 items-center justify-between">
+        <Link href="/" aria-label={logoLabel}>
+          <LogoIcon height={22} aria-hidden="true" focusable="false" />
         </Link>
-        <Sheet>
-          <SheetTrigger asChild className="z-20 absolute right-0">
-            <span className="group">
-              <IconButton
-                variant="lg"
-                type="primary"
-                as="solid"
-                className="border-2 border-white rounded-none bg-white text-black-500 active:!bg-white hover:!bg-white group-[&[data-state='open']]:hidden pointer-events-auto shadow-none"
-                icon={() => (
-                  <Image
-                    height={22}
-                    width={22}
-                    src={MenuIcon.src}
-                    alt="X logo"
-                    title="X logo"
-                  ></Image>
-                )}
-              />
-            </span>
-          </SheetTrigger>
-
-          <div className="flex flex-row gap-3">
-            <Link
-              href={'tel:+41 22 715 17 48'}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+        <MobileMenuSheet
+          phoneAction={
+            <NextLink href={CONTACT_PHONE_HREF}>
               <SheetClose asChild>
                 <Button
                   as="ghost"
                   variant="md"
                   type="secondary"
-                  className="w-full border-2 border-white pointer-events-auto whitespace-normal"
+                  className="pointer-events-auto w-full border-2 border-white whitespace-normal"
                   iconStart={PhoneCall}
                 >
-                  <div className="line-clamp-1">+41 22 715 17 48</div>
+                  <div className="line-clamp-1">{ORGANIZATION.telephone}</div>
                 </Button>
               </SheetClose>
-            </Link>
-            <SheetClose asChild>
-              <IconButton
-                variant="lg"
-                type="primary"
-                as="solid"
-                className="border-2 border-white rounded-[0.5rem] bg-black-500 text-white active:!bg-black-500 hover:!bg-black-500 group-[&[data-state='closed']]:hidden pointer-events-auto shadow-none"
-                icon={X}
-              />
-            </SheetClose>
-          </div>
-
-          <SheetPortal>
-            <SheetOverlay />
-            <SheetContent
-              side="top"
-              className="absolute w-full p-0 pt-[72px] z-10 max-h-screen overflow-scroll nav:hidden"
+            </NextLink>
+          }
+        >
+          <SheetHeader>
+            <SheetTitle />
+          </SheetHeader>
+          <div className="flex flex-col">
+            <Accordion
+              type="single"
+              collapsible
+              className="flex w-full flex-col"
             >
-              <SheetHeader>
-                <SheetTitle></SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col">
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="flex w-full flex-col"
-                >
-                  {menu.map((item) => renderMobileMenuItem(item))}
-                </Accordion>
-                <LanguageSelector className="active:bg-transparent hover:bg-transparent bg-transparent shadow-none" />
+              {menu.map((item) => renderMobileMenuItem(item))}
+            </Accordion>
+            <LanguageSelector className="bg-transparent shadow-none hover:bg-transparent active:bg-transparent" />
 
-                <div className="flex flex-col gap-3 p-3">
-                  <Link
-                    href={contactButton?.url ?? '/contact'}
-                    className="flex items-center"
+            <div className="flex flex-col gap-3 p-3">
+              <Link
+                href={contactButton?.url ?? '/contact'}
+                className="flex items-center"
+              >
+                <SheetClose asChild>
+                  <Button
+                    as="solid"
+                    variant="md"
+                    type="primary"
+                    className="w-full"
                   >
-                    <SheetClose asChild>
-                      <Button
-                        as="solid"
-                        variant="md"
-                        type="primary"
-                        className="w-full"
-                      >
-                        {contactButton?.text}
-                      </Button>
-                    </SheetClose>
-                  </Link>
-                  <Link
-                    href={callButton?.url ?? '/rappelez-moi'}
-                    className="flex items-center"
+                    {contactButton?.text}
+                  </Button>
+                </SheetClose>
+              </Link>
+              <Link
+                href={callButton?.url ?? '/call-me-back'}
+                className="flex items-center"
+              >
+                <SheetClose asChild>
+                  <Button
+                    as="outline"
+                    variant="md"
+                    type="primary"
+                    className="w-full"
+                    iconStart={Phone}
                   >
-                    <SheetClose asChild>
-                      <Button
-                        as="outline"
-                        variant="md"
-                        type="primary"
-                        className="w-full"
-                        iconStart={Phone}
-                      >
-                        {callButton?.text}
-                      </Button>
-                    </SheetClose>
-                  </Link>
-                </div>
-              </div>
-            </SheetContent>
-          </SheetPortal>
-        </Sheet>
+                    {callButton?.text}
+                  </Button>
+                </SheetClose>
+              </Link>
+            </div>
+          </div>
+        </MobileMenuSheet>
       </div>
     </nav>
   );

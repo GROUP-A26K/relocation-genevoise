@@ -1,26 +1,23 @@
-"use client";
-import {
-  ContentDescriptive,
-  ContentIntroductory,
-} from "@/components/blocks/Content";
-import { FC } from "react";
+'use client';
+import { ContentDescriptive } from '@/components/sections/ServiceDetail/ContentDescriptive';
+import { ContentIntroductory } from '@/components/sections/ServiceDetail/ContentIntroductory';
 
-type ParagraphType = "introductory" | "descriptive";
-interface Section {
+type TParagraphType = 'introductory' | 'descriptive';
+type TSection = {
   title?: string;
-  paragraphType?: ParagraphType;
+  paragraphType?: TParagraphType;
   content: { paragraph: string; title?: string }[];
-}
-export interface ContentProps {
-  section: Section[];
+};
+export interface IContentProps {
+  section: TSection[];
 }
 
-function renderListSection(sections: Section[]) {
+function renderListSection(sections: TSection[]) {
   return sections.map((section, index) => {
     switch (section.paragraphType) {
-      case "introductory":
+      case 'introductory':
         return <ContentIntroductory key={index} {...section} />;
-      case "descriptive":
+      case 'descriptive':
         return <ContentDescriptive key={index} {...section} />;
       default:
         return null;
@@ -28,10 +25,10 @@ function renderListSection(sections: Section[]) {
   });
 }
 
-export const Content: FC<ContentProps> = ({ section }) => {
+export const Content: React.FC<IContentProps> = ({ section }) => {
   return (
     <div className="top-0 flex flex-col items-center justify-center">
-      <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col items-center">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         <div className="flex flex-col gap-16">
           <div className="relative flex flex-col gap-8">
             {renderListSection(section)}

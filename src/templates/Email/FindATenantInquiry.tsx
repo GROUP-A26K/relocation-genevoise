@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Body,
   Column,
@@ -13,11 +13,14 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components";
+} from '@react-email/components';
 
-type TInquiryAudience = "landlord" | "tenant";
+import { ORGANIZATION } from '@/constants/seo';
+import { getImageMessages } from '@/utils/imageMessages';
 
-interface InquiryUserInfo {
+type TInquiryAudience = 'landlord' | 'tenant';
+
+type TInquiryUserInfo = {
   full_name: string;
   email: string;
   phone: string;
@@ -25,37 +28,37 @@ interface InquiryUserInfo {
   property_type: string;
   number_of_rooms: string;
   additional_info?: string;
-}
+};
 
-interface FindATenantInquiryProps {
+interface IFindATenantInquiryProps {
   audience: TInquiryAudience;
-  userInfo: InquiryUserInfo;
+  userInfo: TInquiryUserInfo;
   baseUrl: string;
-  locale: "en" | "fr";
+  locale: 'en' | 'fr';
 }
 
 const copy = {
   en: {
-    landlord: "New landlord inquiry",
-    tenant: "New tenant inquiry",
-    name: "Name",
-    email: "Email",
-    phone: "Phone",
-    address: "Address",
-    propertyType: "Property type",
-    rooms: "Number of rooms",
-    additionalInfo: "Additional information",
+    landlord: 'New landlord inquiry',
+    tenant: 'New tenant inquiry',
+    name: 'Name',
+    email: 'Email',
+    phone: 'Phone',
+    address: 'Address',
+    propertyType: 'Property type',
+    rooms: 'Number of rooms',
+    additionalInfo: 'Additional information',
   },
   fr: {
-    landlord: "Nouvelle demande propriétaire",
-    tenant: "Nouvelle demande locataire",
-    name: "Nom",
-    email: "E-mail",
-    phone: "Téléphone",
-    address: "Adresse",
-    propertyType: "Type de bien",
-    rooms: "Nombre de pièces",
-    additionalInfo: "Informations complémentaires",
+    landlord: 'Nouvelle demande propriétaire',
+    tenant: 'Nouvelle demande locataire',
+    name: 'Nom',
+    email: 'E-mail',
+    phone: 'Téléphone',
+    address: 'Adresse',
+    propertyType: 'Type de bien',
+    rooms: 'Nombre de pièces',
+    additionalInfo: 'Informations complémentaires',
   },
 } as const;
 
@@ -63,19 +66,20 @@ export const FindATenantInquiry = ({
   audience,
   userInfo,
   baseUrl,
-  locale = "en",
-}: FindATenantInquiryProps) => {
+  locale = 'en',
+}: IFindATenantInquiryProps) => {
   const t = copy[locale];
-  const heading = audience === "landlord" ? t.landlord : t.tenant;
+  const imageT = getImageMessages(locale);
+  const heading = audience === 'landlord' ? t.landlord : t.tenant;
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{heading}</Preview>
 
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             <Section className="px-[32px] py-[40px]">
               <Row>
                 <Column className="w-[50%]">
@@ -83,22 +87,23 @@ export const FindATenantInquiry = ({
                     src={`${baseUrl}/rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="Relocation Genevoise logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
                 <Column align="right">
                   <Row align="right">
                     <Link href="https://relocation-genevoise.ch">
-                      <div style={{ display: "flex" }}>
+                      <div style={{ display: 'flex' }}>
                         <Img
                           src={`${baseUrl}/globe-lucid.png`}
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold !leading-[100%] ml-1">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -108,30 +113,30 @@ export const FindATenantInquiry = ({
               </Row>
             </Section>
 
-            <Heading className="text-[#7C6C06] text-3xl font-semibold !leading-[130%] text-start m-8 mb-6">
+            <Heading className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#7C6C06]">
               {heading}
             </Heading>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.name}: <strong>{userInfo.full_name}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.email}: <strong>{userInfo.email}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.phone}: <strong>{userInfo.phone}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.address}: <strong>{userInfo.property_address}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.propertyType}: <strong>{userInfo.property_type}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.rooms}: <strong>{userInfo.number_of_rooms}</strong>
             </Text>
             {userInfo.additional_info ? (
-              <Text className="text-black text-[14px] leading-[24px] px-8">
+              <Text className="px-8 text-[14px] leading-[24px] text-black">
                 {t.additionalInfo}: <strong>{userInfo.additional_info}</strong>
               </Text>
             ) : null}
@@ -143,18 +148,18 @@ export const FindATenantInquiry = ({
 };
 
 FindATenantInquiry.PreviewProps = {
-  audience: "landlord",
+  audience: 'landlord',
   userInfo: {
-    full_name: "Gavin Tran",
-    email: "2Kw7M@example.com",
-    phone: "+41 22 715 17 48",
-    property_address: "Rue du Rhône 1, Genève",
-    property_type: "apartment",
-    number_of_rooms: "3",
-    additional_info: "Available from next month.",
+    full_name: 'Gavin Tran',
+    email: '2Kw7M@example.com',
+    phone: ORGANIZATION.telephone,
+    property_address: 'Rue du Rhône 1, Genève',
+    property_type: 'apartment',
+    number_of_rooms: '3',
+    additional_info: 'Available from next month.',
   },
-  baseUrl: "http://localhost:3000",
-  locale: "fr",
-} as FindATenantInquiryProps;
+  baseUrl: 'http://localhost:3000',
+  locale: 'fr',
+} as IFindATenantInquiryProps;
 
 export default FindATenantInquiry;

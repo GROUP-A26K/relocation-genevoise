@@ -15,7 +15,10 @@ import {
   Text,
 } from '@react-email/components';
 
-interface Props {
+import { ORGANIZATION } from '@/constants/seo';
+import { getImageMessages } from '@/utils/imageMessages';
+
+interface IApplicationProps {
   username: string;
   baseUrl: string;
   locale: 'en' | 'fr';
@@ -34,8 +37,7 @@ const copy = {
     appreciate: 'We appreciate your interest in joining us!',
     regards: 'Best regards,',
     team: 'The Relocation Genevoise Recruitment Team',
-    footer:
-      'This email was sent to <strong>contact@relocation-genevoise.ch</strong> because you submitted a job application to Relocation Genevoise.',
+    footer: `This email was sent to <strong>${ORGANIZATION.email}</strong> because you submitted a job application to Relocation Genevoise.`,
     contactUs: 'Contact us',
     privacy: 'Privacy policy',
     unsubscribe: 'Unsubscribe',
@@ -53,25 +55,29 @@ const copy = {
     appreciate: 'Merci pour l’intérêt que vous portez à notre entreprise !',
     regards: 'Cordialement,',
     team: 'L’équipe de recrutement d’Assurance Genevoise',
-    footer:
-      'Cet e-mail a été envoyé à <strong>contact@relocation-genevoise.ch</strong> car vous avez soumis une candidature à Relocation Genevoise.',
+    footer: `Cet e-mail a été envoyé à <strong>${ORGANIZATION.email}</strong> car vous avez soumis une candidature à Relocation Genevoise.`,
     contactUs: 'Nous contacter',
     privacy: 'Politique de confidentialité',
     unsubscribe: 'Se désabonner',
   },
 } as const;
 
-export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
+export const Application = ({
+  username,
+  baseUrl,
+  locale = 'en',
+}: IApplicationProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{t.preview}</Preview>
 
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             {/* ---------- Header ---------- */}
             <Section className="px-[32px] py-[40px]">
               <Row>
@@ -80,7 +86,8 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
                     src={`${baseUrl}rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="React Email logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
@@ -93,9 +100,9 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
-                        <Text className="text-[#605204] text-xs font-semibold !leading-[100%] ml-1">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -107,23 +114,23 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#605204] text-3xl font-semibold !leading-[130%] text-start m-8 mb-6"
+              className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#605204]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.hi} <strong>{username}</strong>,
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.thanks}
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.received}
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.urgent}
               <strong className="text-[#D7BC12]">
                 +41 (022) 715 17 45
@@ -135,14 +142,14 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
               </Link>
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.appreciate}
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8 mb-0">
+            <Text className="mb-0 px-8 text-[14px] leading-[24px] text-black">
               {t.regards}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8 mt-0">
+            <Text className="mt-0 px-8 text-[14px] leading-[24px] text-black">
               <strong>{t.team}</strong>
             </Text>
 
@@ -156,7 +163,7 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
               }}
             >
               <Text
-                className="text-[#605204] text-[14px] leading-[24px] text-center"
+                className="text-center text-[14px] leading-[24px] text-[#605204]"
                 dangerouslySetInnerHTML={{ __html: t.footer }}
               />
 
@@ -171,9 +178,9 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Phone"
+                        alt=""
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         +41 (022) 715 17 45
                       </Text>
                     </div>
@@ -187,9 +194,9 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Globe"
+                        alt=""
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%]  my-3 ml-1 mr-auto">
+                      <Text className="my-3 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         https://relocation-genevoise/ch
                       </Text>
                     </div>
@@ -203,9 +210,9 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Building"
+                        alt=""
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         Rue des Alpes 5, 1201 Geneva
                       </Text>
                     </div>
@@ -215,18 +222,18 @@ export const Application = ({ username, baseUrl, locale = 'en' }: Props) => {
                 {/* Right column: links */}
                 <Column colSpan={4}>
                   <Link href="https://relocation-genevoise.ch/contact">
-                    <Text className="text-[#605204] text-xs font-semibold !leading-[100%] ml-auto mr-5">
+                    <Text className="mr-5 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                       {t.contactUs}
                     </Text>
                   </Link>
 
                   <Link href="https://relocation-genevoise.ch/mentions-legales">
-                    <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-3 ml-auto">
+                    <Text className="my-3 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                       {t.privacy}
                     </Text>
                   </Link>
 
-                  <Text className="text-[#605204] text-xs font-semibold !leading-[100%] ml-auto mr-2">
+                  <Text className="mr-2 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                     {t.unsubscribe}
                   </Text>
                 </Column>
@@ -243,5 +250,5 @@ Application.PreviewProps = {
   username: 'Gavin',
   baseUrl: 'https://relocation-genevoise.vercel.app/',
   locale: 'en',
-} as Props;
+} as IApplicationProps;
 export default Application;

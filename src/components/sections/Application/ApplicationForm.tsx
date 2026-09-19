@@ -1,133 +1,159 @@
-"use client";
+'use client';
+import Image from 'next/image';
+import { toast } from 'sonner';
+import { useCallback, useMemo } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useLocale, useTranslations } from 'next-intl';
+import { useForm, type SubmitHandler } from 'react-hook-form';
+import { Clock, MapPin, CircleDollarSign } from 'lucide-react';
 
-import { FC, useCallback, useMemo, useState } from "react";
-import Image from "next/image";
-import axios from "@/libs/axios";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useLocale, useTranslations } from "next-intl";
-import { toast } from "sonner";
-import { Clock, MapPin, CircleDollarSign } from "lucide-react";
-
-import Button from "@/components/customs/Button";
+import { Form } from '@/components/ui/form';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { CheckboxField } from '@/components/common/Form/CheckboxField';
+import ConsultationBG from '@/assets/images/application/form-image.webp';
+import { useSubmitApplication } from '@/features/application/application.hooks';
+import { InputField, SelectField, UploadField } from '@/components/common/Form';
 import {
-  InputField,
-  SelectField,
-  UploadField,
-} from "@/components/customs/Form";
-import ConsultationBG from "@/assets/img/bg/assurance-genevoise-career-form.webp";
-import { Form } from "@/components/ui/form";
-import { CheckboxField } from "@/components/customs/Form/CheckboxStyleField";
-import { JobDetail } from "@/models/Job";
-import {
-  ApplicationFormInput,
+  type TApplicationFormInput,
   applicationSchema,
-} from "@/validations/application.validation";
-import Alert from "@/components/customs/Alert";
+} from '@/validations/application.validation';
+
+import type { IJobDetail } from '@/models/job';
+import type { TApplicationDraftKey } from '@/features/formDraft';
+
+const EXPERIENCE_CODES = [
+  'zero_to_one',
+  'two_to_three',
+  'four_to_five',
+  'six_plus',
+  'other',
+] as const;
 
 const buildOptions = (t: ReturnType<typeof useTranslations>) =>
-  [...Array(5).keys()].map((i) => {
-    const label = t(`experienceYears.options.${i}.label`);
-    return { value: label, label };
-  });
+  EXPERIENCE_CODES.map((value, i) => ({
+    value,
+    label: t(`experienceYears.options.${i}.label`),
+  }));
 
-const Divider = () => <div className="w-px h-4 bg-slate-200" />;
+const Divider = () => <div className="h-4 w-px bg-slate-200" />;
 
-const InfoChip: FC<{
-  icon: FC<{ className?: string }>;
+interface IInfoChipProps {
+  icon: React.FC<{ className?: string }>;
   label: string | number;
-}> = ({ icon: Icon, label }) => (
-  <li className="flex items-center gap-1.5 text-black-200 text-sm font-medium">
+}
+
+const InfoChip: React.FC<IInfoChipProps> = ({ icon: Icon, label }) => (
+  <li className="flex items-center gap-1.5 text-sm font-medium text-black-200">
     <Icon className="size-4 text-black-50" />
     {label}
   </li>
 );
 
-interface Props {
-  jobDetail: JobDetail;
+interface IApplicationFormProps {
+  jobDetail: IJobDetail;
+  draftKey: TApplicationDraftKey;
 }
 
-const ApplicationForm: FC<Props> = ({ jobDetail }) => {
-  const t = useTranslations("Application.ApplyForm");
-  const formT = useTranslations("Validation.Application");
-  const toastT = useTranslations("ToastMessage.Application");
+const ApplicationForm: React.FC<IApplicationFormProps> = ({
+  jobDetail,
+  draftKey,
+}) => {
+  const t = useTranslations('Application.ApplyForm');
+  const formT = useTranslations('Validation.Application');
+  const toastT = useTranslations('ToastMessage.Application');
+  const imageT = useTranslations('Images');
   const locale = useLocale();
-  const form = useForm<ApplicationFormInput>({
+  const form = useForm<TApplicationFormInput>({
     resolver: zodResolver(applicationSchema(formT)),
     defaultValues: {
-      expected_ctc: "",
-      experience_years: "",
+      expected_ctc: '',
+      experience_years: '',
       department: jobDetail.department,
       position: jobDetail.title,
       accept: false,
     },
   });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const { mutateAsync, isPending } = useSubmitApplication();
   const experienceOptions = useMemo(() => buildOptions(t), [t]);
+  const draft = useFormDraft(draftKey, form, {
+    restoreKey: locale,
+    restore: (values) => ({
+      ...values,
+      department: jobDetail.department,
+      position: jobDetail.title,
+    }),
+  });
 
-  const onSubmit: SubmitHandler<ApplicationFormInput> = useCallback(
+  const onSubmit: SubmitHandler<TApplicationFormInput> = useCallback(
     async (values) => {
-      if (submitted) return;
-      setLoading(true);
+      const submission = draft.beginSubmission(values);
+      const experience = experienceOptions.find(
+        (option) => option.value === values.experience_years
+      );
 
       try {
-        const fd = new FormData();
-        fd.append("resume_file", values.resume_file as File);
-        Object.entries(values).forEach(([k, v]) =>
-          k !== "resume_file" ? fd.append(k, String(v)) : null
-        );
+        await mutateAsync({
+          values: {
+            ...values,
+            experience_years: experience?.label ?? values.experience_years,
+            department: jobDetail.department,
+            position: jobDetail.title,
+          },
+          locale,
+        });
 
-        const { status } = await axios.post(
-          `api/application?locale=${locale}`,
-          fd,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
-
-        if (status === 201) {
-          setSubmitted(true);
-          toast.custom((t) => (
-            <Alert
-              type="success"
-              title={toastT("successTitle")}
-              as="solid"
-              onClick={() => toast.dismiss(t)}
-            >
-              {toastT("success")}
-            </Alert>
-          ));
-        }
-      } catch (error) {
-        setSubmitted(true);
+        draft.completeSubmission(submission);
         toast.custom((t) => (
           <Alert
-            type="danger"
-            title={toastT("errorTitle")}
+            type="success"
+            title={toastT('successTitle')}
             as="solid"
             onClick={() => toast.dismiss(t)}
           >
-            {toastT("error")}
+            {toastT('success')}
           </Alert>
         ));
-        console.error("Error submitting form:", error);
-      } finally {
-        setLoading(false);
+      } catch (error) {
+        toast.custom((t) => (
+          <Alert
+            type="danger"
+            title={toastT('errorTitle')}
+            as="solid"
+            onClick={() => toast.dismiss(t)}
+          >
+            {toastT('error')}
+          </Alert>
+        ));
+        console.error('Error submitting form:', error);
       }
     },
-    [locale, toastT, submitted]
+    [draft, experienceOptions, jobDetail, locale, mutateAsync, toastT]
   );
 
   const { title, employmentType, location, salaryMin, salaryMax, currency } =
     jobDetail;
 
   return (
-    <div className="container w-full 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md xl:px-[100px] lg:px-[48px] px-4 gap-8 pt-8">
-      <header className="flex w-full">
+    <div className="container w-full gap-8 px-4 pt-8 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
+      <RevealItem as="section" className="flex w-full">
         <div className="flex flex-col gap-4 lg:gap-6">
-          <p className="text-sm font-semibold text-secondary-600">
+          <BodyText
+            variant="sm"
+            className="leading-5 font-semibold text-secondary-600"
+          >
             Application
-          </p>
-          <h1 className="text-3xl font-semibold">{title}</h1>
+          </BodyText>
+          <HeadingText
+            as="h1"
+            className="text-3xl leading-9 font-semibold text-inherit"
+          >
+            {title}
+          </HeadingText>
 
           <ul className="inline-flex flex-wrap items-center gap-3">
             <InfoChip icon={Clock} label={employmentType} />
@@ -140,34 +166,40 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
             />
           </ul>
         </div>
-      </header>
+      </RevealItem>
 
-      <section className="flex flex-col lg:flex-row gap-12 lg:gap-16 bg-white shadow-xl rounded-xl lg:p-8 p-4 pt-6 mt-8">
-        <div className="flex flex-col gap-6 lg:gap-8 w-full">
-          <h2 className="text-xl font-semibold">
-            {t("formTitle", { default: "Application Forms" })}
-          </h2>
+      <RevealItem
+        as="section"
+        className="mt-8 flex flex-col gap-12 rounded-xl bg-white p-4 pt-6 shadow-xl lg:flex-row lg:gap-16 lg:p-8"
+      >
+        <div className="flex w-full flex-col gap-6 lg:gap-8">
+          <HeadingText
+            as="h2"
+            className="text-xl leading-7 font-semibold text-inherit"
+          >
+            {t('formTitle', { default: 'Application Forms' })}
+          </HeadingText>
 
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
+              onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
               className="flex flex-col gap-6"
             >
               {/* row 1 */}
-              <div className="flex flex-col lg:flex-row gap-6">
+              <div className="flex flex-col gap-6 lg:flex-row">
                 <InputField
                   name="first_name"
-                  label={t("first_name.label")}
-                  placeholder={t("first_name.placeholder")}
+                  label={t('first_name.label')}
+                  placeholder={t('first_name.placeholder')}
                   isRequired
                   register={form.register}
                   error={form.formState.errors.first_name?.message}
                 />
                 <InputField
                   name="last_name"
-                  label={t("last_name.label")}
-                  placeholder={t("last_name.placeholder")}
+                  label={t('last_name.label')}
+                  placeholder={t('last_name.placeholder')}
                   isRequired
                   register={form.register}
                   error={form.formState.errors.last_name?.message}
@@ -175,19 +207,19 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
               </div>
 
               {/* row 2 */}
-              <div className="flex flex-col lg:flex-row gap-6">
+              <div className="flex flex-col gap-6 lg:flex-row">
                 <InputField
                   name="email"
-                  label={t("email.label")}
-                  placeholder={t("email.placeholder")}
+                  label={t('email.label')}
+                  placeholder={t('email.placeholder')}
                   isRequired
                   register={form.register}
                   error={form.formState.errors.email?.message}
                 />
                 <InputField
                   name="phone"
-                  label={t("phone.label")}
-                  placeholder={t("phone.placeholder")}
+                  label={t('phone.label')}
+                  placeholder={t('phone.placeholder')}
                   isRequired
                   register={form.register}
                   error={form.formState.errors.phone?.message}
@@ -197,19 +229,19 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
               {/* select */}
               <SelectField
                 name="experience_years"
-                label={t("experienceYears.label")}
-                placeholder={t("experienceYears.placeholder")}
+                label={t('experienceYears.label')}
+                placeholder={t('experienceYears.placeholder')}
                 options={experienceOptions}
                 isRequired
-                register={form.register}
+                control={form.control}
                 error={form.formState.errors.experience_years?.message}
               />
 
               {/* compensation */}
               <InputField
                 name="expected_ctc"
-                label={t("expected.label")}
-                placeholder={t("expected.placeholder")}
+                label={t('expected.label')}
+                placeholder={t('expected.placeholder')}
                 type="text"
                 register={form.register}
                 error={form.formState.errors.expected_ctc?.message}
@@ -218,21 +250,14 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
               {/* file upload */}
               <UploadField
                 name="resume_file"
-                label={t("resume.label", { default: "Resume" })}
-                onChange={(file) =>
-                  file
-                    ? form.setValue("resume_file", file, {
-                        shouldValidate: true,
-                      })
-                    : form.resetField("resume_file")
-                }
+                label={t('resume.label', { default: 'Resume' })}
                 error={form.formState.errors.resume_file?.message}
               />
 
               {/* consent */}
               <CheckboxField
                 name="accept"
-                label={t("accept")}
+                label={t('accept')}
                 error={form.formState.errors.accept?.message}
               />
 
@@ -241,9 +266,9 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
                 variant="md"
                 type="secondary"
                 className="w-full"
-                disabled={loading || submitted}
+                disabled={isPending}
               >
-                {t("send")}
+                {t('send')}
               </Button>
             </form>
           </Form>
@@ -252,13 +277,14 @@ const ApplicationForm: FC<Props> = ({ jobDetail }) => {
         {/* illustration */}
         <Image
           src={ConsultationBG}
-          alt="Assurance Genevoise, courtier en assurance à Genève"
-          title="Assurance Genevoise, courtier en assurance à Genève"
+          placeholder="blur"
+          alt={imageT('application')}
+          title={imageT('application')}
           width={556}
           height={724}
-          className="rounded-2xl object-cover lg:max-h-[724px] 2xl:min-w-[556px] lg:min-w-[400px] max-h-[180px]"
+          className="max-h-[180px] rounded-2xl object-cover lg:max-h-[724px] lg:min-w-[400px] 2xl:min-w-[556px]"
         />
-      </section>
+      </RevealItem>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Body,
   Column,
@@ -13,69 +13,71 @@ import {
   Section,
   Tailwind,
   Text,
-} from "@react-email/components";
+} from '@react-email/components';
 
-interface FindATenantCustomerProps {
+import { getImageMessages } from '@/utils/imageMessages';
+import { CONTACT_PHONE_HREF, ORGANIZATION } from '@/constants/seo';
+
+interface IFindATenantCustomerProps {
   username: string;
   baseUrl: string;
-  locale: "en" | "fr";
+  locale: 'en' | 'fr';
 }
 
 const copy = {
   en: {
-    preview: "We Received Your Message",
-    heading: "We Received Your Message <br /> Thank You!",
-    hi: "Hi",
-    thanks: "Thank you for reaching out to us.",
+    preview: 'We Received Your Message',
+    heading: 'We Received Your Message <br /> Thank You!',
+    hi: 'Hi',
+    thanks: 'Thank you for reaching out to us.',
     received:
-      "We’ve received your message and a member of our team will get back to you as soon as possible — typically within 1–2 business days.",
-    urgent: "If your request is urgent, feel free to call us directly at ",
+      'We’ve received your message and a member of our team will get back to you as soon as possible — typically within 1–2 business days.',
+    urgent: 'If your request is urgent, feel free to call us directly at ',
     explore:
-      "In the meantime, feel free to explore more about our services at ",
-    appreciate: "We appreciate you getting in touch!",
-    regards: "Best regards,",
-    team: "The Relocation Genevoise Customer Support",
-    footer:
-      "This email was sent to <strong>contact@relocation-genevoise.ch</strong> because you signed up to receive newsletter from Relocation Genevoise",
-    contactUs: "Contact us",
-    privacy: "Privacy policy",
-    unsubscribe: "Unsubscribe",
+      'In the meantime, feel free to explore more about our services at ',
+    appreciate: 'We appreciate you getting in touch!',
+    regards: 'Best regards,',
+    team: 'The Relocation Genevoise Customer Support',
+    footer: `This email was sent to <strong>${ORGANIZATION.email}</strong> because you signed up to receive newsletter from Relocation Genevoise`,
+    contactUs: 'Contact us',
+    privacy: 'Privacy policy',
+    unsubscribe: 'Unsubscribe',
   },
   fr: {
-    preview: "Nous avons bien reçu votre message",
-    heading: "Nous avons bien reçu votre message <br /> Merci !",
-    hi: "Bonjour",
-    thanks: "Merci de nous avoir contactés.",
+    preview: 'Nous avons bien reçu votre message',
+    heading: 'Nous avons bien reçu votre message <br /> Merci !',
+    hi: 'Bonjour',
+    thanks: 'Merci de nous avoir contactés.',
     received:
-      "Nous avons bien reçu votre message et un membre de notre équipe vous répondra dans les plus brefs délais — généralement sous 1 à 2 jours ouvrables.",
-    urgent: "Si votre demande est urgente, appelez-nous directement au ",
-    explore: "En attendant, découvrez nos services ici : ",
-    appreciate: "Nous vous remercions de nous avoir contactés !",
-    regards: "Cordialement,",
-    team: "Le service client d’Relocation Genevoise",
-    footer:
-      "Cet e-mail a été envoyé à <strong>contact@relocation-genevoise.ch</strong> car vous vous êtes inscrit pour recevoir la newsletter d’Relocation Genevoise",
-    contactUs: "Nous contacter",
-    privacy: "Politique de confidentialité",
-    unsubscribe: "Se désabonner",
+      'Nous avons bien reçu votre message et un membre de notre équipe vous répondra dans les plus brefs délais — généralement sous 1 à 2 jours ouvrables.',
+    urgent: 'Si votre demande est urgente, appelez-nous directement au ',
+    explore: 'En attendant, découvrez nos services ici : ',
+    appreciate: 'Nous vous remercions de nous avoir contactés !',
+    regards: 'Cordialement,',
+    team: 'Le service client d’Relocation Genevoise',
+    footer: `Cet e-mail a été envoyé à <strong>${ORGANIZATION.email}</strong> car vous vous êtes inscrit pour recevoir la newsletter d’Relocation Genevoise`,
+    contactUs: 'Nous contacter',
+    privacy: 'Politique de confidentialité',
+    unsubscribe: 'Se désabonner',
   },
 } as const;
 
 export const FindATenantCustomer = ({
   username,
   baseUrl,
-  locale = "en",
-}: FindATenantCustomerProps) => {
+  locale = 'en',
+}: IFindATenantCustomerProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{t.preview}</Preview>
 
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             {/* ---------- Header ---------- */}
             <Section className="px-[32px] py-[40px]">
               <Row>
@@ -84,22 +86,23 @@ export const FindATenantCustomer = ({
                     src={`${baseUrl}/rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="React Email logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
                 <Column align="right">
                   <Row align="right">
                     <Link href="https://relocation-genevoise.ch">
-                      <div style={{ display: "flex" }}>
+                      <div style={{ display: 'flex' }}>
                         <Img
                           src={`${baseUrl}/globe-lucid.png`}
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
-                        <Text className="text-[#7C6C06] text-xs font-semibold !leading-[100%] ml-1">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#7C6C06]">
                           https://relocation-genevoise.ch/
                         </Text>
                       </div>
@@ -111,26 +114,29 @@ export const FindATenantCustomer = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#7C6C06] text-3xl font-semibold !leading-[130%] text-start m-8 mb-6"
+              className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#7C6C06]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.hi} <strong>{username}</strong>,
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.thanks}
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.received}
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.urgent}
-              <Link href="telto:41227151748">
-                <strong className="text-[#D7BC12]">+41 (022) 715 17 48</strong>.
+              <Link href={CONTACT_PHONE_HREF}>
+                <strong className="text-[#D7BC12]">
+                  {ORGANIZATION.telephone}
+                </strong>
+                .
               </Link>
               <br />
               {t.explore}
@@ -141,14 +147,14 @@ export const FindATenantCustomer = ({
               </Link>
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.appreciate}
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8 mb-0">
+            <Text className="mb-0 px-8 text-[14px] leading-[24px] text-black">
               {t.regards}
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8 mt-0">
+            <Text className="mt-0 px-8 text-[14px] leading-[24px] text-black">
               <strong>{t.team}</strong>
             </Text>
 
@@ -156,13 +162,13 @@ export const FindATenantCustomer = ({
             <Section
               className="p-8"
               style={{
-                background: "linear-gradient(90deg, #F8E166 0%, #FDF6D3 100%)",
-                padding: "20px",
-                borderRadius: "0 30px 0 0",
+                background: 'linear-gradient(90deg, #F8E166 0%, #FDF6D3 100%)',
+                padding: '20px',
+                borderRadius: '0 30px 0 0',
               }}
             >
               <Text
-                className="text-[#605204] text-[14px] leading-[24px] text-center"
+                className="text-center text-[14px] leading-[24px] text-[#605204]"
                 dangerouslySetInnerHTML={{ __html: t.footer }}
               />
 
@@ -170,32 +176,32 @@ export const FindATenantCustomer = ({
                 {/* Left column: icons + info */}
                 <Column colSpan={4}>
                   {/* phone */}
-                  <Link href="telto:41227151748">
-                    <div style={{ display: "flex" }}>
+                  <Link href={CONTACT_PHONE_HREF}>
+                    <div style={{ display: 'flex' }}>
                       <Img
                         src={`${baseUrl}/phone-call-lucid.png`}
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Phone"
+                        alt=""
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
-                        +41 (022) 715 17 48
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
+                        {ORGANIZATION.telephone}
                       </Text>
                     </div>
                   </Link>
 
                   {/* website */}
                   <Link href="https://relocation-genevoise.ch">
-                    <div style={{ display: "flex" }}>
+                    <div style={{ display: 'flex' }}>
                       <Img
                         src={`${baseUrl}/globe-lucid.png`}
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Globe"
+                        alt=""
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%]  my-3 ml-1 mr-auto">
+                      <Text className="my-3 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         https://relocation-genevoise.ch/
                       </Text>
                     </div>
@@ -203,15 +209,15 @@ export const FindATenantCustomer = ({
 
                   {/* address */}
                   <Link href="https://maps.app.goo.gl/jfRDDkPPBRkA57dA8">
-                    <div style={{ display: "flex" }}>
+                    <div style={{ display: 'flex' }}>
                       <Img
                         src={`${baseUrl}/buildings-lucid.png`}
                         width="13"
                         className="my-auto"
                         height="13"
-                        alt="Building"
+                        alt=""
                       />
-                      <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-0 ml-1 mr-auto">
+                      <Text className="my-0 mr-auto ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                         Rue des Alpes 5, 1201 Geneva
                       </Text>
                     </div>
@@ -221,13 +227,13 @@ export const FindATenantCustomer = ({
                 {/* Right column: links */}
                 <Column colSpan={4}>
                   <Link href="https://relocation-genevoise.ch/contact">
-                    <Text className="text-[#605204] text-xs font-semibold !leading-[100%] ml-auto mr-5">
+                    <Text className="mr-5 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                       {t.contactUs}
                     </Text>
                   </Link>
 
                   <Link href="https://relocation-genevoise.ch/mentions-legales">
-                    <Text className="text-[#605204] text-xs font-semibold !leading-[100%] my-3 ml-auto">
+                    <Text className="my-3 ml-auto text-xs leading-[100%] font-semibold text-[#605204]">
                       {t.privacy}
                     </Text>
                   </Link>
@@ -242,8 +248,8 @@ export const FindATenantCustomer = ({
 };
 
 FindATenantCustomer.PreviewProps = {
-  username: "Gavin",
-  baseUrl: "http://localhost:3000/",
-  locale: "fr",
-} as FindATenantCustomerProps;
+  username: 'Gavin',
+  baseUrl: 'http://localhost:3000/',
+  locale: 'fr',
+} as IFindATenantCustomerProps;
 export default FindATenantCustomer;

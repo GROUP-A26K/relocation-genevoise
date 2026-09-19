@@ -1,15 +1,16 @@
-import { ContactInfo } from '@/components/blocks/Info';
-import Section from '@/components/customs/Section';
-import { ContactFormView } from '@/components/sections/Contact';
 import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { Metadata } from 'next';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
+import { getPageAlternates } from '@/utils/seo';
+import Section from '@/components/common/Section';
+import { ContactFormView } from '@/components/sections/Contact';
+import { ContactInfo } from '@/components/common/Info/ContactInfo';
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+import type { Metadata } from 'next';
+
+export async function generateMetadata(
+  props: PageProps<'/[locale]/contact'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -19,20 +20,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/contact`,
-    },
+    alternates: getPageAlternates(locale, '/contact'),
   };
 }
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'Contact',
-  });
+export default async function Page() {
+  const t = await getTranslations('Contact');
+
   return (
     <>
-      <Section>
+      <Section revealTrigger="load">
         <ContactInfo
           heading={t('ContactInfo.heading')}
           subHeading={t('ContactInfo.subHeading')}

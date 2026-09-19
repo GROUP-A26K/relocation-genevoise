@@ -1,16 +1,7 @@
-import { Meta } from "@/models/Meta";
-import type {
-  IPropertyListing,
-  PropertyPriceUnit,
-  PropertyRentPeriod,
-} from "@/models/Property";
+import type { IMeta } from '@/models/meta';
+import type { IPropertyListing } from '@/models/property';
 
-export interface IIconProps {
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-export interface IPropertyParams {
+export type TPropertyParams = {
   page?: number;
   pageSize?: number;
   locale?: string;
@@ -22,51 +13,18 @@ export interface IPropertyParams {
   sort?: string;
   rooms?: string;
   availableOnly?: boolean;
-}
+};
 
-export interface IPropertyCategoryParams {
+export type TPropertyCategoryParams = {
   locale?: string;
-}
-
-export interface ISanityPropertyFacility {
-  typeRoom?: string;
-  name?: string;
-  valueType?: "number" | "text" | "none";
-  numberValue?: number;
-  textValue?: string;
-}
-
-export interface ISanityPropertyResponse {
-  _id: string;
-  title?: string;
-  slug?: { current?: string };
-  price?: number;
-  priceUnit?: PropertyPriceUnit;
-  listingType?: "rent" | "sale";
-  rentPeriod?: PropertyRentPeriod;
-  language?: string;
-  availability?: boolean;
-  description?: string;
-  mapLocation?: {
-    name?: string;
-    coordinates?: { lat?: number; lng?: number };
-  };
-  category?: string;
-  facilities?: ISanityPropertyFacility[];
-  imageUrl?: string;
-}
-
-export interface IPropertyCategoryDocument {
-  _id: string;
-  categoryName?: string;
-}
+};
 
 export interface IPropertiesResponse {
   properties: IPropertyListing[];
-  meta: Meta;
+  meta: IMeta;
 }
 
-export type Property = {
+export type TProperty = {
   id: string;
   title: string;
   type: string;
@@ -106,15 +64,15 @@ export type Property = {
   updatedAt: string;
 };
 
-export type ImageObj = {
+export type TImageObj = {
   id: string;
   url: string;
   isPrimary?: boolean;
 };
 
-export type GalleryMap = {
+export type TGalleryMap = {
   [key: string]: {
-    images: ImageObj[];
+    images: TImageObj[];
     description: string;
   };
 };

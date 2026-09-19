@@ -1,97 +1,107 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
-import Section from "@/components/customs/Section";
-import { BlogList } from "@/components/blocks/Blog";
-import { BlogDetailHero } from "@/components/blocks/Hero";
-import { ContentView } from "@/components/sections/BlogDetail";
-import { fetchBlogBySlug, fetchBlogs } from "@/services/blog.service";
-import { Env } from "@/libs/Env";
+import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
-type Props = {
-  params: Promise<{ slug: string; locale: string }>;
-};
+import { SITE_NAME } from '@/constants/seo';
+import BlogJsonLd from '@/components/seo/BlogJsonLd';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
+import { hydrateBlogDetail } from '@/features/blog/blog.hydration';
+import { BlogDetailClient } from '@/components/sections/BlogDetail/BlogDetailClient';
+import {
+  fetchBlogBySlug,
+  fetchBlogSlugBySlug,
+} from '@/features/blog/blog.service';
+import {
+  getLocalizedPath,
+  getOgLocale,
+  getPageAlternates,
+  getSlugByLocale,
+  toHref,
+  toIsoDate,
+} from '@/utils/seo';
 
-export default async function Page(props: Props) {
-  const { slug, locale } = await props.params;
+import type { Metadata } from 'next';
 
-  const t = await getTranslations({
-    locale,
-    namespace: "BlogDetail",
-  });
-
-  const blogDetail = await fetchBlogBySlug(slug, locale);
-
-  if (!blogDetail) {
-    notFound();
-  }
-
-  const { blogs } = await fetchBlogs({
-    page: 1,
-    pageSize: 3,
-    locale: locale,
-  });
-
-  return (
-    <>
-      <Section>
-        <BlogDetailHero {...blogDetail} />
-      </Section>
-
-      <ContentView tableOfContent={t("tableContent")} blog={blogDetail} />
-
-      <Section>
-        <BlogList
-          blogs={blogs}
-          heading={t("BlogList.heading")}
-          subHeading={t("BlogList.subHeading")}
-          description={t("BlogList.description")}
-          buttonText={t("BlogList.buttonText")}
-          buttonUrl={"/blog"}
-        />
-      </Section>
-    </>
-  );
-}
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/blog/[slug]'>
+): Promise<Metadata> {
   const { slug, locale } = await props.params;
   const blogDetail = await fetchBlogBySlug(slug, locale);
 
   if (!blogDetail) return {};
 
-  const bloglUrl = `${Env.NEXT_PUBLIC_SITE_URL}/${locale === "fr" ? "" : locale}${blogDetail.href}`;
+  const translations = await fetchBlogSlugBySlug(blogDetail.slug);
+  const alternates = getPageAlternates(
+    locale,
+    '/blog/[slug]',
+    getSlugByLocale(locale, slug, translations)
+  );
+  const { canonical } = alternates;
+  const images = [
+    {
+      url: blogDetail.imageUrl,
+      alt: blogDetail.imageAlt || blogDetail.title,
+    },
+  ];
 
   return {
     title: blogDetail.title,
     description: blogDetail.description,
     openGraph: {
-      type: "website",
-      locale: "de-DE",
-      siteName: "Relocation Genevoise",
-      url: bloglUrl,
-      images: [
-        {
-          url: blogDetail.imageUrl,
-          width: 1200,
-          height: 630,
-          alt: blogDetail.title,
-        },
-      ],
+      type: 'article',
+      locale: getOgLocale(locale),
+      siteName: SITE_NAME,
+      url: canonical,
+      publishedTime: toIsoDate(blogDetail.publishedDate),
+      modifiedTime: toIsoDate(blogDetail.updatedAt),
+      authors: [blogDetail.author.name],
+      images,
     },
-
     twitter: {
-      images: [
-        {
-          url: blogDetail.imageUrl,
-          width: 1200,
-          height: 630,
-          alt: blogDetail.title,
-        },
-      ],
+      images,
     },
-    alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/${blogDetail.href}`,
-    },
+    alternates,
   };
+}
+
+export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
+  const { slug, locale } = await props.params;
+
+  const tBreadcrumb = await getTranslations('Breadcrumb');
+
+  const { state, blogDetail, relatedBlogs } = await hydrateBlogDetail(
+    slug,
+    locale
+  );
+
+  if (!blogDetail) {
+    notFound();
+  }
+
+  const blogPath = getLocalizedPath(locale, toHref('/blog/[slug]', slug));
+
+  return (
+    <>
+      <BlogJsonLd blog={blogDetail} locale={locale} path={blogPath} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
+          {
+            name: tBreadcrumb('blog'),
+            path: getLocalizedPath(locale, '/blog'),
+          },
+          { name: blogDetail.title, path: blogPath },
+        ]}
+      />
+
+      <HydrationBoundary state={state}>
+        <BlogDetailClient
+          slug={slug}
+          locale={locale}
+          blog={blogDetail}
+          relatedBlogs={relatedBlogs.blogs}
+        />
+      </HydrationBoundary>
+    </>
+  );
 }

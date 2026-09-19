@@ -1,15 +1,17 @@
-import { Metadata } from "next";
-import { Env } from "@/libs/Env";
-import { AppConfig } from "@/utils/AppConfig";
-import { getPropertyDetail } from "@/services/property.service";
-import { ScrollToTop } from "@/components/customs/ScrollToTop";
+import { getTranslations } from 'next-intl/server';
 
-type Props = {
-  children: React.ReactNode;
-  params: Promise<{ locale: string; slug: string }>;
-};
+import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
+import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
+import {
+  fetchPropertySlugBySlug,
+  getPropertyDetail,
+} from '@/features/property/property.service';
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+import type { Metadata } from 'next';
+
+export async function generateMetadata(
+  props: LayoutProps<'/[locale]/properties/[slug]'>
+): Promise<Metadata> {
   const { locale, slug } = await props.params;
   const property = await getPropertyDetail(slug, locale);
 
@@ -17,9 +19,25 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     return {};
   }
 
-  const propertyPath = `${AppConfig.routes.properties[locale as "fr" | "en"]}/${slug}`;
-  const propertyUrl = `${Env.NEXT_PUBLIC_SITE_URL}${locale === "fr" ? "" : `/${locale}`}${propertyPath}`;
+  const translations = await fetchPropertySlugBySlug(property.slug.current);
+  const alternates = getPageAlternates(
+    locale,
+    '/properties/[slug]',
+    getSlugByLocale(locale, slug, translations)
+  );
+  const { canonical } = alternates;
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
   const imageUrl = property.areas[0]?.mainImageUrl;
+  const images = imageUrl
+    ? [{ url: imageUrl, alt: property.title || imageT('property.listing') }]
+    : [
+        {
+          url: OG_IMAGE.path,
+          width: OG_IMAGE.width,
+          height: OG_IMAGE.height,
+          alt: imageT('common.logo'),
+        },
+      ];
 
   return {
     title: property.title,
@@ -28,44 +46,21 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         ? `${property.description.substring(0, 157)}...`
         : property.description,
     openGraph: {
-      type: "website",
-      locale: "de-DE",
-      siteName: "Relocation Genevoise",
-      url: propertyUrl,
-      images: imageUrl
-        ? [
-            {
-              url: imageUrl,
-              width: 1200,
-              height: 630,
-              alt: property.title,
-            },
-          ]
-        : [],
+      type: 'website',
+      locale: getOgLocale(locale),
+      siteName: SITE_NAME,
+      url: canonical,
+      images,
     },
     twitter: {
-      images: imageUrl
-        ? [
-            {
-              url: imageUrl,
-              width: 1200,
-              height: 630,
-              alt: property.title,
-            },
-          ]
-        : [],
+      images,
     },
-    alternates: {
-      canonical: `/${locale === "fr" ? "" : locale}${propertyPath}`,
-    },
+    alternates,
   };
 }
 
-export default async function PropertyDetailLayout({ children }: Props) {
-  return (
-    <>
-      <ScrollToTop />
-      {children}
-    </>
-  );
+export default function PropertyDetailLayout({
+  children,
+}: React.PropsWithChildren) {
+  return children;
 }

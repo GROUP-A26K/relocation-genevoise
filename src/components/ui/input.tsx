@@ -1,22 +1,23 @@
 import * as React from 'react';
 
 import { cn } from '@/libs/utils';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<'input'>>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(
-          'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
+  return (
+    <input
+      data-slot="input"
+      type={type}
+      className={cn(
+        bodyTextVariants(),
+        'text-[length:inherit] leading-[150%] font-[number:inherit] text-inherit',
+        cn(
+          'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
           className
-        )}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Input.displayName = 'Input';
-
+        )
+      )}
+      {...props}
+    />
+  );
+}
 export { Input };

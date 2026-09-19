@@ -1,56 +1,67 @@
-"use client";
+'use client';
+import { motion } from 'motion/react';
+import { usePathname } from 'next/navigation';
+import { useDebounceValue } from 'usehooks-ts';
+import { useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
-import { useLocale, useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "framer-motion";
-import { FC, useEffect, useRef, useTransition } from "react";
-import { parseAsString, parseAsInteger, useQueryStates } from "nuqs";
+import Show from '@/components/common/Show';
+import Input from '@/components/common/Input';
+import Section from '@/components/common/Section';
+import TabsMenu from '@/components/common/TabsMenu';
+import { BlogCard } from '@/components/common/Card';
+import EmptyData from '@/components/common/EmptyData';
+import { RevealItem } from '@/components/common/Reveal';
+import { Pagination } from '@/components/common/Pagination';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { BlogHero } from '@/components/sections/Blog/BlogHero';
+import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
+import {
+  useBlogCategories,
+  useBlogList,
+  useLatestBlog,
+} from '@/features/blog/blog.hooks';
 
-import { Blog } from "@/models/BLog";
-import { Meta } from "@/models/Meta";
-import { BlogCategory } from "@/sanity/types";
-import useDebounce from "@/hooks/useDebounce";
-import Input from "@/components/customs/Input";
-import Section from "@/components/customs/Section";
-import TabsMenu from "@/components/blocks/TabsMenu";
-import { BlogHero } from "@/components/blocks/Hero";
-import { BlogCard } from "@/components/customs/Card";
-import EmptyData from "@/components/customs/EmptyData";
-import { Pagination } from "@/components/blocks/Pagination";
-import { Spinner } from "@/components/customs/Spinner/Spinner";
+import { BlogListSkeleton } from './BlogListSkeleton';
 
-interface Props {
-  category: BlogCategory[];
-  newestBlog: Blog | null;
-  blogs: Blog[];
-  meta: Meta;
+import type { IBlog } from '@/models/blog';
+import type { IMeta } from '@/models/meta';
+import type { POST_CATEGORIES_QUERY_RESULT } from '@/sanity/types';
+
+interface IPageViewProps {
+  category: POST_CATEGORIES_QUERY_RESULT;
+  newestBlog: IBlog | null;
+  blogs: IBlog[];
+  meta: IMeta;
 }
 
-export const PageView: FC<Props> = (props) => {
-  const t = useTranslations("Blog");
-  const [isPending, startTransition] = useTransition();
+export const PageView: React.FC<IPageViewProps> = (props) => {
+  const t = useTranslations('Blog');
+  const imageT = useTranslations('Images');
 
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(1),
-      filterBy: parseAsString.withDefault(""),
-      search: parseAsString.withDefault(""),
+      filterBy: parseAsString.withDefault(''),
+      search: parseAsString.withDefault(''),
     },
-    {
-      shallow: false,
-      scroll: false,
-      startTransition,
-    },
+    { shallow: true, scroll: false }
   );
 
   const locale = useLocale();
-  const searchPlaceholder = locale === "fr" ? "Rechercher" : "Search";
+  const pathname = usePathname();
+  const searchPlaceholder = locale === 'fr' ? 'Rechercher' : 'Search';
 
-  const [debouncedSearch, search, setSearch] = useDebounce(
-    queryParams.search,
-    500,
-  );
+  const [search, setSearch] = useState(queryParams.search);
+  const [debouncedSearch] = useDebounceValue(search, 500);
 
   const lastPushedSearch = useRef(queryParams.search);
+
+  useEffect(() => {
+    setSearch(queryParams.search);
+    lastPushedSearch.current = queryParams.search;
+  }, [queryParams.search]);
 
   useEffect(() => {
     if (debouncedSearch === lastPushedSearch.current) {
@@ -58,32 +69,62 @@ export const PageView: FC<Props> = (props) => {
     }
 
     lastPushedSearch.current = debouncedSearch;
-    setQueryParams({ search: debouncedSearch, page: 1 });
+    void setQueryParams({ search: debouncedSearch, page: 1 });
   }, [debouncedSearch, setQueryParams]);
 
-  const showEmpty = !isPending && props.blogs.length === 0;
-  const showList = !isPending && props.blogs.length > 0;
+  const filters = {
+    locale,
+    page: queryParams.page,
+    pageSize: 9,
+    filterBy: queryParams.filterBy,
+    search: queryParams.search,
+    exceptSlug: props.newestBlog?.slug,
+  };
+  const listQuery = useBlogList(filters);
+  const categoryQuery = useBlogCategories(locale);
+  const latestQuery = useLatestBlog(locale);
+  const blogs = listQuery.data?.blogs ?? props.blogs;
+  const meta = listQuery.data?.meta ?? props.meta;
+  const category = categoryQuery.data?.posts ?? props.category;
+  const newestBlog = latestQuery.data ?? props.newestBlog;
+  const loading = listQuery.isPending || listQuery.isPlaceholderData;
+
+  const listTopRef = useScrollIntoViewOnChange<HTMLDivElement>(
+    `${queryParams.page}|${queryParams.filterBy}|${queryParams.search}`
+  );
 
   return (
     <>
-      <Section isDivider>
-        {props.newestBlog && (
-          <BlogHero
-            heading={t("heading")}
-            subHeading={t("subHeading")}
-            description={t("description")}
-            buttonText={t("buttonText")}
-            blog={props.newestBlog}
-          />
-        )}
+      <Section isDivider revealTrigger="load">
+        <Show
+          when={newestBlog}
+          fallback={
+            <HeadingText as="h1" className="sr-only">
+              {t('heading')}
+            </HeadingText>
+          }
+        >
+          {(blog) => (
+            <BlogHero
+              heading={t('heading')}
+              subHeading={t('subHeading')}
+              description={t('description')}
+              buttonText={t('buttonText')}
+              blog={blog}
+            />
+          )}
+        </Show>
       </Section>
 
-      <Section childrenProps={{ className: "xl:gap-12" }}>
-        <div className="flex lg:flex-row flex-col items-center justify-between gap-8">
-          <div className="lg:w-fit w-full px-auto overflow-y-auto">
+      <Section childrenProps={{ className: 'xl:gap-12' }}>
+        <RevealItem
+          ref={listTopRef}
+          className="flex scroll-mt-26 flex-col items-center justify-between gap-8 lg:flex-row"
+        >
+          <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
-              category={props.category.map((cat) => ({
-                title: cat.name || "Unknown Category",
+              category={category.map((cat) => ({
+                title: cat.name || t('fallback.category'),
               }))}
               activeValue={queryParams.filterBy}
               onClick={(filterBy: string) =>
@@ -97,75 +138,70 @@ export const PageView: FC<Props> = (props) => {
             placeholder={searchPlaceholder}
             value={search}
             onChange={(e) => setSearch((e.target as HTMLInputElement).value)}
-            className="text-base h-10 lg:max-w-[280px] w-full flex items-center"
+            className="flex h-10 w-full items-center text-base lg:max-w-70"
           />
-        </div>
+        </RevealItem>
 
-        <AnimatePresence>
-          {isPending && (
-            <motion.div
-              key="spinner"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Spinner />
-            </motion.div>
-          )}
+        <HeadingText
+          as="h2"
+          className="sr-only text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit"
+        >
+          Blog posts
+        </HeadingText>
 
-          {showEmpty && (
+        <Show when={!loading} fallback={<BlogListSkeleton />}>
+          <Show
+            when={blogs.length > 0}
+            fallback={
+              <motion.div
+                className="flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <EmptyData
+                  title={t('emptyData.title')}
+                  description={t('emptyData.description')}
+                  imageAlt={imageT('common.empty.blog')}
+                />
+              </motion.div>
+            }
+          >
             <motion.div
-              key="noBlogs"
-              className="flex items-center justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <EmptyData
-                title={t("emptyData.title")}
-                description={t("emptyData.description")}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <h2 className="sr-only">Blog posts</h2>
-
-        <AnimatePresence>
-          {showList && (
-            <motion.div
-              key="blogList"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+              className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
             >
-              {props.blogs.map((blog) => (
+              {blogs.map((blog) => (
                 <BlogCard key={blog.id} {...blog} />
               ))}
             </motion.div>
-          )}
-        </AnimatePresence>
 
-        {showList && (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key="pagination"
-              className="flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <Pagination
-                meta={props.meta}
-                className="py-0 lg:py-0"
-                onClick={(page: number) => setQueryParams({ page })}
-              />
-            </motion.div>
-          </AnimatePresence>
-        )}
+            <Show when={meta.pagination.pageCount > 1}>
+              <motion.div
+                className="flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <Pagination
+                  meta={meta}
+                  className="xl:pt-4"
+                  onClick={(page: number) => setQueryParams({ page })}
+                  getPageHref={(page) => {
+                    const params = new URLSearchParams();
+                    if (page > 1) params.set('page', String(page));
+                    if (queryParams.filterBy)
+                      params.set('filterBy', queryParams.filterBy);
+                    if (queryParams.search)
+                      params.set('search', queryParams.search);
+                    const query = params.toString();
+                    return `${pathname}${query ? `?${query}` : ''}`;
+                  }}
+                />
+              </motion.div>
+            </Show>
+          </Show>
+        </Show>
       </Section>
     </>
   );

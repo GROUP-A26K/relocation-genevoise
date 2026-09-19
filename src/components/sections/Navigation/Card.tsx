@@ -1,63 +1,73 @@
 'use client';
-import { ArrowRight } from 'lucide-react';
-import { FC } from 'react';
 import Image from 'next/image';
-import { cn } from '@/libs/utils';
+import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/libs/i18nNavigation';
 
-interface BaseProps {
+import { cn } from '@/libs/utils';
+import { BodyText } from '@/components/common/Text';
+import { Link, type THref } from '@/libs/i18nNavigation';
+
+interface ICardProps {
   title: string;
   summary: string;
   image: string;
-  url: string;
+  imageAlt?: string;
+  imageLqip?: string;
+  url: THref;
   variant: 'lg' | 'md';
 }
 
-type Props = BaseProps;
-export const Card: FC<Props> = ({ title, summary, image, url, variant }) => {
-  const STYLE_CARD: Record<'lg' | 'md', string> = {
-    lg: cn('text-[14px]'),
-    md: cn('text-[12px]'),
-  };
-  const t = useTranslations('Navbar.blogButton');
+export const Card: React.FC<ICardProps> = ({
+  title,
+  summary,
+  image,
+  imageAlt,
+  imageLqip,
+  url,
+  variant,
+}) => {
+  const t = useTranslations('Navbar');
 
   return (
-    <div className='card'>
+    <div className="card">
       <Link
         href={url}
-        className='group flex xl:flex-col flex-row gap-[8px] xl:justify-between justify-start p-[12px]'
+        className="group flex flex-row justify-start gap-[8px] p-[12px] xl:flex-col xl:justify-between"
       >
         <div>
-          <div className='flex'>
+          <div className="flex">
             <Image
               src={image}
-              alt={title}
+              placeholder={imageLqip ? 'blur' : 'empty'}
+              blurDataURL={imageLqip}
+              alt={imageAlt || title}
+              title={imageAlt || title}
               width={256}
               height={160}
-              className='xl:h-[160px] xl:w-[256px] h-[90px] w-[144px] object-cover object-center rounded-xl'
+              className="h-[90px] w-[144px] rounded-xl object-cover object-center xl:h-[160px] xl:w-[256px]"
             />
           </div>
         </div>
-        <div className='flex flex-col gap-[8px] w-[296px] justify-center'>
-          <div
+        <div className="flex w-[296px] flex-col justify-center gap-[8px]">
+          <BodyText
             title={title}
-            className='line-clamp-1 break-words text-[14px] font-semibold !leading-[130%]'
+            variant="sm"
+            className="line-clamp-1 font-semibold wrap-break-word text-inherit"
           >
             {title}
-          </div>
-          <div
+          </BodyText>
+          <BodyText
             title={summary}
-            className={cn(
-              'line-clamp-2 text-black-200 font-normal ',
-              STYLE_CARD[variant],
-              'leading-[130%]'
-            )}
+            variant={variant === 'lg' ? 'sm' : 'xs'}
+            className={cn('line-clamp-2', variant === 'md' && 'text-inherit')}
           >
             {summary}
-          </div>
-          <div className='flex items-center text-[14px] text-primary-500 font-semibold !leading-[130%]'>
-            {t('text')}
+          </BodyText>
+          <BodyText
+            variant="sm"
+            className="flex items-center font-semibold text-primary-500"
+          >
+            {t('blogButton.text')}
             <ArrowRight
               strokeWidth={3}
               height={12}
@@ -66,7 +76,7 @@ export const Card: FC<Props> = ({ title, summary, image, url, variant }) => {
                 'ml-1.5 transition-transform group-hover:translate-x-1'
               )}
             />
-          </div>
+          </BodyText>
         </div>
       </Link>
     </div>

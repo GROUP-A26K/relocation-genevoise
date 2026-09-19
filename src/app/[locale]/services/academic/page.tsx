@@ -1,54 +1,42 @@
-import { Hero } from '@/components/blocks/Hero';
-import Section from '@/components/customs/Section';
 import { getTranslations } from 'next-intl/server';
-import { Metadata } from 'next';
-import { BookConsultation2 } from '@/components/blocks/Consultation';
+
+import { getPageAlternates } from '@/utils/seo';
+import Section from '@/components/common/Section';
+import { Hero } from '@/components/common/Hero/Hero';
 import { ContentView } from '@/components/sections/ServiceDetail';
-import HeroImage from '@/assets/img/hero/service/scolarite-hero-image.webp';
-import { AppConfig } from '@/utils/AppConfig';
+import HeroImage from '@/assets/images/services/scolarite-hero.webp';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
+import type { Metadata } from 'next';
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/services/academic'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
     namespace: 'Metadata.AcademicService',
   });
 
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['academicService'][
-      locale as keyof (typeof routes)['academicService']
-    ];
-
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
-    },
+    alternates: getPageAlternates(locale, '/services/academic'),
   };
 }
 
-export default async function Page(props: Props) {
-  const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'Education',
-  });
+export default async function Page() {
+  const t = await getTranslations('Education');
+  const imageT = await getTranslations('Images');
 
   return (
     <>
-      <Section className="relative">
+      <Section revealTrigger="load" className="relative">
         <Hero
           heroImage={{
-            src: HeroImage.src,
-            alt: t('subHeading'),
-            title: t('subHeading'),
+            src: HeroImage,
+            alt: imageT('services.academic'),
+            title: imageT('services.academic'),
           }}
           heading={t('heading')}
           subHeading={t('subHeading')}
@@ -106,15 +94,13 @@ export default async function Page(props: Props) {
           },
         ]}
       />
-      <Section className="lg:bg-white bg-grey-50">
-        <BookConsultation2
-          heading={t('BookConsultation.heading')}
-          subHeading={t('BookConsultation.subHeading')}
-          description={t('BookConsultation.description')}
-          buttonText1={t('BookConsultation.buttonText1')}
-          buttonText2={t('BookConsultation.buttonText2')}
-        />
-      </Section>
+      <BookConsultation
+        heading={t('BookConsultation.heading')}
+        subHeading={t('BookConsultation.subHeading')}
+        description={t('BookConsultation.description')}
+        buttonText1={t('BookConsultation.buttonText1')}
+        buttonText2={t('BookConsultation.buttonText2')}
+      />
     </>
   );
 }

@@ -1,17 +1,20 @@
-import { FC } from 'react';
+import { RevealSection } from '@/components/common/Reveal';
 
-interface Props {
+interface IContentContainerProps {
   children: React.ReactNode;
 }
 
-export const ContentContainer: FC<Props> = ({ children }) => {
+export const ContentContainer: React.FC<IContentContainerProps> = ({
+  children,
+}) => {
   return (
-    <section className="relative flex flex-col justify-center items-center text-black-500">
-      <div
-        className={`container pb-14 lg:pb-16  lg:pt-16 pt-12 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4 `}
+    <section className="relative flex flex-col items-center justify-center text-black-500">
+      <RevealSection
+        trigger="load"
+        className="container px-4 pt-12 pb-14 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] lg:pt-16 lg:pb-16 xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)"
       >
         {children}
-      </div>
+      </RevealSection>
     </section>
   );
 };

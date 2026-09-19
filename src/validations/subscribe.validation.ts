@@ -1,6 +1,12 @@
 import { z } from 'zod';
 
-export function subscribeSchema(t?: (key: string) => string) {
+import type { useTranslations } from 'next-intl';
+
+type TValidationTranslator = ReturnType<
+  typeof useTranslations<'Validation.Subscribe'>
+>;
+
+export function subscribeSchema(t?: TValidationTranslator) {
   return z.object({
     email: z.string().email({
       message: t?.('emailInvalid') ?? 'Please enter a valid email address.', // Dynamic translation
@@ -8,4 +14,4 @@ export function subscribeSchema(t?: (key: string) => string) {
   });
 }
 
-export type SubscribeFormInput = z.infer<ReturnType<typeof subscribeSchema>>;
+export type TSubscribeFormInput = z.infer<ReturnType<typeof subscribeSchema>>;

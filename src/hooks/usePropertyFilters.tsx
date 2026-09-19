@@ -1,38 +1,31 @@
-"use client";
+'use client';
 
-import { useCallback, useMemo, type TransitionStartFunction } from "react";
+import { isNil } from 'lodash-es';
+import { useCallback, useMemo } from 'react';
 import {
   parseAsBoolean,
   parseAsInteger,
   parseAsString,
   useQueryStates,
-} from "nuqs";
+} from 'nuqs';
 
 import {
   PROPERTY_DEFAULT_CURRENCY,
   toCHF as toCHFStatic,
-} from "@/constants/property";
+} from '@/constants/property';
 import {
   buildPropertyFilterParams,
   categoriesToParam,
   INITIAL_PROPERTY_QUERY_PARAMS as INITIAL_PARAMS,
   paramToCategories,
-} from "@/utils/propertyFilters";
+} from '@/utils/propertyFilters';
 
 export {
   PROPERTY_PAGE_SIZE,
-  type IPropertyFilterQueryParams,
-} from "@/utils/propertyFilters";
+  type TPropertyFilterQueryParams,
+} from '@/utils/propertyFilters';
 
-type PropertyAppliedFilters = {
-  categories: string[];
-  location: string;
-  priceRange: string;
-  currency: string;
-  rooms: string;
-};
-
-export type PropertyFilterFormValues = {
+export type TPropertyAppliedFilters = {
   categories: string[];
   location: string;
   priceRange: string;
@@ -41,14 +34,13 @@ export type PropertyFilterFormValues = {
 };
 
 export const PROPERTY_SORT_OPTIONS = [
-  { value: "newest", labelKey: "sort.newest" },
-  { value: "price_asc", labelKey: "sort.priceAsc" },
-  { value: "price_desc", labelKey: "sort.priceDesc" },
+  { value: 'newest', labelKey: 'sort.newest' },
+  { value: 'price_asc', labelKey: 'sort.priceAsc' },
+  { value: 'price_desc', labelKey: 'sort.priceDesc' },
 ] as const;
 
 export const usePropertyFilters = (
-  convertToCHF?: (amount: number, currency: string) => number,
-  startTransition?: TransitionStartFunction,
+  convertToCHF?: (amount: number, currency: string) => number
 ) => {
   const [queryParams, setQueryParams] = useQueryStates(
     {
@@ -61,10 +53,28 @@ export const usePropertyFilters = (
       rooms: parseAsString.withDefault(INITIAL_PARAMS.rooms),
       availableOnly: parseAsBoolean.withDefault(INITIAL_PARAMS.availableOnly),
     },
-    { shallow: false, scroll: false, startTransition },
+    { shallow: true, scroll: false }
   );
 
-  const formValues = useMemo<PropertyFilterFormValues>(
+  const filterAnchor = useMemo(
+    () =>
+      JSON.stringify({
+        categories: queryParams.categories,
+        location: queryParams.location,
+        priceRange: queryParams.priceRange,
+        currency: queryParams.currency,
+        rooms: queryParams.rooms,
+      }),
+    [
+      queryParams.categories,
+      queryParams.currency,
+      queryParams.location,
+      queryParams.priceRange,
+      queryParams.rooms,
+    ]
+  );
+
+  const formValues = useMemo(
     () => ({
       location: queryParams.location,
       categories: paramToCategories(queryParams.categories),
@@ -78,16 +88,15 @@ export const usePropertyFilters = (
       queryParams.location,
       queryParams.priceRange,
       queryParams.rooms,
-    ],
+    ]
   );
 
   const applyFilters = useCallback(
-    (filters: Partial<PropertyAppliedFilters> = {}) => {
+    (filters: Partial<TPropertyAppliedFilters> = {}) => {
       const nextLocation = (filters.location ?? queryParams.location).trim();
-      const nextCategories =
-        filters.categories !== undefined
-          ? categoriesToParam(filters.categories)
-          : queryParams.categories;
+      const nextCategories = !isNil(filters.categories)
+        ? categoriesToParam(filters.categories)
+        : queryParams.categories;
       const nextPriceRange = filters.priceRange ?? queryParams.priceRange;
       const nextCurrency =
         filters.currency ?? queryParams.currency ?? PROPERTY_DEFAULT_CURRENCY;
@@ -109,38 +118,39 @@ export const usePropertyFilters = (
       queryParams.priceRange,
       queryParams.rooms,
       setQueryParams,
-    ],
+    ]
   );
 
   const handlePageChange = useCallback(
     (page: number) => {
       void setQueryParams({ page });
     },
-    [setQueryParams],
+    [setQueryParams]
   );
 
   const handleSortChange = useCallback(
     (sort: string) => {
       void setQueryParams({ sort, page: 1 });
     },
-    [setQueryParams],
+    [setQueryParams]
   );
 
   const handleAvailableOnlyChange = useCallback(
     (availableOnly: boolean) => {
       void setQueryParams({ availableOnly, page: 1 });
     },
-    [setQueryParams],
+    [setQueryParams]
   );
 
   const filterParams = useMemo(
     () => buildPropertyFilterParams(queryParams, convertToCHF ?? toCHFStatic),
-    [queryParams, convertToCHF],
+    [queryParams, convertToCHF]
   );
 
   return {
     queryParams,
     formValues,
+    filterAnchor,
     setQueryParams,
     handlePageChange,
     handleSortChange,

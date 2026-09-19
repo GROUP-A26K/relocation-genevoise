@@ -1,32 +1,26 @@
-import { PageView } from '@/components/sections/LegalPersonal';
-import { AppConfig } from '@/utils/AppConfig';
-import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
+import { getPageAlternates } from '@/utils/seo';
+import { PageView } from '@/components/sections/LegalPersonal';
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+import type { Metadata } from 'next';
+
+export async function generateMetadata(
+  props: PageProps<'/[locale]/personal-data'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
     namespace: 'Metadata.PersonalData',
   });
-  const { routes } = AppConfig;
-
-  const canonical =
-    routes['personalData'][locale as keyof (typeof routes)['personalData']];
 
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/${canonical}`,
-    },
+    alternates: getPageAlternates(locale, '/personal-data'),
   };
 }
 
-export default async function Page() {
+export default function Page() {
   return <PageView />;
 }

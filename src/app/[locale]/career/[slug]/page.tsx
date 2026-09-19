@@ -1,46 +1,86 @@
-import { PageView } from "@/components/sections/CareerDetail";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-const NUMBER_OF_FEATURED_JOBS = 5;
+import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
+import { HydrationBoundary } from '@tanstack/react-query';
 
+import { SITE_NAME } from '@/constants/seo';
+import { PageView } from '@/components/sections/CareerDetail';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
+import { hydrateCareerDetail } from '@/features/career/career.hydration';
 import {
+  getLocalizedPath,
+  getPageAlternates,
+  getSlugByLocale,
+  toHref,
+} from '@/utils/seo';
+import {
+  fetchCareerSlugBySlug,
   fetchJobDetailBySlug,
-  fetchFeaturedJobPosts,
-} from "@/services/career/career.service";
-import { AppConfig } from "@/utils/AppConfig";
+} from '@/features/career/career.service';
 
-type Props = {
-  params: Promise<{ locale: string; slug: string }>;
-};
-export default async function Page(props: Props) {
+import type { Metadata } from 'next';
+
+export default async function Page(
+  props: PageProps<'/[locale]/career/[slug]'>
+) {
   const { slug, locale } = await props.params;
-  const jobDetail = await fetchJobDetailBySlug(slug, locale);
+  const {
+    state,
+    detail: jobDetail,
+    featuredJobs,
+  } = await hydrateCareerDetail(slug, locale);
 
   if (!jobDetail) notFound();
 
-  const { jobs: featuredJobs } = await fetchFeaturedJobPosts(slug, {
-    locale,
-    filterBy: jobDetail.department,
-    limit: NUMBER_OF_FEATURED_JOBS,
-  });
+  const tBreadcrumb = await getTranslations('Breadcrumb');
 
-  return <PageView jobDetail={jobDetail} featuredJobs={featuredJobs} />;
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
+          {
+            name: tBreadcrumb('career'),
+            path: getLocalizedPath(locale, '/career'),
+          },
+          {
+            name: jobDetail.title,
+            path: getLocalizedPath(
+              locale,
+              toHref('/career/[slug]', jobDetail.slug)
+            ),
+          },
+        ]}
+      />
+
+      <HydrationBoundary state={state}>
+        <PageView
+          jobDetail={jobDetail}
+          featuredJobs={featuredJobs.jobs}
+          slug={slug}
+          locale={locale}
+        />
+      </HydrationBoundary>
+    </>
+  );
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<'/[locale]/career/[slug]'>
+): Promise<Metadata> {
   const { slug, locale } = await props.params;
   const jobDetail = await fetchJobDetailBySlug(slug, locale);
 
   if (!jobDetail) return {};
 
-  const { routes } = AppConfig;
+  const translations = await fetchCareerSlugBySlug(`${locale}-${slug}`);
 
-  const canonical = routes["career"][locale as keyof (typeof routes)["career"]];
   return {
     title: jobDetail.title,
     description: jobDetail.excerpt,
-    alternates: {
-      canonical: `/${locale == "fr" ? "" : locale}/${canonical}/${jobDetail.slug}`,
-    },
+    alternates: getPageAlternates(
+      locale,
+      '/career/[slug]',
+      getSlugByLocale(locale, jobDetail.slug, translations)
+    ),
   };
 }

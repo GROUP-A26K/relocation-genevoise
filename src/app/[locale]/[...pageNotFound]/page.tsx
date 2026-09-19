@@ -1,6 +1,7 @@
-import ErrorPage from '@/components/sections/ErrorPage';
-import '@/styles/globals.css';
+import { notFound } from 'next/navigation';
 
-export default async function NotFound() {
-  return <ErrorPage errorCode={404} />;
+export { generateMetadata } from '@/app/[locale]/not-found';
+
+export default function PageNotFound() {
+  notFound();
 }

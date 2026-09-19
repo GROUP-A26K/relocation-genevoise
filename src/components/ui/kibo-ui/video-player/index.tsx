@@ -1,6 +1,5 @@
 'use client';
 
-import { cn } from '@/libs/utils';
 import {
   MediaControlBar,
   MediaController,
@@ -13,6 +12,9 @@ import {
   MediaTimeRange,
   MediaVolumeRange,
 } from 'media-chrome/react';
+
+import { cn } from '@/libs/utils';
+
 import type { CSSProperties, ComponentProps } from 'react';
 
 export type VideoPlayerProps = ComponentProps<typeof MediaController>;

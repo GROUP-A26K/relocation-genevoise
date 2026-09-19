@@ -1,15 +1,19 @@
-import { BookConsultation } from '@/components/blocks/Consultation';
-import { FAQ } from '@/components/blocks/FAQ';
-import Section from '@/components/customs/Section';
-import GroupAvatar from '@/assets/img/avt/group-avt-1.webp';
-import { Metadata } from 'next';
+import { Phone } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
+import { Faq } from '@/components/sections/Faq';
+import Section from '@/components/common/Section';
+import HeadingText from '@/components/common/Text/HeadingText';
+import GroupAvatar from '@/assets/images/faq/advisors-group.webp';
+import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
+import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
+import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+import type { Metadata } from 'next';
+
+export async function generateMetadata(
+  props: PageProps<'/[locale]/faq'>
+): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({
     locale,
@@ -19,58 +23,45 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: t('title'),
     description: t('description'),
-    alternates: {
-      canonical: `/${locale == 'fr' ? '' : locale}/faq`,
-    },
+    alternates: getPageAlternates(locale, '/faq'),
   };
 }
 
-export default async function Page(props: Props) {
+export default async function Page(props: PageProps<'/[locale]/faq'>) {
   const { locale } = await props.params;
-  const t = await getTranslations({
-    locale,
-    namespace: 'FAQ',
-  });
+  const t = await getTranslations('FAQ');
+
+  const faqs = t.raw('faqs') as TFaqItem[];
+
   return (
     <>
-      <Section>
-        <h1 className="sr-only">{t('heading')}</h1>
-        <FAQ
+      <FaqJsonLd
+        items={faqs}
+        locale={locale}
+        path={getLocalizedPath(locale, '/faq')}
+      />
+
+      <Section revealTrigger="load">
+        <HeadingText as="h1" className="sr-only">
+          {t('heading')}
+        </HeadingText>
+        <Faq
           heading={t('heading')}
           subHeading={t('subHeading')}
           description={t('description')}
-          faqs={[
-            {
-              question: t('faqs.0.question'),
-              answer: t('faqs.0.answer'),
-            },
-            {
-              question: t('faqs.1.question'),
-              answer: t('faqs.1.answer'),
-            },
-            {
-              question: t('faqs.2.question'),
-              answer: t('faqs.2.answer'),
-            },
-            {
-              question: t('faqs.3.question'),
-              answer: t('faqs.3.answer'),
-            },
-            {
-              question: t('faqs.4.question'),
-              answer: t('faqs.4.answer'),
-            },
-            {
-              question: t('faqs.5.question'),
-              answer: t('faqs.5.answer'),
-            },
-          ]}
+          faqs={faqs}
         />
         <BookConsultation
           subHeading={t('BookConsultation.subHeading')}
           description={t('BookConsultation.description')}
           buttonText1={t('BookConsultation.buttonText1')}
-          imgSrc={GroupAvatar.src}
+          buttonIcon={Phone}
+          imgSrc={GroupAvatar}
+          withSection={false}
+          className="lg:py-12"
+          contentClassName="max-w-none items-stretch"
+          titleClassName="text-wrap lg:text-2xl"
+          descriptionClassName="text-wrap"
         />
       </Section>
     </>

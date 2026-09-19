@@ -1,50 +1,61 @@
 'use client';
-import { FC } from 'react';
 import Image from 'next/image';
-import ContactBG from '@/assets/img/bg/relocation-genevoise-contact.webp';
 import { useTranslations } from 'next-intl';
-interface Props {
+
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import ContactBG from '@/assets/images/contact/relocation-genevoise-contact.webp';
+
+interface IContactFormContainerProps {
   children: React.ReactNode;
 }
 
-export const ContactContainer: FC<Props> = (props) => {
+export const ContactFormContainer: React.FC<IContactFormContainerProps> = (
+  props
+) => {
   const t = useTranslations('Contact.ContactContainer');
+  const imageT = useTranslations('Images');
+
   return (
-    <section className="relative flex flex-col justify-center items-center text-black-500">
-      <div
-        className={`container 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md xl:pr-0 xl:px-[100px] lg:px-[48px] px-4`}
-      >
-        <div
-          className={`xl:pb-0 pb-14 border-t xl:border-none border-grey-100`}
-        />
-        <div className="flex flex-col xl:flex-row items-center justify-end xl:gap-[100px] gap-[100px]">
-          <div className="flex flex-col items-center xl:justify-center lg:justify-start w-full">
-            <div className="flex flex-col items-start lg:gap-8 gap-12">
-              <div className="flex flex-col gap-3">
-                <p className="text-sm font-semibold text-secondary-600 !leading-[130%]">
-                  {t('title')}
-                </p>
-                <h2 className="text-3xl font-semibold !leading-[130%]">
-                  {t('subTitle')}
-                </h2>
-                <p className="text-sm font-normal text-black-200 !leading-[130%] max-w-2xl">
-                  {t('description')}
-                </p>
-              </div>
-              {props.children}
+    <Section wrapperProps={{ className: 'pt-0 2xl:pt-0' }}>
+      <div className="border-t border-grey-100 xl:hidden" />
+      <div className="grid grid-cols-1 gap-25 xl:grid-cols-[504fr_636fr] xl:items-center">
+        <div className="flex w-full flex-col items-center lg:justify-start xl:justify-center">
+          <RevealItem className="flex flex-col items-start gap-12 lg:gap-8">
+            <div className="flex flex-col gap-3">
+              <BodyText
+                variant="sm"
+                className="font-semibold text-secondary-600"
+              >
+                {t('title')}
+              </BodyText>
+              <HeadingText
+                as="h2"
+                className="text-3xl font-semibold text-inherit"
+              >
+                {t('subTitle')}
+              </HeadingText>
+              <BodyText variant="sm" className="max-w-2xl">
+                {t('description')}
+              </BodyText>
             </div>
-          </div>
+            {props.children}
+          </RevealItem>
+        </div>
+        <RevealItem className="relative hidden aspect-1920/2483 w-full overflow-hidden rounded-3xl xl:block">
           <Image
             src={ContactBG}
-            alt="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
-            title="Relocation Genevoise, assureur expert à Genève. Contactez-nous."
-            width={736}
-            height={984}
-            className="lg:max-h-[984px] 2xl:min-w-[736px] min-w-[600px] rounded-3xl object-cover xl:flex hidden"
+            placeholder="blur"
+            alt={imageT('contact')}
+            title={imageT('contact')}
+            fill
+            sizes="(max-width: 1240px) 50vw, 100vw"
+            className="object-cover"
           />
-        </div>
-        <div className={`lg:pt-16 pt-12 border-b border-grey-100`} />
+        </RevealItem>
       </div>
-    </section>
+    </Section>
   );
 };

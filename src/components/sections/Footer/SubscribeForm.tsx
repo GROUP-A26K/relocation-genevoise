@@ -1,57 +1,54 @@
 'use client';
-import React, { FC, useState } from 'react';
-import { zodResolver } from '@hookform/resolvers/zod';
+
+import React from 'react';
 import { toast } from 'sonner';
-import axios from '@/libs/axios';
-import { Form } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
-import { InputField } from '@/components/customs/Form';
-import Button from '@/components/customs/Button';
-import Alert from '@/components/customs/Alert';
+
+import { Form } from '@/components/ui/form';
+import Alert from '@/components/common/Alert';
+import Button from '@/components/common/Button';
+import { useFormDraft } from '@/features/formDraft';
+import { InputField } from '@/components/common/Form';
+import { useSubmitSubscribe } from '@/features/subscribe/subscribe.hooks';
 import {
-  SubscribeFormInput,
+  type TSubscribeFormInput,
   subscribeSchema,
 } from '@/validations/subscribe.validation';
 
-export const SubscribeForm: FC = () => {
-  const t = useTranslations('Footer.contact');
+export const SubscribeForm: React.FC = () => {
+  const t = useTranslations('Footer');
   const formT = useTranslations('Validation.Subscribe');
   const toastT = useTranslations('ToastMessage.Subscribe');
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const locale = useLocale();
-  const form = useForm<SubscribeFormInput>({
+  const { mutateAsync, isPending } = useSubmitSubscribe();
+  const form = useForm<TSubscribeFormInput>({
     resolver: zodResolver(subscribeSchema(formT)),
     defaultValues: {
       email: '',
     },
   });
 
-  const onSubmit = async (values: SubscribeFormInput) => {
-    if (submitted) return;
-    setLoading(true);
+  const draft = useFormDraft('subscribe', form, { restoreKey: locale });
+
+  const onSubmit = async (values: TSubscribeFormInput) => {
+    const submission = draft.beginSubmission(values);
 
     try {
-      const response = await axios.post(`api/subscribe?locale=${locale}`, {
-        email: values.email,
-      });
-
-      if (response.status === 201) {
-        setSubmitted(true);
-        toast.custom((t) => (
-          <Alert
-            type="success"
-            title={toastT('successTitle')}
-            as="solid"
-            onClick={() => toast.dismiss(t)}
-          >
-            {toastT('success')}
-          </Alert>
-        ));
-      }
+      await mutateAsync({ values, locale });
+      draft.completeSubmission(submission);
+      toast.custom((t) => (
+        <Alert
+          type="success"
+          title={toastT('successTitle')}
+          as="solid"
+          onClick={() => toast.dismiss(t)}
+        >
+          {toastT('success')}
+        </Alert>
+      ));
     } catch (error) {
-      setSubmitted(true);
       toast.custom((t) => (
         <Alert
           type="danger"
@@ -63,8 +60,6 @@ export const SubscribeForm: FC = () => {
         </Alert>
       ));
       console.error('Error submitting form:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -77,23 +72,23 @@ export const SubscribeForm: FC = () => {
             e.preventDefault();
           }
         }}
-        className="flex lg:flex-row flex-col w-full items-start justify-end gap-2"
+        className="flex w-full flex-col items-start justify-end gap-2 lg:flex-row"
       >
         <InputField
           name="email"
-          placeholder={t('inputPlaceholder')}
+          placeholder={t('contact.inputPlaceholder')}
           register={form.register}
           error={form.formState.errors.email?.message}
-          className="lg:w-[340px] w-full text-base h-fit"
+          className="h-fit w-full text-base lg:w-[340px]"
         />
         <Button
           as="solid"
           variant="md"
           type="primary"
-          className="lg:w-fit w-full"
-          disabled={loading || submitted}
+          className="w-full lg:w-fit"
+          disabled={isPending}
         >
-          {t('buttonText')}
+          {t('contact.buttonText')}
         </Button>
       </form>
     </Form>

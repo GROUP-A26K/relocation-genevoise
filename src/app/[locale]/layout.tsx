@@ -1,39 +1,111 @@
-import { routing } from "@/libs/i18nNavigation";
-import { notFound } from "next/navigation";
-import { getMessages, setRequestLocale } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
-import { Toaster } from "@/components/ui/sonner";
-import "@/styles/globals.css";
-import { Navbar } from "@/components/sections/Navigation/NavBar";
-import { Env } from "@/libs/Env";
+import Script from 'next/script';
+import { Inter } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import NextTopLoader from 'nextjs-toploader';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { GoogleTagManager } from '@next/third-parties/google';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+
+import '@/styles/globals.css';
+import { Env } from '@/libs/env';
+import { routing } from '@/libs/i18nNavigation';
+import { Toaster } from '@/components/ui/sonner';
+import SiteJsonLd from '@/components/seo/SiteJsonLd';
+import { getOgLocale, getSiteUrl } from '@/utils/seo';
+import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
+import { NavBar } from '@/components/sections/Navigation/NavBar';
+import TanstackQueryProvider from '@/components/providers/TanstackQueryProvider';
+
+import type { Metadata } from 'next';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout(props: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
+export async function generateMetadata(
+  props: LayoutProps<'/[locale]'>
+): Promise<Metadata> {
   const { locale } = await props.params;
+  const t = await getTranslations({ locale, namespace: 'Metadata.Home' });
+  const imageT = await getTranslations({ locale, namespace: 'Images' });
+  const previewImage = {
+    url: OG_IMAGE.path,
+    width: OG_IMAGE.width,
+    height: OG_IMAGE.height,
+    alt: imageT('common.logo'),
+  };
 
-  if (!routing.locales.includes(locale)) {
+  return {
+    metadataBase: new URL(getSiteUrl()),
+    title: t('title'),
+    description: t('description'),
+    applicationName: SITE_NAME,
+    appleWebApp: { title: SITE_NAME },
+    openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
+      locale: getOgLocale(locale),
+      images: [previewImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [previewImage],
+    },
+  };
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: LayoutProps<'/[locale]'>) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
 
-  const messages = await getMessages();
-
   return (
-    <NextIntlClientProvider
-      locale={locale}
-      messages={messages}
-      timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} scroll-smooth`}
     >
-      <Navbar locale={locale} />
-      {props.children}
-      <Toaster />
-    </NextIntlClientProvider>
+      <head>
+        <Script
+          id="cookieyes"
+          src="https://cdn-cookieyes.com/client_data/9a39582ed0c78f02105a4fb9/script.js"
+          strategy="beforeInteractive"
+        />
+      </head>
+      {Env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={Env.NEXT_PUBLIC_GTM_ID} />
+      )}
+
+      <body>
+        <SiteJsonLd />
+        <NuqsAdapter>
+          <NextIntlClientProvider
+            locale={locale}
+            timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
+          >
+            <TanstackQueryProvider>
+              <NavBar locale={locale} />
+              <NextTopLoader color="#f7d913" showSpinner={false} height={1} />
+              {children}
+              <Toaster />
+            </TanstackQueryProvider>
+          </NextIntlClientProvider>
+        </NuqsAdapter>
+      </body>
+    </html>
   );
 }

@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { fetchBlogSlugBySlug } from "@/services/blog.service";
-import { fetchCareerSlugBySlug } from "@/services/career/career.service";
-import { fetchPropertySlugBySlug } from "@/services/property.service";
+import { fetchBlogSlugBySlug } from '@/features/blog/blog.service';
+import { fetchCareerSlugBySlug } from '@/features/career/career.service';
+import { fetchPropertySlugBySlug } from '@/features/property/property.service';
 
-export type AlternateContentType = "blog" | "career" | "property";
+export type TAlternateContentType = 'blog' | 'career' | 'property';
 
 const RESOLVERS = {
   blog: fetchBlogSlugBySlug,
@@ -13,12 +13,12 @@ const RESOLVERS = {
 } as const;
 
 export const resolveAlternateSlug = async (
-  type: AlternateContentType,
+  type: TAlternateContentType,
   slug: string,
-  targetLocale: string,
+  targetLocale: string
 ): Promise<string | null> => {
   const translations = await RESOLVERS[type](slug);
   const match = translations.find((item) => item.locale === targetLocale);
 
-  return match?.href ? `/${targetLocale}${match.href}` : null;
+  return match?.slug ? match.slug.replace(/^[a-z]{2}-/i, '') : null;
 };

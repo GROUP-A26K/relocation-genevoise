@@ -1,21 +1,26 @@
 'use client';
-import Image from 'next/image';
 import React from 'react';
-import Content403 from '@/assets/img/illustrations/content-403.svg';
-import Content404 from '@/assets/img/illustrations/content-404.svg';
-import Content500 from '@/assets/img/illustrations/content-500.svg';
-import Button from '@/components/customs/Button';
-import { cn } from '@/libs/utils';
-import { Link } from '@/libs/i18nNavigation';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
-interface ErrorPageProps {
+import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
+import Button from '@/components/common/Button';
+import BodyText from '@/components/common/Text/BodyText';
+import Content403 from '@/assets/icons/errors/error-403.svg';
+import Content404 from '@/assets/icons/errors/error-404.svg';
+import Content500 from '@/assets/icons/errors/error-500.svg';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
+
+interface IErrorPageProps {
   errorCode: number;
   message?: string;
 }
 
-const ErrorPage: React.FC<ErrorPageProps> = ({ errorCode, message }) => {
+const ErrorPage: React.FC<IErrorPageProps> = ({ errorCode, message }) => {
   const t = useTranslations('Error');
+  const imageT = useTranslations('Images');
 
   const renderErrorMessage = () => {
     switch (errorCode) {
@@ -50,42 +55,53 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ errorCode, message }) => {
   return (
     <section
       id="home-section"
-      className="lg:h-screen h-fit flex flex-col justify-center items-center text-primary text-black-500"
+      className="flex h-fit flex-col items-center justify-center text-black-500 text-primary lg:h-screen"
     >
-      <div className="container h-fit 2xl:max-w-screen-2xl xl:max-w-screen-xl lg:max-w-screen-xl md:max-w-screen-md  xl:px-[100px] lg:px-[48px] px-4 lg:py-0 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center justify-between gap-12">
-          <div className="col-span-6 flex flex-col lg:gap-6 gap-4 justify-start lg:justify-center">
-            <h1 className="lg:text-[164px] text-[120px] text-grey-200 leading-[131.2px] font-semibold">
-              {errorCode}
-            </h1>
-            <h1 className="lg:text-[48px] text-3xl font-bold text-black-500 lg:!leading-[130%]">
+      <div className="container h-fit px-4 py-12 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) lg:px-[48px] lg:py-0 xl:max-w-(--breakpoint-xl) xl:px-[100px] 2xl:max-w-(--breakpoint-2xl)">
+        <RevealSection
+          trigger="load"
+          className="grid grid-cols-1 items-center justify-between gap-12 lg:grid-cols-12"
+        >
+          <RevealItem className="col-span-6 flex flex-col justify-start gap-4 lg:justify-center lg:gap-6">
+            <HeadingText
+              as="h1"
+              asChild
+              className="text-[120px] leading-[131.2px] font-semibold text-grey-200 lg:text-[164px]"
+            >
+              <span>{errorCode}</span>
+            </HeadingText>
+            <HeadingText
+              as="h1"
+              className="text-3xl leading-9 lg:text-[48px] lg:leading-[130%]"
+            >
               {title}
-            </h1>
-            <p className="text-[14px] text-black-200 leading-[18.2px] font-normal">
+            </HeadingText>
+            <BodyText variant="sm" className="leading-[18.2px]">
               {description}
-            </p>
+            </BodyText>
 
             <div className="md:flex lg:justify-start">
-              <Link href={'/'}>
+              <Link href="/">
                 <Button as="solid" type="primary" variant="md">
                   {t('buttonText')}
                 </Button>
               </Link>
             </div>
-          </div>
-          <div className="col-span-6 flex lg:justify-end justify-center">
+          </RevealItem>
+          <RevealItem className="col-span-6 flex justify-center lg:justify-end">
             <Image
               src={image.src}
-              alt="error illustration"
+              alt={imageT('common.error')}
+              title={imageT('common.error')}
               width={588}
               height={640}
               className={cn(
-                'rounded-2xl object-cover w-full',
-                'lg:max-w-[640px] md:max-w-[640px] max-w-[361px]'
+                'w-full rounded-2xl object-cover',
+                'max-w-[361px] md:max-w-[640px] lg:max-w-[640px]'
               )}
             />
-          </div>
-        </div>
+          </RevealItem>
+        </RevealSection>
       </div>
     </section>
   );

@@ -1,17 +1,22 @@
-import { FC, ReactNode } from "react";
+import { RevealSection } from '@/components/common/Reveal';
 
-interface Props {
+import type { ReactNode } from 'react';
+
+interface IContentContainerProps {
   children: ReactNode;
 }
 
-const ContentContainer: FC<Props> = ({ children }) => (
+const ContentContainer: React.FC<IContentContainerProps> = ({ children }) => (
   <div className="bg-white pb-8">
     {/* Decorative top banner */}
-    <div className="bg-secondary-25 lg:pb-12 pb-8 h-[303px]" />
+    <div className="h-[303px] bg-secondary-25 pb-8 lg:pb-12" />
 
-    <div className="relative flex flex-col items-center mt-[-300px]">
+    <RevealSection
+      trigger="load"
+      className="relative mt-[-300px] flex flex-col items-center"
+    >
       {children}
-    </div>
+    </RevealSection>
   </div>
 );
 

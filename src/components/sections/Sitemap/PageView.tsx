@@ -1,85 +1,96 @@
-"use client";
+'use client';
+import { useTranslations } from 'next-intl';
 
-import { PageContainer } from "./PageContainer";
-import { Content } from "./Content";
-import { BlogContentMenu } from "@/components/blocks/BlogContent";
-import { useScrollspy } from "@/hooks/useScrollspy";
-import { cn } from "@/libs/utils";
-import { useTranslations } from "next-intl";
-import { BlogSitemap } from "@/models/BLog";
-import { Meta } from "@/models/Meta";
-import { PropertySitemap } from "@/models/Property";
-import { FormattedText } from "@/components/customs/Text";
+import { useScroll } from '@/hooks/useScroll';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import { FormattedText } from '@/components/common/Text';
+import { ContentMenu } from '@/components/common/ContentMenu';
+import HeadingText from '@/components/common/Text/HeadingText';
+import {
+  DESKTOP_MENU_OFFSET,
+  MOBILE_MENU_OFFSET,
+} from '@/components/common/ContentMenu/constants';
 
-export interface MenuItem {
+import { Content } from './Content';
+import { PageContainer } from './PageContainer';
+
+import type { IMeta } from '@/models/meta';
+import type { IBlogSitemap } from '@/models/blog';
+import type { THref } from '@/libs/i18nNavigation';
+import type { IPropertySitemap } from '@/models/property';
+
+export type TSitemapMenuItem = {
   id?: string;
-  url?: string;
+  url?: THref;
   title: string;
   description?: string;
-  items?: MenuItem[];
-}
-export interface NavbarProps {
-  menu: MenuItem[];
+  items?: TSitemapMenuItem[];
+};
+export type TSitemap = {
+  menu: TSitemapMenuItem[];
+};
+
+const SECTION_IDS = ['general', 'services', 'blog', 'properties'];
+
+interface IPageViewProps {
+  blogSitemap: { blogs: IBlogSitemap[]; meta: IMeta };
+  propertySitemap: { properties: IPropertySitemap[]; meta: { total: number } };
 }
 
-export const PageView = ({
-  blogSitemap,
-  propertySitemap,
-}: {
-  blogSitemap: { blogs: BlogSitemap[]; meta: Meta };
-  propertySitemap: { properties: PropertySitemap[]; meta: { total: number } };
-}) => {
-  const t = useTranslations("SiteMap");
-  const { activeId, setActiveId } = useScrollspy([
-    "general",
-    "services",
-    "blog",
-    "properties",
-  ]);
+export const PageView = ({ blogSitemap, propertySitemap }: IPageViewProps) => {
+  const t = useTranslations('SiteMap');
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
+  const { activeId, setActiveId } = useScroll(
+    SECTION_IDS,
+    isDesktop ? DESKTOP_MENU_OFFSET : MOBILE_MENU_OFFSET,
+    { lockActiveDuringScroll: true }
+  );
 
-  const sitemap: NavbarProps = {
+  const sitemap: TSitemap = {
     menu: [
       {
-        title: t("sections.0.title"),
-        id: "general",
+        title: t('sections.0.title'),
+        id: 'general',
         items: [
-          { title: t("sections.0.items.0.title"), url: "/" },
-          { title: t("sections.0.items.1.title"), url: "/contact" },
-          { title: t("sections.0.items.2.title"), url: "/find-accommodation" },
+          { title: t('sections.0.items.0.title'), url: '/' },
+          { title: t('sections.0.items.1.title'), url: '/contact' },
+          { title: t('sections.0.items.2.title'), url: '/find-accommodation' },
           {
-            title: t("sections.0.items.3.title"),
-            url: "/find-a-tenant/landlords",
+            title: t('sections.0.items.3.title'),
+            url: '/find-a-tenant/landlords',
           },
-          { title: t("sections.0.items.4.title"), url: "/companies" },
-          { title: t("sections.0.items.5.title"), url: "/call-me-back" },
-          { title: t("sections.0.items.6.title"), url: "/blog" },
-          { title: t("sections.0.items.7.title"), url: "/faq" },
-          { title: t("sections.0.items.8.title"), url: "/properties" },
-          { title: t("sections.0.items.9.title"), url: "/legal-notice" },
-          { title: t("sections.0.items.10.title"), url: "/personal-data" },
+          { title: t('sections.0.items.4.title'), url: '/companies' },
+          { title: t('sections.0.items.5.title'), url: '/call-me-back' },
+          { title: t('sections.0.items.6.title'), url: '/blog' },
+          { title: t('sections.0.items.7.title'), url: '/faq' },
+          { title: t('sections.0.items.8.title'), url: '/properties' },
+          { title: t('sections.0.items.9.title'), url: '/legal-notice' },
+          { title: t('sections.0.items.10.title'), url: '/personal-data' },
         ],
       },
       {
-        title: t("sections.1.title"),
-        id: "services",
+        title: t('sections.1.title'),
+        id: 'services',
         items: [
           {
-            title: t("sections.1.items.0.title"),
-            url: "/services/academic",
+            title: t('sections.1.items.0.title'),
+            url: '/services/academic',
           },
           {
-            title: t("sections.1.items.1.title"),
-            url: "/services/concierge-service",
+            title: t('sections.1.items.1.title'),
+            url: '/services/concierge-service',
           },
           {
-            title: t("sections.1.items.2.title"),
-            url: "/services/discover-geneva",
+            title: t('sections.1.items.2.title'),
+            url: '/services/discover-geneva',
           },
         ],
       },
       {
-        title: "Blog",
-        id: "blog",
+        title: 'Blog',
+        id: 'blog',
         items: [
           ...blogSitemap.blogs.map((item) => ({
             title: item.title,
@@ -88,8 +99,8 @@ export const PageView = ({
         ],
       },
       {
-        title: "Properties",
-        id: "properties",
+        title: 'Properties',
+        id: 'properties',
         items: [
           ...propertySitemap.properties.map((item) => ({
             title: item.title,
@@ -102,31 +113,32 @@ export const PageView = ({
 
   return (
     <PageContainer>
-      <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left py-16">
+      <RevealItem className="flex w-full flex-col gap-4 py-16 text-left lg:items-center lg:gap-6">
         <div className="flex flex-col gap-3">
-          <p className="text-sm font-semibold text-center text-secondary-600 !leading-[130%]">
-            {t("heading")}
-          </p>
-          <h1 className="lg:text-5xl text-4xl font-bold text-center lg:!leading-[130%] !leading-[100%] text-pretty">
-            <FormattedText text={t("subHeading")} />
-          </h1>
+          <BodyText
+            variant="sm"
+            className="text-center font-semibold text-secondary-600"
+          >
+            {t('heading')}
+          </BodyText>
+          <HeadingText
+            as="h1"
+            className="text-center text-4xl leading-[100%] text-pretty text-inherit lg:text-5xl lg:leading-[130%]"
+          >
+            <FormattedText text={t('subHeading')} />
+          </HeadingText>
         </div>
-      </div>
+      </RevealItem>
 
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div
-          className={cn(
-            "lg:!sticky lg:!top-8 h-fit relative w-full lg:max-w-[228px]",
+      <div className="flex flex-col gap-8 lg:flex-row">
+        <ContentMenu
+          className="xl:w-[228px]"
+          setActiveId={setActiveId}
+          activeId={activeId}
+          menuItems={sitemap.menu.filter(
+            (item): item is { id: string; title: string } => !!item.id
           )}
-        >
-          <BlogContentMenu
-            setActiveId={setActiveId}
-            activeId={activeId}
-            menuItems={sitemap.menu.filter(
-              (item): item is { id: string; title: string } => !!item.id,
-            )}
-          />
-        </div>
+        />
 
         <Content sitemap={sitemap} />
       </div>

@@ -1,9 +1,24 @@
-import * as React from "react";
-import { CheckIcon, ChevronsUpDown } from "lucide-react";
-import * as RPNInput from "react-phone-number-input";
-import flags from "react-phone-number-input/flags";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import * as React from 'react';
+import { useLocale } from 'next-intl';
+import flags from 'react-phone-number-input/flags';
+import * as RPNInput from 'react-phone-number-input';
+import { CheckIcon, ChevronsUpDown } from 'lucide-react';
+import enCountryLabels from 'react-phone-number-input/locale/en.json';
+import frCountryLabels from 'react-phone-number-input/locale/fr.json';
+
+import { cn } from '@/libs/utils';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import BodyText from '@/components/common/Text/BodyText';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn as typographyCn } from '@/components/common/Text/utils';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   Command,
   CommandEmpty,
@@ -11,59 +26,87 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command-custom";
-import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn } from "@/libs/utils";
+} from '@/components/ui/command';
 type PhoneInputProps = Omit<
-  React.ComponentProps<"input">,
-  "onChange" | "value" | "ref"
+  React.ComponentProps<'input'>,
+  'onChange' | 'value' | 'ref'
 > &
-  Omit<RPNInput.Props<typeof RPNInput.default>, "onChange"> & {
+  Omit<RPNInput.Props<typeof RPNInput.default>, 'onChange'> & {
     onChange?: (value: RPNInput.Value) => void;
     inputClassName?: string;
     countrySelectClassName?: string;
   };
 
-const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
-  React.forwardRef<React.ElementRef<typeof RPNInput.default>, PhoneInputProps>(
-    (
-      {
-        className,
-        inputClassName,
-        countrySelectClassName,
-        onChange,
-        value,
-        defaultCountry = "CH",
-        ...props
-      },
-      ref
-    ) => {
-      const CountrySelectWithClassName = React.useMemo(() => {
-        const Component = (selectProps: CountrySelectProps) => (
-          <CountrySelect
-            {...selectProps}
-            className={countrySelectClassName ?? inputClassName}
-          />
-        );
+const PhoneFieldWidthContext = React.createContext<number | undefined>(
+  undefined
+);
 
-        Component.displayName = "CountrySelectWithClassName";
-        return Component;
-      }, [countrySelectClassName, inputClassName]);
+function PhoneInput({
+  className,
+  inputClassName,
+  countrySelectClassName,
+  onChange,
+  value,
+  defaultCountry = 'CH',
+  ...props
+}: PhoneInputProps) {
+  const locale = useLocale();
+  const countryLabels = locale === 'fr' ? frCountryLabels : enCountryLabels;
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [isCountryOpen, setIsCountryOpen] = React.useState(false);
+  const [fieldWidth, setFieldWidth] = React.useState<number>();
 
-      return (
+  const measureFieldWidth = React.useCallback(() => {
+    setFieldWidth(wrapperRef.current?.getBoundingClientRect().width);
+  }, []);
+
+  const handleCountryOpenChange = React.useCallback(
+    (open: boolean) => {
+      if (open) measureFieldWidth();
+      setIsCountryOpen(open);
+    },
+    [measureFieldWidth]
+  );
+
+  React.useEffect(() => {
+    measureFieldWidth();
+    window.addEventListener('resize', measureFieldWidth);
+
+    return () => window.removeEventListener('resize', measureFieldWidth);
+  }, [measureFieldWidth]);
+
+  const CountrySelectWithClassName = React.useMemo(() => {
+    const Component = (selectProps: CountrySelectProps) => (
+      <CountrySelect
+        {...selectProps}
+        className={countrySelectClassName ?? inputClassName}
+        onOpenChange={handleCountryOpenChange}
+      />
+    );
+
+    Component.displayName = 'CountrySelectWithClassName';
+    return Component;
+  }, [countrySelectClassName, inputClassName, handleCountryOpenChange]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      data-slot="phone-input"
+      data-country-open={isCountryOpen || undefined}
+      className={cn(
+        'group flex w-full rounded-3xl',
+        'focus-within:ring-2 focus-within:ring-yellow-50 data-[country-open]:ring-2 data-[country-open]:ring-yellow-50',
+        className
+      )}
+    >
+      <PhoneFieldWidthContext.Provider value={fieldWidth}>
         <RPNInput.default
-          ref={ref}
-          className={cn("flex w-full", className)}
+          className="flex w-full"
           flagComponent={FlagComponent}
           countrySelectComponent={CountrySelectWithClassName}
           inputComponent={InputComponent}
           smartCaret={false}
+          labels={countryLabels}
           value={value || undefined}
           defaultCountry={defaultCountry}
           inputClassName={inputClassName}
@@ -76,44 +119,50 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
            *
            * @param {E164Number | undefined} value - The entered value
            */
-          onChange={(value) => onChange?.(value || ("" as RPNInput.Value))}
+          onChange={(value) => onChange?.(value || ('' as RPNInput.Value))}
           {...props}
         />
-      );
-    }
+      </PhoneFieldWidthContext.Provider>
+    </div>
   );
-PhoneInput.displayName = "PhoneInput";
+}
 
 type InputComponentProps = RPNInput.DefaultInputComponentProps & {
   className?: string;
   inputClassName?: string;
 };
 
-const InputComponent = React.forwardRef<HTMLInputElement, InputComponentProps>(
-  ({ className, inputClassName, ...props }, ref) => (
+function InputComponent({
+  className,
+  inputClassName,
+  ...props
+}: InputComponentProps) {
+  return (
     <Input
+      data-slot="input-component"
       className={cn(
-        "h-10 rounded-e-[1.5rem] rounded-s-none border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50",
-        "hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0",
+        'h-10 rounded-s-none rounded-e-3xl border border-l-0 border-gray-200 text-sm text-black-50 shadow-none placeholder:text-black-50',
+        'group-hover:border-black-50 group-has-[input:hover]:border-black-50',
+        'disabled:group-hover:border-gray-200 disabled:group-has-[input:hover]:border-gray-200',
+        // Focus must outrank the more specific group-has-[input:hover] border.
+        'group-focus-within:border-yellow-500! group-focus-within:text-black-50 group-data-[country-open]:border-yellow-500',
+        'focus-visible:ring-0 focus-visible:outline-none',
         className,
         inputClassName
       )}
       {...props}
-      ref={ref}
     />
-  )
-);
-InputComponent.displayName = "InputComponent";
-
+  );
+}
 const PRIORITY_COUNTRY_CODES: readonly RPNInput.Country[] = [
-  "CH",
-  "FR",
-  "GB",
-  "BE",
-  "US",
-  "IT",
-  "ES",
-  "PT",
+  'CH',
+  'FR',
+  'GB',
+  'BE',
+  'US',
+  'IT',
+  'ES',
+  'PT',
 ];
 
 type CountryEntry = { label: string; value: RPNInput.Country | undefined };
@@ -124,6 +173,7 @@ type CountrySelectProps = {
   className?: string;
   options: CountryEntry[];
   onChange: (country: RPNInput.Country) => void;
+  onOpenChange?: (open: boolean) => void;
 };
 
 const CountrySelect = ({
@@ -132,8 +182,13 @@ const CountrySelect = ({
   options: countryList,
   className,
   onChange,
+  onOpenChange,
 }: CountrySelectProps) => {
+  const selectedCountryName =
+    countryList.find(({ value }) => value === selectedCountry)?.label ||
+    selectedCountry;
   const scrollAreaRef = React.useRef<HTMLDivElement>(null);
+  const fieldWidth = React.useContext(PhoneFieldWidthContext);
   const orderedCountryList = React.useMemo(() => {
     const prioritySet = new Set(PRIORITY_COUNTRY_CODES);
     const prioritized = PRIORITY_COUNTRY_CODES.flatMap((code) => {
@@ -146,7 +201,7 @@ const CountrySelect = ({
 
     return [...prioritized, ...remaining];
   }, [countryList]);
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -155,9 +210,8 @@ const CountrySelect = ({
       modal
       onOpenChange={(open) => {
         setIsOpen(open);
-
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        open && setSearchValue("");
+        onOpenChange?.(open);
+        if (open) setSearchValue('');
       }}
     >
       <PopoverTrigger asChild>
@@ -165,26 +219,35 @@ const CountrySelect = ({
           type="button"
           variant="outline"
           className={cn(
-            "flex h-10 items-center gap-2 rounded-s-[1.5rem] rounded-e-none border border-gray-200 border-r-0 bg-white px-3 text-sm text-black-50 shadow-none",
-            "hover:border-black-50 focus-visible:border-yellow-500 focus-visible:text-black-50 focus-visible:ring-2 focus-visible:ring-yellow-50 focus-visible:ring-offset-0",
-            disabled && "bg-black-25 text-black-200",
+            'flex h-10 cursor-pointer items-center gap-2 rounded-s-3xl rounded-e-none border border-r-0 border-gray-200 bg-white px-3 text-sm text-black-50 shadow-none',
+            'group-hover:border-black-50 group-has-[input:hover]:border-black-50 hover:bg-white hover:text-black-50',
+            // Focus must outrank the more specific group-has-[input:hover] border.
+            'group-focus-within:border-yellow-500! group-focus-within:text-black-50 group-data-[country-open]:border-yellow-500',
+            'focus-visible:ring-0 focus-visible:outline-none',
+            disabled &&
+              'bg-black-25 cursor-not-allowed text-black-200 group-hover:border-gray-200 group-has-[input:hover]:border-gray-200',
             className
           )}
           disabled={disabled}
         >
           <FlagComponent
             country={selectedCountry}
-            countryName={selectedCountry}
+            countryName={selectedCountryName}
           />
           <ChevronsUpDown
             className={cn(
-              "-mr-2 size-4 opacity-50",
-              disabled ? "hidden" : "opacity-100"
+              '-mr-2 size-4 opacity-50',
+              disabled ? 'hidden' : 'opacity-100'
             )}
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] rounded-2xl border border-gray-100 p-0">
+      <PopoverContent
+        align="start"
+        sideOffset={8}
+        style={{ width: fieldWidth }}
+        className="rounded-2xl border border-gray-100 p-0"
+      >
         <Command>
           <CommandInput
             value={searchValue}
@@ -193,7 +256,7 @@ const CountrySelect = ({
               setTimeout(() => {
                 if (scrollAreaRef.current) {
                   const viewportElement = scrollAreaRef.current.querySelector(
-                    "[data-radix-scroll-area-viewport]"
+                    '[data-radix-scroll-area-viewport]'
                   );
                   if (viewportElement) {
                     viewportElement.scrollTop = 0;
@@ -215,7 +278,10 @@ const CountrySelect = ({
                       countryName={label}
                       selectedCountry={selectedCountry}
                       onChange={onChange}
-                      onSelectComplete={() => setIsOpen(false)}
+                      onSelectComplete={() => {
+                        setIsOpen(false);
+                        onOpenChange?.(false);
+                      }}
                     />
                   ) : null
                 )}
@@ -247,12 +313,28 @@ const CountrySelectOption = ({
   };
 
   return (
-    <CommandItem className="gap-2 " onSelect={handleSelect}>
+    <CommandItem className="gap-2" onSelect={handleSelect}>
       <FlagComponent country={country} countryName={countryName} />
-      <span className="flex-1 text-sm">{countryName}</span>
-      <span className="text-sm text-foreground/50">{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+      <BodyText
+        asChild
+        className={typographyCn(
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          'flex-1 text-sm'
+        )}
+      >
+        <span>{countryName}</span>
+      </BodyText>
+      <BodyText
+        asChild
+        className={typographyCn(
+          'text-[length:inherit] leading-[calc(1.25/0.875)] font-[number:inherit] text-inherit',
+          'text-sm text-foreground/50'
+        )}
+      >
+        <span>{`+${RPNInput.getCountryCallingCode(country)}`}</span>
+      </BodyText>
       <CheckIcon
-        className={`ml-auto size-4 ${country === selectedCountry ? "opacity-100" : "opacity-0"}`}
+        className={`ml-auto size-4 ${country === selectedCountry ? 'opacity-100' : 'opacity-0'}`}
       />
     </CommandItem>
   );

@@ -1,13 +1,14 @@
 'use client';
 
-import ErrorPage from '@/components/sections/ErrorPage';
 import { useEffect } from 'react';
 
-export default function Error({
-  error,
-}: {
+import ErrorPage from '@/components/sections/ErrorPage';
+
+interface IErrorProps {
   error: Error & { digest?: string };
-}) {
+}
+
+export default function Error({ error }: IErrorProps) {
   useEffect(() => {
     console.error(error);
   }, [error]);

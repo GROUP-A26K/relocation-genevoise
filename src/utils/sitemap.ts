@@ -1,0 +1,97 @@
+import { isNil } from 'lodash-es';
+
+import { getAbsoluteUrl, getHreflangPaths } from '@/utils/seo';
+
+export type TSitemapAlternate = {
+  hreflang: string;
+  href: string;
+};
+
+export type TSitemapUrl = {
+  loc: string;
+  lastModified?: string;
+  priority?: number;
+  alternates?: TSitemapAlternate[];
+};
+
+export type TSitemapIndexEntry = {
+  loc: string;
+  lastModified?: string;
+};
+
+const XML_ENTITIES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&apos;',
+};
+
+const escapeXml = (value: string) =>
+  value.replace(/[&<>"']/g, (char) => XML_ENTITIES[char] ?? char);
+
+const toTag = (name: string, value?: number | string) =>
+  isNil(value) ? '' : `\n    <${name}>${escapeXml(String(value))}</${name}>`;
+
+export const getAlternates = (
+  pathByLocale: Partial<Record<string, string>>
+): TSitemapAlternate[] =>
+  Object.entries(getHreflangPaths(pathByLocale)).map(([hreflang, path]) => ({
+    hreflang,
+    href: getAbsoluteUrl(path),
+  }));
+
+export const buildUrlsetXml = (urls: TSitemapUrl[]) => {
+  const body = urls
+    .map(({ loc, lastModified, priority, alternates = [] }) => {
+      const links = alternates
+        .map(
+          ({ hreflang, href }) =>
+            `\n    <xhtml:link rel="alternate" hreflang="${escapeXml(hreflang)}" href="${escapeXml(href)}"/>`
+        )
+        .join('');
+
+      return `  <url>\n    <loc>${escapeXml(loc)}</loc>${toTag('lastmod', lastModified)}${toTag('priority', priority)}${links}\n  </url>`;
+    })
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${body}\n</urlset>`;
+};
+
+export const buildSitemapIndexXml = (entries: TSitemapIndexEntry[]) => {
+  const body = entries
+    .map(
+      ({ loc, lastModified }) =>
+        `  <sitemap>\n    <loc>${escapeXml(loc)}</loc>${toTag('lastmod', lastModified)}\n  </sitemap>`
+    )
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</sitemapindex>`;
+};
+
+export const createXmlResponse = (xml: string) =>
+  new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate',
+    },
+  });
+
+export const createUrlsetResponse = async (
+  name: string,
+  getUrls: () => Promise<TSitemapUrl[]> | TSitemapUrl[]
+) => {
+  try {
+    const urls = await getUrls();
+
+    if (!urls.length) {
+      return new Response('Sitemap has no entries', { status: 404 });
+    }
+
+    return createXmlResponse(buildUrlsetXml(urls));
+  } catch (error) {
+    console.error(`[sitemap:${name}] generation failed:`, error);
+
+    return new Response('Error generating sitemap', { status: 500 });
+  }
+};

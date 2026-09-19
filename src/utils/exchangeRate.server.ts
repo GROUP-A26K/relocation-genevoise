@@ -1,12 +1,12 @@
-import "server-only";
+import 'server-only';
 
-import { ExchangeRates, FALLBACK_RATES } from "./exchangeRate";
+import { type IExchangeRates, FALLBACK_RATES } from './exchangeRate';
 
 // Frankfurter.app: free, no API key, uses European Central Bank data
 const FRANKFURTER_URL =
-  "https://api.frankfurter.app/latest?base=CHF&symbols=EUR,USD";
+  'https://api.frankfurter.app/latest?base=CHF&symbols=EUR,USD';
 
-export const getExchangeRates = async (): Promise<ExchangeRates> => {
+export const getExchangeRates = async (): Promise<IExchangeRates> => {
   try {
     const response = await fetch(FRANKFURTER_URL, {
       next: { revalidate: 60 * 60 * 24 * 30 },
@@ -16,9 +16,11 @@ export const getExchangeRates = async (): Promise<ExchangeRates> => {
       throw new Error(`Frankfurter API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as {
+      rates?: Record<string, number>;
+    };
 
-    return { CHF: 1, ...data.rates };
+    return { ...FALLBACK_RATES, CHF: 1, ...data.rates };
   } catch {
     return FALLBACK_RATES;
   }
@@ -27,5 +29,5 @@ export const getExchangeRates = async (): Promise<ExchangeRates> => {
 export const toCHFWithRates = (
   amount: number,
   currency: string,
-  rates: ExchangeRates,
+  rates: IExchangeRates
 ): number => Math.round(amount / (rates[currency] ?? 1));

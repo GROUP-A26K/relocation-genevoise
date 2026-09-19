@@ -1,31 +1,65 @@
 'use client';
-import { List, ListItem } from '@/components/customs/Text';
-import { NavbarProps } from './PageView';
+import { cn } from '@/libs/utils';
 import { Link } from '@/libs/i18nNavigation';
+import { RevealItem } from '@/components/common/Reveal';
+import { List, ListItem } from '@/components/common/Text';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
+import { ANCHOR_SCROLL_MARGIN } from '@/components/common/ContentMenu/constants';
 
-export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
+import type { TSitemap } from './PageView';
+
+interface IContentProps {
+  sitemap: TSitemap;
+}
+
+export const Content = ({ sitemap }: IContentProps) => {
   return (
     <div className="top-0 flex flex-col items-center justify-center">
-      <div className="mx-auto w-full 2xl:max-w-[720px] xl:max-w-[620px] lg:max-w-[470px] max-w-[720px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col gap-x-8 gap-y-8 lg:mx-0 lg:max-w-[470px] lg:grid-cols-3 xl:max-w-[620px] 2xl:max-w-[720px]">
         {sitemap.menu.map((section) => (
-          <div id={section.id} className="flex flex-col gap-4" key={section.id}>
-            <h2 className="lg:text-2xl text-xl font-bold !leading-[130%]">
+          <RevealItem
+            id={section.id}
+            className={cn('flex flex-col gap-4', ANCHOR_SCROLL_MARGIN)}
+            key={section.id}
+          >
+            <HeadingText as="h2" className="text-xl text-inherit lg:text-2xl">
               {section.title}
-            </h2>
+            </HeadingText>
             <List className="flex flex-col gap-4">
               {section.items &&
                 section.items.map((item) => (
                   <ListItem dotColor="#F7D913" key={item.title}>
-                    <Link key={item.title} href={item.url ?? ''}>
-                      {item.title}
-                    </Link>
+                    {item.url && (
+                      <Link
+                        key={item.title}
+                        href={item.url}
+                        className={cn(
+                          bodyTextVariants(),
+                          'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                          ''
+                        )}
+                      >
+                        {item.title}
+                      </Link>
+                    )}
                     {item.items && (
                       <List className="flex flex-col gap-4 pt-4">
                         {item.items.map((subitem) => (
                           <ListItem key={subitem.title} dotColor="#F7D913">
-                            <Link key={subitem.title} href={subitem.url ?? ''}>
-                              {subitem.title}
-                            </Link>
+                            {subitem.url && (
+                              <Link
+                                key={subitem.title}
+                                href={subitem.url}
+                                className={cn(
+                                  bodyTextVariants(),
+                                  'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+                                  ''
+                                )}
+                              >
+                                {subitem.title}
+                              </Link>
+                            )}
                           </ListItem>
                         ))}
                       </List>
@@ -33,7 +67,7 @@ export const Content = ({ sitemap }: { sitemap: NavbarProps }) => {
                   </ListItem>
                 ))}
             </List>
-          </div>
+          </RevealItem>
         ))}
       </div>
     </div>

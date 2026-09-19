@@ -6,7 +6,7 @@ This is a relocation-genevoise project built with Next.js and Sanity. It include
 
 Before you begin, ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (version 22 or higher)
+- [Node.js](https://nodejs.org/) (version 22.12 or higher)
 - [Sanity CLI](https://www.sanity.io/docs/cli) (installed globally)
 
 ## Steps to Run the Project
@@ -63,8 +63,7 @@ This project follows a well-defined structure for better scalability and maintai
 
    - Configuring Tailwind with Next.js: [Tailwind Docs](https://tailwindcss.com/docs/guides/nextjs)
 
-4. **Zustand and Zod**:
-   - Zustand for state management: [Zustand Docs](https://github.com/pmndrs/zustand)
+4. **Zod**:
    - Zod for schema validation: [Zod Docs](https://github.com/colinhacks/zod)
 
 ---

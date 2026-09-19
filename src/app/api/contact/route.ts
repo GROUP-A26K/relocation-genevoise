@@ -1,13 +1,14 @@
-import { executeWithReplication } from "@/libs/prisma";
-import { resend } from "@/libs/resend";
+import { NextResponse } from 'next/server';
+
+import { Env } from '@/libs/env';
+import { resend } from '@/libs/resend';
+import { prisma } from '@/libs/prisma';
+import { Contact } from '@/templates/Email/Contact';
+import ContactCustomer from '@/templates/Email/ContactCustomer';
 import {
-  ContactFormInput,
+  type TContactFormInput,
   contactSchema,
-} from "@/validations/contact.validation";
-import { NextResponse } from "next/server";
-import { Env } from "@/libs/Env";
-import { Contact } from "@/templates/Email/Contact";
-import ContactCustomer from "@/templates/Email/ContactCustomer";
+} from '@/validations/contact.validation';
 
 const senderEmail = Env.RESEND_EMAIL;
 const senderReceiverEmail = Env.RESEND_RECEIVER_EMAIL;
@@ -15,15 +16,15 @@ const baseUrl = Env.NEXT_PUBLIC_SITE_URL;
 const senderName = Env.RESEND_SENDER_NAME;
 
 const subjectTitle = {
-  en: "Welcome to our service!",
-  fr: "Bienvenue dans notre service!",
+  en: 'Welcome to our service!',
+  fr: 'Bienvenue dans notre service!',
 } as const;
 
 const contactCustomerSubjectTitle = {
-  en: "Contact Form Submission Received",
-  fr: "Formulaire de contact soumis reçu",
+  en: 'Contact Form Submission Received',
+  fr: 'Formulaire de contact soumis reçu',
 } as const;
-const createContact = async (data: ContactFormInput) => {
+const createContact = async (data: TContactFormInput) => {
   const contactData = {
     first_name: data.first_name,
     last_name: data.last_name,
@@ -36,18 +37,13 @@ const createContact = async (data: ContactFormInput) => {
     created_at: new Date(),
   };
 
-  const { mysql } = await executeWithReplication(
-    (client) => client.contact.create({ data: contactData }),
-    (client) => client.contact.create({ data: contactData })
-  );
-
-  return mysql;
+  return await prisma.contact.create({ data: contactData });
 };
 
 const sendEmail = async (
   email: string,
-  userInfo: ContactFormInput,
-  locale: "fr" | "en"
+  userInfo: TContactFormInput,
+  locale: 'fr' | 'en'
 ) => {
   try {
     await resend.emails.send({
@@ -72,30 +68,28 @@ const sendEmail = async (
       }),
     });
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Failed to send email");
+    console.error('Error sending email:', error);
+    throw new Error('Failed to send email');
   }
 };
 
 export async function POST(request: Request) {
   try {
     const url = new URL(request.url);
-    const locale = (url.searchParams.get("locale") === "en" ? "en" : "fr") as
-      | "fr"
-      | "en";
+    const locale = url.searchParams.get('locale') === 'en' ? 'en' : 'fr';
 
-    if (!request.headers.get("Content-Type")?.includes("application/json")) {
+    if (!request.headers.get('Content-Type')?.includes('application/json')) {
       return NextResponse.json(
-        { error: "Content-Type must be application/json" },
+        { error: 'Content-Type must be application/json' },
         { status: 400 }
       );
     }
 
-    const body = await request.json();
+    const body: unknown = await request.json();
 
     const parsedData = contactSchema().safeParse(body);
     if (!parsedData.success) {
-      console.log(parsedData.error.format());
+      console.error(parsedData.error.format());
 
       return NextResponse.json(
         { error: parsedData.error.format() },
@@ -109,9 +103,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newContact, { status: 201 });
   } catch (error) {
-    console.error("Error creating contact:", error);
+    console.error('Error creating contact:', error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

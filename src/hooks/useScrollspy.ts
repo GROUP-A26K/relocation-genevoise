@@ -1,3 +1,4 @@
+import { isNil } from 'lodash-es';
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 const clamp = (value: number) => Math.max(0, value);
@@ -11,8 +12,8 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
   const isUpdatingRef = useRef(false);
 
   const handleScroll = useCallback(() => {
-    if (rafRef.current !== null || isUpdatingRef.current) return;
-    
+    if (!isNil(rafRef.current) || isUpdatingRef.current) return;
+
     rafRef.current = requestAnimationFrame(() => {
       try {
         const scroll = window.pageYOffset;
@@ -56,7 +57,7 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
           isUpdatingRef.current = true;
           activeIdRef.current = newActiveId;
           setActiveId(newActiveId);
-          
+
           setTimeout(() => {
             isUpdatingRef.current = false;
           }, 0);
@@ -91,7 +92,7 @@ export const useScrollspy = (ids: string[], offset: number = 0) => {
       isUpdatingRef.current = true;
       activeIdRef.current = id;
       setActiveId(id);
-      
+
       setTimeout(() => {
         isUpdatingRef.current = false;
       }, 0);

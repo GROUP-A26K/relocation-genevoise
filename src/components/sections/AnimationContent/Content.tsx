@@ -1,111 +1,148 @@
 'use client';
-import { FC, useCallback, useEffect, useState } from 'react';
-import Image from 'next/image';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion-changelog-custom';
-import debounce from 'lodash.debounce';
+import { useId, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
+import { useMediaQuery } from 'usehooks-ts';
+import { motion, useReducedMotion } from 'motion/react';
+
 import { cn } from '@/libs/utils';
 import { useScroll } from '@/hooks/useScroll';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion-changelog';
 
-export interface ContentProps {
+import { StepContent } from './StepContent';
+
+import type { StaticImageData } from 'next/image';
+
+export interface IContentProps {
   position?: string;
   items: {
     title: string;
     description: string;
-    image: string;
+    image: StaticImageData;
   }[];
 }
 
-export const Content: FC<ContentProps> = ({ items }) => {
-  const { activeId } = useScroll(
-    [...items.map((item, index) => `item-${index}`)],
-    500
-  );
-  const [activeIndex, setActiveIndex] = useState<string>(`item-0`);
+export const Content: React.FC<IContentProps> = ({ items }) => {
+  const id = useId();
+  const imageT = useTranslations('Images');
 
-  const setActiveIdDebounced = useCallback(
-    debounce(() => {
-      setActiveIndex(activeId);
-    }, 1),
-    [activeId]
+  const isMobile = useMediaQuery('(max-width: 1024px)');
+
+  const itemIds = useMemo(
+    () => items.map((_, index) => `${id}-item-${index}`),
+    [id, items]
   );
-  useEffect(() => {
-    setActiveIdDebounced();
-  }, [activeId, setActiveIdDebounced]);
+
+  const { activeId, setActiveId } = useScroll(itemIds, isMobile ? 48 : 32, {
+    headerSelector: '[data-site-header]',
+    preserveScrollPosition: true,
+  });
+
+  const shouldReduceMotion = useReducedMotion();
+
+  const activeStep = itemIds.indexOf(activeId);
 
   return (
-    <div className="top-0 flex flex-col items-center justify-center md:ml-0 ml-14">
-      <div className="mx-auto w-full 2xl:max-w-[672px] xl:max-w-[620px] max-w-[672px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col items-end">
-        <div className="w-full max-w-[560px] flex">
+    <div className="top-0 ml-14 flex flex-col items-center justify-center md:ml-0">
+      <div className="mx-auto flex w-full max-w-2xl flex-col items-end gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-155 2xl:max-w-2xl">
+        <RevealItem className="flex w-full max-w-140">
           <div className="flex flex-col gap-16">
             <div className="relative flex flex-col gap-8">
-              <Accordion type="single" value={activeIndex} className="relative">
+              <Accordion
+                type="single"
+                value={activeId}
+                onValueChange={setActiveId}
+                className="relative [overflow-anchor:none]"
+              >
                 {items?.map((item, index) => (
                   <AccordionItem
-                    value={`item-${index}`}
-                    className="relative border-b-0 pb-8 last:pb-0"
+                    value={itemIds[index]}
+                    className="relative border-b-0 pb-12 last:pb-6 lg:pb-8 lg:last:pb-0"
                     key={index}
                   >
-                    <div className="absolute top-0 h-full w-[3px] -left-10 md:block lg:-left-16">
+                    <div
+                      aria-hidden="true"
+                      className="absolute top-0 -left-10 h-full w-0.75 md:block lg:-left-16"
+                    >
                       <div className="h-full w-full rounded-full bg-muted">
-                        <div
-                          className={cn(
-                            'relative max-h-full h-full w-full rounded-full transition-all duration-700',
-                            activeIndex.includes(`item-${index}`)
-                              ? 'bg-yellow-500'
-                              : 'bg-grey-100'
-                          )}
+                        <motion.div
+                          className="relative h-full max-h-full w-full origin-top rounded-full bg-yellow-500"
+                          initial={false}
+                          animate={{ scaleY: index <= activeStep ? 1 : 0 }}
+                          transition={
+                            shouldReduceMotion
+                              ? { duration: 0 }
+                              : {
+                                  type: 'spring',
+                                  stiffness: 120,
+                                  damping: 20,
+                                  mass: 0.8,
+                                }
+                          }
                         />
                       </div>
                     </div>
-                    <span
-                      className={cn(
-                        'absolute top-0 lg:size-12 size-10 -translate-x-1/2 rounded-full border border-grey-100 text-center items-center justify-center flex bg-background -left-10 md:grid lg:-left-16 transition-all duration-700',
-                        activeIndex.includes(`item-${index}`)
-                          ? 'bg-yellow-500 border-yellow-500'
-                          : ''
-                      )}
+                    <BodyText
+                      asChild
+                      className="text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit"
                     >
-                      {index + 1}
-                    </span>
+                      <span
+                        aria-current={index === activeStep ? 'step' : undefined}
+                        className={cn(
+                          'absolute top-0 -left-10 flex size-10 -translate-x-1/2 items-center justify-center rounded-full border border-grey-100 bg-background text-center transition-colors duration-200 motion-reduce:transition-none md:grid lg:-left-16 lg:size-12',
+                          index <= activeStep
+                            ? 'border-yellow-500 bg-yellow-500'
+                            : ''
+                        )}
+                      >
+                        {index + 1}
+                      </span>
+                    </BodyText>
 
-                    <div className="flex flex-col max-w-fit">
-                      <AccordionTrigger className="flex flex-col lg:gap-3 gap-4 text-left">
-                        <div className="flex flex-col lg:gap-3 gap-4 max-w-[560px] text-left">
+                    <div className="flex max-w-fit flex-col">
+                      <AccordionTrigger className="flex flex-col gap-4 text-left lg:gap-3">
+                        <div className="flex max-w-140 flex-col gap-4 text-left lg:gap-3">
                           <div className="flex flex-col gap-3">
-                            <h2
-                              className="lg:text-xl text-lg font-semibold !leading-[130%]"
-                              id={`item-${index}`}
+                            <HeadingText
+                              as="h2"
+                              className="text-lg font-semibold text-inherit lg:text-xl"
+                              id={itemIds[index]}
                             >
                               {item.title}
-                            </h2>
+                            </HeadingText>
                           </div>
-                          <h3 className="text-sm font-normal text-black-200 !leading-[130%]">
+                          <HeadingText
+                            as="h3"
+                            className="text-sm font-normal text-black-200"
+                          >
                             {item.description}
-                          </h3>
+                          </HeadingText>
                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="py-0 pt-10 max-w-[720px] flex justify-center h-fit text-sm text-black-200 !leading-[130%] duration-700">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          title={item.description}
-                          width={560}
-                          height={280}
-                          className="aspect-video sm:h-[280px] sm:min-h-[280px] min-h-[200px] h-[200px] lg:w-full w-fit rounded-md"
-                        />
-                      </AccordionContent>
+                      <StepContent
+                        isActive={index === activeStep}
+                        title={item.title}
+                        image={item.image}
+                        imageAlt={imageT('findAccommodation.step', {
+                          title: item.title,
+                        })}
+                        imageTitle={imageT('findAccommodation.step', {
+                          title: item.title,
+                        })}
+                      />
                     </div>
                   </AccordionItem>
                 ))}
               </Accordion>
             </div>
           </div>
-        </div>
+        </RevealItem>
       </div>
     </div>
   );

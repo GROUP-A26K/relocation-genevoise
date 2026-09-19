@@ -1,30 +1,37 @@
 'use client';
-
-import { FC } from 'react';
-import { JobCard } from '@/components/customs/Card';
-import { Job } from '@/models/Job';
 import { useTranslations } from 'next-intl';
 
-interface Props {
-  jobs: Job[];
+import { JobCard } from '@/components/common/Card';
+import { RevealItem } from '@/components/common/Reveal';
+import HeadingText from '@/components/common/Text/HeadingText';
+
+import type { IJob } from '@/models/job';
+
+interface IRelatedItemsPanelProps {
+  jobs: IJob[];
 }
 
-export const RelatedItemsPanel: FC<Props> = ({ jobs }) => {
+export const RelatedItemsPanel: React.FC<IRelatedItemsPanelProps> = ({
+  jobs,
+}) => {
   const t = useTranslations('CareerDetail.FeaturedJob');
 
   return (
-    <aside className="flex-1 flex flex-col gap-8">
-      <h2 className="text-black text-xl font-semibold leading-relaxed">
+    <RevealItem as="aside" className="flex flex-1 flex-col gap-8">
+      <HeadingText
+        as="h2"
+        className="text-xl leading-relaxed font-semibold text-black"
+      >
         {t('title')}
-      </h2>
+      </HeadingText>
 
-      <ul className="flex flex-col gap-6 w-full xl:max-w-[408px] xl:min-w-[408px] lg:max-w-[350px] lg:min-w-[350px]">
+      <ul className="flex w-full flex-col gap-6 lg:max-w-[350px] lg:min-w-[350px] xl:max-w-[408px] xl:min-w-[408px]">
         {jobs.map((job) => (
           <li key={job.id}>
             <JobCard job={job} options={{ isButtonLink: false }} />
           </li>
         ))}
       </ul>
-    </aside>
+    </RevealItem>
   );
 };

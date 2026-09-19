@@ -1,15 +1,16 @@
-import { Whatsapp } from "@/components/blocks/Whatsapp";
-import { Footer } from "@/components/sections/Footer";
+import { Footer } from '@/components/sections/Footer';
+import { Whatsapp } from '@/components/common/Whatsapp';
 
-export default async function Template(props: {
+interface ITemplateProps {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
+}
+
+export default function Template({ children }: ITemplateProps) {
   return (
     <>
       <main>
-        <Whatsapp phoneNumber={"41783371528"} />
-        {props.children}
+        <Whatsapp phoneNumber="41783371528" />
+        {children}
       </main>
       <Footer />
     </>

@@ -1,25 +1,31 @@
-import { DesktopMenu } from './DesktopMenu';
 import { MobileMenu } from './MobileMenu';
-export interface MenuItem {
+import { DesktopMenu } from './DesktopMenu';
+import NavigationHeader from './NavigationHeader';
+
+import type { THref } from '@/libs/i18nNavigation';
+
+export type TMenuItem = {
   title: string;
   subtitle?: string;
-  url: string;
+  url?: THref;
   description?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  items?: MenuItem[];
-}
-export interface NavbarProps {
-  menu: MenuItem[];
+  items?: TMenuItem[];
+};
+
+export interface INavbarContainerProps {
+  menu: TMenuItem[];
   contactButton?: {
     text: string;
-    url: string;
+    url: THref;
   };
   callButton?: {
     text: string;
-    url: string;
+    url: THref;
   };
 
   locale?: string;
+  logoLabel?: string;
 }
 
 const NavbarContainer = ({
@@ -27,18 +33,25 @@ const NavbarContainer = ({
   callButton,
   locale,
   contactButton,
-}: NavbarProps) => {
+  logoLabel,
+}: INavbarContainerProps) => {
   return (
-    <header className="relative flex flex-col justify-center items-center">
-      <nav className="container 2xl:max-w-screen-2xl xl:max-w-screen-2xl lg:max-w-screen-xl md:max-w-screen-md 2xl:px-[100px] xl:px-[60px] px-[48px]">
-        <DesktopMenu menu={menu} callButton={callButton} locale={locale} />
+    <NavigationHeader>
+      <nav className="container px-12 md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-xl) xl:max-w-(--breakpoint-2xl) xl:px-15 2xl:max-w-(--breakpoint-2xl) 2xl:px-25">
+        <DesktopMenu
+          menu={menu}
+          callButton={callButton}
+          locale={locale}
+          logoLabel={logoLabel}
+        />
       </nav>
       <MobileMenu
         menu={menu}
         callButton={callButton}
         contactButton={contactButton}
+        logoLabel={logoLabel}
       />
-    </header>
+    </NavigationHeader>
   );
 };
 

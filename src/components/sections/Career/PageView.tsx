@@ -1,70 +1,102 @@
 'use client';
-
+import { motion } from 'motion/react';
+import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'framer-motion';
-import { FC, useTransition } from 'react';
 import { parseAsString, parseAsInteger, useQueryStates } from 'nuqs';
 
-import { Job } from '@/models/Job';
-import { Meta } from '@/models/Meta';
-import Section from '@/components/customs/Section';
-import TabsMenu from '@/components/blocks/TabsMenu';
-import { JobCard } from '@/components/customs/Card';
-import EmptyData from '@/components/customs/EmptyData';
-import { AssuranceJobDepartment } from '@/sanity/types';
-import { Pagination } from '@/components/blocks/Pagination';
-import { Spinner } from '@/components/customs/Spinner/Spinner';
-import { TextWithStrong } from '@/components/customs/Text/TextWithStrong';
+import Show from '@/components/common/Show';
+import Section from '@/components/common/Section';
+import { JobCard } from '@/components/common/Card';
+import TabsMenu from '@/components/common/TabsMenu';
+import EmptyData from '@/components/common/EmptyData';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import { Pagination } from '@/components/common/Pagination';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { TextWithStrong } from '@/components/common/Text/TextWithStrong';
+import useScrollIntoViewOnChange from '@/hooks/useScrollIntoViewOnChange';
+import { normalizeCareerListFilters } from '@/features/career/career.searchParams';
+import {
+  useCareerDepartments,
+  useCareerList,
+} from '@/features/career/career.hooks';
 
 import { ContentContainer } from './ContentContainer';
+import { CareerListSkeleton } from './CareerListSkeleton';
 
-interface Props {
-  departments: AssuranceJobDepartment[];
-  jobs: Job[];
-  meta: Meta;
+import type { IJob } from '@/models/job';
+import type { IMeta } from '@/models/meta';
+import type { DEPARTMENT_QUERY_RESULT } from '@/sanity/types';
+
+interface IPageViewProps {
+  departments: DEPARTMENT_QUERY_RESULT;
+  jobs: IJob[];
+  meta: IMeta;
 }
 
-export const PageView: FC<Props> = (props) => {
+export const PageView: React.FC<IPageViewProps> = (props) => {
   const t = useTranslations('Career');
+  const imageT = useTranslations('Images');
   const locale = useLocale();
-  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
 
   const [queryParams, setQueryParams] = useQueryStates(
     {
       page: parseAsInteger.withDefault(1),
       filterBy: parseAsString.withDefault(''),
     },
-    { shallow: false, scroll: false, startTransition }
+    { shallow: true, scroll: false }
   );
 
-  const showEmpty = !isPending && props.jobs.length === 0;
-  const showList = !isPending && props.jobs.length > 0;
+  const filters = normalizeCareerListFilters({
+    locale,
+    page: queryParams.page,
+    pageSize: 5,
+    filterBy: queryParams.filterBy,
+  });
+  const listQuery = useCareerList(filters);
+  const departmentQuery = useCareerDepartments(locale);
+  const jobs = listQuery.data?.jobs ?? props.jobs;
+  const meta = listQuery.data?.meta ?? props.meta;
+  const departments = departmentQuery.data?.departments ?? props.departments;
+  const loading = listQuery.isPending || listQuery.isPlaceholderData;
+
+  const listTopRef = useScrollIntoViewOnChange<HTMLDivElement>(
+    `${queryParams.page}|${queryParams.filterBy}`
+  );
 
   return (
     <>
-      <Section>
-        <div className="flex w-full items-center justify-center">
-          <div className="flex flex-col lg:gap-6 gap-4 w-full lg:items-center text-left max-w-4xl">
+      <Section revealTrigger="load">
+        <RevealItem className="flex w-full items-center justify-center">
+          <div className="flex w-full max-w-4xl flex-col gap-4 text-left lg:items-center lg:gap-6">
             <div className="flex flex-col gap-3">
-              <div className="text-sm font-semibold text-center text-secondary-500 !leading-[130%]">
-                {t('heading')}
-              </div>
-              <h1 className="text-5xl font-bold text-center !leading-[130%]">
+              <BodyText
+                variant="sm"
+                asChild
+                className="text-center font-semibold text-secondary-500"
+              >
+                <div>{t('heading')}</div>
+              </BodyText>
+              <HeadingText as="h1" className="text-center text-inherit">
                 {TextWithStrong(t('subHeading'))}
-              </h1>
+              </HeadingText>
             </div>
-            <p className="text-sm font-normal text-center text-black-200 !leading-[130%] text-balance">
+            <BodyText variant="sm" className="text-center text-balance">
               {t('description')}
-            </p>
+            </BodyText>
           </div>
-        </div>
+        </RevealItem>
       </Section>
 
       <ContentContainer>
-        <div className="flex lg:flex-row flex-col items-center justify-center gap-8">
-          <div className="lg:w-fit w-full px-auto overflow-y-auto">
+        <RevealItem
+          ref={listTopRef}
+          className="flex scroll-mt-26 flex-col items-center justify-center gap-8 lg:flex-row"
+        >
+          <div className="px-auto w-full overflow-y-auto lg:w-fit">
             <TabsMenu
-              category={props.departments.map((dept) => ({
+              category={departments.map((dept) => ({
                 title:
                   dept.title?.[locale as 'fr' | 'en'] || 'Unknown Department',
               }))}
@@ -74,51 +106,41 @@ export const PageView: FC<Props> = (props) => {
               }
             />
           </div>
-        </div>
+        </RevealItem>
 
-        <div className="flex flex-col items-center justify-center">
-          <div className="mx-auto w-full 2xl:max-w-[768px] xl:max-w-[660px] max-w-[768px] gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 flex flex-col">
-            <AnimatePresence>
-              {isPending && (
+        <RevealItem className="flex flex-col items-center justify-center">
+          <div className="mx-auto flex w-full max-w-3xl flex-col gap-x-8 gap-y-8 lg:mx-0 lg:grid-cols-3 xl:max-w-165 2xl:max-w-3xl">
+            <HeadingText
+              as="h2"
+              className="sr-only text-[length:inherit] leading-[inherit] font-[number:inherit] text-nowrap text-inherit"
+            >
+              Job posts
+            </HeadingText>
+            <Show when={!loading} fallback={<CareerListSkeleton />}>
+              <Show
+                when={jobs.length > 0}
+                fallback={
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 border-b border-grey-100 py-12 lg:max-w-none"
+                  >
+                    <EmptyData
+                      title={t('emptyTitle')}
+                      description={t('emptyDescription')}
+                      imageAlt={imageT('common.empty.career')}
+                    />
+                  </motion.div>
+                }
+              >
                 <motion.div
-                  key="spinner"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Spinner />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <h2 className="sr-only">Job posts</h2>
-            <AnimatePresence>
-              {showEmpty && (
-                <motion.div
-                  key="empty"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
+                  className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 py-12 lg:max-w-none"
                 >
-                  <EmptyData
-                    title={t('emptyTitle')}
-                    description={t('emptyDescription')}
-                  />
-                </motion.div>
-              )}
-              {showList && (
-                <motion.div
-                  key="jobList"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="py-12 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 lg:max-w-none border-b border-grey-100"
-                >
-                  {props.jobs.map((job) => (
+                  {jobs.map((job) => (
                     <JobCard
                       key={job.id}
                       job={job}
@@ -126,17 +148,24 @@ export const PageView: FC<Props> = (props) => {
                     />
                   ))}
                 </motion.div>
-              )}
-            </AnimatePresence>
+              </Show>
+            </Show>
           </div>
-        </div>
+        </RevealItem>
 
-        {showList && (
+        <Show when={!loading && jobs.length > 0}>
           <Pagination
-            meta={props.meta}
+            meta={meta}
             onClick={(page: number) => setQueryParams({ page })}
+            getPageHref={(page) => {
+              const params = new URLSearchParams();
+              if (page > 1) params.set('page', String(page));
+              if (queryParams.filterBy)
+                params.set('filterBy', queryParams.filterBy);
+              return `${pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+            }}
           />
-        )}
+        </Show>
       </ContentContainer>
     </>
   );

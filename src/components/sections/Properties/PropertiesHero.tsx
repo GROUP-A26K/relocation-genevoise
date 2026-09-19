@@ -1,16 +1,22 @@
-import Image from "next/image";
-import { useTranslations } from "next-intl";
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
-import PropertyListingImg from "@/assets/img/bg/properties-listing-bg.webp";
+import { cn } from '@/libs/utils';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { bodyTextVariants } from '@/components/common/Text/BodyText';
+import { RevealItem, RevealSection } from '@/components/common/Reveal';
+import PropertyListingImg from '@/assets/images/properties/hero-background.webp';
 
 export default function PropertiesHero() {
-  const t = useTranslations("Properties");
+  const t = useTranslations('Properties');
 
   return (
     <section className="relative w-full overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={PropertyListingImg}
+          placeholder="blur"
           alt=""
           fill
           priority
@@ -20,21 +26,38 @@ export default function PropertiesHero() {
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      <div className="relative flex flex-col items-center pt-12 lg:pt-16 pb-24 lg:pb-40 2xl:px-[100px] xl:px-[60px] lg:px-[48px] px-4">
-        <article className="flex flex-col gap-4 lg:gap-6 items-center max-w-[720px]">
-          <div className="flex flex-col gap-3 items-center w-full">
-            <span className="text-body font-semibold text-yellow-500 !leading-[1.3]">
-              {t("hero.tagline")}
-            </span>
-            <h1 className="text-3xl lg:text-h1 font-bold text-white text-center !leading-[1.3] text-balance">
-              {t("hero.title")}
-            </h1>
-          </div>
-          <p className="text-body font-normal text-white text-center !leading-[1.3] text-pretty">
-            {t("hero.description")}
-          </p>
+      <RevealSection
+        trigger="load"
+        className="relative flex flex-col items-center px-4 pt-12 pb-24 lg:px-[48px] lg:pt-16 lg:pb-40 xl:px-[60px] 2xl:px-[100px]"
+      >
+        <article className="flex max-w-[720px] flex-col items-center gap-4 lg:gap-6">
+          <RevealItem className="flex w-full flex-col items-center gap-3">
+            <BodyText
+              variant="sm"
+              asChild
+              className="font-semibold text-yellow-500"
+            >
+              <span>{t('hero.tagline')}</span>
+            </BodyText>
+            <HeadingText
+              as="h1"
+              className="text-center text-3xl text-balance text-white lg:text-[48px]"
+            >
+              {t('hero.title')}
+            </HeadingText>
+          </RevealItem>
+          <RevealItem
+            as="p"
+            className={cn(
+              bodyTextVariants(),
+              'text-[length:inherit] leading-[inherit] font-[number:inherit] text-inherit',
+              'text-center text-[14px] leading-[130%] font-normal text-pretty text-white'
+            )}
+          >
+            {t('hero.description')}
+          </RevealItem>
         </article>
-      </div>
+      </RevealSection>
     </section>
   );
 }

@@ -14,18 +14,20 @@ import {
   Tailwind,
   Text,
 } from '@react-email/components';
-import { ApplicationFormInput } from '@/validations/application.validation';
 
-interface UserInfo
-  extends Omit<
-    ApplicationFormInput,
-    'resume_file ' | 'accept ' | 'expected_ctc'
-  > {
+import { getImageMessages } from '@/utils/imageMessages';
+
+import type { TApplicationFormInput } from '@/validations/application.validation';
+
+type TUserInfo = Omit<
+  TApplicationFormInput,
+  'resume_file ' | 'accept ' | 'expected_ctc'
+> & {
   resume_url: string;
   expected_ctc: number | undefined;
-}
-interface ApplicationProps {
-  userInfo: UserInfo;
+};
+interface IApplicationInformationProps {
+  userInfo: TUserInfo;
   baseUrl: string;
   locale: 'en' | 'fr';
 }
@@ -61,17 +63,18 @@ export const ApplicationInformation = ({
   userInfo,
   baseUrl,
   locale = 'en',
-}: ApplicationProps) => {
+}: IApplicationInformationProps) => {
   const t = copy[locale];
+  const imageT = getImageMessages(locale);
 
   return (
-    <Html>
+    <Html lang={locale}>
       <Head />
       <Preview>{t.heading}</Preview>
 
       <Tailwind>
-        <Body className="bg-white my-auto mx-auto font-sans px-2">
-          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto max-w-[600px]">
+        <Body className="mx-auto my-auto bg-white px-2 font-sans">
+          <Container className="mx-auto my-[40px] max-w-[600px] rounded border border-solid border-[#eaeaea]">
             {/* ---------- Header ---------- */}
             <Section className="px-[32px] py-[40px]">
               <Row>
@@ -80,7 +83,8 @@ export const ApplicationInformation = ({
                     src={`${baseUrl}rg-logo.png`}
                     width="93.26"
                     height="36"
-                    alt="React Email logo"
+                    alt={imageT.email.logo}
+                    title={imageT.email.logo}
                   />
                 </Column>
 
@@ -93,9 +97,9 @@ export const ApplicationInformation = ({
                           width="13"
                           className="my-auto ml-auto"
                           height="13"
-                          alt="Globe icon"
+                          alt=""
                         />
-                        <Text className="text-[#605204] text-xs font-semibold !leading-[100%] ml-1">
+                        <Text className="ml-1 text-xs leading-[100%] font-semibold text-[#605204]">
                           https://relocation-genevoise/ch
                         </Text>
                       </div>
@@ -107,36 +111,36 @@ export const ApplicationInformation = ({
 
             {/* ---------- Main copy ---------- */}
             <Heading
-              className="text-[#605204] text-3xl font-semibold !leading-[130%] text-start m-8 mb-6"
+              className="m-8 mb-6 text-start text-3xl leading-[130%] font-semibold text-[#605204]"
               dangerouslySetInnerHTML={{ __html: t.heading }}
             />
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.name}:{' '}
               <strong>
                 {userInfo.first_name} {userInfo.last_name}
               </strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.email}: <strong>{userInfo.email}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.phone}: <strong>{userInfo.phone}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.experience_years}: <strong>{userInfo.experience_years}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.expected_ctc}:<strong>{userInfo?.expected_ctc}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.department}: <strong>{userInfo.department}</strong>
             </Text>
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.position}: <strong>{userInfo.position}</strong>
             </Text>
 
-            <Text className="text-black text-[14px] leading-[24px] px-8">
+            <Text className="px-8 text-[14px] leading-[24px] text-black">
               {t.resume_url}:{' '}
               <Link href={userInfo.resume_url}>
                 <strong className="text-[#D7BC12]">{t.user_cv}</strong>
@@ -164,5 +168,5 @@ ApplicationInformation.PreviewProps = {
   },
   baseUrl: 'https://relocation-genevoise.vercel.app/',
   locale: 'en',
-} as ApplicationProps;
+} as IApplicationInformationProps;
 export default ApplicationInformation;

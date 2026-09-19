@@ -1,13 +1,19 @@
-"use client";
+'use client';
+import { useTranslations } from 'next-intl';
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { useTranslations } from "next-intl";
-
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
 import {
   PROPERTY_SORT_OPTIONS,
   usePropertyFilters,
-} from "@/hooks/usePropertyFilters";
+} from '@/hooks/usePropertyFilters';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface IPropertyResultsHeaderProps {
   total: number;
@@ -20,84 +26,77 @@ export default function PropertyResultsHeader({
   page,
   pageSize,
 }: IPropertyResultsHeaderProps) {
-  const t = useTranslations("Properties");
-  const { queryParams, handleSortChange, handleAvailableOnlyChange } = usePropertyFilters();
-  const [sortOpen, setSortOpen] = useState(false);
+  const t = useTranslations('Properties');
+  const { queryParams, handleSortChange, handleAvailableOnlyChange } =
+    usePropertyFilters();
 
   const startItem = total > 0 ? (page - 1) * pageSize + 1 : 0;
   const endItem = Math.min(page * pageSize, total);
-  const currentSortLabel =
+  const currentSort =
     PROPERTY_SORT_OPTIONS.find((option) => option.value === queryParams.sort)
-      ?.labelKey ?? "sort.newest";
-
-  const handleSortSelect = (value: string) => {
-    handleSortChange(value);
-    setSortOpen(false);
-  };
+      ?.value ?? PROPERTY_SORT_OPTIONS[0].value;
 
   return (
-    <div className="flex mb-8 max-md:flex-col-reverse md:items-center md:justify-between gap-4">
-      <div className="text-p font-normal text-black-500 !leading-[130%]">
-        {t("results.showing")}{" "}
-        <span className="font-bold">
-          {startItem}-{endItem}
-        </span>{" "}
-        {t("results.ofTotal")} <span className="font-bold">{total}</span>{" "}
-        {t("results.results")}
-      </div>
+    <RevealItem className="flex gap-4 max-md:flex-col-reverse md:items-center md:justify-between">
+      <BodyText variant="md" asChild className="text-black-500">
+        <div>
+          {t('results.showing')}{' '}
+          <span className="font-bold">
+            {startItem}-{endItem}
+          </span>{' '}
+          {t('results.ofTotal')} <span className="font-bold">{total}</span>{' '}
+          {t('results.results')}
+        </div>
+      </BodyText>
 
-      <div className="flex gap-3 items-center flex-wrap max-md:justify-between">
+      <div className="flex flex-wrap items-center gap-3 max-md:justify-between">
         <button
           role="switch"
           aria-checked={queryParams.availableOnly}
           onClick={() => handleAvailableOnlyChange(!queryParams.availableOnly)}
-          className="flex items-center gap-2 cursor-pointer group"
+          className="group flex cursor-pointer items-center gap-2"
         >
           <div
-            className={`relative w-10 h-6 rounded-full transition-colors duration-200 ${
-              queryParams.availableOnly ? "bg-blue-500" : "bg-grey-200"
+            className={`relative h-6 w-10 rounded-full transition-colors duration-200 ${
+              queryParams.availableOnly ? 'bg-blue-500' : 'bg-grey-200'
             }`}
           >
             <span
-              className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ${
-                queryParams.availableOnly ? "translate-x-4" : "translate-x-0"
+              className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${
+                queryParams.availableOnly ? 'translate-x-4' : 'translate-x-0'
               }`}
             />
           </div>
-          <span className="text-p font-normal text-black-500 !leading-[130%] whitespace-nowrap">
-            {t("results.showAvailableOnly")}
-          </span>
+          <BodyText
+            variant="md"
+            asChild
+            className="whitespace-nowrap text-black-500"
+          >
+            <span>{t('results.showAvailableOnly')}</span>
+          </BodyText>
         </button>
 
-        <div className="flex gap-3 items-center relative">
-          <div className="relative">
-            <button
-              onClick={() => setSortOpen((isOpen) => !isOpen)}
-              className="flex items-center justify-center gap-2 h-10 px-4 py-3 bg-grey-100 hover:bg-grey-200 rounded-full text-p font-semibold text-black-500 !leading-[130%] whitespace-nowrap transition-colors"
-            >
-              {t(currentSortLabel)}
-              <ChevronDown className="w-4 h-4" />
-            </button>
-            {sortOpen && (
-              <div className="absolute top-12 right-0 bg-white rounded-xl shadow-lg border border-grey-100 py-1 z-10 min-w-[180px]">
-                {PROPERTY_SORT_OPTIONS.map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleSortSelect(option.value)}
-                    className={`w-full text-left px-4 py-2 text-p !leading-[130%] hover:bg-grey-50 transition-colors ${
-                      queryParams.sort === option.value
-                        ? "font-semibold text-black-500"
-                        : "font-normal text-black-300"
-                    }`}
-                  >
-                    {t(option.labelKey)}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+        <Select value={currentSort} onValueChange={handleSortChange}>
+          <SelectTrigger className="h-10 w-auto gap-2 rounded-full border-0 bg-grey-100 px-4 py-3 text-sm leading-[130%] font-semibold text-black-500 shadow-none transition-colors hover:bg-grey-200 focus:ring-0 [&>svg]:opacity-100">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent
+            align="end"
+            sideOffset={8}
+            className="min-w-[180px] rounded-xl border-grey-100 bg-white shadow-lg"
+          >
+            {PROPERTY_SORT_OPTIONS.map((option) => (
+              <SelectItem
+                key={option.value}
+                value={option.value}
+                className="cursor-pointer rounded-md px-4 py-2 text-sm leading-[130%] font-normal text-black-300 focus:bg-grey-50 focus:text-black-500 data-[state=checked]:font-semibold data-[state=checked]:text-black-500 [&>span:first-child]:hidden"
+              >
+                {t(option.labelKey)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
-    </div>
+    </RevealItem>
   );
 }

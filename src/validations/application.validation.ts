@@ -1,7 +1,12 @@
 import { z } from 'zod';
-import { type TranslationValues } from 'next-intl'; // Make sure to import this if using next-intl
+
+import type { useTranslations } from 'next-intl';
 
 // Phone regex for validation
+type TValidationTranslator = ReturnType<
+  typeof useTranslations<'Validation.Application'>
+>;
+
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 );
@@ -12,9 +17,7 @@ const fileAccept = [
   'application/msword',
 ];
 
-export function applicationSchema(
-  t?: (key: string, object?: TranslationValues) => string
-) {
+export function applicationSchema(t?: TValidationTranslator) {
   return z.object({
     first_name: z
       .string()
@@ -86,6 +89,6 @@ export function applicationSchema(
   });
 }
 
-export type ApplicationFormInput = z.infer<
+export type TApplicationFormInput = z.infer<
   ReturnType<typeof applicationSchema>
 >;

@@ -1,19 +1,22 @@
-import { Fragment } from "react";
-import { ArrowRight } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
+import { Fragment } from 'react';
+import { ArrowRight } from 'lucide-react';
+import Image, { type StaticImageData } from 'next/image';
 
-import { cn } from "@/libs/utils";
-import { Link } from "@/libs/i18nNavigation";
-import Button from "@/components/customs/Button";
-import CountUp from "@/components/customs/CountUp";
-import Section from "@/components/customs/Section";
-import { AnimatedGridPattern } from "@/components/ui/magicui/animated-grid-pattern";
+import { cn } from '@/libs/utils';
+import Button from '@/components/common/Button';
+import CountUp from '@/components/common/CountUp';
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import { Link, type THref } from '@/libs/i18nNavigation';
+import HeadingText from '@/components/common/Text/HeadingText';
+import { AnimatedGridPattern } from '@/components/ui/magicui/animated-grid-pattern';
 
-import HeroTabs, { type TFindATenantAudience } from "./HeroTabs";
+import HeroTabs, { type TFindATenantAudience } from './HeroTabs';
 
 type TCta = {
   text: string;
-  href: string;
+  href: THref;
 };
 
 type TStat = {
@@ -29,8 +32,9 @@ interface IHeroProps {
   primaryCta: TCta;
   secondaryCta: TCta;
   image: {
-    src: string | StaticImageData;
+    src: StaticImageData;
     alt: string;
+    title?: string;
   };
   stats: TStat[];
 }
@@ -46,7 +50,7 @@ export default function Hero({
   stats,
 }: IHeroProps) {
   return (
-    <Section className="relative">
+    <Section revealTrigger="load" className="relative">
       <div className="flex flex-col gap-12 lg:gap-16">
         <div className="relative flex flex-col items-stretch gap-12 lg:flex-row lg:items-start lg:gap-24">
           <div className="pointer-events-none absolute inset-0 -z-10 flex justify-center overflow-hidden">
@@ -57,23 +61,29 @@ export default function Hero({
               height={80}
               width={80}
               className={cn(
-                "size-full text-yellow-25 opacity-70",
-                "[mask-image:radial-gradient(circle_at_top,white,transparent_95%)]",
+                'size-full text-yellow-25 opacity-70',
+                'mask-[radial-gradient(circle_at_top,white,transparent_95%)]'
               )}
             />
           </div>
 
-          <div className="flex flex-1 flex-col items-center gap-6 lg:gap-12 lg:items-start">
+          <RevealItem className="flex flex-1 flex-col items-center gap-6 lg:items-start lg:gap-12">
             <HeroTabs active={active} labels={tabLabels} />
 
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <h1 className="whitespace-pre-line text-pretty text-center text-4xl font-bold !leading-[130%] text-black-500 lg:text-5xl lg:text-left">
+                <HeadingText
+                  as="h1"
+                  className="text-center text-4xl text-pretty whitespace-pre-line lg:text-left lg:text-5xl"
+                >
                   {heading}
-                </h1>
-                <p className="text-pretty text-base text-center font-normal !leading-[150%] text-black-300 lg:text-left">
+                </HeadingText>
+                <BodyText
+                  variant="md"
+                  className="text-center leading-[150%] text-pretty text-black-300 lg:text-left"
+                >
                   {description}
-                </p>
+                </BodyText>
               </div>
 
               <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
@@ -83,7 +93,7 @@ export default function Hero({
                     variant="md"
                     type="secondary"
                     iconEnd={ArrowRight}
-                    className="rounded-full w-full"
+                    className="w-full rounded-full"
                   >
                     {primaryCta.text}
                   </Button>
@@ -93,20 +103,21 @@ export default function Hero({
                     as="outline"
                     variant="md"
                     type="primary"
-                    className="rounded-full w-full"
+                    className="w-full rounded-full"
                   >
                     {secondaryCta.text}
                   </Button>
                 </Link>
               </div>
             </div>
-          </div>
+          </RevealItem>
 
-          <div className="flex-1 relative aspect-[572/420] w-full">
+          <RevealItem className="relative aspect-572/420 w-full flex-1">
             <Image
               src={image.src}
+              placeholder="blur"
               alt={image.alt}
-              title={image.alt}
+              title={image.title || image.alt}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="rounded-3xl object-cover"
@@ -115,28 +126,28 @@ export default function Hero({
               fetchPriority="high"
               draggable={false}
             />
-          </div>
+          </RevealItem>
         </div>
 
-        <div className="flex flex-col overflow-hidden items-center rounded-3xl bg-secondary-25 sm:flex-row">
+        <RevealItem className="flex flex-col items-center overflow-hidden rounded-3xl bg-secondary-25 sm:flex-row">
           {stats.map((stat, index) => (
             <Fragment key={stat.label}>
-              <div className="flex flex-1 w-full flex-col items-center gap-3 p-6 text-center lg:py-12">
+              <div className="flex w-full flex-1 flex-col items-center gap-3 p-6 text-center lg:py-12">
                 <CountUp
                   value={stat.value}
-                  className="text-4xl font-bold !leading-[130%] text-black-500 lg:text-[40px]"
+                  className="text-4xl leading-[130%] font-bold text-black-500 lg:text-[40px]"
                 />
-                <p className="text-base lg:text-lg font-semibold !leading-[130%] text-black-200">
+                <BodyText variant="md" className="font-semibold lg:text-lg">
                   {stat.label}
-                </p>
+                </BodyText>
               </div>
 
               {index < stats.length - 1 && (
-                <div className="bg-yellow-300 h-px w-[100px] lg:w-px lg:h-[100px]" />
+                <div className="h-px w-25 bg-yellow-300 lg:h-25 lg:w-px" />
               )}
             </Fragment>
           ))}
-        </div>
+        </RevealItem>
       </div>
     </Section>
   );

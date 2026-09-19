@@ -1,56 +1,54 @@
-import {
-  NavigationMenu,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu-custom";
-import { renderMenuItem } from "@/components/blocks/MenuItem";
-import { Link } from "@/libs/i18nNavigation";
-import { NavbarProps } from "./NavbarContainer";
-import Image from "next/image";
-import Logo from "@/assets/img/logos/rg-logo.svg";
-import { LanguageSelector } from "./LanguageSelector";
-import Button from "@/components/customs/Button";
-import { Phone } from "lucide-react";
+import { Phone } from 'lucide-react';
 
-const DesktopMenu = ({ menu, callButton, locale }: NavbarProps) => {
+import { Link } from '@/libs/i18nNavigation';
+import { ORGANIZATION } from '@/constants/seo';
+import Button from '@/components/common/Button';
+import LogoIcon from '@/components/icons/LogoIcon';
+import { LanguageSelector } from '@/components/common/Language/LanguageSelector';
+
+import PhoneButton from './PhoneButton';
+import { renderMenuItem } from './MenuItem';
+import MotionNavigationMenu from './MotionNavigationMenu';
+
+import type { INavbarContainerProps } from './NavbarContainer';
+
+const DesktopMenu = async ({
+  menu,
+  callButton,
+  locale,
+  logoLabel,
+}: INavbarContainerProps) => {
+  const menuItems = await Promise.all(
+    menu.map((item) => renderMenuItem(item, locale))
+  );
+  const routeItems = menu.map((item) => ({
+    key: item.title,
+    paths: [
+      item.url,
+      ...(item.items?.map((subItem) => subItem.url) ?? []),
+    ].filter((path) => typeof path === 'string'),
+  }));
+
   return (
     <nav className="hidden justify-between nav:flex">
-      <div className="flex items-center justify-between w-full">
+      <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link href={"/"} className="flex items-center gap-2">
-            <Image
-              src={Logo.src}
-              alt="Relocation Genevoise, courtier en relocation à Genève"
-              title="Relocation Genevoise, courtier en relocation à Genève"
-              width={70}
-              height={26.98}
-              className="min-h-[26.98px] min-w-[70px]"
-            />
+          <Link href="/" aria-label={logoLabel}>
+            <LogoIcon height={27} aria-hidden="true" focusable="false" />
           </Link>
-          <NavigationMenu className="static nav:block">
-            <NavigationMenuList className="xl:gap-8 gap-2">
-              {menu.map((item) => renderMenuItem(item, locale))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          <MotionNavigationMenu
+            className="static nav:block"
+            listClassName="gap-2 xl:gap-8"
+            routeItems={routeItems}
+          >
+            {menuItems}
+          </MotionNavigationMenu>
         </div>
         <div className="flex items-center gap-2">
-          <Link
-            href="tel:+41227151748"
-            className="flex items-center no-underline"
-          >
-            <Button
-              as="link"
-              href="tel:+41227151748"
-              variant="md"
-              type="primary"
-              iconStart={Phone}
-              className="no-underline text-black-500 hover:text-black-500"
-            >
-              +41 22 715 17 48
-            </Button>
-          </Link>
+          <PhoneButton phoneNumber={ORGANIZATION.telephone} />
           <LanguageSelector />
           <Link
-            href={callButton?.url ?? "/rappelez-moi"}
+            href={callButton?.url ?? '/call-me-back'}
             className="flex items-center"
           >
             <Button as="solid" variant="md" type="primary" iconStart={Phone}>

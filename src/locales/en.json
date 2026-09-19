@@ -4,16 +4,14 @@
       "heading": "Home",
       "subHeading": "Relocation Agency in ((Geneva))",
       "description": "Your trusted partner in Geneva for a smooth relocation : housing and tenant search, corporate services, and personalized support at every stage of your journey.",
-      "experience": "25 years of experience",
-      "customer": "2500+ satisfied clients",
-      "buttonText": "Contact-us",
+      "buttonText": "Contact us",
       "buttonText2": "Find accommodation"
     },
     "ContactFeature": {
       "heading": "Offers",
       "subHeading": "((Our Relocation Services))",
       "description": "A flawless client experience and turnkey support to help you find your new home, ease your move, and feel at home as quickly as possible.",
-      "buttonText": "Contact-us",
+      "buttonText": "Contact us",
       "reasonItems": [
         {
           "title": "Property Search",
@@ -32,9 +30,6 @@
           "description": "Bank account opening, home insurance, rent guarantee, or any other specific request, our concierge service is here to simplify your procedures and lighten your daily load."
         }
       ]
-    },
-    "Logos": {
-      "heading": "A network of trusted partners"
     },
     "StatsGrid": {
       "heading": "Availability & Transparency",
@@ -120,7 +115,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -174,7 +169,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -547,13 +542,6 @@
         },
         "submit": "Submit"
       }
-    },
-    "BookConsultation": {
-      "heading": "We look forward to meeting you",
-      "subHeading": "Would you like to benefit from our ((expertise and services ?))",
-      "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
-      "buttonText2": "Find accommodation"
     }
   },
   "RemindMe": {
@@ -645,7 +633,6 @@
         "placeholder": "Company"
       },
       "subject": {
-        "name": "help",
         "label": "How we can help you ?",
         "placeholder": "Choose from the list",
         "options": [
@@ -871,7 +858,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -923,7 +910,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -958,7 +945,7 @@
       "heading": "We look forward to meeting you",
       "subHeading": "Would you like to benefit from our ((expertise and services)) ?",
       "description": "We are at your disposal to discuss your situation and guide you toward solutions tailored to your needs and activities.",
-      "buttonText1": "Contact-us",
+      "buttonText1": "Contact us",
       "buttonText2": "Find accommodation"
     }
   },
@@ -1074,7 +1061,7 @@
     "BookConsultation": {
       "subHeading": "Need advice ?\n ((Our team is here to guide you))",
       "description": "Benefit from personalized advice and support tailored to your needs.",
-      "buttonText1": "Contact-us"
+      "buttonText1": "Contact us"
     }
   },
   "Blog": {
@@ -1085,6 +1072,15 @@
     "emptyData": {
       "title": "No blog found!",
       "description": "We couldn't find any blog"
+    },
+    "fallback": {
+      "title": "Untitled Post",
+      "summary": "No summary available",
+      "category": "Unknown Category",
+      "author": "Unknown Author",
+      "role": "Author",
+      "email": "Unknown Email",
+      "date": "Unknown Date"
     }
   },
   "BlogDetail": {
@@ -1149,9 +1145,7 @@
         "placeholder": "Enter your expected"
       },
       "resume": {
-        "label": "Your resume",
-        "placeholder": "Upload your resume",
-        "fileType": "DOCX, PDF (max. 500MB)"
+        "label": "Your resume"
       },
       "accept": "By checking this box, I agree that the information entered will be used as part of the contact.",
       "send": "Send"
@@ -1242,20 +1236,20 @@
       "description": "Browse exclusive Geneva apartments, handpicked by relocation experts. Find your perfect home with our dedicated service."
     },
     "Career": {
-      "title": "Relocation Genevoise - Career",
-      "description": "Join Relocation Genevoise and build a rewarding career in the insurance industry. Discover our job offers and opportunities for professional development."
+      "title": "Relocation Genevoise – Careers",
+      "description": "Join Relocation Genevoise and help individuals and companies settle in Geneva. Discover our current job openings and grow within a dynamic team."
     },
     "LegalNotices": {
-      "title": "Relocation Genevoise - Our legal notice",
-      "description": "Discover the tailored insurance solutions offered by Relocation Genevoise, with a reliable network of partners across Switzerland to meet your specific needs."
+      "title": "Relocation Genevoise – Legal notice",
+      "description": "Legal notice of RG Relocation Genevoise SA: company information, liability, copyright, data protection, cookies and applicable law."
     },
     "PersonalData": {
-      "title": "Relocation Genevoise - Your personal data",
-      "description": "Protect your personal data with Relocation Genevoise. Discover our commitments to privacy and security to ensure the protection of your information."
+      "title": "Relocation Genevoise – Privacy policy",
+      "description": "Find out which personal data Relocation Genevoise collects, why we process it, who we share it with and how to exercise your rights under the Swiss nFADP."
     },
     "Sitemap": {
-      "title": "Relocation Genevoise - Sitemap",
-      "description": "Discover the site map of Relocation Genevoise to easily navigate through our insurance services and useful information."
+      "title": "Relocation Genevoise – Sitemap",
+      "description": "Browse every page of Relocation Genevoise: housing and tenant search, services for companies, property listings, blog articles and practical information."
     },
     "FAQ": {
       "title": "Relocation Genevoise – FAQ",
@@ -1270,8 +1264,20 @@
       "description": "A complete and tailored solution to find your ideal home in Geneva and handle all formalities with ease."
     },
     "FindATenant": {
-      "title": "Relocation Genevoise – Find a tenant",
-      "description": "Let our team handle your tenant search: careful selection, property visits, application management, and guaranteed time savings."
+      "title": "Relocation Genevoise – Find a tenant for your property",
+      "description": "From listing to lease signing, we manage your rental in Geneva: vetted applications, viewings and paperwork, while you keep the final decision."
+    },
+    "FindATenantLandlordsForm": {
+      "title": "Relocation Genevoise – List your property for rent",
+      "description": "Tell us about your property in Geneva in a few minutes. One of our rental specialists will contact you within 24 hours to find the right tenant."
+    },
+    "FindATenantTenant": {
+      "title": "Relocation Genevoise – Find a replacement tenant",
+      "description": "Leaving your rental before the lease ends? We find your replacement tenant and handle photos, listing, viewings and paperwork until your release."
+    },
+    "FindATenantTenantForm": {
+      "title": "Relocation Genevoise – Start your lease transfer",
+      "description": "Share a few details about your current lease and our team will contact you within 24 hours to start finding your replacement tenant."
     },
     "AcademicService": {
       "title": "Relocation Genevoise – Schooling",
@@ -1286,14 +1292,14 @@
       "description": "Enjoy a tailored concierge service in Geneva: administrative support, housing, welcome assistance—for a smooth and stress-free relocation."
     },
     "Error404": {
-      "title": "Relocation Genevoise - Page Not Found (404)"
-    },
-    "Error403": {
-      "title": "Relocation Genevoise - Access Denied (403)"
-    },
-    "Error500": {
-      "title": "Relocation Genevoise - Error 500"
+      "title": "Relocation Genevoise – Page not found (404)",
+      "description": "The page you are looking for does not exist or has been moved. Return to the Relocation Genevoise homepage to continue browsing."
     }
+  },
+  "Breadcrumb": {
+    "blog": "Blog",
+    "career": "Career",
+    "properties": "Properties"
   },
   "Navbar": {
     "menu": [
@@ -1347,9 +1353,6 @@
       "buttonText": "Subscribe",
       "inputPlaceholder": "Email address"
     },
-    "logo": {
-      "title": "Shadcnblocks.com"
-    },
     "tagline": "Relocation Genevoise provides customized solutions with integrity, professionalism, and a focus on your needs in Switzerland.",
     "googleRating": {
       "title": "Google Rating",
@@ -1390,7 +1393,7 @@
       "title": "Support",
       "links": [
         {
-          "text": "Contact-us"
+          "text": "Contact us"
         },
         {
           "text": "FAQ"
@@ -1438,7 +1441,6 @@
   },
   "Validation": {
     "Contact": {
-      "roleRequired": "Please select your role",
       "firstNameMinLength": "First name must have at least 2 characters.",
       "firstNameMaxLength": "First name can have a maximum of 50 characters.",
       "lastNameMinLength": "Last name must have at least 2 characters.",
@@ -1456,7 +1458,6 @@
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
       "experienceYearsRequired": "Please select your experience in years.",
-      "expectedSalaryInvalid": "Expected salary must be a number.",
       "expectedCtcRequired": "Expected CTC must be a valid number.",
       "resumeInvalidType": "Invalid file type! Please upload a PDF, DOC, or DOCX file.",
       "resumeTooLarge": "File size exceeds the limit of 5MB. Please upload a smaller file.",
@@ -1508,7 +1509,6 @@
       "showing": "Show",
       "ofTotal": "of total",
       "results": "results",
-      "sortBy": "Sort by",
       "showAvailableOnly": "Show available only"
     },
     "sort": {
@@ -1532,13 +1532,6 @@
     "emptyData": {
       "title": "No properties found",
       "description": "Try adjusting your search filters to find what you're looking for."
-    },
-    "cooperate": {
-      "tagline": "Cooperate",
-      "title": "Would you like to benefit from our expertise and services?",
-      "description": "We are at your disposal to answer your questions and accompany you in the integration of our solutions adapted to your activities.",
-      "contactButton": "Contact us",
-      "findButton": "Find accommodation"
     },
     "BookConsultation": {
       "heading": "Cooperate",
@@ -1569,9 +1562,6 @@
     },
     "imagePreview": {
       "viewAllButton": "Show all photos"
-    },
-    "map": {
-      "viewOnMap": "View on map"
     },
     "agent": {
       "title": "Agent details",
@@ -1628,6 +1618,76 @@
       "errorTitle": "Error",
       "success": "You have successfully subscribed to our newsletter!",
       "error": "Error subscribing to the newsletter. Please try again later."
+    }
+  },
+  "Images": {
+    "common": {
+      "author": "Author photo",
+      "whatsapp": "WhatsApp logo",
+      "pdf": "PDF file",
+      "agent": "Property agent photo",
+      "error": "Error illustration",
+      "google": "Google logo",
+      "star": "Star rating",
+      "logo": "Relocation Genevoise logo",
+      "groupeGenevoise": "Groupe Genevoise logo",
+      "website": "Relocation Genevoise website",
+      "phone": "Phone number",
+      "building": "Office location",
+      "photo": "Photo",
+      "latestBlog": "Latest blog post",
+      "empty": {
+        "blog": "No blog posts available",
+        "career": "No job offers available",
+        "property": "No properties available"
+      }
+    },
+    "home": {
+      "hero": "Relocation agency in Geneva",
+      "services": "Relocation services in Geneva",
+      "partner": "Relocation Genevoise, your trusted partner in Switzerland",
+      "stats": "Relocation Genevoise, your trusted partner in Switzerland"
+    },
+    "services": {
+      "academic": "Academic relocation services in Geneva",
+      "concierge": "Relocation concierge services in Geneva",
+      "discover": "Discover Geneva with Relocation Genevoise"
+    },
+    "contact": "Relocation Genevoise contact support in Geneva",
+    "application": "Relocation Genevoise application support",
+    "booking": "Relocation Genevoise consultation support",
+    "faq": "Relocation Genevoise advisors",
+    "findAccommodation": {
+      "hero": "Find accommodation in Geneva",
+      "step": "Relocation step: {title}"
+    },
+    "findATenant": {
+      "hero": "Find a tenant with Relocation Genevoise",
+      "form": "Relocation Genevoise tenant service form",
+      "rentalProcess": "Relocation Genevoise rental process",
+      "whyChooseUs": "Why choose Relocation Genevoise",
+      "testimonial": "Testimonial from {name}",
+      "tenant": {
+        "hero": "Tenant search support in Geneva",
+        "form": "Tenant search service form",
+        "rentalProcess": "Tenant rental process",
+        "whyChooseUs": "Why choose our tenant search service"
+      },
+      "landlords": {
+        "hero": "Find a tenant for your property in Geneva",
+        "form": "Landlord service form",
+        "rentalProcess": "Landlord rental process",
+        "whyChooseUs": "Why choose our landlord service"
+      }
+    },
+    "property": {
+      "listing": "Property listing in Geneva",
+      "photo": "{property} - {area} {index}",
+      "thumbnail": "{property} - {area} thumbnail {index}"
+    },
+    "email": {
+      "logo": "Relocation Genevoise logo",
+      "newsletterImage": "Newsletter illustration"
     }
   },
   "Button&Text": {

@@ -1,23 +1,26 @@
-"use client";
+'use client';
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import Image, { type StaticImageData } from 'next/image';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
-import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import Image, { type StaticImageData } from "next/image";
-
-import { cn } from "@/libs/utils";
-import Section from "@/components/customs/Section";
+import { cn } from '@/libs/utils';
+import Section from '@/components/common/Section';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 import {
   type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
 export type TTestimonial = {
   quote: string;
   name: string;
   role: string;
-  avatar?: string | StaticImageData;
+  avatar?: StaticImageData;
 };
 
 interface ITestimonialsProps {
@@ -29,11 +32,11 @@ interface ITestimonialsProps {
 
 function getInitials(name: string) {
   return name
-    .split(" ")
+    .split(' ')
     .filter(Boolean)
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase())
-    .join("");
+    .join('');
 }
 
 export default function Testimonials({
@@ -42,6 +45,7 @@ export default function Testimonials({
   description,
   items,
 }: ITestimonialsProps) {
+  const imageT = useTranslations('Images');
   const [api, setApi] = useState<CarouselApi>();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [snaps, setSnaps] = useState<number[]>([]);
@@ -56,12 +60,12 @@ export default function Testimonials({
     };
 
     onReInit();
-    api.on("select", onSelect);
-    api.on("reInit", onReInit);
+    api.on('select', onSelect);
+    api.on('reInit', onReInit);
 
     return () => {
-      api.off("select", onSelect);
-      api.off("reInit", onReInit);
+      api.off('select', onSelect);
+      api.off('reInit', onReInit);
     };
   }, [api]);
 
@@ -88,13 +92,13 @@ export default function Testimonials({
 
     start();
 
-    api.on("pointerDown", stop);
-    api.on("select", start);
+    api.on('pointerDown', stop);
+    api.on('select', start);
 
     return () => {
       stop();
-      api.off("pointerDown", stop);
-      api.off("select", start);
+      api.off('pointerDown', stop);
+      api.off('select', start);
     };
   }, [api]);
 
@@ -104,79 +108,99 @@ export default function Testimonials({
 
   return (
     <Section className="bg-white">
-      <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
-        <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+      <RevealItem className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-3 text-center">
+        <BodyText variant="sm" className="font-semibold text-yellow-600">
           {eyebrow}
-        </p>
+        </BodyText>
 
         <div className="flex flex-col gap-4">
-          <h2 className="text-pretty text-[32px] font-bold !leading-[130%] text-black-500 lg:text-[40px]">
+          <HeadingText
+            as="h2"
+            className="text-[32px] text-pretty lg:text-[40px]"
+          >
             {heading}
-          </h2>
-          <p className="text-base font-normal !leading-[150%] text-black-300">
+          </HeadingText>
+          <BodyText variant="md" className="leading-[150%] text-black-300">
             {description}
-          </p>
+          </BodyText>
         </div>
-      </div>
+      </RevealItem>
 
-      <Carousel
-        setApi={setApi}
-        opts={{ align: "start", containScroll: "trimSnaps" }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-8">
-          {items.map((item) => (
-            <CarouselItem
-              key={item.name}
-              className="basis-full pl-8 lg:basis-1/3"
-            >
-              <article className="flex h-full flex-col justify-between gap-8 rounded-2xl bg-grey-50 p-8">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <Star
-                        key={index}
-                        className="size-5 fill-[#FDB022] text-[#FDB022]"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-base font-normal !leading-[150%] text-black-300">
-                    {item.quote}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  {item.avatar ? (
-                    <Image
-                      src={item.avatar}
-                      alt={item.name}
-                      title={item.name}
-                      width={48}
-                      height={48}
-                      className="size-12 shrink-0 rounded-full object-cover"
-                      draggable={false}
-                    />
-                  ) : (
-                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-grey-200 text-sm font-semibold text-black-300">
-                      {getInitials(item.name)}
+      <RevealItem>
+        <Carousel
+          setApi={setApi}
+          opts={{ align: 'start', containScroll: 'trimSnaps' }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-8">
+            {items.map((item) => (
+              <CarouselItem
+                key={item.name}
+                className="basis-full pl-8 lg:basis-1/3"
+              >
+                <article className="flex h-full flex-col justify-between gap-8 rounded-2xl bg-grey-50 p-8">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Star
+                          key={index}
+                          className="size-5 fill-[#FDB022] text-[#FDB022]"
+                        />
+                      ))}
                     </div>
-                  )}
-                  <div className="flex flex-col gap-0.5">
-                    <p className="text-base font-semibold !leading-[130%] text-black-500">
-                      {item.name}
-                    </p>
-                    <p className="text-sm font-normal !leading-[150%] text-black-200">
-                      {item.role}
-                    </p>
+                    <BodyText
+                      variant="md"
+                      className="leading-[150%] text-black-300"
+                    >
+                      {item.quote}
+                    </BodyText>
                   </div>
-                </div>
-              </article>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
 
-      <div className="flex items-center justify-center gap-6">
+                  <div className="flex items-center gap-3">
+                    {item.avatar ? (
+                      <Image
+                        src={item.avatar}
+                        placeholder="blur"
+                        alt={imageT('findATenant.testimonial', {
+                          name: item.name,
+                        })}
+                        title={imageT('findATenant.testimonial', {
+                          name: item.name,
+                        })}
+                        width={48}
+                        height={48}
+                        className="size-12 shrink-0 rounded-full object-cover"
+                        draggable={false}
+                      />
+                    ) : (
+                      <BodyText
+                        variant="sm"
+                        asChild
+                        className="flex size-12 shrink-0 items-center justify-center rounded-full bg-grey-200 leading-5 font-semibold text-black-300"
+                      >
+                        <div>{getInitials(item.name)}</div>
+                      </BodyText>
+                    )}
+                    <div className="flex flex-col gap-0.5">
+                      <BodyText
+                        variant="md"
+                        className="font-semibold text-black-500"
+                      >
+                        {item.name}
+                      </BodyText>
+                      <BodyText variant="sm" className="leading-[150%]">
+                        {item.role}
+                      </BodyText>
+                    </div>
+                  </div>
+                </article>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </RevealItem>
+
+      <RevealItem className="flex items-center justify-center gap-6">
         <button
           type="button"
           onClick={() => api?.scrollPrev()}
@@ -195,8 +219,8 @@ export default function Testimonials({
               aria-label={`Go to testimonial ${index + 1}`}
               aria-current={index === selectedIndex}
               className={cn(
-                "size-2.5 rounded-full transition-colors",
-                index === selectedIndex ? "bg-black-500" : "bg-grey-200",
+                'size-2.5 rounded-full transition-colors',
+                index === selectedIndex ? 'bg-black-500' : 'bg-grey-200'
               )}
             />
           ))}
@@ -210,7 +234,7 @@ export default function Testimonials({
         >
           <ChevronRight className="size-5" />
         </button>
-      </div>
+      </RevealItem>
     </Section>
   );
 }

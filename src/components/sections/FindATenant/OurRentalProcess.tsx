@@ -1,10 +1,13 @@
-"use client";
+'use client';
+import Image, { type StaticImageData } from 'next/image';
+import { motion, useTransform, type MotionValue } from 'motion/react';
 
-import Image, { type StaticImageData } from "next/image";
-
-import { cn } from "@/libs/utils";
-import useProgressSteps from "@/hooks/useProgressSteps";
-import Section from "@/components/customs/Section";
+import { cn } from '@/libs/utils';
+import Section from '@/components/common/Section';
+import useProgressSteps from '@/hooks/useProgressSteps';
+import { RevealItem } from '@/components/common/Reveal';
+import BodyText from '@/components/common/Text/BodyText';
+import HeadingText from '@/components/common/Text/HeadingText';
 
 export type TRentalStep = {
   title: string;
@@ -15,11 +18,18 @@ interface IOurRentalProcessProps {
   eyebrow: string;
   heading: string;
   image: {
-    src: string | StaticImageData;
+    src: StaticImageData;
     alt: string;
+    title?: string;
   };
   steps: TRentalStep[];
 }
+
+const MARKER_CLASS_NAME =
+  'flex size-9 items-center justify-center rounded-[10px] lg:size-11';
+
+const MARKER_LABEL_CLASS_NAME =
+  'text-lg leading-[130%] font-semibold lg:text-2xl';
 
 export default function OurRentalProcess({
   eyebrow,
@@ -27,7 +37,7 @@ export default function OurRentalProcess({
   image,
   steps,
 }: IOurRentalProcessProps) {
-  const { activeStep, animationKey, selectStep, advanceStep } =
+  const { progress, activeStep, railRefs, markerRefs, selectStep } =
     useProgressSteps(steps.length);
 
   if (!steps?.length) {
@@ -37,119 +47,161 @@ export default function OurRentalProcess({
   return (
     <Section className="bg-white">
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-24">
-        <div className="flex flex-col gap-12 lg:flex-1 lg:self-start">
+        <RevealItem className="flex flex-col gap-12 lg:flex-1 lg:self-start">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold !leading-[130%] text-yellow-600">
+            <BodyText variant="sm" className="font-semibold text-yellow-600">
               {eyebrow}
-            </p>
-            <h2 className="text-pretty text-[32px] font-bold !leading-[130%] text-black-500 lg:text-[40px]">
+            </BodyText>
+            <HeadingText
+              as="h2"
+              className="text-[32px] text-pretty lg:text-[40px]"
+            >
               {heading}
-            </h2>
+            </HeadingText>
           </div>
 
-          <div className="relative aspect-[572/420] w-full overflow-hidden rounded-3xl">
+          <div className="relative aspect-572/420 w-full overflow-hidden rounded-3xl">
             <Image
               src={image.src}
+              placeholder="blur"
               alt={image.alt}
-              title={image.alt}
+              title={image.title || image.alt}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
               draggable={false}
             />
           </div>
-        </div>
+        </RevealItem>
 
-        <ol className="flex flex-col lg:flex-1">
-          {steps.map((step, index) => {
-            const isActive = index === activeStep;
-            const isComplete = index < activeStep;
-            const isReached = index <= activeStep;
-            const isLast = index === steps.length - 1;
+        <RevealItem className="flex flex-col lg:flex-1">
+          <ol className="flex flex-col">
+            {steps.map((step, index) => {
+              const isActive = index === activeStep;
+              const isReached = index <= activeStep;
+              const isLast = index === steps.length - 1;
+              const label = String(index + 1).padStart(2, '0');
 
-            return (
-              <li key={step.title} className="flex gap-4 lg:gap-8">
-                <div className="flex shrink-0 flex-col items-center self-stretch">
-                  <button
-                    type="button"
-                    onClick={() => selectStep(index)}
-                    aria-label={`Step ${index + 1}: ${step.title}`}
-                    aria-current={isActive ? "step" : undefined}
-                    className={cn(
-                      "flex size-9 cursor-pointer items-center justify-center rounded-[10px] border transition-colors duration-300 lg:size-11",
-                      isReached
-                        ? "border-transparent bg-secondary-500"
-                        : "border-grey-200 bg-transparent hover:border-secondary-500",
-                    )}
+              return (
+                <li key={step.title} className="flex gap-4 lg:gap-8">
+                  <div
+                    ref={(node) => {
+                      railRefs.current[index] = node;
+                    }}
+                    className="relative flex shrink-0 flex-col items-center self-stretch"
                   >
-                    <span
+                    <button
+                      ref={(node) => {
+                        markerRefs.current[index] = node;
+                      }}
+                      type="button"
+                      onClick={() => selectStep(index)}
+                      aria-label={`Step ${index + 1}: ${step.title}`}
+                      aria-current={isActive ? 'step' : undefined}
                       className={cn(
-                        "text-lg font-semibold !leading-[130%] transition-colors duration-300 lg:text-2xl",
-                        isReached ? "text-black-500" : "text-black-100",
+                        MARKER_CLASS_NAME,
+                        'cursor-pointer border border-grey-200 bg-transparent transition-colors duration-300 hover:border-secondary-500'
                       )}
                     >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </button>
+                      <BodyText
+                        asChild
+                        className={cn(
+                          cn(MARKER_LABEL_CLASS_NAME, 'text-black-100')
+                        )}
+                      >
+                        <span>{label}</span>
+                      </BodyText>
+                    </button>
+
+                    <div
+                      className={cn(
+                        'w-px flex-1',
+                        isLast
+                          ? 'bg-linear-to-b from-grey-200 to-transparent'
+                          : 'bg-grey-200'
+                      )}
+                    />
+
+                    <StepFill progress={progress} index={index} label={label} />
+                  </div>
 
                   <div
                     className={cn(
-                      "relative w-px flex-1 overflow-hidden",
-                      isLast
-                        ? "bg-gradient-to-b from-grey-200 to-transparent"
-                        : "bg-grey-200",
+                      'flex min-w-0 flex-1 flex-col gap-3 pb-8 lg:pb-12',
+                      {
+                        'pb-0 lg:pb-0': isLast,
+                      }
                     )}
                   >
-                    {isComplete && (
-                      <span className="absolute inset-0 bg-secondary-500" />
-                    )}
-
-                    {isActive && (
-                      <span
-                        key={`${activeStep}-${animationKey}`}
-                        onAnimationEnd={advanceStep}
-                        className="progress-step-animation absolute inset-0 origin-top bg-secondary-500"
-                      />
-                    )}
-                  </div>
-                </div>
-
-                <div
-                  className={cn(
-                    "flex min-w-0 flex-1 flex-col gap-3 pb-8 lg:pb-12",
-                    {
-                      "pb-0 lg:pb-0": isLast,
-                    },
-                  )}
-                >
-                  <button
-                    type="button"
-                    onClick={() => selectStep(index)}
-                    className="flex min-h-9 cursor-pointer items-center text-left lg:min-h-11"
-                  >
-                    <h3
+                    <button
+                      type="button"
+                      onClick={() => selectStep(index)}
+                      className="flex min-h-9 cursor-pointer items-center text-left lg:min-h-11"
+                    >
+                      <HeadingText
+                        as="h3"
+                        className={cn(
+                          cn(
+                            'text-2xl leading-[130%] font-semibold transition-colors duration-300',
+                            isReached ? 'text-black-500' : 'text-black-100'
+                          )
+                        )}
+                      >
+                        {step.title}
+                      </HeadingText>
+                    </button>
+                    <BodyText
+                      variant="md"
                       className={cn(
-                        "text-2xl font-semibold !leading-[130%] transition-colors duration-300",
-                        isReached ? "text-black-500" : "text-black-100",
+                        cn(
+                          'text-base leading-[150%] font-normal transition-colors duration-300',
+                          isReached ? 'text-black-300' : 'text-black-100'
+                        )
                       )}
                     >
-                      {step.title}
-                    </h3>
-                  </button>
-                  <p
-                    className={cn(
-                      "text-base font-normal !leading-[150%] transition-colors duration-300",
-                      isReached ? "text-black-300" : "text-black-100",
-                    )}
-                  >
-                    {step.description}
-                  </p>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+                      {step.description}
+                    </BodyText>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </RevealItem>
       </div>
     </Section>
+  );
+}
+
+interface IStepFillProps {
+  progress: MotionValue<number>;
+  index: number;
+  label: string;
+}
+
+// Filled copy of the rail laid over the grey one and revealed top-down, so the
+// fill runs through the marker and its line as one continuous stroke.
+function StepFill({ progress, index, label }: IStepFillProps) {
+  const clipPath = useTransform(progress, (value) => {
+    const filled = Math.min(Math.max(value - index, 0), 1);
+
+    return `inset(0 0 ${(1 - filled) * 100}% 0)`;
+  });
+
+  return (
+    <motion.div
+      aria-hidden
+      style={{ clipPath }}
+      className="pointer-events-none absolute inset-0 flex flex-col items-center"
+    >
+      <span className={cn(MARKER_CLASS_NAME, 'bg-secondary-500')}>
+        <BodyText
+          asChild
+          className={cn(cn(MARKER_LABEL_CLASS_NAME, 'text-black-500'))}
+        >
+          <span>{label}</span>
+        </BodyText>
+      </span>
+      <span className="w-px flex-1 bg-secondary-500" />
+    </motion.div>
   );
 }
