@@ -10,6 +10,8 @@ import {
 
 import type { IBlogDetail } from '@/models/blog';
 
+const CMS_IMAGE_ORIGIN = 'https://cdn.sanity.io/';
+
 interface IBlogJsonLdProps {
   blog: IBlogDetail;
   locale: string;
@@ -34,7 +36,14 @@ export default function BlogJsonLd({ blog, locale, path }: IBlogJsonLdProps) {
         dateModified: toIsoDate(blog.updatedAt) ?? datePublished,
         inLanguage: getLanguageTag(locale),
         timeRequired: blog.timeToRead > 0 ? `PT${blog.timeToRead}M` : undefined,
-        author: { '@type': 'Person', name: blog.author.name },
+        author: {
+          '@type': 'Person',
+          name: blog.author.name,
+          image: blog.author.imageUrl.startsWith(CMS_IMAGE_ORIGIN)
+            ? blog.author.imageUrl
+            : undefined,
+          worksFor: { '@id': getSchemaId('organization') },
+        },
         publisher: {
           '@type': 'Organization',
           '@id': getSchemaId('organization'),
