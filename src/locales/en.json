@@ -1321,9 +1321,23 @@
     }
   },
   "Breadcrumb": {
+    "academicService": "Academic services",
     "blog": "Blog",
+    "callMeBack": "Call me back",
     "career": "Career",
-    "properties": "Properties"
+    "companies": "Companies",
+    "conciergeService": "Concierge service",
+    "contact": "Contact",
+    "discoverGenevaService": "Discover Geneva",
+    "faq": "FAQ",
+    "findAccommodation": "Find accommodation",
+    "findATenantLandlords": "Find a tenant",
+    "findATenantTenant": "Lease transfer",
+    "form": "Form",
+    "legalNotices": "Legal notice",
+    "personalData": "Privacy policy",
+    "properties": "Properties",
+    "sitemap": "Sitemap"
   },
   "Navbar": {
     "menu": [

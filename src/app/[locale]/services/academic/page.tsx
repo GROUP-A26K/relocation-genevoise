@@ -6,6 +6,7 @@ import { Hero } from '@/components/common/Hero/Hero';
 import ServiceJsonLd from '@/components/seo/ServiceJsonLd';
 import { ContentView } from '@/components/sections/ServiceDetail';
 import HeroImage from '@/assets/images/services/scolarite-hero.webp';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
@@ -37,6 +38,8 @@ export default async function Page(
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/services/academic']} />
+
       <ServiceJsonLd service="academic" locale={locale} />
 
       <Section revealTrigger="load" className="relative">

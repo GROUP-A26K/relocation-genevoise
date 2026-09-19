@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Sitemap';
 import { fetchSitemapBlogs } from '@/features/blog/blog.service';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { fetchSitemapProperties } from '@/features/property/property.service';
 
 import type { Metadata } from 'next';
@@ -31,5 +32,11 @@ export default async function Page(props: PageProps<'/[locale]/sitemap'>) {
     fetchSitemapProperties({ locale }),
   ]);
 
-  return <PageView blogSitemap={posts} propertySitemap={properties} />;
+  return (
+    <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/sitemap']} />
+
+      <PageView blogSitemap={posts} propertySitemap={properties} />
+    </>
+  );
 }

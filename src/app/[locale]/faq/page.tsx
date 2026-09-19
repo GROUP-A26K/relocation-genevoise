@@ -7,6 +7,7 @@ import HeadingText from '@/components/common/Text/HeadingText';
 import GroupAvatar from '@/assets/images/faq/advisors-group.webp';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
 import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
@@ -36,6 +37,8 @@ export default async function Page(props: PageProps<'/[locale]/faq'>) {
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/faq']} />
+
       <FaqJsonLd
         items={faqs}
         locale={locale}

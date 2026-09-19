@@ -5,6 +5,7 @@ import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { ContactFormView } from '@/components/sections/Contact';
 import { ContactInfo } from '@/components/common/Info/ContactInfo';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 
 import type { Metadata } from 'next';
 
@@ -31,6 +32,8 @@ export default async function Page(props: PageProps<'/[locale]/contact'>) {
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/contact']} />
+
       <Section revealTrigger="load">
         <ContactInfo
           heading={t('ContactInfo.heading')}

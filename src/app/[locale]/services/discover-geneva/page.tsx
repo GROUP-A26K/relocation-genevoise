@@ -5,6 +5,7 @@ import Section from '@/components/common/Section';
 import { Hero } from '@/components/common/Hero/Hero';
 import ServiceJsonLd from '@/components/seo/ServiceJsonLd';
 import { ContentView } from '@/components/sections/ServiceDetail';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import HeroImage from '@/assets/images/services/decouvrir-geneve-hero.webp';
 import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
@@ -37,6 +38,11 @@ export default async function Page(
 
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        trail={['/services/discover-geneva']}
+      />
+
       <ServiceJsonLd service="discoverGeneva" locale={locale} />
 
       <Section revealTrigger="load" className="relative">

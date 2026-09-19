@@ -20,6 +20,7 @@ import {
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import ServiceJsonLd from '@/components/seo/ServiceJsonLd';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { CompaniesInfo } from '@/components/sections/Companies/CompaniesInfo';
 
 import type { Metadata } from 'next';
@@ -48,6 +49,8 @@ export default async function Page(props: PageProps<'/[locale]/companies'>) {
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/companies']} />
+
       <ServiceJsonLd service="companies" locale={locale} />
 
       <Section revealTrigger="load">

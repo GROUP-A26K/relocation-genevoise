@@ -1330,9 +1330,23 @@
     }
   },
   "Breadcrumb": {
+    "academicService": "Scolarité",
     "blog": "Blog",
+    "callMeBack": "Rappelez-moi",
     "career": "Carrière",
-    "properties": "Propriétés"
+    "companies": "Entreprises",
+    "conciergeService": "Service de conciergerie",
+    "contact": "Contact",
+    "discoverGenevaService": "Découvrir Genève",
+    "faq": "FAQ",
+    "findAccommodation": "Trouver un logement",
+    "findATenantLandlords": "Trouver un locataire",
+    "findATenantTenant": "Remise de bail",
+    "form": "Formulaire",
+    "legalNotices": "Mentions légales",
+    "personalData": "Protection des données",
+    "properties": "Propriétés",
+    "sitemap": "Plan du site"
   },
   "Navbar": {
     "menu": [

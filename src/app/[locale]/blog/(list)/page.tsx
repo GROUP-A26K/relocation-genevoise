@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageView } from '@/components/sections/Blog/PageView';
 import { hydrateBlogList } from '@/features/blog/blog.hydration';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BlogPageSkeleton } from '@/components/sections/Blog/BlogPageSkeleton';
 import {
   normalizeBlogListFilters,
@@ -54,15 +55,19 @@ export default async function Page(props: PageProps<'/[locale]/blog'>) {
   );
 
   return (
-    <Suspense fallback={<BlogPageSkeleton />}>
-      <HydrationBoundary state={state}>
-        <PageView
-          category={postCategory.posts}
-          newestBlog={latestBlog}
-          blogs={blogList.blogs}
-          meta={blogList.meta}
-        />
-      </HydrationBoundary>
-    </Suspense>
+    <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/blog']} />
+
+      <Suspense fallback={<BlogPageSkeleton />}>
+        <HydrationBoundary state={state}>
+          <PageView
+            category={postCategory.posts}
+            newestBlog={latestBlog}
+            blogs={blogList.blogs}
+            meta={blogList.meta}
+          />
+        </HydrationBoundary>
+      </Suspense>
+    </>
   );
 }

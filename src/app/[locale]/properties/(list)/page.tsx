@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import PropertiesHero from '@/components/sections/Properties/PropertiesHero';
 import { hydratePropertyList } from '@/features/property/property.hydration';
 import { getExchangeRates, toCHFWithRates } from '@/utils/exchangeRate.server';
@@ -52,26 +53,30 @@ export default async function PropertiesPage(
     await hydratePropertyList(propertyFilters);
 
   return (
-    <Suspense fallback={<PropertiesPageSkeleton />}>
-      <ExchangeRatesProvider initialRates={rates}>
-        <PropertiesHero />
-        <div className="relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
-          <SearchFilters categories={categories.categories} />
-        </div>
-        <HydrationBoundary state={state}>
-          <PropertyListingsSection
-            properties={propertyList.properties}
-            meta={propertyList.meta}
+    <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/properties']} />
+
+      <Suspense fallback={<PropertiesPageSkeleton />}>
+        <ExchangeRatesProvider initialRates={rates}>
+          <PropertiesHero />
+          <div className="relative z-10 -mt-16 sm:-mt-20 lg:-mt-24">
+            <SearchFilters categories={categories.categories} />
+          </div>
+          <HydrationBoundary state={state}>
+            <PropertyListingsSection
+              properties={propertyList.properties}
+              meta={propertyList.meta}
+            />
+          </HydrationBoundary>
+          <BookConsultation
+            heading={t('BookConsultation.heading')}
+            subHeading={t('BookConsultation.subHeading')}
+            description={t('BookConsultation.description')}
+            buttonText1={t('BookConsultation.buttonText1')}
+            buttonText2={t('BookConsultation.buttonText2')}
           />
-        </HydrationBoundary>
-        <BookConsultation
-          heading={t('BookConsultation.heading')}
-          subHeading={t('BookConsultation.subHeading')}
-          description={t('BookConsultation.description')}
-          buttonText1={t('BookConsultation.buttonText1')}
-          buttonText2={t('BookConsultation.buttonText2')}
-        />
-      </ExchangeRatesProvider>
-    </Suspense>
+        </ExchangeRatesProvider>
+      </Suspense>
+    </>
   );
 }

@@ -5,6 +5,7 @@ import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { ContactInfo } from '@/components/common/Info/ContactInfo';
 import { ConsultationFormView } from '@/components/sections/RemindMe';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 
 import type { Metadata } from 'next';
 
@@ -32,6 +33,8 @@ export default async function Page(props: PageProps<'/[locale]/call-me-back'>) {
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/call-me-back']} />
+
       <ConsultationFormView
         heading={t('Consultation.heading')}
         subHeading={t('Consultation.subHeading')}
