@@ -1305,6 +1305,30 @@
       "description": "La page que vous recherchez n’existe pas ou a été déplacée. Retournez à l’accueil de Relocation Genevoise pour poursuivre votre visite."
     }
   },
+  "StructuredData": {
+    "Service": {
+      "academic": {
+        "name": "Scolarité",
+        "serviceType": "Conseil en scolarité et choix d’école"
+      },
+      "concierge": {
+        "name": "Service de conciergerie",
+        "serviceType": "Conciergerie pour nouveaux arrivants"
+      },
+      "discoverGeneva": {
+        "name": "Découvrir Genève",
+        "serviceType": "Découverte de Genève et aide à l’installation"
+      },
+      "companies": {
+        "name": "Relocation pour les entreprises",
+        "serviceType": "Relocation d’entreprise"
+      },
+      "findAccommodation": {
+        "name": "Trouver un logement",
+        "serviceType": "Recherche de logement"
+      }
+    }
+  },
   "Breadcrumb": {
     "blog": "Blog",
     "career": "Carrière",

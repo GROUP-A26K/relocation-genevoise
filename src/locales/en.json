@@ -1296,6 +1296,30 @@
       "description": "The page you are looking for does not exist or has been moved. Return to the Relocation Genevoise homepage to continue browsing."
     }
   },
+  "StructuredData": {
+    "Service": {
+      "academic": {
+        "name": "Academic services",
+        "serviceType": "School search and enrolment advice"
+      },
+      "concierge": {
+        "name": "Concierge service",
+        "serviceType": "Concierge for newcomers"
+      },
+      "discoverGeneva": {
+        "name": "Discover Geneva",
+        "serviceType": "Geneva orientation and settling-in support"
+      },
+      "companies": {
+        "name": "Relocation for companies",
+        "serviceType": "Corporate relocation"
+      },
+      "findAccommodation": {
+        "name": "Find accommodation",
+        "serviceType": "Home search"
+      }
+    }
+  },
   "Breadcrumb": {
     "blog": "Blog",
     "career": "Career",
