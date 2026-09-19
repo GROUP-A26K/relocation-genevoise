@@ -5,7 +5,11 @@ import NextTopLoader from 'nextjs-toploader';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { GoogleTagManager } from '@next/third-parties/google';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from 'next-intl/server';
 
 import '@/styles/globals.css';
 import { Env } from '@/libs/env';
@@ -18,6 +22,20 @@ import { NavBar } from '@/components/sections/Navigation/NavBar';
 import TanstackQueryProvider from '@/components/providers/TanstackQueryProvider';
 
 import type { Metadata } from 'next';
+
+const SERVER_ONLY_NAMESPACES = [
+  'Metadata',
+  'HomePage',
+  'Companies',
+  'Education',
+  'FindAccommodation',
+  'DiscoverGeneva',
+  'FAQ',
+  'ConciergeService',
+  'RemindMe',
+  'Breadcrumb',
+  'PhotoTour',
+];
 
 const inter = Inter({
   subsets: ['latin'],
@@ -73,6 +91,13 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
+  const messages = await getMessages({ locale });
+  const clientMessages = Object.fromEntries(
+    Object.entries(messages).filter(
+      ([namespace]) => !SERVER_ONLY_NAMESPACES.includes(namespace)
+    )
+  );
+
   return (
     <html
       lang={locale}
@@ -95,6 +120,7 @@ export default async function LocaleLayout({
         <NuqsAdapter>
           <NextIntlClientProvider
             locale={locale}
+            messages={clientMessages}
             timeZone={Env.NEXT_PUBLIC_SERVER_TIMEZONE}
           >
             <TanstackQueryProvider>
