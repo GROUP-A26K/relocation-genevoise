@@ -1,4 +1,5 @@
 import { Env } from '@/libs/env';
+import { toUrlSlug } from '@/utils/slug';
 import { AppConfig } from '@/utils/appConfig';
 import { getPathname } from '@/libs/i18nNavigation';
 import { LANGUAGE_TAGS, OG_LOCALES } from '@/constants/seo';
@@ -33,9 +34,6 @@ export const getLocalizedPath = (locale: string, href: TPathnameHref) =>
 
 export const toHref = (pathname: TPathname, slug?: string) =>
   (slug ? { pathname, params: { slug } } : pathname) as TPathnameHref;
-
-export const stripLocalePrefix = (slug: string) =>
-  slug.replace(/^[a-z]{2}-/i, '');
 
 export const getHreflangPaths = (
   pathByLocale: Partial<Record<string, string>>
@@ -76,10 +74,7 @@ export const getPageAlternates = (
         ? [
             [
               currentLocale,
-              getLocalizedPath(
-                currentLocale,
-                toHref(pathname, stripLocalePrefix(slug))
-              ),
+              getLocalizedPath(currentLocale, toHref(pathname, slug)),
             ],
           ]
         : [];
@@ -98,7 +93,10 @@ export const getSlugByLocale = (
   translations: { locale: string; slug: string }[]
 ) => ({
   ...Object.fromEntries(
-    translations.map((translation) => [translation.locale, translation.slug])
+    translations.map((translation) => [
+      translation.locale,
+      toUrlSlug(translation.slug),
+    ])
   ),
   [locale]: slug,
 });

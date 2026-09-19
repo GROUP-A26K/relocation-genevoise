@@ -1,5 +1,6 @@
 'use server';
 
+import { toUrlSlug } from '@/utils/slug';
 import { fetchBlogSlugBySlug } from '@/features/blog/blog.service';
 import { fetchCareerSlugBySlug } from '@/features/career/career.service';
 import { fetchPropertySlugBySlug } from '@/features/property/property.service';
@@ -20,5 +21,5 @@ export const resolveAlternateSlug = async (
   const translations = await RESOLVERS[type](slug);
   const match = translations.find((item) => item.locale === targetLocale);
 
-  return match?.slug ? match.slug.replace(/^[a-z]{2}-/i, '') : null;
+  return match?.slug ? toUrlSlug(match.slug) : null;
 };

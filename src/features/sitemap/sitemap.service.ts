@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { toUrlSlug } from '@/utils/slug';
 import { AppConfig } from '@/utils/appConfig';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { SITEMAP_DOCUMENTS_QUERY } from '@/sanity/lib/queries';
@@ -7,7 +8,6 @@ import { getAlternates, type TSitemapUrl } from '@/utils/sitemap';
 import {
   getAbsoluteUrl,
   getLocalizedPath,
-  stripLocalePrefix,
   toHref,
   toIsoDate,
 } from '@/utils/seo';
@@ -82,7 +82,7 @@ export const getCmsSitemapUrls = async (
   );
 
   const toPath = (locale: string, slug: string) =>
-    getLocalizedPath(locale, toHref(pathname, stripLocalePrefix(slug)));
+    getLocalizedPath(locale, toHref(pathname, toUrlSlug(slug)));
 
   return documents.flatMap(({ _updatedAt, language, slug, translations }) => {
     if (!language || !slug) {

@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { toUrlSlug } from '@/utils/slug';
 import { formatDate } from '@/utils/helpers';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { getBlogMessages, getImageMessages } from '@/utils/imageMessages';
@@ -70,7 +71,7 @@ const toBlog = (
     title,
     href: {
       pathname: '/blog/[slug]',
-      params: { slug: (post?.slug?.current || '').replace(/^[a-z]{2}-/i, '') },
+      params: { slug: toUrlSlug(post?.slug?.current || '') },
     },
     description: post?.summary || blogT.fallback.summary,
     timeToRead: post?.timeToRead || 0,
@@ -192,7 +193,7 @@ export const fetchSitemapBlogs = async (
       href: {
         pathname: '/blog/[slug]',
         params: {
-          slug: (post?.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+          slug: toUrlSlug(post?.slug?.current || ''),
         },
       },
     })),
@@ -252,7 +253,7 @@ export const fetchBlogSlugBySlug = async (slug: string) => {
         slug: current,
         href: {
           pathname: '/blog/[slug]',
-          params: { slug: current.replace(/^[a-z]{2}-/i, '') },
+          params: { slug: toUrlSlug(current) },
         },
       },
     ];

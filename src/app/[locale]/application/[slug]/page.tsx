@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { HydrationBoundary } from '@tanstack/react-query';
 
+import { toCmsSlug } from '@/utils/slug';
 import { getLocalizedPath, toHref } from '@/utils/seo';
 import { PageView } from '@/components/sections/Application';
 import { fetchJobDetailBySlug } from '@/features/career/career.service';
@@ -40,8 +41,9 @@ export default async function Page(
     notFound();
   }
 
-  const fullSlug = /^[a-z]{2}-/i.test(slug) ? slug : `${locale}-${slug}`;
-  const translatedSlugs = await fetchCareerSlugBySlug(fullSlug).catch(() => []);
+  const translatedSlugs = await fetchCareerSlugBySlug(
+    toCmsSlug(slug, locale)
+  ).catch(() => []);
   const draftKey = getApplicationDraftKey(jobDetail.id, translatedSlugs);
 
   return (
