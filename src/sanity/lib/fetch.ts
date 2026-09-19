@@ -6,6 +6,7 @@ import type { ClientReturn, QueryParams } from '@sanity/client';
 
 type TSanityFetchOptions = {
   tags?: string[];
+  cache?: 'no-store';
 };
 
 export type TSanityTypesOutOfDate = {
@@ -27,6 +28,10 @@ export const sanityFetch = async <const Q extends string>(
         'silently return empty results instead of failing — check that ' +
         'SANITY_API_READ_TOKEN is set in the deployment environment.'
     );
+  }
+
+  if (options.cache === 'no-store') {
+    return client.fetch(query, params, { cache: 'no-store' });
   }
 
   return client.fetch(query, params, {

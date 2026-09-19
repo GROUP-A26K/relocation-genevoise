@@ -17,6 +17,20 @@ export const ORGANIZATION = {
     addressCountry: 'CH',
   },
   areaServed: 'Genève',
+  mapUrl:
+    'https://www.google.com/maps/search/?api=1&query=Rue+des+Alpes+5,+1201+Genève',
+  openingHours: {
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ],
+    opens: '08:00',
+    closes: '21:00',
+  },
   availableLanguage: ['French', 'English'],
   logo: {
     path: '/web-app-manifest-512x512.png',

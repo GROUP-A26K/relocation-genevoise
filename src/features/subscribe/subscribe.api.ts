@@ -8,10 +8,11 @@ import type {
 export function submitSubscribeApi({
   values,
   locale,
+  guard,
 }: TSubscribeSubmitVariables) {
   return post<ISubscribeSubmitResponse>(
     '/api/subscribe',
-    { email: values.email },
+    { email: values.email, ...guard },
     { locale }
   );
 }

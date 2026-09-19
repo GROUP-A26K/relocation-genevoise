@@ -1296,10 +1296,48 @@
       "description": "The page you are looking for does not exist or has been moved. Return to the Relocation Genevoise homepage to continue browsing."
     }
   },
+  "StructuredData": {
+    "Service": {
+      "academic": {
+        "name": "Academic services",
+        "serviceType": "School search and enrolment advice"
+      },
+      "concierge": {
+        "name": "Concierge service",
+        "serviceType": "Concierge for newcomers"
+      },
+      "discoverGeneva": {
+        "name": "Discover Geneva",
+        "serviceType": "Geneva orientation and settling-in support"
+      },
+      "companies": {
+        "name": "Relocation for companies",
+        "serviceType": "Corporate relocation"
+      },
+      "findAccommodation": {
+        "name": "Find accommodation",
+        "serviceType": "Home search"
+      }
+    }
+  },
   "Breadcrumb": {
+    "academicService": "Academic services",
     "blog": "Blog",
+    "callMeBack": "Call me back",
     "career": "Career",
-    "properties": "Properties"
+    "companies": "Companies",
+    "conciergeService": "Concierge service",
+    "contact": "Contact",
+    "discoverGenevaService": "Discover Geneva",
+    "faq": "FAQ",
+    "findAccommodation": "Find accommodation",
+    "findATenantLandlords": "Find a tenant",
+    "findATenantTenant": "Lease transfer",
+    "form": "Form",
+    "legalNotices": "Legal notice",
+    "personalData": "Privacy policy",
+    "properties": "Properties",
+    "sitemap": "Sitemap"
   },
   "Navbar": {
     "menu": [
@@ -1447,6 +1485,7 @@
       "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "subjectRequired": "Please select a help option.",
       "acceptRequired": "You must accept to proceed."
     },
@@ -1457,15 +1496,17 @@
       "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "experienceYearsRequired": "Please select your experience in years.",
       "expectedCtcRequired": "Expected CTC must be a valid number.",
       "resumeInvalidType": "Invalid file type! Please upload a PDF, DOC, or DOCX file.",
-      "resumeTooLarge": "File size exceeds the limit of 5MB. Please upload a smaller file.",
+      "resumeTooLarge": "This file is too large. Please upload a file of 5 MB or less.",
       "resumeRequired": "Please upload your resume.",
       "acceptRequired": "You must accept to proceed."
     },
     "Booking": {
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "acceptRequired": "You must accept to proceed."
     },
     "FindATenant": {
@@ -1473,13 +1514,15 @@
       "fullNameMaxLength": "Full name can have a maximum of 100 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "addressRequired": "Please enter the property address.",
       "propertyTypeRequired": "Please select a property type.",
       "numberOfRoomsRequired": "Please select the number of rooms.",
       "acceptRequired": "You must accept to proceed."
     },
     "Subscribe": {
-      "emailInvalid": "Please enter a valid email address."
+      "emailInvalid": "Please enter a valid email address.",
+      "maxLength": "This field can have a maximum of {max} characters."
     }
   },
   "Properties": {
@@ -1695,7 +1738,8 @@
     "share": "Share",
     "UploadFile": {
       "title": "Click to upload",
-      "description": "or drag & drop"
+      "description": "or drag & drop",
+      "hint": "DOCX or PDF (max. 5 MB)"
     }
   }
 }

@@ -5,7 +5,11 @@ import type {
   TContactSubmitVariables,
 } from './contact.types';
 
-export function submitContactApi({ values, locale }: TContactSubmitVariables) {
+export function submitContactApi({
+  values,
+  locale,
+  guard,
+}: TContactSubmitVariables) {
   return post<IContactSubmitResponse>(
     '/api/contact',
     {
@@ -17,6 +21,7 @@ export function submitContactApi({ values, locale }: TContactSubmitVariables) {
       accept: values.accept,
       phone: values.phone,
       company: values.company,
+      ...guard,
     },
     { locale }
   );

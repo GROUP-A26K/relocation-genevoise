@@ -1,14 +1,15 @@
 'use client';
 
 import { toast } from 'sonner';
-import React, { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
+import React, { useMemo, type BaseSyntheticEvent } from 'react';
 
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { useSubmitContact } from '@/features/contact/contact.hooks';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
@@ -17,6 +18,7 @@ import {
   contactSchema,
 } from '@/validations/contact.validation';
 import {
+  FormGuard,
   SelectField,
   InputField,
   TextareaField,
@@ -55,7 +57,10 @@ export const ContactForm: React.FC = () => {
     [t]
   );
 
-  const onSubmit = async (values: TContactFormInput) => {
+  const onSubmit = async (
+    values: TContactFormInput,
+    event?: BaseSyntheticEvent
+  ) => {
     const submission = draft.beginSubmission(values);
     const subject = subjectOptions.find(
       (option) => option.value === values.subject
@@ -65,6 +70,7 @@ export const ContactForm: React.FC = () => {
       await mutateAsync({
         values: { ...values, subject: subject?.label ?? values.subject },
         locale,
+        guard: readFormGuard(event),
       });
 
       draft.completeSubmission(submission);
@@ -104,6 +110,7 @@ export const ContactForm: React.FC = () => {
         }}
         className="flex flex-col gap-6"
       >
+        <FormGuard />
         <div className="flex flex-col gap-6 lg:flex-row">
           <InputField
             name="first_name"

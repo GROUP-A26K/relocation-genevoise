@@ -1,5 +1,5 @@
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import {
   Building,
   Building2,
@@ -47,6 +47,7 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const t = await getTranslations('HomePage');
 
   const features: TFeature[] = [

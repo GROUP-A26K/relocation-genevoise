@@ -1,9 +1,11 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { Hero } from '@/components/common/Hero/Hero';
+import ServiceJsonLd from '@/components/seo/ServiceJsonLd';
 import { Content } from '@/components/sections/AnimationContent/Content';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 import ContentImage3 from '@/assets/images/find-accommodation/steps/analyse-du-marche.webp';
 import ContentImage8 from '@/assets/images/find-accommodation/steps/aide-a-l-emmenagement.webp';
@@ -34,12 +36,21 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page() {
+export default async function Page(
+  props: PageProps<'/[locale]/find-accommodation'>
+) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('FindAccommodation');
   const imageT = await getTranslations('Images');
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/find-accommodation']} />
+
+      <ServiceJsonLd service="findAccommodation" locale={locale} />
+
       <Section revealTrigger="load" className="relative">
         <Hero
           heroImage={{

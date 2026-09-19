@@ -1305,10 +1305,48 @@
       "description": "La page que vous recherchez n’existe pas ou a été déplacée. Retournez à l’accueil de Relocation Genevoise pour poursuivre votre visite."
     }
   },
+  "StructuredData": {
+    "Service": {
+      "academic": {
+        "name": "Scolarité",
+        "serviceType": "Conseil en scolarité et choix d’école"
+      },
+      "concierge": {
+        "name": "Service de conciergerie",
+        "serviceType": "Conciergerie pour nouveaux arrivants"
+      },
+      "discoverGeneva": {
+        "name": "Découvrir Genève",
+        "serviceType": "Découverte de Genève et aide à l’installation"
+      },
+      "companies": {
+        "name": "Relocation pour les entreprises",
+        "serviceType": "Relocation d’entreprise"
+      },
+      "findAccommodation": {
+        "name": "Trouver un logement",
+        "serviceType": "Recherche de logement"
+      }
+    }
+  },
   "Breadcrumb": {
+    "academicService": "Scolarité",
     "blog": "Blog",
+    "callMeBack": "Rappelez-moi",
     "career": "Carrière",
-    "properties": "Propriétés"
+    "companies": "Entreprises",
+    "conciergeService": "Service de conciergerie",
+    "contact": "Contact",
+    "discoverGenevaService": "Découvrir Genève",
+    "faq": "FAQ",
+    "findAccommodation": "Trouver un logement",
+    "findATenantLandlords": "Trouver un locataire",
+    "findATenantTenant": "Remise de bail",
+    "form": "Formulaire",
+    "legalNotices": "Mentions légales",
+    "personalData": "Protection des données",
+    "properties": "Propriétés",
+    "sitemap": "Plan du site"
   },
   "Navbar": {
     "menu": [
@@ -1456,6 +1494,7 @@
       "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "subjectRequired": "Veuillez sélectionner une option d'aide.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
@@ -1466,15 +1505,17 @@
       "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "experienceYearsRequired": "Veuillez indiquer vos années d'expérience.",
       "expectedCtcRequired": "La rémunération prévue doit être un nombre valide.",
       "resumeInvalidType": "Veuillez uploader un fichier PDF ou DOCX.",
       "resumeRequired": "Veuillez uploader votre CV.",
-      "resumeTooLarge": " Le fichier est trop volumineux. Veuillez uploader un fichier de moins de 5 Mo.",
+      "resumeTooLarge": "Le fichier est trop volumineux. Veuillez téléverser un fichier de 5 Mo au maximum.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "Booking": {
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "FindATenant": {
@@ -1482,13 +1523,15 @@
       "fullNameMaxLength": "Le nom complet ne peut pas dépasser 100 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "addressRequired": "Veuillez saisir l'adresse du bien.",
       "propertyTypeRequired": "Veuillez sélectionner un type de bien.",
       "numberOfRoomsRequired": "Veuillez sélectionner le nombre de pièces.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "Subscribe": {
-      "emailInvalid": "Veuillez entrer une adresse e-mail valide."
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères."
     }
   },
   "Properties": {
@@ -1704,7 +1747,8 @@
     "share": "Partager",
     "UploadFile": {
       "title": "Cliquez pour téléverser",
-      "description": "ou faites glisser et déposez"
+      "description": "ou faites glisser et déposez",
+      "hint": "DOCX ou PDF (5 Mo max.)"
     }
   }
 }

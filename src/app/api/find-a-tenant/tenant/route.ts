@@ -1,8 +1,6 @@
-import { NextResponse } from 'next/server';
-
 import { Env } from '@/libs/env';
-import { resend } from '@/libs/resend';
 import { prisma } from '@/libs/prisma';
+import { createLeadHandler } from '@/libs/api/leadHandler';
 import { tenantFormSchema } from '@/validations/findATenant.validation';
 import { FindATenantInquiry } from '@/templates/Email/FindATenantInquiry';
 import { FindATenantCustomer } from '@/templates/Email/FindATenantCustomer';
@@ -22,31 +20,11 @@ const customerSubjectTitle = {
   fr: 'Nous avons bien reçu votre demande',
 } as const;
 
-export async function POST(request: Request) {
-  try {
-    const url = new URL(request.url);
-    const locale = url.searchParams.get('locale') === 'en' ? 'en' : 'fr';
-
-    if (!request.headers.get('Content-Type')?.includes('application/json')) {
-      return NextResponse.json(
-        { error: 'Content-Type must be application/json' },
-        { status: 400 }
-      );
-    }
-
-    const body: unknown = await request.json();
-
-    const parsedData = tenantFormSchema().safeParse(body);
-    if (!parsedData.success) {
-      return NextResponse.json(
-        { error: parsedData.error.format() },
-        { status: 400 }
-      );
-    }
-
-    const data = parsedData.data;
-
-    const tenantInquiry = await prisma.tenant_inquiry.create({
+export const POST = createLeadHandler({
+  route: 'find-a-tenant/tenant',
+  schema: tenantFormSchema().strict(),
+  persist: (data) =>
+    prisma.tenant_inquiry.create({
       data: {
         full_name: data.full_name,
         email: data.email,
@@ -57,16 +35,16 @@ export async function POST(request: Request) {
         accept: data.accept,
         created_at: new Date(),
       },
-    });
-
-    await resend.emails.send({
+      select: { id: true },
+    }),
+  emails: (data, _persisted, { locale }) => [
+    {
       from: `"${senderName}" <${senderEmail}>`,
       to: data.email,
       subject: customerSubjectTitle[locale],
       react: FindATenantCustomer({ username: data.full_name, baseUrl, locale }),
-    });
-
-    await resend.emails.send({
+    },
+    {
       from: `"${senderName}" <${senderEmail}>`,
       to: receiverEmail,
       subject: subjectTitle[locale],
@@ -76,14 +54,6 @@ export async function POST(request: Request) {
         baseUrl,
         locale,
       }),
-    });
-
-    return NextResponse.json(tenantInquiry, { status: 201 });
-  } catch (error) {
-    console.error('Error creating tenant inquiry:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
-}
+    },
+  ],
+});

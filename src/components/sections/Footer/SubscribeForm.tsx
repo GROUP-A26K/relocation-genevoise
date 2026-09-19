@@ -1,16 +1,17 @@
 'use client';
 
-import React from 'react';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import React, { type BaseSyntheticEvent } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
-import { InputField } from '@/components/common/Form';
+import { FormGuard, InputField } from '@/components/common/Form';
 import { useSubmitSubscribe } from '@/features/subscribe/subscribe.hooks';
 import {
   type TSubscribeFormInput,
@@ -32,11 +33,14 @@ export const SubscribeForm: React.FC = () => {
 
   const draft = useFormDraft('subscribe', form, { restoreKey: locale });
 
-  const onSubmit = async (values: TSubscribeFormInput) => {
+  const onSubmit = async (
+    values: TSubscribeFormInput,
+    event?: BaseSyntheticEvent
+  ) => {
     const submission = draft.beginSubmission(values);
 
     try {
-      await mutateAsync({ values, locale });
+      await mutateAsync({ values, locale, guard: readFormGuard(event) });
       draft.completeSubmission(submission);
       toast.custom((t) => (
         <Alert
@@ -74,6 +78,7 @@ export const SubscribeForm: React.FC = () => {
         }}
         className="flex w-full flex-col items-start justify-end gap-2 lg:flex-row"
       >
+        <FormGuard />
         <InputField
           name="email"
           placeholder={t('contact.inputPlaceholder')}

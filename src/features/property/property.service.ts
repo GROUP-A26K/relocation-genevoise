@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { toUrlSlug } from '@/utils/slug';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { getImageMessages } from '@/utils/imageMessages';
 import { AppConfig, type TLocale } from '@/utils/appConfig';
@@ -145,7 +146,7 @@ const mapProperty = (
   href: {
     pathname: '/properties/[slug]',
     params: {
-      slug: (property.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+      slug: toUrlSlug(property.slug?.current || ''),
     },
   },
   price: property.price || 0,
@@ -185,6 +186,10 @@ export const fetchProperties = async (
 
   const availableOnly = params?.availableOnly ?? false;
 
+  const hasUnboundedFilter = Boolean(
+    params?.location || params?.minPrice || params?.maxPrice || params?.rooms
+  );
+
   const response = await sanityFetch(
     PROPERTIES_QUERY,
     {
@@ -199,7 +204,7 @@ export const fetchProperties = async (
       maxPrice: params?.maxPrice ?? 0,
       rooms: params?.rooms ?? '',
     },
-    { tags: ['properties'] }
+    hasUnboundedFilter ? { cache: 'no-store' } : { tags: ['properties'] }
   );
 
   return {
@@ -276,7 +281,7 @@ export const fetchSitemapProperties = async (
       href: {
         pathname: '/properties/[slug]',
         params: {
-          slug: (property.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+          slug: toUrlSlug(property.slug?.current || ''),
         },
       },
     })),
@@ -302,7 +307,7 @@ export const fetchPropertySlugBySlug = async (slug: string) => {
         slug: item.slug,
         href: {
           pathname: '/properties/[slug]',
-          params: { slug: item.slug.replace(/^[a-z]{2}-/i, '') },
+          params: { slug: toUrlSlug(item.slug) },
         },
       },
     ];

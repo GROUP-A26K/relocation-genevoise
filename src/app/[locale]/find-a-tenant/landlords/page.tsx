@@ -13,6 +13,7 @@ import { getPageAlternates } from '@/utils/seo';
 import Hero from '@/components/sections/FindATenant/Hero';
 import CtaBanner from '@/components/sections/FindATenant/CtaBanner';
 import WhyChooseUs from '@/components/sections/FindATenant/WhyChooseUs';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import HeroImage from '@/assets/images/find-a-tenant/landlords/hero-image.webp';
 import Services, {
   type TServiceItem,
@@ -98,6 +99,11 @@ export default async function Page(
 
   return (
     <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        trail={['/find-a-tenant/landlords']}
+      />
+
       <Hero
         active="landlords"
         tabLabels={{

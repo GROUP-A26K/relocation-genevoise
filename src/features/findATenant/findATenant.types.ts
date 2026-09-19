@@ -1,3 +1,4 @@
+import type { TFormGuardValues } from '@/utils/formGuard';
 import type {
   TLandlordsFormInput,
   TTenantFormInput,
@@ -6,17 +7,17 @@ import type {
 export type TTenantSubmitVariables = {
   values: TTenantFormInput;
   locale: string;
+  guard: TFormGuardValues;
 };
 
 export type TLandlordsSubmitVariables = {
   values: TLandlordsFormInput;
   locale: string;
+  guard: TFormGuardValues;
 };
 
 export interface IFindATenantSubmitResponse {
-  id: number;
-  full_name: string;
-  email: string;
+  status: 'ok';
 }
 
 export type { TLandlordsFormInput, TTenantFormInput };

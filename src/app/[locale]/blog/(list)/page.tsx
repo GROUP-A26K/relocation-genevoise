@@ -1,10 +1,11 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { PageView } from '@/components/sections/Blog/PageView';
 import { hydrateBlogList } from '@/features/blog/blog.hydration';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BlogPageSkeleton } from '@/components/sections/Blog/BlogPageSkeleton';
 import {
   normalizeBlogListFilters,
@@ -46,6 +47,7 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]/blog'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const filters = parseBlogSearchParams(await props.searchParams);
 
   const { state, latestBlog, postCategory, blogList } = await hydrateBlogList(
@@ -53,15 +55,19 @@ export default async function Page(props: PageProps<'/[locale]/blog'>) {
   );
 
   return (
-    <Suspense fallback={<BlogPageSkeleton />}>
-      <HydrationBoundary state={state}>
-        <PageView
-          category={postCategory.posts}
-          newestBlog={latestBlog}
-          blogs={blogList.blogs}
-          meta={blogList.meta}
-        />
-      </HydrationBoundary>
-    </Suspense>
+    <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/blog']} />
+
+      <Suspense fallback={<BlogPageSkeleton />}>
+        <HydrationBoundary state={state}>
+          <PageView
+            category={postCategory.posts}
+            newestBlog={latestBlog}
+            blogs={blogList.blogs}
+            meta={blogList.meta}
+          />
+        </HydrationBoundary>
+      </Suspense>
+    </>
   );
 }

@@ -1,7 +1,8 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/LegalNotices';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 
 import type { Metadata } from 'next';
 
@@ -20,6 +21,15 @@ export async function generateMetadata(
     alternates: getPageAlternates(locale, '/legal-notice'),
   };
 }
-export default function Page() {
-  return <PageView />;
+export default async function Page(props: PageProps<'/[locale]/legal-notice'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
+  return (
+    <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/legal-notice']} />
+
+      <PageView />
+    </>
+  );
 }

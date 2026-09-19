@@ -1,11 +1,11 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { Image as ImageIcon } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
 
 import Button from '@/components/common/Button';
+import { useRouter } from '@/libs/i18nNavigation';
 import { Skeleton } from '@/components/ui/skeleton';
 import { RevealItem } from '@/components/common/Reveal';
 import BodyText from '@/components/common/Text/BodyText';
@@ -30,7 +30,6 @@ export const ImagePreview = ({
   const t = useTranslations('PropertiesDetails');
   const imageT = useTranslations('Images');
   const router = useRouter();
-  const locale = useLocale();
 
   const images: TImageObj[] = property.areas.map((area, index) => ({
     url: area.mainImageUrl,
@@ -80,7 +79,10 @@ export const ImagePreview = ({
   };
 
   const handleNavigateToPhotoTour = () => {
-    router.push(`/${locale}/properties/${propertySlug}/photo-tour`);
+    router.push({
+      pathname: '/properties/[slug]/photo-tour',
+      params: { slug: propertySlug },
+    });
   };
 
   return (
