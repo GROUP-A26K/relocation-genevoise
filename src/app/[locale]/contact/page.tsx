@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { ContactFormView } from '@/components/sections/Contact';
+import ContactPageJsonLd from '@/components/seo/ContactPageJsonLd';
 import { ContactInfo } from '@/components/common/Info/ContactInfo';
 import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 
@@ -32,6 +33,7 @@ export default async function Page(props: PageProps<'/[locale]/contact'>) {
 
   return (
     <>
+      <ContactPageJsonLd locale={locale} />
       <PageBreadcrumbJsonLd locale={locale} trail={['/contact']} />
 
       <Section revealTrigger="load">
