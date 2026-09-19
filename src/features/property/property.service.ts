@@ -186,6 +186,10 @@ export const fetchProperties = async (
 
   const availableOnly = params?.availableOnly ?? false;
 
+  const hasUnboundedFilter = Boolean(
+    params?.location || params?.minPrice || params?.maxPrice || params?.rooms
+  );
+
   const response = await sanityFetch(
     PROPERTIES_QUERY,
     {
@@ -200,7 +204,7 @@ export const fetchProperties = async (
       maxPrice: params?.maxPrice ?? 0,
       rooms: params?.rooms ?? '',
     },
-    { tags: ['properties'] }
+    hasUnboundedFilter ? { cache: 'no-store' } : { tags: ['properties'] }
   );
 
   return {

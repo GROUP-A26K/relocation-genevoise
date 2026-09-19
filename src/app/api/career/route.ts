@@ -1,34 +1,28 @@
 import { NextResponse } from 'next/server';
 
 import { fetchJobPosts } from '@/features/career/career.service';
+import {
+  boundedText,
+  createListQuerySchema,
+  readQuery,
+} from '@/utils/listQuery';
 
 const PAGE_SIZE = 5;
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const page = Number(searchParams.get('page')) || 1;
-  const pageSize = Math.min(
-    Number(searchParams.get('pageSize')) || PAGE_SIZE,
-    100
-  );
+const careerListQuerySchema = createListQuerySchema(PAGE_SIZE).extend({
+  filterBy: boundedText(),
+  search: boundedText(),
+});
 
-  if (page < 1 || pageSize < 1) {
-    return NextResponse.json(
-      { message: 'Invalid pagination' },
-      { status: 400 }
-    );
+export async function GET(request: Request) {
+  const query = careerListQuerySchema.safeParse(readQuery(request));
+
+  if (!query.success) {
+    return NextResponse.json({ message: 'Invalid query' }, { status: 400 });
   }
 
   try {
-    return NextResponse.json(
-      await fetchJobPosts({
-        locale: searchParams.get('locale') ?? 'fr',
-        page,
-        pageSize,
-        filterBy: searchParams.get('filterBy') ?? '',
-        search: searchParams.get('search') ?? '',
-      })
-    );
+    return NextResponse.json(await fetchJobPosts(query.data));
   } catch (error) {
     console.error('Error fetching career list', error);
     return NextResponse.json(

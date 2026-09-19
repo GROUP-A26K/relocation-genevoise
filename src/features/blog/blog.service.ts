@@ -132,7 +132,7 @@ export const fetchBlogs = async (
       title: params?.search ? `*${params?.search}*` : '',
       slug: params?.exceptSlug ?? '',
     },
-    { tags: ['blogs'] }
+    params?.search ? { cache: 'no-store' } : { tags: ['blogs'] }
   );
 
   return {

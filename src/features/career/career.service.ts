@@ -70,7 +70,7 @@ export const fetchJobPosts = async (
       department: params?.filterBy ?? '',
       title: params?.search ? `*${params?.search}*` : '',
     },
-    { tags: ['jobs'] }
+    params?.search ? { cache: 'no-store' } : { tags: ['jobs'] }
   );
 
   return {
