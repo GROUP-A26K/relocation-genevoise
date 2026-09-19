@@ -44,15 +44,13 @@ export const getHreflangPaths = (
     return path ? [[locale, path]] : [];
   });
 
-  if (entries.length < 2) {
+  if (entries.length === 0) {
     return {};
   }
 
-  const defaultPath = pathByLocale[AppConfig.defaultLocale];
+  const defaultPath = pathByLocale[AppConfig.defaultLocale] ?? entries[0][1];
 
-  return Object.fromEntries(
-    defaultPath ? [...entries, ['x-default', defaultPath]] : entries
-  );
+  return Object.fromEntries([...entries, ['x-default', defaultPath]]);
 };
 
 export const getPageAlternates = (
