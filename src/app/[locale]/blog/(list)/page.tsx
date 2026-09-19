@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { PageView } from '@/components/sections/Blog/PageView';
 import { hydrateBlogList } from '@/features/blog/blog.hydration';
@@ -46,6 +46,7 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]/blog'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const filters = parseBlogSearchParams(await props.searchParams);
 
   const { state, latestBlog, postCategory, blogList } = await hydrateBlogList(

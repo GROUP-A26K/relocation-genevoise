@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
 
 import { toCmsSlug } from '@/utils/slug';
@@ -10,6 +11,10 @@ import { hydrateCareerDetail } from '@/features/career/career.hydration';
 import { getApplicationDraftKey } from '@/features/application/application.draft';
 
 import type { Metadata } from 'next';
+
+export function generateStaticParams() {
+  return [];
+}
 
 export async function generateMetadata(
   props: PageProps<'/[locale]/application/[slug]'>
@@ -36,6 +41,7 @@ export default async function Page(
   props: PageProps<'/[locale]/application/[slug]'>
 ) {
   const { slug, locale } = await props.params;
+  setRequestLocale(locale);
   const { state, detail: jobDetail } = await hydrateCareerDetail(slug, locale);
   if (!jobDetail) {
     notFound();

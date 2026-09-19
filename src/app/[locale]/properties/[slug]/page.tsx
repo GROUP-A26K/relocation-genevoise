@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { SITE_NAME } from '@/constants/seo';
 import { getLocalizedPath, toHref } from '@/utils/seo';
@@ -12,6 +12,7 @@ export default async function PropertyDetailPage({
   params,
 }: PageProps<'/[locale]/properties/[slug]'>) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const { state, property, relatedProperties } = await hydratePropertyDetail(
     slug,
     locale

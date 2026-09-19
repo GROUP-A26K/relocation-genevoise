@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Career';
@@ -33,6 +33,7 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]/career'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const filters = parseCareerSearchParams(await props.searchParams);
 
   const { state, departments, careerList } = await hydrateCareerList(

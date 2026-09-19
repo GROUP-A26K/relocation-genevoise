@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { SITE_NAME } from '@/constants/seo';
 import { PageView } from '@/components/sections/CareerDetail';
@@ -19,10 +19,15 @@ import {
 
 import type { Metadata } from 'next';
 
+export function generateStaticParams() {
+  return [];
+}
+
 export default async function Page(
   props: PageProps<'/[locale]/career/[slug]'>
 ) {
   const { slug, locale } = await props.params;
+  setRequestLocale(locale);
   const {
     state,
     detail: jobDetail,

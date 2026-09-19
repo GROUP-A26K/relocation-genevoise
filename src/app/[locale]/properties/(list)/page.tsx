@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { ExchangeRatesProvider } from '@/context/ExchangeRatesContext';
@@ -35,6 +35,7 @@ export default async function PropertiesPage(
   props: PageProps<'/[locale]/properties'>
 ) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const searchParams = await props.searchParams;
   const t = await getTranslations('Properties');
 

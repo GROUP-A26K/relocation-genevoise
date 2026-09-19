@@ -1,5 +1,5 @@
-import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
@@ -24,7 +24,10 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page() {
+export default async function Page(props: PageProps<'/[locale]/call-me-back'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('RemindMe');
 
   return (

@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import {
   Focus,
   Coins,
@@ -39,7 +39,10 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page() {
+export default async function Page(props: PageProps<'/[locale]/companies'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('Companies');
 
   return (

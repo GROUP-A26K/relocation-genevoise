@@ -9,6 +9,10 @@ import {
 
 import type { Metadata } from 'next';
 
+export function generateStaticParams() {
+  return [];
+}
+
 export async function generateMetadata(
   props: LayoutProps<'/[locale]/properties/[slug]'>
 ): Promise<Metadata> {

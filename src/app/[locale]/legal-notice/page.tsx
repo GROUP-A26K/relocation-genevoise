@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/LegalNotices';
@@ -20,6 +20,9 @@ export async function generateMetadata(
     alternates: getPageAlternates(locale, '/legal-notice'),
   };
 }
-export default function Page() {
+export default async function Page(props: PageProps<'/[locale]/legal-notice'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   return <PageView />;
 }

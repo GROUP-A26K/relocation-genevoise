@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/LegalPersonal';
@@ -21,6 +21,11 @@ export async function generateMetadata(
   };
 }
 
-export default function Page() {
+export default async function Page(
+  props: PageProps<'/[locale]/personal-data'>
+) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   return <PageView />;
 }

@@ -1,5 +1,5 @@
-import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
@@ -23,7 +23,10 @@ export async function generateMetadata(
     alternates: getPageAlternates(locale, '/contact'),
   };
 }
-export default async function Page() {
+export default async function Page(props: PageProps<'/[locale]/contact'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('Contact');
 
   return (

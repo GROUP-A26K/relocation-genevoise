@@ -1,5 +1,5 @@
 import { Phone } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { Faq } from '@/components/sections/Faq';
 import Section from '@/components/common/Section';
@@ -29,6 +29,7 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]/faq'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const t = await getTranslations('FAQ');
 
   const faqs = t.raw('faqs') as TFaqItem[];

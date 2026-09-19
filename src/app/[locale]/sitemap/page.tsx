@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import { PageView } from '@/components/sections/Sitemap';
@@ -24,6 +24,7 @@ export async function generateMetadata(
 }
 export default async function Page(props: PageProps<'/[locale]/sitemap'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
 
   const [posts, properties] = await Promise.all([
     fetchSitemapBlogs({ locale }),

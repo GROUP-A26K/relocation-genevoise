@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
@@ -34,7 +34,12 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page() {
+export default async function Page(
+  props: PageProps<'/[locale]/find-accommodation'>
+) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('FindAccommodation');
   const imageT = await getTranslations('Images');
 
