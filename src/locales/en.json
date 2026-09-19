@@ -1462,7 +1462,7 @@
       "experienceYearsRequired": "Please select your experience in years.",
       "expectedCtcRequired": "Expected CTC must be a valid number.",
       "resumeInvalidType": "Invalid file type! Please upload a PDF, DOC, or DOCX file.",
-      "resumeTooLarge": "File size exceeds the limit of 5MB. Please upload a smaller file.",
+      "resumeTooLarge": "This file is too large. Please upload a file of 5 MB or less.",
       "resumeRequired": "Please upload your resume.",
       "acceptRequired": "You must accept to proceed."
     },
@@ -1700,7 +1700,8 @@
     "share": "Share",
     "UploadFile": {
       "title": "Click to upload",
-      "description": "or drag & drop"
+      "description": "or drag & drop",
+      "hint": "DOCX or PDF (max. 5 MB)"
     }
   }
 }

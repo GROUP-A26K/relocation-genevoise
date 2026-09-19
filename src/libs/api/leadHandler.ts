@@ -172,9 +172,7 @@ export function createLeadHandler<TData, TPersisted>({
       try {
         persisted = await persist(data, context);
       } catch (error) {
-        if (error instanceof LeadRequestError) {
-          return errorResponse(error.code, error.status);
-        }
+        if (error instanceof LeadRequestError) throw error;
 
         reportApiError(route, 'persist', error);
 
@@ -199,6 +197,10 @@ export function createLeadHandler<TData, TPersisted>({
 
       return okResponse();
     } catch (error) {
+      if (error instanceof LeadRequestError) {
+        return errorResponse(error.code, error.status);
+      }
+
       reportApiError(route, 'handler', error);
 
       return errorResponse('internal', 500);

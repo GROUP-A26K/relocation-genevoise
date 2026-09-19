@@ -1472,7 +1472,7 @@
       "expectedCtcRequired": "La rémunération prévue doit être un nombre valide.",
       "resumeInvalidType": "Veuillez uploader un fichier PDF ou DOCX.",
       "resumeRequired": "Veuillez uploader votre CV.",
-      "resumeTooLarge": " Le fichier est trop volumineux. Veuillez uploader un fichier de moins de 5 Mo.",
+      "resumeTooLarge": "Le fichier est trop volumineux. Veuillez téléverser un fichier de 5 Mo au maximum.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "Booking": {
@@ -1709,7 +1709,8 @@
     "share": "Partager",
     "UploadFile": {
       "title": "Cliquez pour téléverser",
-      "description": "ou faites glisser et déposez"
+      "description": "ou faites glisser et déposez",
+      "hint": "DOCX ou PDF (5 Mo max.)"
     }
   }
 }

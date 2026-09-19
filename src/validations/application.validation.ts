@@ -15,6 +15,8 @@ const phoneRegex = new RegExp(
 
 const MAX_CTC = 10_000_000_000;
 
+export const MAX_RESUME_FILE_BYTES = 5 * 1024 * 1024;
+
 const fileAccept = [
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -107,8 +109,8 @@ export function applicationSchema(t?: TValidationTranslator) {
         t?.('resumeInvalidType') ?? 'Only PDF or DOCX files are allowed.'
       )
       .refine(
-        (file) => file.size <= 500 * 1024 * 1024,
-        t?.('resumeTooLarge') ?? 'Max file size is 500 MB.'
+        (file) => file.size <= MAX_RESUME_FILE_BYTES,
+        t?.('resumeTooLarge') ?? 'Max file size is 5 MB.'
       ),
     department: z
       .string()
