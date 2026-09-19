@@ -1456,6 +1456,7 @@
       "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "subjectRequired": "Veuillez sélectionner une option d'aide.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
@@ -1466,6 +1467,7 @@
       "lastNameMaxLength": "Le nom de famille peut comporter un maximum de 50 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "experienceYearsRequired": "Veuillez indiquer vos années d'expérience.",
       "expectedCtcRequired": "La rémunération prévue doit être un nombre valide.",
       "resumeInvalidType": "Veuillez uploader un fichier PDF ou DOCX.",
@@ -1475,6 +1477,7 @@
     },
     "Booking": {
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "FindATenant": {
@@ -1482,13 +1485,15 @@
       "fullNameMaxLength": "Le nom complet ne peut pas dépasser 100 caractères.",
       "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
       "phoneInvalid": "Numéro de téléphone invalide ! Veuillez vous assurer qu'il suit un format valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères.",
       "addressRequired": "Veuillez saisir l'adresse du bien.",
       "propertyTypeRequired": "Veuillez sélectionner un type de bien.",
       "numberOfRoomsRequired": "Veuillez sélectionner le nombre de pièces.",
       "acceptRequired": "Vous devez accepter pour continuer."
     },
     "Subscribe": {
-      "emailInvalid": "Veuillez entrer une adresse e-mail valide."
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
+      "maxLength": "Ce champ ne peut pas dépasser {max} caractères."
     }
   },
   "Properties": {

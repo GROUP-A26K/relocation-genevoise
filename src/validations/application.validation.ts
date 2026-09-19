@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { FIELD_LIMITS, maxLengthMessage } from './fieldLimits';
+
 import type { useTranslations } from 'next-intl';
 
 // Phone regex for validation
@@ -11,6 +13,8 @@ const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 );
 
+const MAX_CTC = 10_000_000_000;
+
 const fileAccept = [
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -21,6 +25,7 @@ export function applicationSchema(t?: TValidationTranslator) {
   return z.object({
     first_name: z
       .string()
+      .trim()
       .min(2, {
         message:
           t?.('firstNameMinLength') ??
@@ -33,6 +38,7 @@ export function applicationSchema(t?: TValidationTranslator) {
       }),
     last_name: z
       .string()
+      .trim()
       .min(2, {
         message:
           t?.('lastNameMinLength') ??
@@ -43,23 +49,46 @@ export function applicationSchema(t?: TValidationTranslator) {
           t?.('lastNameMaxLength') ??
           'Last name can have a maximum of 50 characters.',
       }),
-    email: z.string().email({
-      message: t?.('emailInvalid') ?? 'Please enter a valid email address.',
-    }),
-    phone: z.string().regex(phoneRegex, {
-      message:
-        t?.('phoneInvalid') ??
-        'Invalid phone number! Please make sure it follows a valid format.',
-    }),
-    experience_years: z.string().refine((val) => val !== '', {
-      message: t?.('experienceYearsRequired') ?? 'Please select your role',
-    }),
+    email: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.email, maxLengthMessage(t, FIELD_LIMITS.email))
+      .email({
+        message: t?.('emailInvalid') ?? 'Please enter a valid email address.',
+      }),
+    phone: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.phone, maxLengthMessage(t, FIELD_LIMITS.phone))
+      .regex(phoneRegex, {
+        message:
+          t?.('phoneInvalid') ??
+          'Invalid phone number! Please make sure it follows a valid format.',
+      }),
+    experience_years: z
+      .string()
+      .trim()
+      .max(
+        FIELD_LIMITS.experienceYears,
+        maxLengthMessage(t, FIELD_LIMITS.experienceYears)
+      )
+      .refine((val) => val !== '', {
+        message: t?.('experienceYearsRequired') ?? 'Please select your role',
+      }),
     expected_ctc: z
       .string()
+      .trim()
+      .max(
+        FIELD_LIMITS.expectedCtc,
+        maxLengthMessage(t, FIELD_LIMITS.expectedCtc)
+      )
       .refine(
         (val) => {
-          if (!val || val.trim() === '') return true;
-          return !isNaN(Number(val));
+          if (val === '') return true;
+
+          const amount = Number(val);
+
+          return Number.isFinite(amount) && amount >= 0 && amount < MAX_CTC;
         },
         {
           message:
@@ -81,8 +110,17 @@ export function applicationSchema(t?: TValidationTranslator) {
         (file) => file.size <= 500 * 1024 * 1024,
         t?.('resumeTooLarge') ?? 'Max file size is 500 MB.'
       ),
-    department: z.string(),
-    position: z.string(),
+    department: z
+      .string()
+      .trim()
+      .max(
+        FIELD_LIMITS.department,
+        maxLengthMessage(t, FIELD_LIMITS.department)
+      ),
+    position: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.position, maxLengthMessage(t, FIELD_LIMITS.position)),
     accept: z.boolean().refine((val) => val === true, {
       message: t?.('acceptRequired') ?? 'You must accept to proceed.',
     }),

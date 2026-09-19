@@ -1,9 +1,7 @@
-import { NextResponse } from 'next/server';
-
 import { Env } from '@/libs/env';
-import { resend } from '@/libs/resend';
 import { prisma } from '@/libs/prisma';
 import CallMeBack from '@/templates/Email/CallMeBack';
+import { createLeadHandler } from '@/libs/api/leadHandler';
 import {
   type TBookingFormInput,
   bookingSchema,
@@ -20,90 +18,45 @@ const subjectTitle = {
 };
 
 const createBooking = async (data: TBookingFormInput) => {
-  try {
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
 
-    const recentBooking = await prisma.booking.findFirst({
-      where: {
-        phone: data.phone,
-        created_at: {
-          gt: oneHourAgo,
-        },
+  const recentBooking = await prisma.booking.findFirst({
+    where: {
+      phone: data.phone,
+      created_at: {
+        gt: oneHourAgo,
       },
-    });
+    },
+    select: { id: true },
+  });
 
-    if (recentBooking) {
-      return { booking: recentBooking, isNew: false } as const;
-    }
+  if (recentBooking) return null;
 
-    const bookingData = {
+  return prisma.booking.create({
+    data: {
       accept: data.accept,
       phone: data.phone,
       contact_via: data.contactVia,
       created_at: new Date(),
-    };
-
-    const booking = await prisma.booking.create({ data: bookingData });
-
-    return { booking, isNew: true } as const;
-  } catch (error) {
-    console.error('Error creating booking:', error);
-    throw new Error('Failed to create booking');
-  }
+    },
+    select: { id: true },
+  });
 };
 
-const sendEmail = async (userInfo: TBookingFormInput, locale: 'fr' | 'en') => {
-  try {
-    await resend.emails.send({
+export const POST = createLeadHandler({
+  route: 'booking',
+  schema: bookingSchema().strict(),
+  persist: createBooking,
+  emails: (data, _persisted, { locale }) => [
+    {
       from: `"${senderName}" <${senderEmail}>`,
       to: senderReceiverEmail,
       subject: subjectTitle[locale],
       react: CallMeBack({
-        userInfo,
+        userInfo: data,
         baseUrl,
         locale,
       }),
-    });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    throw new Error('Failed to send email');
-  }
-};
-
-export async function POST(request: Request) {
-  try {
-    const url = new URL(request.url);
-    const locale = url.searchParams.get('locale') === 'en' ? 'en' : 'fr';
-
-    if (!request.headers.get('Content-Type')?.includes('application/json')) {
-      return NextResponse.json(
-        { error: 'Content-Type must be application/json' },
-        { status: 400 }
-      );
-    }
-
-    const body: unknown = await request.json();
-
-    const parsedData = bookingSchema().safeParse(body);
-    if (!parsedData.success) {
-      return NextResponse.json(
-        { error: parsedData.error.format() },
-        { status: 400 }
-      );
-    }
-
-    const { booking, isNew } = await createBooking(parsedData.data);
-
-    if (isNew) {
-      await sendEmail(parsedData.data, locale);
-    }
-
-    return NextResponse.json(booking, { status: 201 });
-  } catch (error) {
-    console.error('Error creating contact:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
-  }
-}
+    },
+  ],
+});

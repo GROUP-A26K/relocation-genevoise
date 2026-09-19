@@ -5,13 +5,18 @@ import type {
   TBookingSubmitVariables,
 } from './booking.types';
 
-export function submitBookingApi({ values, locale }: TBookingSubmitVariables) {
+export function submitBookingApi({
+  values,
+  locale,
+  guard,
+}: TBookingSubmitVariables) {
   return post<IBookingSubmitResponse>(
     '/api/booking',
     {
       accept: values.accept,
       phone: values.phone,
       contactVia: values.contactVia,
+      ...guard,
     },
     { locale }
   );

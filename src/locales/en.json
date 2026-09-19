@@ -1447,6 +1447,7 @@
       "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "subjectRequired": "Please select a help option.",
       "acceptRequired": "You must accept to proceed."
     },
@@ -1457,6 +1458,7 @@
       "lastNameMaxLength": "Last name can have a maximum of 50 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "experienceYearsRequired": "Please select your experience in years.",
       "expectedCtcRequired": "Expected CTC must be a valid number.",
       "resumeInvalidType": "Invalid file type! Please upload a PDF, DOC, or DOCX file.",
@@ -1466,6 +1468,7 @@
     },
     "Booking": {
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "acceptRequired": "You must accept to proceed."
     },
     "FindATenant": {
@@ -1473,13 +1476,15 @@
       "fullNameMaxLength": "Full name can have a maximum of 100 characters.",
       "emailInvalid": "Please enter a valid email address.",
       "phoneInvalid": "Invalid phone number! Please make sure it follows a valid format.",
+      "maxLength": "This field can have a maximum of {max} characters.",
       "addressRequired": "Please enter the property address.",
       "propertyTypeRequired": "Please select a property type.",
       "numberOfRoomsRequired": "Please select the number of rooms.",
       "acceptRequired": "You must accept to proceed."
     },
     "Subscribe": {
-      "emailInvalid": "Please enter a valid email address."
+      "emailInvalid": "Please enter a valid email address.",
+      "maxLength": "This field can have a maximum of {max} characters."
     }
   },
   "Properties": {

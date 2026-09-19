@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { FIELD_LIMITS, maxLengthMessage } from './fieldLimits';
+
 import type { useTranslations } from 'next-intl';
 
 type TValidationTranslator = ReturnType<
@@ -12,11 +14,15 @@ const phoneRegex = new RegExp(
 
 export function bookingSchema(t?: TValidationTranslator) {
   return z.object({
-    phone: z.string().regex(phoneRegex, {
-      message:
-        t?.('phoneInvalid') ??
-        'Invalid phone number! Please make sure it follows a valid format.',
-    }),
+    phone: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.phone, maxLengthMessage(t, FIELD_LIMITS.phone))
+      .regex(phoneRegex, {
+        message:
+          t?.('phoneInvalid') ??
+          'Invalid phone number! Please make sure it follows a valid format.',
+      }),
     accept: z.boolean().refine((val) => val === true, {
       message: t?.('acceptRequired') ?? 'You must accept to proceed.',
     }),

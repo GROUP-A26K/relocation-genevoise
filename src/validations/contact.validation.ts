@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { FIELD_LIMITS, maxLengthMessage } from './fieldLimits';
+
 import type { useTranslations } from 'next-intl';
 
 // Phone regex for validation
@@ -16,6 +18,7 @@ export function contactSchema(t?: TValidationTranslator) {
   return z.object({
     first_name: z
       .string()
+      .trim()
       .min(2, {
         message:
           t?.('firstNameMinLength') ??
@@ -28,6 +31,7 @@ export function contactSchema(t?: TValidationTranslator) {
       }),
     last_name: z
       .string()
+      .trim()
       .min(2, {
         message:
           t?.('lastNameMinLength') ??
@@ -38,19 +42,39 @@ export function contactSchema(t?: TValidationTranslator) {
           t?.('lastNameMaxLength') ??
           'Last name can have a maximum of 50 characters.',
       }),
-    email: z.string().email({
-      message: t?.('emailInvalid') ?? 'Please enter a valid email address.',
-    }),
-    phone: z.string().regex(phoneRegex, {
-      message:
-        t?.('phoneInvalid') ??
-        'Invalid phone number! Please make sure it follows a valid format.',
-    }),
-    subject: z.string().refine((val) => val !== '', {
-      message: t?.('subjectRequired') ?? 'Please select a help option.',
-    }),
-    message: z.string().optional(),
-    company: z.string().optional(),
+    email: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.email, maxLengthMessage(t, FIELD_LIMITS.email))
+      .email({
+        message: t?.('emailInvalid') ?? 'Please enter a valid email address.',
+      }),
+    phone: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.phone, maxLengthMessage(t, FIELD_LIMITS.phone))
+      .regex(phoneRegex, {
+        message:
+          t?.('phoneInvalid') ??
+          'Invalid phone number! Please make sure it follows a valid format.',
+      }),
+    subject: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.subject, maxLengthMessage(t, FIELD_LIMITS.subject))
+      .refine((val) => val !== '', {
+        message: t?.('subjectRequired') ?? 'Please select a help option.',
+      }),
+    message: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.message, maxLengthMessage(t, FIELD_LIMITS.message))
+      .optional(),
+    company: z
+      .string()
+      .trim()
+      .max(FIELD_LIMITS.company, maxLengthMessage(t, FIELD_LIMITS.company))
+      .optional(),
     accept: z.boolean().refine((val) => val === true, {
       message: t?.('acceptRequired') ?? 'You must accept to proceed.',
     }),
