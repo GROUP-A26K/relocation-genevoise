@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
+import { getCmsStaticParams } from '@/features/sitemap/sitemap.service';
 import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
 import {
   fetchPropertySlugBySlug,
@@ -10,7 +11,7 @@ import {
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
-  return [];
+  return getCmsStaticParams('properties');
 }
 
 export async function generateMetadata(

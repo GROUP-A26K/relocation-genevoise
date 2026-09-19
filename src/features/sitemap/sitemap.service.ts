@@ -72,6 +72,20 @@ export const getStaticSitemapUrls = (): TSitemapUrl[] =>
     }
   );
 
+export const getCmsStaticParams = async (name: TCmsSitemap) => {
+  const { type, tag, requiresExplicitVisibility } = CMS_SITEMAPS[name];
+
+  const documents = await sanityFetch(
+    SITEMAP_DOCUMENTS_QUERY,
+    { type, locales: AppConfig.locales, requiresExplicitVisibility },
+    { tags: [tag] }
+  ).catch(() => []);
+
+  return documents.flatMap(({ language, slug }) =>
+    language && slug ? [{ locale: language, slug: toUrlSlug(slug) }] : []
+  );
+};
+
 export const getCmsSitemapUrls = async (
   name: TCmsSitemap
 ): Promise<TSitemapUrl[]> => {

@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { SITE_NAME } from '@/constants/seo';
 import { PageView } from '@/components/sections/CareerDetail';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
+import { getCmsStaticParams } from '@/features/sitemap/sitemap.service';
 import { hydrateCareerDetail } from '@/features/career/career.hydration';
 import {
   getLocalizedPath,
@@ -20,7 +21,7 @@ import {
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
-  return [];
+  return getCmsStaticParams('career');
 }
 
 export default async function Page(

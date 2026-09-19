@@ -6,6 +6,7 @@ import { SITE_NAME } from '@/constants/seo';
 import BlogJsonLd from '@/components/seo/BlogJsonLd';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { hydrateBlogDetail } from '@/features/blog/blog.hydration';
+import { getCmsStaticParams } from '@/features/sitemap/sitemap.service';
 import { BlogDetailClient } from '@/components/sections/BlogDetail/BlogDetailClient';
 import {
   fetchBlogBySlug,
@@ -23,7 +24,7 @@ import {
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
-  return [];
+  return getCmsStaticParams('blog');
 }
 
 export async function generateMetadata(
