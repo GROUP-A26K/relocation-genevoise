@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { ORGANIZATION } from '@/constants/seo';
+
 type TUseOpenStatusOptions = {
   timezone?: string;
   openHour?: number;
@@ -7,8 +9,10 @@ type TUseOpenStatusOptions = {
   interval?: number;
 };
 
-const DEFAULT_OPEN_HOUR = 9;
-const DEFAULT_CLOSE_HOUR = 18;
+const { openingHours } = ORGANIZATION;
+const OPEN_DAYS: readonly string[] = openingHours.dayOfWeek;
+const DEFAULT_OPEN_HOUR = Number.parseInt(openingHours.opens, 10);
+const DEFAULT_CLOSE_HOUR = Number.parseInt(openingHours.closes, 10);
 const DEFAULT_INTERVAL = 60_000;
 
 export const isServiceOpen = (
@@ -31,14 +35,12 @@ export const isServiceOpen = (
   const hour = Number.parseInt(hourPart?.value ?? '0', 10);
 
   const weekdayFormatter = new Intl.DateTimeFormat('en-US', {
-    weekday: 'short',
+    weekday: 'long',
     timeZone: timezone,
   });
   const weekday = weekdayFormatter.format(date);
 
-  const isWeekday = weekday !== 'Sat' && weekday !== 'Sun';
-
-  return isWeekday && hour >= openHour && hour < closeHour;
+  return OPEN_DAYS.includes(weekday) && hour >= openHour && hour < closeHour;
 };
 
 export const useOpenStatus = ({

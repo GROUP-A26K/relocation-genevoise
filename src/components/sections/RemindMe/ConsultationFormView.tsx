@@ -30,8 +30,6 @@ import {
 } from '@/validations/booking.validation';
 import ConsultationBG from '@/assets/images/shared/relocation-genevoise-geneve-courtage.webp';
 
-const TIME_OPEN = 9;
-const TIME_CLOSE = 18;
 const RESET_OPEN_STATUS_TIME = 60000;
 
 type TContactChannel = TBookingFormInput['contactVia'];
@@ -84,8 +82,6 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   const timezone = Env.NEXT_PUBLIC_SERVER_TIMEZONE;
   const isOpen = useOpenStatus({
     timezone,
-    openHour: TIME_OPEN,
-    closeHour: TIME_CLOSE,
     interval: RESET_OPEN_STATUS_TIME,
   });
   const { mutateAsync, isPending } = useSubmitBooking();
