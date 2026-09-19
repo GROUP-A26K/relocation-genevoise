@@ -3,7 +3,7 @@ import { createEnv } from '@t3-oss/env-nextjs';
 
 export const Env = createEnv({
   server: {
-    NEXT_APP_ENV: z.enum(['development', 'staging', 'production']).optional(),
+    NEXT_APP_ENV: z.enum(['development', 'staging', 'production']),
     SANITY_API_READ_TOKEN: z.string().min(1),
     SANITY_API_VERSION: z.string().min(1),
     SANITY_PROJECT_ID: z.string().min(1),

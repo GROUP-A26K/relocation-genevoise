@@ -18,6 +18,9 @@ const legacyRedirects = [
   },
 ].map((redirect) => ({ ...redirect, permanent: true }));
 
+const HTML_LIMITED_BOTS =
+  /Googlebot|Google-InspectionTool|Mediapartners-Google|AdsBot-Google|Google-PageRenderer|Storebot-Google|Bingbot|BingPreview|Slurp|DuckDuckBot|baiduspider|yandex|sogou|Applebot|OAI-SearchBot|ChatGPT-User|GPTBot|ClaudeBot|Claude-SearchBot|Claude-User|PerplexityBot|Perplexity-User|meta-externalagent|Amazonbot|MistralAI-User|CCBot|cohere-ai|facebookexternalhit|facebookcatalog|LinkedInBot|Twitterbot|Slackbot|Discordbot|WhatsApp|TelegramBot|Pinterestbot|redditbot|SkypeUriPreview|vkShare|ia_archiver|SemrushBot|AhrefsBot/i;
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -27,6 +30,8 @@ const nextConfig: NextConfig = {
     ],
   },
   productionBrowserSourceMaps: false,
+  poweredByHeader: false,
+  htmlLimitedBots: HTML_LIMITED_BOTS,
   sentry: {
     hideSourceMaps: true,
     widenClientFileUpload: true,
