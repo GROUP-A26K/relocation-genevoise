@@ -50,6 +50,8 @@ export type TCmsSitemap = keyof typeof CMS_SITEMAPS;
 
 export const CMS_SITEMAP_NAMES = Object.keys(CMS_SITEMAPS) as TCmsSitemap[];
 
+const STATIC_LAST_MODIFIED = new Date().toISOString();
+
 export const getStaticSitemapUrls = (): TSitemapUrl[] =>
   (Object.keys(AppConfig.sitemapPriorities) as TSitemapPathname[]).flatMap(
     (pathname) => {
@@ -63,6 +65,7 @@ export const getStaticSitemapUrls = (): TSitemapUrl[] =>
 
       return AppConfig.locales.map((locale) => ({
         loc: getAbsoluteUrl(pathByLocale[locale]),
+        lastModified: STATIC_LAST_MODIFIED,
         priority: AppConfig.sitemapPriorities[pathname],
         alternates,
       }));
