@@ -114,6 +114,7 @@ export const HomeHero: React.FC<IHomeHeroProps> = ({
             title={imageT('home.hero')}
             src={HeroImage}
             placeholder="blur"
+            priority
             width={1240}
             height={480}
             className="aspect-video max-h-[226px] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2 lg:h-[480px] lg:max-h-[480px]"
