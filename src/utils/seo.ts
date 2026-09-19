@@ -125,3 +125,34 @@ export const toPlainText = (text: string) =>
     .replace(/\*{1,2}/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null;
+
+const collectBlockTexts = (node: unknown): string[] => {
+  if (Array.isArray(node)) {
+    return node.flatMap(collectBlockTexts);
+  }
+
+  if (!isRecord(node)) {
+    return [];
+  }
+
+  if (node._type === 'block' && Array.isArray(node.children)) {
+    return [
+      node.children
+        .map((child) =>
+          isRecord(child) && typeof child.text === 'string' ? child.text : ''
+        )
+        .join(''),
+    ];
+  }
+
+  return Object.values(node).flatMap(collectBlockTexts);
+};
+
+export const portableTextToPlainText = (blocks: unknown) =>
+  collectBlockTexts(blocks)
+    .map((text) => text.replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .join('\n');
