@@ -15,9 +15,9 @@ import {
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
-import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
+import { isCaptchaError, readFormGuard } from '@/utils/formGuard';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import { useSubmitLandlordsInquiry } from '@/features/findATenant/findATenant.hooks';
 import {
@@ -45,6 +45,7 @@ export default function LandlordsForm() {
   const t = useTranslations('FindATenant.Landlords.Form');
   const formT = useTranslations('Validation.FindATenant');
   const toastT = useTranslations('ToastMessage.FindATenant');
+  const commonToastT = useTranslations('ToastMessage.Common');
   const roomsT = useTranslations('Properties');
   const locale = useLocale();
   const { mutateAsync, isPending } = useSubmitLandlordsInquiry();
@@ -120,7 +121,9 @@ export default function LandlordsForm() {
           as="solid"
           onClick={() => toast.dismiss(id)}
         >
-          {toastT('error')}
+          {isCaptchaError(error)
+            ? commonToastT('captchaFailed')
+            : toastT('error')}
         </Alert>
       ));
       console.error('Error submitting landlords form:', error);
@@ -134,7 +137,6 @@ export default function LandlordsForm() {
         onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
         className="flex flex-col gap-6"
       >
-        <FormGuard />
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-6">
             <FormSectionHeader title={t('contact.title')} />
@@ -221,6 +223,7 @@ export default function LandlordsForm() {
             className="gap-2"
           />
 
+          <FormGuard />
           <Button
             as="solid"
             variant="md"

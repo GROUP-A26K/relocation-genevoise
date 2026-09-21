@@ -5,11 +5,6 @@ type TSecurityHeader = {
   value: string;
 };
 
-type TSentryEndpoints = {
-  origin: string;
-  reportUri: string;
-};
-
 const SELF = "'self'";
 const UNSAFE_INLINE = "'unsafe-inline'";
 const UNSAFE_EVAL = "'unsafe-eval'";
@@ -18,33 +13,33 @@ const GOOGLE_TAG_MANAGER = 'https://www.googletagmanager.com';
 const GOOGLE_ANALYTICS = 'https://*.google-analytics.com';
 const GOOGLE = 'https://www.google.com';
 const GOOGLE_ADS = 'https://googleads.g.doubleclick.net';
-const DOUBLECLICK = 'https://*.g.doubleclick.net';
+const DOUBLECLICK = 'https://*.doubleclick.net';
+const GOOGLE_AD_SERVICES = 'https://www.googleadservices.com';
+const GOOGLE_SYNDICATION = 'https://pagead2.googlesyndication.com';
+const GOOGLE_FONTS_STYLES = 'https://fonts.googleapis.com';
+const GOOGLE_FONTS_FILES = 'https://fonts.gstatic.com';
+const CLOUDFLARE_INSIGHTS_SCRIPT = 'https://static.cloudflareinsights.com';
+const CLOUDFLARE_INSIGHTS_BEACON = 'https://cloudflareinsights.com';
 const COOKIEYES_CDN = 'https://cdn-cookieyes.com';
 const CLARITY = 'https://*.clarity.ms';
 const BING = 'https://c.bing.com';
 const SANITY_CDN = 'https://cdn.sanity.io';
 const TURNSTILE = 'https://challenges.cloudflare.com';
 
-const getSentryEndpoints = (dsn?: string): TSentryEndpoints | null => {
-  if (!dsn || !URL.canParse(dsn)) {
-    return null;
-  }
+const GOOGLE_COUNTRY_DOMAINS = [
+  'https://www.google.ch',
+  'https://www.google.fr',
+  'https://www.google.de',
+  'https://www.google.it',
+  'https://www.google.es',
+  'https://www.google.co.uk',
+];
 
-  const { origin, pathname, username } = new URL(dsn);
-  const projectId = pathname.replace(/\//g, '');
-
-  if (!projectId || !username) {
-    return null;
-  }
-
-  return {
-    origin,
-    reportUri: `${origin}/api/${projectId}/security/?sentry_key=${username}`,
-  };
-};
+const getSentryOrigin = (dsn?: string) =>
+  dsn && URL.canParse(dsn) ? new URL(dsn).origin : null;
 
 const getCspDirectives = (
-  sentry: TSentryEndpoints | null,
+  sentryOrigin: string | null,
   isDevelopment: boolean
 ): TDirectiveMap => ({
   'default-src': [SELF],
@@ -58,30 +53,17 @@ const getCspDirectives = (
     ...(isDevelopment ? [UNSAFE_EVAL] : []),
     GOOGLE_TAG_MANAGER,
     GOOGLE_ANALYTICS,
-    'https://www.googleadservices.com',
+    GOOGLE_AD_SERVICES,
     GOOGLE_ADS,
     GOOGLE,
     COOKIEYES_CDN,
     CLARITY,
     TURNSTILE,
+    CLOUDFLARE_INSIGHTS_SCRIPT,
   ],
-  'style-src': [SELF, UNSAFE_INLINE],
-  'img-src': [
-    SELF,
-    'data:',
-    'blob:',
-    SANITY_CDN,
-    GOOGLE_TAG_MANAGER,
-    GOOGLE_ANALYTICS,
-    DOUBLECLICK,
-    GOOGLE_ADS,
-    GOOGLE,
-    'https://www.google.ch',
-    COOKIEYES_CDN,
-    CLARITY,
-    BING,
-  ],
-  'font-src': [SELF, 'data:'],
+  'style-src': [SELF, UNSAFE_INLINE, GOOGLE_FONTS_STYLES],
+  'img-src': [SELF, 'data:', 'blob:', 'https:'],
+  'font-src': [SELF, 'data:', GOOGLE_FONTS_FILES],
   'media-src': [SELF, SANITY_CDN, 'https://stream.mux.com'],
   'connect-src': [
     SELF,
@@ -91,13 +73,16 @@ const getCspDirectives = (
     GOOGLE_TAG_MANAGER,
     DOUBLECLICK,
     GOOGLE,
-    'https://pagead2.googlesyndication.com',
+    ...GOOGLE_COUNTRY_DOMAINS,
+    GOOGLE_AD_SERVICES,
+    GOOGLE_SYNDICATION,
     COOKIEYES_CDN,
     'https://log.cookieyes.com',
     'https://directory.cookieyes.com',
     CLARITY,
     BING,
-    ...(sentry ? [sentry.origin] : []),
+    CLOUDFLARE_INSIGHTS_BEACON,
+    ...(sentryOrigin ? [sentryOrigin] : []),
   ],
   'frame-src': [
     SELF,
@@ -111,8 +96,6 @@ const getCspDirectives = (
   ],
   'worker-src': [SELF, 'blob:'],
   'manifest-src': [SELF],
-  'upgrade-insecure-requests': [],
-  ...(sentry ? { 'report-uri': [sentry.reportUri] } : {}),
 });
 
 const PERMISSIONS_POLICY: TDirectiveMap = {
@@ -150,7 +133,7 @@ export const getSecurityHeaders = (): TSecurityHeader[] => [
     key: 'Content-Security-Policy-Report-Only',
     value: serializeCsp(
       getCspDirectives(
-        getSentryEndpoints(process.env.NEXT_PUBLIC_SENTRY_DSN),
+        getSentryOrigin(process.env.NEXT_PUBLIC_SENTRY_DSN),
         process.env.NODE_ENV === 'development'
       )
     ),

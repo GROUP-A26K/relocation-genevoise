@@ -9,8 +9,8 @@ import React, { useMemo, type BaseSyntheticEvent } from 'react';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
-import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
+import { isCaptchaError, readFormGuard } from '@/utils/formGuard';
 import { useSubmitContact } from '@/features/contact/contact.hooks';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import {
@@ -29,6 +29,7 @@ export const ContactForm: React.FC = () => {
   const t = useTranslations('Contact.ContactForm');
   const formT = useTranslations('Validation.Contact');
   const toastT = useTranslations('ToastMessage.Contact');
+  const commonToastT = useTranslations('ToastMessage.Common');
   const locale = useLocale();
   const { mutateAsync, isPending } = useSubmitContact();
   const form = useForm<TContactFormInput>({
@@ -92,7 +93,9 @@ export const ContactForm: React.FC = () => {
           as="solid"
           onClick={() => toast.dismiss(t)}
         >
-          {toastT('error')}
+          {isCaptchaError(error)
+            ? commonToastT('captchaFailed')
+            : toastT('error')}
         </Alert>
       ));
       console.error('Error submitting form:', error);
@@ -110,7 +113,6 @@ export const ContactForm: React.FC = () => {
         }}
         className="flex flex-col gap-6"
       >
-        <FormGuard />
         <div className="flex flex-col gap-6 lg:flex-row">
           <InputField
             name="first_name"
@@ -179,6 +181,7 @@ export const ContactForm: React.FC = () => {
           label={t('accept')}
           error={form.formState.errors.accept?.message}
         />
+        <FormGuard />
         <Button
           as="solid"
           variant="md"

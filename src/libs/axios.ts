@@ -4,7 +4,8 @@ import { isNil } from 'lodash-es';
 export class ApiError extends Error {
   constructor(
     message: string,
-    public readonly status: number
+    public readonly status: number,
+    public readonly code?: string
   ) {
     super(message);
     this.name = 'ApiError';
@@ -36,9 +37,16 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error: unknown) => {
     if (axios.isAxiosError(error) && error.response) {
+      const data: unknown = error.response.data;
+      const code =
+        typeof data === 'object' && !isNil(data) && 'code' in data
+          ? data.code
+          : undefined;
+
       throw new ApiError(
         `Request failed with status ${error.response.status}`,
-        error.response.status
+        error.response.status,
+        typeof code === 'string' ? code : undefined
       );
     }
 

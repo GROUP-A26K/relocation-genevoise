@@ -1626,6 +1626,9 @@
     "subheading": "Photo tour"
   },
   "ToastMessage": {
+    "Common": {
+      "captchaFailed": "Please complete the security check, then submit the form again."
+    },
     "Booking": {
       "successTitle": "Success",
       "errorTitle": "Error",

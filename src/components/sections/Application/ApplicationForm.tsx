@@ -10,11 +10,11 @@ import { Clock, MapPin, CircleDollarSign } from 'lucide-react';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
-import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { RevealItem } from '@/components/common/Reveal';
 import BodyText from '@/components/common/Text/BodyText';
 import HeadingText from '@/components/common/Text/HeadingText';
+import { isCaptchaError, readFormGuard } from '@/utils/formGuard';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import ConsultationBG from '@/assets/images/application/form-image.webp';
 import { useSubmitApplication } from '@/features/application/application.hooks';
@@ -73,6 +73,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
   const t = useTranslations('Application.ApplyForm');
   const formT = useTranslations('Validation.Application');
   const toastT = useTranslations('ToastMessage.Application');
+  const commonToastT = useTranslations('ToastMessage.Common');
   const imageT = useTranslations('Images');
   const locale = useLocale();
   const form = useForm<TApplicationFormInput>({
@@ -134,13 +135,23 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
             as="solid"
             onClick={() => toast.dismiss(t)}
           >
-            {toastT('error')}
+            {isCaptchaError(error)
+              ? commonToastT('captchaFailed')
+              : toastT('error')}
           </Alert>
         ));
         console.error('Error submitting form:', error);
       }
     },
-    [draft, experienceOptions, jobDetail, locale, mutateAsync, toastT]
+    [
+      commonToastT,
+      draft,
+      experienceOptions,
+      jobDetail,
+      locale,
+      mutateAsync,
+      toastT,
+    ]
   );
 
   const { title, employmentType, location, salaryMin, salaryMax, currency } =
@@ -194,7 +205,6 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
               onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
               className="flex flex-col gap-6"
             >
-              <FormGuard />
               {/* row 1 */}
               <div className="flex flex-col gap-6 lg:flex-row">
                 <InputField
@@ -270,6 +280,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
                 error={form.formState.errors.accept?.message}
               />
 
+              <FormGuard />
               <Button
                 as="solid"
                 variant="md"

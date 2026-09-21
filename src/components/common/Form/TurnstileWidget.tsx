@@ -3,8 +3,9 @@
 import Script from 'next/script';
 import { useLocale } from 'next-intl';
 import { useFormState } from 'react-hook-form';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { cn } from '@/libs/utils';
 import { TURNSTILE_FIELD } from '@/utils/formGuard';
 
 const TURNSTILE_SCRIPT_URL =
@@ -36,6 +37,7 @@ export const TurnstileWidget: React.FC<ITurnstileWidgetProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const wasSubmittingRef = useRef(false);
+  const [isInteractive, setIsInteractive] = useState(false);
   const hasErrors = Object.keys(errors).length > 0;
 
   const renderWidget = useCallback(() => {
@@ -49,6 +51,7 @@ export const TurnstileWidget: React.FC<ITurnstileWidgetProps> = ({
       size: 'flexible',
       appearance: 'interaction-only',
       'response-field-name': TURNSTILE_FIELD,
+      'before-interactive-callback': () => setIsInteractive(true),
     });
   }, [locale, siteKey]);
 
@@ -69,6 +72,7 @@ export const TurnstileWidget: React.FC<ITurnstileWidgetProps> = ({
 
     if (hasFinishedSubmitting && !hasErrors && widgetIdRef.current) {
       window.turnstile?.reset(widgetIdRef.current);
+      setIsInteractive(false);
     }
   }, [hasErrors, isSubmitting]);
 
@@ -80,7 +84,10 @@ export const TurnstileWidget: React.FC<ITurnstileWidgetProps> = ({
         onLoad={renderWidget}
         onReady={renderWidget}
       />
-      <div ref={containerRef} className={className} />
+      <div
+        ref={containerRef}
+        className={cn(isInteractive ? 'w-full' : 'absolute', className)}
+      />
     </>
   );
 };

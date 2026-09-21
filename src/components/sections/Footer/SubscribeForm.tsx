@@ -9,9 +9,9 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
-import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { FormGuard, InputField } from '@/components/common/Form';
+import { isCaptchaError, readFormGuard } from '@/utils/formGuard';
 import { useSubmitSubscribe } from '@/features/subscribe/subscribe.hooks';
 import {
   type TSubscribeFormInput,
@@ -22,6 +22,7 @@ export const SubscribeForm: React.FC = () => {
   const t = useTranslations('Footer');
   const formT = useTranslations('Validation.Subscribe');
   const toastT = useTranslations('ToastMessage.Subscribe');
+  const commonToastT = useTranslations('ToastMessage.Common');
   const locale = useLocale();
   const { mutateAsync, isPending } = useSubmitSubscribe();
   const form = useForm<TSubscribeFormInput>({
@@ -60,7 +61,9 @@ export const SubscribeForm: React.FC = () => {
           as="solid"
           onClick={() => toast.dismiss(t)}
         >
-          {toastT('error')}
+          {isCaptchaError(error)
+            ? commonToastT('captchaFailed')
+            : toastT('error')}
         </Alert>
       ));
       console.error('Error submitting form:', error);
@@ -76,25 +79,27 @@ export const SubscribeForm: React.FC = () => {
             e.preventDefault();
           }
         }}
-        className="flex w-full flex-col items-start justify-end gap-2 lg:flex-row"
+        className="flex w-full flex-col gap-2"
       >
+        <div className="flex w-full flex-col items-start justify-end gap-2 lg:flex-row">
+          <InputField
+            name="email"
+            placeholder={t('contact.inputPlaceholder')}
+            register={form.register}
+            error={form.formState.errors.email?.message}
+            className="h-fit w-full text-base lg:w-[340px]"
+          />
+          <Button
+            as="solid"
+            variant="md"
+            type="primary"
+            className="w-full lg:w-fit"
+            disabled={isPending}
+          >
+            {t('contact.buttonText')}
+          </Button>
+        </div>
         <FormGuard />
-        <InputField
-          name="email"
-          placeholder={t('contact.inputPlaceholder')}
-          register={form.register}
-          error={form.formState.errors.email?.message}
-          className="h-fit w-full text-base lg:w-[340px]"
-        />
-        <Button
-          as="solid"
-          variant="md"
-          type="primary"
-          className="w-full lg:w-fit"
-          disabled={isPending}
-        >
-          {t('contact.buttonText')}
-        </Button>
       </form>
     </Form>
   );
