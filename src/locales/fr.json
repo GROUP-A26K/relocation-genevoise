@@ -1635,6 +1635,9 @@
     "subheading": "Visite photo"
   },
   "ToastMessage": {
+    "Common": {
+      "captchaFailed": "Veuillez terminer la vérification de sécurité, puis renvoyer le formulaire."
+    },
     "Booking": {
       "successTitle": "Succès",
       "errorTitle": "Erreur",

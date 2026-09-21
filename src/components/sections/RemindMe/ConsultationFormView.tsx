@@ -13,12 +13,12 @@ import { Form } from '@/components/ui/form';
 import { Link } from '@/libs/i18nNavigation';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
-import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { useOpenStatus } from '@/hooks/useOpenStatus';
 import BodyText from '@/components/common/Text/BodyText';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
 import HeadingText from '@/components/common/Text/HeadingText';
+import { isCaptchaError, readFormGuard } from '@/utils/formGuard';
 import { useSubmitBooking } from '@/features/booking/booking.hooks';
 import { bodyTextVariants } from '@/components/common/Text/BodyText';
 import { FormGuard, PhoneInputField } from '@/components/common/Form';
@@ -77,6 +77,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
 }) => {
   const formT = useTranslations('Validation.Booking');
   const toastT = useTranslations('ToastMessage.Booking');
+  const commonToastT = useTranslations('ToastMessage.Common');
   const imageT = useTranslations('Images');
   const locale = useLocale();
   const timezone = Env.NEXT_PUBLIC_SERVER_TIMEZONE;
@@ -97,7 +98,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   const contactVia = form.watch('contactVia');
 
   const showToast = useCallback(
-    (type: 'success' | 'danger') => {
+    (type: 'success' | 'danger', message?: string) => {
       const isSuccess = type === 'success';
       const titleKey = isSuccess ? 'successTitle' : 'errorTitle';
       const messageKey = isSuccess ? 'success' : 'error';
@@ -109,7 +110,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
           as="solid"
           onClick={() => toast.dismiss(t)}
         >
-          {toastT(messageKey)}
+          {message ?? toastT(messageKey)}
         </Alert>
       ));
     },
@@ -135,11 +136,14 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
         draft.completeSubmission(submission);
         showToast('success');
       } catch (error) {
-        showToast('danger');
+        showToast(
+          'danger',
+          isCaptchaError(error) ? commonToastT('captchaFailed') : undefined
+        );
         console.error('Error submitting form:', error);
       }
     },
-    [draft, locale, mutateAsync, showToast]
+    [commonToastT, draft, locale, mutateAsync, showToast]
   );
 
   const handleFormSubmit = form.handleSubmit(onSubmit);
@@ -271,44 +275,48 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
                       e.preventDefault();
                     }
                   }}
-                  className={cn(
-                    'flex flex-col items-start justify-between gap-2',
-                    'xl:flex-row'
-                  )}
+                  className="flex flex-col gap-2"
                 >
-                  <FormGuard />
-                  <div className="flex w-full flex-1 flex-col gap-2 lg:gap-3">
-                    <PhoneInputField
-                      name="phone"
-                      placeholder={cardContent.buttonPlaceholder}
-                      control={form.control}
-                      error={form.formState.errors.phone?.message}
-                      className="w-full text-base lg:max-w-107.75"
-                      inputClassName="bg-white lg:h-12"
-                      countrySelectClassName="bg-white lg:h-12"
-                    />
-                    <div className="flex w-full flex-col items-center gap-2 xxs:flex-row lg:flex-row">
-                      {contactOptions.map(({ value, label, icon }) => (
-                        <ContactChannelButton
-                          key={value}
-                          value={value}
-                          label={label}
-                          icon={icon}
-                          isActive={contactVia === value}
-                          onSelect={handleContactViaChange}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <Button
-                    as="solid"
-                    variant="md"
-                    type="primary"
-                    className="w-full lg:h-12 xl:w-fit"
-                    disabled={isPending}
+                  <div
+                    className={cn(
+                      'flex flex-col items-start justify-between gap-2',
+                      'xl:flex-row'
+                    )}
                   >
-                    {cardContent.buttonText}
-                  </Button>
+                    <div className="flex w-full flex-1 flex-col gap-2 lg:gap-3">
+                      <PhoneInputField
+                        name="phone"
+                        placeholder={cardContent.buttonPlaceholder}
+                        control={form.control}
+                        error={form.formState.errors.phone?.message}
+                        className="w-full text-base lg:max-w-107.75"
+                        inputClassName="bg-white lg:h-12"
+                        countrySelectClassName="bg-white lg:h-12"
+                      />
+                      <div className="flex w-full flex-col items-center gap-2 xxs:flex-row lg:flex-row">
+                        {contactOptions.map(({ value, label, icon }) => (
+                          <ContactChannelButton
+                            key={value}
+                            value={value}
+                            label={label}
+                            icon={icon}
+                            isActive={contactVia === value}
+                            onSelect={handleContactViaChange}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    <Button
+                      as="solid"
+                      variant="md"
+                      type="primary"
+                      className="w-full lg:h-12 xl:w-fit"
+                      disabled={isPending}
+                    >
+                      {cardContent.buttonText}
+                    </Button>
+                  </div>
+                  <FormGuard />
                 </form>
               </Form>
             </div>

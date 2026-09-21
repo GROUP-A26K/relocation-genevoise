@@ -1,7 +1,14 @@
+import { ApiError } from '@/libs/axios';
+
 import type { BaseSyntheticEvent } from 'react';
 
 export const HONEYPOT_FIELD = 'website';
 export const TURNSTILE_FIELD = 'turnstileToken';
+
+const CAPTCHA_FAILED_CODE = 'captcha_failed';
+
+export const isCaptchaError = (error: unknown) =>
+  error instanceof ApiError && error.code === CAPTCHA_FAILED_CODE;
 
 export type TFormGuardValues = {
   [HONEYPOT_FIELD]?: string;
