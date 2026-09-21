@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronLeft } from 'lucide-react';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
+import { Link } from '@/libs/i18nNavigation';
 import { RevealItem } from '@/components/common/Reveal';
 import BodyText from '@/components/common/Text/BodyText';
 import HeadingText from '@/components/common/Text/HeadingText';
@@ -22,7 +22,6 @@ export async function PropertySectionHeader({
 }: IPropertySectionHeaderProps) {
   const t = await getTranslations('PhotoTour');
   const imageT = await getTranslations('Images');
-  const locale = await getLocale();
   const title = t('title');
   const subheading = t('subheading');
 
@@ -30,7 +29,7 @@ export async function PropertySectionHeader({
     <div className="flex flex-col gap-8 lg:pb-16">
       <RevealItem className="flex flex-col items-start gap-3">
         <Link
-          href={`/${locale}/properties/${slug}`}
+          href={{ pathname: '/properties/[slug]', params: { slug } }}
           className="flex items-center gap-2"
         >
           <ChevronLeft width={18} height={18} className="text-yellow-600" />

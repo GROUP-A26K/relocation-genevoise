@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { toUrlSlug } from '@/utils/slug';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import {
   CAREER_DETAIL_QUERY,
@@ -35,7 +36,7 @@ const toJob = (job: TJobPostProjection, locale?: string): IJob => ({
   title: job.title || 'Untitled',
   href: {
     pathname: '/career/[slug]',
-    params: { slug: (job?.slug?.current || '').replace(/^[a-z]{2}-/i, '') },
+    params: { slug: toUrlSlug(job?.slug?.current || '') },
   },
   slug: job.slug?.current || '',
   employmentType: job.employmentType || 'Full-time',
@@ -69,7 +70,7 @@ export const fetchJobPosts = async (
       department: params?.filterBy ?? '',
       title: params?.search ? `*${params?.search}*` : '',
     },
-    { tags: ['jobs'] }
+    params?.search ? { cache: 'no-store' } : { tags: ['jobs'] }
   );
 
   return {
@@ -120,7 +121,7 @@ export const fetchJobDetailBySlug = async (
 
   return {
     ...toJob(response, locale),
-    slug: (response.slug?.current || '').replace(/^[a-z]{2}-/i, ''),
+    slug: toUrlSlug(response.slug?.current || ''),
     body: response?.body || [],
   };
 };
@@ -157,7 +158,7 @@ export const fetchCareerSlugBySlug = async (slug: string) => {
         slug: current,
         href: {
           pathname: '/career/[slug]',
-          params: { slug: current.replace(/^[a-z]{2}-/i, '') },
+          params: { slug: toUrlSlug(current) },
         },
       },
     ];

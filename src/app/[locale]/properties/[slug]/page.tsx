@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { SITE_NAME } from '@/constants/seo';
 import { getLocalizedPath, toHref } from '@/utils/seo';
+import PropertyJsonLd from '@/components/seo/PropertyJsonLd';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { hydratePropertyDetail } from '@/features/property/property.hydration';
 import { PropertyDetailClient } from '@/components/sections/PropertiesDetail/PropertyDetailClient';
@@ -12,6 +13,7 @@ export default async function PropertyDetailPage({
   params,
 }: PageProps<'/[locale]/properties/[slug]'>) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const { state, property, relatedProperties } = await hydratePropertyDetail(
     slug,
     locale
@@ -22,9 +24,14 @@ export default async function PropertyDetailPage({
   }
 
   const tBreadcrumb = await getTranslations('Breadcrumb');
+  const propertyPath = getLocalizedPath(
+    locale,
+    toHref('/properties/[slug]', slug)
+  );
 
   return (
     <>
+      <PropertyJsonLd property={property} locale={locale} path={propertyPath} />
       <BreadcrumbJsonLd
         items={[
           { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
@@ -32,10 +39,7 @@ export default async function PropertyDetailPage({
             name: tBreadcrumb('properties'),
             path: getLocalizedPath(locale, '/properties'),
           },
-          {
-            name: property.title,
-            path: getLocalizedPath(locale, toHref('/properties/[slug]', slug)),
-          },
+          { name: property.title, path: propertyPath },
         ]}
       />
 

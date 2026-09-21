@@ -15,6 +15,7 @@ import {
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { ROOM_FILTER_OPTIONS } from '@/constants/property';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
@@ -25,12 +26,15 @@ import {
 } from '@/validations/findATenant.validation';
 import {
   ChipSelectField,
+  FormGuard,
   InputField,
   PhoneInputField,
   SelectField,
 } from '@/components/common/Form';
 
 import FormSectionHeader from './FormSectionHeader';
+
+import type { BaseSyntheticEvent } from 'react';
 
 const PROPERTY_TYPE_ICONS: LucideIcon[] = [Building2, House, Building];
 
@@ -73,7 +77,10 @@ export default function TenantForm() {
 
   const draft = useFormDraft('tenant', form, { restoreKey: locale });
 
-  const onSubmit = async (values: TTenantFormInput) => {
+  const onSubmit = async (
+    values: TTenantFormInput,
+    event?: BaseSyntheticEvent
+  ) => {
     const submission = draft.beginSubmission(values);
     const submitValues = {
       ...values,
@@ -87,7 +94,11 @@ export default function TenantForm() {
     };
 
     try {
-      await mutateAsync({ values: submitValues, locale });
+      await mutateAsync({
+        values: submitValues,
+        locale,
+        guard: readFormGuard(event),
+      });
       draft.completeSubmission(submission);
       toast.custom((id) => (
         <Alert
@@ -121,6 +132,7 @@ export default function TenantForm() {
         onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
         className="flex flex-col gap-6"
       >
+        <FormGuard />
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-6">
             <FormSectionHeader title={t('contact.title')} />

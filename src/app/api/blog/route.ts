@@ -1,34 +1,33 @@
 import { NextResponse } from 'next/server';
 
 import { fetchBlogs } from '@/features/blog/blog.service';
+import {
+  boundedText,
+  createListQuerySchema,
+  readQuery,
+} from '@/utils/listQuery';
 
 const PAGE_SIZE = 9;
+const MAX_SLUG_LENGTH = 200;
+
+const blogListQuerySchema = createListQuerySchema(PAGE_SIZE).extend({
+  filterBy: boundedText(),
+  search: boundedText(),
+  exceptSlug: boundedText(MAX_SLUG_LENGTH),
+});
 
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const page = Number(searchParams.get('page')) || 1;
-  const pageSize = Math.min(
-    Number(searchParams.get('pageSize')) || PAGE_SIZE,
-    100
-  );
+  const query = blogListQuerySchema.safeParse(readQuery(request));
 
-  if (page < 1 || pageSize < 1) {
-    return NextResponse.json(
-      { message: 'Invalid pagination' },
-      { status: 400 }
-    );
+  if (!query.success) {
+    return NextResponse.json({ message: 'Invalid query' }, { status: 400 });
   }
+
+  const { exceptSlug, ...filters } = query.data;
 
   try {
     return NextResponse.json(
-      await fetchBlogs({
-        locale: searchParams.get('locale') ?? 'fr',
-        page,
-        pageSize,
-        filterBy: searchParams.get('filterBy') ?? '',
-        search: searchParams.get('search') ?? '',
-        exceptSlug: searchParams.get('exceptSlug') ?? undefined,
-      })
+      await fetchBlogs({ ...filters, exceptSlug: exceptSlug || undefined })
     );
   } catch (error) {
     console.error('Error fetching blog list', error);

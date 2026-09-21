@@ -10,6 +10,7 @@ import { Clock, MapPin, CircleDollarSign } from 'lucide-react';
 import { Form } from '@/components/ui/form';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { RevealItem } from '@/components/common/Reveal';
 import BodyText from '@/components/common/Text/BodyText';
@@ -17,11 +18,17 @@ import HeadingText from '@/components/common/Text/HeadingText';
 import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import ConsultationBG from '@/assets/images/application/form-image.webp';
 import { useSubmitApplication } from '@/features/application/application.hooks';
-import { InputField, SelectField, UploadField } from '@/components/common/Form';
 import {
   type TApplicationFormInput,
   applicationSchema,
 } from '@/validations/application.validation';
+import {
+  FormGuard,
+  InputField,
+  SelectField,
+  UploadField,
+  PhoneInputField,
+} from '@/components/common/Form';
 
 import type { IJobDetail } from '@/models/job';
 import type { TApplicationDraftKey } from '@/features/formDraft';
@@ -90,7 +97,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
   });
 
   const onSubmit: SubmitHandler<TApplicationFormInput> = useCallback(
-    async (values) => {
+    async (values, event) => {
       const submission = draft.beginSubmission(values);
       const experience = experienceOptions.find(
         (option) => option.value === values.experience_years
@@ -105,6 +112,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
             position: jobDetail.title,
           },
           locale,
+          guard: readFormGuard(event),
         });
 
         draft.completeSubmission(submission);
@@ -186,6 +194,7 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
               onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
               className="flex flex-col gap-6"
             >
+              <FormGuard />
               {/* row 1 */}
               <div className="flex flex-col gap-6 lg:flex-row">
                 <InputField
@@ -216,12 +225,12 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
                   register={form.register}
                   error={form.formState.errors.email?.message}
                 />
-                <InputField
+                <PhoneInputField
                   name="phone"
                   label={t('phone.label')}
                   placeholder={t('phone.placeholder')}
                   isRequired
-                  register={form.register}
+                  control={form.control}
                   error={form.formState.errors.phone?.message}
                 />
               </div>

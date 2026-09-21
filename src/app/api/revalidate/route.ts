@@ -1,3 +1,5 @@
+import { createHash, timingSafeEqual } from 'node:crypto';
+
 import { isNil } from 'lodash-es';
 import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
@@ -46,8 +48,13 @@ const readDocumentType = async (request: Request): Promise<string | null> => {
   }
 };
 
+const digest = (value: string) => createHash('sha256').update(value).digest();
+
+const isValidSecret = (secret: string | null) =>
+  timingSafeEqual(digest(secret ?? ''), digest(Env.REVALIDATE_SECRET));
+
 export async function POST(request: Request) {
-  if (request.headers.get('x-revalidate-secret') !== Env.REVALIDATE_SECRET) {
+  if (!isValidSecret(request.headers.get('x-revalidate-secret'))) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 

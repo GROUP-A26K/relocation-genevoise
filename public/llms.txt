@@ -1,0 +1,86 @@
+# Relocation Genevoise (RG Relocation Genevoise SA)
+
+> RG Relocation Genevoise SA is a relocation agency based at Rue des Alpes 5, 1201 Geneva,
+> Switzerland. It helps individuals and companies settle in Geneva: home search, tenant search
+> for landlords, replacement-tenant search for tenants leaving before the end of their lease,
+> schooling guidance, concierge services and apartment listings. The site is published in French
+> (default, at `/`) and English (at `/en`).
+>
+> RG Relocation Genevoise SA est une agence de relocation sise Rue des Alpes 5, 1201 Genève, Suisse.
+> Elle accompagne particuliers et entreprises dans leur installation à Genève : recherche de
+> logement, recherche de locataires pour les bailleurs, recherche de repreneur de bail pour les
+> locataires sortants, scolarité, conciergerie et annonces d'appartements.
+
+Legal entity: RG Relocation Genevoise SA · Société anonyme (SA) · Registered office: Rue des Alpes 5,
+1201 Genève, Switzerland · Share capital: CHF 100'000 · Registration number: CH-660.0.905.025 ·
+Phone: +41 22 715 17 48 · Email: contact@relocation-genevoise.ch · Languages: French, English ·
+Phone hours: Monday to Saturday, 08:00–21:00.
+
+## Services — Français
+
+- [Trouver un logement](https://relocation-genevoise.ch/trouver-un-logement): une solution complète
+  et sur mesure pour trouver un logement à Genève et gérer les démarches.
+- [Trouver un locataire — Bailleurs](https://relocation-genevoise.ch/trouver-un-locataire/bailleurs):
+  de l'annonce à la signature du bail, gestion de la mise en location à Genève : dossiers solvables,
+  visites et démarches ; le bailleur garde le choix final.
+- [Trouver un repreneur — Locataires](https://relocation-genevoise.ch/trouver-un-locataire/locataires):
+  pour les locataires qui quittent leur logement avant la fin du bail : recherche d'un repreneur
+  solvable, photos, annonce, visites et dossier jusqu'à la libération.
+- [Entreprises](https://relocation-genevoise.ch/entreprises): service de relocation sur mesure à
+  Genève pour les entreprises et organisations, afin de simplifier l'installation des collaborateurs.
+- [Découvrir Genève](https://relocation-genevoise.ch/prestations/decouvrir-geneve): culture,
+  quartiers, transports et conseils pratiques pour s'installer dans la région genevoise.
+- [Scolarité](https://relocation-genevoise.ch/prestations/scolarite): le système scolaire à Genève —
+  écoles publiques, privées et internationales, conseils pour l'inscription des enfants.
+- [Service de conciergerie](https://relocation-genevoise.ch/prestations/service-de-conciergerie):
+  conciergerie sur mesure à Genève : démarches, logement, accueil.
+- [Propriétés](https://relocation-genevoise.ch/proprietes): appartements à Genève sélectionnés par
+  l'agence.
+
+## Services — English
+
+- [Find accommodation](https://relocation-genevoise.ch/en/find-accommodation): a complete, tailored
+  solution to find a home in Geneva and handle the formalities.
+- [Find a tenant — Landlords](https://relocation-genevoise.ch/en/find-a-tenant/landlords): from
+  listing to lease signing, rental management in Geneva: vetted applications, viewings and
+  paperwork; the landlord keeps the final decision.
+- [Find a replacement tenant — Tenants](https://relocation-genevoise.ch/en/find-a-tenant/tenant): for
+  tenants leaving before the lease ends: replacement-tenant search, photos, listing, viewings and
+  paperwork until release.
+- [Companies](https://relocation-genevoise.ch/en/companies): tailored relocation services in Geneva
+  for companies and organisations, designed to simplify the relocation of employees.
+- [Discover Geneva](https://relocation-genevoise.ch/en/services/discover-geneva): culture,
+  neighbourhoods, transport and practical tips for settling in the Geneva region.
+- [Schooling](https://relocation-genevoise.ch/en/services/academic): the school system in Geneva —
+  public, private and international schools, with tips for enrolling children.
+- [Concierge service](https://relocation-genevoise.ch/en/services/concierge-service): tailored
+  concierge service in Geneva: administrative support, housing, welcome assistance.
+- [Properties](https://relocation-genevoise.ch/en/properties): Geneva apartments selected by the
+  agency.
+
+## Reference pages
+
+- [FAQ (FR)](https://relocation-genevoise.ch/faq) / [FAQ (EN)](https://relocation-genevoise.ch/en/faq):
+  practical answers about the relocation services.
+- [Contact (FR)](https://relocation-genevoise.ch/contact) /
+  [Contact (EN)](https://relocation-genevoise.ch/en/contact): address, phone, email and contact form.
+- [Rappelez-moi](https://relocation-genevoise.ch/rappelez-moi) /
+  [Call me back](https://relocation-genevoise.ch/en/call-me-back): callback request form.
+- [Blog (FR)](https://relocation-genevoise.ch/blog) / [Blog (EN)](https://relocation-genevoise.ch/en/blog):
+  articles on the Geneva area — mobility, housing, jobs and practical tips for settling in.
+- [Carrière](https://relocation-genevoise.ch/carriere) /
+  [Career](https://relocation-genevoise.ch/en/career): open positions at the agency.
+
+## Legal
+
+- [Mentions légales](https://relocation-genevoise.ch/mentions-legales) /
+  [Legal notice](https://relocation-genevoise.ch/en/legal-notice): company details, liability,
+  copyright, data protection, cookies and applicable law.
+- [Données personnelles](https://relocation-genevoise.ch/donnees-personnelles) /
+  [Personal data](https://relocation-genevoise.ch/en/personal-data): privacy policy (Swiss nFADP / nLPD).
+
+## Optional
+
+- [Plan du site](https://relocation-genevoise.ch/plan-du-site) /
+  [Sitemap](https://relocation-genevoise.ch/en/sitemap)
+- [XML sitemap](https://relocation-genevoise.ch/sitemap.xml)

@@ -1,14 +1,13 @@
 'use client';
-import Link from 'next/link';
 import { toast } from 'sonner';
 import { useState } from 'react';
-import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { CircleDollarSign, Clock, MapPin, Share2 } from 'lucide-react';
 
 import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
+import { Link } from '@/libs/i18nNavigation';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
 import { RevealItem } from '@/components/common/Reveal';
@@ -79,7 +78,6 @@ export const Content: React.FC<IContentProps> = ({ jobDetail }) => {
   const buttonT = useTranslations('Button&Text');
 
   const [copied, setCopied] = useState(false);
-  const locale = useLocale();
 
   const handleCopy = () => {
     const link = `${domainURL}${pathname}`;
@@ -182,7 +180,10 @@ export const Content: React.FC<IContentProps> = ({ jobDetail }) => {
             </div>
             <div className="inline-flex items-center justify-start gap-2">
               <Link
-                href={`/${locale}/application/${jobDetail.slug}`}
+                href={{
+                  pathname: '/application/[slug]',
+                  params: { slug: jobDetail.slug },
+                }}
                 className="w-full sm:w-fit"
               >
                 <Button

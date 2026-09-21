@@ -1,10 +1,12 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { Hero } from '@/components/common/Hero/Hero';
+import ServiceJsonLd from '@/components/seo/ServiceJsonLd';
 import { ContentView } from '@/components/sections/ServiceDetail';
 import HeroImage from '@/assets/images/services/scolarite-hero.webp';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
@@ -25,12 +27,21 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page() {
+export default async function Page(
+  props: PageProps<'/[locale]/services/academic'>
+) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('Education');
   const imageT = await getTranslations('Images');
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/services/academic']} />
+
+      <ServiceJsonLd service="academic" locale={locale} />
+
       <Section revealTrigger="load" className="relative">
         <Hero
           heroImage={{

@@ -312,7 +312,7 @@ function EmptyState() {
             'text-xs'
           )}
         >
-          <span>DOCX, PDF&nbsp;(max&nbsp;500&nbsp;MB)</span>
+          <span>{textT('hint')}</span>
         </BodyText>
       </BodyText>
     </div>

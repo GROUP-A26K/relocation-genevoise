@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import FormLayout from '@/components/sections/FindATenant/FormLayout';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import LandlordsForm from '@/components/sections/FindATenant/LandlordsForm';
 import FormImage from '@/assets/images/find-a-tenant/landlords/form-image.webp';
 
@@ -33,17 +34,24 @@ export default async function Page(
   const imageT = await getTranslations('Images');
 
   return (
-    <FormLayout
-      eyebrow={t('eyebrow')}
-      heading={t('heading')}
-      description={t('description')}
-      image={{
-        src: FormImage,
-        alt: imageT('findATenant.landlords.form'),
-        title: imageT('findATenant.landlords.form'),
-      }}
-    >
-      <LandlordsForm />
-    </FormLayout>
+    <>
+      <PageBreadcrumbJsonLd
+        locale={locale}
+        trail={['/find-a-tenant/landlords', '/find-a-tenant/landlords/form']}
+      />
+
+      <FormLayout
+        eyebrow={t('eyebrow')}
+        heading={t('heading')}
+        description={t('description')}
+        image={{
+          src: FormImage,
+          alt: imageT('findATenant.landlords.form'),
+          title: imageT('findATenant.landlords.form'),
+        }}
+      >
+        <LandlordsForm />
+      </FormLayout>
+    </>
   );
 }

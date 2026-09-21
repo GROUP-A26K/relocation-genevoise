@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { toUrlSlug } from '@/utils/slug';
 import { AppConfig } from '@/utils/appConfig';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import { SITEMAP_DOCUMENTS_QUERY } from '@/sanity/lib/queries';
@@ -7,7 +8,6 @@ import { getAlternates, type TSitemapUrl } from '@/utils/sitemap';
 import {
   getAbsoluteUrl,
   getLocalizedPath,
-  stripLocalePrefix,
   toHref,
   toIsoDate,
 } from '@/utils/seo';
@@ -50,6 +50,8 @@ export type TCmsSitemap = keyof typeof CMS_SITEMAPS;
 
 export const CMS_SITEMAP_NAMES = Object.keys(CMS_SITEMAPS) as TCmsSitemap[];
 
+const STATIC_LAST_MODIFIED = new Date().toISOString();
+
 export const getStaticSitemapUrls = (): TSitemapUrl[] =>
   (Object.keys(AppConfig.sitemapPriorities) as TSitemapPathname[]).flatMap(
     (pathname) => {
@@ -63,11 +65,26 @@ export const getStaticSitemapUrls = (): TSitemapUrl[] =>
 
       return AppConfig.locales.map((locale) => ({
         loc: getAbsoluteUrl(pathByLocale[locale]),
+        lastModified: STATIC_LAST_MODIFIED,
         priority: AppConfig.sitemapPriorities[pathname],
         alternates,
       }));
     }
   );
+
+export const getCmsStaticParams = async (name: TCmsSitemap) => {
+  const { type, tag, requiresExplicitVisibility } = CMS_SITEMAPS[name];
+
+  const documents = await sanityFetch(
+    SITEMAP_DOCUMENTS_QUERY,
+    { type, locales: AppConfig.locales, requiresExplicitVisibility },
+    { tags: [tag] }
+  ).catch(() => []);
+
+  return documents.flatMap(({ language, slug }) =>
+    language && slug ? [{ locale: language, slug: toUrlSlug(slug) }] : []
+  );
+};
 
 export const getCmsSitemapUrls = async (
   name: TCmsSitemap
@@ -82,7 +99,7 @@ export const getCmsSitemapUrls = async (
   );
 
   const toPath = (locale: string, slug: string) =>
-    getLocalizedPath(locale, toHref(pathname, stripLocalePrefix(slug)));
+    getLocalizedPath(locale, toHref(pathname, toUrlSlug(slug)));
 
   return documents.flatMap(({ _updatedAt, language, slug, translations }) => {
     if (!language || !slug) {

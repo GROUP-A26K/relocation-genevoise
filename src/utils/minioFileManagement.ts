@@ -1,43 +1,53 @@
 import { Env } from '@/libs/env';
 import { createBucketIfNotExists, minio } from '@/libs/minio';
 
-import type internal from 'node:stream';
-
 type TSaveParams = {
   bucketName: string;
   fileName: string;
-  file: Buffer | internal.Readable;
-  /**
-   * If `true`, return a presigned URL that expires in `expiry` seconds.
-   * If `false`, return a public URL built from MINIO_PUBLIC_ENDPOINT.   */
-  signedUrl?: boolean;
-  expiry?: number; // seconds, default 1 day
+  file: Buffer;
+  contentType: string;
 };
 
 interface ISaveResult {
-  fileName: string;
-  url: string;
+  key: string;
 }
+
+const DEFAULT_PRESIGNED_EXPIRY_SECONDS = 24 * 60 * 60;
 
 export async function saveFileInBucket({
   bucketName,
   fileName,
   file,
-  signedUrl = false,
-  expiry = 24 * 60 * 60,
+  contentType,
 }: TSaveParams): Promise<ISaveResult> {
   await createBucketIfNotExists(bucketName);
 
   const already = await checkFileExistsInBucket({ bucketName, fileName });
   if (already) throw new Error('File already exists');
 
-  await minio.putObject(bucketName, fileName, file);
+  await minio.putObject(bucketName, fileName, file, file.length, {
+    'Content-Type': contentType,
+    'Content-Disposition': 'attachment',
+  });
 
-  const url = signedUrl
-    ? await minio.presignedGetObject(bucketName, fileName, expiry)
-    : `https://${Env.MINIO_ENDPOINT}/${bucketName}/${fileName}`;
+  return { key: fileName };
+}
 
-  return { fileName, url };
+export function getPresignedUrl(
+  key: string,
+  expiry = DEFAULT_PRESIGNED_EXPIRY_SECONDS
+): Promise<string> {
+  return minio.presignedGetObject(Env.MINIO_BUCKET, key, expiry);
+}
+
+export function removeFileFromBucket({
+  bucketName,
+  fileName,
+}: {
+  bucketName: string;
+  fileName: string;
+}): Promise<void> {
+  return minio.removeObject(bucketName, fileName);
 }
 
 /**

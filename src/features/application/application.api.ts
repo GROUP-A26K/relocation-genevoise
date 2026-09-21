@@ -7,7 +7,10 @@ import type {
   TApplicationSubmitVariables,
 } from './application.types';
 
-const toFormData = (values: TApplicationSubmitVariables['values']) => {
+const toFormData = ({
+  values,
+  guard,
+}: Pick<TApplicationSubmitVariables, 'values' | 'guard'>) => {
   const formData = new FormData();
 
   formData.append('resume_file', values.resume_file);
@@ -18,16 +21,21 @@ const toFormData = (values: TApplicationSubmitVariables['values']) => {
     formData.append(key, value instanceof File ? value : String(value));
   });
 
+  Object.entries(guard).forEach(([key, value]) => {
+    if (!isNil(value)) formData.append(key, value);
+  });
+
   return formData;
 };
 
 export function submitApplicationApi({
   values,
   locale,
+  guard,
 }: TApplicationSubmitVariables) {
   return post<IApplicationSubmitResponse>(
     '/api/application',
-    toFormData(values),
+    toFormData({ values, guard }),
     { locale }
   );
 }

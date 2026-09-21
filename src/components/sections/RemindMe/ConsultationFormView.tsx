@@ -2,10 +2,10 @@
 import Image from 'next/image';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
-import { useCallback, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocale, useTranslations } from 'next-intl';
 import { CalendarDays, Phone, PhoneIncoming } from 'lucide-react';
+import { useCallback, useMemo, type BaseSyntheticEvent } from 'react';
 
 import { Env } from '@/libs/env';
 import { cn } from '@/libs/utils';
@@ -13,14 +13,15 @@ import { Form } from '@/components/ui/form';
 import { Link } from '@/libs/i18nNavigation';
 import Alert from '@/components/common/Alert';
 import Button from '@/components/common/Button';
+import { readFormGuard } from '@/utils/formGuard';
 import { useFormDraft } from '@/features/formDraft';
 import { useOpenStatus } from '@/hooks/useOpenStatus';
 import BodyText from '@/components/common/Text/BodyText';
 import WhatsappIcon from '@/components/icons/WhatsappIcon';
-import { PhoneInputField } from '@/components/common/Form';
 import HeadingText from '@/components/common/Text/HeadingText';
 import { useSubmitBooking } from '@/features/booking/booking.hooks';
 import { bodyTextVariants } from '@/components/common/Text/BodyText';
+import { FormGuard, PhoneInputField } from '@/components/common/Form';
 import { RevealItem, RevealSection } from '@/components/common/Reveal';
 import { TextWithStrong } from '@/components/common/Text/TextWithStrong';
 import {
@@ -29,8 +30,6 @@ import {
 } from '@/validations/booking.validation';
 import ConsultationBG from '@/assets/images/shared/relocation-genevoise-geneve-courtage.webp';
 
-const TIME_OPEN = 9;
-const TIME_CLOSE = 18;
 const RESET_OPEN_STATUS_TIME = 60000;
 
 type TContactChannel = TBookingFormInput['contactVia'];
@@ -83,8 +82,6 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   const timezone = Env.NEXT_PUBLIC_SERVER_TIMEZONE;
   const isOpen = useOpenStatus({
     timezone,
-    openHour: TIME_OPEN,
-    closeHour: TIME_CLOSE,
     interval: RESET_OPEN_STATUS_TIME,
   });
   const { mutateAsync, isPending } = useSubmitBooking();
@@ -130,11 +127,11 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
   );
 
   const onSubmit = useCallback(
-    async (values: TBookingFormInput) => {
+    async (values: TBookingFormInput, event?: BaseSyntheticEvent) => {
       const submission = draft.beginSubmission(values);
 
       try {
-        await mutateAsync({ values, locale });
+        await mutateAsync({ values, locale, guard: readFormGuard(event) });
         draft.completeSubmission(submission);
         showToast('success');
       } catch (error) {
@@ -279,6 +276,7 @@ export const ConsultationFormView: React.FC<IConsultationFormViewProps> = ({
                     'xl:flex-row'
                   )}
                 >
+                  <FormGuard />
                   <div className="flex w-full flex-1 flex-col gap-2 lg:gap-3">
                     <PhoneInputField
                       name="phone"

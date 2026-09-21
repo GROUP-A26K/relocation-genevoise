@@ -1,10 +1,11 @@
-import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { ContactInfo } from '@/components/common/Info/ContactInfo';
 import { ConsultationFormView } from '@/components/sections/RemindMe';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 
 import type { Metadata } from 'next';
 
@@ -24,11 +25,16 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page() {
+export default async function Page(props: PageProps<'/[locale]/call-me-back'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('RemindMe');
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/call-me-back']} />
+
       <ConsultationFormView
         heading={t('Consultation.heading')}
         subHeading={t('Consultation.subHeading')}
