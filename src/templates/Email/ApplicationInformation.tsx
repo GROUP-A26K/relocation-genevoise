@@ -19,15 +19,22 @@ import { getImageMessages } from '@/utils/imageMessages';
 
 import type { TApplicationFormInput } from '@/validations/application.validation';
 
-type TUserInfo = Omit<
+export type TApplicationUserInfo = Pick<
   TApplicationFormInput,
-  'resume_file ' | 'accept ' | 'expected_ctc'
+  | 'first_name'
+  | 'last_name'
+  | 'email'
+  | 'phone'
+  | 'experience_years'
+  | 'department'
+  | 'position'
 > & {
-  resume_url: string;
-  expected_ctc: number | undefined;
+  resume_file_name: string;
+  expected_ctc?: number;
 };
+
 interface IApplicationInformationProps {
-  userInfo: TUserInfo;
+  userInfo: TApplicationUserInfo;
   baseUrl: string;
   locale: 'en' | 'fr';
 }
@@ -42,8 +49,8 @@ const copy = {
     experience_years: 'Experience years',
     department: 'Department',
     position: 'Position',
-    resume_url: 'Resume URL',
-    user_cv: 'User CV',
+    resume: 'Résumé',
+    attached: 'attached to this email',
   },
   fr: {
     heading: 'Informations de candidature',
@@ -54,8 +61,8 @@ const copy = {
     experience_years: 'Années expérience',
     department: 'Département',
     position: 'Poste',
-    resume_url: 'URL du CV',
-    user_cv: 'CV de l’utilisateur',
+    resume: 'CV',
+    attached: 'en pièce jointe de cet e-mail',
   },
 } as const;
 
@@ -141,10 +148,8 @@ export const ApplicationInformation = ({
             </Text>
 
             <Text className="px-8 text-[14px] leading-[24px] text-black">
-              {t.resume_url}:{' '}
-              <Link href={userInfo.resume_url}>
-                <strong className="text-[#D7BC12]">{t.user_cv}</strong>
-              </Link>
+              {t.resume}: <strong>{userInfo.resume_file_name}</strong> (
+              {t.attached})
             </Text>
 
             {/* ---------- Footer ---------- */}
@@ -164,7 +169,7 @@ ApplicationInformation.PreviewProps = {
     experience_years: '5',
     department: 'Engineering',
     position: 'Software Engineer',
-    resume_url: 'https://example.com/resume.pdf',
+    resume_file_name: 'gavin-tran-resume.pdf',
   },
   baseUrl: 'https://relocation-genevoise.vercel.app/',
   locale: 'en',

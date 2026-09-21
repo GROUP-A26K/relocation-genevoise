@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
 
 import Section from '@/components/common/Section';
@@ -9,6 +10,7 @@ export default async function PhotoTourPage({
   params,
 }: PageProps<'/[locale]/properties/[slug]/photo-tour'>) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const { state, areas, propertyTitle } = await hydratePropertyPhotoTour(
     slug,
     locale

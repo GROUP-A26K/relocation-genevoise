@@ -67,7 +67,7 @@ export default function RevealSection({
     <motion.div
       ref={ref}
       data-reveal="section"
-      initial="hiddenDown"
+      initial={trigger === 'load' ? false : 'hiddenDown'}
       animate={animate}
       variants={shouldReduceMotion ? reducedStaggerVariant : staggerVariant}
       {...rest}

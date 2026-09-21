@@ -85,7 +85,7 @@ const ContactInfo: React.FC<IContactInfoProps> = ({
             <InfoContactCard {...reasonItems[0]} />
           </Link>
           <Link
-            href="https://www.google.com/maps/search/?api=1&query=Rue+des+Alpes+5,+1201+Genève"
+            href={ORGANIZATION.mapUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="cursor-pointer"

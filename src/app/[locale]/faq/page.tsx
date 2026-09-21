@@ -1,5 +1,5 @@
 import { Phone } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { Faq } from '@/components/sections/Faq';
 import Section from '@/components/common/Section';
@@ -7,6 +7,7 @@ import HeadingText from '@/components/common/Text/HeadingText';
 import GroupAvatar from '@/assets/images/faq/advisors-group.webp';
 import { getLocalizedPath, getPageAlternates } from '@/utils/seo';
 import FaqJsonLd, { type TFaqItem } from '@/components/seo/FaqJsonLd';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 import { BookConsultation } from '@/components/common/Consultation/BookConsultation';
 
 import type { Metadata } from 'next';
@@ -29,12 +30,15 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]/faq'>) {
   const { locale } = await props.params;
+  setRequestLocale(locale);
   const t = await getTranslations('FAQ');
 
   const faqs = t.raw('faqs') as TFaqItem[];
 
   return (
     <>
+      <PageBreadcrumbJsonLd locale={locale} trail={['/faq']} />
+
       <FaqJsonLd
         items={faqs}
         locale={locale}

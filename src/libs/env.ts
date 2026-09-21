@@ -3,7 +3,7 @@ import { createEnv } from '@t3-oss/env-nextjs';
 
 export const Env = createEnv({
   server: {
-    NEXT_APP_ENV: z.enum(['development', 'staging', 'production']).optional(),
+    NEXT_APP_ENV: z.enum(['development', 'staging', 'production']),
     SANITY_API_READ_TOKEN: z.string().min(1),
     SANITY_API_VERSION: z.string().min(1),
     SANITY_PROJECT_ID: z.string().min(1),
@@ -19,12 +19,14 @@ export const Env = createEnv({
     RESEND_SENDER_NAME: z.string().min(1),
     RESEND_RECEIVER_EMAIL: z.string().min(1),
     REVALIDATE_SECRET: z.string().min(1),
+    TURNSTILE_SECRET_KEY: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().min(1),
     NEXT_PUBLIC_GTM_ID: z.string().optional(),
     NEXT_PUBLIC_SERVER_TIMEZONE: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string().min(1),
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().optional(),
   },
   shared: {
     NODE_ENV: z.enum(['test', 'development', 'production']).optional(),
@@ -52,5 +54,7 @@ export const Env = createEnv({
     SANITY_DATASET: process.env.SANITY_DATASET,
     NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:
       process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
   },
 });

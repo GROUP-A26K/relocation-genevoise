@@ -13,7 +13,7 @@ import {
 export default async function SiteJsonLd() {
   const t = await getTranslations('Metadata.Home');
   const homeUrl = `${getSiteUrl()}/`;
-  const { address, logo } = ORGANIZATION;
+  const { address, logo, openingHours } = ORGANIZATION;
 
   return (
     <JsonLd
@@ -36,6 +36,11 @@ export default async function SiteJsonLd() {
             email: ORGANIZATION.email,
             telephone: ORGANIZATION.telephone,
             address: { '@type': 'PostalAddress', ...address },
+            hasMap: ORGANIZATION.mapUrl,
+            openingHoursSpecification: {
+              '@type': 'OpeningHoursSpecification',
+              ...openingHours,
+            },
             areaServed: { '@type': 'City', name: ORGANIZATION.areaServed },
             contactPoint: {
               '@type': 'ContactPoint',

@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { SITE_NAME } from '@/constants/seo';
 import BlogJsonLd from '@/components/seo/BlogJsonLd';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import { hydrateBlogDetail } from '@/features/blog/blog.hydration';
+import { getCmsStaticParams } from '@/features/sitemap/sitemap.service';
 import { BlogDetailClient } from '@/components/sections/BlogDetail/BlogDetailClient';
 import {
   fetchBlogBySlug,
@@ -21,6 +22,10 @@ import {
 } from '@/utils/seo';
 
 import type { Metadata } from 'next';
+
+export function generateStaticParams() {
+  return getCmsStaticParams('blog');
+}
 
 export async function generateMetadata(
   props: PageProps<'/[locale]/blog/[slug]'>
@@ -66,6 +71,7 @@ export async function generateMetadata(
 
 export default async function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
   const { slug, locale } = await props.params;
+  setRequestLocale(locale);
 
   const tBreadcrumb = await getTranslations('Breadcrumb');
 

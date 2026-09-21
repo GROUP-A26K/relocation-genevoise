@@ -1,10 +1,12 @@
-import { getTranslations } from 'next-intl/server';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getPageAlternates } from '@/utils/seo';
 import Section from '@/components/common/Section';
 import { ContactFormView } from '@/components/sections/Contact';
+import ContactPageJsonLd from '@/components/seo/ContactPageJsonLd';
 import { ContactInfo } from '@/components/common/Info/ContactInfo';
+import PageBreadcrumbJsonLd from '@/components/seo/PageBreadcrumbJsonLd';
 
 import type { Metadata } from 'next';
 
@@ -23,11 +25,17 @@ export async function generateMetadata(
     alternates: getPageAlternates(locale, '/contact'),
   };
 }
-export default async function Page() {
+export default async function Page(props: PageProps<'/[locale]/contact'>) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
+
   const t = await getTranslations('Contact');
 
   return (
     <>
+      <ContactPageJsonLd locale={locale} />
+      <PageBreadcrumbJsonLd locale={locale} trail={['/contact']} />
+
       <Section revealTrigger="load">
         <ContactInfo
           heading={t('ContactInfo.heading')}

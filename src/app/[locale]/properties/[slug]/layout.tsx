@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { OG_IMAGE, SITE_NAME } from '@/constants/seo';
+import { getCmsStaticParams } from '@/features/sitemap/sitemap.service';
 import { getOgLocale, getPageAlternates, getSlugByLocale } from '@/utils/seo';
 import {
   fetchPropertySlugBySlug,
@@ -8,6 +9,10 @@ import {
 } from '@/features/property/property.service';
 
 import type { Metadata } from 'next';
+
+export function generateStaticParams() {
+  return getCmsStaticParams('properties');
+}
 
 export async function generateMetadata(
   props: LayoutProps<'/[locale]/properties/[slug]'>

@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { SITE_NAME } from '@/constants/seo';
 import { PageView } from '@/components/sections/CareerDetail';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
+import JobPostingJsonLd from '@/components/seo/JobPostingJsonLd';
+import { getCmsStaticParams } from '@/features/sitemap/sitemap.service';
 import { hydrateCareerDetail } from '@/features/career/career.hydration';
 import {
   getLocalizedPath,
@@ -19,10 +21,15 @@ import {
 
 import type { Metadata } from 'next';
 
+export function generateStaticParams() {
+  return getCmsStaticParams('career');
+}
+
 export default async function Page(
   props: PageProps<'/[locale]/career/[slug]'>
 ) {
   const { slug, locale } = await props.params;
+  setRequestLocale(locale);
   const {
     state,
     detail: jobDetail,
@@ -32,9 +39,14 @@ export default async function Page(
   if (!jobDetail) notFound();
 
   const tBreadcrumb = await getTranslations('Breadcrumb');
+  const jobPath = getLocalizedPath(
+    locale,
+    toHref('/career/[slug]', jobDetail.slug)
+  );
 
   return (
     <>
+      <JobPostingJsonLd job={jobDetail} locale={locale} path={jobPath} />
       <BreadcrumbJsonLd
         items={[
           { name: SITE_NAME, path: getLocalizedPath(locale, '/') },
@@ -42,13 +54,7 @@ export default async function Page(
             name: tBreadcrumb('career'),
             path: getLocalizedPath(locale, '/career'),
           },
-          {
-            name: jobDetail.title,
-            path: getLocalizedPath(
-              locale,
-              toHref('/career/[slug]', jobDetail.slug)
-            ),
-          },
+          { name: jobDetail.title, path: jobPath },
         ]}
       />
 

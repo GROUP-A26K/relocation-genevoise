@@ -1,4 +1,5 @@
 import { Env } from '@/libs/env';
+import { toUrlSlug } from '@/utils/slug';
 import { AppConfig } from '@/utils/appConfig';
 import { getPathname } from '@/libs/i18nNavigation';
 import { LANGUAGE_TAGS, OG_LOCALES } from '@/constants/seo';
@@ -34,9 +35,6 @@ export const getLocalizedPath = (locale: string, href: TPathnameHref) =>
 export const toHref = (pathname: TPathname, slug?: string) =>
   (slug ? { pathname, params: { slug } } : pathname) as TPathnameHref;
 
-export const stripLocalePrefix = (slug: string) =>
-  slug.replace(/^[a-z]{2}-/i, '');
-
 export const getHreflangPaths = (
   pathByLocale: Partial<Record<string, string>>
 ): Record<string, string> => {
@@ -46,15 +44,13 @@ export const getHreflangPaths = (
     return path ? [[locale, path]] : [];
   });
 
-  if (entries.length < 2) {
+  if (entries.length === 0) {
     return {};
   }
 
-  const defaultPath = pathByLocale[AppConfig.defaultLocale];
+  const defaultPath = pathByLocale[AppConfig.defaultLocale] ?? entries[0][1];
 
-  return Object.fromEntries(
-    defaultPath ? [...entries, ['x-default', defaultPath]] : entries
-  );
+  return Object.fromEntries([...entries, ['x-default', defaultPath]]);
 };
 
 export const getPageAlternates = (
@@ -76,10 +72,7 @@ export const getPageAlternates = (
         ? [
             [
               currentLocale,
-              getLocalizedPath(
-                currentLocale,
-                toHref(pathname, stripLocalePrefix(slug))
-              ),
+              getLocalizedPath(currentLocale, toHref(pathname, slug)),
             ],
           ]
         : [];
@@ -98,7 +91,10 @@ export const getSlugByLocale = (
   translations: { locale: string; slug: string }[]
 ) => ({
   ...Object.fromEntries(
-    translations.map((translation) => [translation.locale, translation.slug])
+    translations.map((translation) => [
+      translation.locale,
+      toUrlSlug(translation.slug),
+    ])
   ),
   [locale]: slug,
 });
@@ -129,3 +125,34 @@ export const toPlainText = (text: string) =>
     .replace(/\*{1,2}/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null;
+
+const collectBlockTexts = (node: unknown): string[] => {
+  if (Array.isArray(node)) {
+    return node.flatMap(collectBlockTexts);
+  }
+
+  if (!isRecord(node)) {
+    return [];
+  }
+
+  if (node._type === 'block' && Array.isArray(node.children)) {
+    return [
+      node.children
+        .map((child) =>
+          isRecord(child) && typeof child.text === 'string' ? child.text : ''
+        )
+        .join(''),
+    ];
+  }
+
+  return Object.values(node).flatMap(collectBlockTexts);
+};
+
+export const portableTextToPlainText = (blocks: unknown) =>
+  collectBlockTexts(blocks)
+    .map((text) => text.replace(/\s+/g, ' ').trim())
+    .filter(Boolean)
+    .join('\n');
