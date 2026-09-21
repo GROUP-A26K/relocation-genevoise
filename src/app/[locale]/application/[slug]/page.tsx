@@ -5,10 +5,12 @@ import { HydrationBoundary } from '@tanstack/react-query';
 import { toCmsSlug } from '@/utils/slug';
 import { getLocalizedPath, toHref } from '@/utils/seo';
 import { PageView } from '@/components/sections/Application';
-import { fetchJobDetailBySlug } from '@/features/career/career.service';
-import { fetchCareerSlugBySlug } from '@/features/career/career.service';
 import { hydrateCareerDetail } from '@/features/career/career.hydration';
 import { getApplicationDraftKey } from '@/features/application/application.draft';
+import {
+  fetchJobDetailBySlug,
+  fetchCareerSlugBySlug,
+} from '@/features/career/career.service';
 
 import type { Metadata } from 'next';
 

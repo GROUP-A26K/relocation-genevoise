@@ -1,6 +1,6 @@
 export const FIELD_LIMITS = {
   email: 254,
-  phone: 15,
+  phone: 16,
   company: 150,
   subject: 150,
   message: 5000,

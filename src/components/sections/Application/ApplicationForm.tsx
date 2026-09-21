@@ -19,15 +19,16 @@ import { CheckboxField } from '@/components/common/Form/CheckboxField';
 import ConsultationBG from '@/assets/images/application/form-image.webp';
 import { useSubmitApplication } from '@/features/application/application.hooks';
 import {
+  type TApplicationFormInput,
+  applicationSchema,
+} from '@/validations/application.validation';
+import {
   FormGuard,
   InputField,
   SelectField,
   UploadField,
+  PhoneInputField,
 } from '@/components/common/Form';
-import {
-  type TApplicationFormInput,
-  applicationSchema,
-} from '@/validations/application.validation';
 
 import type { IJobDetail } from '@/models/job';
 import type { TApplicationDraftKey } from '@/features/formDraft';
@@ -224,12 +225,12 @@ const ApplicationForm: React.FC<IApplicationFormProps> = ({
                   register={form.register}
                   error={form.formState.errors.email?.message}
                 />
-                <InputField
+                <PhoneInputField
                   name="phone"
                   label={t('phone.label')}
                   placeholder={t('phone.placeholder')}
                   isRequired
-                  register={form.register}
+                  control={form.control}
                   error={form.formState.errors.phone?.message}
                 />
               </div>
